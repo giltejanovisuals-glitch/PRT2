@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="310" viewBox="0 0 400 310">
-  <rect width="400" height="310" fill="#0f0f0f"/>
-  <rect x="0.5" y="0.5" width="399" height="309" fill="none" stroke="#2a2a2a"/>
-  <rect x="40" y="60" width="320" height="150" fill="none" stroke="#4fc3b5" stroke-width="2" stroke-dasharray="6 8"/>
-  <text x="200" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#8d8d8d">REPLACE WITH</text>
-  <text x="200" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#4fc3b5">project-03.jpg</text>
-</svg>

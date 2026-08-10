@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://giltejano.netlify.app/sitemap.xml

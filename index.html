@@ -1,747 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Gil Tejano — creative specialist building visual experiences with commercial purpose."
+    />
+    <title>Web | Creative Specialist</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
 
-  <title>Gil Tejano | Creative Specialist Portfolio</title>
-  <meta
-    name="description"
-    content="Gil Tejano is a Creative Specialist / Graphic Designer crafting premium product visuals, retail campaign materials, and brand-consistent designs for lifestyle and interior brands."
-  />
-  <!-- Replace with your real domain once it's live -->
-  <link rel="canonical" href="https://giltejano.netlify.app/" />
-  <meta name="theme-color" content="#1f6f68" />
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <!-- Open Graph / Social -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Gil Tejano | Creative Specialist Portfolio" />
-  <meta
-    property="og:description"
-    content="Premium product visuals, retail campaign materials, and brand-consistent designs for lifestyle and interior brands."
-  />
-  <!-- Replace with your real domain once it's live -->
-  <meta property="og:url" content="https://giltejano.netlify.app/" />
-  <!-- Placeholder social preview image - add a real 1200x630 image at this path -->
-  <meta property="og:image" content="https://giltejano.netlify.app/assets/images/profile/gil-tejano.webp" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Gil Tejano | Creative Specialist Portfolio" />
-  <meta name="twitter:description" content="Premium product visuals, retail campaign materials, and brand-consistent designs for lifestyle and interior brands." />
-  <meta name="twitter:image" content="https://giltejano.netlify.app/assets/images/profile/gil-tejano.webp" />
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Gil Tejano, home">
+        <span class="brand-mark" aria-hidden="true">GT</span>
+        <span class="brand-name">Web Site</span>
+      </a>
 
-  <!-- Favicon -->
-  <link
-    rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23050505'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-size='60' font-weight='900' fill='%23c6ff2e' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E"
-  />
-  <link rel="icon" href="favicon.ico" sizes="any" />
-  <link rel="manifest" href="site.webmanifest" />
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+      >
+        <span>Menu</span>
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+      <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="mailto:hello@giltejano.com">Contact</a>
+      </nav>
+    </header>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,500;1,600&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
-</head>
-
-<body>
-  <a href="#main-content" class="skip-link">Skip to content</a>
-
-  <main class="portfolio-page" id="main-content">
-
-    <!-- HERO SECTION -->
-    <section class="hero" id="home">
-      <div class="hero-bg" aria-hidden="true">
-        <!--
-          Above-the-fold hero media: keep this eager-loaded (no
-          loading="lazy" on the poster/video) so the first paint isn't
-          delayed. Add a real poster at assets/images/backgrounds/hero-background.webp
-          (shows instantly while the video buffers) and, optionally, a
-          portrait-cropped clip for small screens.
-        -->
-        <video
-          class="hero-bg-video"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="auto"
-          poster="assets/images/backgrounds/hero-background.webp"
-        >
-          <!-- Optional: add a portrait crop and re-enable this source for small screens -->
-          <!-- <source src="assets/videos/hero-showreel-portrait.mp4" media="(max-width: 900px)" type="video/mp4" /> -->
-          <source src="assets/videos/hero-showreel.mp4" type="video/mp4" />
-        </video>
+    <main class="hero" id="main-content">
+      <div class="project-index" role="tablist" aria-label="Featured projects">
+        <button class="index-button is-active" type="button" role="tab" aria-selected="true" data-slide="0">01</button>
+        <button class="index-button" type="button" role="tab" aria-selected="false" data-slide="1">02</button>
+        <button class="index-button" type="button" role="tab" aria-selected="false" data-slide="2">03</button>
+        <button class="index-button" type="button" role="tab" aria-selected="false" data-slide="3">04</button>
       </div>
 
-      <header class="site-header">
-        <div class="brand-label">
-          <span>Portfolio</span>
-          <div class="line"></div>
-        </div>
+      <section class="hero-copy" aria-labelledby="hero-title">
+        <p class="eyebrow">Creative specialist · Manila</p>
+        <h1 id="hero-title">
+          Creative work<br />
+          with commercial<br />
+          purpose.
+        </h1>
+      </section>
 
-      </header>
+      <section class="visual-stage" id="work" aria-label="Featured project preview">
+        <article class="project-visual project-mooni is-active" data-project="0" aria-hidden="false">
+          <div class="visual-object visual-object-main"></div>
+          <div class="visual-object visual-object-secondary"></div>
+          <p class="visual-word">MOONI</p>
+          <div class="project-meta">
+            <span>Mooni</span>
+            <span>Brand application</span>
+          </div>
+        </article>
 
-      <div class="hero-content">
-        <div class="hero-copy">
-          <p class="eyebrow">Creative Specialist / Graphic Designer</p>
+        <article class="project-visual project-metal" data-project="1" aria-hidden="true">
+          <div class="visual-object visual-object-main"></div>
+          <div class="visual-object visual-object-secondary"></div>
+          <p class="visual-word">METAL—LITE</p>
+          <div class="project-meta">
+            <span>Metal-Lite</span>
+            <span>Retail campaign</span>
+          </div>
+        </article>
 
-          <h1>
-            Creative
-            <span>Designer</span>
-          </h1>
+        <article class="project-visual project-porta" data-project="2" aria-hidden="true">
+          <div class="visual-object visual-object-main"></div>
+          <div class="visual-object visual-object-secondary"></div>
+          <p class="visual-word">PORTA</p>
+          <div class="project-meta">
+            <span>Porta Mobili</span>
+            <span>Visual identity</span>
+          </div>
+        </article>
 
-          <div class="hero-divider" aria-hidden="true"></div>
+        <article class="project-visual project-hooga" data-project="3" aria-hidden="true">
+          <div class="visual-object visual-object-main"></div>
+          <div class="visual-object visual-object-secondary"></div>
+          <p class="visual-word">HOOGA</p>
+          <div class="project-meta">
+            <span>Hooga</span>
+            <span>Catalog system</span>
+          </div>
+        </article>
+      </section>
 
-          <p class="hero-description">
-            I craft premium product visuals, retail campaign materials, and
-            brand-consistent designs that help lifestyle and interior brands
-            look more refined, clear, and valuable.
+      <div class="hero-footer">
+        <div class="intro" id="about">
+          <p class="section-label">Selected practice</p>
+          <p>
+            Visual design, brand applications, campaigns, and digital experiences
+            for furniture, lifestyle, retail, and product-driven brands.
           </p>
-
-          <a href="#projects" class="hero-cta">View My Work</a>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- INTRO / STATS SECTION -->
-    <section class="impact-panel section-border">
-      <div class="impact-intro">
-        <div class="icon-mark">
-          <i class="fa-solid fa-sparkles" aria-hidden="true"></i>
         </div>
 
-        <h2>
-          Design with purpose.<br />
-          Create impact.
-        </h2>
+        <a class="work-link" href="#work">
+          <span>View selected work</span>
+          <span aria-hidden="true">↗</span>
+        </a>
 
-        <p>
-          I help brands communicate through clean visuals, strong hierarchy,
-          premium layouts, and marketing-focused design systems.
+        <p class="slide-status" aria-live="polite">
+          <span id="current-slide">01</span><span class="status-line"></span><span>04</span>
         </p>
       </div>
 
-      <div class="stat-card">
-        <i class="fa-regular fa-star" aria-hidden="true"></i>
-        <h3>5+</h3>
-        <p>Years of<br />Design Experience</p>
-      </div>
-
-      <div class="stat-card">
-        <i class="fa-solid fa-cube" aria-hidden="true"></i>
-        <h3>120+</h3>
-        <p>Projects<br />Completed</p>
-      </div>
-
-      <div class="stat-card">
-        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
-        <h3>10+</h3>
-        <p>Brands<br />Handled</p>
-      </div>
-
-      <div class="stat-card">
-        <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
-        <h3>40%</h3>
-        <p>Reduced External<br />Agency Reliance</p>
-      </div>
-    </section>
-
-    <!-- CREATIVE BOARDS
-         Stacked composition: a dominant .cb-preview pane on top, four
-         equal-width .cb-card selectors in a row underneath. The cards
-         below are the no-JS fallback (plain links straight to each
-         project page). With JS enabled, js/projects.js overwrites
-         .cb-list with cards built from data/projects-data.js and drives
-         the .cb-preview pane (ambient crossfade + per-project marquee) -
-         edit that data file to add, remove, or reorder projects, and
-         update the cards below to match so the fallback stays in sync. -->
-    <section class="projects-section" id="projects">
-      <div class="section-heading">
-        <h2>
-          Creative<br />
-          Boards
-        </h2>
-
-        <a href="#projects" class="text-link">
-          Explore All Works
-          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-        </a>
-      </div>
-
-      <div class="cb-layout">
-        <div class="cb-preview" id="cbPreview" aria-live="polite">
-          <span class="cb-preview-status" id="cbPreviewStatus">Random Preview</span>
-          <div class="cb-preview-shuffle" id="cbShuffle" aria-hidden="true">
-            <div class="cb-shuffle-layer"></div>
-            <div class="cb-shuffle-layer"></div>
-          </div>
-          <div class="cb-preview-gallery" id="cbGallery">
-            <div class="cb-gallery-track" id="cbGalleryTrack"></div>
-          </div>
-        </div>
-
-        <div class="cb-list" id="cbList">
-          <a class="cb-card" href="pages/project-mooni-campaign.html" aria-label="View project: Mooni Campaign Visuals">
-            <span class="cb-card-active-dot" aria-hidden="true"></span>
-            <span class="cb-card-number">01</span>
-            <span class="cb-card-title">Mooni Campaign Visuals</span>
-            <span class="cb-card-category">Premium Product Visuals</span>
-            <span class="cb-card-open">
-              Open Project <span class="cb-card-open-arrow" aria-hidden="true">&#8599;</span>
-            </span>
-          </a>
-
-          <a class="cb-card" href="pages/project-metal-lite-campaign.html" aria-label="View project: Metal-Lite Retail Campaign">
-            <span class="cb-card-active-dot" aria-hidden="true"></span>
-            <span class="cb-card-number">02</span>
-            <span class="cb-card-title">Metal-Lite Retail Campaign</span>
-            <span class="cb-card-category">Retail Campaign Materials</span>
-            <span class="cb-card-open">
-              Open Project <span class="cb-card-open-arrow" aria-hidden="true">&#8599;</span>
-            </span>
-          </a>
-
-          <a class="cb-card" href="pages/project-hooga-catalog.html" aria-label="View project: Porta Mobili Visual Identity &amp; Brand Applications">
-            <span class="cb-card-active-dot" aria-hidden="true"></span>
-            <span class="cb-card-number">03</span>
-            <span class="cb-card-title">Porta Mobili Visual Identity &amp; Brand Applications</span>
-            <span class="cb-card-category">Brand Identity &amp; Art Direction</span>
-            <span class="cb-card-open">
-              Open Project <span class="cb-card-open-arrow" aria-hidden="true">&#8599;</span>
-            </span>
-          </a>
-
-          <a class="cb-card" href="pages/project.html?id=brand-social-assets" aria-label="View project: Brand Social Assets">
-            <span class="cb-card-active-dot" aria-hidden="true"></span>
-            <span class="cb-card-number">04</span>
-            <span class="cb-card-title">Brand Social Assets</span>
-            <span class="cb-card-category">Digital Design</span>
-            <span class="cb-card-open">
-              Open Project <span class="cb-card-open-arrow" aria-hidden="true">&#8599;</span>
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT ME -->
-    <section class="about-section" id="about">
-      <div class="about-copy section-border">
-        <p class="eyebrow">About Me</p>
-
-        <h2 class="about-heading">
-          I create visuals where creativity meets commercial purpose.
-        </h2>
-
-        <p class="about-intro">
-          I’m Gil Tejano, a Creative Specialist and Graphic Designer focused
-          on creating polished, brand-consistent visuals for furniture,
-          lighting, retail, lifestyle, and manufacturing brands.
-        </p>
-
-        <p class="about-body">
-          My work covers product campaigns, catalogs, social media design,
-          photo manipulation, retail displays, video, 3D visuals, and
-          digital interfaces. I approach every project with the goal of
-          making the brand clear, purposeful, and visually memorable.
-        </p>
-
-        <blockquote class="about-statement">
-          <span class="about-statement-mark" aria-hidden="true">“</span>
-          I design beyond aesthetics—every visual should communicate
-          something.
-        </blockquote>
-
-        <a href="#experience" class="text-link about-link">
-          View My Experience
-          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-        </a>
-      </div>
-
-      <div class="about-portrait section-border">
-        <!-- Replace with a real professional photo at assets/images/profile/gil-tejano.webp -->
-        <img
-          src="assets/images/profile/gil-tejano-placeholder.svg"
-          alt="Portrait of Gil Tejano, Creative Specialist and Graphic Designer"
-          width="500"
-          height="680"
-          loading="lazy"
-        />
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section class="services-section section-border" id="services">
-      <div class="section-title-small">
-        <h2>
-          Creative<br />
-          Capabilities
-        </h2>
-
-        <div class="services-nav">
-          <button
-            type="button"
-            class="services-arrow services-arrow-prev"
-            aria-label="Scroll services left"
-          >
-            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-          </button>
-          <button
-            type="button"
-            class="services-arrow services-arrow-next"
-            aria-label="Scroll services right"
-          >
-            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-          </button>
-        </div>
-      </div>
-
-      <div class="services-scroll" tabindex="0" role="region" aria-label="Creative capabilities, scroll horizontally for more">
-        <div class="service-track">
-          <div class="service-card">
-            <i class="fa-solid fa-compass" aria-hidden="true"></i>
-            <h3>Creative Direction</h3>
-            <p>
-              Shaping visual tone, concept development, and brand direction
-              across campaigns and creative teams.
-            </p>
-          </div>
-
-          <div class="service-card">
-            <i class="fa-solid fa-pen-nib" aria-hidden="true"></i>
-            <h3>Visual Design</h3>
-            <p>
-              Premium graphics for campaigns, social media, product launches, and
-              brand communication.
-            </p>
-          </div>
-
-          <div class="service-card">
-            <i class="fa-solid fa-object-group" aria-hidden="true"></i>
-            <h3>Layout Design</h3>
-            <p>
-              Catalogs, brochures, flyers, posters, presentations, and print-ready
-              marketing materials.
-            </p>
-          </div>
-
-          <div class="service-card">
-            <i class="fa-solid fa-camera" aria-hidden="true"></i>
-            <h3>Photography</h3>
-            <p>
-              Product, event, and lifestyle photography that captures clean,
-              campaign-ready visuals.
-            </p>
-          </div>
-
-          <div class="service-card">
-            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
-            <h3>Photo Manipulation</h3>
-            <p>
-              Clean product compositions, image enhancements, lifestyle visuals,
-              and refined campaign assets.
-            </p>
-          </div>
-
-          <div class="service-card">
-            <i class="fa-solid fa-video" aria-hidden="true"></i>
-            <h3>Videography</h3>
-            <p>
-              On-site video capture for product features, events, and showroom
-              activities.
-            </p>
-          </div>
-
-          <div class="service-card">
-            <i class="fa-solid fa-clapperboard" aria-hidden="true"></i>
-            <h3>Video Editing</h3>
-            <p>
-              Short-form reels, social ads, and color-graded campaign or event
-              videos.
-            </p>
-          </div>
-
-          <div class="service-card">
-            <i class="fa-solid fa-cube" aria-hidden="true"></i>
-            <h3>3D Visualization</h3>
-            <p>
-              Product mockups, showroom layouts, and spatial visualization for
-              retail and interior concepts.
-            </p>
-          </div>
-
-          <div class="service-card">
-            <i class="fa-solid fa-chalkboard" aria-hidden="true"></i>
-            <h3>Presentation Design</h3>
-            <p>
-              Sales decks and pitch presentations that support client and
-              stakeholder meetings.
-            </p>
-          </div>
-
-          <div class="service-card">
-            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
-            <h3>Rapid Social Content</h3>
-            <p>
-              Fast-turnaround social media graphics and templated marketing
-              assets.
-            </p>
-          </div>
-
-          <div class="service-card">
-            <i class="fa-solid fa-code" aria-hidden="true"></i>
-            <h3>Web Design</h3>
-            <p>
-              Modern, responsive portfolio and landing page interfaces with strong
-              visual hierarchy.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DAILY TOOLKIT -->
-    <section class="toolkit-section section-border" id="toolkit">
-      <div class="section-title-small">
-        <h2>
-          My Creative<br />
-          Dock
-        </h2>
-
-        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-      </div>
-
-      <div class="toolkit-dock-wrap">
-        <p class="toolkit-caption">
-          Software I reach for every day, from photo retouching to video
-          edits. Hover or swipe an icon for a quick rundown.
-        </p>
-
-        <ul class="toolkit-dock" role="list">
-          <li class="dock-item" tabindex="0">
-            <div class="dock-tooltip">
-              <h4>Adobe Photoshop</h4>
-              <p>Photo manipulation, product retouching, and layered compositions for premium campaign visuals.</p>
-            </div>
-            <img src="assets/icons/photoshop.svg" alt="Adobe Photoshop" width="64" height="64" loading="lazy" />
-          </li>
-
-          <li class="dock-item" tabindex="0">
-            <div class="dock-tooltip">
-              <h4>Adobe Illustrator</h4>
-              <p>Vector logos, icons, and scalable artwork for branding and print-ready layouts.</p>
-            </div>
-            <img src="assets/icons/illustrator.svg" alt="Adobe Illustrator" width="64" height="64" loading="lazy" />
-          </li>
-
-          <li class="dock-item" tabindex="0">
-            <div class="dock-tooltip">
-              <h4>Adobe Lightroom</h4>
-              <p>Color grading and batch photo editing for consistent, polished product photography.</p>
-            </div>
-            <img src="assets/icons/lightroom.svg" alt="Adobe Lightroom" width="64" height="64" loading="lazy" />
-          </li>
-
-          <li class="dock-item" tabindex="0">
-            <div class="dock-tooltip">
-              <h4>Affinity</h4>
-              <p>Fast raster and vector editing for layouts, retouching, and quick mockups.</p>
-            </div>
-            <img src="assets/icons/affinity.svg" alt="Affinity" width="64" height="64" loading="lazy" />
-          </li>
-
-          <li class="dock-item" tabindex="0">
-            <div class="dock-tooltip">
-              <h4>SketchUp</h4>
-              <p>3D modeling for product mockups, showroom layouts, and spatial visualization.</p>
-            </div>
-            <img src="assets/icons/sketchup.svg" alt="SketchUp" width="64" height="64" loading="lazy" />
-          </li>
-
-          <li class="dock-item" tabindex="0">
-            <div class="dock-tooltip">
-              <h4>Canva</h4>
-              <p>Fast social media graphics and templates for quick-turnaround marketing assets.</p>
-            </div>
-            <img src="assets/icons/canva.svg" alt="Canva" width="64" height="64" loading="lazy" />
-          </li>
-
-          <li class="dock-item" tabindex="0">
-            <div class="dock-tooltip">
-              <h4>CapCut</h4>
-              <p>Short-form video editing for reels, social ads, and event recap content.</p>
-            </div>
-            <img src="assets/icons/capcut.svg" alt="CapCut" width="64" height="64" loading="lazy" />
-          </li>
-
-          <li class="dock-item" tabindex="0">
-            <div class="dock-tooltip">
-              <h4>DaVinci Resolve</h4>
-              <p>Professional video editing and color grading for campaign and event videos.</p>
-            </div>
-            <img src="assets/icons/davinci-resolve.svg" alt="DaVinci Resolve" width="64" height="64" loading="lazy" />
-          </li>
-
-          <li class="dock-item" tabindex="0">
-            <div class="dock-tooltip">
-              <h4>Visual Studio Code</h4>
-              <p>Code editor for building and maintaining this portfolio site and other web projects.</p>
-            </div>
-            <img src="assets/icons/vscode.svg" alt="Visual Studio Code" width="64" height="64" loading="lazy" />
-          </li>
-
-          <li class="dock-item" tabindex="0">
-            <div class="dock-tooltip">
-              <h4>Microsoft PowerPoint</h4>
-              <p>Sales presentations and pitch decks for client and stakeholder meetings.</p>
-            </div>
-            <img src="assets/icons/powerpoint.svg" alt="Microsoft PowerPoint" width="64" height="64" loading="lazy" />
-          </li>
-
-          <li class="dock-item" tabindex="0">
-            <div class="dock-tooltip">
-              <h4>Microsoft Office / Google Workspace</h4>
-              <p>Documents, spreadsheets, and shared files for project coordination and reporting.</p>
-            </div>
-            <img src="assets/icons/workspace.svg" alt="Microsoft Office and Google Workspace" width="64" height="64" loading="lazy" />
-          </li>
-        </ul>
-
-        <div class="toolkit-active-caption" aria-live="polite">
-          <h4>Adobe Photoshop</h4>
-          <p>Photo manipulation, product retouching, and layered compositions for premium campaign visuals.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE (compact horizontal timeline) -->
-    <section class="experience-section section-border" id="experience">
-      <div class="section-title-small">
-        <h2>Creative Timeline</h2>
-        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-      </div>
-
-      <div class="timeline-h">
-        <div class="timeline-h-item is-current">
-          <span class="timeline-h-date">Jul 2025 — Present</span>
-          <span class="timeline-h-tag">Full-time</span>
-          <h3>Creative Specialist / Graphic Designer</h3>
-          <p>Premium brand visuals, product catalogs, and campaign materials for lifestyle and retail brands.</p>
-        </div>
-
-        <div class="timeline-h-item is-current">
-          <span class="timeline-h-date">Jul 2024 — Jul 2025</span>
-          <span class="timeline-h-tag">Full-time</span>
-          <h3>Senior Graphic Designer</h3>
-          <p>Print layouts, social ads, and production-ready client materials.</p>
-        </div>
-
-        <div class="timeline-h-item">
-          <span class="timeline-h-date">Apr — Sep 2023</span>
-          <span class="timeline-h-tag">On-site</span>
-          <h3>Graphic Designer</h3>
-        </div>
-
-        <div class="timeline-h-item">
-          <span class="timeline-h-date">Dec 2022 — Apr 2023</span>
-          <span class="timeline-h-tag">Production</span>
-          <h3>Graphic Designer</h3>
-        </div>
-
-        <div class="timeline-h-item">
-          <span class="timeline-h-date">Mar 2021 — Oct 2022</span>
-          <span class="timeline-h-tag">Freelance</span>
-          <h3>Graphic Designer</h3>
-        </div>
-
-        <div class="timeline-h-item">
-          <span class="timeline-h-date">Oct 2019 — Feb 2021</span>
-          <span class="timeline-h-tag">On-site</span>
-          <h3>Graphic Designer</h3>
-        </div>
-      </div>
-    </section>
-
-    <!-- TRUSTED BY -->
-    <section class="trusted-strip section-border">
-      <span class="trusted-tag">Brands I’ve Supported</span>
-
-      <div class="marquee">
-        <div class="marquee-track">
-          <img src="assets/images/logos/etro.svg" alt="Etro" width="120" height="28" loading="lazy" />
-          <img src="assets/images/logos/stoneleaf.svg" alt="Stoneleaf" width="120" height="28" loading="lazy" />
-          <img src="assets/images/logos/hooga.svg" alt="Hooga" width="120" height="28" loading="lazy" />
-          <img src="assets/images/logos/mooni.svg" alt="Mooni" width="120" height="28" loading="lazy" />
-          <img src="assets/images/logos/bw-group.svg" alt="BW Group" width="120" height="28" loading="lazy" />
-          <img src="assets/images/logos/dunlopillo.svg" alt="Dunlopillo" width="120" height="28" loading="lazy" />
-          <img src="assets/images/logos/metal-lite.svg" alt="Metal-Lite" width="120" height="28" loading="lazy" />
-          <img src="assets/images/logos/porta-mobili.svg" alt="Porta Mobili" width="120" height="28" loading="lazy" />
-          <img src="assets/images/logos/riflessi.svg" alt="Riflessi" width="120" height="28" loading="lazy" />
-          <img src="assets/images/logos/tisettanta.svg" alt="Tisettanta" width="120" height="28" loading="lazy" />
-
-          <img src="assets/images/logos/etro.svg" alt="" width="120" height="28" loading="lazy" aria-hidden="true" />
-          <img src="assets/images/logos/stoneleaf.svg" alt="" width="120" height="28" loading="lazy" aria-hidden="true" />
-          <img src="assets/images/logos/hooga.svg" alt="" width="120" height="28" loading="lazy" aria-hidden="true" />
-          <img src="assets/images/logos/mooni.svg" alt="" width="120" height="28" loading="lazy" aria-hidden="true" />
-          <img src="assets/images/logos/bw-group.svg" alt="" width="120" height="28" loading="lazy" aria-hidden="true" />
-          <img src="assets/images/logos/dunlopillo.svg" alt="" width="120" height="28" loading="lazy" aria-hidden="true" />
-          <img src="assets/images/logos/metal-lite.svg" alt="" width="120" height="28" loading="lazy" aria-hidden="true" />
-          <img src="assets/images/logos/porta-mobili.svg" alt="" width="120" height="28" loading="lazy" aria-hidden="true" />
-          <img src="assets/images/logos/riflessi.svg" alt="" width="120" height="28" loading="lazy" aria-hidden="true" />
-          <img src="assets/images/logos/tisettanta.svg" alt="" width="120" height="28" loading="lazy" aria-hidden="true" />
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section class="education-section section-border" id="education">
-      <div class="section-title-small">
-        <h2>Foundation</h2>
-        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-      </div>
-
-      <div class="education-card">
-        <span class="education-year">2019 — 2024</span>
-        <h3>BS Information Technology</h3>
-        <p class="education-school">Cavite State University</p>
-        <span class="education-tag">Web &amp; Systems Development</span>
-      </div>
-
-      <div class="education-card">
-        <span class="education-year">2017 — 2019</span>
-        <h3>TVL Drafting Animation</h3>
-        <p class="education-school">Tanza National Trade School</p>
-        <span class="education-tag">Visual Design &amp; Layout</span>
-      </div>
-
-      <div class="education-card">
-        <span class="education-year">2013 — 2017</span>
-        <h3>Technical Drafting</h3>
-        <p class="education-school">Tanza National Trade School</p>
-        <span class="education-tag">2D AutoCAD &amp; Drafting</span>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section class="contact-section section-border" id="contact">
-      <p class="contact-eyebrow"><span class="line"></span>Start a Creative Build</p>
-
-      <h2 class="contact-title">
-        Got a brand, product, or idea? Let’s make it
-        <span class="highlight">visually impossible to ignore</span>.
-      </h2>
-
-      <div class="contact-actions">
-        <!-- Replace with your real email address -->
-        <a href="mailto:hello@giltejano.com" class="cta-button">
-          Start Project
-          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-        </a>
-
-        <!-- Download CV: keep the real PDF at assets/documents/gil-tejano-cv.pdf -->
-        <a href="assets/documents/gil-tejano-cv.pdf" class="cta-button-outline" download>
-          Download CV
-        </a>
-
-        <a href="#projects" class="cta-button-outline">
-          View Works
-        </a>
-      </div>
-
-      <div class="contact-cards">
-        <div class="contact-card">
-          <span class="contact-card-label">Email</span>
-          <!-- Replace with your real email address -->
-          <h3><a href="mailto:hello@giltejano.com">hello@giltejano.com</a></h3>
-        </div>
-
-        <div class="contact-card">
-          <span class="contact-card-label">LinkedIn</span>
-          <!-- Replace href with your LinkedIn profile URL -->
-          <h3><a href="#" target="_blank" rel="noopener">View Profile</a></h3>
-        </div>
-
-        <div class="contact-card">
-          <span class="contact-card-label">Behance</span>
-          <!-- Replace href with your Behance profile URL -->
-          <h3><a href="#" target="_blank" rel="noopener">View Portfolio</a></h3>
-        </div>
-      </div>
-    </section>
-
-    <footer class="site-footer">
-      <p><span class="footer-name">Gil Tejano Culas</span> | Creative Specialist / Graphic Designer</p>
-      <p>&copy; 2026 · Premium product visuals for product-based brands.</p>
-    </footer>
-
-  </main>
-
-  <!-- FLOATING SECTION NAV -->
-  <nav class="dynamic-nav" aria-label="Section navigation">
-    <a href="#home" class="nav-item active" data-target="#home">
-      <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
-      <span class="nav-label-wrap">
-        <span class="nav-label nav-label-full">Home</span>
-        <span class="nav-label nav-label-short">Home</span>
-      </span>
-    </a>
-    <a href="#projects" class="nav-item" data-target="#projects">
-      <i class="fa-solid fa-diagram-project nav-icon" aria-hidden="true"></i>
-      <span class="nav-label-wrap">
-        <span class="nav-label nav-label-full">Boards</span>
-        <span class="nav-label nav-label-short">Work</span>
-      </span>
-    </a>
-    <a href="#about" class="nav-item" data-target="#about">
-      <i class="fa-solid fa-user nav-icon" aria-hidden="true"></i>
-      <span class="nav-label-wrap"><span class="nav-label">About</span></span>
-    </a>
-    <a href="#services" class="nav-item" data-target="#services">
-      <i class="fa-solid fa-palette nav-icon" aria-hidden="true"></i>
-      <span class="nav-label-wrap"><span class="nav-label">Capabilities</span></span>
-    </a>
-    <a href="#toolkit" class="nav-item" data-target="#toolkit">
-      <i class="fa-solid fa-toolbox nav-icon" aria-hidden="true"></i>
-      <span class="nav-label-wrap"><span class="nav-label">Dock</span></span>
-    </a>
-    <a href="#experience" class="nav-item" data-target="#experience">
-      <i class="fa-solid fa-clock-rotate-left nav-icon" aria-hidden="true"></i>
-      <span class="nav-label-wrap">
-        <span class="nav-label nav-label-full">Timeline</span>
-        <span class="nav-label nav-label-short">Timeline</span>
-      </span>
-    </a>
-    <a href="#education" class="nav-item" data-target="#education">
-      <i class="fa-solid fa-graduation-cap nav-icon" aria-hidden="true"></i>
-      <span class="nav-label-wrap"><span class="nav-label">Foundation</span></span>
-    </a>
-    <a href="#contact" class="nav-item" data-target="#contact">
-      <i class="fa-solid fa-envelope nav-icon" aria-hidden="true"></i>
-      <span class="nav-label-wrap">
-        <span class="nav-label nav-label-full">Build</span>
-        <span class="nav-label nav-label-short">Contact</span>
-      </span>
-    </a>
-  </nav>
-
-  <!-- JS -->
-  <script src="data/projects-data.js"></script>
-  <script src="js/projects.js"></script>
-  <script src="js/script.js"></script>
-</body>
+      <span class="sr-only" id="capabilities">Campaign design, visual identity, catalog design, and digital experiences.</span>
+    </main>
+  </body>
 </html>

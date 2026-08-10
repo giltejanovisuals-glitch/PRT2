@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64" role="img" aria-label="Custom pointer cursor">
-  <path d="M6 5 L55 27 L31 33 L24 57 Z" fill="#141414" stroke="rgba(245,245,240,0.4)" stroke-width="2" stroke-linejoin="round" />
-  <path d="M11 11 L44 25" stroke="rgba(245,245,240,0.45)" stroke-width="3" stroke-linecap="round" />
-  <circle cx="50" cy="25" r="3.4" fill="#4fc3b5" />
-</svg>

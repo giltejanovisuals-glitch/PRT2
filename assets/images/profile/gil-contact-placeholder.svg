@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="500" height="600" viewBox="0 0 500 600">
-  <rect width="500" height="600" fill="#111111"/>
-  <rect x="0.5" y="0.5" width="499" height="599" fill="none" stroke="#2a2a2a"/>
-  <circle cx="250" cy="230" r="95" fill="none" stroke="#c6ff2e" stroke-width="2" stroke-dasharray="6 8"/>
-  <path d="M110 570 Q250 400 390 570 Z" fill="none" stroke="#c6ff2e" stroke-width="2" stroke-dasharray="6 8"/>
-  <text x="250" y="520" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#8d8d8d">REPLACE WITH</text>
-  <text x="250" y="546" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#c6ff2e">gil-contact.png</text>
-</svg>

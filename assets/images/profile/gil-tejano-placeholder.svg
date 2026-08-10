@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="500" height="680" viewBox="0 0 500 680">
-  <rect width="500" height="680" fill="#111111"/>
-  <rect x="0.5" y="0.5" width="499" height="679" fill="none" stroke="#2a2a2a"/>
-  <circle cx="250" cy="270" r="110" fill="none" stroke="#c6ff2e" stroke-width="2" stroke-dasharray="6 8"/>
-  <path d="M120 640 Q250 460 380 640 Z" fill="none" stroke="#c6ff2e" stroke-width="2" stroke-dasharray="6 8"/>
-  <text x="250" y="580" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#8d8d8d">REPLACE WITH</text>
-  <text x="250" y="608" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#c6ff2e">gil-hero.png</text>
-</svg>
