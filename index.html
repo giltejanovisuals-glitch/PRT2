@@ -8,6 +8,25 @@
       content="Gil Tejano — creative specialist building visual experiences with commercial purpose."
     />
     <title>Web | Creative Specialist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme =
+            stored ||
+            (window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
@@ -21,103 +40,234 @@
         <span class="brand-name">Web Site</span>
       </a>
 
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="primary-nav"
-      >
-        <span>Menu</span>
-        <span class="menu-icon" aria-hidden="true"></span>
-      </button>
+      <div class="header-controls">
+        <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="mailto:hello@giltejano.com">Contact</a>
+        </nav>
 
-      <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#capabilities">Capabilities</a>
-        <a href="mailto:hello@giltejano.com">Contact</a>
-      </nav>
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-pressed="false"
+          aria-label="Switch to dark mode"
+          data-tooltip="Switch to dark mode"
+        >
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <line x1="12" y1="2" x2="12" y2="4"></line>
+            <line x1="12" y1="20" x2="12" y2="22"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="2" y1="12" x2="4" y2="12"></line>
+            <line x1="20" y1="12" x2="22" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+          </svg>
+        </button>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span>Menu</span>
+          <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+      </div>
     </header>
 
-    <main class="hero" id="main-content">
-      <div class="project-index" role="tablist" aria-label="Featured projects">
-        <button class="index-button is-active" type="button" role="tab" aria-selected="true" data-slide="0">01</button>
-        <button class="index-button" type="button" role="tab" aria-selected="false" data-slide="1">02</button>
-        <button class="index-button" type="button" role="tab" aria-selected="false" data-slide="2">03</button>
-        <button class="index-button" type="button" role="tab" aria-selected="false" data-slide="3">04</button>
+    <main class="hero" id="main-content" aria-label="Featured project preview">
+      <div class="hero-carousel">
+        <article class="carousel-slide project-mooni is-active" data-project="0" aria-hidden="false">
+          <div class="visual-object visual-object-main"></div>
+          <div class="visual-object visual-object-secondary"></div>
+        </article>
+
+        <article class="carousel-slide project-metal" data-project="1" aria-hidden="true">
+          <div class="visual-object visual-object-main"></div>
+          <div class="visual-object visual-object-secondary"></div>
+        </article>
+
+        <article class="carousel-slide project-porta" data-project="2" aria-hidden="true">
+          <div class="visual-object visual-object-main"></div>
+          <div class="visual-object visual-object-secondary"></div>
+        </article>
+
+        <article class="carousel-slide project-hooga" data-project="3" aria-hidden="true">
+          <div class="visual-object visual-object-main"></div>
+          <div class="visual-object visual-object-secondary"></div>
+        </article>
       </div>
 
-      <section class="hero-copy" aria-labelledby="hero-title">
-        <p class="eyebrow">Creative specialist · Manila</p>
-        <h1 id="hero-title">
-          Creative work<br />
-          with commercial<br />
-          purpose.
-        </h1>
-      </section>
+      <button class="carousel-zone carousel-zone-prev" type="button" aria-label="Show previous project"></button>
+      <button class="carousel-zone carousel-zone-next" type="button" aria-label="Show next project"></button>
 
-      <section class="visual-stage" id="work" aria-label="Featured project preview">
-        <article class="project-visual project-mooni is-active" data-project="0" aria-hidden="false">
-          <div class="visual-object visual-object-main"></div>
-          <div class="visual-object visual-object-secondary"></div>
-          <p class="visual-word">MOONI</p>
-          <div class="project-meta">
-            <span>Mooni</span>
-            <span>Brand application</span>
-          </div>
-        </article>
+      <div class="hero-content">
+        <h1 id="hero-title">Creative Work</h1>
+        <span class="hero-divider" aria-hidden="true"></span>
+        <p class="hero-subheader">Designing with commercial purpose</p>
+        <a class="hero-cta" href="mailto:hello@giltejano.com">Get in touch</a>
+      </div>
 
-        <article class="project-visual project-metal" data-project="1" aria-hidden="true">
-          <div class="visual-object visual-object-main"></div>
-          <div class="visual-object visual-object-secondary"></div>
-          <p class="visual-word">METAL—LITE</p>
-          <div class="project-meta">
-            <span>Metal-Lite</span>
-            <span>Retail campaign</span>
-          </div>
-        </article>
+      <div class="carousel-dots" role="tablist" aria-label="Featured projects">
+        <button class="dot is-active" type="button" role="tab" aria-selected="true" data-slide="0" aria-label="Show project 1"></button>
+        <button class="dot" type="button" role="tab" aria-selected="false" data-slide="1" aria-label="Show project 2"></button>
+        <button class="dot" type="button" role="tab" aria-selected="false" data-slide="2" aria-label="Show project 3"></button>
+        <button class="dot" type="button" role="tab" aria-selected="false" data-slide="3" aria-label="Show project 4"></button>
+      </div>
+    </main>
 
-        <article class="project-visual project-porta" data-project="2" aria-hidden="true">
-          <div class="visual-object visual-object-main"></div>
-          <div class="visual-object visual-object-secondary"></div>
-          <p class="visual-word">PORTA</p>
-          <div class="project-meta">
-            <span>Porta Mobili</span>
-            <span>Visual identity</span>
-          </div>
-        </article>
-
-        <article class="project-visual project-hooga" data-project="3" aria-hidden="true">
-          <div class="visual-object visual-object-main"></div>
-          <div class="visual-object visual-object-secondary"></div>
-          <p class="visual-word">HOOGA</p>
-          <div class="project-meta">
-            <span>Hooga</span>
-            <span>Catalog system</span>
-          </div>
-        </article>
-      </section>
-
-      <div class="hero-footer">
-        <div class="intro" id="about">
-          <p class="section-label">Selected practice</p>
-          <p>
-            Visual design, brand applications, campaigns, and digital experiences
-            for furniture, lifestyle, retail, and product-driven brands.
-          </p>
-        </div>
-
-        <a class="work-link" href="#work">
-          <span>View selected work</span>
-          <span aria-hidden="true">↗</span>
-        </a>
-
-        <p class="slide-status" aria-live="polite">
-          <span id="current-slide">01</span><span class="status-line"></span><span>04</span>
+    <section class="work" id="work" aria-labelledby="work-heading">
+      <div class="work-intro">
+        <p class="section-index">02 — Selected Work</p>
+        <h2 id="work-heading">A selection of ideas shaped for real brands.</h2>
+        <p class="work-lede">
+          Brand identities, retail campaigns, catalogs, and digital experiences
+          created with a balance of visual character and commercial purpose.
         </p>
       </div>
 
-      <span class="sr-only" id="capabilities">Campaign design, visual identity, catalog design, and digital experiences.</span>
-    </main>
+      <div class="work-split">
+        <div class="work-feature">
+          <div class="work-feature-media">
+            <article class="work-feature-slide project-metal is-active" data-project="0" aria-hidden="false">
+              <div class="visual-object visual-object-main"></div>
+              <div class="visual-object visual-object-secondary"></div>
+              <div class="work-feature-caption">
+                <p class="work-feature-title">Metal-Lite</p>
+                <p class="work-feature-meta">Retail Campaign · 2025</p>
+                <a class="work-feature-link" href="#">View Project <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+
+            <article class="work-feature-slide project-porta" data-project="1" aria-hidden="true">
+              <div class="visual-object visual-object-main"></div>
+              <div class="visual-object visual-object-secondary"></div>
+              <div class="work-feature-caption">
+                <p class="work-feature-title">Porta Mobili</p>
+                <p class="work-feature-meta">Visual Identity · 2024</p>
+                <a class="work-feature-link" href="#">View Project <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+
+            <article class="work-feature-slide project-hooga" data-project="2" aria-hidden="true">
+              <div class="visual-object visual-object-main"></div>
+              <div class="visual-object visual-object-secondary"></div>
+              <div class="work-feature-caption">
+                <p class="work-feature-title">Hooga</p>
+                <p class="work-feature-meta">Catalog System · 2024</p>
+                <a class="work-feature-link" href="#">View Project <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+
+            <article class="work-feature-slide project-mooni" data-project="3" aria-hidden="true">
+              <div class="visual-object visual-object-main"></div>
+              <div class="visual-object visual-object-secondary"></div>
+              <div class="work-feature-caption">
+                <p class="work-feature-title">Mooni</p>
+                <p class="work-feature-meta">Digital Experience · 2025</p>
+                <a class="work-feature-link" href="#">View Project <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+
+            <button class="work-zone work-zone-prev" type="button" aria-label="Show previous project"></button>
+            <button class="work-zone work-zone-next" type="button" aria-label="Show next project"></button>
+
+            <p class="work-counter" aria-live="polite">
+              <span id="work-current">01</span><span aria-hidden="true"> / </span><span>04</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="work-panel">
+          <div class="work-thumbs" role="tablist" aria-label="Selected projects">
+            <button
+              class="work-thumb project-metal is-active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              data-project="0"
+              data-title="Metal-Lite"
+              data-category="Retail Campaign"
+              data-year="2025"
+              data-overview="A campaign system designed to present furniture collections through bold compositions, atmospheric product imagery, and adaptable promotional materials."
+              data-role="Campaign Direction · Key Visuals · Retail Applications"
+            >
+              <span class="sr-only">Metal-Lite — Retail Campaign</span>
+            </button>
+
+            <button
+              class="work-thumb project-porta"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-project="1"
+              data-title="Porta Mobili"
+              data-category="Visual Identity"
+              data-year="2024"
+              data-overview="A cohesive identity system built around refined materials and quiet confidence, translated across packaging, signage, and digital touchpoints for a modern furniture brand."
+              data-role="Brand Identity · Guidelines · Packaging"
+            >
+              <span class="sr-only">Porta Mobili — Visual Identity</span>
+            </button>
+
+            <button
+              class="work-thumb project-hooga"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-project="2"
+              data-title="Hooga"
+              data-category="Catalog System"
+              data-year="2024"
+              data-overview="A modular catalog framework that organizes an expansive furniture range into a clear, browsable system, built for both print runs and digital storefronts."
+              data-role="Catalog Design · Layout System · Print Production"
+            >
+              <span class="sr-only">Hooga — Catalog System</span>
+            </button>
+
+            <button
+              class="work-thumb project-mooni"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              data-project="3"
+              data-title="Mooni"
+              data-category="Digital Experience"
+              data-year="2025"
+              data-overview="An adaptive digital experience translating Mooni's brand language into an interface built for discovery, with motion and layout tuned to feel considered rather than decorative."
+              data-role="UX Direction · Interface Design · Motion Design"
+            >
+              <span class="sr-only">Mooni — Digital Experience</span>
+            </button>
+          </div>
+
+          <div class="work-details">
+            <h3 class="work-details-title">Metal-Lite</h3>
+            <p class="work-details-meta">Retail Campaign · 2025</p>
+            <p class="work-details-overview">
+              A campaign system designed to present furniture collections through
+              bold compositions, atmospheric product imagery, and adaptable
+              promotional materials.
+            </p>
+            <p class="work-details-role">
+              Campaign Direction · Key Visuals · Retail Applications
+            </p>
+          </div>
+
+          <a class="work-details-link" href="#">Explore Case Study <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <span class="sr-only" id="about">Selected practice: visual design, brand applications, campaigns, and digital experiences for furniture, lifestyle, retail, and product-driven brands.</span>
+    <span class="sr-only" id="capabilities">Campaign design, visual identity, catalog design, and digital experiences.</span>
   </body>
 </html>
