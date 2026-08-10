@@ -131,6 +131,8 @@
   const workDetailsMeta = document.querySelector(".work-details-meta");
   const workDetailsOverview = document.querySelector(".work-details-overview");
   const workDetailsRole = document.querySelector(".work-details-role");
+  const workFeatureTitle = document.querySelector(".work-feature-title");
+  const workFeatureMeta = document.querySelector(".work-feature-meta");
   const WORK_AUTOPLAY_DELAY = 7000;
 
   if (workThumbs.length && workSlides.length) {
@@ -141,12 +143,15 @@
     let workAutoplayTimer = null;
 
     const updateWorkDetails = (thumb) => {
+      const metaText = `${thumb.dataset.category || ""} · ${thumb.dataset.year || ""}`;
+
       if (workDetailsTitle) workDetailsTitle.textContent = thumb.dataset.title || "";
-      if (workDetailsMeta) {
-        workDetailsMeta.textContent = `${thumb.dataset.category || ""} · ${thumb.dataset.year || ""}`;
-      }
+      if (workDetailsMeta) workDetailsMeta.textContent = metaText;
       if (workDetailsOverview) workDetailsOverview.textContent = thumb.dataset.overview || "";
       if (workDetailsRole) workDetailsRole.textContent = thumb.dataset.role || "";
+
+      if (workFeatureTitle) workFeatureTitle.textContent = thumb.dataset.title || "";
+      if (workFeatureMeta) workFeatureMeta.textContent = metaText;
     };
 
     const goToWorkProject = (index) => {
