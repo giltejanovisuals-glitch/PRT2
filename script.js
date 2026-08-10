@@ -131,8 +131,11 @@
   const workDetailsMeta = document.querySelector(".work-details-meta");
   const workDetailsOverview = document.querySelector(".work-details-overview");
   const workDetailsRole = document.querySelector(".work-details-role");
+  const workDetailsDeliverables = document.getElementById("work-details-deliverables-value");
   const workFeatureTitle = document.querySelector(".work-feature-title");
   const workFeatureMeta = document.querySelector(".work-feature-meta");
+  const workFeatureLink = document.getElementById("work-feature-link");
+  const workDetailsLink = document.getElementById("work-details-link");
   const WORK_AUTOPLAY_DELAY = 7000;
 
   if (workThumbs.length && workSlides.length) {
@@ -149,9 +152,14 @@
       if (workDetailsMeta) workDetailsMeta.textContent = metaText;
       if (workDetailsOverview) workDetailsOverview.textContent = thumb.dataset.overview || "";
       if (workDetailsRole) workDetailsRole.textContent = thumb.dataset.role || "";
+      if (workDetailsDeliverables) workDetailsDeliverables.textContent = thumb.dataset.deliverables || "";
 
       if (workFeatureTitle) workFeatureTitle.textContent = thumb.dataset.title || "";
       if (workFeatureMeta) workFeatureMeta.textContent = metaText;
+
+      const projectUrl = thumb.dataset.id ? `project.html?project=${thumb.dataset.id}` : "#";
+      if (workFeatureLink) workFeatureLink.href = projectUrl;
+      if (workDetailsLink) workDetailsLink.href = projectUrl;
     };
 
     const goToWorkProject = (index) => {

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Case study — Gil Tejano, creative specialist." />
+    <title>Case Study | Gil Tejano</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme =
+            stored ||
+            (window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="projects.js" defer></script>
+    <script src="project.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Gil Tejano, home">
+        <span class="brand-mark" aria-hidden="true">GT</span>
+        <span class="brand-name">Web Site</span>
+      </a>
+
+      <div class="header-controls">
+        <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation">
+          <a href="index.html#work">Work</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#capabilities">Capabilities</a>
+          <a href="mailto:hello@giltejano.com">Contact</a>
+        </nav>
+
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-pressed="false"
+          aria-label="Switch to dark mode"
+          data-tooltip="Switch to dark mode"
+        >
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <line x1="12" y1="2" x2="12" y2="4"></line>
+            <line x1="12" y1="20" x2="12" y2="22"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="2" y1="12" x2="4" y2="12"></line>
+            <line x1="20" y1="12" x2="22" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+          </svg>
+        </button>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span>Menu</span>
+          <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="project" id="main-content">
+      <header class="project-header">
+        <p class="section-index" id="project-eyebrow">Project 01 — Brand Applications</p>
+        <h1 id="project-title">—</h1>
+
+        <p class="project-overview" id="project-overview">—</p>
+
+        <div class="project-meta-row">
+          <div class="project-meta-item">
+            <p class="project-meta-label">Role</p>
+            <p class="project-meta-value" id="project-role">—</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="project-meta-label">Year</p>
+            <p class="project-meta-value" id="project-year">—</p>
+          </div>
+          <div class="project-meta-item">
+            <p class="project-meta-label">Deliverables</p>
+            <p class="project-meta-value" id="project-deliverables">—</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="gallery-image project-hero" id="project-hero" data-gallery-index="1" role="button" tabindex="0" aria-label="Open hero image fullscreen"></div>
+
+      <div class="project-gallery" id="project-gallery"></div>
+
+      <section class="project-closing">
+        <p class="project-closing-label">Outcome</p>
+        <p class="project-closing-text" id="project-outcome">—</p>
+
+        <div class="project-credits" id="project-credits"></div>
+      </section>
+    </main>
+
+    <p class="project-counter" id="project-counter" aria-hidden="true">01 / 04</p>
+
+    <nav class="brand-nav" aria-label="Brand pages">
+      <a class="brand-nav-link" id="brand-nav-prev" href="#">
+        <span class="brand-nav-label-full">← Previous Brand</span>
+        <span class="brand-nav-label-short">← Prev</span>
+      </a>
+      <span class="brand-nav-divider" aria-hidden="true"></span>
+      <a class="brand-nav-link brand-nav-link-home" href="index.html#work">
+        <span class="brand-nav-label-full">Brand Applications</span>
+        <span class="brand-nav-label-short">Brands</span>
+      </a>
+      <span class="brand-nav-divider" aria-hidden="true"></span>
+      <a class="brand-nav-link" id="brand-nav-next" href="#">
+        <span class="brand-nav-label-full">Next Brand →</span>
+        <span class="brand-nav-label-short">Next →</span>
+      </a>
+    </nav>
+
+    <div class="gallery-index" id="gallery-index" aria-hidden="true">
+      <span id="gallery-index-current">01</span><span aria-hidden="true"> / </span><span id="gallery-index-total">01</span>
+    </div>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Fullscreen image preview">
+      <div class="lightbox-stage" id="lightbox-stage"></div>
+
+      <button class="lightbox-zone lightbox-zone-prev" type="button" aria-label="Show previous image"></button>
+      <button class="lightbox-zone lightbox-zone-next" type="button" aria-label="Show next image"></button>
+
+      <button class="lightbox-close" type="button" aria-label="Close fullscreen preview">
+        <span aria-hidden="true">×</span>
+      </button>
+
+      <p class="lightbox-counter" aria-live="polite">
+        <span id="lightbox-current">01</span><span aria-hidden="true"> / </span><span id="lightbox-total">01</span>
+      </p>
+    </div>
+  </body>
+</html>
