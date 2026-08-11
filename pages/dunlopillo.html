@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Case study — Gil Tejano, creative specialist." />
     <title>Case Study | Gil Tejano</title>
+    <link rel="icon" href="../assets/icons/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <script>
@@ -24,25 +25,26 @@
         } catch (e) {}
       })();
     </script>
-    <link rel="stylesheet" href="style.css" />
-    <script src="projects.js" defer></script>
-    <script src="project.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/project-gallery.css" />
+    <script src="../js/projects-data.js" defer></script>
+    <script src="../js/project-gallery.js" defer></script>
   </head>
 
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header">
-      <a class="brand" href="index.html" aria-label="Gil Tejano, home">
+      <a class="brand" href="../index.html" aria-label="Gil Tejano, home">
         <span class="brand-mark" aria-hidden="true">GT</span>
         <span class="brand-name">Web Site</span>
       </a>
 
       <div class="header-controls">
         <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation">
-          <a href="index.html#work">Work</a>
-          <a href="index.html#about">About</a>
-          <a href="index.html#capabilities">Capabilities</a>
+          <a href="../index.html#work">Work</a>
+          <a href="../index.html#about">About</a>
+          <a href="../index.html#capabilities">Capabilities</a>
           <a href="mailto:hello@giltejano.com">Contact</a>
         </nav>
 
@@ -85,8 +87,12 @@
       <header class="project-header">
         <p class="section-index" id="project-eyebrow">Project 01 — Brand Applications</p>
         <h1 id="project-title">—</h1>
+        <p class="project-headline" id="project-headline" hidden></p>
 
         <p class="project-overview" id="project-overview">—</p>
+        <a class="project-overview-link" id="project-overview-link" href="#" hidden target="_blank" rel="noopener noreferrer">
+          <span id="project-overview-link-label">—</span><span aria-hidden="true"> →</span>
+        </a>
 
         <div class="project-meta-row">
           <div class="project-meta-item">
@@ -102,6 +108,11 @@
             <p class="project-meta-value" id="project-deliverables">—</p>
           </div>
         </div>
+
+        <section class="project-contribution" id="project-contribution" hidden>
+          <p class="project-contribution-label">Contribution</p>
+          <p class="project-contribution-text" id="project-contribution-text">—</p>
+        </section>
       </header>
 
       <div class="gallery-image project-hero" id="project-hero" data-gallery-index="1" role="button" tabindex="0" aria-label="Open hero image fullscreen"></div>
@@ -109,7 +120,7 @@
       <div class="project-gallery" id="project-gallery"></div>
 
       <section class="project-closing">
-        <p class="project-closing-label">Outcome</p>
+        <p class="project-closing-label" id="project-closing-label">Outcome</p>
         <p class="project-closing-text" id="project-outcome">—</p>
 
         <div class="project-credits" id="project-credits"></div>
@@ -124,7 +135,7 @@
         <span class="brand-nav-label-short">← Prev</span>
       </a>
       <span class="brand-nav-divider" aria-hidden="true"></span>
-      <a class="brand-nav-link brand-nav-link-home" href="index.html#work">
+      <a class="brand-nav-link brand-nav-link-home" href="../index.html#work">
         <span class="brand-nav-label-full">Brand Applications</span>
         <span class="brand-nav-label-short">Brands</span>
       </a>

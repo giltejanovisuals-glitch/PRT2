@@ -69,11 +69,20 @@
   const projects = window.PROJECTS || [];
   if (!projects.length) return;
 
+  // Each project has its own file (pages/<id>.html), so the id is read
+  // from the filename. ?project=<id> still works as an explicit override.
   const params = new URLSearchParams(window.location.search);
-  const requestedId = params.get("project");
+  const filenameId = window.location.pathname
+    .split("/")
+    .pop()
+    .replace(/\.html$/, "");
+  const requestedId = params.get("project") || filenameId;
   let projectIndex = projects.findIndex((p) => p.id === requestedId);
   if (projectIndex < 0) projectIndex = 0;
   const project = projects[projectIndex];
+
+  const projectMain = document.querySelector(".project");
+  if (projectMain) projectMain.setAttribute("data-project", project.id);
 
   const spot = (index) => ({
     x: `${15 + ((index * 37) % 70)}%`,
@@ -103,54 +112,68 @@
   setText("project-deliverables", project.deliverables);
   setText("project-overview", project.overview);
   setText("project-counter", `${projectNumber} / ${String(projects.length).padStart(2, "0")}`);
+  setText("project-closing-label", project.closingLabel || "Outcome");
+
+  // Headline and contribution are optional — most brands don't set them,
+  // so the elements stay hidden unless a project provides the copy.
+  const headlineEl = document.getElementById("project-headline");
+  if (headlineEl) {
+    if (project.headline) {
+      headlineEl.textContent = project.headline;
+      headlineEl.hidden = false;
+    } else {
+      headlineEl.hidden = true;
+    }
+  }
+
+  const overviewLinkEl = document.getElementById("project-overview-link");
+  if (overviewLinkEl) {
+    if (project.overviewLink && project.overviewLink.url) {
+      overviewLinkEl.href = project.overviewLink.url;
+      setText("project-overview-link-label", project.overviewLink.label || project.overviewLink.url);
+      overviewLinkEl.hidden = false;
+    } else {
+      overviewLinkEl.hidden = true;
+    }
+  }
+
+  const contributionEl = document.getElementById("project-contribution");
+  if (contributionEl) {
+    if (project.contribution) {
+      setText("project-contribution-text", project.contribution);
+      contributionEl.hidden = false;
+    } else {
+      contributionEl.hidden = true;
+    }
+  }
 
   // --- Hero ---
   const hero = document.getElementById("project-hero");
   if (hero) applyTone(hero, 1);
 
-  // --- Gallery blocks ---
+  // --- Gallery blocks: one flush 16:9 image per block ---
   const galleryRoot = document.getElementById("project-gallery");
   let nextIndex = 2;
   const galleryImages = hero ? [hero] : [];
   const galleryBlocks = [];
 
-  (project.gallery || []).forEach((block) => {
+  for (let i = 0; i < (project.galleryCount || 0); i += 1) {
     const section = document.createElement("div");
-    section.className = `gallery-block gallery-block--${block.type}`;
+    section.className = "gallery-block";
 
-    const makeImage = () => {
-      const img = document.createElement("div");
-      img.setAttribute("role", "button");
-      img.setAttribute("tabindex", "0");
-      img.setAttribute("aria-label", "Open image fullscreen");
-      img.dataset.galleryIndex = String(nextIndex);
-      applyTone(img, nextIndex);
-      nextIndex += 1;
-      galleryImages.push(img);
-      return img;
-    };
+    const img = document.createElement("div");
+    img.setAttribute("role", "button");
+    img.setAttribute("tabindex", "0");
+    img.setAttribute("aria-label", "Open image fullscreen");
+    img.dataset.galleryIndex = String(nextIndex);
+    applyTone(img, nextIndex);
+    nextIndex += 1;
+    galleryImages.push(img);
 
-    if (block.type === "two-col") {
-      section.appendChild(makeImage());
-      section.appendChild(makeImage());
-    } else if (block.type === "edge") {
-      section.style.setProperty("--edge-count", String(block.count || 3));
-      for (let i = 0; i < (block.count || 3); i += 1) {
-        section.appendChild(makeImage());
-      }
-    } else {
-      section.appendChild(makeImage());
-      if (block.caption) {
-        const caption = document.createElement("p");
-        caption.className = "gallery-caption";
-        caption.textContent = block.caption;
-        section.appendChild(caption);
-      }
-    }
-
+    section.appendChild(img);
     galleryBlocks.push(section);
     if (galleryRoot) galleryRoot.appendChild(section);
-  });
+  }
 
   // --- Fade-and-rise reveal as gallery blocks scroll into view ---
   if (galleryBlocks.length && "IntersectionObserver" in window) {
@@ -176,7 +199,7 @@
   const setBrandNavLink = (id, target, label) => {
     const el = document.getElementById(id);
     if (!el) return;
-    el.href = `project.html?project=${target.id}`;
+    el.href = `${target.id}.html`;
     el.setAttribute("aria-label", `${label} ${target.title}`);
   };
 

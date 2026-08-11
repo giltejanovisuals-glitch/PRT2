@@ -157,7 +157,7 @@
       if (workFeatureTitle) workFeatureTitle.textContent = thumb.dataset.title || "";
       if (workFeatureMeta) workFeatureMeta.textContent = metaText;
 
-      const projectUrl = thumb.dataset.id ? `project.html?project=${thumb.dataset.id}` : "#";
+      const projectUrl = thumb.dataset.id ? `pages/${thumb.dataset.id}.html` : "#";
       if (workFeatureLink) workFeatureLink.href = projectUrl;
       if (workDetailsLink) workDetailsLink.href = projectUrl;
     };
