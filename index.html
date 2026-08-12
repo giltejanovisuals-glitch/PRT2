@@ -26,6 +26,13 @@
               : "light");
           document.documentElement.setAttribute("data-theme", theme);
         } catch (e) {}
+        // Without this, browsers restore the scroll offset from the last
+        // visit/reload instead of starting fresh at the hero — easy to
+        // trigger while iterating on a long page and easy to mistake for
+        // an unwanted "auto-scroll" on load.
+        if ("scrollRestoration" in history) {
+          history.scrollRestoration = "manual";
+        }
       })();
     </script>
     <link rel="stylesheet" href="css/style.css" />
@@ -129,12 +136,13 @@
 
     <section class="work" id="work" aria-labelledby="work-heading">
       <div class="work-intro">
-        <p class="section-index">02 — Brand Applications</p>
-        <h2 id="work-heading">Selected Brand Applications</h2>
+        <p class="section-index">02 — Brand Identity &amp; Visual Systems</p>
+        <h2 id="work-heading">Brand Identity &amp; Visual Systems</h2>
         <p class="work-lede">
-          A selection of visual identity applications developed to help brands
-          communicate consistently across campaigns, retail environments, print
-          materials, and digital touchpoints.
+          A selection of identity systems — logo construction, typography
+          and color, and brand guidelines — developed to give brands one
+          cohesive visual language across campaigns, retail environments,
+          print materials, and digital touchpoints.
         </p>
       </div>
 
@@ -251,20 +259,20 @@
         <p class="section-index">03 — Project Gallery</p>
         <h2 id="showcase-heading">Project Gallery</h2>
         <p class="showcase-lede">
-          Explore selected graphic-design applications across campaigns, print,
-          retail, editorial, and digital platforms.
+          Explore selected graphic-design work across presentations,
+          campaigns, editorial, digital, and retail environments.
         </p>
       </div>
 
       <div class="showcase-panels">
-        <div class="showcase-panel showcase-tone-social" data-href="pages/social-campaigns.html">
+        <div class="showcase-panel showcase-tone-campaign" data-href="pages/campaign-marketing.html">
           <div class="showcase-panel-media">
             <picture>
-              <source type="image/avif" srcset="assets/images/gallery/social-campaigns-cover.avif" />
-              <source type="image/webp" srcset="assets/images/gallery/social-campaigns-cover.webp" />
+              <source type="image/avif" srcset="assets/images/gallery/campaign-marketing-cover.avif" />
+              <source type="image/webp" srcset="assets/images/gallery/campaign-marketing-cover.webp" />
               <img
                 class="showcase-panel-img"
-                src="assets/images/gallery/social-campaigns-cover.jpg"
+                src="assets/images/gallery/campaign-marketing-cover.jpg"
                 alt=""
                 loading="eager"
                 fetchpriority="high"
@@ -276,23 +284,23 @@
           </div>
           <div class="showcase-panel-content">
             <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-1">
-              <h3 class="showcase-panel-name">Social Media &amp; Campaigns</h3>
+              <h3 class="showcase-panel-name">Campaign &amp; Marketing Design</h3>
             </button>
             <p class="showcase-panel-summary" id="showcase-more-1">
-              Campaign visuals and content systems developed for product
-              launches, promotions, and seasonal communication.
+              Campaign key visuals developed into full systems — social,
+              digital ads, OOH, and e-commerce executions.
             </p>
           </div>
         </div>
 
-        <div class="showcase-panel showcase-tone-print" data-href="pages/print-collaterals.html">
+        <div class="showcase-panel showcase-tone-editorial" data-href="pages/editorial-layout.html">
           <div class="showcase-panel-media">
             <picture>
-              <source type="image/avif" srcset="assets/images/gallery/print-collaterals-cover.avif" />
-              <source type="image/webp" srcset="assets/images/gallery/print-collaterals-cover.webp" />
+              <source type="image/avif" srcset="assets/images/gallery/editorial-layout-cover.avif" />
+              <source type="image/webp" srcset="assets/images/gallery/editorial-layout-cover.webp" />
               <img
                 class="showcase-panel-img"
-                src="assets/images/gallery/print-collaterals-cover.jpg"
+                src="assets/images/gallery/editorial-layout-cover.jpg"
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -303,23 +311,23 @@
           </div>
           <div class="showcase-panel-content">
             <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-2">
-              <h3 class="showcase-panel-name">Print Collaterals</h3>
+              <h3 class="showcase-panel-name">Editorial &amp; Layout Design</h3>
             </button>
             <p class="showcase-panel-summary" id="showcase-more-2">
-              Brochures, flyers, posters, invitations, presentation
-              materials, and other printed applications.
+              Catalogs, lookbooks, brochures, and brand books built on
+              considered grid, typography, and pacing.
             </p>
           </div>
         </div>
 
-        <div class="showcase-panel showcase-tone-catalogue" data-href="pages/catalogues-editorial.html">
+        <div class="showcase-panel showcase-tone-retail" data-href="pages/retail-experiential.html">
           <div class="showcase-panel-media">
             <picture>
-              <source type="image/avif" srcset="assets/images/gallery/catalogues-editorial-cover.avif" />
-              <source type="image/webp" srcset="assets/images/gallery/catalogues-editorial-cover.webp" />
+              <source type="image/avif" srcset="assets/images/gallery/retail-experiential-cover.avif" />
+              <source type="image/webp" srcset="assets/images/gallery/retail-experiential-cover.webp" />
               <img
                 class="showcase-panel-img"
-                src="assets/images/gallery/catalogues-editorial-cover.jpg"
+                src="assets/images/gallery/retail-experiential-cover.jpg"
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -330,23 +338,23 @@
           </div>
           <div class="showcase-panel-content">
             <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-3">
-              <h3 class="showcase-panel-name">Catalogues &amp; Editorial</h3>
+              <h3 class="showcase-panel-name">Retail, Product &amp; Experiential Design</h3>
             </button>
             <p class="showcase-panel-summary" id="showcase-more-3">
-              Product catalogues, lookbooks, editorial layouts, product
-              pages, and information systems.
+              Retail graphics, product displays, packaging, and
+              environmental design for physical brand experiences.
             </p>
           </div>
         </div>
 
-        <div class="showcase-panel showcase-tone-retail" data-href="pages/retail-instore.html">
+        <div class="showcase-panel showcase-tone-digital" data-href="pages/digital-web.html">
           <div class="showcase-panel-media">
             <picture>
-              <source type="image/avif" srcset="assets/images/gallery/retail-instore-cover.avif" />
-              <source type="image/webp" srcset="assets/images/gallery/retail-instore-cover.webp" />
+              <source type="image/avif" srcset="assets/images/gallery/digital-web-cover.avif" />
+              <source type="image/webp" srcset="assets/images/gallery/digital-web-cover.webp" />
               <img
                 class="showcase-panel-img"
-                src="assets/images/gallery/retail-instore-cover.jpg"
+                src="assets/images/gallery/digital-web-cover.jpg"
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -357,23 +365,23 @@
           </div>
           <div class="showcase-panel-content">
             <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-4">
-              <h3 class="showcase-panel-name">Retail &amp; In-Store Graphics</h3>
+              <h3 class="showcase-panel-name">Digital / Web &amp; Content Design</h3>
             </button>
             <p class="showcase-panel-summary" id="showcase-more-4">
-              Point-of-sale materials, window displays, signages,
-              promotional graphics, and showroom applications.
+              Landing pages, microsites, e-commerce visuals, and content
+              systems that translate a brand into a digital ecosystem.
             </p>
           </div>
         </div>
 
-        <div class="showcase-panel showcase-tone-digital" data-href="pages/digital-ecommerce.html">
+        <div class="showcase-panel showcase-tone-presentation" data-href="pages/presentation-information.html">
           <div class="showcase-panel-media">
             <picture>
-              <source type="image/avif" srcset="assets/images/gallery/digital-ecommerce-cover.avif" />
-              <source type="image/webp" srcset="assets/images/gallery/digital-ecommerce-cover.webp" />
+              <source type="image/avif" srcset="assets/images/gallery/presentation-information-cover.avif" />
+              <source type="image/webp" srcset="assets/images/gallery/presentation-information-cover.webp" />
               <img
                 class="showcase-panel-img"
-                src="assets/images/gallery/digital-ecommerce-cover.jpg"
+                src="assets/images/gallery/presentation-information-cover.jpg"
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -384,18 +392,381 @@
           </div>
           <div class="showcase-panel-content">
             <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-5">
-              <h3 class="showcase-panel-name">Digital &amp; E-commerce Content</h3>
+              <h3 class="showcase-panel-name">Presentation &amp; Information Design</h3>
             </button>
             <p class="showcase-panel-summary" id="showcase-more-5">
-              Website banners, product graphics, email visuals, digital
-              advertisements, and marketplace content.
+              Pitch decks, sales presentations, infographics, and data
+              visualization built to make information clear.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <span class="sr-only" id="about">Selected practice: visual design, brand applications, campaigns, and digital experiences for furniture, lifestyle, retail, and product-driven brands.</span>
-    <span class="sr-only" id="capabilities">Campaign design, visual identity, catalog design, and digital experiences.</span>
+    <section class="profile" id="about" aria-label="About, experience, and capabilities">
+
+      <!-- 1. Creative Capabilities -->
+      <div class="profile-block cap" id="capabilities">
+        <div class="profile-block-head cap-head">
+          <p class="section-index">04 — Creative Capabilities</p>
+          <h2 id="cap-heading">Creative Capabilities</h2>
+          <p class="profile-block-lede">
+            Design support across concept development, campaigns, brand
+            applications, editorial systems, and digital content.
+          </p>
+          <div class="cap-nav">
+            <button class="cap-arrow cap-arrow-prev" type="button" aria-label="Show previous capabilities" disabled>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+            <button class="cap-arrow cap-arrow-next" type="button" aria-label="Show next capabilities">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="cap-track" id="cap-track" role="list" aria-labelledby="cap-heading" tabindex="0">
+          <article class="cap-card" role="listitem">
+            <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.3 8.7l-2.1 4.5-4.5 2.1 2.1-4.5z"/></svg>
+            <h3 class="cap-card-title">Creative Direction</h3>
+            <p class="cap-card-desc">Shaping visual tone, concept development, and brand direction across campaigns and creative teams.</p>
+          </article>
+
+          <article class="cap-card" role="listitem">
+            <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg>
+            <h3 class="cap-card-title">Visual Design</h3>
+            <p class="cap-card-desc">Premium graphics for campaigns, social media, product launches, and brand communication.</p>
+          </article>
+
+          <article class="cap-card" role="listitem">
+            <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1.5"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            <h3 class="cap-card-title">Layout &amp; Editorial Design</h3>
+            <p class="cap-card-desc">Catalogs, brochures, flyers, posters, presentations, and print-ready marketing materials.</p>
+          </article>
+
+          <article class="cap-card" role="listitem">
+            <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <h3 class="cap-card-title">Retail &amp; Campaign Design</h3>
+            <p class="cap-card-desc">Point-of-sale graphics, window displays, and in-store systems built for retail and showroom environments.</p>
+          </article>
+
+          <article class="cap-card" role="listitem">
+            <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <h3 class="cap-card-title">Photography</h3>
+            <p class="cap-card-desc">Product, event, and lifestyle photography that captures clean, campaign-ready visuals.</p>
+          </article>
+
+          <article class="cap-card" role="listitem">
+            <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3l1.5 4.5L19 9l-4.5 1.5L13 15l-1.5-4.5L7 9l4.5-1.5z"/><path d="M5 3v4M3 5h4"/><path d="M6 17v4M4 19h4"/></svg>
+            <h3 class="cap-card-title">Photo Manipulation</h3>
+            <p class="cap-card-desc">Clean product compositions, image enhancements, lifestyle visuals, and refined campaign assets.</p>
+          </article>
+
+          <article class="cap-card" role="listitem">
+            <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="1.5"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <h3 class="cap-card-title">Digital Content</h3>
+            <p class="cap-card-desc">Social-ready graphics, banners, and visual assets built for digital campaigns and e-commerce.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- 2. My Creative Dock -->
+      <div class="profile-block dock">
+        <div class="profile-block-head">
+          <p class="section-index">05 — My Creative Dock</p>
+          <h2 id="dock-heading">My Creative Dock</h2>
+          <p class="profile-block-lede">
+            Tools used across visual design, image development, editorial
+            production, motion, presentations, web implementation, and
+            AI-assisted workflows.
+          </p>
+        </div>
+
+        <div class="dock-body" aria-labelledby="dock-heading">
+          <div class="dock-group">
+            <p class="dock-group-label">Design</p>
+            <div class="dock-row">
+              <button class="dock-tool" type="button" style="--tool-bg:#001E36;--tool-fg:#31A8FF" data-name="Photoshop" data-use="Photo editing &amp; compositing">
+                <span class="dock-tool-badge" aria-hidden="true">Ps</span>
+                <span class="dock-tool-name">Photoshop</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#330000;--tool-fg:#FF9A00" data-name="Illustrator" data-use="Vector graphics &amp; logotypes">
+                <span class="dock-tool-badge" aria-hidden="true">Ai</span>
+                <span class="dock-tool-name">Illustrator</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#001E36;--tool-fg:#66C4FF" data-name="Lightroom" data-use="Photo culling &amp; color grading">
+                <span class="dock-tool-badge" aria-hidden="true">Lr</span>
+                <span class="dock-tool-name">Lightroom</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#24102E;--tool-fg:#C084FC" data-name="Affinity" data-use="Cross-platform design &amp; retouching">
+                <span class="dock-tool-badge" aria-hidden="true">Af</span>
+                <span class="dock-tool-name">Affinity</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#3D2E14;--tool-fg:#E8B968" data-name="Adobe Bridge" data-use="Asset organization &amp; file management">
+                <span class="dock-tool-badge" aria-hidden="true">Br</span>
+                <span class="dock-tool-name">Adobe Bridge</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#3D0F04;--tool-fg:#F2542D" data-name="Capture One" data-use="Tethered capture &amp; photo editing">
+                <span class="dock-tool-badge" aria-hidden="true">C1</span>
+                <span class="dock-tool-name">Capture One</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#0F2818;--tool-fg:#2ECC71" data-name="CorelDRAW" data-use="Vector illustration &amp; layout">
+                <span class="dock-tool-badge" aria-hidden="true">Cd</span>
+                <span class="dock-tool-name">CorelDRAW</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#08263D;--tool-fg:#4FC3F7" data-name="SketchUp" data-use="3D modeling for spatial concepts">
+                <span class="dock-tool-badge" aria-hidden="true">Su</span>
+                <span class="dock-tool-name">SketchUp</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#1B1035;--tool-fg:#818CF8" data-name="Upscayl" data-use="AI image upscaling &amp; restoration">
+                <span class="dock-tool-badge" aria-hidden="true">Up</span>
+                <span class="dock-tool-name">Upscayl</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="dock-group">
+            <p class="dock-group-label">Layout &amp; Presentations</p>
+            <div class="dock-row">
+              <button class="dock-tool" type="button" style="--tool-bg:#49021F;--tool-fg:#FF3366" data-name="InDesign" data-use="Catalogues, brochures &amp; print layout">
+                <span class="dock-tool-badge" aria-hidden="true">Id</span>
+                <span class="dock-tool-name">InDesign</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#00C4CC;--tool-fg:#ffffff" data-name="Canva" data-use="Fast social &amp; campaign templates">
+                <span class="dock-tool-badge" aria-hidden="true">Ca</span>
+                <span class="dock-tool-name">Canva</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#4B1503;--tool-fg:#E8590C" data-name="Microsoft 365" data-use="Documents, decks &amp; presentations">
+                <span class="dock-tool-badge" aria-hidden="true">365</span>
+                <span class="dock-tool-name">Microsoft 365</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="dock-group">
+            <p class="dock-group-label">Motion &amp; Video</p>
+            <div class="dock-row">
+              <button class="dock-tool" type="button" style="--tool-bg:#00005B;--tool-fg:#9999FF" data-name="After Effects" data-use="Motion graphics &amp; animated assets">
+                <span class="dock-tool-badge" aria-hidden="true">Ae</span>
+                <span class="dock-tool-name">After Effects</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#1A0033;--tool-fg:#C77DFF" data-name="Premiere Pro" data-use="Video editing &amp; sequencing">
+                <span class="dock-tool-badge" aria-hidden="true">Pr</span>
+                <span class="dock-tool-name">Premiere Pro</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#000000;--tool-fg:#ffffff" data-name="CapCut" data-use="Quick-turnaround social edits">
+                <span class="dock-tool-badge" aria-hidden="true">Cc</span>
+                <span class="dock-tool-name">CapCut</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#233A51;--tool-fg:#8FA8C4" data-name="DaVinci Resolve" data-use="Color grading &amp; final delivery">
+                <span class="dock-tool-badge" aria-hidden="true">Dr</span>
+                <span class="dock-tool-name">DaVinci Resolve</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="dock-group">
+            <p class="dock-group-label">Web &amp; Workflow</p>
+            <div class="dock-row">
+              <button class="dock-tool" type="button" style="--tool-bg:#0A2C4E;--tool-fg:#3C99D4" data-name="Visual Studio Code" data-use="Front-end builds &amp; site edits">
+                <span class="dock-tool-badge" aria-hidden="true">Vs</span>
+                <span class="dock-tool-name">Visual Studio Code</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#062B2B;--tool-fg:#1ABCFE" data-name="Figma" data-use="UI layout &amp; interactive prototypes">
+                <span class="dock-tool-badge" aria-hidden="true">Fi</span>
+                <span class="dock-tool-name">Figma</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="dock-group">
+            <p class="dock-group-label">AI Creative Tools</p>
+            <div class="dock-row">
+              <button class="dock-tool" type="button" style="--tool-bg:#1A1B3A;--tool-fg:#8AB4F8" data-name="Gemini" data-use="Research, ideation &amp; content drafting">
+                <span class="dock-tool-badge" aria-hidden="true">Ge</span>
+                <span class="dock-tool-name">Gemini</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#0A1A0F;--tool-fg:#34D399" data-name="Runway" data-use="AI video generation &amp; editing">
+                <span class="dock-tool-badge" aria-hidden="true">Rw</span>
+                <span class="dock-tool-name">Runway</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#08211B;--tool-fg:#10A37F" data-name="ChatGPT" data-use="Copywriting, research &amp; ideation">
+                <span class="dock-tool-badge" aria-hidden="true">GPT</span>
+                <span class="dock-tool-name">ChatGPT</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#2B1710;--tool-fg:#D97757" data-name="Claude" data-use="Writing, research &amp; workflow support">
+                <span class="dock-tool-badge" aria-hidden="true">Cl</span>
+                <span class="dock-tool-name">Claude</span>
+              </button>
+              <button class="dock-tool" type="button" style="--tool-bg:#2B0B1E;--tool-fg:#F94C97" data-name="Adobe Firefly" data-use="Generative image &amp; text effects">
+                <span class="dock-tool-badge" aria-hidden="true">Fy</span>
+                <span class="dock-tool-name">Adobe Firefly</span>
+              </button>
+            </div>
+          </div>
+
+          <p class="dock-now" id="dock-now" aria-live="polite">Hover or focus a tool to see what it's used for.</p>
+        </div>
+      </div>
+
+      <!-- 3. Creative Timeline -->
+      <div class="profile-block timeline">
+        <div class="profile-block-head">
+          <p class="section-index">06 — Creative Timeline</p>
+          <h2 id="timeline-heading">Creative Timeline</h2>
+          <p class="profile-block-lede">
+            A running record of the roles and production environments this
+            practice has grown through.
+          </p>
+        </div>
+
+        <div class="tl-track" id="tl-track" aria-labelledby="timeline-heading">
+          <ol class="tl-list">
+            <li class="tl-item is-current">
+              <span class="tl-dot" aria-hidden="true"></span>
+              <p class="tl-date">Jul 2025 — Present</p>
+              <span class="tl-tag">Full-time</span>
+              <h3 class="tl-role">Creative Specialist / Graphic Designer</h3>
+              <p class="tl-desc">Premium brand visuals, product catalogs, and campaign materials for lifestyle and retail brands.</p>
+            </li>
+
+            <li class="tl-item is-current">
+              <span class="tl-dot" aria-hidden="true"></span>
+              <p class="tl-date">Jul 2024 — Jul 2025</p>
+              <span class="tl-tag">Full-time</span>
+              <h3 class="tl-role">Senior Graphic Designer</h3>
+              <p class="tl-desc">Print layouts, social ads, and production-ready client materials.</p>
+            </li>
+
+            <li class="tl-item is-compact">
+              <span class="tl-dot" aria-hidden="true"></span>
+              <p class="tl-date">Apr — Sep 2023</p>
+              <span class="tl-tag">On-site</span>
+              <h3 class="tl-role">Graphic Designer</h3>
+            </li>
+
+            <li class="tl-item is-compact">
+              <span class="tl-dot" aria-hidden="true"></span>
+              <p class="tl-date">Dec 2022 — Apr 2023</p>
+              <span class="tl-tag">Production</span>
+              <h3 class="tl-role">Graphic Designer</h3>
+            </li>
+
+            <li class="tl-item is-compact">
+              <span class="tl-dot" aria-hidden="true"></span>
+              <p class="tl-date">Mar 2021 — Oct 2022</p>
+              <span class="tl-tag">Freelance</span>
+              <h3 class="tl-role">Graphic Designer</h3>
+            </li>
+
+            <li class="tl-item is-compact">
+              <span class="tl-dot" aria-hidden="true"></span>
+              <p class="tl-date">Oct 2019 — Feb 2021</p>
+              <span class="tl-tag">On-site</span>
+              <h3 class="tl-role">Graphic Designer</h3>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- 4. Brands I've Supported -->
+      <div class="profile-block brands">
+        <div class="profile-block-head brands-head">
+          <p class="section-index brands-label">Brands I&rsquo;ve Supported</p>
+        </div>
+
+        <div class="brands-track" id="brands-track" aria-label="Brands I've supported" tabindex="0">
+          <a class="brand-logo is-linked" href="pages/porta-mobili.html">
+            <img class="brand-logo-img" src="assets/images/brands/porta-mobili.svg" alt="Porta Mobili" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <span class="brand-logo-text" hidden>Porta Mobili</span>
+          </a>
+          <span class="brand-logo">
+            <img class="brand-logo-img" src="assets/images/brands/etro.svg" alt="Etro" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <span class="brand-logo-text" hidden>Etro</span>
+          </span>
+          <span class="brand-logo">
+            <img class="brand-logo-img" src="assets/images/brands/stoneleaf.svg" alt="Stoneleaf" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <span class="brand-logo-text" hidden>Stoneleaf</span>
+          </span>
+          <a class="brand-logo is-linked" href="pages/hooga.html">
+            <img class="brand-logo-img" src="assets/images/brands/hooga.svg" alt="Hooga" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <span class="brand-logo-text" hidden>Hooga</span>
+          </a>
+          <span class="brand-logo">
+            <img class="brand-logo-img" src="assets/images/brands/mooni.svg" alt="Mooni" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <span class="brand-logo-text" hidden>Mooni</span>
+          </span>
+          <span class="brand-logo">
+            <img class="brand-logo-img" src="assets/images/brands/bw.svg" alt="BW" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <span class="brand-logo-text" hidden>BW</span>
+          </span>
+          <a class="brand-logo is-linked" href="pages/dunlopillo.html">
+            <img class="brand-logo-img" src="assets/images/brands/dunlopillo.svg" alt="Dunlopillo" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <span class="brand-logo-text" hidden>Dunlopillo</span>
+          </a>
+          <a class="brand-logo is-linked" href="pages/metal-lite.html">
+            <img class="brand-logo-img" src="assets/images/brands/metal-lite.svg" alt="Metal-Lite" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <span class="brand-logo-text" hidden>Metal-Lite</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. Foundation -->
+      <div class="profile-block foundation">
+        <div class="profile-block-head">
+          <p class="section-index">07 — Foundation</p>
+          <h2 id="foundation-heading">Foundation</h2>
+        </div>
+
+        <div class="found-body" aria-labelledby="foundation-heading">
+          <div class="found-item">
+            <p class="found-years">2019 – 2024</p>
+            <h3 class="found-degree">BS Information Technology</h3>
+            <p class="found-school">Cavite State University</p>
+            <p class="found-tag">Web &amp; Systems Development</p>
+          </div>
+
+          <div class="found-item">
+            <p class="found-years">2017 – 2019</p>
+            <h3 class="found-degree">TVL Drafting Animation</h3>
+            <p class="found-school">Tanza National Trade School</p>
+            <p class="found-tag">Visual Design &amp; Layout</p>
+          </div>
+
+          <div class="found-item">
+            <p class="found-years">2013 – 2017</p>
+            <h3 class="found-degree">Technical Drafting</h3>
+            <p class="found-school">Tanza National Trade School</p>
+            <p class="found-tag">2D AutoCAD &amp; Drafting</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Start a Creative Build -->
+      <div class="profile-block cta-build">
+        <p class="cta-label">Start a Creative Build</p>
+        <h2 class="cta-heading">
+          Got a brand, product, or idea?
+          <span class="cta-emphasis">Let&rsquo;s make it visually impossible to ignore.</span>
+        </h2>
+
+        <div class="cta-actions">
+          <a class="cta-btn cta-btn-primary" href="mailto:hello@giltejano.com">
+            <span>Start a Project</span>
+            <svg class="cta-btn-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <button class="cta-btn cta-btn-outline" type="button" disabled aria-disabled="true" title="CV coming soon">
+            Download CV <span class="sr-only">(coming soon)</span>
+          </button>
+          <a class="cta-btn cta-btn-outline" href="#work">View Selected Work</a>
+        </div>
+
+        <div class="cta-social">
+          <a class="cta-social-link" href="mailto:hello@giltejano.com" aria-label="Email Gil Tejano">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </section>
   </body>
 </html>

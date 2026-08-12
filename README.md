@@ -14,11 +14,11 @@ PRT2/
 │   ├── dunlopillo.html        from js/projects-data.js by matching its
 │   ├── metal-lite.html        own filename (see js/project-gallery.js)
 │   │
-│   ├── social-campaigns.html  Category gallery pages. All five share one
-│   ├── print-collaterals.html template; each resolves its own content
-│   ├── catalogues-editorial.html  from js/gallery-categories-data.js by
-│   ├── retail-instore.html    matching its own filename (see
-│   └── digital-ecommerce.html js/gallery-category.js)
+│   ├── presentation-information.html  Category gallery pages. All five
+│   ├── campaign-marketing.html  share one template; each resolves its own
+│   ├── editorial-layout.html  content from js/gallery-categories-data.js
+│   ├── digital-web.html       by matching its own filename (see
+│   └── retail-experiential.html  js/gallery-category.js)
 ├── assets/
 │   ├── images/
 │   │   ├── home/               Homepage carousel / work-panel images
@@ -79,7 +79,7 @@ CSS placeholder gradients (see the `project-<id>` tone classes in
 2. The five homepage showcase panels in `index.html` (`#gallery`) are
    hand-written, not generated — update a panel's copy there to match if
    you change a category's title or description.
-3. If it's a new category, copy any file in `pages/social-campaigns.html`
+3. If it's a new category, copy any file in `pages/presentation-information.html`
    etc. to `pages/<id>.html` — it resolves its own id from its filename,
    same as the brand pages.
 
@@ -97,11 +97,11 @@ gradient stays as a silent fallback if a file is ever missing or fails to
 load):
 
 ```
-assets/images/gallery/social-campaigns-cover.{avif,webp,jpg}
-assets/images/gallery/print-collaterals-cover.{avif,webp,jpg}
-assets/images/gallery/catalogues-editorial-cover.{avif,webp,jpg}
-assets/images/gallery/retail-instore-cover.{avif,webp,jpg}
-assets/images/gallery/digital-ecommerce-cover.{avif,webp,jpg}
+assets/images/gallery/presentation-information-cover.{avif,webp,jpg}
+assets/images/gallery/campaign-marketing-cover.{avif,webp,jpg}
+assets/images/gallery/editorial-layout-cover.{avif,webp,jpg}
+assets/images/gallery/digital-web-cover.{avif,webp,jpg}
+assets/images/gallery/retail-experiential-cover.{avif,webp,jpg}
 ```
 
 - Only the `.jpg` is required (it's the `<img src>` fallback); `.avif`/
@@ -114,3 +114,36 @@ assets/images/gallery/digital-ecommerce-cover.{avif,webp,jpg}
   ```css
   .showcase-tone-retail .showcase-panel-img { object-position: center 30%; }
   ```
+
+## Dropping in the "Brands I've Supported" logos
+
+The homepage's `#about` → Brands strip (`index.html`) already has real
+`<img>` markup for each brand, pointing at files that don't exist yet — add
+files at these exact paths and they'll appear automatically:
+
+```
+assets/images/brands/porta-mobili.svg
+assets/images/brands/etro.svg
+assets/images/brands/stoneleaf.svg
+assets/images/brands/hooga.svg
+assets/images/brands/mooni.svg
+assets/images/brands/bw.svg
+assets/images/brands/dunlopillo.svg
+assets/images/brands/metal-lite.svg
+```
+
+- SVG is preferred (crisp at any size, tiny file size). If you only have a
+  PNG, rename the `src` in `index.html` for that one brand to `.png` — the
+  `<img>` and its `onerror` fallback don't care about format.
+- Until a file exists (or if one ever fails to load), that logo's `onerror`
+  hides the broken image and reveals a typographic fallback instead — this
+  is why every brand still shows as text right now.
+- Each logo renders at a fixed height (not fixed width) via
+  `.brand-logo-img { height: 100% }` inside a `1.85rem`-tall `.brand-logo`
+  box, so mismatched logo proportions still sit level in the row. Prefer
+  a version with tight/no internal padding so the visual weight matches
+  its neighbors.
+- Logos render grayscale at rest and switch to full color on hover/focus.
+  If a mark is a single flat color already (not literally grayscale), pick
+  a source file with transparent (not white) background so it isn't boxed
+  in against the page background in dark mode.

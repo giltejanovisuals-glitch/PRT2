@@ -189,7 +189,16 @@
 
       swapWorkDetails(activeThumb, workActiveIndex);
 
-      activeThumb.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      // Scroll only the horizontal thumb strip itself — scrollIntoView()
+      // would also walk up to the page's vertical scroll (the strip has
+      // no vertical overflow of its own), yanking the whole page down
+      // whenever autoplay advances off-screen.
+      if (workThumbsTrack) {
+        const trackWidth = workThumbsTrack.clientWidth;
+        const target =
+          activeThumb.offsetLeft - (trackWidth - activeThumb.offsetWidth) / 2;
+        workThumbsTrack.scrollTo({ left: target, behavior: "smooth" });
+      }
     };
 
     const stopWorkAutoplay = () => {
@@ -310,4 +319,138 @@
     updateWorkDetails(workThumbs[workActiveIndex], workActiveIndex);
     startWorkAutoplay();
   }
+})();
+
+(() => {
+  // Shared pointer drag-to-scroll for horizontal tracks (capabilities,
+  // brands). Mirrors the work-thumbs drag behavior in the IIFE above.
+  const enableDragScroll = (track) => {
+    if (!track) return;
+    let isDragging = false;
+    let dragMoved = false;
+    let dragStartX = 0;
+    let dragStartScroll = 0;
+
+    track.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "touch") return;
+      isDragging = true;
+      dragMoved = false;
+      dragStartX = event.clientX;
+      dragStartScroll = track.scrollLeft;
+      track.classList.add("is-dragging");
+      track.setPointerCapture(event.pointerId);
+    });
+
+    track.addEventListener("pointermove", (event) => {
+      if (!isDragging) return;
+      const delta = event.clientX - dragStartX;
+      if (Math.abs(delta) > 4) dragMoved = true;
+      track.scrollLeft = dragStartScroll - delta;
+    });
+
+    const endDrag = () => {
+      isDragging = false;
+      track.classList.remove("is-dragging");
+    };
+
+    track.addEventListener("pointerup", endDrag);
+    track.addEventListener("pointerleave", endDrag);
+
+    track.addEventListener(
+      "click",
+      (event) => {
+        if (dragMoved) {
+          event.stopPropagation();
+          event.preventDefault();
+        }
+      },
+      true
+    );
+  };
+
+  // 1. Creative Capabilities — prev/next arrows, drag scroll, keyboard nav
+  const capTrack = document.getElementById("cap-track");
+  const capPrev = document.querySelector(".cap-arrow-prev");
+  const capNext = document.querySelector(".cap-arrow-next");
+
+  if (capTrack) {
+    enableDragScroll(capTrack);
+
+    const updateCapArrows = () => {
+      const maxScroll = capTrack.scrollWidth - capTrack.clientWidth;
+      if (capPrev) capPrev.disabled = capTrack.scrollLeft <= 1;
+      if (capNext) capNext.disabled = capTrack.scrollLeft >= maxScroll - 1;
+    };
+
+    const scrollCapBy = (direction) => {
+      const card = capTrack.querySelector(".cap-card");
+      const step = card ? card.getBoundingClientRect().width + 16 : capTrack.clientWidth * 0.8;
+      capTrack.scrollBy({ left: direction * step, behavior: "smooth" });
+    };
+
+    capPrev?.addEventListener("click", () => scrollCapBy(-1));
+    capNext?.addEventListener("click", () => scrollCapBy(1));
+
+    capTrack.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        scrollCapBy(1);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        scrollCapBy(-1);
+      }
+    });
+
+    capTrack.addEventListener("scroll", updateCapArrows, { passive: true });
+    window.addEventListener("resize", updateCapArrows);
+    updateCapArrows();
+  }
+
+  // 2. My Creative Dock — fixed description panel updates on hover/focus
+  const dockTools = Array.from(document.querySelectorAll(".dock-tool"));
+  const dockNow = document.getElementById("dock-now");
+  const DOCK_DEFAULT_TEXT = dockNow ? dockNow.textContent : "";
+
+  if (dockTools.length && dockNow) {
+    const showTool = (tool) => {
+      const name = tool.dataset.name || "";
+      const use = tool.dataset.use || "";
+      dockNow.innerHTML = `<span class="dock-now-name">${name}</span> — ${use}`;
+    };
+
+    const resetTool = () => {
+      dockNow.textContent = DOCK_DEFAULT_TEXT;
+    };
+
+    dockTools.forEach((tool) => {
+      tool.addEventListener("mouseenter", () => showTool(tool));
+      tool.addEventListener("focus", () => showTool(tool));
+      tool.addEventListener("mouseleave", resetTool);
+      tool.addEventListener("blur", resetTool);
+    });
+  }
+
+  // 3. Creative Timeline — reveal the line and stagger the entries in once
+  const tlTrack = document.getElementById("tl-track");
+
+  if (tlTrack && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            tlTrack.classList.add("is-inview");
+            observer.unobserve(tlTrack);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(tlTrack);
+  } else if (tlTrack) {
+    tlTrack.classList.add("is-inview");
+  }
+
+  // 4. Brands I've Supported — drag scroll on the logo strip
+  const brandsTrack = document.getElementById("brands-track");
+  if (brandsTrack) enableDragScroll(brandsTrack);
 })();

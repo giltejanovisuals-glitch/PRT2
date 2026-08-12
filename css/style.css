@@ -1033,15 +1033,15 @@ button {
    <img> sits on top of this background and simply fails silently onto
    it if the file isn't there yet. */
 
-.showcase-tone-social {
+.showcase-tone-presentation {
   background: linear-gradient(150deg, #6a1fb0, #d0469a);
 }
 
-.showcase-tone-print {
+.showcase-tone-campaign {
   background: linear-gradient(150deg, #a8551b, #eaa53f);
 }
 
-.showcase-tone-catalogue {
+.showcase-tone-editorial {
   background: linear-gradient(150deg, #123a5c, #2f8f96);
 }
 
@@ -1051,6 +1051,631 @@ button {
 
 .showcase-tone-digital {
   background: linear-gradient(150deg, #0e3b3b, #12a594);
+}
+
+/* About, Experience & Capabilities profile block */
+
+.profile {
+  padding: 0 var(--page-padding) clamp(4rem, 8vh, 6rem);
+}
+
+.profile-block {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 4.5rem);
+  padding: clamp(3rem, 8vh, 6rem) 0;
+  border-top: 1px solid var(--line);
+}
+
+.profile-block-head {
+  min-width: 0;
+}
+
+.profile-block-head h2 {
+  margin: 0 0 0.6rem;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.1;
+}
+
+.profile-block-lede {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* 1. Creative Capabilities */
+
+.cap-nav {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.cap-arrow {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 250ms ease, color 250ms ease, opacity 250ms ease;
+}
+
+@media (hover: hover) {
+  .cap-arrow:not(:disabled):hover {
+    border-color: var(--accent-line);
+    color: var(--accent);
+  }
+}
+
+.cap-arrow:focus-visible {
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+.cap-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.cap-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+
+.cap-track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.cap-track::-webkit-scrollbar {
+  display: none;
+}
+
+.cap-card {
+  flex: 0 0 auto;
+  width: clamp(15rem, 22vw, 17rem);
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+  border: 1px solid var(--line);
+  scroll-snap-align: start;
+  background: transparent;
+  transition: background-color 300ms ease, border-color 300ms ease;
+}
+
+.cap-icon {
+  display: block;
+  margin-bottom: 1.25rem;
+  color: var(--muted);
+  transition: color 300ms ease, transform 300ms var(--ease);
+}
+
+.cap-card-title {
+  margin: 0 0 0.5rem;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.25;
+  transition: color 300ms ease;
+}
+
+.cap-card-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+@media (hover: hover) {
+  .cap-card:hover {
+    background: rgba(var(--text-rgb), 0.03);
+    border-color: var(--accent-line);
+  }
+
+  .cap-card:hover .cap-icon {
+    color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .cap-card:hover .cap-card-title {
+    color: var(--accent);
+  }
+}
+
+.cap-card:focus-within {
+  background: rgba(var(--text-rgb), 0.03);
+  border-color: var(--accent-line);
+}
+
+.cap-card:focus-within .cap-icon {
+  color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.cap-card:focus-within .cap-card-title {
+  color: var(--accent);
+}
+
+/* 2. My Creative Dock */
+
+.dock-body {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3vh, 2rem);
+}
+
+.dock-group-label {
+  margin: 0 0 0.85rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dock-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.dock-tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.dock-tool-badge {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: 0.65rem;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 45%),
+    var(--tool-bg);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  color: var(--tool-fg);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  filter: grayscale(0.55) opacity(0.65);
+  transition: filter 250ms ease, transform 250ms var(--ease);
+}
+
+.dock-tool-name {
+  display: none;
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.3;
+  text-align: center;
+}
+
+@media (hover: hover) {
+  .dock-tool:hover .dock-tool-badge {
+    filter: grayscale(0) opacity(1);
+    transform: translateY(-3px);
+  }
+}
+
+.dock-tool:focus-visible .dock-tool-badge {
+  filter: grayscale(0) opacity(1);
+  transform: translateY(-3px);
+}
+
+.dock-now {
+  margin: 0.5rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.dock-now .dock-now-name {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* 3. Creative Timeline */
+
+.tl-track {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tl-track::-webkit-scrollbar {
+  display: none;
+}
+
+.tl-list {
+  position: relative;
+  display: flex;
+  gap: clamp(1.75rem, 3vw, 3rem);
+  min-width: max-content;
+  margin: 0;
+  padding: 1.5rem 0 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.tl-item {
+  position: relative;
+  flex: 0 0 auto;
+  width: 9rem;
+  padding-top: 0.5rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 550ms var(--ease), transform 550ms var(--ease);
+}
+
+.tl-item.is-current {
+  width: clamp(14rem, 18vw, 16.5rem);
+}
+
+.tl-track.is-inview .tl-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tl-track.is-inview .tl-item:nth-child(1) { transition-delay: 0ms; }
+.tl-track.is-inview .tl-item:nth-child(2) { transition-delay: 80ms; }
+.tl-track.is-inview .tl-item:nth-child(3) { transition-delay: 160ms; }
+.tl-track.is-inview .tl-item:nth-child(4) { transition-delay: 240ms; }
+.tl-track.is-inview .tl-item:nth-child(5) { transition-delay: 320ms; }
+.tl-track.is-inview .tl-item:nth-child(6) { transition-delay: 400ms; }
+
+.tl-dot {
+  position: absolute;
+  top: -1.5rem;
+  left: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: background-color 300ms ease;
+}
+
+.tl-item.is-current .tl-dot {
+  background: var(--accent);
+}
+
+.tl-date {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tl-tag {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  color: var(--accent);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tl-role {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.tl-item.is-compact .tl-role {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.tl-desc {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+@media (hover: hover) {
+  .tl-item:hover .tl-dot {
+    background: var(--accent);
+  }
+
+  .tl-item:hover .tl-role {
+    color: var(--accent);
+  }
+}
+
+/* 4. Brands I've Supported */
+
+.brands-head {
+  display: flex;
+  align-items: center;
+}
+
+.brands-label {
+  margin: 0;
+}
+
+.brands-track {
+  display: flex;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+
+.brands-track.is-dragging {
+  cursor: grabbing;
+}
+
+.brands-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Each brand is either its real logo image (once dropped into
+   assets/images/brands/, see README.md) or, until then, a typographic
+   fallback — the img's onerror in index.html swaps one for the other.
+   Both share the same grayscale-to-color hover/focus treatment. */
+
+.brand-logo {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  height: 1.85rem;
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition: opacity 300ms ease, filter 300ms ease;
+}
+
+.brand-logo-img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 9rem;
+  object-fit: contain;
+}
+
+.brand-logo-text {
+  color: var(--muted);
+  font-family: var(--font-headline);
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: color 300ms ease;
+}
+
+.brand-logo.is-linked {
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .brand-logo:hover {
+    filter: grayscale(0);
+    opacity: 1;
+  }
+
+  .brand-logo.is-linked:hover .brand-logo-text {
+    color: var(--accent);
+  }
+}
+
+.brand-logo.is-linked:focus-visible {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+.brand-logo.is-linked:focus-visible .brand-logo-text {
+  color: var(--accent);
+}
+
+/* 5. Foundation */
+
+.found-body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.found-item {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.found-years {
+  margin: 0 0 0.6rem;
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.found-degree {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.found-school {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.found-tag {
+  margin: 0.85rem 0 0;
+  color: var(--accent);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* 6. Start a Creative Build */
+
+.cta-build {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-template-columns: none;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.cta-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cta-heading {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+
+.cta-heading .cta-emphasis {
+  color: var(--accent);
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  border: 1px solid var(--text);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease, opacity 250ms ease;
+}
+
+.cta-btn-primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--background);
+}
+
+.cta-btn-arrow {
+  transition: transform 250ms var(--ease);
+}
+
+@media (hover: hover) {
+  .cta-btn-primary:hover {
+    opacity: 0.85;
+  }
+
+  .cta-btn-primary:hover .cta-btn-arrow {
+    transform: translateX(4px);
+  }
+}
+
+.cta-btn-primary:focus-visible {
+  opacity: 0.85;
+}
+
+.cta-btn-outline {
+  border-color: var(--line);
+  background: transparent;
+}
+
+@media (hover: hover) {
+  .cta-btn-outline:not(:disabled):hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+.cta-btn-outline:not(:disabled):focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.cta-btn-outline:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cta-social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.cta-social-link {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--text);
+  transition: border-color 250ms ease, color 250ms ease;
+}
+
+@media (hover: hover) {
+  .cta-social-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+.cta-social-link:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .sr-only {
@@ -1072,6 +1697,19 @@ button {
 @media (max-width: 980px) {
   #hero-title {
     font-size: clamp(2.5rem, 7.5vw, 4.25rem);
+  }
+}
+
+/* Profile block — tablet: narrower fixed title column, everything else
+   (capability/brand scroll tracks) already behaves as swipeable content. */
+@media (max-width: 900px) {
+  .profile-block {
+    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .cta-build {
+    grid-template-columns: none;
   }
 }
 
@@ -1160,6 +1798,80 @@ button {
 
   .work-thumbs {
     order: 2;
+  }
+
+  /* Profile block — mobile: every block stacks (title above body), the
+     timeline becomes a vertical list instead of a horizontal track, and
+     dock tool names stay permanently visible instead of hover-only. */
+  .profile {
+    padding-bottom: clamp(3rem, 8vh, 4rem);
+  }
+
+  .profile-block {
+    grid-template-columns: 1fr;
+    gap: clamp(1.25rem, 4vh, 1.75rem);
+    padding: clamp(2.5rem, 7vh, 3.5rem) 0;
+  }
+
+  .cap-nav {
+    margin-top: 1.25rem;
+  }
+
+  .dock-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem 0.5rem;
+  }
+
+  .dock-tool-name {
+    display: block;
+  }
+
+  .tl-track {
+    overflow-x: visible;
+  }
+
+  .tl-list {
+    flex-direction: column;
+    min-width: 0;
+    gap: 2rem;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .tl-item,
+  .tl-item.is-current {
+    width: auto;
+    padding: 0 0 0 1.5rem;
+    border-left: 1px solid var(--line);
+  }
+
+  .tl-dot {
+    top: 0.35rem;
+    left: -0.32rem;
+  }
+
+  .found-body {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .found-item {
+    padding: 1.5rem 0;
+  }
+
+  .found-item:first-child {
+    padding-top: 0;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .cta-btn {
+    justify-content: center;
   }
 }
 

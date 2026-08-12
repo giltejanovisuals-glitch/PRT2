@@ -1,109 +1,113 @@
 /*
  * Placeholder data for the Project Gallery category pages (pages/<id>.html).
  * Mirrors js/projects-data.js's role for the brand pages, but keyed by
- * application type instead of by client. Every entry here is a clearly
- * generic placeholder — swap in real projects, images, and copy as they
+ * application type instead of by client. Most entries here are clearly
+ * generic placeholders — swap in real projects, images, and copy as they
  * become available; see README.md.
+ *
+ * Order is ranked strongest-to-weakest as a portfolio category (01 = the
+ * strongest, business-connected, most senior-reading work; 05 = solid but
+ * more supplementary) — keep this ranking in mind if reordering.
  */
 window.GALLERY_CATEGORIES = [
   {
-    id: "social-campaigns",
-    tone: "showcase-tone-social",
+    id: "campaign-marketing",
+    tone: "showcase-tone-campaign",
     number: "01",
-    title: "Social Media & Campaigns",
+    title: "Campaign & Marketing Design",
     lede:
-      "Campaign visuals and content systems developed for product launches, promotions, and seasonal communication.",
+      "Campaign key visuals developed into full systems — social, digital ads, OOH, and e-commerce executions built from one central idea.",
     intro:
-      "Campaign key visuals, promotional posts, content series, launches, and seasonal communications developed across a range of brands and platforms.",
+      "Campaigns built from a single big idea through to a key visual and a full system of executions, connecting design decisions to real marketing goals rather than one-off graphics.",
     entries: [
-      { layout: "landscape", brand: "Client Name", year: "2025", type: "Campaign Key Visual", contribution: "Art direction, key visual concept, and campaign rollout across social formats." },
-      { layout: "landscape", brand: "Client Name", year: "2024", type: "Promotional Post Series" },
-      { layout: "pair", brand: "Client Name", year: "2024", type: "Content Series" },
-      { layout: "landscape", brand: "Client Name", year: "2025", type: "Product Launch" },
-      { layout: "portrait", brand: "Client Name", year: "2023", type: "Seasonal Communication", contribution: "Visual system adapted across a full seasonal content calendar." },
-      { layout: "landscape", brand: "Client Name", year: "2024", type: "Campaign Key Visual" },
-      { layout: "pair", brand: "Client Name", year: "2025", type: "Promotional Post Series" },
-      { layout: "landscape", brand: "Client Name", year: "2023", type: "Content Series" },
+      { layout: "landscape", brand: "Mooni", year: "2025", type: "Campaign Key Visual", contribution: "Big-idea concept, key visual, and system adapted across social, digital, and OOH formats." },
+      { layout: "landscape", brand: "Client Name", year: "2024", type: "Social Media Campaign" },
+      { layout: "pair", brand: "Client Name", year: "2024", type: "Digital Advertisement" },
+      { layout: "landscape", brand: "Client Name", year: "2025", type: "OOH / Billboard" },
+      { layout: "portrait", brand: "Client Name", year: "2023", type: "Promotional Material", contribution: "Campaign system adapted for in-store and print promotional formats." },
+      { layout: "landscape", brand: "Client Name", year: "2024", type: "Email / E-commerce Graphic" },
+      { layout: "pair", brand: "Client Name", year: "2025", type: "Campaign Adaptation" },
+      { layout: "landscape", brand: "Client Name", year: "2023", type: "Social Media Campaign" },
     ],
   },
   {
-    id: "print-collaterals",
-    tone: "showcase-tone-print",
+    id: "editorial-layout",
+    tone: "showcase-tone-editorial",
     number: "02",
-    title: "Print Collaterals",
+    title: "Editorial & Layout Design",
     lede:
-      "Brochures, flyers, posters, invitations, presentation materials, and other printed applications.",
+      "Catalogs, lookbooks, brochures, and brand books built on considered grid, typography, and pacing.",
     intro:
-      "Print applications developed for brand and product communication, from single-sheet handouts to multi-page presentation materials.",
+      "Editorial systems that organize product and brand storytelling into clear, well-paced layouts — grid, typography, hierarchy, and composition built to hold up across long-form print and digital documents.",
     entries: [
-      { layout: "landscape", brand: "Client Name", year: "2024", type: "Brochure", contribution: "Layout, typography, and print preparation for a multi-page brand brochure." },
-      { layout: "landscape", brand: "Client Name", year: "2025", type: "Flyer" },
-      { layout: "pair", brand: "Client Name", year: "2023", type: "Poster" },
-      { layout: "landscape", brand: "Client Name", year: "2024", type: "Invitation" },
-      { layout: "portrait", brand: "Client Name", year: "2025", type: "Presentation Deck", contribution: "Deck system built for recurring client-facing presentations." },
-      { layout: "landscape", brand: "Client Name", year: "2023", type: "Brochure" },
-      { layout: "pair", brand: "Client Name", year: "2024", type: "Poster" },
-      { layout: "landscape", brand: "Client Name", year: "2025", type: "Flyer" },
-    ],
-  },
-  {
-    id: "catalogues-editorial",
-    tone: "showcase-tone-catalogue",
-    number: "03",
-    title: "Catalogues & Editorial",
-    lede:
-      "Product catalogues, lookbooks, editorial layouts, product pages, and information systems.",
-    intro:
-      "Editorial and catalogue systems that organize product information, imagery, and brand storytelling into clear, navigable layouts.",
-    entries: [
-      { layout: "landscape", brand: "Client Name", year: "2024", type: "Product Catalogue", contribution: "Editorial system spanning product, lifestyle, and brand-story spreads." },
+      { layout: "landscape", brand: "Client Name", year: "2024", type: "Product Catalogue", contribution: "Editorial grid and typography system spanning product, lifestyle, and brand-story spreads." },
       { layout: "landscape", brand: "Client Name", year: "2024", type: "Lookbook" },
-      { layout: "pair", brand: "Client Name", year: "2025", type: "Editorial Layout" },
-      { layout: "landscape", brand: "Client Name", year: "2023", type: "Product Page" },
-      { layout: "portrait", brand: "Client Name", year: "2024", type: "Information System", contribution: "Iconography and layout system for product specification pages." },
-      { layout: "landscape", brand: "Client Name", year: "2025", type: "Product Catalogue" },
-      { layout: "pair", brand: "Client Name", year: "2023", type: "Lookbook" },
-      { layout: "landscape", brand: "Client Name", year: "2024", type: "Editorial Layout" },
+      { layout: "pair", brand: "Client Name", year: "2025", type: "Brochure" },
+      { layout: "landscape", brand: "Client Name", year: "2023", type: "Brand Book" },
+      { layout: "portrait", brand: "Client Name", year: "2024", type: "Product Guide", contribution: "Specification and information layout system across a multi-page product guide." },
+      { layout: "landscape", brand: "Client Name", year: "2025", type: "Magazine Layout" },
+      { layout: "pair", brand: "Client Name", year: "2023", type: "Report" },
+      { layout: "landscape", brand: "Client Name", year: "2024", type: "Lookbook" },
     ],
   },
   {
-    id: "retail-instore",
+    id: "retail-experiential",
     tone: "showcase-tone-retail",
-    number: "04",
-    title: "Retail & In-Store Graphics",
+    number: "03",
+    title: "Retail, Product & Experiential Design",
     lede:
-      "Point-of-sale materials, window displays, signages, promotional graphics, and showroom applications.",
+      "Retail graphics, product displays, packaging, and environmental design built for physical, in-person brand experiences.",
     intro:
-      "Retail environment graphics developed to communicate product benefits and promotions at the point of sale.",
+      "Design built for physical spaces and products — retail campaigns, point-of-sale materials, packaging, and environmental graphics for booths, windows, and events.",
     entries: [
-      { layout: "landscape", brand: "Client Name", year: "2023", type: "Point-of-Sale Display", contribution: "Display system adapted for multiple showroom footprints." },
-      { layout: "landscape", brand: "Client Name", year: "2024", type: "Window Display" },
-      { layout: "pair", brand: "Client Name", year: "2025", type: "Signage" },
-      { layout: "landscape", brand: "Client Name", year: "2024", type: "Promotional Graphic" },
-      { layout: "portrait", brand: "Client Name", year: "2025", type: "Showroom Application", contribution: "Wayfinding and product-story graphics for a retail showroom." },
-      { layout: "landscape", brand: "Client Name", year: "2023", type: "Point-of-Sale Display" },
-      { layout: "pair", brand: "Client Name", year: "2024", type: "Signage" },
-      { layout: "landscape", brand: "Client Name", year: "2025", type: "Promotional Graphic" },
+      { layout: "landscape", brand: "Client Name", year: "2023", type: "Retail Campaign Graphic", contribution: "Retail graphic system adapted across multiple showroom footprints." },
+      { layout: "landscape", brand: "Client Name", year: "2024", type: "Point-of-Sale Material" },
+      { layout: "pair", brand: "Client Name", year: "2025", type: "Product Display" },
+      { layout: "landscape", brand: "Client Name", year: "2024", type: "Packaging" },
+      { layout: "portrait", brand: "Client Name", year: "2025", type: "Environmental Graphic", contribution: "Wayfinding and environmental graphics for a retail showroom footprint." },
+      { layout: "landscape", brand: "Client Name", year: "2023", type: "Event Graphic" },
+      { layout: "pair", brand: "Client Name", year: "2024", type: "Booth / Exhibit" },
+      { layout: "landscape", brand: "Client Name", year: "2025", type: "Window Display" },
     ],
   },
   {
-    id: "digital-ecommerce",
+    id: "digital-web",
     tone: "showcase-tone-digital",
-    number: "05",
-    title: "Digital & E-commerce Content",
+    number: "04",
+    title: "Digital / Web & Content Design",
     lede:
-      "Website banners, product graphics, email visuals, digital advertisements, and marketplace content.",
+      "Landing pages, microsites, e-commerce visuals, and social content systems that translate a brand into a complete digital ecosystem.",
     intro:
-      "Digital-first visual content built for websites, marketplaces, and email, adapted across ad and platform formats.",
+      "Visual direction for digital environments — landing pages, campaign microsites, e-commerce pages, and content systems built to carry a brand consistently across every digital touchpoint.",
     entries: [
-      { layout: "landscape", brand: "Client Name", year: "2025", type: "Website Banner", contribution: "Banner system adapted across homepage, category, and campaign placements." },
-      { layout: "landscape", brand: "Client Name", year: "2024", type: "Product Graphic" },
-      { layout: "pair", brand: "Client Name", year: "2023", type: "Email Visual" },
-      { layout: "landscape", brand: "Client Name", year: "2025", type: "Digital Advertisement" },
-      { layout: "portrait", brand: "Client Name", year: "2024", type: "Marketplace Content", contribution: "Product imagery and copy formatted for marketplace listing requirements." },
-      { layout: "landscape", brand: "Client Name", year: "2023", type: "Website Banner" },
-      { layout: "pair", brand: "Client Name", year: "2025", type: "Product Graphic" },
-      { layout: "landscape", brand: "Client Name", year: "2024", type: "Digital Advertisement" },
+      { layout: "landscape", brand: "Client Name", year: "2025", type: "Landing Page", contribution: "Visual direction and layout system for a campaign landing page." },
+      { layout: "landscape", brand: "Client Name", year: "2024", type: "Campaign Microsite" },
+      { layout: "pair", brand: "Client Name", year: "2024", type: "E-commerce Page" },
+      { layout: "landscape", brand: "Client Name", year: "2025", type: "Social Content System" },
+      { layout: "portrait", brand: "Client Name", year: "2023", type: "Mobile Adaptation", contribution: "Desktop visual direction adapted into a mobile-first content system." },
+      { layout: "landscape", brand: "Client Name", year: "2024", type: "Digital Banner" },
+      { layout: "pair", brand: "Client Name", year: "2025", type: "Email Design" },
+      { layout: "landscape", brand: "Client Name", year: "2023", type: "Website Visual Direction" },
+    ],
+  },
+  {
+    id: "presentation-information",
+    tone: "showcase-tone-presentation",
+    number: "05",
+    title: "Presentation & Information Design",
+    lede:
+      "Pitch decks, sales presentations, infographics, and data visualization built to make complex information clear and persuasive.",
+    intro:
+      "Presentations and information systems designed for visual storytelling — hierarchy, pacing, and narrative flow that turn dense business content into something clear, persuasive, and polished.",
+    entries: [
+      { layout: "landscape", brand: "Client Name", year: "2025", type: "Pitch Deck", contribution: "Narrative structure, slide system, and visual hierarchy for an investor-facing pitch deck." },
+      { layout: "landscape", brand: "Client Name", year: "2024", type: "Sales Presentation" },
+      { layout: "pair", brand: "Client Name", year: "2024", type: "Company Profile" },
+      { layout: "landscape", brand: "Client Name", year: "2025", type: "Business Proposal" },
+      { layout: "portrait", brand: "Client Name", year: "2023", type: "Infographic", contribution: "Data visualization system translating dense figures into a clear, scannable infographic." },
+      { layout: "landscape", brand: "Client Name", year: "2024", type: "Strategy Deck" },
+      { layout: "pair", brand: "Client Name", year: "2025", type: "Data Visualization" },
+      { layout: "landscape", brand: "Client Name", year: "2023", type: "Event / Conference Presentation" },
     ],
   },
 ];
