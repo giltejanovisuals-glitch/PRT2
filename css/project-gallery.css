@@ -115,6 +115,85 @@
   line-height: 1.65;
 }
 
+/* Category gallery pages (pages/<category-id>.html) — same page chrome as
+   the brand case studies above, but the "gallery" is a sequence of
+   individually-captioned entries instead of one flush image stack. */
+
+.category-stat {
+  margin: clamp(1rem, 2vh, 1.5rem) 0 0;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.category-entries {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 6vh, 4.5rem);
+  margin-top: clamp(3rem, 6vh, 4rem);
+  margin-bottom: clamp(4rem, 10vh, 6rem);
+}
+
+.category-entry {
+  width: min(83%, 75rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.category-entry-media .gallery-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.category-entry-media.is-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(8px, 1.2vw, 14px);
+}
+
+.category-entry-media.is-pair .gallery-image {
+  aspect-ratio: 4 / 3;
+}
+
+.category-entry-media.is-portrait {
+  width: min(48%, 30rem);
+  margin: 0 auto;
+}
+
+.category-entry-media.is-portrait .gallery-image {
+  aspect-ratio: 3 / 4;
+}
+
+.category-entry-caption {
+  margin-top: clamp(0.85rem, 1.6vh, 1.1rem);
+}
+
+.category-entry-meta {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.category-entry-brand {
+  color: var(--text);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.category-entry-contribution {
+  margin: 0.35rem 0 0;
+  max-width: 38rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
 /* Placeholder image surface, reused by hero, gallery blocks, and lightbox */
 
 .gallery-image {
@@ -444,8 +523,21 @@ body.lightbox-open {
   }
 
   .project-hero,
-  .project-gallery {
+  .project-gallery,
+  .category-entry {
     width: 100%;
+  }
+
+  .category-entry-media.is-portrait {
+    width: min(70%, 22rem);
+  }
+
+  .category-entry-media.is-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .category-entry-media.is-pair .gallery-image {
+    aspect-ratio: 16 / 9;
   }
 
   .lightbox-close {

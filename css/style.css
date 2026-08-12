@@ -914,6 +914,193 @@ button {
   opacity: 0.7;
 }
 
+/* Project Gallery showcase */
+
+.showcase {
+  padding: clamp(2rem, 5vh, 3.5rem) var(--page-padding) clamp(6rem, 10vh, 7.5rem);
+}
+
+.showcase-intro {
+  max-width: 40rem;
+  margin: 0 0 clamp(1.5rem, 3vh, 2.25rem);
+}
+
+.showcase-intro h2 {
+  margin: 0 0 0.6rem;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.1;
+}
+
+.showcase-lede {
+  margin: 0;
+  max-width: 34rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.showcase-panels {
+  --showcase-accent: #6fe0d1;
+  display: flex;
+  gap: clamp(8px, 1vw, 12px);
+  height: min(62vh, 640px);
+}
+
+.showcase-panel {
+  position: relative;
+  flex: 1 1 0%;
+  min-width: 0;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  transition: flex-grow 650ms var(--ease);
+}
+
+@media (hover: hover) {
+  .showcase-panel:hover,
+  .showcase-panel:focus-visible {
+    flex-grow: 2.4;
+  }
+}
+
+.showcase-panel-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.showcase-panel-image {
+  position: absolute;
+  inset: 0;
+  transform: scale(1);
+  transition: transform 650ms var(--ease);
+}
+
+.showcase-panel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.78) 100%
+  );
+  transition: opacity 650ms var(--ease);
+}
+
+@media (hover: hover) {
+  .showcase-panel:hover .showcase-panel-image,
+  .showcase-panel:focus-visible .showcase-panel-image {
+    transform: scale(1.08);
+  }
+
+  .showcase-panel:hover .showcase-panel-overlay,
+  .showcase-panel:focus-visible .showcase-panel-overlay {
+    opacity: 0.62;
+  }
+}
+
+.showcase-panel-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.showcase-panel-number {
+  margin: 0 0 0.4rem;
+  color: rgba(255, 255, 255, 0.68);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+.showcase-panel-name {
+  margin: 0;
+  font-family: var(--font-headline);
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+
+.showcase-panel-more {
+  max-width: 26rem;
+  margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 550ms var(--ease), transform 600ms var(--ease);
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .showcase-panel:hover .showcase-panel-more,
+  .showcase-panel:focus-visible .showcase-panel-more {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.showcase-panel-desc {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.showcase-panel-count {
+  margin: 0.75rem 0 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.showcase-panel-cta {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+  margin-top: 0.6rem;
+  color: var(--showcase-accent);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Placeholder tone gradients — colorful stand-ins until real photography
+   is dropped into assets/images/, one per category. */
+
+.showcase-tone-social {
+  background: linear-gradient(150deg, #6a1fb0, #d0469a);
+}
+
+.showcase-tone-print {
+  background: linear-gradient(150deg, #a8551b, #eaa53f);
+}
+
+.showcase-tone-catalogue {
+  background: linear-gradient(150deg, #123a5c, #2f8f96);
+}
+
+.showcase-tone-retail {
+  background: linear-gradient(150deg, #7a1f2b, #d1495b);
+}
+
+.showcase-tone-digital {
+  background: linear-gradient(150deg, #0e3b3b, #12a594);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -1030,6 +1217,40 @@ button {
 
   .work-details-link {
     order: 3;
+  }
+
+  .showcase {
+    padding: clamp(3rem, 7vh, 4rem) var(--page-padding) clamp(4rem, 9vh, 5rem);
+  }
+
+  .showcase-panels {
+    height: auto;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .showcase-panel {
+    flex: none;
+    height: 15rem;
+    transition: height 550ms var(--ease);
+  }
+
+  .showcase-panel.is-expanded {
+    height: 22rem;
+  }
+
+  .showcase-panel.is-expanded .showcase-panel-image {
+    transform: scale(1.05);
+  }
+
+  .showcase-panel.is-expanded .showcase-panel-overlay {
+    opacity: 0.62;
+  }
+
+  .showcase-panel.is-expanded .showcase-panel-more {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 }
 

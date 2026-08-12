@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Case study — Gil Tejano, creative specialist." />
-    <title>Case Study | Gil Tejano</title>
+    <meta name="description" content="Catalogues &amp; Editorial — Gil Tejano, creative specialist." />
+    <title>Catalogues &amp; Editorial | Gil Tejano</title>
     <link rel="icon" href="../assets/icons/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,8 +27,8 @@
     </script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/project-gallery.css" />
-    <script src="../js/projects-data.js" defer></script>
-    <script src="../js/project-gallery.js" defer></script>
+    <script src="../js/gallery-categories-data.js" defer></script>
+    <script src="../js/gallery-category.js" defer></script>
   </head>
 
   <body>
@@ -86,63 +86,36 @@
 
     <main class="project" id="main-content">
       <header class="project-header">
-        <p class="section-index" id="project-eyebrow">Project 01 — Brand Applications</p>
-        <h1 id="project-title">—</h1>
-        <p class="project-headline" id="project-headline" hidden></p>
-
-        <p class="project-overview" id="project-overview">—</p>
-        <a class="project-overview-link" id="project-overview-link" href="#" hidden target="_blank" rel="noopener noreferrer">
-          <span id="project-overview-link-label">—</span><span aria-hidden="true"> →</span>
-        </a>
-
-        <div class="project-meta-row">
-          <div class="project-meta-item">
-            <p class="project-meta-label">Role</p>
-            <p class="project-meta-value" id="project-role">—</p>
-          </div>
-          <div class="project-meta-item">
-            <p class="project-meta-label">Year</p>
-            <p class="project-meta-value" id="project-year">—</p>
-          </div>
-          <div class="project-meta-item">
-            <p class="project-meta-label">Deliverables</p>
-            <p class="project-meta-value" id="project-deliverables">—</p>
-          </div>
-        </div>
-
-        <section class="project-contribution" id="project-contribution" hidden>
-          <p class="project-contribution-label">Contribution</p>
-          <p class="project-contribution-text" id="project-contribution-text">—</p>
-        </section>
+        <p class="section-index" id="category-eyebrow">Category 03 — Project Gallery</p>
+        <h1 id="category-title">—</h1>
+        <p class="project-overview" id="category-intro">—</p>
+        <p class="category-stat" id="category-stat">—</p>
       </header>
 
-      <div class="gallery-image project-hero" id="project-hero" data-gallery-index="1" role="button" tabindex="0" aria-label="Open hero image fullscreen"></div>
-
-      <div class="project-gallery" id="project-gallery"></div>
+      <div class="category-entries" id="category-entries"></div>
 
       <section class="project-closing">
-        <p class="project-closing-label" id="project-closing-label">Outcome</p>
-        <p class="project-closing-text" id="project-outcome">—</p>
-
-        <div class="project-credits" id="project-credits"></div>
+        <a class="project-overview-link" href="../index.html#gallery">
+          <span aria-hidden="true">←</span> Back to Project Gallery
+        </a>
       </section>
     </main>
 
-    <p class="project-counter" id="project-counter" aria-hidden="true">01 / 04</p>
+    <p class="project-counter" id="project-counter" aria-hidden="true">03 / 05</p>
 
-    <nav class="brand-nav" aria-label="Brand pages">
+    <nav class="brand-nav" aria-label="Project Gallery categories">
       <a class="brand-nav-link" id="brand-nav-prev" href="#">
-        <span class="brand-nav-label-full">← Previous Brand</span>
+        <span class="brand-nav-label-full">← Previous Category</span>
         <span class="brand-nav-label-short">← Prev</span>
       </a>
       <span class="brand-nav-divider" aria-hidden="true"></span>
-      <a class="brand-nav-link brand-nav-link-home" href="../index.html#work">
-        <span class="brand-nav-label-full">Brand Applications</span>
-        <span class="brand-nav-label-short">Brands</span>
+      <a class="brand-nav-link brand-nav-link-home" href="../index.html#gallery">
+        <span class="brand-nav-label-full">Project Gallery</span>
+        <span class="brand-nav-label-short">Gallery</span>
       </a>
       <span class="brand-nav-divider" aria-hidden="true"></span>
       <a class="brand-nav-link" id="brand-nav-next" href="#">
-        <span class="brand-nav-label-full">Next Brand →</span>
+        <span class="brand-nav-label-full">Next Category →</span>
         <span class="brand-nav-label-short">Next →</span>
       </a>
     </nav>
