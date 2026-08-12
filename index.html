@@ -163,20 +163,6 @@
 
             <button class="work-zone work-zone-prev" type="button" aria-label="Show previous brand"></button>
             <button class="work-zone work-zone-next" type="button" aria-label="Show next brand"></button>
-
-            <div class="work-feature-overlay">
-              <div class="work-feature-caption">
-                <p class="work-feature-title">Porta Mobili</p>
-                <p class="work-feature-meta">Editorial Design · Brand Application · Catalogue System · 2024</p>
-              </div>
-
-              <div class="work-feature-footer">
-                <p class="work-counter" aria-live="polite">
-                  <span id="work-current">01</span><span aria-hidden="true"> / </span><span>04</span>
-                </p>
-                <a class="work-feature-link" id="work-feature-link" href="pages/porta-mobili.html">View Applications <span aria-hidden="true">→</span></a>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -192,9 +178,7 @@
               data-title="Porta Mobili"
               data-category="Editorial Design · Brand Application · Catalogue System"
               data-year="2024"
-              data-overview="Porta Mobili curates premium European furniture for contemporary Filipino spaces, supported by personalized guidance, project collaboration, delivery, installation, and after-sales service."
-              data-role="Developed Catalogue Design · Editorial Layout · Art Direction"
-              data-deliverables="Catalogue Design, Editorial Layout, Art Direction, Typography, Image Composition, Product Storytelling, Print Preparation"
+              data-overview="Premium European furniture curated for contemporary Filipino spaces, backed by guided service from selection through installation."
             >
               <span class="sr-only">Porta Mobili — Editorial Design · Brand Application · Catalogue System</span>
             </button>
@@ -209,9 +193,7 @@
               data-title="Hooga"
               data-category="Editorial Design · Brand Application · Retail Communication"
               data-year="2024"
-              data-overview="Hooga curates contemporary furniture and home essentials that combine comfort, style, and thoughtful living, inspired by the warmth of hygge."
-              data-role="Developed Catalogue Design · Editorial Layout · Brand Application"
-              data-deliverables="Catalogue Design, Editorial Layout, Brand Application, Campaign Visuals, Image Composition, Product Communication, Print and Digital Adaptation"
+              data-overview="Contemporary furniture and home essentials that combine comfort, style, and thoughtful living, inspired by hygge warmth."
             >
               <span class="sr-only">Hooga — Editorial Design · Brand Application · Retail Communication</span>
             </button>
@@ -226,9 +208,7 @@
               data-title="Dunlopillo"
               data-category="Campaign Design · Brand Application · Retail Communication"
               data-year="2023"
-              data-overview="Campaign and retail applications developed to communicate Dunlopillo's sleep technology, product benefits, and premium comfort through a consistent visual language."
-              data-role="Developed Campaign Visuals · Retail Graphics · Brand Application"
-              data-deliverables="Campaign Visuals, Retail Graphics, Brand Application, Product Communication, Promotional Materials, Digital Content, Image Composition"
+              data-overview="Campaign and retail visuals translating Dunlopillo's sleep technology and premium comfort into one consistent visual language."
             >
               <span class="sr-only">Dunlopillo — Campaign Design · Brand Application · Retail Communication</span>
             </button>
@@ -243,32 +223,25 @@
               data-title="Metal-Lite"
               data-category="Campaign Design · Brand Application · Retail Communication"
               data-year="2025"
-              data-overview="Retail campaign and visual applications developed to communicate Metal-Lite's lighting solutions, product benefits, and partner collections through a clear and consistent visual system."
-              data-role="Developed Campaign Visuals · Retail Graphics · Brand Application"
-              data-deliverables="Campaign Visuals, Retail Graphics, Brand Application, Product Communication, Promotional Materials, Digital Content, Image Composition"
+              data-overview="Retail campaign visuals presenting Metal-Lite's lighting solutions and partner collections through one clear, consistent system."
             >
               <span class="sr-only">Metal-Lite — Campaign Design · Brand Application · Retail Communication</span>
             </button>
           </div>
 
           <div class="work-details">
+            <p class="work-details-counter" aria-live="polite">
+              <span id="work-current">01</span><span aria-hidden="true"> / </span><span>04</span>
+            </p>
             <h3 class="work-details-title">Porta Mobili</h3>
             <p class="work-details-meta">Editorial Design · Brand Application · Catalogue System · 2024</p>
             <p class="work-details-overview">
-              Porta Mobili curates premium European furniture for
-              contemporary Filipino spaces, supported by personalized
-              guidance, project collaboration, delivery, installation, and
-              after-sales service.
+              Premium European furniture curated for contemporary Filipino
+              spaces, backed by guided service from selection through
+              installation.
             </p>
-            <p class="work-details-role">
-              Developed Catalogue Design · Editorial Layout · Art Direction
-            </p>
-            <p class="work-details-deliverables">
-              <span>Deliverables</span> — <span id="work-details-deliverables-value">Catalogue Design, Editorial Layout, Art Direction, Typography, Image Composition, Product Storytelling, Print Preparation</span>
-            </p>
+            <a class="work-details-link" id="work-details-link" href="pages/porta-mobili.html">Explore</a>
           </div>
-
-          <a class="work-details-link" id="work-details-link" href="pages/porta-mobili.html">View Applications <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -284,100 +257,141 @@
       </div>
 
       <div class="showcase-panels">
-        <a class="showcase-panel showcase-tone-social" href="pages/social-campaigns.html">
+        <div class="showcase-panel showcase-tone-social" data-href="pages/social-campaigns.html">
           <div class="showcase-panel-media">
-            <div class="showcase-panel-image"></div>
+            <picture>
+              <source type="image/avif" srcset="assets/images/gallery/social-campaigns-cover.avif" />
+              <source type="image/webp" srcset="assets/images/gallery/social-campaigns-cover.webp" />
+              <img
+                class="showcase-panel-img"
+                src="assets/images/gallery/social-campaigns-cover.jpg"
+                alt=""
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                onerror="this.style.display='none'"
+              />
+            </picture>
             <div class="showcase-panel-overlay"></div>
           </div>
           <div class="showcase-panel-content">
-            <p class="showcase-panel-number">01</p>
-            <h3 class="showcase-panel-name">Social Media &amp; Campaigns</h3>
-            <div class="showcase-panel-more">
-              <p class="showcase-panel-desc">
-                Campaign visuals and content systems developed for product
-                launches, promotions, and seasonal communication.
-              </p>
-              <p class="showcase-panel-count">8 Selected Works</p>
-              <span class="showcase-panel-cta">Explore Category <span aria-hidden="true">→</span></span>
-            </div>
+            <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-1">
+              <h3 class="showcase-panel-name">Social Media &amp; Campaigns</h3>
+            </button>
+            <p class="showcase-panel-summary" id="showcase-more-1">
+              Campaign visuals and content systems developed for product
+              launches, promotions, and seasonal communication.
+            </p>
           </div>
-        </a>
+        </div>
 
-        <a class="showcase-panel showcase-tone-print" href="pages/print-collaterals.html">
+        <div class="showcase-panel showcase-tone-print" data-href="pages/print-collaterals.html">
           <div class="showcase-panel-media">
-            <div class="showcase-panel-image"></div>
+            <picture>
+              <source type="image/avif" srcset="assets/images/gallery/print-collaterals-cover.avif" />
+              <source type="image/webp" srcset="assets/images/gallery/print-collaterals-cover.webp" />
+              <img
+                class="showcase-panel-img"
+                src="assets/images/gallery/print-collaterals-cover.jpg"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                onerror="this.style.display='none'"
+              />
+            </picture>
             <div class="showcase-panel-overlay"></div>
           </div>
           <div class="showcase-panel-content">
-            <p class="showcase-panel-number">02</p>
-            <h3 class="showcase-panel-name">Print Collaterals</h3>
-            <div class="showcase-panel-more">
-              <p class="showcase-panel-desc">
-                Brochures, flyers, posters, invitations, presentation
-                materials, and other printed applications.
-              </p>
-              <p class="showcase-panel-count">8 Selected Works</p>
-              <span class="showcase-panel-cta">Explore Category <span aria-hidden="true">→</span></span>
-            </div>
+            <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-2">
+              <h3 class="showcase-panel-name">Print Collaterals</h3>
+            </button>
+            <p class="showcase-panel-summary" id="showcase-more-2">
+              Brochures, flyers, posters, invitations, presentation
+              materials, and other printed applications.
+            </p>
           </div>
-        </a>
+        </div>
 
-        <a class="showcase-panel showcase-tone-catalogue" href="pages/catalogues-editorial.html">
+        <div class="showcase-panel showcase-tone-catalogue" data-href="pages/catalogues-editorial.html">
           <div class="showcase-panel-media">
-            <div class="showcase-panel-image"></div>
+            <picture>
+              <source type="image/avif" srcset="assets/images/gallery/catalogues-editorial-cover.avif" />
+              <source type="image/webp" srcset="assets/images/gallery/catalogues-editorial-cover.webp" />
+              <img
+                class="showcase-panel-img"
+                src="assets/images/gallery/catalogues-editorial-cover.jpg"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                onerror="this.style.display='none'"
+              />
+            </picture>
             <div class="showcase-panel-overlay"></div>
           </div>
           <div class="showcase-panel-content">
-            <p class="showcase-panel-number">03</p>
-            <h3 class="showcase-panel-name">Catalogues &amp; Editorial</h3>
-            <div class="showcase-panel-more">
-              <p class="showcase-panel-desc">
-                Product catalogues, lookbooks, editorial layouts, product
-                pages, and information systems.
-              </p>
-              <p class="showcase-panel-count">8 Selected Works</p>
-              <span class="showcase-panel-cta">Explore Category <span aria-hidden="true">→</span></span>
-            </div>
+            <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-3">
+              <h3 class="showcase-panel-name">Catalogues &amp; Editorial</h3>
+            </button>
+            <p class="showcase-panel-summary" id="showcase-more-3">
+              Product catalogues, lookbooks, editorial layouts, product
+              pages, and information systems.
+            </p>
           </div>
-        </a>
+        </div>
 
-        <a class="showcase-panel showcase-tone-retail" href="pages/retail-instore.html">
+        <div class="showcase-panel showcase-tone-retail" data-href="pages/retail-instore.html">
           <div class="showcase-panel-media">
-            <div class="showcase-panel-image"></div>
+            <picture>
+              <source type="image/avif" srcset="assets/images/gallery/retail-instore-cover.avif" />
+              <source type="image/webp" srcset="assets/images/gallery/retail-instore-cover.webp" />
+              <img
+                class="showcase-panel-img"
+                src="assets/images/gallery/retail-instore-cover.jpg"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                onerror="this.style.display='none'"
+              />
+            </picture>
             <div class="showcase-panel-overlay"></div>
           </div>
           <div class="showcase-panel-content">
-            <p class="showcase-panel-number">04</p>
-            <h3 class="showcase-panel-name">Retail &amp; In-Store Graphics</h3>
-            <div class="showcase-panel-more">
-              <p class="showcase-panel-desc">
-                Point-of-sale materials, window displays, signages,
-                promotional graphics, and showroom applications.
-              </p>
-              <p class="showcase-panel-count">8 Selected Works</p>
-              <span class="showcase-panel-cta">Explore Category <span aria-hidden="true">→</span></span>
-            </div>
+            <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-4">
+              <h3 class="showcase-panel-name">Retail &amp; In-Store Graphics</h3>
+            </button>
+            <p class="showcase-panel-summary" id="showcase-more-4">
+              Point-of-sale materials, window displays, signages,
+              promotional graphics, and showroom applications.
+            </p>
           </div>
-        </a>
+        </div>
 
-        <a class="showcase-panel showcase-tone-digital" href="pages/digital-ecommerce.html">
+        <div class="showcase-panel showcase-tone-digital" data-href="pages/digital-ecommerce.html">
           <div class="showcase-panel-media">
-            <div class="showcase-panel-image"></div>
+            <picture>
+              <source type="image/avif" srcset="assets/images/gallery/digital-ecommerce-cover.avif" />
+              <source type="image/webp" srcset="assets/images/gallery/digital-ecommerce-cover.webp" />
+              <img
+                class="showcase-panel-img"
+                src="assets/images/gallery/digital-ecommerce-cover.jpg"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                onerror="this.style.display='none'"
+              />
+            </picture>
             <div class="showcase-panel-overlay"></div>
           </div>
           <div class="showcase-panel-content">
-            <p class="showcase-panel-number">05</p>
-            <h3 class="showcase-panel-name">Digital &amp; E-commerce Content</h3>
-            <div class="showcase-panel-more">
-              <p class="showcase-panel-desc">
-                Website banners, product graphics, email visuals, digital
-                advertisements, and marketplace content.
-              </p>
-              <p class="showcase-panel-count">8 Selected Works</p>
-              <span class="showcase-panel-cta">Explore Category <span aria-hidden="true">→</span></span>
-            </div>
+            <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-5">
+              <h3 class="showcase-panel-name">Digital &amp; E-commerce Content</h3>
+            </button>
+            <p class="showcase-panel-summary" id="showcase-more-5">
+              Website banners, product graphics, email visuals, digital
+              advertisements, and marketplace content.
+            </p>
           </div>
-        </a>
+        </div>
       </div>
     </section>
 

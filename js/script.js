@@ -127,16 +127,13 @@
   const workFeatureMedia = document.querySelector(".work-feature-media");
   const workThumbsTrack = document.querySelector(".work-thumbs");
   const workCounter = document.getElementById("work-current");
+  const workDetailsBlock = document.querySelector(".work-details");
   const workDetailsTitle = document.querySelector(".work-details-title");
   const workDetailsMeta = document.querySelector(".work-details-meta");
   const workDetailsOverview = document.querySelector(".work-details-overview");
-  const workDetailsRole = document.querySelector(".work-details-role");
-  const workDetailsDeliverables = document.getElementById("work-details-deliverables-value");
-  const workFeatureTitle = document.querySelector(".work-feature-title");
-  const workFeatureMeta = document.querySelector(".work-feature-meta");
-  const workFeatureLink = document.getElementById("work-feature-link");
   const workDetailsLink = document.getElementById("work-details-link");
   const WORK_AUTOPLAY_DELAY = 7000;
+  const WORK_SWAP_FADE_MS = 200;
 
   if (workThumbs.length && workSlides.length) {
     let workActiveIndex = workThumbs.findIndex((thumb) =>
@@ -144,22 +141,34 @@
     );
     if (workActiveIndex < 0) workActiveIndex = 0;
     let workAutoplayTimer = null;
+    let workSwapTimer = null;
 
-    const updateWorkDetails = (thumb) => {
+    const updateWorkDetails = (thumb, index) => {
       const metaText = `${thumb.dataset.category || ""} · ${thumb.dataset.year || ""}`;
 
+      if (workCounter) workCounter.textContent = String(index + 1).padStart(2, "0");
       if (workDetailsTitle) workDetailsTitle.textContent = thumb.dataset.title || "";
       if (workDetailsMeta) workDetailsMeta.textContent = metaText;
       if (workDetailsOverview) workDetailsOverview.textContent = thumb.dataset.overview || "";
-      if (workDetailsRole) workDetailsRole.textContent = thumb.dataset.role || "";
-      if (workDetailsDeliverables) workDetailsDeliverables.textContent = thumb.dataset.deliverables || "";
-
-      if (workFeatureTitle) workFeatureTitle.textContent = thumb.dataset.title || "";
-      if (workFeatureMeta) workFeatureMeta.textContent = metaText;
 
       const projectUrl = thumb.dataset.id ? `pages/${thumb.dataset.id}.html` : "#";
-      if (workFeatureLink) workFeatureLink.href = projectUrl;
       if (workDetailsLink) workDetailsLink.href = projectUrl;
+    };
+
+    // Text and the CTA hold their fixed position and only crossfade —
+    // the featured image is the only thing that actually animates/moves.
+    const swapWorkDetails = (thumb, index) => {
+      if (!workDetailsBlock) {
+        updateWorkDetails(thumb, index);
+        return;
+      }
+
+      if (workSwapTimer) clearTimeout(workSwapTimer);
+      workDetailsBlock.classList.add("is-swapping");
+      workSwapTimer = window.setTimeout(() => {
+        updateWorkDetails(thumb, index);
+        workDetailsBlock.classList.remove("is-swapping");
+      }, WORK_SWAP_FADE_MS);
     };
 
     const goToWorkProject = (index) => {
@@ -178,8 +187,7 @@
       workSlides[workActiveIndex].classList.add("is-active");
       workSlides[workActiveIndex].setAttribute("aria-hidden", "false");
 
-      if (workCounter) workCounter.textContent = String(workActiveIndex + 1).padStart(2, "0");
-      updateWorkDetails(activeThumb);
+      swapWorkDetails(activeThumb, workActiveIndex);
 
       activeThumb.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
     };
@@ -299,7 +307,7 @@
       );
     }
 
-    updateWorkDetails(workThumbs[workActiveIndex]);
+    updateWorkDetails(workThumbs[workActiveIndex], workActiveIndex);
     startWorkAutoplay();
   }
 })();

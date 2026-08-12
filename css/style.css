@@ -599,7 +599,9 @@ button {
 .work-intro {
   flex: 0 0 auto;
   max-width: 40rem;
-  margin: 0 0 clamp(1.25rem, 2.5vh, 1.75rem);
+  /* Deliberately generous — keeps the section title reading as its own
+     upper-left block, clearly ahead of the active brand content below. */
+  margin: 0 0 clamp(3rem, 6vh, 4.5rem);
 }
 
 .section-index {
@@ -675,68 +677,6 @@ button {
   pointer-events: none;
 }
 
-.work-feature-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: clamp(24px, 3vw, 32px);
-  pointer-events: none;
-}
-
-.work-feature-caption {
-  pointer-events: none;
-}
-
-.work-feature-title {
-  margin: 0;
-  color: #fff;
-  font-family: var(--font-headline);
-  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.work-feature-meta {
-  margin: 0.4rem 0 0;
-  color: rgba(255, 255, 255, 0.75);
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.work-feature-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 1.25rem;
-}
-
-.work-feature-link {
-  display: inline-flex;
-  gap: 0.5rem;
-  align-items: center;
-  color: #fff;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  pointer-events: auto;
-  text-transform: uppercase;
-  transition: gap 250ms var(--ease), opacity 200ms ease;
-}
-
-.work-feature-link:hover,
-.work-feature-link:focus-visible {
-  gap: 0.85rem;
-  opacity: 0.75;
-}
-
 .work-zone {
   position: absolute;
   top: 0;
@@ -769,21 +709,11 @@ button {
   }
 }
 
-.work-counter {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.7);
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  pointer-events: none;
-}
-
 .work-panel {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 1.25rem;
+  justify-content: flex-start;
+  gap: clamp(1.75rem, 3.5vh, 2.5rem);
   padding-left: clamp(2rem, 4vw, 4.5rem);
   border-left: 1px solid var(--line);
 }
@@ -836,68 +766,73 @@ button {
   transform: scale(1.06);
 }
 
+/* One stable text block: counter, brand, category, a fixed-height
+   two-line description, then the single CTA. Content swaps with a brief
+   opacity crossfade (see js/script.js) — nothing here ever moves or
+   resizes between brands, only the featured image animates. */
+
 .work-details {
   order: 2;
+  max-width: 30ch;
+  transition: opacity 220ms ease;
+}
+
+.work-details.is-swapping {
+  opacity: 0.4;
+}
+
+.work-details-counter {
+  margin: 0 0 0.9rem;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
 }
 
 .work-details-title {
   margin: 0;
   color: var(--text);
   font-family: var(--font-headline);
-  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  font-size: clamp(1.65rem, 2.8vw, 2.2rem);
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
   text-transform: uppercase;
 }
 
 .work-details-meta {
-  margin: 0.5rem 0 0;
+  margin: 0.65rem 0 0;
   color: var(--muted);
   font-family: var(--font-body);
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.08em;
+  line-height: 1.5;
   text-transform: uppercase;
 }
 
 .work-details-overview {
-  margin: 0.9rem 0 0;
-  max-width: 30rem;
+  /* Locked to exactly two lines so the block's height — and the CTA
+     below it — never shifts when the description length differs
+     between brands. */
+  height: calc(2 * 1.6em);
+  margin: 1.1rem 0 0;
+  overflow: hidden;
   color: var(--muted);
   font-size: 0.92rem;
-  line-height: 1.55;
-}
-
-.work-details-role {
-  margin: 0.75rem 0 0;
-  color: var(--muted);
-  font-family: var(--font-body);
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.work-details-deliverables {
-  margin: 0.5rem 0 0;
-  color: var(--muted);
-  font-family: var(--font-body);
-  font-size: 0.64rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-}
-
-.work-details-deliverables span {
-  color: var(--text);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  line-height: 1.6;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .work-details-link {
   display: inline-flex;
-  order: 3;
   gap: 0.6rem;
   align-items: center;
+  margin-top: 1.5rem;
   padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--accent);
   color: var(--accent);
@@ -946,8 +881,8 @@ button {
 .showcase-panels {
   --showcase-accent: #6fe0d1;
   display: flex;
-  gap: clamp(8px, 1vw, 12px);
-  height: min(62vh, 640px);
+  gap: 8px;
+  height: clamp(440px, 60vh, 620px);
 }
 
 .showcase-panel {
@@ -957,13 +892,26 @@ button {
   overflow: hidden;
   isolation: isolate;
   color: #fff;
-  transition: flex-grow 650ms var(--ease);
 }
 
-@media (hover: hover) {
-  .showcase-panel:hover,
-  .showcase-panel:focus-visible {
-    flex-grow: 2.4;
+/* Desktop: five-column row. Below 900px the panels switch to a vertical
+   accordion (see the max-width: 899px block) driven by js/gallery-index.js. */
+@media (min-width: 900px) {
+  .showcase-panel {
+    /* transition-delay doubles as the ~100ms hover-intent debounce: a
+       quick pass-through never finishes the delay, so it never expands. */
+    transition: flex-grow 550ms var(--ease) 100ms;
+  }
+
+  /* Sum stays 5 (same as the 5 default flex:1 panels) so the swap feels
+     like a gentle redistribution rather than one panel taking over. */
+  .showcase-panels:has(.showcase-panel:hover, .showcase-panel:focus-within) .showcase-panel {
+    flex-grow: 0.85;
+  }
+
+  .showcase-panels:has(.showcase-panel:hover, .showcase-panel:focus-within) .showcase-panel:hover,
+  .showcase-panels:has(.showcase-panel:hover, .showcase-panel:focus-within) .showcase-panel:focus-within {
+    flex-grow: 1.6;
   }
 }
 
@@ -973,11 +921,22 @@ button {
   overflow: hidden;
 }
 
-.showcase-panel-image {
+.showcase-panel-media picture {
   position: absolute;
   inset: 0;
+  display: block;
+}
+
+.showcase-panel-img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transform: scale(1);
-  transition: transform 650ms var(--ease);
+  transition: transform 550ms var(--ease);
 }
 
 .showcase-panel-overlay {
@@ -985,23 +944,29 @@ button {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.15) 0%,
-    rgba(0, 0, 0, 0.78) 100%
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.52) 50%,
+    rgba(0, 0, 0, 0.42) 100%
   );
-  transition: opacity 650ms var(--ease);
+  transition: opacity 550ms var(--ease);
 }
 
-@media (hover: hover) {
-  .showcase-panel:hover .showcase-panel-image,
-  .showcase-panel:focus-visible .showcase-panel-image {
-    transform: scale(1.08);
-  }
-
-  .showcase-panel:hover .showcase-panel-overlay,
-  .showcase-panel:focus-visible .showcase-panel-overlay {
-    opacity: 0.62;
-  }
+.showcase-panel:hover .showcase-panel-img,
+.showcase-panel:focus-within .showcase-panel-img,
+.showcase-panel.is-expanded .showcase-panel-img {
+  transform: scale(1.02);
 }
+
+.showcase-panel:hover .showcase-panel-overlay,
+.showcase-panel:focus-within .showcase-panel-overlay,
+.showcase-panel.is-expanded .showcase-panel-overlay {
+  opacity: 0.8;
+}
+
+/* Title stays perfectly still: the panel centers its content, and the
+   summary reserves its box space (via a fixed height) even while
+   invisible, so revealing it never changes the stack's total height and
+   never recenters — let alone moves — the title above it. */
 
 .showcase-panel-content {
   position: relative;
@@ -1009,77 +974,64 @@ button {
   display: flex;
   height: 100%;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: clamp(1rem, 2vw, 1.5rem);
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  text-align: center;
 }
 
-.showcase-panel-number {
-  margin: 0 0 0.4rem;
-  color: rgba(255, 255, 255, 0.68);
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+.showcase-panel-trigger {
+  display: block;
+  padding: 0.5rem 0.25rem;
+  border: 0;
+  margin: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
 }
 
 .showcase-panel-name {
   margin: 0;
   font-family: var(--font-headline);
-  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  font-size: clamp(1.05rem, 1.9vw, 1.5rem);
   font-weight: 400;
   letter-spacing: 0.01em;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
-.showcase-panel-more {
-  max-width: 26rem;
-  margin-top: 1rem;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 550ms var(--ease), transform 600ms var(--ease);
-  pointer-events: none;
-}
-
-@media (hover: hover) {
-  .showcase-panel:hover .showcase-panel-more,
-  .showcase-panel:focus-visible .showcase-panel-more {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-}
-
-.showcase-panel-desc {
+.showcase-panel-summary {
+  /* Height is pinned to exactly two line-heights (in em, so it tracks the
+     font-size below) so the box clips cleanly at the second line's edge
+     even in browsers that ignore line-clamp — no sliver of a third line
+     peeking through. */
+  height: calc(2 * 1.45em);
   margin: 0;
+  max-width: 20rem;
+  overflow: hidden;
   color: rgba(255, 255, 255, 0.85);
-  font-size: 0.85rem;
-  line-height: 1.5;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  opacity: 0;
+  transition: opacity 500ms var(--ease);
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-.showcase-panel-count {
-  margin: 0.75rem 0 0;
-  color: rgba(255, 255, 255, 0.6);
-  font-family: var(--font-body);
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.showcase-panel:hover .showcase-panel-summary,
+.showcase-panel:focus-within .showcase-panel-summary,
+.showcase-panel.is-expanded .showcase-panel-summary {
+  opacity: 1;
 }
 
-.showcase-panel-cta {
-  display: inline-flex;
-  gap: 0.4rem;
-  align-items: center;
-  margin-top: 0.6rem;
-  color: var(--showcase-accent);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-/* Placeholder tone gradients — colorful stand-ins until real photography
-   is dropped into assets/images/, one per category. */
+/* Placeholder tone gradients — shown until a real cover image is dropped
+   into assets/images/gallery/ for each category (see README.md). The
+   <img> sits on top of this background and simply fails silently onto
+   it if the file isn't there yet. */
 
 .showcase-tone-social {
   background: linear-gradient(150deg, #6a1fb0, #d0469a);
@@ -1196,12 +1148,6 @@ button {
     aspect-ratio: 4 / 5;
   }
 
-  .work-feature-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
   .work-panel {
     padding-left: 0;
     border-left: 0;
@@ -1209,16 +1155,18 @@ button {
 
   .work-details {
     order: 1;
+    max-width: none;
   }
 
   .work-thumbs {
     order: 2;
   }
+}
 
-  .work-details-link {
-    order: 3;
-  }
-
+/* Project Gallery showcase — accordion below 900px (tablets and phones);
+   see js/gallery-index.js for the expand/collapse logic and the
+   min-width: 900px block above for the desktop row layout. */
+@media (max-width: 899px) {
   .showcase {
     padding: clamp(3rem, 7vh, 4rem) var(--page-padding) clamp(4rem, 9vh, 5rem);
   }
@@ -1226,31 +1174,31 @@ button {
   .showcase-panels {
     height: auto;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   .showcase-panel {
     flex: none;
-    height: 15rem;
-    transition: height 550ms var(--ease);
+    height: 165px;
+    transition: height 450ms var(--ease);
+  }
+
+  .showcase-panel.is-expanded {
+    height: 380px;
+  }
+
+  .showcase-panel-trigger {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 640px) {
+  .showcase-panel {
+    height: 16rem;
   }
 
   .showcase-panel.is-expanded {
     height: 22rem;
-  }
-
-  .showcase-panel.is-expanded .showcase-panel-image {
-    transform: scale(1.05);
-  }
-
-  .showcase-panel.is-expanded .showcase-panel-overlay {
-    opacity: 0.62;
-  }
-
-  .showcase-panel.is-expanded .showcase-panel-more {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
   }
 }
 
@@ -1283,6 +1231,7 @@ button {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }

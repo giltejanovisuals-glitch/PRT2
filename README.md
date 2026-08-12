@@ -87,3 +87,30 @@ All category copy is currently placeholder ("Client Name", generic
 project types) and every tile renders as a CSS gradient (the
 `showcase-tone-*` classes in `css/style.css`) until real project entries
 and images replace them.
+
+### Dropping in the five showcase cover images
+
+Each homepage panel already has real `<picture>`/`<img>` markup pointing at
+files that don't exist yet, so nothing needs to change in the HTML/CSS —
+just add files at these exact paths and they'll appear automatically (the
+gradient stays as a silent fallback if a file is ever missing or fails to
+load):
+
+```
+assets/images/gallery/social-campaigns-cover.{avif,webp,jpg}
+assets/images/gallery/print-collaterals-cover.{avif,webp,jpg}
+assets/images/gallery/catalogues-editorial-cover.{avif,webp,jpg}
+assets/images/gallery/retail-instore-cover.{avif,webp,jpg}
+assets/images/gallery/digital-ecommerce-cover.{avif,webp,jpg}
+```
+
+- Only the `.jpg` is required (it's the `<img src>` fallback); `.avif`/
+  `.webp` are optional but preferred — the browser picks the first format
+  it supports.
+- Target roughly 200–350 KB per image, landscape, at least 1200px on the
+  short edge (panels can grow to `clamp(440px, 60vh, 620px)` tall).
+- If an image's important content sits somewhere other than dead-center,
+  tune `object-position` for that one image via its tone class, e.g.:
+  ```css
+  .showcase-tone-retail .showcase-panel-img { object-position: center 30%; }
+  ```
