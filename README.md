@@ -21,6 +21,7 @@ PRT2/
 │   └── retail-experiential.html  js/gallery-category.js)
 ├── assets/
 │   ├── images/
+│   │   ├── about/               About Me portrait (see below)
 │   │   ├── home/               Homepage carousel / work-panel images
 │   │   ├── porta-mobili/       10 images, 1920×1080 (16:9), flush stacked
 │   │   ├── hooga/
@@ -28,10 +29,13 @@ PRT2/
 │   │   └── metal-lite/
 │   ├── icons/
 │   │   └── favicon.png         Linked from every page's <head>
-│   └── fonts/                  Empty — fonts are currently loaded from
-│                                Google Fonts CDN in each page's <head>.
-│                                Drop self-hosted font files here if that
-│                                changes.
+│   ├── fonts/                  Empty — fonts are currently loaded from
+│   │                            Google Fonts CDN in each page's <head>.
+│   │                            Drop self-hosted font files here if that
+│   │                            changes.
+│   └── files/
+│       └── Gil-Tejano-CV.pdf   Linked from both "Download CV" buttons
+│                                in index.html (About Me + closing CTA)
 ├── css/
 │   ├── style.css               Shared: tokens, reset, header/nav, homepage
 │   │                            (including the Project Gallery showcase)
@@ -115,11 +119,28 @@ assets/images/gallery/retail-experiential-cover.{avif,webp,jpg}
   .showcase-tone-retail .showcase-panel-img { object-position: center 30%; }
   ```
 
+### Dropping in the About Me portrait
+
+The homepage's About Me section (`index.html`, `#about`) already has real
+`<picture>`/`<img>` markup pointing at a file that doesn't exist yet:
+
+```
+assets/images/about/portrait.{avif,webp,jpg}
+```
+
+- Only the `.jpg` is required; `.avif`/`.webp` are optional but preferred.
+- Vertical `4:5` crop, natural/soft lighting, mostly monochrome or subtly
+  desaturated so it sits inside the site's palette.
+- Until the file exists (or if it ever fails to load), the `<img>`'s
+  `onerror` hides it and a "GT" monogram placeholder (`.about-portrait-mark`
+  in `css/style.css`) reads through instead.
+
 ## Dropping in the "Brands I've Supported" logos
 
-The homepage's `#about` → Brands strip (`index.html`) already has real
-`<img>` markup for each brand, pointing at files that don't exist yet — add
-files at these exact paths and they'll appear automatically:
+The homepage's Brands strip (`index.html`, inside the profile section)
+already has real `<img>` markup for each brand, pointing at files that
+don't exist yet — add files at these exact paths and they'll appear
+automatically:
 
 ```
 assets/images/brands/porta-mobili.svg
@@ -147,3 +168,40 @@ assets/images/brands/metal-lite.svg
   If a mark is a single flat color already (not literally grayscale), pick
   a source file with transparent (not white) background so it isn't boxed
   in against the page background in dark mode.
+
+## Wiring up the "Start a Creative Build" inquiry form
+
+`index.html`'s closing section (`#inquiry-form`, inside `.cta-build`) is a
+full client-side inquiry form — chips, message templates, validation,
+success/error states — that sends through
+[EmailJS](https://www.emailjs.com) (loaded via CDN in `index.html`'s
+`<head>`). It ships with empty credentials, so submitting currently fails
+with a console error and the on-page error banner until you fill in your
+own values.
+
+1. Sign up free at emailjs.com and add an **Email Service** connected to
+   `giltejano.visuals@gmail.com` (or whichever inbox should receive
+   inquiries). Note its **Service ID**.
+2. Create an **Email Template** for the owner notification. It receives
+   these variables from the form, so reference them in the template body
+   as `{{name}}`, `{{email}}`, `{{company}}`, `{{inquiry_types}}`,
+   `{{message}}`, `{{budget}}`, `{{timeline}}`. Note its **Template ID**.
+3. Optionally create a second template that auto-replies to `{{email}}`
+   with a short "I've received your inquiry" confirmation for the client
+   — same variables available. Note its **Template ID**. Skip this step
+   (leave the constant blank) if you don't want an automatic client copy;
+   the owner notification is the only one required for the form to work.
+4. Copy your **Public Key** from Account → General.
+5. Paste all four values into the `EMAILJS_*` constants near the top of
+   the "5. Start a Creative Build" section in `js/script.js`:
+   ```js
+   const EMAILJS_PUBLIC_KEY = "";
+   const EMAILJS_SERVICE_ID = "";
+   const EMAILJS_TEMPLATE_OWNER = "";
+   const EMAILJS_TEMPLATE_CLIENT = ""; // optional
+   ```
+
+Once those are filled in, submissions send for real — no other code
+changes needed. The client-confirmation template (if configured) is
+sent best-effort after the owner notification succeeds; its failure
+never blocks the inquiry from being reported as sent to the visitor.

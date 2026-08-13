@@ -22,6 +22,8 @@
   --line: rgba(var(--text-rgb), 0.18);
   --accent-line: rgba(var(--accent-rgb), 0.35);
   --nav-hover: #6fb8b0;
+  --danger: #b3452f;
+  --danger-rgb: 179, 69, 47;
   --page-padding: clamp(1.25rem, 3vw, 3.5rem);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --font-headline: "TT Modernist", "Helvetica Neue", Arial, sans-serif;
@@ -45,6 +47,8 @@
     --accent: #3fac9f;
     --accent-rgb: 63, 172, 159;
     --nav-hover: #0f4c4c;
+    --danger: #e8836a;
+    --danger-rgb: 232, 131, 106;
     color-scheme: dark;
   }
 }
@@ -59,6 +63,8 @@
   --accent: #3fac9f;
   --accent-rgb: 63, 172, 159;
   --nav-hover: #0f4c4c;
+  --danger: #e8836a;
+  --danger-rgb: 232, 131, 106;
   color-scheme: dark;
 }
 
@@ -1053,6 +1059,253 @@ button {
   background: linear-gradient(150deg, #0e3b3b, #12a594);
 }
 
+/* About Me */
+
+.about {
+  padding: clamp(4rem, 8vh, 6rem) var(--page-padding) clamp(5rem, 9vh, 7rem);
+  border-top: 1px solid var(--line);
+}
+
+.about-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+  align-items: stretch;
+  gap: clamp(3rem, 6vw, 5rem);
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  align-self: center;
+}
+
+.about-headline {
+  margin: 0 0 1.5rem;
+  max-width: 22ch;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.15;
+}
+
+.about-text {
+  max-width: 30rem;
+  margin: 0 0 2rem;
+}
+
+.about-lede {
+  margin: 0 0 1.1rem;
+  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.about-support {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.about-quote {
+  max-width: 26rem;
+  margin: 0 0 2.25rem;
+}
+
+.about-quote-accent {
+  display: block;
+  width: 2.25rem;
+  height: 2px;
+  margin-bottom: 0.9rem;
+  background: var(--accent);
+}
+
+.about-quote blockquote {
+  margin: 0;
+}
+
+.about-quote p {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.about-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 2.25rem;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.about-highlight {
+  flex: 1 1 0;
+  min-width: 9rem;
+  padding: 0 1.5rem;
+}
+
+.about-highlight:first-child {
+  padding-left: 0;
+}
+
+.about-highlight:last-child {
+  padding-right: 0;
+}
+
+.about-highlight:not(:first-child) {
+  border-left: 1px solid var(--line);
+}
+
+.about-highlight h3 {
+  margin: 0 0 0.4rem;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.about-highlight p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.about-media {
+  display: flex;
+  align-items: center;
+  padding-left: clamp(2rem, 4vw, 4rem);
+  border-left: 1px solid var(--line);
+}
+
+.about-portrait {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, var(--surface), var(--background));
+}
+
+.about-portrait picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.about-portrait-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(0.5) contrast(1.03);
+  transform: scale(1);
+  transition: transform 600ms var(--ease), filter 400ms ease;
+}
+
+/* Shown behind the <img> whenever assets/images/about/portrait.* hasn't
+   been dropped in yet (see README.md) — the img's onerror hides itself
+   and lets this monogram placeholder read through instead. */
+.about-portrait-mark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-family: var(--font-headline);
+  font-size: clamp(3rem, 7vw, 4.5rem);
+  letter-spacing: 0.02em;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.about-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--background-rgb), 0) 55%,
+    rgba(var(--background-rgb), 0.4) 100%
+  );
+  opacity: 0.5;
+  transition: opacity 450ms ease;
+  pointer-events: none;
+}
+
+.about-portrait-accent {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  width: 2.25rem;
+  height: 2px;
+  background: var(--accent);
+  transition: width 400ms var(--ease);
+}
+
+@media (hover: hover) {
+  .about-media:hover .about-portrait-img {
+    transform: scale(1.035);
+    filter: grayscale(0.35) contrast(1.05);
+  }
+
+  .about-media:hover .about-portrait::after {
+    opacity: 0.7;
+  }
+
+  .about-media:hover .about-portrait-accent {
+    width: 3.5rem;
+  }
+}
+
+/* Entrance: label/headline first, body copy shortly after, portrait last.
+   Runs once via .is-inview, toggled by IntersectionObserver in script.js;
+   the global prefers-reduced-motion rule collapses all of this to instant. */
+.about-label,
+.about-headline,
+.about-text,
+.about-quote,
+.about-highlights,
+.about-actions,
+.about-media {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+}
+
+.about.is-inview .about-label,
+.about.is-inview .about-headline,
+.about.is-inview .about-text,
+.about.is-inview .about-quote,
+.about.is-inview .about-highlights,
+.about.is-inview .about-actions,
+.about.is-inview .about-media {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about.is-inview .about-text { transition-delay: 110ms; }
+.about.is-inview .about-quote { transition-delay: 160ms; }
+.about.is-inview .about-highlights { transition-delay: 190ms; }
+.about.is-inview .about-actions { transition-delay: 220ms; }
+.about.is-inview .about-media { transition-delay: 280ms; }
+
 /* About, Experience & Capabilities profile block */
 
 .profile {
@@ -1394,6 +1647,18 @@ button {
   font-size: 0.85rem;
 }
 
+.tl-company {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+}
+
+.tl-item.is-compact .tl-company {
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
+
 .tl-desc {
   margin: 0.75rem 0 0;
   color: var(--muted);
@@ -1609,17 +1874,9 @@ button {
   color: var(--background);
 }
 
-.cta-btn-arrow {
-  transition: transform 250ms var(--ease);
-}
-
 @media (hover: hover) {
   .cta-btn-primary:hover {
     opacity: 0.85;
-  }
-
-  .cta-btn-primary:hover .cta-btn-arrow {
-    transform: translateX(4px);
   }
 }
 
@@ -1649,33 +1906,310 @@ button {
   cursor: not-allowed;
 }
 
-.cta-social {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
+/* Start a Creative Build — inquiry form */
+
+.cta-form-wrap {
+  display: grid;
+  width: 100%;
+  max-width: 64rem;
+  margin: 0 auto;
+  grid-template-rows: 0fr;
+  scroll-margin-top: 6rem;
+  transition: grid-template-rows 550ms var(--ease);
 }
 
-.cta-social-link {
+.cta-form-wrap.is-open {
+  grid-template-rows: 1fr;
+}
+
+.cta-form-wrap-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.inquiry-panel {
+  margin-top: clamp(2rem, 4vh, 3rem);
+  padding-top: clamp(2.5rem, 5vh, 3.5rem);
+  border-top: 1px solid var(--line);
+  text-align: left;
+}
+
+.inquiry-grid {
   display: grid;
-  width: 2.75rem;
-  height: 2.75rem;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 50%;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr);
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.inquiry-aside {
+  padding-right: clamp(1.5rem, 3vw, 2.5rem);
+  border-right: 1px solid var(--line);
+}
+
+.inquiry-intro {
+  margin: 0;
+  max-width: 26rem;
   color: var(--text);
-  transition: border-color 250ms ease, color 250ms ease;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.inquiry-response {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1rem 0 2rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.inquiry-response-accent {
+  width: 1.5rem;
+  height: 2px;
+  flex-shrink: 0;
+  background: var(--accent);
+}
+
+.chip-group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.chip-group .form-label {
+  padding: 0;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.chip-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+.chip {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
 }
 
 @media (hover: hover) {
-  .cta-social-link:hover {
-    border-color: var(--accent);
+  .chip:hover {
+    border-color: var(--accent-line);
+    color: var(--text);
+  }
+}
+
+.chip-input:checked + .chip {
+  border-color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.12);
+  color: var(--accent);
+}
+
+.chip-input:focus-visible + .chip {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.form-label {
+  display: block;
+  margin: 0 0 0.5rem;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.form-optional {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-field {
+  margin: 0 0 1.5rem;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.form-input::placeholder {
+  color: var(--muted);
+  opacity: 0.75;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15);
+}
+
+.form-textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+.form-field-error {
+  margin: 0.4rem 0 0;
+  color: var(--danger);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.template-row {
+  margin: 0 0 1.5rem;
+}
+
+.template-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.template-btn {
+  min-height: 2.5rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
+}
+
+@media (hover: hover) {
+  .template-btn:hover {
+    border-color: var(--accent-line);
     color: var(--accent);
   }
 }
 
-.cta-social-link:focus-visible {
+.template-btn:focus-visible {
   border-color: var(--accent);
   color: var(--accent);
+}
+
+.template-btn.is-active {
+  border-color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
+}
+
+.form-actions {
+  margin-top: 0.5rem;
+}
+
+.form-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-actions-note {
+  margin: 0.85rem 0 0;
+  max-width: 30rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.form-consent {
+  margin: 0.4rem 0 0;
+  max-width: 30rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.form-error-banner {
+  margin: 1rem 0 0;
+  max-width: 30rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--danger);
+  border-radius: 0.4rem;
+  color: var(--danger);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.form-error-banner a {
+  text-decoration: underline;
+}
+
+.inquiry-success {
+  padding: clamp(2.5rem, 5vh, 3.5rem) 0;
+  text-align: center;
+}
+
+.inquiry-success-title {
+  margin: 0 0 0.75rem;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+}
+
+.inquiry-success-body {
+  margin: 0 auto;
+  max-width: 30rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.inquiry-success-reset {
+  margin-top: 1.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
 }
 
 .sr-only {
@@ -1710,6 +2244,14 @@ button {
 
   .cta-build {
     grid-template-columns: none;
+  }
+
+  .about-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr);
+  }
+
+  .inquiry-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   }
 }
 
@@ -1800,6 +2342,68 @@ button {
     order: 2;
   }
 
+  /* About Me — mobile: single column. .about-content collapses to
+     display:contents so its children reorder as flex siblings of
+     .about-media, putting the portrait right after the headline while
+     keeping the wrapper div in the markup for the desktop grid. */
+  .about {
+    padding: clamp(3.5rem, 8vh, 4.5rem) var(--page-padding);
+  }
+
+  .about-inner {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.75rem, 5vh, 2.5rem);
+  }
+
+  .about-content {
+    display: contents;
+  }
+
+  .about-label { order: 1; }
+  .about-headline { order: 2; }
+  .about-media {
+    order: 3;
+    padding-left: 0;
+    border-left: 0;
+  }
+  .about-text { order: 4; max-width: none; }
+  .about-quote { order: 5; max-width: none; }
+  .about-highlights { order: 6; }
+  .about-actions { order: 7; }
+
+  .about-portrait {
+    max-width: 26rem;
+    margin: 0 auto;
+  }
+
+  .about-highlight {
+    flex: 1 1 100%;
+    padding: 1rem 0 !important;
+    border-left: 0 !important;
+  }
+
+  .about-highlight:not(:first-child) {
+    border-top: 1px solid var(--line);
+  }
+
+  .about-highlight:first-child {
+    padding-top: 0 !important;
+  }
+
+  .about-highlight:last-child {
+    padding-bottom: 0 !important;
+  }
+
+  .about-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .about-actions .cta-btn {
+    justify-content: center;
+  }
+
   /* Profile block — mobile: every block stacks (title above body), the
      timeline becomes a vertical list instead of a horizontal track, and
      dock tool names stay permanently visible instead of hover-only. */
@@ -1872,6 +2476,48 @@ button {
 
   .cta-btn {
     justify-content: center;
+  }
+
+  /* Inquiry form — mobile: aside/main collapse to display:contents so
+     their fields reorder as one flex column in the order the spec calls
+     for (inquiry options, name+email, company, templates, message,
+     budget+timeline, submit), instead of the desktop aside/main split. */
+  .inquiry-panel {
+    padding-top: clamp(2rem, 6vh, 2.75rem);
+  }
+
+  .inquiry-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .inquiry-aside,
+  .inquiry-main {
+    display: contents;
+  }
+
+  .chip-group { order: 1; }
+  .form-row-contact { order: 2; }
+  .field-company { order: 3; }
+  .template-row { order: 4; }
+  .field-message { order: 5; }
+  .form-row-scope { order: 6; }
+  .form-actions { order: 7; }
+
+  .chip-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-input,
+  .chip,
+  .template-btn {
+    min-height: 44px;
   }
 }
 

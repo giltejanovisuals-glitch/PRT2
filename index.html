@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Gil Tejano — creative specialist building visual experiences with commercial purpose."
+      content="Gil Tejano — creative specialist and graphic designer building visual experiences with commercial purpose."
     />
-    <title>Web | Creative Specialist</title>
+    <title>Gil Tejano | Creative Specialist &amp; Graphic Designer</title>
     <link rel="icon" href="assets/icons/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,6 +36,7 @@
       })();
     </script>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script src="js/script.js" defer></script>
     <script src="js/gallery-index.js" defer></script>
   </head>
@@ -55,7 +56,7 @@
           <a href="#gallery">Gallery</a>
           <a href="#about">About</a>
           <a href="#capabilities">Capabilities</a>
-          <a href="mailto:hello@giltejano.com">Contact</a>
+          <a href="mailto:giltejano.visuals@gmail.com">Contact</a>
         </nav>
 
         <button
@@ -123,7 +124,7 @@
         <h1 id="hero-title">Creative Work</h1>
         <span class="hero-divider" aria-hidden="true"></span>
         <p class="hero-subheader">Designing with commercial purpose</p>
-        <a class="hero-cta" href="mailto:hello@giltejano.com">Get in touch</a>
+        <a class="hero-cta" href="mailto:giltejano.visuals@gmail.com">Get in touch</a>
       </div>
 
       <div class="carousel-dots" role="tablist" aria-label="Featured projects">
@@ -403,12 +404,92 @@
       </div>
     </section>
 
-    <section class="profile" id="about" aria-label="About, experience, and capabilities">
+    <section class="about" id="about" aria-labelledby="about-heading">
+      <div class="about-inner">
+        <div class="about-content">
+          <p class="section-index about-label">04 — About Me</p>
+          <h2 id="about-heading" class="about-headline">
+            Designing visual experiences with creativity, clarity, and
+            commercial purpose.
+          </h2>
+
+          <div class="about-text">
+            <p class="about-lede">
+              I&rsquo;m Gil Tejano, a creative specialist and graphic
+              designer with 6+ years of experience creating brand-focused
+              visuals for furniture, lighting, retail, manufacturing, and
+              events. My work spans campaign visuals, catalogs, showroom
+              materials, sales presentations, and production-ready layouts.
+            </p>
+            <p class="about-support">
+              I approach every project by understanding the brand, its
+              audience, and the purpose behind each design &mdash;
+              supporting product launches, maintaining brand consistency,
+              and creating visual assets that strengthen brand presentation
+              and customer engagement.
+            </p>
+          </div>
+
+          <figure class="about-quote">
+            <span class="about-quote-accent" aria-hidden="true"></span>
+            <blockquote>
+              <p>
+                &ldquo;Good design should attract attention, communicate
+                clearly, and give every visual a reason to exist.&rdquo;
+              </p>
+            </blockquote>
+          </figure>
+
+          <ul class="about-highlights">
+            <li class="about-highlight">
+              <h3>Brand-focused</h3>
+              <p>Visual systems that respect and strengthen established identities.</p>
+            </li>
+            <li class="about-highlight">
+              <h3>Multi-platform</h3>
+              <p>Experience across print, retail, showroom, digital, and event production.</p>
+            </li>
+            <li class="about-highlight">
+              <h3>Purpose-driven</h3>
+              <p>Design decisions guided by communication and commercial objectives.</p>
+            </li>
+          </ul>
+
+          <div class="about-actions">
+            <a class="cta-btn cta-btn-primary" href="#timeline-heading">View My Experience</a>
+            <a class="cta-btn cta-btn-outline" href="assets/files/Gil-Tejano-CV.pdf" download>
+              Download CV
+            </a>
+          </div>
+        </div>
+
+        <div class="about-media">
+          <figure class="about-portrait">
+            <picture>
+              <source type="image/avif" srcset="assets/images/about/portrait.avif" />
+              <source type="image/webp" srcset="assets/images/about/portrait.webp" />
+              <img
+                class="about-portrait-img"
+                src="assets/images/about/portrait.jpg"
+                alt="Gil Tejano in a creative workspace"
+                loading="lazy"
+                decoding="async"
+                onerror="this.style.display='none'"
+              />
+            </picture>
+            <span class="about-portrait-mark" aria-hidden="true">GT</span>
+            <span class="about-portrait-accent" aria-hidden="true"></span>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="profile" aria-label="Experience and capabilities">
 
       <!-- 1. Creative Capabilities -->
       <div class="profile-block cap" id="capabilities">
         <div class="profile-block-head cap-head">
-          <p class="section-index">04 — Creative Capabilities</p>
+          <p class="section-index">05 — Creative Capabilities</p>
           <h2 id="cap-heading">Creative Capabilities</h2>
           <p class="profile-block-lede">
             Design support across concept development, campaigns, brand
@@ -466,13 +547,19 @@
             <h3 class="cap-card-title">Digital Content</h3>
             <p class="cap-card-desc">Social-ready graphics, banners, and visual assets built for digital campaigns and e-commerce.</p>
           </article>
+
+          <article class="cap-card" role="listitem">
+            <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v2H9z"/><path d="M9 13l2.2 2.2L15 11"/></svg>
+            <h3 class="cap-card-title">Production Coordination</h3>
+            <p class="cap-card-desc">Client coordination, production supervision, and job-order tracking that keep output on schedule and on-brief.</p>
+          </article>
         </div>
       </div>
 
       <!-- 2. My Creative Dock -->
       <div class="profile-block dock">
         <div class="profile-block-head">
-          <p class="section-index">05 — My Creative Dock</p>
+          <p class="section-index">06 — My Creative Dock</p>
           <h2 id="dock-heading">My Creative Dock</h2>
           <p class="profile-block-lede">
             Tools used across visual design, image development, editorial
@@ -611,7 +698,7 @@
       <!-- 3. Creative Timeline -->
       <div class="profile-block timeline">
         <div class="profile-block-head">
-          <p class="section-index">06 — Creative Timeline</p>
+          <p class="section-index">07 — Creative Timeline</p>
           <h2 id="timeline-heading">Creative Timeline</h2>
           <p class="profile-block-lede">
             A running record of the roles and production environments this
@@ -626,7 +713,8 @@
               <p class="tl-date">Jul 2025 — Present</p>
               <span class="tl-tag">Full-time</span>
               <h3 class="tl-role">Creative Specialist / Graphic Designer</h3>
-              <p class="tl-desc">Premium brand visuals, product catalogs, and campaign materials for lifestyle and retail brands.</p>
+              <p class="tl-company">Metal-Lite Illuminazione Marketing — Quezon City</p>
+              <p class="tl-desc">Campaign visuals, showroom materials, and sales presentations for high-end furniture and lighting brands, plus event photo/video capture.</p>
             </li>
 
             <li class="tl-item is-current">
@@ -634,7 +722,8 @@
               <p class="tl-date">Jul 2024 — Jul 2025</p>
               <span class="tl-tag">Full-time</span>
               <h3 class="tl-role">Senior Graphic Designer</h3>
-              <p class="tl-desc">Print layouts, social ads, and production-ready client materials.</p>
+              <p class="tl-company">GJF Design and Printing Manufacturing Corp. — Dasmariñas City</p>
+              <p class="tl-desc">Client-ready print and digital layouts, plus quotations and production coordination from briefing to final output.</p>
             </li>
 
             <li class="tl-item is-compact">
@@ -642,6 +731,7 @@
               <p class="tl-date">Apr — Sep 2023</p>
               <span class="tl-tag">On-site</span>
               <h3 class="tl-role">Graphic Designer</h3>
+              <p class="tl-company">JAMS Advertising — Peñablanca</p>
             </li>
 
             <li class="tl-item is-compact">
@@ -649,6 +739,7 @@
               <p class="tl-date">Dec 2022 — Apr 2023</p>
               <span class="tl-tag">Production</span>
               <h3 class="tl-role">Graphic Designer</h3>
+              <p class="tl-company">Sticker Runner — Tanza</p>
             </li>
 
             <li class="tl-item is-compact">
@@ -656,6 +747,7 @@
               <p class="tl-date">Mar 2021 — Oct 2022</p>
               <span class="tl-tag">Freelance</span>
               <h3 class="tl-role">Graphic Designer</h3>
+              <p class="tl-company">JVP Innovation — Tanza</p>
             </li>
 
             <li class="tl-item is-compact">
@@ -663,6 +755,7 @@
               <p class="tl-date">Oct 2019 — Feb 2021</p>
               <span class="tl-tag">On-site</span>
               <h3 class="tl-role">Graphic Designer</h3>
+              <p class="tl-company">JVP Innovation — Tanza</p>
             </li>
           </ol>
         </div>
@@ -713,7 +806,7 @@
       <!-- 5. Foundation -->
       <div class="profile-block foundation">
         <div class="profile-block-head">
-          <p class="section-index">07 — Foundation</p>
+          <p class="section-index">08 — Foundation</p>
           <h2 id="foundation-heading">Foundation</h2>
         </div>
 
@@ -750,20 +843,134 @@
         </h2>
 
         <div class="cta-actions">
-          <a class="cta-btn cta-btn-primary" href="mailto:hello@giltejano.com">
-            <span>Start a Project</span>
-            <svg class="cta-btn-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <button class="cta-btn cta-btn-outline" type="button" disabled aria-disabled="true" title="CV coming soon">
-            Download CV <span class="sr-only">(coming soon)</span>
+          <button type="button" class="cta-btn cta-btn-primary" id="cta-start-trigger" aria-expanded="false" aria-controls="cta-form-wrap">
+            Start a Project
           </button>
+          <a class="cta-btn cta-btn-outline" href="assets/files/Gil-Tejano-CV.pdf" download>
+            Download CV
+          </a>
           <a class="cta-btn cta-btn-outline" href="#work">View Selected Work</a>
         </div>
 
-        <div class="cta-social">
-          <a class="cta-social-link" href="mailto:hello@giltejano.com" aria-label="Email Gil Tejano">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
-          </a>
+        <div class="cta-form-wrap" id="cta-form-wrap">
+          <div class="cta-form-wrap-inner">
+            <div class="inquiry-panel">
+              <form class="inquiry-form" id="inquiry-form" novalidate>
+                <div class="inquiry-grid">
+                  <div class="inquiry-aside">
+                    <p class="inquiry-intro">
+                      Tell me a bit about your project and I&rsquo;ll get
+                      back to you personally &mdash; no account or sign-up
+                      required.
+                    </p>
+                    <p class="inquiry-response">
+                      <span class="inquiry-response-accent" aria-hidden="true"></span>
+                      Typically replies within 1&ndash;2 business days.
+                    </p>
+
+                    <fieldset class="chip-group" id="inquiry-type-group">
+                      <legend class="form-label">What can I help you with?</legend>
+                      <div class="chip-row">
+                        <input class="chip-input" type="checkbox" id="inq-type-1" name="inquiryType" value="Branding or Brand Applications" />
+                        <label class="chip" for="inq-type-1">Branding or Brand Applications</label>
+
+                        <input class="chip-input" type="checkbox" id="inq-type-2" name="inquiryType" value="Social Media Campaign" />
+                        <label class="chip" for="inq-type-2">Social Media Campaign</label>
+
+                        <input class="chip-input" type="checkbox" id="inq-type-3" name="inquiryType" value="Catalogue or Editorial Design" />
+                        <label class="chip" for="inq-type-3">Catalogue or Editorial Design</label>
+
+                        <input class="chip-input" type="checkbox" id="inq-type-4" name="inquiryType" value="Print Collaterals" />
+                        <label class="chip" for="inq-type-4">Print Collaterals</label>
+
+                        <input class="chip-input" type="checkbox" id="inq-type-5" name="inquiryType" value="Retail or In-Store Graphics" />
+                        <label class="chip" for="inq-type-5">Retail or In-Store Graphics</label>
+
+                        <input class="chip-input" type="checkbox" id="inq-type-6" name="inquiryType" value="Digital or E-commerce Content" />
+                        <label class="chip" for="inq-type-6">Digital or E-commerce Content</label>
+
+                        <input class="chip-input" type="checkbox" id="inq-type-7" name="inquiryType" value="Website or Portfolio Design" />
+                        <label class="chip" for="inq-type-7">Website or Portfolio Design</label>
+
+                        <input class="chip-input" type="checkbox" id="inq-type-8" name="inquiryType" value="General Inquiry" />
+                        <label class="chip" for="inq-type-8">General Inquiry</label>
+
+                        <input class="chip-input" type="checkbox" id="inq-type-9" name="inquiryType" value="Not Sure Yet" />
+                        <label class="chip" for="inq-type-9">Not Sure Yet</label>
+                      </div>
+                      <p class="form-field-error" id="inquiry-type-error" role="alert" hidden>Please select at least one option.</p>
+                    </fieldset>
+                  </div>
+
+                  <div class="inquiry-main">
+                    <div class="form-row form-row-contact">
+                      <div class="form-field">
+                        <label class="form-label" for="inq-name">Name</label>
+                        <input class="form-input" type="text" id="inq-name" name="name" autocomplete="name" aria-describedby="inq-name-error" required />
+                        <p class="form-field-error" id="inq-name-error" role="alert" hidden></p>
+                      </div>
+                      <div class="form-field">
+                        <label class="form-label" for="inq-email">Email address</label>
+                        <input class="form-input" type="email" id="inq-email" name="email" autocomplete="email" aria-describedby="inq-email-error" required />
+                        <p class="form-field-error" id="inq-email-error" role="alert" hidden></p>
+                      </div>
+                    </div>
+
+                    <div class="form-field field-company">
+                      <label class="form-label" for="inq-company">Company or brand <span class="form-optional">(optional)</span></label>
+                      <input class="form-input" type="text" id="inq-company" name="company" autocomplete="organization" />
+                    </div>
+
+                    <div class="template-row">
+                      <p class="form-label">Not sure how to start? Choose a message template:</p>
+                      <div class="template-buttons" role="group" aria-label="Message templates">
+                        <button type="button" class="template-btn" data-template="new">I&rsquo;m starting a new project</button>
+                        <button type="button" class="template-btn" data-template="existing">I need design support for an existing brand</button>
+                        <button type="button" class="template-btn" data-template="improve">I want to improve existing materials</button>
+                        <button type="button" class="template-btn" data-template="ongoing">I need ongoing creative support</button>
+                        <button type="button" class="template-btn" data-template="unsure">I&rsquo;m not sure what service I need</button>
+                      </div>
+                    </div>
+
+                    <div class="form-field field-message">
+                      <label class="form-label" for="inq-message">Project details</label>
+                      <textarea class="form-input form-textarea" id="inq-message" name="message" rows="6" aria-describedby="inq-message-error" required></textarea>
+                      <p class="form-field-error" id="inq-message-error" role="alert" hidden></p>
+                    </div>
+
+                    <div class="form-row form-row-scope">
+                      <div class="form-field">
+                        <label class="form-label" for="inq-budget">Budget range <span class="form-optional">(optional)</span></label>
+                        <input class="form-input" type="text" id="inq-budget" name="budget" placeholder="e.g. ₱30,000–60,000, or flexible" />
+                      </div>
+                      <div class="form-field">
+                        <label class="form-label" for="inq-timeline">Preferred timeline <span class="form-optional">(optional)</span></label>
+                        <input class="form-input" type="text" id="inq-timeline" name="timeline" placeholder="e.g. within a month" />
+                      </div>
+                    </div>
+
+                    <div class="form-actions">
+                      <button type="submit" class="cta-btn cta-btn-primary form-submit-btn" id="inquiry-submit-btn">
+                        <span class="form-submit-label">Send Project Inquiry</span>
+                      </button>
+                      <p class="form-actions-note">Your message will be sent directly to Gil. Expect a response within 1&ndash;2 business days.</p>
+                      <p class="form-consent">The information you submit here is used only to respond to your inquiry &mdash; it&rsquo;s never shared or used for anything else.</p>
+                      <p class="form-error-banner" id="inquiry-error-banner" role="alert" hidden>
+                        Something went wrong sending your message. Please try again, or email me directly at
+                        <a href="mailto:giltejano.visuals@gmail.com">giltejano.visuals@gmail.com</a>.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <div class="inquiry-success" id="inquiry-success" role="status" aria-live="polite" tabindex="-1" hidden>
+                <p class="inquiry-success-title">Your inquiry has been sent.</p>
+                <p class="inquiry-success-body" id="inquiry-success-body"></p>
+                <button type="button" class="inquiry-success-reset" id="inquiry-reset-btn">Send another inquiry</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
