@@ -479,9 +479,9 @@
   // templates, inline validation, and a real EmailJS submit (see the
   // EMAILJS_* constants right below — fill them in with your own EmailJS
   // account values; see README.md for the exact setup steps).
-  const EMAILJS_PUBLIC_KEY = "";
-  const EMAILJS_SERVICE_ID = "";
-  const EMAILJS_TEMPLATE_OWNER = "";
+  const EMAILJS_PUBLIC_KEY = "Py2NgnHRb3qyLJN_l";
+  const EMAILJS_SERVICE_ID = "service_prt2";
+  const EMAILJS_TEMPLATE_OWNER = "template_jye0baj";
   const EMAILJS_TEMPLATE_CLIENT = ""; // optional — leave blank to skip the client confirmation copy
 
   if (window.emailjs && EMAILJS_PUBLIC_KEY) {
