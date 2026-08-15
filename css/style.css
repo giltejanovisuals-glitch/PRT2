@@ -1309,7 +1309,7 @@ button {
 /* About, Experience & Capabilities profile block */
 
 .profile {
-  padding: 0 var(--page-padding) clamp(4rem, 8vh, 6rem);
+  padding: 0 var(--page-padding) clamp(3rem, 6vh, 4rem);
 }
 
 .profile-block {
@@ -1728,6 +1728,19 @@ button {
   object-fit: contain;
 }
 
+/* The brand marks are authored as near-black ink for a light
+   background; invert them in dark mode so they read against the
+   dark surface instead of vanishing into it. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .brand-logo-img {
+    filter: invert(1);
+  }
+}
+
+:root[data-theme="dark"] .brand-logo-img {
+  filter: invert(1);
+}
+
 .brand-logo-text {
   color: var(--muted);
   font-family: var(--font-headline);
@@ -1818,6 +1831,9 @@ button {
   grid-template-columns: none;
   gap: 1.25rem;
   text-align: center;
+  scroll-margin-top: 6rem;
+  padding-top: clamp(5rem, 8vh, 6.25rem);
+  padding-bottom: 0;
 }
 
 .cta-label {
@@ -1906,19 +1922,86 @@ button {
   cursor: not-allowed;
 }
 
+.cta-socials-label {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.cta-socials {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.cta-social-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: rgba(var(--text-rgb), 0.04);
+  color: var(--text);
+  transition: background-color 250ms ease, border-color 300ms ease, color 250ms ease;
+}
+
+@media (hover: hover) {
+  .cta-social-link:hover {
+    background: rgba(var(--text-rgb), 0.1);
+    border-color: var(--accent-line);
+    color: var(--accent);
+  }
+}
+
+.cta-social-link:focus-visible {
+  background: rgba(var(--text-rgb), 0.1);
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+.cta-social-link::after {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  left: 50%;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.35rem;
+  background: var(--text);
+  color: var(--background);
+  content: attr(data-tooltip);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-4px);
+  transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
+  pointer-events: none;
+}
+
+.cta-social-link:hover::after,
+.cta-social-link:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* Start a Creative Build — inquiry form */
 
 .cta-form-wrap {
   display: grid;
   width: 100%;
   max-width: 64rem;
-  margin: 0 auto;
+  margin: -1.25rem auto 0;
   grid-template-rows: 0fr;
   scroll-margin-top: 6rem;
-  transition: grid-template-rows 550ms var(--ease);
+  transition: grid-template-rows 550ms var(--ease), margin-top 550ms var(--ease);
 }
 
 .cta-form-wrap.is-open {
+  margin-top: 0;
   grid-template-rows: 1fr;
 }
 
@@ -2408,13 +2491,18 @@ button {
      timeline becomes a vertical list instead of a horizontal track, and
      dock tool names stay permanently visible instead of hover-only. */
   .profile {
-    padding-bottom: clamp(3rem, 8vh, 4rem);
+    padding-bottom: clamp(1.5rem, 4vh, 2rem);
   }
 
   .profile-block {
     grid-template-columns: 1fr;
     gap: clamp(1.25rem, 4vh, 1.75rem);
     padding: clamp(2.5rem, 7vh, 3.5rem) 0;
+  }
+
+  .profile-block.cta-build {
+    padding-top: clamp(2.5rem, 6vh, 3rem);
+    padding-bottom: 0;
   }
 
   .cap-nav {
