@@ -104,7 +104,7 @@
 
   const projectNumber = String(projectIndex + 1).padStart(2, "0");
 
-  document.title = `${project.title} ${project.category} | Gil Tejano`;
+  document.title = `${project.title} ${project.category} | Gil Tejano Culas`;
   setText("project-eyebrow", `Project ${projectNumber} — ${project.category}`);
   setText("project-title", project.title);
   setText("project-year", project.year);

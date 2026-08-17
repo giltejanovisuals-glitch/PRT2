@@ -1,6 +1,9 @@
 # Gil Tejano — Portfolio
 
-Static site, no build step. Open `index.html` directly or serve the folder root.
+Static site. Open `index.html` directly or serve the folder root — no build
+step is required for anything except the Editorial & Layout Design gallery's
+image manifest (see below), which Vercel runs automatically via
+`vercel.json`'s `buildCommand`.
 
 ## Structure
 
@@ -14,15 +17,28 @@ PRT2/
 │   ├── dunlopillo.html        from js/projects-data.js by matching its
 │   ├── metal-lite.html        own filename (see js/project-gallery.js)
 │   │
-│   ├── presentation-information.html  Category gallery pages. All five
-│   ├── campaign-marketing.html  share one template; each resolves its own
-│   ├── editorial-layout.html  content from js/gallery-categories-data.js
-│   ├── digital-web.html       by matching its own filename (see
-│   └── retail-experiential.html  js/gallery-category.js)
+│   ├── editorial-layout.html  Bespoke moving-gallery page (see its own
+│   │                           section below) — does NOT use the shared
+│   │                           template the other four categories share.
+│   ├── print-brand-collateral.html   Category gallery pages. These four
+│   ├── social-media-campaigns.html   share one template; each resolves
+│   ├── commercial-lifestyle-photography.html  its own content from
+│   └── short-form-video-reels.html   js/gallery-categories-data.js by
+│                                       matching its own filename (see
+│                                       js/gallery-category.js)
+├── scripts/
+│   └── generate-gallery-manifest.js  Build step (see below) — scans
+│                                       assets/images/gallery/editorial-layout/
+│                                       and (re)writes
+│                                       js/gallery-editorial-manifest.js
 ├── assets/
 │   ├── images/
 │   │   ├── about/               About Me portrait (see below)
 │   │   ├── home/               Homepage carousel / work-panel images
+│   │   ├── gallery/
+│   │   │   └── editorial-layout/  Source images for the Editorial & Layout
+│   │   │                           Design gallery (see below) — drop files
+│   │   │                           here, don't edit the manifest by hand
 │   │   ├── porta-mobili/       10 images, 1920×1080 (16:9), flush stacked
 │   │   ├── hooga/
 │   │   ├── dunlopillo/
@@ -39,9 +55,12 @@ PRT2/
 ├── css/
 │   ├── style.css               Shared: tokens, reset, header/nav, homepage
 │   │                            (including the Project Gallery showcase)
-│   └── project-gallery.css     Case-study-only: gallery, lightbox,
-│                                brand-nav, floating counters, category
-│                                entry list
+│   ├── project-gallery.css     Case-study-only: gallery, lightbox,
+│   │                            brand-nav, floating counters, category
+│   │                            entry list
+│   └── gallery-editorial.css   Editorial & Layout Design page only: the
+│                                 moving rows, tile hover/caption, and a
+│                                 couple of lightbox additions (see below)
 ├── js/
 │   ├── script.js                Homepage: theme/menu toggles, hero
 │   │                             carousel, work panel
@@ -50,15 +69,26 @@ PRT2/
 │   ├── project-gallery.js       Brand pages: resolves the project from
 │   │                             projects-data.js, builds the gallery,
 │   │                             lightbox, prev/next nav
-│   └── gallery-category.js      Category pages: resolves the category
-│                                 from gallery-categories-data.js, builds
-│                                 the entry list, lightbox, prev/next nav
+│   ├── gallery-category.js      The four shared-template category pages:
+│   │                             resolves the category from
+│   │                             gallery-categories-data.js, builds the
+│   │                             entry list, lightbox, prev/next nav
+│   └── gallery-editorial.js     Editorial & Layout Design page only: row
+│                                 distribution, the auto-scroll loop,
+│                                 drag/swipe, hover captions, lightbox
 ├── js/projects-data.js          Single source of truth for all brand
 │                                 project copy (title, overview, gallery
 │                                 layout, credits, etc.)
-└── js/gallery-categories-data.js  Single source of truth for all
-                                    category copy and per-entry
-                                    brand/year/type captions
+├── js/gallery-categories-data.js  Single source of truth for all
+│                                    category copy (titles, numbering,
+│                                    prev/next nav) — including Editorial
+│                                    & Layout Design's own eyebrow/counter
+├── js/gallery-editorial-manifest.js  AUTO-GENERATED — do not hand-edit,
+│                                       see "Editorial & Layout Design
+│                                       gallery" below
+└── js/gallery-editorial-meta.js  Optional hand-authored titles/project/
+                                    type/year/alt text for editorial-layout
+                                    gallery images, keyed by filename
 ```
 
 ## Adding or editing a project
@@ -79,11 +109,14 @@ CSS placeholder gradients (see the `project-<id>` tone classes in
 1. Edit its entry in `js/gallery-categories-data.js` (title, lede, intro,
    and its `entries` array — each entry is one gallery item with a
    `layout` of `landscape`, `pair`, or `portrait`, plus placeholder
-   `brand`/`year`/`type`/`contribution` copy).
+   `brand`/`year`/`type`/`contribution` copy). This file also drives
+   Editorial & Layout Design's eyebrow/counter/prev-next nav even though
+   that page doesn't use its `entries`.
 2. The five homepage showcase panels in `index.html` (`#gallery`) are
    hand-written, not generated — update a panel's copy there to match if
    you change a category's title or description.
-3. If it's a new category, copy any file in `pages/presentation-information.html`
+3. If it's a new category (other than Editorial & Layout Design — see its
+   own section below), copy any file in `pages/print-brand-collateral.html`
    etc. to `pages/<id>.html` — it resolves its own id from its filename,
    same as the brand pages.
 
@@ -101,11 +134,11 @@ gradient stays as a silent fallback if a file is ever missing or fails to
 load):
 
 ```
-assets/images/gallery/presentation-information-cover.{avif,webp,jpg}
-assets/images/gallery/campaign-marketing-cover.{avif,webp,jpg}
 assets/images/gallery/editorial-layout-cover.{avif,webp,jpg}
-assets/images/gallery/digital-web-cover.{avif,webp,jpg}
-assets/images/gallery/retail-experiential-cover.{avif,webp,jpg}
+assets/images/gallery/social-media-campaigns-cover.{avif,webp,jpg}
+assets/images/gallery/print-brand-collateral-cover.{avif,webp,jpg}
+assets/images/gallery/commercial-lifestyle-photography-cover.{avif,webp,jpg}
+assets/images/gallery/short-form-video-reels-cover.{avif,webp,jpg}
 ```
 
 - Only the `.jpg` is required (it's the `<img src>` fallback); `.avif`/
@@ -118,6 +151,44 @@ assets/images/gallery/retail-experiential-cover.{avif,webp,jpg}
   ```css
   .showcase-tone-retail .showcase-panel-img { object-position: center 30%; }
   ```
+
+## Editorial & Layout Design gallery
+
+`pages/editorial-layout.html` is a bespoke page, not an instance of the
+shared category template: a wall of 2–3 horizontally auto-scrolling rows of
+mixed-aspect-ratio images (`css/gallery-editorial.css`,
+`js/gallery-editorial.js`). It sources images through a generated manifest
+instead of hand-written `<img>` tags, so a plain drag-and-drop of files is
+enough to populate it.
+
+**To add images:**
+
+1. Drop `.jpg`, `.jpeg`, `.png`, `.webp`, or `.avif` files into
+   `assets/images/gallery/editorial-layout/`.
+2. Run `npm run build` (this also runs automatically on every Vercel
+   deploy, via `vercel.json`'s `buildCommand`). It rewrites
+   `js/gallery-editorial-manifest.js` — a plain
+   `window.GALLERY_EDITORIAL_MANIFEST` array with each file's name, pixel
+   width/height, and aspect ratio, read directly from the image's own
+   header bytes (no dependencies, no browser directory access).
+3. Optionally add a matching entry to `js/gallery-editorial-meta.js`,
+   keyed by filename, with `title`, `project`, `type`, `year`, and `alt` —
+   see the example already in that file. Anything you don't set falls back
+   to a title guessed from the filename and empty project/type/year/alt.
+
+**Never hand-edit `js/gallery-editorial-manifest.js`** — it's overwritten
+by `npm run build` every time.
+
+While the source folder is empty (as shipped), the gallery renders 21
+generated placeholder tiles cycling through five aspect ratios (landscape,
+portrait, square, catalogue-spread, vertical-page) with generic captions —
+see `buildPlaceholderEntries` in `js/gallery-editorial.js`. They disappear
+automatically the moment the manifest has at least one real image.
+
+Row count (3 desktop / 2 mobile), scroll speed (35–50s per loop, tuned per
+row in `ROW_DURATIONS_MS`), pause-on-hover/focus/drag/lightbox, and
+`prefers-reduced-motion` handling all live in that same file if they need
+tuning.
 
 ### Dropping in the About Me portrait
 

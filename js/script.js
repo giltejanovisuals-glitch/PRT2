@@ -39,6 +39,7 @@
   }
 
   const menuToggle = document.querySelector(".menu-toggle");
+  const menuClose = document.querySelector(".mobile-nav-close");
   const nav = document.getElementById("primary-nav");
   const body = document.body;
 
@@ -47,13 +48,17 @@
       nav.classList.remove("is-open");
       menuToggle.setAttribute("aria-expanded", "false");
       body.classList.remove("menu-open");
+      root.classList.remove("menu-open");
     };
 
     menuToggle.addEventListener("click", () => {
       const isOpen = nav.classList.toggle("is-open");
       menuToggle.setAttribute("aria-expanded", String(isOpen));
       body.classList.toggle("menu-open", isOpen);
+      root.classList.toggle("menu-open", isOpen);
     });
+
+    menuClose?.addEventListener("click", closeMenu);
 
     nav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", closeMenu);
@@ -62,6 +67,31 @@
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeMenu();
     });
+
+    // Highlight the nav row for whichever section is currently in view
+    const navLinks = Array.from(nav.querySelectorAll(".mobile-nav-links a"));
+    const navSections = navLinks
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+
+    if (navSections.length && "IntersectionObserver" in window) {
+      const setCurrentSection = (id) => {
+        navLinks.forEach((link) => {
+          link.classList.toggle("is-current", link.getAttribute("href") === `#${id}`);
+        });
+      };
+
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) setCurrentSection(entry.target.id);
+          });
+        },
+        { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+      );
+
+      navSections.forEach((section) => sectionObserver.observe(section));
+    }
   }
 
   const dots = Array.from(document.querySelectorAll(".dot"));
@@ -330,6 +360,7 @@
     let dragMoved = false;
     let dragStartX = 0;
     let dragStartScroll = 0;
+    let activePointerId = null;
 
     track.addEventListener("pointerdown", (event) => {
       if (event.pointerType === "touch") return;
@@ -337,24 +368,32 @@
       dragMoved = false;
       dragStartX = event.clientX;
       dragStartScroll = track.scrollLeft;
-      track.classList.add("is-dragging");
-      track.setPointerCapture(event.pointerId);
+      activePointerId = event.pointerId;
     });
 
     track.addEventListener("pointermove", (event) => {
       if (!isDragging) return;
       const delta = event.clientX - dragStartX;
-      if (Math.abs(delta) > 4) dragMoved = true;
-      track.scrollLeft = dragStartScroll - delta;
+      if (!dragMoved && Math.abs(delta) > 4) {
+        dragMoved = true;
+        track.classList.add("is-dragging");
+        if (activePointerId !== null) track.setPointerCapture(activePointerId);
+      }
+      if (dragMoved) track.scrollLeft = dragStartScroll - delta;
     });
 
     const endDrag = () => {
       isDragging = false;
       track.classList.remove("is-dragging");
+      if (activePointerId !== null && track.hasPointerCapture?.(activePointerId)) {
+        track.releasePointerCapture(activePointerId);
+      }
+      activePointerId = null;
     };
 
     track.addEventListener("pointerup", endDrag);
     track.addEventListener("pointerleave", endDrag);
+    track.addEventListener("pointercancel", endDrag);
 
     track.addEventListener(
       "click",

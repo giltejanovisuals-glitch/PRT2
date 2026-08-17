@@ -22,7 +22,7 @@ window.PROJECTS = [
     closingLabel: "Summary",
     outcome:
       "The catalogue functions as both a brand introduction and a practical presentation tool, helping clients, designers, and project partners understand Porta Mobili's collections, services, and approach to refined living.",
-    credits: ["Catalogue Design & Art Direction — Gil Tejano", "Client — Porta Mobili"],
+    credits: ["Catalogue Design & Art Direction — Gil Tejano Culas", "Client — Porta Mobili"],
   },
   {
     id: "hooga",
@@ -43,7 +43,7 @@ window.PROJECTS = [
     closingLabel: "Summary",
     outcome:
       "The resulting system helps Hooga present a broad range of collections through one consistent visual language—making product discovery clearer while reinforcing the brand's balance of contemporary elegance, comfort, and quiet luxury.",
-    credits: ["Catalogue Design & Brand Application — Gil Tejano", "Client — Hooga"],
+    credits: ["Catalogue Design & Brand Application — Gil Tejano Culas", "Client — Hooga"],
   },
   {
     id: "dunlopillo",
@@ -67,7 +67,7 @@ window.PROJECTS = [
     closingLabel: "Summary",
     outcome:
       "The resulting applications make Dunlopillo's product technology easier to understand while maintaining its premium positioning—connecting technical performance with the familiar promise of deeper, more comfortable rest.",
-    credits: ["Campaign Design & Brand Application — Gil Tejano", "Client — Dunlopillo"],
+    credits: ["Campaign Design & Brand Application — Gil Tejano Culas", "Client — Dunlopillo"],
   },
   {
     id: "metal-lite",
@@ -91,6 +91,6 @@ window.PROJECTS = [
     closingLabel: "Summary",
     outcome:
       "The resulting applications help Metal-Lite present an extensive product range with greater clarity and consistency—connecting technical lighting solutions with the practical needs of homeowners, designers, contractors, and commercial clients.",
-    credits: ["Campaign Design & Brand Application — Gil Tejano", "Client — Metal-Lite"],
+    credits: ["Campaign Design & Brand Application — Gil Tejano Culas", "Client — Metal-Lite"],
   },
 ];

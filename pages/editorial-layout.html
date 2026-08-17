@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Editorial &amp; Layout Design — Gil Tejano, creative specialist." />
-    <title>Editorial &amp; Layout Design | Gil Tejano</title>
+    <meta name="description" content="Editorial &amp; Layout Design — Gil Tejano Culas, creative specialist." />
+    <title>Editorial &amp; Layout Design | Gil Tejano Culas</title>
     <link rel="icon" href="../assets/icons/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,15 +27,18 @@
     </script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/project-gallery.css" />
+    <link rel="stylesheet" href="../css/gallery-editorial.css" />
     <script src="../js/gallery-categories-data.js" defer></script>
-    <script src="../js/gallery-category.js" defer></script>
+    <script src="../js/gallery-editorial-manifest.js" defer></script>
+    <script src="../js/gallery-editorial-meta.js" defer></script>
+    <script src="../js/gallery-editorial.js" defer></script>
   </head>
 
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header">
-      <a class="brand" href="../index.html" aria-label="Gil Tejano, home">
+      <a class="brand" href="../index.html" aria-label="Gil Tejano Culas, home">
         <span class="brand-mark" aria-hidden="true">GT</span>
         <span class="brand-name">Web Site</span>
       </a>
@@ -86,22 +89,42 @@
 
     <main class="project" id="main-content">
       <header class="project-header">
-        <p class="section-index" id="category-eyebrow">Category 03 — Project Gallery</p>
-        <h1 id="category-title">—</h1>
-        <p class="project-overview" id="category-intro">—</p>
-        <p class="category-stat" id="category-stat">—</p>
+        <p class="section-index" id="category-eyebrow">Category 01 — Project Gallery</p>
+        <h1 class="project-headline" id="category-title">Editorial &amp; Layout Design</h1>
+        <p class="project-overview" id="category-intro">
+          Selected catalogues, lookbooks, presentation systems, and editorial
+          compositions developed to organize information through clear
+          hierarchy, considered pacing, and cohesive visual storytelling.
+        </p>
       </header>
 
-      <div class="category-entries" id="category-entries"></div>
+      <section class="editorial-wall" id="editorial-wall" aria-label="Editorial and layout design gallery, scrolls automatically and can be dragged or swiped">
+        <div class="editorial-row" id="editorial-row-0">
+          <div class="editorial-row-track" id="editorial-row-track-0"></div>
+        </div>
+        <div class="editorial-row" id="editorial-row-1">
+          <div class="editorial-row-track" id="editorial-row-track-1"></div>
+        </div>
+        <div class="editorial-row" id="editorial-row-2">
+          <div class="editorial-row-track" id="editorial-row-track-2"></div>
+        </div>
+      </section>
 
       <section class="project-closing">
+        <p class="project-closing-label">Editorial &amp; Layout Design</p>
+        <p class="project-closing-text">
+          Each system is built to hold up across long-form print and digital
+          documents — considered enough to organize dense information,
+          flexible enough to carry a brand&rsquo;s voice from cover to
+          closing page.
+        </p>
         <a class="project-overview-link" href="../index.html#gallery">
           <span aria-hidden="true">←</span> Back to Project Gallery
         </a>
       </section>
     </main>
 
-    <p class="project-counter" id="project-counter" aria-hidden="true">03 / 05</p>
+    <p class="project-counter" id="project-counter" aria-hidden="true">01 / 05</p>
 
     <nav class="brand-nav" aria-label="Project Gallery categories">
       <a class="brand-nav-link" id="brand-nav-prev" href="#">
@@ -120,10 +143,6 @@
       </a>
     </nav>
 
-    <div class="gallery-index" id="gallery-index" aria-hidden="true">
-      <span id="gallery-index-current">01</span><span aria-hidden="true"> / </span><span id="gallery-index-total">01</span>
-    </div>
-
     <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Fullscreen image preview">
       <div class="lightbox-stage" id="lightbox-stage"></div>
 
@@ -133,6 +152,8 @@
       <button class="lightbox-close" type="button" aria-label="Close fullscreen preview">
         <span aria-hidden="true">×</span>
       </button>
+
+      <div class="lightbox-caption" id="lightbox-caption"></div>
 
       <p class="lightbox-counter" aria-live="polite">
         <span id="lightbox-current">01</span><span aria-hidden="true"> / </span><span id="lightbox-total">01</span>

@@ -1,0 +1,228 @@
+/* Editorial & Layout Design — moving gallery wall (pages/editorial-layout.html)
+   Reuses .project / .project-header / .project-headline / .project-overview /
+   .project-closing / .brand-nav / .lightbox and friends from
+   project-gallery.css for chrome and typography; everything below is
+   specific to the horizontally-scrolling image rows themselves. */
+
+:root {
+  /* Fixed (not theme-swapped) — this text always sits on the dark image
+     scrim inside tiles/the lightbox, regardless of the site's light/dark
+     mode, the same way the shared lightbox already uses fixed white. */
+  --gallery-accent-on-dark: #3fac9f;
+}
+
+.editorial-wall {
+  /* Breaks out to true viewport edges (matching .project's own padding,
+     not 100vw, so there's no scrollbar-width discrepancy) so the edge
+     fade below has real room to work and rows can scroll flush to the
+     screen edge, the way the reference wall does. */
+  --row-h: clamp(210px, 24vw, 300px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vw, 12px);
+  margin: clamp(3rem, 6vh, 4rem) calc(-1 * var(--page-padding)) clamp(3rem, 7vh, 4.5rem);
+}
+
+.editorial-row {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black clamp(24px, 4vw, 64px),
+    black calc(100% - clamp(24px, 4vw, 64px)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black clamp(24px, 4vw, 64px),
+    black calc(100% - clamp(24px, 4vw, 64px)),
+    transparent
+  );
+}
+
+.editorial-row::-webkit-scrollbar {
+  display: none;
+}
+
+.editorial-row.is-dragging {
+  cursor: grabbing;
+}
+
+.editorial-row.is-hidden-row {
+  display: none;
+}
+
+.editorial-row-track {
+  display: flex;
+  width: max-content;
+  gap: clamp(8px, 1vw, 12px);
+  padding: 0 var(--page-padding);
+}
+
+.editorial-tile {
+  position: relative;
+  flex: 0 0 auto;
+  overflow: hidden;
+  height: var(--row-h);
+  aspect-ratio: var(--ar, 1.4);
+  cursor: pointer;
+}
+
+.editorial-tile:not(.showcase-tone-editorial) {
+  background: var(--surface);
+}
+
+.editorial-tile-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 550ms var(--ease), filter 550ms var(--ease);
+}
+
+.editorial-tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.55), rgba(10, 10, 10, 0) 45%);
+  opacity: 0;
+  transition: opacity 550ms var(--ease);
+  pointer-events: none;
+}
+
+.editorial-tile-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: clamp(0.75rem, 1.6vw, 1.1rem);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 550ms var(--ease), transform 550ms var(--ease);
+  pointer-events: none;
+}
+
+.editorial-tile-title {
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.editorial-tile-type {
+  color: var(--gallery-accent-on-dark);
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (hover: hover) {
+  .editorial-tile:hover .editorial-tile-img {
+    transform: scale(1.05);
+    filter: brightness(1.06);
+  }
+
+  .editorial-tile:hover .editorial-tile-overlay,
+  .editorial-tile:hover .editorial-tile-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Touch devices can't hover, so essential info (title/type) stays visible
+   by default instead of being gated behind an interaction that can't happen. */
+@media (hover: none) {
+  .editorial-tile-overlay,
+  .editorial-tile-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.editorial-tile:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.editorial-tile:focus-visible .editorial-tile-img {
+  transform: scale(1.05);
+  filter: brightness(1.06);
+}
+
+.editorial-tile:focus-visible .editorial-tile-overlay,
+.editorial-tile:focus-visible .editorial-tile-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.editorial-tile[aria-hidden="true"] {
+  cursor: default;
+}
+
+/* Lightbox: fit the real image without cropping/stretching (the shared
+   .gallery-image rule only covers the tone-gradient placeholder case). */
+.lightbox-stage .gallery-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lightbox-caption {
+  position: absolute;
+  top: clamp(1rem, 3vh, 2rem);
+  left: clamp(1rem, 3vw, 2rem);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  max-width: min(70vw, 28rem);
+  pointer-events: none;
+}
+
+.lightbox-caption-title {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.lightbox-caption-type {
+  color: var(--gallery-accent-on-dark);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .editorial-wall {
+    --row-h: clamp(140px, 42vw, 190px);
+  }
+
+  .lightbox-caption {
+    max-width: calc(100vw - 2 * clamp(1rem, 3vw, 2rem) - 3rem);
+  }
+
+  /* project-gallery.css shrinks this to 36px on mobile; this page's spec
+     calls for a 44px-minimum touch target, so restore that here. */
+  .lightbox-close {
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+  }
+}

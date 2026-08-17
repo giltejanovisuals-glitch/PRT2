@@ -91,6 +91,7 @@ body {
   transition: background-color 300ms ease, color 300ms ease;
 }
 
+html.menu-open,
 body.menu-open {
   overflow: hidden;
 }
@@ -222,6 +223,22 @@ button {
 .floating-nav a:focus-visible::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+/* On desktop the mobile-only wrapper rows collapse away — .mobile-nav-links
+   uses display:contents so its <a> children stay direct flex items of
+   .floating-nav and the pill nav's layout is untouched. */
+.mobile-nav-head,
+.mobile-nav-foot {
+  display: none;
+}
+
+.mobile-nav-links {
+  display: contents;
+}
+
+.nav-index {
+  display: none;
 }
 
 .theme-toggle {
@@ -2443,10 +2460,16 @@ button {
     position: fixed;
     inset: 0;
     z-index: 40;
+    display: flex;
+    min-height: 100dvh;
     height: auto;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0;
+    padding-top: env(safe-area-inset-top);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
     border: 0;
     border-radius: 0;
     background: rgba(var(--background-rgb), 0.98);
@@ -2461,16 +2484,185 @@ button {
     visibility: visible;
   }
 
-  .floating-nav a {
-    color: var(--text);
-    font-size: clamp(2rem, 9vw, 3rem);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-  }
-
   .floating-nav a:hover,
   .floating-nav a:focus-visible {
+    color: var(--accent);
+  }
+
+  /* Top row — monogram, name, close control */
+  .mobile-nav-head {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem clamp(20px, 5vw, 24px);
+    border-bottom: 1px solid rgba(var(--text-rgb), 0.1);
+  }
+
+  .mobile-nav-brand {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .mobile-nav-brand-text {
+    overflow: hidden;
+    color: var(--text);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .mobile-nav-close {
+    display: flex;
+    flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color 250ms ease, color 250ms ease;
+  }
+
+  .mobile-nav-close:hover,
+  .mobile-nav-close:focus-visible {
+    border-color: var(--accent-line);
+    color: var(--accent);
+  }
+
+  /* Middle — the numbered link list */
+  .mobile-nav-links {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem clamp(20px, 5vw, 24px);
+    overflow-y: auto;
+  }
+
+  .mobile-nav-links a {
+    position: relative;
+    display: flex;
+    min-height: 56px;
+    align-items: center;
+    gap: 0.85rem;
+    color: var(--text);
+    font-size: clamp(1.3rem, 5.5vw, 1.6rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    border-bottom: 1px solid rgba(var(--text-rgb), 0.08);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: color 250ms ease, opacity 220ms ease, transform 220ms ease;
+  }
+
+  .mobile-nav-links a:last-child {
+    border-bottom: 0;
+  }
+
+  .nav-index {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: 1.6rem;
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color 250ms ease;
+  }
+
+  .mobile-nav-links a.is-current {
+    color: var(--accent);
+  }
+
+  .mobile-nav-links a.is-current .nav-index {
+    color: var(--accent);
+  }
+
+  .mobile-nav-links a.is-current::before {
+    position: absolute;
+    top: 50%;
+    left: calc(-1 * clamp(12px, 3vw, 14px));
+    width: 3px;
+    height: 1.1rem;
+    border-radius: 2px;
+    content: "";
+    background: var(--accent);
+    transform: translateY(-50%);
+  }
+
+  .floating-nav.is-open .mobile-nav-links a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .floating-nav.is-open .mobile-nav-links a:nth-child(1) {
+    transition-delay: 160ms;
+  }
+
+  .floating-nav.is-open .mobile-nav-links a:nth-child(2) {
+    transition-delay: 210ms;
+  }
+
+  .floating-nav.is-open .mobile-nav-links a:nth-child(3) {
+    transition-delay: 260ms;
+  }
+
+  .floating-nav.is-open .mobile-nav-links a:nth-child(4) {
+    transition-delay: 310ms;
+  }
+
+  .floating-nav.is-open .mobile-nav-links a:nth-child(5) {
+    transition-delay: 360ms;
+  }
+
+  /* Bottom row — availability status + compact social links */
+  .mobile-nav-foot {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.1rem clamp(20px, 5vw, 24px);
+    border-top: 1px solid rgba(var(--text-rgb), 0.1);
+  }
+
+  .mobile-nav-status {
+    color: var(--muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+
+  .mobile-nav-socials {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .mobile-nav-socials a {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--text);
+    transition: border-color 250ms ease, color 250ms ease;
+  }
+
+  .mobile-nav-socials a:hover,
+  .mobile-nav-socials a:focus-visible {
+    border-color: var(--accent-line);
     color: var(--accent);
   }
 

@@ -103,7 +103,7 @@
   const categoryNumber = String(categoryIndex + 1).padStart(2, "0");
   const total = categories.length;
 
-  document.title = `${category.title} | Gil Tejano`;
+  document.title = `${category.title} | Gil Tejano Culas`;
   setText("category-eyebrow", `Category ${categoryNumber} — Project Gallery`);
   setText("category-title", category.title);
   setText("category-intro", category.intro);

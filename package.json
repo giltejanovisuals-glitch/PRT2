@@ -1,0 +1,9 @@
+{
+  "name": "gil-tejano-culas-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static portfolio site. The only build step is regenerating the Editorial & Layout Design gallery's image manifest.",
+  "scripts": {
+    "build": "node scripts/generate-gallery-manifest.js"
+  }
+}
