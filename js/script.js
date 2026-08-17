@@ -427,27 +427,94 @@
     updateCapArrows();
   }
 
-  // 2. My Creative Dock — fixed description panel updates on hover/focus
+  // 2. My Creative Dock — fixed-size info panel crossfades its content on
+  // hover/focus; a click/tap "pins" a tool so the panel keeps showing it
+  // (this is what drives the tap-to-activate behavior on mobile).
   const dockTools = Array.from(document.querySelectorAll(".dock-tool"));
-  const dockNow = document.getElementById("dock-now");
-  const DOCK_DEFAULT_TEXT = dockNow ? dockNow.textContent : "";
+  const dockInfoContent = document.getElementById("dock-info-content");
 
-  if (dockTools.length && dockNow) {
-    const showTool = (tool) => {
-      const name = tool.dataset.name || "";
-      const use = tool.dataset.use || "";
-      dockNow.innerHTML = `<span class="dock-now-name">${name}</span> — ${use}`;
+  if (dockTools.length && dockInfoContent) {
+    const DOCK_DEFAULT_HTML = dockInfoContent.innerHTML;
+    let activeTool = null;
+    let fadeTimeout;
+
+    const escapeHtml = (str) =>
+      str.replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      }[c]));
+
+    const setPanelContent = (html) => {
+      clearTimeout(fadeTimeout);
+      dockInfoContent.classList.add("is-fading");
+      fadeTimeout = setTimeout(() => {
+        dockInfoContent.innerHTML = html;
+        dockInfoContent.classList.remove("is-fading");
+      }, 160);
     };
 
-    const resetTool = () => {
-      dockNow.textContent = DOCK_DEFAULT_TEXT;
+    const showTool = (tool) => {
+      const name = escapeHtml(tool.dataset.name || "");
+      const primary = escapeHtml(tool.dataset.primary || "");
+      const tags = (tool.dataset.tags || "")
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter(Boolean)
+        .map(escapeHtml);
+
+      const tagsHtml = tags.length
+        ? `<div class="dock-info-section">
+            <p class="dock-info-label">Used for</p>
+            <p class="dock-info-tags">${tags.join(" &middot; ")}</p>
+          </div>`
+        : "";
+
+      setPanelContent(`
+        <div>
+          <p class="dock-info-name">${name}</p>
+          <div class="dock-info-section">
+            <p class="dock-info-label">Primary use</p>
+            <p class="dock-info-text">${primary}</p>
+          </div>
+        </div>
+        ${tagsHtml}
+      `);
+    };
+
+    const resetPanel = () => {
+      if (activeTool) {
+        showTool(activeTool);
+      } else {
+        setPanelContent(DOCK_DEFAULT_HTML);
+      }
     };
 
     dockTools.forEach((tool) => {
+      tool.setAttribute("aria-pressed", "false");
       tool.addEventListener("mouseenter", () => showTool(tool));
       tool.addEventListener("focus", () => showTool(tool));
-      tool.addEventListener("mouseleave", resetTool);
-      tool.addEventListener("blur", resetTool);
+      tool.addEventListener("mouseleave", resetPanel);
+      tool.addEventListener("blur", resetPanel);
+      tool.addEventListener("click", () => {
+        if (activeTool === tool) {
+          activeTool.classList.remove("is-active");
+          activeTool.setAttribute("aria-pressed", "false");
+          activeTool = null;
+          resetPanel();
+          return;
+        }
+        if (activeTool) {
+          activeTool.classList.remove("is-active");
+          activeTool.setAttribute("aria-pressed", "false");
+        }
+        activeTool = tool;
+        tool.classList.add("is-active");
+        tool.setAttribute("aria-pressed", "true");
+        showTool(tool);
+      });
     });
   }
 
