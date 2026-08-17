@@ -337,24 +337,37 @@
       dragMoved = false;
       dragStartX = event.clientX;
       dragStartScroll = track.scrollLeft;
-      track.classList.add("is-dragging");
-      track.setPointerCapture(event.pointerId);
     });
 
     track.addEventListener("pointermove", (event) => {
       if (!isDragging) return;
       const delta = event.clientX - dragStartX;
-      if (Math.abs(delta) > 4) dragMoved = true;
-      track.scrollLeft = dragStartScroll - delta;
+
+      // Capture the pointer only after a real drag begins. Capturing it on
+      // pointerdown redirects ordinary logo clicks to the track, preventing
+      // the linked brand anchors from opening.
+      if (Math.abs(delta) > 4 && !dragMoved) {
+        dragMoved = true;
+        track.classList.add("is-dragging");
+        track.setPointerCapture(event.pointerId);
+      }
+
+      if (dragMoved) track.scrollLeft = dragStartScroll - delta;
     });
 
-    const endDrag = () => {
+    const endDrag = (event) => {
+      if (track.hasPointerCapture?.(event.pointerId)) {
+        track.releasePointerCapture(event.pointerId);
+      }
       isDragging = false;
       track.classList.remove("is-dragging");
     };
 
     track.addEventListener("pointerup", endDrag);
-    track.addEventListener("pointerleave", endDrag);
+    track.addEventListener("pointercancel", endDrag);
+    track.addEventListener("pointerleave", (event) => {
+      if (!track.hasPointerCapture?.(event.pointerId)) endDrag(event);
+    });
 
     track.addEventListener(
       "click",
