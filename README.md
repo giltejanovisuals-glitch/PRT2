@@ -1,7 +1,7 @@
 # Gil Tejano — Portfolio
 
 Static site. Open `index.html` directly or serve the folder root — no build
-step is required for anything except the Editorial & Layout Design gallery's
+step is required for anything except the Project Gallery categories'
 image manifest (see below), which Vercel runs automatically via
 `vercel.json`'s `buildCommand`.
 
@@ -17,28 +17,29 @@ PRT2/
 │   ├── dunlopillo.html        from js/projects-data.js by matching its
 │   ├── metal-lite.html        own filename (see js/project-gallery.js)
 │   │
-│   ├── editorial-layout.html  Bespoke moving-gallery page (see its own
-│   │                           section below) — does NOT use the shared
-│   │                           template the other four categories share.
-│   ├── print-brand-collateral.html   Category gallery pages. These four
-│   ├── social-media-campaigns.html   share one template; each resolves
-│   ├── commercial-lifestyle-photography.html  its own content from
+│   ├── editorial-layout.html  Project Gallery category pages. All five
+│   ├── social-media-campaigns.html   share one moving-wall template;
+│   ├── print-brand-collateral.html   each resolves its own content
+│   ├── commercial-lifestyle-photography.html  from
 │   └── short-form-video-reels.html   js/gallery-categories-data.js by
 │                                       matching its own filename (see
-│                                       js/gallery-category.js)
+│                                       js/gallery-editorial.js)
 ├── scripts/
-│   └── generate-gallery-manifest.js  Build step (see below) — scans
-│                                       assets/images/gallery/editorial-layout/
-│                                       and (re)writes
+│   └── generate-gallery-manifest.js  Build step (see below) — scans every
+│                                       assets/images/gallery/<category-id>/
+│                                       folder and (re)writes
 │                                       js/gallery-editorial-manifest.js
 ├── assets/
 │   ├── images/
 │   │   ├── about/               About Me portrait (see below)
 │   │   ├── home/               Homepage carousel / work-panel images
 │   │   ├── gallery/
-│   │   │   └── editorial-layout/  Source images for the Editorial & Layout
-│   │   │                           Design gallery (see below) — drop files
-│   │   │                           here, don't edit the manifest by hand
+│   │   │   ├── editorial-layout/                Source images for each
+│   │   │   ├── social-media-campaigns/           Project Gallery category
+│   │   │   ├── print-brand-collateral/           (see below) — drop files
+│   │   │   ├── commercial-lifestyle-photography/ into the matching
+│   │   │   └── short-form-video-reels/           category's folder, don't
+│   │   │                                          edit the manifest by hand
 │   │   ├── porta-mobili/       10 images, 1920×1080 (16:9), flush stacked
 │   │   ├── hooga/
 │   │   ├── dunlopillo/
@@ -56,9 +57,8 @@ PRT2/
 │   ├── style.css               Shared: tokens, reset, header/nav, homepage
 │   │                            (including the Project Gallery showcase)
 │   ├── project-gallery.css     Case-study-only: gallery, lightbox,
-│   │                            brand-nav, floating counters, category
-│   │                            entry list
-│   └── gallery-editorial.css   Editorial & Layout Design page only: the
+│   │                            brand-nav, floating counters
+│   └── gallery-editorial.css   Project Gallery category pages only: the
 │                                 moving rows, tile hover/caption, and a
 │                                 couple of lightbox additions (see below)
 ├── js/
@@ -69,26 +69,25 @@ PRT2/
 │   ├── project-gallery.js       Brand pages: resolves the project from
 │   │                             projects-data.js, builds the gallery,
 │   │                             lightbox, prev/next nav
-│   ├── gallery-category.js      The four shared-template category pages:
-│   │                             resolves the category from
-│   │                             gallery-categories-data.js, builds the
-│   │                             entry list, lightbox, prev/next nav
-│   └── gallery-editorial.js     Editorial & Layout Design page only: row
-│                                 distribution, the auto-scroll loop,
-│                                 drag/swipe, hover captions, lightbox
+│   └── gallery-editorial.js     All five category pages: resolves the
+│                                 category from gallery-categories-data.js
+│                                 by filename, then row distribution, the
+│                                 auto-scroll loop, drag/swipe, hover
+│                                 captions, lightbox, prev/next nav
 ├── js/projects-data.js          Single source of truth for all brand
 │                                 project copy (title, overview, gallery
 │                                 layout, credits, etc.)
-├── js/gallery-categories-data.js  Single source of truth for all
-│                                    category copy (titles, numbering,
-│                                    prev/next nav) — including Editorial
-│                                    & Layout Design's own eyebrow/counter
+├── js/gallery-categories-data.js  Single source of truth for all category
+│                                    copy (title, intro, lede, tone,
+│                                    numbering, prev/next nav) for all five
+│                                    Project Gallery pages
 ├── js/gallery-editorial-manifest.js  AUTO-GENERATED — do not hand-edit,
-│                                       see "Editorial & Layout Design
-│                                       gallery" below
+│                                       see "Project Gallery moving-wall
+│                                       categories" below
 └── js/gallery-editorial-meta.js  Optional hand-authored titles/project/
-                                    type/year/alt text for editorial-layout
-                                    gallery images, keyed by filename
+                                    type/year/alt text for each category's
+                                    gallery images, keyed by category id
+                                    then filename
 ```
 
 ## Adding or editing a project
@@ -107,18 +106,18 @@ CSS placeholder gradients (see the `project-<id>` tone classes in
 ## Adding or editing a Project Gallery category
 
 1. Edit its entry in `js/gallery-categories-data.js` (title, lede, intro,
-   and its `entries` array — each entry is one gallery item with a
-   `layout` of `landscape`, `pair`, or `portrait`, plus placeholder
-   `brand`/`year`/`type`/`contribution` copy). This file also drives
-   Editorial & Layout Design's eyebrow/counter/prev-next nav even though
-   that page doesn't use its `entries`.
+   tone, and its `entries` array — each entry is one placeholder item with
+   a `layout` of `landscape`, `pair`, or `portrait`, plus placeholder
+   `brand`/`year`/`type`/`contribution` copy). This one file drives every
+   category page's eyebrow/title/intro/closing copy and prev-next nav, and
+   also seeds each page's placeholder tiles until real images replace them
+   (see "Project Gallery moving-wall categories" below).
 2. The five homepage showcase panels in `index.html` (`#gallery`) are
    hand-written, not generated — update a panel's copy there to match if
    you change a category's title or description.
-3. If it's a new category (other than Editorial & Layout Design — see its
-   own section below), copy any file in `pages/print-brand-collateral.html`
-   etc. to `pages/<id>.html` — it resolves its own id from its filename,
-   same as the brand pages.
+3. If it's a new category, copy any file in `pages/` (e.g.
+   `pages/print-brand-collateral.html`) to `pages/<id>.html` — it resolves
+   its own id from its filename, same as the brand pages.
 
 All category copy is currently placeholder ("Client Name", generic
 project types) and every tile renders as a CSS gradient (the
@@ -152,43 +151,52 @@ assets/images/gallery/short-form-video-reels-cover.{avif,webp,jpg}
   .showcase-tone-retail .showcase-panel-img { object-position: center 30%; }
   ```
 
-## Editorial & Layout Design gallery
+## Project Gallery moving-wall categories
 
-`pages/editorial-layout.html` is a bespoke page, not an instance of the
-shared category template: a wall of 2–3 horizontally auto-scrolling rows of
+All five `pages/<category-id>.html` pages (`editorial-layout`,
+`social-media-campaigns`, `print-brand-collateral`,
+`commercial-lifestyle-photography`, `short-form-video-reels`) share one
+interface: a wall of 2–3 horizontally auto-scrolling rows of
 mixed-aspect-ratio images (`css/gallery-editorial.css`,
-`js/gallery-editorial.js`). It sources images through a generated manifest
-instead of hand-written `<img>` tags, so a plain drag-and-drop of files is
-enough to populate it.
+`js/gallery-editorial.js`). Each page resolves its own category from its
+filename (same pattern as the brand pages) and sources its images through
+a generated manifest instead of hand-written `<img>` tags, so a plain
+drag-and-drop of files into that category's folder is enough to populate
+it — no HTML/JS edits needed, even for a brand-new category page.
 
-**To add images:**
+**To add images to a category:**
 
-1. Drop `.jpg`, `.jpeg`, `.png`, `.webp`, or `.avif` files into
-   `assets/images/gallery/editorial-layout/`.
+1. Drop `.jpg`, `.jpeg`, `.png`, `.webp`, or `.avif` files into that
+   category's own folder: `assets/images/gallery/<category-id>/`.
 2. Run `npm run build` (this also runs automatically on every Vercel
    deploy, via `vercel.json`'s `buildCommand`). It rewrites
    `js/gallery-editorial-manifest.js` — a plain
-   `window.GALLERY_EDITORIAL_MANIFEST` array with each file's name, pixel
-   width/height, and aspect ratio, read directly from the image's own
-   header bytes (no dependencies, no browser directory access).
-3. Optionally add a matching entry to `js/gallery-editorial-meta.js`,
-   keyed by filename, with `title`, `project`, `type`, `year`, and `alt` —
-   see the example already in that file. Anything you don't set falls back
-   to a title guessed from the filename and empty project/type/year/alt.
+   `window.GALLERY_EDITORIAL_MANIFEST` object, one array per category id,
+   each entry holding a file's name, pixel width/height, and aspect ratio,
+   read directly from the image's own header bytes (no dependencies, no
+   browser directory access).
+3. Optionally add a matching entry to `js/gallery-editorial-meta.js` under
+   that category's id, keyed by filename, with `title`, `project`, `type`,
+   `year`, and `alt` — see the example already in that file. Anything you
+   don't set falls back to a title guessed from the filename and empty
+   project/type/year/alt.
 
 **Never hand-edit `js/gallery-editorial-manifest.js`** — it's overwritten
 by `npm run build` every time.
 
-While the source folder is empty (as shipped), the gallery renders 21
-generated placeholder tiles cycling through five aspect ratios (landscape,
-portrait, square, catalogue-spread, vertical-page) with generic captions —
-see `buildPlaceholderEntries` in `js/gallery-editorial.js`. They disappear
-automatically the moment the manifest has at least one real image.
+While a category's source folder is empty (as shipped, for all five),
+that page renders 21 placeholder tiles generated from its own
+`js/gallery-categories-data.js` entries — reusing each entry's
+`layout`/`brand`/`type` so the placeholders read as that category's kind
+of work (not generic captions) and are tinted with that category's own
+`showcase-tone-*` — see `buildPlaceholderEntries` in
+`js/gallery-editorial.js`. A category's placeholders disappear
+automatically the moment its manifest has at least one real image.
 
 Row count (3 desktop / 2 mobile), scroll speed (35–50s per loop, tuned per
 row in `ROW_DURATIONS_MS`), pause-on-hover/focus/drag/lightbox, and
 `prefers-reduced-motion` handling all live in that same file if they need
-tuning.
+tuning — shared by all five categories.
 
 ### Dropping in the About Me portrait
 

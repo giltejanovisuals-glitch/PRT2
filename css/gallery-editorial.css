@@ -1,8 +1,9 @@
-/* Editorial & Layout Design — moving gallery wall (pages/editorial-layout.html)
-   Reuses .project / .project-header / .project-headline / .project-overview /
-   .project-closing / .brand-nav / .lightbox and friends from
-   project-gallery.css for chrome and typography; everything below is
-   specific to the horizontally-scrolling image rows themselves. */
+/* Project Gallery moving wall — shared by all five pages/<category-id>.html
+   category pages (each sourcing its own images/tone). Reuses .project /
+   .project-header / .project-headline / .project-overview / .project-closing /
+   .brand-nav / .lightbox and friends from project-gallery.css for chrome and
+   typography; everything below is specific to the horizontally-scrolling
+   image rows themselves. */
 
 :root {
   /* Fixed (not theme-swapped) — this text always sits on the dark image
@@ -74,7 +75,7 @@
   cursor: pointer;
 }
 
-.editorial-tile:not(.showcase-tone-editorial) {
+.editorial-tile:not(.editorial-tile-placeholder) {
   background: var(--surface);
 }
 

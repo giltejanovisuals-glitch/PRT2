@@ -1,9 +1,9 @@
-# Editorial & Layout Design gallery source images
+# Short-Form Video & Reels gallery source images
 
 Drop image files directly into this folder — `.jpg`, `.jpeg`, `.png`,
-`.webp`, or `.avif`. Then run `npm run build` (or let Vercel run it for you
-on deploy) to regenerate this category's slice of
-`js/gallery-editorial-manifest.js`.
+`.webp`, or `.avif` (cover frames / thumbnails, not video files). Then run
+`npm run build` (or let Vercel run it for you on deploy) to regenerate this
+category's slice of `js/gallery-editorial-manifest.js`.
 
 See the "Project Gallery moving-wall categories" section in the root
 `README.md` for the full workflow, including the optional

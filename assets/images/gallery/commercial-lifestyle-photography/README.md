@@ -1,4 +1,4 @@
-# Editorial & Layout Design gallery source images
+# Commercial & Lifestyle Photography gallery source images
 
 Drop image files directly into this folder — `.jpg`, `.jpeg`, `.png`,
 `.webp`, or `.avif`. Then run `npm run build` (or let Vercel run it for you

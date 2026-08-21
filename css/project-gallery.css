@@ -1,7 +1,9 @@
 /* Project case study */
 
 .project {
-  padding: clamp(6rem, 12vh, 8rem) var(--page-padding) clamp(7rem, 16vh, 9rem);
+  padding: var(--page-padding);
+  padding-top: calc(var(--header-h) + clamp(2rem, 4vh, 3rem));
+  padding-bottom: clamp(7rem, 16vh, 9rem);
 }
 
 .project-header {
@@ -113,85 +115,6 @@
   color: var(--text);
   font-size: 1rem;
   line-height: 1.65;
-}
-
-/* Category gallery pages (pages/<category-id>.html) — same page chrome as
-   the brand case studies above, but the "gallery" is a sequence of
-   individually-captioned entries instead of one flush image stack. */
-
-.category-stat {
-  margin: clamp(1rem, 2vh, 1.5rem) 0 0;
-  color: var(--muted);
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.category-entries {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(3rem, 6vh, 4.5rem);
-  margin-top: clamp(3rem, 6vh, 4rem);
-  margin-bottom: clamp(4rem, 10vh, 6rem);
-}
-
-.category-entry {
-  width: min(83%, 75rem);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.category-entry-media .gallery-image {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-}
-
-.category-entry-media.is-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(8px, 1.2vw, 14px);
-}
-
-.category-entry-media.is-pair .gallery-image {
-  aspect-ratio: 4 / 3;
-}
-
-.category-entry-media.is-portrait {
-  width: min(48%, 30rem);
-  margin: 0 auto;
-}
-
-.category-entry-media.is-portrait .gallery-image {
-  aspect-ratio: 3 / 4;
-}
-
-.category-entry-caption {
-  margin-top: clamp(0.85rem, 1.6vh, 1.1rem);
-}
-
-.category-entry-meta {
-  margin: 0;
-  color: var(--muted);
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-}
-
-.category-entry-brand {
-  color: var(--text);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.category-entry-contribution {
-  margin: 0.35rem 0 0;
-  max-width: 38rem;
-  color: var(--muted);
-  font-size: 0.85rem;
-  line-height: 1.55;
 }
 
 /* Placeholder image surface, reused by hero, gallery blocks, and lightbox */
@@ -368,34 +291,6 @@
   background: rgba(var(--background-rgb), 0.3);
 }
 
-/* Floating gallery index */
-
-.gallery-index {
-  position: fixed;
-  z-index: 25;
-  bottom: clamp(4.5rem, 11vh, 5.25rem);
-  left: clamp(1.25rem, 3vw, 1.75rem);
-  padding: 0.5rem 0.85rem;
-  border: 1px solid rgba(var(--text-rgb), 0.42);
-  border-radius: 999px;
-  background: rgba(var(--text-rgb), 0.82);
-  color: var(--background);
-  font-family: var(--font-body);
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  opacity: 0;
-  visibility: hidden;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: opacity 250ms ease, visibility 250ms;
-}
-
-.gallery-index.is-visible {
-  opacity: 1;
-  visibility: visible;
-}
-
 /* Fullscreen lightbox */
 
 .lightbox {
@@ -509,7 +404,9 @@ body.lightbox-open {
 
 @media (max-width: 760px) {
   .project {
-    padding: clamp(4.5rem, 10vh, 6rem) var(--page-padding) clamp(3rem, 8vh, 4.5rem);
+    padding: var(--page-padding);
+    padding-top: calc(var(--header-h) + clamp(1.25rem, 3vh, 2rem));
+    padding-bottom: clamp(3rem, 8vh, 4.5rem);
   }
 
   #project-title,
@@ -523,21 +420,8 @@ body.lightbox-open {
   }
 
   .project-hero,
-  .project-gallery,
-  .category-entry {
+  .project-gallery {
     width: 100%;
-  }
-
-  .category-entry-media.is-portrait {
-    width: min(70%, 22rem);
-  }
-
-  .category-entry-media.is-pair {
-    grid-template-columns: 1fr;
-  }
-
-  .category-entry-media.is-pair .gallery-image {
-    aspect-ratio: 16 / 9;
   }
 
   .lightbox-close {

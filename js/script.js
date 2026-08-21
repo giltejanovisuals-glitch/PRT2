@@ -1,5 +1,55 @@
 (() => {
   const root = document.documentElement;
+
+  // Header: measure real height into --header-h so sections can offset
+  // themselves correctly, then track scroll position so the fixed nav's
+  // blur-gradient backdrop can deepen once content starts passing under it.
+  const siteHeader = document.querySelector(".site-header");
+  if (siteHeader) {
+    const setHeaderHeight = () => {
+      root.style.setProperty("--header-h", `${siteHeader.offsetHeight}px`);
+    };
+    setHeaderHeight();
+    window.addEventListener("resize", setHeaderHeight);
+
+    // Landing-page exception: over the hero, the backdrop starts fully
+    // invisible and eases in 1:1 with scroll position, fully in by the
+    // time the hero is scrolled past. Other pages have no hero and skip
+    // this, so their backdrop is present from the first frame as before.
+    const hero = document.querySelector(".hero");
+    const heroFade = Boolean(hero && document.querySelector(".nav-backdrop"));
+    if (heroFade) {
+      root.style.setProperty("--nav-fade", "0");
+    }
+
+    const SCROLL_THRESHOLD = 20;
+    let scrollTicking = false;
+    const updateScrollState = () => {
+      const y = window.scrollY;
+      document.body.classList.toggle("is-scrolled", y > SCROLL_THRESHOLD);
+      if (heroFade) {
+        const fadeDistance = hero.offsetHeight || window.innerHeight;
+        const progress = Math.min(1, Math.max(0, y / fadeDistance));
+        root.style.setProperty("--nav-fade", String(progress));
+      }
+      scrollTicking = false;
+    };
+    updateScrollState();
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!scrollTicking) {
+          window.requestAnimationFrame(updateScrollState);
+          scrollTicking = true;
+        }
+      },
+      { passive: true }
+    );
+    if (heroFade) {
+      window.addEventListener("resize", updateScrollState);
+    }
+  }
+
   const themeToggle = document.querySelector(".theme-toggle");
 
   if (themeToggle) {

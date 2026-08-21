@@ -9,7 +9,7 @@ window.PROJECTS = [
     tone: "project-porta",
     title: "Porta Mobili",
     category: "Editorial Design · Brand Application · Catalogue System",
-    year: "2024",
+    year: "2025-2026",
     headline: "Brand Identity & Guidelines.",
     role: "Developed Catalogue Design · Editorial Layout · Art Direction",
     deliverables:
@@ -29,7 +29,7 @@ window.PROJECTS = [
     tone: "project-hooga",
     title: "Hooga",
     category: "Editorial Design · Brand Application · Retail Communication",
-    year: "2024",
+    year: "2025-2026",
     headline: "Brand Identity & Guidelines.",
     role: "Developed Catalogue Design · Editorial Layout · Brand Application",
     deliverables:
@@ -50,7 +50,7 @@ window.PROJECTS = [
     tone: "project-dunlopillo",
     title: "Dunlopillo",
     category: "Campaign Design · Brand Application · Retail Communication",
-    year: "2023",
+    year: "2025-2026",
     headline: "Brand Identity & Guidelines.",
     role: "Developed Campaign Visuals · Retail Graphics · Brand Application",
     deliverables:
@@ -74,7 +74,7 @@ window.PROJECTS = [
     tone: "project-metal",
     title: "Metal-Lite",
     category: "Campaign Design · Brand Application · Retail Communication",
-    year: "2025",
+    year: "2025-2026",
     headline: "Brand Identity & Guidelines.",
     role: "Developed Campaign Visuals · Retail Graphics · Brand Application",
     deliverables:

@@ -2,6 +2,36 @@
   const root = document.documentElement;
   const body = document.body;
 
+  // Header: measure real height into --header-h so sections can offset
+  // themselves correctly, then track scroll position so the fixed nav's
+  // blur-gradient backdrop can deepen once content starts passing under it.
+  const siteHeader = document.querySelector(".site-header");
+  if (siteHeader) {
+    const setHeaderHeight = () => {
+      root.style.setProperty("--header-h", `${siteHeader.offsetHeight}px`);
+    };
+    setHeaderHeight();
+    window.addEventListener("resize", setHeaderHeight);
+
+    const SCROLL_THRESHOLD = 20;
+    let scrollTicking = false;
+    const updateScrollState = () => {
+      body.classList.toggle("is-scrolled", window.scrollY > SCROLL_THRESHOLD);
+      scrollTicking = false;
+    };
+    updateScrollState();
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!scrollTicking) {
+          window.requestAnimationFrame(updateScrollState);
+          scrollTicking = true;
+        }
+      },
+      { passive: true }
+    );
+  }
+
   // Header: theme toggle
   const themeToggle = document.querySelector(".theme-toggle");
   if (themeToggle) {

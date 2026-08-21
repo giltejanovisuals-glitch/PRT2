@@ -25,6 +25,7 @@
   --danger: #b3452f;
   --danger-rgb: 179, 69, 47;
   --page-padding: clamp(1.25rem, 3vw, 3.5rem);
+  --header-h: 88px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --font-headline: "TT Modernist", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
@@ -128,6 +129,57 @@ button {
 
 /* Header */
 
+/* Fixed gradient-blur layer that sits behind the header controls, painted
+   as a separate element (not nested in .site-header) so its lower z-index
+   is compared at the body level — this keeps it reliably behind the
+   header's own stacking context, including the fullscreen mobile menu,
+   without needing extra JS to hide it. The mask fades both the tint and
+   the blur together: solid near the top, gone by the bottom, so page
+   content never hard-cuts against the nav. */
+.nav-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 49;
+  width: 100%;
+  height: calc(clamp(110px, 16vh, 140px) + env(safe-area-inset-top, 0px));
+  background: transparent;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0.55) 55%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0.55) 55%,
+    transparent 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  pointer-events: none;
+  /* Defaults to fully in — pages without a hero (the case-study pages)
+     want the backdrop present from the first frame. Only the landing
+     page's hero scroll-ties this via --nav-fade, so the header starts
+     invisible over the hero art and eases in as it's scrolled past. */
+  opacity: var(--nav-fade, 1);
+}
+
+/* No backdrop-filter support: fall back to a tinted solid so nav content
+   still has enough contrast against scrolling page content — the plain
+   transparent blur above has nothing to fall back on without it. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nav-backdrop {
+    background: rgba(var(--background-rgb), 0.97);
+  }
+}
+
+body.is-scrolled .nav-backdrop {
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
 .site-header {
   position: fixed;
   z-index: 50;
@@ -138,6 +190,7 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem var(--page-padding);
+  padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
   pointer-events: none;
 }
 
@@ -163,16 +216,10 @@ button {
 }
 
 .brand-mark {
-  display: grid;
-  width: 1.9rem;
+  display: block;
   height: 1.9rem;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--accent);
-  color: var(--background);
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  font-weight: 500;
+  width: auto;
+  object-fit: contain;
 }
 
 .floating-nav {
@@ -616,7 +663,9 @@ button {
   display: flex;
   flex-direction: column;
   min-height: 100svh;
-  padding: clamp(6rem, 10vh, 7.5rem) var(--page-padding) clamp(2rem, 4vh, 3rem);
+  padding: var(--page-padding);
+  padding-top: calc(var(--header-h) + clamp(1.5rem, 3vh, 2.25rem));
+  padding-bottom: clamp(2rem, 4vh, 3rem);
 }
 
 .work-intro {
@@ -2453,7 +2502,11 @@ button {
 
 @media (max-width: 760px) {
   .site-header {
-    padding-top: 1.25rem;
+    padding-top: calc(1.25rem + env(safe-area-inset-top, 0px));
+  }
+
+  .nav-backdrop {
+    height: calc(clamp(80px, 14vh, 110px) + env(safe-area-inset-top, 0px));
   }
 
   .floating-nav {
@@ -2681,7 +2734,9 @@ button {
   .work {
     display: block;
     min-height: 0;
-    padding: clamp(4rem, 9vh, 5.5rem) var(--page-padding) clamp(3rem, 8vh, 4.5rem);
+    padding: var(--page-padding);
+    padding-top: calc(var(--header-h) + clamp(1rem, 2.5vh, 1.5rem));
+    padding-bottom: clamp(3rem, 8vh, 4.5rem);
   }
 
   .work-intro {

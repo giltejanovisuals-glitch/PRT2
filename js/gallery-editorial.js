@@ -62,77 +62,99 @@
     });
   }
 
-  // --- Category chrome: eyebrow, counter, prev/next nav ---
-  // Sourced from the same window.GALLERY_CATEGORIES used by the shared
-  // grid-template pages, so this page can never drift out of sync with the
-  // rest of the Project Gallery's numbering or titles.
+  // --- Category resolution ---
+  // Every Project Gallery page (this wall interface included) resolves its
+  // own category the same way: from its filename, with ?category= as an
+  // explicit override. This is what lets any pages/<id>.html file use this
+  // exact script and render its own content — no per-page wiring.
   const categories = window.GALLERY_CATEGORIES || [];
-  const categoryIndex = categories.findIndex((c) => c.id === "editorial-layout");
-  const category = categoryIndex >= 0 ? categories[categoryIndex] : null;
+  if (!categories.length) return;
 
-  if (category) {
-    const total = categories.length;
-    const categoryNumber = category.number || String(categoryIndex + 1).padStart(2, "0");
+  const params = new URLSearchParams(window.location.search);
+  const filenameId = window.location.pathname
+    .split("/")
+    .pop()
+    .replace(/\.html$/, "");
+  const requestedId = params.get("category") || filenameId;
+  let categoryIndex = categories.findIndex((c) => c.id === requestedId);
+  if (categoryIndex < 0) categoryIndex = 0;
+  const category = categories[categoryIndex];
 
-    const eyebrowEl = document.getElementById("category-eyebrow");
-    if (eyebrowEl) eyebrowEl.textContent = `Category ${categoryNumber} — Project Gallery`;
+  const projectMain = document.querySelector(".project");
+  if (projectMain) projectMain.setAttribute("data-category", category.id);
 
-    const counterEl = document.getElementById("project-counter");
-    if (counterEl) counterEl.textContent = `${categoryNumber} / ${String(total).padStart(2, "0")}`;
+  const setText = (id, text) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  };
 
-    const nextCategory = categories[(categoryIndex + 1) % total];
-    const prevCategory = categories[(categoryIndex - 1 + total) % total];
+  const total = categories.length;
+  const categoryNumber = category.number || String(categoryIndex + 1).padStart(2, "0");
 
-    const setCategoryNavLink = (id, target, label) => {
-      const el = document.getElementById(id);
-      if (!el || !target) return;
-      el.href = `${target.id}.html`;
-      el.setAttribute("aria-label", `${label} ${target.title}`);
-    };
+  document.title = `${category.title} | Gil Tejano Culas`;
+  setText("category-eyebrow", `Category ${categoryNumber} — Project Gallery`);
+  setText("category-title", category.title);
+  setText("category-intro", category.intro);
+  setText("category-closing-label", category.title);
+  setText("category-closing-text", category.lede);
 
-    setCategoryNavLink("brand-nav-prev", prevCategory, "Previous category:");
-    setCategoryNavLink("brand-nav-next", nextCategory, "Next category:");
-  }
+  const counterEl = document.getElementById("project-counter");
+  if (counterEl) counterEl.textContent = `${categoryNumber} / ${String(total).padStart(2, "0")}`;
+
+  const nextCategory = categories[(categoryIndex + 1) % total];
+  const prevCategory = categories[(categoryIndex - 1 + total) % total];
+
+  const setCategoryNavLink = (id, target, label) => {
+    const el = document.getElementById(id);
+    if (!el || !target) return;
+    el.href = `${target.id}.html`;
+    el.setAttribute("aria-label", `${label} ${target.title}`);
+  };
+
+  setCategoryNavLink("brand-nav-prev", prevCategory, "Previous category:");
+  setCategoryNavLink("brand-nav-next", nextCategory, "Next category:");
 
   // --- Gallery data: build-generated manifest + optional hand-authored meta ---
-  const PLACEHOLDER_KINDS = [
-    { ratio: 1.5, type: "Landscape Spread" },
-    { ratio: 0.8, type: "Portrait Page" },
-    { ratio: 1, type: "Square Panel" },
-    { ratio: 2.3, type: "Catalogue Spread" },
-    { ratio: 0.62, type: "Vertical Page" },
-  ];
-  const PLACEHOLDER_TITLES = [
-    "Product Catalogue",
-    "Lookbook",
-    "Brand Book",
-    "Product Guide",
-    "Magazine Layout",
-    "Editorial Report",
-    "Brochure System",
-    "Portfolio Page",
-  ];
+  // Both are keyed by category id so every category folder
+  // (assets/images/gallery/<id>/) gets its own manifest/meta slice without
+  // needing its own copy of this script.
+  const PLACEHOLDER_TARGET_COUNT = 21;
 
-  const buildPlaceholderEntries = (count) =>
-    Array.from({ length: count }, (_, i) => {
-      const kind = PLACEHOLDER_KINDS[i % PLACEHOLDER_KINDS.length];
-      const title = PLACEHOLDER_TITLES[i % PLACEHOLDER_TITLES.length];
-      return {
-        ratio: kind.ratio,
-        src: null,
-        title,
-        project: "Client Name",
-        type: kind.type,
-        alt: `${title} placeholder`,
-        isPlaceholder: true,
-      };
+  const flattenCategoryEntries = (cat) => {
+    const source = (cat && cat.entries) || [];
+    const out = [];
+    source.forEach((entry) => {
+      const ratio = entry.layout === "portrait" ? 0.72 : entry.layout === "pair" ? 1.3 : 1.55;
+      const tileCount = entry.layout === "pair" ? 2 : 1;
+      for (let i = 0; i < tileCount; i += 1) {
+        const title = entry.type || cat.title;
+        out.push({
+          ratio,
+          src: null,
+          title,
+          project: entry.brand || "",
+          type: entry.type || "",
+          alt: `${title} placeholder`,
+          isPlaceholder: true,
+        });
+      }
     });
+    return out;
+  };
+
+  const buildPlaceholderEntries = (cat, count) => {
+    const base = flattenCategoryEntries(cat);
+    if (!base.length) return [];
+    return Array.from({ length: count }, (_, i) => base[i % base.length]);
+  };
 
   const buildEntries = () => {
-    const manifest = window.GALLERY_EDITORIAL_MANIFEST || [];
-    const meta = window.GALLERY_EDITORIAL_META || {};
+    const manifests = window.GALLERY_EDITORIAL_MANIFEST || {};
+    const metas = window.GALLERY_EDITORIAL_META || {};
+    const manifest = manifests[category.id] || [];
+    const meta = metas[category.id] || {};
 
-    if (!manifest.length) return buildPlaceholderEntries(21);
+    if (!manifest.length) return buildPlaceholderEntries(category, PLACEHOLDER_TARGET_COUNT);
 
     return manifest.map((item) => {
       const info = meta[item.file] || {};
@@ -141,7 +163,7 @@
         ratio: item.ratio || item.width / item.height || 1.4,
         width: item.width,
         height: item.height,
-        src: `../assets/images/gallery/editorial-layout/${item.file}`,
+        src: `../assets/images/gallery/${category.id}/${item.file}`,
         title,
         project: info.project || "",
         type: info.type || "",
@@ -179,7 +201,7 @@
       tile.dataset.flatIndex = String(entry.flatIndex);
 
       if (entry.isPlaceholder) {
-        tile.classList.add("showcase-tone-editorial");
+        tile.classList.add("editorial-tile-placeholder", category.tone);
       } else if (entry.src) {
         const img = document.createElement("img");
         img.className = "editorial-tile-img";
@@ -438,7 +460,7 @@
         const slide = document.createElement("div");
         slide.className = "gallery-image";
         if (entry.isPlaceholder) {
-          slide.classList.add("showcase-tone-editorial");
+          slide.classList.add(category.tone);
         } else if (entry.src) {
           const img = document.createElement("img");
           img.src = entry.src;
