@@ -39,6 +39,7 @@
 
   // --- Header: mobile nav (same behavior as every other sub-page) ---
   const menuToggle = document.querySelector(".menu-toggle");
+  const menuClose = document.querySelector(".mobile-nav-close");
   const nav = document.getElementById("primary-nav");
   if (menuToggle && nav) {
     const closeMenu = () => {
@@ -52,6 +53,8 @@
       menuToggle.setAttribute("aria-expanded", String(isOpen));
       body.classList.toggle("menu-open", isOpen);
     });
+
+    menuClose?.addEventListener("click", closeMenu);
 
     nav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", closeMenu);
