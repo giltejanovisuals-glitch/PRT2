@@ -607,6 +607,92 @@
     });
   }
 
+  // 2b. Dock magnification — a macOS-dock-style continuous scale/lift
+  // driven by cursor distance to each icon, isolated per category row so
+  // hovering Design never touches Motion & Video. Pointer Events let a
+  // single check (event.pointerType) skip the effect on touch, where
+  // there's no reliable hover to drive it from.
+  document.querySelectorAll(".dock-row").forEach((row) => {
+    const tools = Array.from(row.querySelectorAll(".dock-tool"));
+    const badges = tools.map((tool) => tool.querySelector(".dock-tool-badge"));
+    if (!tools.length) return;
+
+    const PEAK_SCALE = 0.45; // 1 + PEAK_SCALE = ~1.45 at the cursor's nearest icon
+    const PEAK_LIFT = 8; // px raise at the nearest icon
+    let sigma = 70;
+    let rafId = null;
+    let pendingX = null;
+
+    const measureSigma = () => {
+      if (tools.length < 2) return;
+      const centers = tools.map((tool) => {
+        const rect = tool.getBoundingClientRect();
+        return rect.left + rect.width / 2;
+      });
+      let total = 0;
+      for (let i = 1; i < centers.length; i++) {
+        total += centers[i] - centers[i - 1];
+      }
+      const avgPitch = total / (centers.length - 1);
+      if (avgPitch > 0) sigma = avgPitch * 0.9;
+    };
+
+    const applyMagnification = (clientX) => {
+      tools.forEach((tool, i) => {
+        const rect = tool.getBoundingClientRect();
+        const center = rect.left + rect.width / 2;
+        const dist = clientX - center;
+        const t = Math.exp(-(dist * dist) / (2 * sigma * sigma));
+        badges[i].style.setProperty("--dock-scale", (1 + PEAK_SCALE * t).toFixed(3));
+        badges[i].style.setProperty("--dock-lift", `${(-PEAK_LIFT * t).toFixed(2)}px`);
+      });
+    };
+
+    const resetMagnification = () => {
+      badges.forEach((badge) => {
+        badge.style.removeProperty("--dock-scale");
+        badge.style.removeProperty("--dock-lift");
+      });
+    };
+
+    measureSigma();
+    window.addEventListener("resize", measureSigma);
+
+    row.addEventListener("pointermove", (event) => {
+      if (event.pointerType === "touch") return;
+      pendingX = event.clientX;
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        if (pendingX !== null) applyMagnification(pendingX);
+      });
+    });
+
+    row.addEventListener("pointerleave", (event) => {
+      if (event.pointerType === "touch") return;
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      resetMagnification();
+    });
+
+    // Keyboard focus mirrors the hovered-icon peak state — only the
+    // focused icon enlarges, since there's no cursor position to spread
+    // magnification to its neighbors from.
+    tools.forEach((tool, i) => {
+      tool.addEventListener("focus", () => {
+        resetMagnification();
+        badges[i].style.setProperty("--dock-scale", (1 + PEAK_SCALE).toFixed(3));
+        badges[i].style.setProperty("--dock-lift", `${-PEAK_LIFT}px`);
+      });
+      tool.addEventListener("blur", () => {
+        badges[i].style.removeProperty("--dock-scale");
+        badges[i].style.removeProperty("--dock-lift");
+      });
+    });
+  });
+
   // 3. Creative Timeline — reveal the line and stagger the entries in once
   const tlTrack = document.getElementById("tl-track");
 

@@ -1557,10 +1557,15 @@ body.is-scrolled .nav-backdrop {
 .dock-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  column-gap: 24px;
+  row-gap: 28px;
+  /* Headroom for the peak-magnified icon (scale 1.45 + -8px lift) and
+     its hover label so neither clips the group label or the row above. */
+  padding-top: 2.5rem;
 }
 
 .dock-tool {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1571,46 +1576,94 @@ body.is-scrolled .nav-backdrop {
   cursor: pointer;
 }
 
+/* Invisible 56x56 hit/alignment slot — every logo centers inside it
+   regardless of its native proportions or current magnification, so
+   spacing never shifts as an icon scales up on hover/focus. */
 .dock-tool-badge {
+  position: relative;
   display: grid;
-  width: 3.1rem;
-  height: 3.1rem;
+  width: 56px;
+  height: 56px;
   place-items: center;
-  border-radius: 0.7rem;
-  background: linear-gradient(155deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 45%),
-    var(--tool-bg);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  color: var(--tool-fg);
-  font-family: var(--font-body);
-  font-size: 0.92rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  filter: grayscale(0.55) opacity(0.65);
-  transition: filter 250ms ease, transform 250ms var(--ease);
 }
 
+.dock-tool-badge img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  opacity: 0.75;
+  transform: translateY(var(--dock-lift, 0px)) scale(var(--dock-scale, 1));
+  transition: opacity 220ms ease,
+    transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Narrow or circular marks read visually smaller than a square icon at
+   the same box size, so they get a slight size bump to balance out. */
+.dock-tool[data-name="Canva"] .dock-tool-badge img,
+.dock-tool[data-name="Figma"] .dock-tool-badge img,
+.dock-tool[data-name="Gemini"] .dock-tool-badge img,
+.dock-tool[data-name="ChatGPT"] .dock-tool-badge img {
+  width: 36px;
+  height: 36px;
+}
+
+/* Pinned/selected tool rests slightly enlarged — on touch this is the
+   only magnification available, since there's no cursor to drive the
+   distance-based effect below. */
+.dock-tool.is-active .dock-tool-badge {
+  --dock-scale: 1.12;
+}
+
+.dock-tool.is-active .dock-tool-badge img {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .dock-tool:hover .dock-tool-badge img {
+    opacity: 1;
+  }
+}
+
+.dock-tool:focus-visible .dock-tool-badge img {
+  opacity: 1;
+}
+
+/* Small teal dot marks the pinned/selected tool. */
+.dock-tool.is-active .dock-tool-badge::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+
+/* Name tooltip: hidden text that floats above the icon on hover/focus.
+   The max-width: 760px override repositions it below the icon and
+   leaves it permanently visible, since touch has no reliable hover. */
 .dock-tool-name {
-  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  margin: 0;
   color: var(--muted);
   font-size: 0.68rem;
   line-height: 1.3;
   text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 4px);
+  transition: opacity 200ms ease, transform 200ms ease;
 }
 
-@media (hover: hover) {
-  .dock-tool:hover .dock-tool-badge {
-    filter: grayscale(0) opacity(1);
-    transform: translateY(-3px);
-  }
-}
-
-.dock-tool:focus-visible .dock-tool-badge {
-  filter: grayscale(0) opacity(1);
-  transform: translateY(-3px);
-}
-
-.dock-tool.is-active .dock-tool-badge {
-  filter: grayscale(0) opacity(1);
+.dock-tool:hover .dock-tool-name,
+.dock-tool:focus-visible .dock-tool-name {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 /* Fixed-size info panel: only its content fades between tools, so the
@@ -2863,12 +2916,19 @@ body.is-scrolled .nav-backdrop {
 
   .dock-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem 0.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem 0.5rem;
+    padding-top: 0;
   }
 
+  /* No hover on touch — the name stays permanently visible in-flow
+     below the icon instead of floating above it on demand. */
   .dock-tool-name {
     display: block;
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
   }
 
   .dock-info {
@@ -3019,6 +3079,10 @@ body.is-scrolled .nav-backdrop {
 
   .hero-cta {
     padding: 0.75rem 1.5rem;
+  }
+
+  .dock-row {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
