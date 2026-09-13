@@ -421,43 +421,98 @@ body.is-scrolled .nav-backdrop {
   display: flex;
   min-height: 100svh;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
   isolation: isolate;
 }
 
-.hero-carousel {
+.hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
+  background: #6d6b64;
 }
 
-.carousel-slide {
+/* Marks the fill as a stand-in in the running page without disturbing the
+   composition — remove once assets/images/home/hero-background.* is real. */
+.hero-bg::after {
   position: absolute;
-  inset: 0;
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 900ms var(--ease), visibility 900ms;
+  right: 1rem;
+  bottom: 1rem;
+  max-width: 14rem;
+  content: "Background photo placeholder — assets/images/home/hero-background.jpg";
+  color: rgba(255, 255, 255, 0.45);
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  text-align: right;
 }
 
-.carousel-slide.is-active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.carousel-slide::after {
+/* Card-like panel the portrait photo will overlap — mirrors the reference
+   layout's white panel housing the nav/photo on the right. */
+.hero-panel {
   position: absolute;
-  inset: 0;
-  content: "";
+  top: var(--page-padding);
+  right: var(--page-padding);
+  bottom: var(--page-padding);
+  left: 52%;
+  z-index: 1;
+  border-radius: 1.75rem;
+  background: #fdfdfb;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.18);
+}
+
+/* Swap in assets/images/home/hero-portrait.png (transparent background) —
+   sized/positioned to straddle the hero-bg/hero-panel seam like the
+   reference composition. */
+.hero-portrait {
+  position: absolute;
+  top: 7%;
+  bottom: 0;
+  left: 33%;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 35%;
+  padding-bottom: 2rem;
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  border-radius: 1.25rem 1.25rem 0 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.15) 0%,
-    rgba(0, 0, 0, 0.35) 100%
+    rgba(21, 21, 21, 0.28),
+    rgba(21, 21, 21, 0.55)
   );
   pointer-events: none;
 }
 
+.hero-portrait-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.project-dunlopillo {
+  background: linear-gradient(150deg, #33424a, #5f7a86);
+}
+
+.project-metal {
+  background: linear-gradient(150deg, #3a3a3a, #6b6b6b);
+}
+
+.project-porta {
+  background: linear-gradient(150deg, #5c4632, #8a6b4a);
+}
+
+.project-hooga {
+  background: linear-gradient(150deg, #3f5347, #6d8874);
+}
+
+/* Used by the Selected Work feature slides (.work-feature-slide) — each
+   tone class above pairs with these two positioned circles. */
 .visual-object {
   position: absolute;
   border-radius: 50%;
@@ -479,20 +534,12 @@ body.is-scrolled .nav-backdrop {
   opacity: 0.55;
 }
 
-.project-dunlopillo {
-  background: linear-gradient(150deg, #33424a, #5f7a86);
-}
-
 .project-dunlopillo .visual-object-main {
   background: radial-gradient(circle at 30% 30%, #9fc0cb, transparent 70%);
 }
 
 .project-dunlopillo .visual-object-secondary {
   background: radial-gradient(circle at 60% 60%, #e6f1f4, transparent 70%);
-}
-
-.project-metal {
-  background: linear-gradient(150deg, #3a3a3a, #6b6b6b);
 }
 
 .project-metal .visual-object-main {
@@ -503,20 +550,12 @@ body.is-scrolled .nav-backdrop {
   background: radial-gradient(circle at 60% 60%, #e8e8e8, transparent 70%);
 }
 
-.project-porta {
-  background: linear-gradient(150deg, #5c4632, #8a6b4a);
-}
-
 .project-porta .visual-object-main {
   background: radial-gradient(circle at 30% 30%, #c9a879, transparent 70%);
 }
 
 .project-porta .visual-object-secondary {
   background: radial-gradient(circle at 60% 60%, #f0ddc0, transparent 70%);
-}
-
-.project-hooga {
-  background: linear-gradient(150deg, #3f5347, #6d8874);
 }
 
 .project-hooga .visual-object-main {
@@ -527,78 +566,38 @@ body.is-scrolled .nav-backdrop {
   background: radial-gradient(circle at 60% 60%, #e4efe8, transparent 70%);
 }
 
-/* Click zones */
-
-.carousel-zone {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  width: 50%;
-  border: 0;
-  background: transparent;
-}
-
-.carousel-zone-prev {
-  left: 0;
-  cursor: var(--cue-prev), w-resize;
-}
-
-.carousel-zone-next {
-  right: 0;
-  cursor: var(--cue-next), e-resize;
-}
-
-.carousel-zone-prev:hover,
-.carousel-zone-prev:focus-visible {
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.06), transparent 60%);
-}
-
-.carousel-zone-next:hover,
-.carousel-zone-next:focus-visible {
-  background: linear-gradient(270deg, rgba(0, 0, 0, 0.06), transparent 60%);
-}
-
 /* Hero content */
 
 .hero-content {
   position: relative;
   z-index: 3;
   display: flex;
-  max-width: 40rem;
+  width: min(28rem, 44%);
   flex-direction: column;
-  align-items: center;
-  padding: 0 1.5rem;
-  pointer-events: none;
-  text-align: center;
+  align-items: flex-start;
+  padding-left: var(--page-padding);
+  text-align: left;
 }
 
 #hero-title {
   margin: 0;
   color: #fff;
   font-family: var(--font-headline);
-  font-size: clamp(2.75rem, 8vw, 5.5rem);
+  font-size: clamp(3rem, 7.5vw, 7rem);
   font-weight: 400;
   letter-spacing: -0.01em;
-  line-height: 1;
+  line-height: 0.95;
+  text-transform: uppercase;
   text-wrap: balance;
 }
 
-.hero-divider {
-  width: 2.75rem;
-  height: 1px;
-  margin: 1.5rem 0;
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.hero-subheader {
-  margin: 0 0 2rem;
-  color: rgba(255, 255, 255, 0.82);
+.hero-lede {
+  margin: 1.5rem 0 2.25rem;
+  max-width: 24rem;
+  color: rgba(255, 255, 255, 0.8);
   font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .hero-cta {
@@ -611,7 +610,6 @@ body.is-scrolled .nav-backdrop {
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.16em;
-  pointer-events: auto;
   text-transform: uppercase;
   transition: background-color 250ms ease, color 250ms ease,
     border-color 250ms ease;
@@ -622,39 +620,6 @@ body.is-scrolled .nav-backdrop {
   background: #fff;
   border-color: #fff;
   color: var(--text);
-}
-
-/* Pagination dots */
-
-.carousel-dots {
-  position: absolute;
-  bottom: clamp(1.5rem, 4vh, 3rem);
-  left: 50%;
-  z-index: 3;
-  display: flex;
-  gap: 0.6rem;
-  transform: translateX(-50%);
-}
-
-.dot {
-  width: 0.4rem;
-  height: 0.4rem;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  transition: background-color 250ms ease, transform 250ms var(--ease);
-}
-
-.dot:hover,
-.dot:focus-visible {
-  background: rgba(255, 255, 255, 0.7);
-}
-
-.dot.is-active {
-  background: #fff;
-  transform: scale(1.3);
 }
 
 /* Selected work */
@@ -1280,25 +1245,9 @@ body.is-scrolled .nav-backdrop {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: grayscale(0.5) contrast(1.03);
+  filter: contrast(1.03);
   transform: scale(1);
   transition: transform 600ms var(--ease), filter 400ms ease;
-}
-
-/* Shown behind the <img> whenever assets/images/about/portrait.* hasn't
-   been dropped in yet (see README.md) — the img's onerror hides itself
-   and lets this monogram placeholder read through instead. */
-.about-portrait-mark {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: var(--muted);
-  font-family: var(--font-headline);
-  font-size: clamp(3rem, 7vw, 4.5rem);
-  letter-spacing: 0.02em;
-  opacity: 0.4;
-  pointer-events: none;
 }
 
 .about-portrait::after {
@@ -1328,7 +1277,7 @@ body.is-scrolled .nav-backdrop {
 @media (hover: hover) {
   .about-media:hover .about-portrait-img {
     transform: scale(1.035);
-    filter: grayscale(0.35) contrast(1.05);
+    filter: contrast(1.05);
   }
 
   .about-media:hover .about-portrait::after {
@@ -2535,6 +2484,57 @@ body.is-scrolled .nav-backdrop {
 /* Profile block — tablet: narrower fixed title column, everything else
    (capability/brand scroll tracks) already behaves as swipeable content. */
 @media (max-width: 900px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: auto;
+    gap: 2rem;
+    padding: calc(var(--header-h) + 2.5rem) var(--page-padding) 3rem;
+  }
+
+  .hero-bg::after {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    max-width: 10rem;
+  }
+
+  .hero-panel {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    order: 3;
+    width: 100%;
+    height: 46vh;
+    min-height: 260px;
+  }
+
+  .hero-portrait {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    order: 2;
+    width: min(70%, 18rem);
+    height: 40vh;
+    min-height: 220px;
+    margin: 0 auto -3rem;
+  }
+
+  .hero-content {
+    order: 1;
+    width: 100%;
+    align-items: center;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .hero-lede {
+    max-width: 26rem;
+  }
+
   .profile-block {
     grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
     gap: clamp(1.5rem, 3vw, 2.5rem);
@@ -2778,10 +2778,6 @@ body.is-scrolled .nav-backdrop {
 
   #hero-title {
     font-size: clamp(2.25rem, 12vw, 3.25rem);
-  }
-
-  .hero-subheader {
-    letter-spacing: 0.14em;
   }
 
   .work {

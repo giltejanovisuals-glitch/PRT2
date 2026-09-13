@@ -9,8 +9,8 @@ image manifest (see below), which Vercel runs automatically via
 
 ```
 PRT2/
-├── index.html                 Homepage — hero carousel, selected work,
-│                               and the Project Gallery showcase section
+├── index.html                 Homepage — hero, selected work, and the
+│                               Project Gallery showcase section
 ├── pages/
 │   ├── porta-mobili.html      Brand case study pages. All four share one
 │   ├── hooga.html             template; each resolves its own content
@@ -32,7 +32,7 @@ PRT2/
 ├── assets/
 │   ├── images/
 │   │   ├── about/               About Me portrait (see below)
-│   │   ├── home/               Homepage carousel / work-panel images
+│   │   ├── home/               Hero background photo + portrait PNG (see below)
 │   │   ├── gallery/
 │   │   │   ├── editorial-layout/                Source images for each
 │   │   │   ├── social-media-campaigns/           Project Gallery category
@@ -197,6 +197,25 @@ Row count (3 desktop / 2 mobile), scroll speed (35–50s per loop, tuned per
 row in `ROW_DURATIONS_MS`), pause-on-hover/focus/drag/lightbox, and
 `prefers-reduced-motion` handling all live in that same file if they need
 tuning — shared by all five categories.
+
+### Dropping in the hero images
+
+The homepage hero (`index.html`, `.hero`) is a two-panel layout: a
+full-bleed background photo on the left with a white card panel inset on
+the right, and a portrait photo overlapping the seam between them. Both
+are currently flat placeholder boxes — replace them like this:
+
+- **Background photo** — `.hero-bg` in `css/style.css`. Swap its
+  `background: #6d6b64;` for `background: url("../assets/images/home/hero-background.jpg") center/cover;`
+  and delete the `.hero-bg::after` rule (the "Background photo
+  placeholder" corner label).
+- **Portrait photo** — `.hero-portrait` in `css/style.css`, and the
+  placeholder `<div class="hero-portrait">…</div>` in `index.html`. Drop
+  a transparent-background PNG at `assets/images/home/hero-portrait.png`,
+  replace the placeholder `<div>`'s contents with an `<img>` pointing at
+  it, and remove the dashed border / gradient fill / "Portrait PNG" label
+  from `.hero-portrait`. Keep it a tall crop — the box is positioned to
+  straddle the background/panel seam like the reference composition.
 
 ### Dropping in the About Me portrait
 

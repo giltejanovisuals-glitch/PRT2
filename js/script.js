@@ -144,62 +144,6 @@
     }
   }
 
-  const dots = Array.from(document.querySelectorAll(".dot"));
-  const slides = Array.from(document.querySelectorAll(".carousel-slide"));
-  const prevZone = document.querySelector(".carousel-zone-prev");
-  const nextZone = document.querySelector(".carousel-zone-next");
-  const AUTOPLAY_DELAY = 6000;
-  let activeIndex = slides.findIndex((slide) => slide.classList.contains("is-active"));
-  if (activeIndex < 0) activeIndex = 0;
-  let autoplayTimer = null;
-
-  const goToSlide = (index) => {
-    if (index === activeIndex || !slides[index]) return;
-
-    slides[activeIndex].classList.remove("is-active");
-    slides[activeIndex].setAttribute("aria-hidden", "true");
-    dots[activeIndex]?.classList.remove("is-active");
-    dots[activeIndex]?.setAttribute("aria-selected", "false");
-
-    activeIndex = index;
-
-    slides[activeIndex].classList.add("is-active");
-    slides[activeIndex].setAttribute("aria-hidden", "false");
-    dots[activeIndex]?.classList.add("is-active");
-    dots[activeIndex]?.setAttribute("aria-selected", "true");
-  };
-
-  const restartAutoplay = () => {
-    if (autoplayTimer) clearInterval(autoplayTimer);
-    if (slides.length < 2) return;
-    autoplayTimer = setInterval(() => {
-      goToSlide((activeIndex + 1) % slides.length);
-    }, AUTOPLAY_DELAY);
-  };
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      goToSlide(index);
-      restartAutoplay();
-    });
-  });
-
-  if (prevZone) {
-    prevZone.addEventListener("click", () => {
-      goToSlide((activeIndex - 1 + slides.length) % slides.length);
-      restartAutoplay();
-    });
-  }
-
-  if (nextZone) {
-    nextZone.addEventListener("click", () => {
-      goToSlide((activeIndex + 1) % slides.length);
-      restartAutoplay();
-    });
-  }
-
-  restartAutoplay();
-
   const workThumbs = Array.from(document.querySelectorAll(".work-thumb"));
   const workSlides = Array.from(document.querySelectorAll(".work-feature-slide"));
   const workZonePrev = document.querySelector(".work-zone-prev");

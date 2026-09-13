@@ -125,44 +125,24 @@
       </div>
     </header>
 
-    <main class="hero" id="main-content" aria-label="Featured project preview">
-      <div class="hero-carousel">
-        <article class="carousel-slide project-dunlopillo is-active" data-project="0" aria-hidden="false">
-          <div class="visual-object visual-object-main"></div>
-          <div class="visual-object visual-object-secondary"></div>
-        </article>
+    <main class="hero" id="main-content" aria-label="Introduction">
+      <div class="hero-bg" aria-hidden="true"></div>
 
-        <article class="carousel-slide project-metal" data-project="1" aria-hidden="true">
-          <div class="visual-object visual-object-main"></div>
-          <div class="visual-object visual-object-secondary"></div>
-        </article>
+      <div class="hero-panel" aria-hidden="true"></div>
 
-        <article class="carousel-slide project-porta" data-project="2" aria-hidden="true">
-          <div class="visual-object visual-object-main"></div>
-          <div class="visual-object visual-object-secondary"></div>
-        </article>
-
-        <article class="carousel-slide project-hooga" data-project="3" aria-hidden="true">
-          <div class="visual-object visual-object-main"></div>
-          <div class="visual-object visual-object-secondary"></div>
-        </article>
+      <!-- Swap in assets/images/home/hero-portrait.png (transparent background,
+           tall crop) to replace this placeholder -->
+      <div class="hero-portrait" aria-hidden="true">
+        <span class="hero-portrait-label">Portrait PNG</span>
       </div>
-
-      <button class="carousel-zone carousel-zone-prev" type="button" aria-label="Show previous project"></button>
-      <button class="carousel-zone carousel-zone-next" type="button" aria-label="Show next project"></button>
 
       <div class="hero-content">
         <h1 id="hero-title">Creative Work</h1>
-        <span class="hero-divider" aria-hidden="true"></span>
-        <p class="hero-subheader">Designing with commercial purpose</p>
+        <p class="hero-lede">
+          Designing with commercial purpose across branding, packaging, and
+          campaign visuals.
+        </p>
         <a class="hero-cta" href="mailto:giltejano.visuals@gmail.com">Get in touch</a>
-      </div>
-
-      <div class="carousel-dots" role="tablist" aria-label="Featured projects">
-        <button class="dot is-active" type="button" role="tab" aria-selected="true" data-slide="0" aria-label="Show project 1"></button>
-        <button class="dot" type="button" role="tab" aria-selected="false" data-slide="1" aria-label="Show project 2"></button>
-        <button class="dot" type="button" role="tab" aria-selected="false" data-slide="2" aria-label="Show project 3"></button>
-        <button class="dot" type="button" role="tab" aria-selected="false" data-slide="3" aria-label="Show project 4"></button>
       </div>
     </main>
 
@@ -497,18 +477,15 @@
         <div class="about-media">
           <figure class="about-portrait">
             <picture>
-              <source type="image/avif" srcset="assets/images/about/portrait.avif" />
-              <source type="image/webp" srcset="assets/images/about/portrait.webp" />
               <img
                 class="about-portrait-img"
-                src="assets/images/about/portrait.jpg"
+                src="assets/images/about/portrait.webp"
                 alt="Gil Tejano Culas in a creative workspace"
                 loading="lazy"
                 decoding="async"
                 onerror="this.style.display='none'"
               />
             </picture>
-            <span class="about-portrait-mark" aria-hidden="true">GT</span>
             <span class="about-portrait-accent" aria-hidden="true"></span>
           </figure>
         </div>
