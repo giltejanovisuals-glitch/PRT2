@@ -187,7 +187,12 @@
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let reducedMotion = reducedMotionQuery.matches;
 
-    const ROW_DURATIONS_MS = [42000, 38000, 46000];
+    // Keep the wall calm and consistent regardless of how many images (or
+    // how many wide images) a category contains. A fixed loop duration made
+    // longer rows travel much faster because they had more pixels to cover in
+    // the same amount of time.
+    const BASE_SCROLL_SPEED_PX_PER_SECOND = 14;
+    const ROW_SPEED_MULTIPLIERS = [1, 0.9, 1.08];
     let rowStates = [];
     let lightboxOpen = false;
 
@@ -262,7 +267,9 @@
         el: rowEl,
         track: trackEl,
         direction: rowIndex % 2 === 0 ? 1 : -1,
-        durationMs: ROW_DURATIONS_MS[rowIndex % ROW_DURATIONS_MS.length],
+        speedPxPerSecond:
+          BASE_SCROLL_SPEED_PX_PER_SECOND *
+          ROW_SPEED_MULTIPLIERS[rowIndex % ROW_SPEED_MULTIPLIERS.length],
         halfWidth: 0,
         paused: { hover: false, focus: false, drag: false },
       };
@@ -396,7 +403,7 @@
       rowStates.forEach((row) => {
         if (!row.halfWidth || lightboxOpen) return;
         if (row.paused.hover || row.paused.focus || row.paused.drag) return;
-        const distance = (row.halfWidth / row.durationMs) * deltaMs;
+        const distance = row.speedPxPerSecond * (deltaMs / 1000);
         row.el.scrollLeft += row.direction * distance;
         if (row.direction > 0 && row.el.scrollLeft >= row.halfWidth) {
           row.el.scrollLeft -= row.halfWidth;
