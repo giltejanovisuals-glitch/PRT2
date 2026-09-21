@@ -1,0 +1,693 @@
+/* Editorial & Layout Design — dedicated interactive publication reader for
+   pages/editorial-layout.html only. Every other Project Gallery category
+   keeps using the shared moving-wall interface in css/gallery-editorial.css
+   (three image categories) or their own dedicated interfaces (reels),
+   untouched. Colors are drawn from the site's existing tokens in
+   css/style.css (--background/--surface/--text/--muted/--accent/--line),
+   except the reading stage itself, which stays a fixed dark charcoal
+   regardless of site theme — the same "always dark" convention the shared
+   lightbox already uses, so a publication's own light pages always read as
+   the brightest thing on screen. */
+
+.pub-interface {
+  --pub-stage-bg: #141311;
+  --pub-stage-bg-rgb: 20, 19, 17;
+  --pub-page-bg: #efeee9;
+  --pub-gutter: clamp(10px, 1.6vw, 22px);
+  width: 100%;
+  max-width: 92rem;
+  margin: clamp(2rem, 5vh, 3rem) auto 0;
+}
+
+/* --- Publication library: horizontal shelf above the reader --- */
+
+.pub-library {
+  margin-bottom: clamp(1.25rem, 2.5vh, 1.75rem);
+}
+
+.pub-library-label {
+  margin: 0 0 0.6rem;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.pub-library-track {
+  display: flex;
+  gap: clamp(10px, 1.4vw, 16px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.4rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--text-rgb), 0.25) transparent;
+}
+
+.pub-library-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.pub-library-track::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.pub-library-track::-webkit-scrollbar-thumb {
+  background: rgba(var(--text-rgb), 0.22);
+  border-radius: 3px;
+}
+
+.pub-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(112px, 12vw, 148px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.pub-card:disabled {
+  cursor: default;
+}
+
+.pub-card-cover {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: var(--pub-cover-ar, 0.75);
+  background: var(--surface);
+  transition: transform 350ms var(--ease), filter 350ms var(--ease);
+}
+
+.pub-card-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (hover: hover) {
+  .pub-card:not(:disabled):hover .pub-card-cover {
+    transform: translateY(-3px);
+    filter: brightness(1.06);
+  }
+}
+
+.pub-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.pub-card[aria-current="true"] .pub-card-cover {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.pub-card-badge {
+  position: absolute;
+  top: 0.4rem;
+  left: 0.4rem;
+  z-index: 1;
+  display: none;
+  margin: 0;
+  padding: 0.2rem 0.4rem;
+  background: var(--accent);
+  color: var(--background);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pub-card[aria-current="true"] .pub-card-badge {
+  display: block;
+}
+
+.pub-card-caption {
+  margin-top: 0.5rem;
+}
+
+.pub-card-caption-brand {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pub-card-caption-title {
+  margin: 0.15rem 0 0;
+  color: var(--text);
+  font-size: 0.76rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.pub-card-caption-meta {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.62rem;
+  line-height: 1.4;
+}
+
+/* --- Reader shell (fullscreen target: stage + controls + thumbnails) --- */
+
+.pub-reader {
+  display: flex;
+  flex-direction: column;
+  background: var(--pub-stage-bg);
+}
+
+.pub-reader:fullscreen {
+  display: flex;
+  width: 100vw;
+  height: 100dvh;
+  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0)
+    env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+}
+
+.pub-reader:fullscreen .pub-stage {
+  flex: 1;
+  min-height: 0;
+}
+
+.pub-stage {
+  position: relative;
+  height: clamp(420px, 62dvh, 720px);
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.pub-stage:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+}
+
+.pub-pages {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pub-gutter);
+  padding: clamp(1.5rem, 4vh, 3rem) clamp(1.5rem, 5vw, 4rem);
+}
+
+.pub-pages.is-zoomed {
+  cursor: grab;
+}
+
+.pub-pages.is-panning {
+  cursor: grabbing;
+}
+
+.pub-page {
+  position: relative;
+  flex: 0 0 auto;
+  transition: transform 550ms var(--ease), opacity 550ms var(--ease);
+  transform-origin: center;
+  perspective: 1800px;
+}
+
+.pub-page-sheet {
+  position: relative;
+  display: block;
+  background: var(--pub-page-bg);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtle stacked-page depth on the outer edge only (the edge away from the
+   gutter), suggesting the rest of the publication without any texture or
+   mockup framing. */
+.pub-page-left .pub-page-sheet::before,
+.pub-page-right .pub-page-sheet::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  width: 5px;
+  background: linear-gradient(to right, rgba(var(--pub-stage-bg-rgb), 0.35), transparent);
+  pointer-events: none;
+}
+
+.pub-page-left .pub-page-sheet::before {
+  left: -5px;
+  background: linear-gradient(to left, rgba(var(--pub-stage-bg-rgb), 0.35), transparent);
+}
+
+.pub-page-right .pub-page-sheet::before {
+  right: -5px;
+}
+
+.pub-page canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pub-page.is-turning-out {
+  transform: rotateY(-6deg) scale(0.97);
+  opacity: 0;
+}
+
+.pub-page.is-turning-in {
+  transform: rotateY(6deg) scale(0.97);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pub-page {
+    transition: opacity 220ms linear;
+  }
+  .pub-page.is-turning-out,
+  .pub-page.is-turning-in {
+    transform: none;
+  }
+}
+
+.pub-edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 15%;
+  min-width: 40px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.pub-edge-prev {
+  left: 0;
+}
+
+.pub-edge-next {
+  right: 0;
+}
+
+.pub-edge:disabled {
+  cursor: default;
+}
+
+.pub-loading {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.65rem;
+  background: rgba(var(--pub-stage-bg-rgb), 0.6);
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pub-loading.is-active {
+  display: flex;
+}
+
+.pub-loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--accent-rgb), 0.35);
+  border-top-color: var(--accent);
+  animation: pub-spin 800ms linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pub-loading-dot {
+    animation: none;
+  }
+}
+
+@keyframes pub-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pub-empty {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+}
+
+.pub-empty.is-active {
+  display: flex;
+}
+
+/* --- Controls bar --- */
+
+.pub-controls {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.4rem, 1vw, 0.9rem);
+  flex-wrap: wrap;
+  padding: 0.6rem clamp(0.75rem, 2vw, 1.5rem);
+  background: rgba(var(--pub-stage-bg-rgb), 0.92);
+  transition: opacity 400ms var(--ease);
+}
+
+.pub-controls.is-idle {
+  opacity: 0.35;
+}
+
+.pub-reader:focus-within .pub-controls,
+.pub-reader:hover .pub-controls {
+  opacity: 1;
+}
+
+.pub-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0 0.5rem;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+  transition: color 200ms ease, background-color 200ms ease;
+}
+
+.pub-btn:hover:not(:disabled) {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pub-btn:disabled {
+  color: rgba(255, 255, 255, 0.25);
+  cursor: default;
+}
+
+.pub-btn[aria-pressed="true"],
+.pub-btn.is-active {
+  color: var(--accent, #3fac9f);
+}
+
+.pub-page-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+}
+
+.pub-page-input {
+  width: 2.6rem;
+  padding: 0.3rem 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.pub-page-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.pub-viewmode {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pub-viewmode .pub-btn {
+  min-width: unset;
+  padding: 0.3rem 0.55rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pub-viewmode .pub-btn[aria-pressed="true"] {
+  background: rgba(var(--accent-rgb), 0.16);
+}
+
+.pub-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.pub-zoom-pct {
+  min-width: 3.2rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.pub-controls-spacer {
+  flex: 1;
+}
+
+.pub-controls-divider {
+  width: 1px;
+  height: 1.1rem;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* --- Thumbnail filmstrip --- */
+
+.pub-thumbnails {
+  background: rgba(var(--pub-stage-bg-rgb), 0.98);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pub-thumbnails-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.5rem clamp(0.75rem, 2vw, 1.5rem);
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.pub-thumbnails-toggle-icon {
+  transition: transform 250ms var(--ease);
+}
+
+.pub-thumbnails.is-collapsed .pub-thumbnails-toggle-icon {
+  transform: rotate(-90deg);
+}
+
+.pub-thumbnails-track {
+  display: flex;
+  gap: 10px;
+  padding: 0 clamp(0.75rem, 2vw, 1.5rem) 0.85rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
+.pub-thumbnails.is-collapsed .pub-thumbnails-track {
+  display: none;
+}
+
+.pub-thumb {
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: center;
+}
+
+.pub-thumb-sheet {
+  width: 52px;
+  aspect-ratio: var(--pub-thumb-ar, 0.75);
+  background: rgba(255, 255, 255, 0.06);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline-color 200ms ease;
+}
+
+.pub-thumb canvas,
+.pub-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pub-thumb[aria-current="true"] .pub-thumb-sheet {
+  outline-color: var(--accent);
+}
+
+.pub-thumb:focus-visible .pub-thumb-sheet {
+  outline-color: var(--accent);
+}
+
+.pub-thumb-num {
+  display: block;
+  margin-top: 0.3rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+}
+
+.pub-thumb[aria-current="true"] .pub-thumb-num {
+  color: var(--accent);
+}
+
+/* --- Project information panel --- */
+
+.pub-info {
+  margin-top: clamp(2rem, 4vh, 2.75rem);
+  padding-top: clamp(1.5rem, 3vh, 2rem);
+  border-top: 1px solid var(--line);
+}
+
+.pub-info-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+.pub-info-title {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-weight: 400;
+}
+
+.pub-info-subline {
+  margin: 0.3rem 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.pub-info-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+
+.pub-info-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: opacity 200ms ease;
+}
+
+.pub-info-link:hover,
+.pub-info-link:focus-visible {
+  opacity: 0.75;
+}
+
+.pub-info-link[hidden] {
+  display: none;
+}
+
+.pub-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: clamp(1.25rem, 2.5vh, 1.75rem);
+}
+
+.pub-info-block-label {
+  margin: 0 0 0.4rem;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pub-info-block-text {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+/* --- Reduced motion: no lift/rotate anywhere in the reader --- */
+
+@media (prefers-reduced-motion: reduce) {
+  .pub-card-cover {
+    transition: filter 200ms linear;
+  }
+  .pub-card:not(:disabled):hover .pub-card-cover {
+    transform: none;
+  }
+}
+
+/* --- Tablet --- */
+
+@media (max-width: 980px) {
+  .pub-stage {
+    height: clamp(360px, 58dvh, 620px);
+  }
+}
+
+/* --- Mobile: single-page only, compact controls --- */
+
+@media (max-width: 760px) {
+  .pub-viewmode {
+    display: none;
+  }
+
+  .pub-stage {
+    height: clamp(320px, 56dvh, 560px);
+  }
+
+  .pub-pages {
+    padding: 1rem 1rem;
+  }
+
+  .pub-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .pub-info-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -2,8 +2,12 @@
   "name": "gil-tejano-culas-portfolio",
   "private": true,
   "version": "1.0.0",
-  "description": "Static portfolio site. The only build step is regenerating the Editorial & Layout Design gallery's image manifest.",
+  "description": "Static portfolio site. The only build step is regenerating the Project Gallery image, reel-video, and publication manifests.",
   "scripts": {
-    "build": "node scripts/generate-gallery-manifest.js"
+    "build": "node scripts/generate-gallery-manifest.js && node scripts/generate-reel-manifest.js && node scripts/generate-publication-manifest.js"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^1.0.9",
+    "pdfjs-dist": "^6.3.289"
   }
 }

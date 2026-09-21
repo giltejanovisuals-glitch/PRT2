@@ -187,12 +187,21 @@
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let reducedMotion = reducedMotionQuery.matches;
 
+<<<<<<< HEAD
     // Keep the wall calm and consistent regardless of how many images (or
     // how many wide images) a category contains. A fixed loop duration made
     // longer rows travel much faster because they had more pixels to cover in
     // the same amount of time.
     const BASE_SCROLL_SPEED_PX_PER_SECOND = 14;
     const ROW_SPEED_MULTIPLIERS = [1, 0.9, 1.08];
+=======
+    // Fixed pixel-per-second speed, not a fixed per-row duration — this is
+    // what keeps every row's perceived speed identical regardless of image
+    // count, row width, aspect ratio, or viewport size. Slight variation
+    // between rows keeps the wall feeling alive without any row reading as
+    // noticeably faster than the others.
+    const ROW_SPEEDS_PX_PER_SEC = [13, 12, 14];
+>>>>>>> bcffd4d (Update portfolio)
     let rowStates = [];
     let lightboxOpen = false;
 
@@ -222,28 +231,6 @@
         tile.appendChild(img);
       }
 
-      const overlay = document.createElement("div");
-      overlay.className = "editorial-tile-overlay";
-      tile.appendChild(overlay);
-
-      const caption = document.createElement("div");
-      caption.className = "editorial-tile-caption";
-      caption.setAttribute("aria-hidden", "true");
-
-      const titleEl = document.createElement("span");
-      titleEl.className = "editorial-tile-title";
-      titleEl.textContent = entry.title || "";
-      caption.appendChild(titleEl);
-
-      const typeText = [entry.type, entry.project].filter(Boolean).join(" · ");
-      if (typeText) {
-        const typeEl = document.createElement("span");
-        typeEl.className = "editorial-tile-type";
-        typeEl.textContent = typeText;
-        caption.appendChild(typeEl);
-      }
-      tile.appendChild(caption);
-
       if (isClone) {
         tile.setAttribute("aria-hidden", "true");
         tile.tabIndex = -1;
@@ -267,9 +254,13 @@
         el: rowEl,
         track: trackEl,
         direction: rowIndex % 2 === 0 ? 1 : -1,
+<<<<<<< HEAD
         speedPxPerSecond:
           BASE_SCROLL_SPEED_PX_PER_SECOND *
           ROW_SPEED_MULTIPLIERS[rowIndex % ROW_SPEED_MULTIPLIERS.length],
+=======
+        speedPxPerSec: ROW_SPEEDS_PX_PER_SEC[rowIndex % ROW_SPEEDS_PX_PER_SEC.length],
+>>>>>>> bcffd4d (Update portfolio)
         halfWidth: 0,
         paused: { hover: false, focus: false, drag: false },
       };
@@ -403,7 +394,11 @@
       rowStates.forEach((row) => {
         if (!row.halfWidth || lightboxOpen) return;
         if (row.paused.hover || row.paused.focus || row.paused.drag) return;
+<<<<<<< HEAD
         const distance = row.speedPxPerSecond * (deltaMs / 1000);
+=======
+        const distance = row.speedPxPerSec * (deltaMs / 1000);
+>>>>>>> bcffd4d (Update portfolio)
         row.el.scrollLeft += row.direction * distance;
         if (row.direction > 0 && row.el.scrollLeft >= row.halfWidth) {
           row.el.scrollLeft -= row.halfWidth;
@@ -461,21 +456,31 @@
     const lightboxNext = document.querySelector(".lightbox-zone-next");
     const lightboxCurrent = document.getElementById("lightbox-current");
     const lightboxTotal = document.getElementById("lightbox-total");
-    const lightboxCaption = document.getElementById("lightbox-caption");
 
     if (lightbox && lightboxStage) {
       if (lightboxTotal) lightboxTotal.textContent = String(flatEntries.length).padStart(2, "0");
 
       const slides = flatEntries.map((entry) => {
         const slide = document.createElement("div");
-        slide.className = "gallery-image";
         if (entry.isPlaceholder) {
+          // Placeholders have no real photo to shrink-wrap to, so they keep
+          // the shared full-frame tone-gradient surface used elsewhere.
+          slide.className = "gallery-image";
           slide.classList.add(category.tone);
         } else if (entry.src) {
+          // Real photos shrink-wrap to their own intrinsic size instead of
+          // filling a fixed-size stage — this class carries no background,
+          // so nothing shows behind the image but the lightbox's own scrim.
+          slide.className = "editorial-lightbox-media";
           const img = document.createElement("img");
           img.src = entry.src;
           img.alt = entry.alt || "";
           img.decoding = "async";
+          if (entry.width) {
+            img.width = entry.width;
+            img.style.setProperty("--natural-w", `${entry.width}px`);
+          }
+          if (entry.height) img.height = entry.height;
           slide.appendChild(img);
         }
         lightboxStage.appendChild(slide);
@@ -485,29 +490,11 @@
       let activeSlide = 0;
       let lastTrigger = null;
 
-      const renderCaption = (entry) => {
-        if (!lightboxCaption) return;
-        lightboxCaption.innerHTML = "";
-        const titleEl = document.createElement("span");
-        titleEl.className = "lightbox-caption-title";
-        titleEl.textContent = entry.title || "";
-        lightboxCaption.appendChild(titleEl);
-
-        const typeText = [entry.type, entry.project].filter(Boolean).join(" · ");
-        if (typeText) {
-          const typeEl = document.createElement("span");
-          typeEl.className = "lightbox-caption-type";
-          typeEl.textContent = typeText;
-          lightboxCaption.appendChild(typeEl);
-        }
-      };
-
       const showSlide = (i) => {
         slides[activeSlide]?.classList.remove("is-active");
         activeSlide = i;
         slides[activeSlide]?.classList.add("is-active");
         if (lightboxCurrent) lightboxCurrent.textContent = String(activeSlide + 1).padStart(2, "0");
-        renderCaption(flatEntries[activeSlide]);
       };
 
       openLightbox = (i, trigger) => {

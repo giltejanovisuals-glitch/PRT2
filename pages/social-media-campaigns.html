@@ -150,14 +150,12 @@
     <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Fullscreen image preview">
       <div class="lightbox-stage" id="lightbox-stage"></div>
 
-      <button class="lightbox-zone lightbox-zone-prev" type="button" aria-label="Show previous image"></button>
-      <button class="lightbox-zone lightbox-zone-next" type="button" aria-label="Show next image"></button>
+      <button class="lightbox-zone lightbox-zone-prev" type="button" tabindex="-1" aria-label="Show previous image"></button>
+      <button class="lightbox-zone lightbox-zone-next" type="button" tabindex="-1" aria-label="Show next image"></button>
 
       <button class="lightbox-close" type="button" aria-label="Close fullscreen preview">
         <span aria-hidden="true">×</span>
       </button>
-
-      <div class="lightbox-caption" id="lightbox-caption"></div>
 
       <p class="lightbox-counter" aria-live="polite">
         <span id="lightbox-current">01</span><span aria-hidden="true"> / </span><span id="lightbox-total">01</span>

@@ -27,11 +27,12 @@
     </script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/project-gallery.css" />
-    <link rel="stylesheet" href="../css/gallery-editorial.css" />
+    <link rel="stylesheet" href="../css/publication-reader.css" />
     <script src="../js/gallery-categories-data.js" defer></script>
-    <script src="../js/gallery-editorial-manifest.js" defer></script>
-    <script src="../js/gallery-editorial-meta.js" defer></script>
     <script src="../js/gallery-editorial.js" defer></script>
+    <script src="../js/publication-manifest.js" defer></script>
+    <script src="../js/publication-meta.js" defer></script>
+    <script src="../js/publication-reader.js" type="module"></script>
   </head>
 
   <body>
@@ -107,16 +108,106 @@
         <p class="project-overview" id="category-intro">—</p>
       </header>
 
-      <section class="editorial-wall" id="editorial-wall" aria-label="Editorial and layout design gallery, scrolls automatically and can be dragged or swiped">
-        <div class="editorial-row" id="editorial-row-0">
-          <div class="editorial-row-track" id="editorial-row-track-0"></div>
+      <section class="pub-interface" id="pub-interface" aria-label="Editorial and layout design publication library and reader">
+        <div class="pub-library" id="pub-library">
+          <p class="pub-library-label" id="pub-library-label">Publication Library</p>
+          <div class="pub-library-track" id="pub-library-track" role="group" aria-labelledby="pub-library-label"></div>
         </div>
-        <div class="editorial-row" id="editorial-row-1">
-          <div class="editorial-row-track" id="editorial-row-track-1"></div>
+
+        <div class="pub-reader" id="pub-reader">
+          <div class="pub-stage" id="pub-stage" tabindex="0" role="region" aria-label="Publication reader">
+            <div class="pub-pages" id="pub-pages"></div>
+
+            <button class="pub-edge pub-edge-prev" id="pub-edge-prev" type="button" aria-label="Previous page"></button>
+            <button class="pub-edge pub-edge-next" id="pub-edge-next" type="button" aria-label="Next page"></button>
+
+            <div class="pub-loading" id="pub-loading" aria-hidden="true">
+              <span class="pub-loading-dot"></span>
+              <span>Loading</span>
+            </div>
+
+            <div class="pub-empty" id="pub-empty" aria-hidden="true">
+              <p>Add a PDF to assets/documents/editorial-layout/ to open it here.</p>
+            </div>
+          </div>
+
+          <div class="pub-controls" id="pub-controls">
+            <button class="pub-btn" id="pub-prev" type="button" aria-label="Previous page">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+            </button>
+
+            <div class="pub-page-field">
+              <label class="sr-only" for="pub-page-input">Go to page</label>
+              <input class="pub-page-input" id="pub-page-input" type="text" inputmode="numeric" autocomplete="off" value="1" />
+              <span aria-hidden="true">/</span>
+              <span id="pub-page-total">1</span>
+            </div>
+
+            <button class="pub-btn" id="pub-next" type="button" aria-label="Next page">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+            </button>
+
+            <span class="pub-controls-divider" aria-hidden="true"></span>
+
+            <div class="pub-viewmode" id="pub-viewmode" role="group" aria-label="Viewing mode">
+              <button class="pub-btn" type="button" data-mode="auto" aria-pressed="true">Auto</button>
+              <button class="pub-btn" type="button" data-mode="single" aria-pressed="false">Single</button>
+              <button class="pub-btn" type="button" data-mode="spread" aria-pressed="false">Spread</button>
+            </div>
+
+            <span class="pub-controls-spacer"></span>
+
+            <div class="pub-zoom">
+              <button class="pub-btn" id="pub-zoom-out" type="button" aria-label="Zoom out">−</button>
+              <span class="pub-zoom-pct" id="pub-zoom-pct">100%</span>
+              <button class="pub-btn" id="pub-zoom-in" type="button" aria-label="Zoom in">+</button>
+            </div>
+            <button class="pub-btn" id="pub-fit" type="button" aria-label="Fit to page">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+            </button>
+            <button class="pub-btn" id="pub-fullscreen" type="button" aria-label="Enter fullscreen">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m8 0h3a2 2 0 0 0 2-2v-3"></path></svg>
+            </button>
+            <a class="pub-btn" id="pub-download" href="#" download aria-label="Download PDF">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"></path></svg>
+            </a>
+          </div>
+
+          <div class="pub-thumbnails" id="pub-thumbnails">
+            <button class="pub-thumbnails-toggle" id="pub-thumbnails-toggle" type="button" aria-expanded="true" aria-controls="pub-thumbnails-track">
+              <svg class="pub-thumbnails-toggle-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+              Pages
+            </button>
+            <div class="pub-thumbnails-track" id="pub-thumbnails-track"></div>
+          </div>
         </div>
-        <div class="editorial-row" id="editorial-row-2">
-          <div class="editorial-row-track" id="editorial-row-track-2"></div>
+
+        <div class="pub-info" id="pub-info">
+          <div class="pub-info-header">
+            <div>
+              <h2 class="pub-info-title" id="pub-info-title">—</h2>
+              <p class="pub-info-subline" id="pub-info-subline">—</p>
+            </div>
+            <div class="pub-info-links">
+              <button class="pub-info-link" id="pub-info-fullscreen" type="button">View Fullscreen</button>
+              <a class="pub-info-link" id="pub-info-download" href="#" download>Download PDF</a>
+              <a class="pub-info-link" id="pub-info-case-study" href="#" hidden>Visit Related Case Study</a>
+            </div>
+          </div>
+
+          <div class="pub-info-grid">
+            <div>
+              <p class="pub-info-block-label">Role</p>
+              <p class="pub-info-block-text" id="pub-info-role">—</p>
+            </div>
+            <div>
+              <p class="pub-info-block-label">Format</p>
+              <p class="pub-info-block-text" id="pub-info-format">—</p>
+            </div>
+          </div>
         </div>
+
+        <p class="sr-only" id="pub-sr-status" role="status" aria-live="polite"></p>
       </section>
 
       <section class="project-closing">
@@ -146,22 +237,5 @@
         <span class="brand-nav-label-short">Next →</span>
       </a>
     </nav>
-
-    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Fullscreen image preview">
-      <div class="lightbox-stage" id="lightbox-stage"></div>
-
-      <button class="lightbox-zone lightbox-zone-prev" type="button" aria-label="Show previous image"></button>
-      <button class="lightbox-zone lightbox-zone-next" type="button" aria-label="Show next image"></button>
-
-      <button class="lightbox-close" type="button" aria-label="Close fullscreen preview">
-        <span aria-hidden="true">×</span>
-      </button>
-
-      <div class="lightbox-caption" id="lightbox-caption"></div>
-
-      <p class="lightbox-counter" aria-live="polite">
-        <span id="lightbox-current">01</span><span aria-hidden="true"> / </span><span id="lightbox-total">01</span>
-      </p>
-    </div>
   </body>
 </html>

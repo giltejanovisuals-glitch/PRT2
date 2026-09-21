@@ -1,14 +1,9 @@
-# Short-Form Video & Reels gallery source images
+# (unused) — see assets/videos/short-form-reels/ instead
 
-Drop image files directly into this folder — `.jpg`, `.jpeg`, `.png`,
-`.webp`, or `.avif` (cover frames / thumbnails, not video files). Then run
-`npm run build` (or let Vercel run it for you on deploy) to regenerate this
-category's slice of `js/gallery-editorial-manifest.js`.
+This category no longer uses the shared moving-wall gallery the other four
+Project Gallery categories source from this kind of folder — it has its own
+dedicated video player instead. Source files for it belong in
+`assets/videos/short-form-reels/` (see the README there), not here.
 
-See the "Project Gallery moving-wall categories" section in the root
-`README.md` for the full workflow, including the optional
-`js/gallery-editorial-meta.js` file for titles/project names/types/years/
-alt text.
-
-This file exists only so the folder itself is tracked by git while it's
-otherwise empty — it's fine to leave it here once real images are added.
+This folder is kept only so its own history stays intact; it's fine to
+leave it empty.

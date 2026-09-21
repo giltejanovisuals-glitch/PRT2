@@ -58,9 +58,15 @@ PRT2/
 │   │                            (including the Project Gallery showcase)
 │   ├── project-gallery.css     Case-study-only: gallery, lightbox,
 │   │                            brand-nav, floating counters
-│   └── gallery-editorial.css   Project Gallery category pages only: the
-│                                 moving rows, tile hover/caption, and a
-│                                 couple of lightbox additions (see below)
+│   ├── gallery-editorial.css   Four of the five Project Gallery category
+│   │                             pages: the moving rows, tile hover/
+│   │                             caption, and a couple of lightbox
+│   │                             additions (see below) — not
+│   │                             short-form-video-reels, which has its own
+│   │                             css/reel-gallery.css instead
+│   └── reel-gallery.css        short-form-video-reels.html only: the
+│                                 two-column video-selection interface (see
+│                                 "Short-Form Video & Reels player" below)
 ├── js/
 │   ├── script.js                Homepage: theme/menu toggles, hero
 │   │                             carousel, work panel
@@ -69,11 +75,16 @@ PRT2/
 │   ├── project-gallery.js       Brand pages: resolves the project from
 │   │                             projects-data.js, builds the gallery,
 │   │                             lightbox, prev/next nav
-│   └── gallery-editorial.js     All five category pages: resolves the
-│                                 category from gallery-categories-data.js
-│                                 by filename, then row distribution, the
-│                                 auto-scroll loop, drag/swipe, hover
-│                                 captions, lightbox, prev/next nav
+│   ├── gallery-editorial.js     Every category page: resolves the category
+│   │                             from gallery-categories-data.js by
+│   │                             filename, then the shared eyebrow/title/
+│   │                             intro/counter/prev-next-nav text, plus —
+│   │                             on the four moving-wall pages only — row
+│   │                             distribution, auto-scroll, drag/swipe,
+│   │                             hover captions, lightbox
+│   └── reel-gallery.js          short-form-video-reels.html only: builds
+│                                 the video grid, preview swap/crossfade,
+│                                 keyboard nav — see below
 ├── js/projects-data.js          Single source of truth for all brand
 │                                 project copy (title, overview, gallery
 │                                 layout, credits, etc.)
@@ -83,11 +94,17 @@ PRT2/
 │                                    Project Gallery pages
 ├── js/gallery-editorial-manifest.js  AUTO-GENERATED — do not hand-edit,
 │                                       see "Project Gallery moving-wall
-│                                       categories" below
-└── js/gallery-editorial-meta.js  Optional hand-authored titles/project/
-                                    type/year/alt text for each category's
-                                    gallery images, keyed by category id
-                                    then filename
+│                                       categories" below. Covers the four
+│                                       image-wall categories only.
+├── js/gallery-editorial-meta.js  Optional hand-authored titles/project/
+│                                    type/year/alt text for each of those
+│                                    four categories' gallery images, keyed
+│                                    by category id then filename
+├── js/reel-manifest.js           AUTO-GENERATED — do not hand-edit, see
+│                                    "Short-Form Video & Reels player" below
+└── js/reel-meta.js               Optional hand-authored titles/brand/type/
+                                     year/alt text for reel videos, keyed by
+                                     filename
 ```
 
 ## Adding or editing a project
@@ -140,6 +157,8 @@ assets/images/gallery/commercial-lifestyle-photography-cover.{avif,webp,jpg}
 assets/images/gallery/short-form-video-reels-cover.{avif,webp,jpg}
 ```
 
+(This is just the homepage's own static cover thumbnail for the category — unrelated to that category page's actual video content, see "Short-Form Video & Reels player" below.)
+
 - Only the `.jpg` is required (it's the `<img src>` fallback); `.avif`/
   `.webp` are optional but preferred — the browser picks the first format
   it supports.
@@ -153,16 +172,19 @@ assets/images/gallery/short-form-video-reels-cover.{avif,webp,jpg}
 
 ## Project Gallery moving-wall categories
 
-All five `pages/<category-id>.html` pages (`editorial-layout`,
+Four of the five `pages/<category-id>.html` pages (`editorial-layout`,
 `social-media-campaigns`, `print-brand-collateral`,
-`commercial-lifestyle-photography`, `short-form-video-reels`) share one
-interface: a wall of 2–3 horizontally auto-scrolling rows of
-mixed-aspect-ratio images (`css/gallery-editorial.css`,
-`js/gallery-editorial.js`). Each page resolves its own category from its
-filename (same pattern as the brand pages) and sources its images through
-a generated manifest instead of hand-written `<img>` tags, so a plain
-drag-and-drop of files into that category's folder is enough to populate
-it — no HTML/JS edits needed, even for a brand-new category page.
+`commercial-lifestyle-photography`) share one interface: a wall of 2–3
+horizontally auto-scrolling rows of mixed-aspect-ratio images
+(`css/gallery-editorial.css`, `js/gallery-editorial.js`). Each page resolves
+its own category from its filename (same pattern as the brand pages) and
+sources its images through a generated manifest instead of hand-written
+`<img>` tags, so a plain drag-and-drop of files into that category's folder
+is enough to populate it — no HTML/JS edits needed, even for a brand-new
+category page.
+
+The fifth, `short-form-video-reels`, has its own dedicated two-column video
+player instead — see "Short-Form Video & Reels player" below.
 
 **To add images to a category:**
 
@@ -184,7 +206,7 @@ it — no HTML/JS edits needed, even for a brand-new category page.
 **Never hand-edit `js/gallery-editorial-manifest.js`** — it's overwritten
 by `npm run build` every time.
 
-While a category's source folder is empty (as shipped, for all five),
+While a category's source folder is empty (as shipped, for all four),
 that page renders 21 placeholder tiles generated from its own
 `js/gallery-categories-data.js` entries — reusing each entry's
 `layout`/`brand`/`type` so the placeholders read as that category's kind
@@ -196,7 +218,51 @@ automatically the moment its manifest has at least one real image.
 Row count (3 desktop / 2 mobile), scroll speed (35–50s per loop, tuned per
 row in `ROW_DURATIONS_MS`), pause-on-hover/focus/drag/lightbox, and
 `prefers-reduced-motion` handling all live in that same file if they need
-tuning — shared by all five categories.
+tuning — shared by these four categories.
+
+## Short-Form Video & Reels player
+
+`pages/short-form-video-reels.html` doesn't use the moving-wall interface
+above — it's a two-column video selector instead: a large selected-video
+preview on the left (`~42%` width) and a scrollable `3×2` thumbnail grid on
+the right (`~58%`), both sharing the same top/bottom bounds
+(`css/reel-gallery.css`, `js/reel-gallery.js`). It follows the same
+generated-manifest pattern as the image categories, just for video files
+instead of images.
+
+**To add a video:**
+
+1. Drop the video file — `.mp4`, `.webm`, or `.mov` — into
+   `assets/videos/short-form-reels/`, plus a poster image of the same base
+   name alongside it (`.jpg`, `.jpeg`, `.png`, `.webp`, or `.avif` — a
+   poster is required, since it's what every thumbnail and the initial
+   preview show before any video actually loads). E.g.
+   `mooni-launch-reel.mp4` + `mooni-launch-reel.jpg`.
+2. Run `npm run build` (also runs automatically on every Vercel deploy).
+   It rewrites `js/reel-manifest.js` — a plain `window.REEL_MANIFEST`
+   array, one entry per video, holding its filename, matched poster
+   filename, and the poster's pixel width/height/aspect ratio.
+3. Optionally add a matching entry to `js/reel-meta.js`, keyed by the
+   video's filename, with `title`, `brand`, `type`, `year`, and `alt`.
+   Anything you don't set falls back to a title guessed from the filename
+   and empty brand/type/year/alt.
+
+**Never hand-edit `js/reel-manifest.js`** — it's overwritten by
+`npm run build` every time.
+
+While `assets/videos/short-form-reels/` is empty (as shipped), the page
+renders 12 placeholder tiles from this category's own
+`js/gallery-categories-data.js` entries, the same fallback convention the
+four image categories use — see `buildPlaceholderEntries` in
+`js/reel-gallery.js`. They disappear automatically the moment a real video
++ poster pair is added.
+
+Selecting a thumbnail swaps the preview (a ~300ms crossfade), autoplays it
+muted, and updates its metadata — nothing autoplays on page load. Only the
+active video ever gets a `<video>` element; every other thumbnail is just
+its poster image until selected, so adding more videos never front-loads
+their weight. Keyboard: arrow keys move focus across the grid, Enter/Space
+selects.
 
 ### Dropping in the hero images
 

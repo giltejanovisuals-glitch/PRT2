@@ -5,13 +5,6 @@
    typography; everything below is specific to the horizontally-scrolling
    image rows themselves. */
 
-:root {
-  /* Fixed (not theme-swapped) — this text always sits on the dark image
-     scrim inside tiles/the lightbox, regardless of the site's light/dark
-     mode, the same way the shared lightbox already uses fixed white. */
-  --gallery-accent-on-dark: #3fac9f;
-}
-
 .editorial-wall {
   /* Breaks out to true viewport edges (matching .project's own padding,
      not 100vw, so there's no scrollbar-width discrepancy) so the edge
@@ -71,84 +64,30 @@
   flex: 0 0 auto;
   overflow: hidden;
   height: var(--row-h);
+  /* Width is derived from the image's own natural ratio (set per-instance
+     as --ar from the manifest's width/height), not a fixed or shared
+     frame — a 4:3 photo and a 4:5 photo get different tile widths at the
+     same row height. Placeholders (no real image) fall back to 1.4. */
   aspect-ratio: var(--ar, 1.4);
   cursor: pointer;
 }
 
-.editorial-tile:not(.editorial-tile-placeholder) {
+.editorial-tile-placeholder {
   background: var(--surface);
 }
 
 .editorial-tile-img {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 550ms var(--ease), filter 550ms var(--ease);
-}
-
-.editorial-tile-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(10, 10, 10, 0.55), rgba(10, 10, 10, 0) 45%);
-  opacity: 0;
-  transition: opacity 550ms var(--ease);
-  pointer-events: none;
-}
-
-.editorial-tile-caption {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  padding: clamp(0.75rem, 1.6vw, 1.1rem);
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 550ms var(--ease), transform 550ms var(--ease);
-  pointer-events: none;
-}
-
-.editorial-tile-title {
-  color: #fff;
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-}
-
-.editorial-tile-type {
-  color: var(--gallery-accent-on-dark);
-  font-family: var(--font-body);
-  font-size: 0.64rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 @media (hover: hover) {
   .editorial-tile:hover .editorial-tile-img {
     transform: scale(1.05);
     filter: brightness(1.06);
-  }
-
-  .editorial-tile:hover .editorial-tile-overlay,
-  .editorial-tile:hover .editorial-tile-caption {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Touch devices can't hover, so essential info (title/type) stays visible
-   by default instead of being gated behind an interaction that can't happen. */
-@media (hover: none) {
-  .editorial-tile-overlay,
-  .editorial-tile-caption {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -162,52 +101,46 @@
   filter: brightness(1.06);
 }
 
-.editorial-tile:focus-visible .editorial-tile-overlay,
-.editorial-tile:focus-visible .editorial-tile-caption {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .editorial-tile[aria-hidden="true"] {
   cursor: default;
 }
 
-/* Lightbox: fit the real image without cropping/stretching (the shared
-   .gallery-image rule only covers the tone-gradient placeholder case). */
-.lightbox-stage .gallery-image img {
+/* Lightbox: real photos shrink-wrap to their own intrinsic size instead of
+   filling the shared fixed-size #lightbox-stage box (the shared
+   .gallery-image rule is reserved for the tone-gradient placeholder case,
+   used unmodified by the brand project pages' own lightbox). Absolute +
+   inset:0 + margin:auto on a width:auto box is the standard trick for
+   centering an element sized to its own content — so this wrapper has no
+   fixed dimensions and no background, leaving only the lightbox's own dark
+   scrim visible around the image, never a separate frame/rectangle. */
+.editorial-lightbox-media {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.lightbox-caption {
-  position: absolute;
-  top: clamp(1rem, 3vh, 2rem);
-  left: clamp(1rem, 3vw, 2rem);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  max-width: min(70vw, 28rem);
+  margin: auto;
+  width: max-content;
+  height: max-content;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 500ms var(--ease), transform 600ms var(--ease);
   pointer-events: none;
 }
 
-.lightbox-caption-title {
-  color: rgba(255, 255, 255, 0.9);
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
+.editorial-lightbox-media.is-active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
 }
 
-.lightbox-caption-type {
-  color: var(--gallery-accent-on-dark);
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.editorial-lightbox-media img {
+  display: block;
+  width: auto;
+  height: auto;
+  /* Capped by its own natural width (--natural-w, set per-image from the
+     manifest) so small source images are never upscaled past their real
+     size, only ever shrunk to fit the viewport. */
+  max-width: min(92vw, var(--natural-w, 92vw));
+  max-height: 86dvh;
+  object-fit: contain;
 }
 
 @media (max-width: 760px) {
@@ -215,8 +148,9 @@
     --row-h: clamp(140px, 42vw, 190px);
   }
 
-  .lightbox-caption {
-    max-width: calc(100vw - 2 * clamp(1rem, 3vw, 2rem) - 3rem);
+  .editorial-lightbox-media img {
+    max-width: min(94vw, var(--natural-w, 94vw));
+    max-height: 80dvh;
   }
 
   /* project-gallery.css shrinks this to 36px on mobile; this page's spec
