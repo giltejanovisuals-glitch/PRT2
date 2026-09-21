@@ -7,6 +7,606 @@
  */
 window.PUBLICATION_MANIFEST = [
   {
+    "file": "PORTA BRAND BOOK.pdf",
+    "title": "Porta Brand Book",
+    "pageCount": 34,
+    "cover": "covers/PORTA BRAND BOOK.jpg",
+    "pages": [
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 404.88,
+        "orientation": "landscape"
+      }
+    ],
+    "dominantOrientation": "landscape",
+    "fileSizeBytes": 20024939
+  },
+  {
+    "file": "PORTA MOBILI BRAND DECK.pdf",
+    "title": "Porta Mobili Brand Deck",
+    "pageCount": 82,
+    "cover": "covers/PORTA MOBILI BRAND DECK.jpg",
+    "pages": [
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      }
+    ],
+    "dominantOrientation": "landscape",
+    "fileSizeBytes": 102866863
+  },
+  {
     "file": "test-landscape-magazine.pdf",
     "title": "Test Landscape Magazine",
     "pageCount": 6,

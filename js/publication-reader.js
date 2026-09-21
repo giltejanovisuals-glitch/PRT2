@@ -363,7 +363,6 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 
   const paintSlot = async (slot, animate) => {
     const myToken = ++renderToken;
-    console.log("[DBG] paintSlot START token=", myToken, "pub=", activePub?.file, "nums=", JSON.stringify(slot.nums));
     const box = getStageBox();
     const padding = mobileQuery.matches ? 32 : 96;
     const availW = Math.max(80, box.w - padding) / (isFitZoom() ? 1 : 1);
@@ -417,7 +416,6 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
       });
     }
 
-    console.log("[DBG] paintSlot END token=", myToken, "currentRenderToken=", renderToken, "pub=", activePub?.file, "nums=", JSON.stringify(slot.nums), "currentSlotIndex=", currentSlotIndex, "currentSlots.length=", currentSlots.length);
     updateControlsUI(slot);
     prefetchNeighbors(slot);
   };

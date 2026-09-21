@@ -187,21 +187,12 @@
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let reducedMotion = reducedMotionQuery.matches;
 
-<<<<<<< HEAD
     // Keep the wall calm and consistent regardless of how many images (or
     // how many wide images) a category contains. A fixed loop duration made
     // longer rows travel much faster because they had more pixels to cover in
     // the same amount of time.
     const BASE_SCROLL_SPEED_PX_PER_SECOND = 14;
     const ROW_SPEED_MULTIPLIERS = [1, 0.9, 1.08];
-=======
-    // Fixed pixel-per-second speed, not a fixed per-row duration — this is
-    // what keeps every row's perceived speed identical regardless of image
-    // count, row width, aspect ratio, or viewport size. Slight variation
-    // between rows keeps the wall feeling alive without any row reading as
-    // noticeably faster than the others.
-    const ROW_SPEEDS_PX_PER_SEC = [13, 12, 14];
->>>>>>> bcffd4d (Update portfolio)
     let rowStates = [];
     let lightboxOpen = false;
 
@@ -254,13 +245,9 @@
         el: rowEl,
         track: trackEl,
         direction: rowIndex % 2 === 0 ? 1 : -1,
-<<<<<<< HEAD
         speedPxPerSecond:
           BASE_SCROLL_SPEED_PX_PER_SECOND *
           ROW_SPEED_MULTIPLIERS[rowIndex % ROW_SPEED_MULTIPLIERS.length],
-=======
-        speedPxPerSec: ROW_SPEEDS_PX_PER_SEC[rowIndex % ROW_SPEEDS_PX_PER_SEC.length],
->>>>>>> bcffd4d (Update portfolio)
         halfWidth: 0,
         paused: { hover: false, focus: false, drag: false },
       };
@@ -394,11 +381,7 @@
       rowStates.forEach((row) => {
         if (!row.halfWidth || lightboxOpen) return;
         if (row.paused.hover || row.paused.focus || row.paused.drag) return;
-<<<<<<< HEAD
         const distance = row.speedPxPerSecond * (deltaMs / 1000);
-=======
-        const distance = row.speedPxPerSec * (deltaMs / 1000);
->>>>>>> bcffd4d (Update portfolio)
         row.el.scrollLeft += row.direction * distance;
         if (row.direction > 0 && row.el.scrollLeft >= row.halfWidth) {
           row.el.scrollLeft -= row.halfWidth;
