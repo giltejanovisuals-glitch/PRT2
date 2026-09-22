@@ -2,3 +2,7 @@ node_modules/
 
 desktop.ini
 desktop.ini
+source-publications/
+test-fixtures/
+tmp/
+tmp-test.pdf

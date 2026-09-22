@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "description": "Static portfolio site. The only build step is regenerating the Project Gallery image, reel-video, and publication manifests.",
   "scripts": {
-    "build": "node scripts/generate-gallery-manifest.js && node scripts/generate-reel-manifest.js && node scripts/generate-publication-manifest.js"
+    "build": "node scripts/copy-pdfjs-assets.js && node scripts/generate-gallery-manifest.js && node scripts/generate-reel-manifest.js && node scripts/generate-publication-manifest.js",
+    "dev": "node scripts/serve-static.js",
+    "optimize:publications": "node scripts/optimize-publication-pdfs.js"
   },
   "dependencies": {
     "@napi-rs/canvas": "^1.0.9",

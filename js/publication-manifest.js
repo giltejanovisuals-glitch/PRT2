@@ -7,190 +7,200 @@
  */
 window.PUBLICATION_MANIFEST = [
   {
-    "file": "PORTA BRAND BOOK.pdf",
-    "title": "Porta Brand Book",
+    "file": "porta-brand-book-web.pdf",
+    "title": "Porta Brand Book Web",
     "pageCount": 34,
-    "cover": "covers/PORTA BRAND BOOK.jpg",
+    "cover": "covers/porta-brand-book-web.jpg",
+    "previewImages": [
+      "previews/porta-brand-book-web-page-01.jpg",
+      "previews/porta-brand-book-web-page-02.jpg",
+      "previews/porta-brand-book-web-page-03.jpg"
+    ],
     "pages": [
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       },
       {
         "width": 720,
-        "height": 404.88,
+        "height": 405,
         "orientation": "landscape"
       }
     ],
     "dominantOrientation": "landscape",
-    "fileSizeBytes": 20024939
+    "fileSizeBytes": 3755510
   },
   {
-    "file": "PORTA MOBILI BRAND DECK.pdf",
-    "title": "Porta Mobili Brand Deck",
+    "file": "porta-mobili-brand-deck-web.pdf",
+    "title": "Porta Mobili Brand Deck Web",
     "pageCount": 82,
-    "cover": "covers/PORTA MOBILI BRAND DECK.jpg",
+    "cover": "covers/porta-mobili-brand-deck-web.jpg",
+    "previewImages": [
+      "previews/porta-mobili-brand-deck-web-page-01.jpg",
+      "previews/porta-mobili-brand-deck-web-page-02.jpg",
+      "previews/porta-mobili-brand-deck-web-page-03.jpg"
+    ],
     "pages": [
       {
         "width": 792,
@@ -604,186 +614,6 @@ window.PUBLICATION_MANIFEST = [
       }
     ],
     "dominantOrientation": "landscape",
-    "fileSizeBytes": 102866863
-  },
-  {
-    "file": "test-landscape-magazine.pdf",
-    "title": "Test Landscape Magazine",
-    "pageCount": 6,
-    "cover": "covers/test-landscape-magazine.jpg",
-    "pages": [
-      {
-        "width": 842,
-        "height": 595,
-        "orientation": "landscape"
-      },
-      {
-        "width": 842,
-        "height": 595,
-        "orientation": "landscape"
-      },
-      {
-        "width": 842,
-        "height": 595,
-        "orientation": "landscape"
-      },
-      {
-        "width": 842,
-        "height": 595,
-        "orientation": "landscape"
-      },
-      {
-        "width": 842,
-        "height": 595,
-        "orientation": "landscape"
-      },
-      {
-        "width": 842,
-        "height": 595,
-        "orientation": "landscape"
-      }
-    ],
-    "dominantOrientation": "landscape",
-    "fileSizeBytes": 2307
-  },
-  {
-    "file": "test-mixed-brandbook.pdf",
-    "title": "Test Mixed Brandbook",
-    "pageCount": 9,
-    "cover": "covers/test-mixed-brandbook.jpg",
-    "pages": [
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 842,
-        "height": 595,
-        "orientation": "landscape"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 842,
-        "height": 595,
-        "orientation": "landscape"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      }
-    ],
-    "dominantOrientation": "portrait",
-    "fileSizeBytes": 3145
-  },
-  {
-    "file": "test-portrait-catalogue.pdf",
-    "title": "Test Portrait Catalogue",
-    "pageCount": 8,
-    "cover": "covers/test-portrait-catalogue.jpg",
-    "pages": [
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      },
-      {
-        "width": 595,
-        "height": 842,
-        "orientation": "portrait"
-      }
-    ],
-    "dominantOrientation": "portrait",
-    "fileSizeBytes": 2941
-  },
-  {
-    "file": "test-square-lookbook.pdf",
-    "title": "Test Square Lookbook",
-    "pageCount": 5,
-    "cover": "covers/test-square-lookbook.jpg",
-    "pages": [
-      {
-        "width": 700,
-        "height": 700,
-        "orientation": "square"
-      },
-      {
-        "width": 700,
-        "height": 700,
-        "orientation": "square"
-      },
-      {
-        "width": 700,
-        "height": 700,
-        "orientation": "square"
-      },
-      {
-        "width": 700,
-        "height": 700,
-        "orientation": "square"
-      },
-      {
-        "width": 700,
-        "height": 700,
-        "orientation": "square"
-      }
-    ],
-    "dominantOrientation": "square",
-    "fileSizeBytes": 2007
+    "fileSizeBytes": 20844759
   }
 ];

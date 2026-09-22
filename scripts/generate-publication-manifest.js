@@ -25,8 +25,13 @@ const { createCanvas } = require("@napi-rs/canvas");
 
 const SOURCE_DIR = path.join(__dirname, "..", "assets", "documents", "editorial-layout");
 const COVER_DIR = path.join(SOURCE_DIR, "covers");
+const PREVIEW_DIR = path.join(SOURCE_DIR, "previews");
 const OUTPUT_FILE = path.join(__dirname, "..", "js", "publication-manifest.js");
 const COVER_TARGET_WIDTH = 900;
+const PREVIEW_TARGET_WIDTH = 520;
+const PREVIEW_COUNT = 3;
+const PDF_WARNING_BYTES = 25 * 1024 * 1024;
+const COMBINED_WARNING_BYTES = 90 * 1024 * 1024;
 
 // Pages within this fractional difference of a 1:1 ratio count as "square"
 // rather than a barely-portrait or barely-landscape page.
@@ -57,6 +62,16 @@ function toTitleCase(text) {
     .replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
 }
 
+async function renderPageImage(page, targetWidth, quality, outputPath) {
+  const baseViewport = page.getViewport({ scale: 1 });
+  const scale = targetWidth / baseViewport.width;
+  const viewport = page.getViewport({ scale });
+  const canvas = createCanvas(Math.ceil(viewport.width), Math.ceil(viewport.height));
+  const ctx = canvas.getContext("2d");
+  await page.render({ canvasContext: ctx, viewport, canvas }).promise;
+  fs.writeFileSync(outputPath, canvas.toBuffer("image/jpeg", quality));
+}
+
 async function processPdf(pdfjsLib, file) {
   const filePath = path.join(SOURCE_DIR, file);
   const fileSizeBytes = fs.statSync(filePath).size;
@@ -76,18 +91,32 @@ async function processPdf(pdfjsLib, file) {
   // sharpness is handled client-side when the real page is opened in the
   // reader — this cover is just the library thumbnail).
   const page1 = await doc.getPage(1);
-  const baseViewport = page1.getViewport({ scale: 1 });
-  const scale = COVER_TARGET_WIDTH / baseViewport.width;
-  const viewport = page1.getViewport({ scale });
-  const canvas = createCanvas(Math.ceil(viewport.width), Math.ceil(viewport.height));
-  const ctx = canvas.getContext("2d");
-  await page1.render({ canvasContext: ctx, viewport, canvas }).promise;
-
   const ext = path.extname(file);
   const baseName = path.basename(file, ext);
   const coverFile = `${baseName}.jpg`;
   fs.mkdirSync(COVER_DIR, { recursive: true });
-  fs.writeFileSync(path.join(COVER_DIR, coverFile), canvas.toBuffer("image/jpeg", 82));
+  const coverPath = path.join(COVER_DIR, coverFile);
+  await renderPageImage(page1, COVER_TARGET_WIDTH, 82, coverPath);
+
+  if (!fs.existsSync(coverPath)) {
+    throw new Error(`cover could not be generated at ${path.relative(process.cwd(), coverPath)}`);
+  }
+
+  fs.mkdirSync(PREVIEW_DIR, { recursive: true });
+  const previewImages = [];
+  const previewPageCount = Math.min(PREVIEW_COUNT, doc.numPages);
+  for (let i = 1; i <= previewPageCount; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    const page = i === 1 ? page1 : await doc.getPage(i);
+    const previewFile = `${baseName}-page-${String(i).padStart(2, "0")}.jpg`;
+    const previewPath = path.join(PREVIEW_DIR, previewFile);
+    // eslint-disable-next-line no-await-in-loop
+    await renderPageImage(page, PREVIEW_TARGET_WIDTH, 76, previewPath);
+    if (!fs.existsSync(previewPath)) {
+      throw new Error(`preview could not be generated at ${path.relative(process.cwd(), previewPath)}`);
+    }
+    previewImages.push(`previews/${previewFile}`);
+  }
 
   if (typeof doc.cleanup === "function") await doc.cleanup();
 
@@ -96,10 +125,51 @@ async function processPdf(pdfjsLib, file) {
     title: toTitleCase(baseName),
     pageCount: doc.numPages,
     cover: `covers/${coverFile}`,
+    previewImages,
     pages,
     dominantOrientation: dominantOrientation(pages),
     fileSizeBytes,
   };
+}
+
+function warnLargePdf(file, bytes) {
+  if (bytes <= PDF_WARNING_BYTES) return;
+  console.warn(
+    [
+      "[publication-manifest] WARNING:",
+      `${file} exceeds the recommended 25 MB web limit (${(bytes / (1024 * 1024)).toFixed(1)} MB).`,
+    ].join("\n")
+  );
+}
+
+function removeOrphanCovers(expectedCovers) {
+  if (!fs.existsSync(COVER_DIR)) return;
+
+  const coverFiles = fs
+    .readdirSync(COVER_DIR)
+    .filter((name) => /\.(jpe?g|png|webp)$/i.test(name));
+
+  for (const cover of coverFiles) {
+    if (expectedCovers.has(cover)) continue;
+    const coverPath = path.join(COVER_DIR, cover);
+    fs.unlinkSync(coverPath);
+    console.log(`[publication-manifest] Removed orphan cover ${path.relative(process.cwd(), coverPath)}`);
+  }
+}
+
+function removeOrphanPreviews(expectedPreviews) {
+  if (!fs.existsSync(PREVIEW_DIR)) return;
+
+  const previewFiles = fs
+    .readdirSync(PREVIEW_DIR)
+    .filter((name) => /\.(jpe?g|png|webp)$/i.test(name));
+
+  for (const preview of previewFiles) {
+    if (expectedPreviews.has(preview)) continue;
+    const previewPath = path.join(PREVIEW_DIR, preview);
+    fs.unlinkSync(previewPath);
+    console.log(`[publication-manifest] Removed orphan preview ${path.relative(process.cwd(), previewPath)}`);
+  }
 }
 
 async function build() {
@@ -113,15 +183,44 @@ async function build() {
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
   const manifest = [];
+  let totalPdfBytes = 0;
+  const expectedCovers = new Set();
+  const expectedPreviews = new Set();
+
   for (const file of files) {
     try {
       // eslint-disable-next-line no-await-in-loop
       const entry = await processPdf(pdfjsLib, file);
+      warnLargePdf(file, entry.fileSizeBytes);
+      totalPdfBytes += entry.fileSizeBytes;
+      expectedCovers.add(path.basename(entry.cover));
+      entry.previewImages.forEach((preview) => expectedPreviews.add(path.basename(preview)));
       manifest.push(entry);
     } catch (error) {
-      console.warn(`[publication-manifest] skipping "${file}": ${error.message}`);
+      console.error(
+        [
+          "[publication-manifest] ERROR:",
+          `${file} could not be processed.`,
+          "",
+          error && error.stack ? error.stack : String(error),
+        ].join("\n")
+      );
+      process.exitCode = 1;
+      return;
     }
   }
+
+  if (totalPdfBytes > COMBINED_WARNING_BYTES) {
+    console.warn(
+      [
+        "[publication-manifest] WARNING:",
+        `Combined publication PDFs are ${(totalPdfBytes / (1024 * 1024)).toFixed(1)} MB. Keep this comfortably below the deployment source-upload limit.`,
+      ].join("\n")
+    );
+  }
+
+  removeOrphanCovers(expectedCovers);
+  removeOrphanPreviews(expectedPreviews);
 
   const header = [
     "/*",

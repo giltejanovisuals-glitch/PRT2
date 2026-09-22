@@ -20,4 +20,22 @@
  *   },
  * };
  */
-window.PUBLICATION_META = {};
+window.PUBLICATION_META = {
+  "porta-brand-book-web.pdf": {
+    title: "Porta Brand Book",
+    brand: "Porta Mobili",
+    type: "Brand Book",
+    year: "2026",
+    role: "Editorial direction, layout development, typography, image sequencing, and production preparation.",
+    downloadAllowed: true,
+  },
+
+  "porta-mobili-brand-deck-web.pdf": {
+    title: "Porta Mobili Brand Deck",
+    brand: "Porta Mobili",
+    type: "Brand Presentation",
+    year: "2026",
+    role: "Presentation structure, editorial layout, typography, and visual storytelling.",
+    downloadAllowed: true,
+  },
+};
