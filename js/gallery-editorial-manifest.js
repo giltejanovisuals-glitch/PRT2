@@ -3011,5 +3011,888 @@ window.GALLERY_EDITORIAL_MANIFEST = {
     }
   ],
   "print-brand-collateral": [],
-  "commercial-lifestyle-photography": []
+  "commercial-lifestyle-photography": [
+    {
+      "file": "_DSF2214.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2214.webp のコピー"
+    },
+    {
+      "file": "_DSF2229.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2229.webp のコピー"
+    },
+    {
+      "file": "_DSF2232.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2232.webp のコピー"
+    },
+    {
+      "file": "_DSF2235.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2235.webp のコピー"
+    },
+    {
+      "file": "_DSF2241.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2241.webp のコピー"
+    },
+    {
+      "file": "_DSF2242.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2242.webp のコピー"
+    },
+    {
+      "file": "_DSF2243.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2243.webp のコピー"
+    },
+    {
+      "file": "_DSF2244.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2244.webp のコピー"
+    },
+    {
+      "file": "_DSF2245.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2245.webp のコピー"
+    },
+    {
+      "file": "_DSF2246.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2246.webp のコピー"
+    },
+    {
+      "file": "_DSF2254.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2254.webp のコピー"
+    },
+    {
+      "file": "_DSF2255.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2255.webp のコピー"
+    },
+    {
+      "file": "_DSF2257.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2257.webp のコピー"
+    },
+    {
+      "file": "_DSF2258.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2258.webp のコピー"
+    },
+    {
+      "file": "_DSF2260.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2260.webp のコピー"
+    },
+    {
+      "file": "_DSF2261.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2261.webp のコピー"
+    },
+    {
+      "file": "_DSF2263.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2263.webp のコピー"
+    },
+    {
+      "file": "_DSF2264.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2264.webp のコピー"
+    },
+    {
+      "file": "_DSF2269-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2269 Hdr.webp のコピー"
+    },
+    {
+      "file": "_DSF2278.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2278.webp のコピー"
+    },
+    {
+      "file": "_DSF2281.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2281.webp のコピー"
+    },
+    {
+      "file": "_DSF2282.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2282.webp のコピー"
+    },
+    {
+      "file": "_DSF2283.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2283.webp のコピー"
+    },
+    {
+      "file": "_DSF2284.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2284.webp のコピー"
+    },
+    {
+      "file": "_DSF2299.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2299.webp のコピー"
+    },
+    {
+      "file": "_DSF2301.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2301.webp のコピー"
+    },
+    {
+      "file": "_DSF2302.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2302.webp のコピー"
+    },
+    {
+      "file": "_DSF2303.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2303.webp のコピー"
+    },
+    {
+      "file": "_DSF2304.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2304.webp のコピー"
+    },
+    {
+      "file": "_DSF2311-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2311 Hdr.webp のコピー"
+    },
+    {
+      "file": "_DSF2314-HDR.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2314 Hdr.webp のコピー"
+    },
+    {
+      "file": "_DSF2317-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2317 Hdr.webp のコピー"
+    },
+    {
+      "file": "_DSF2323.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2323.webp のコピー"
+    },
+    {
+      "file": "_DSF2326-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2326 Hdr.webp のコピー"
+    },
+    {
+      "file": "_DSF2331-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2331 Hdr.webp のコピー"
+    },
+    {
+      "file": "_DSF2335-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2335 Hdr.webp のコピー"
+    },
+    {
+      "file": "_DSF2338.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2338.webp のコピー"
+    },
+    {
+      "file": "_DSF2341-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2341 Hdr.webp のコピー"
+    },
+    {
+      "file": "_DSF2353-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2353 Hdr.webp のコピー"
+    },
+    {
+      "file": "_DSF2362.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2362.webp のコピー"
+    },
+    {
+      "file": "_DSF2368.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2368.webp のコピー"
+    },
+    {
+      "file": "_DSF2371.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2371.webp のコピー"
+    },
+    {
+      "file": "_DSF2373.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2373.webp のコピー"
+    },
+    {
+      "file": "_DSF2375.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2375.webp のコピー"
+    },
+    {
+      "file": "_DSF2383.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2383.webp のコピー"
+    },
+    {
+      "file": "_DSF2387.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2387.webp のコピー"
+    },
+    {
+      "file": "_DSF2394.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2394.webp のコピー"
+    },
+    {
+      "file": "_DSF2401.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2401.webp のコピー"
+    },
+    {
+      "file": "1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "1"
+    },
+    {
+      "file": "02.2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "02.2"
+    },
+    {
+      "file": "2.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "2.2"
+    },
+    {
+      "file": "2.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "2.3"
+    },
+    {
+      "file": "2.4.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "2.4"
+    },
+    {
+      "file": "2.5.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "2.5"
+    },
+    {
+      "file": "2.6.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "2.6"
+    },
+    {
+      "file": "2.7.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "2.7"
+    },
+    {
+      "file": "2.8.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "2.8"
+    },
+    {
+      "file": "2.png",
+      "width": 1536,
+      "height": 1024,
+      "ratio": 1.5,
+      "title": "2"
+    },
+    {
+      "file": "3.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "3"
+    },
+    {
+      "file": "4.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "4.2"
+    },
+    {
+      "file": "4.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "4.3"
+    },
+    {
+      "file": "4.4.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "4.4"
+    },
+    {
+      "file": "4.5.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "4.5"
+    },
+    {
+      "file": "4.6.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "4.6"
+    },
+    {
+      "file": "4.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "4"
+    },
+    {
+      "file": "5.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "5.2"
+    },
+    {
+      "file": "5.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "5.3"
+    },
+    {
+      "file": "5.4.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "5.4"
+    },
+    {
+      "file": "5.5.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "5.5"
+    },
+    {
+      "file": "5.6.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "5.6"
+    },
+    {
+      "file": "5.7.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "5.7"
+    },
+    {
+      "file": "5.8.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "5.8"
+    },
+    {
+      "file": "6.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "6"
+    },
+    {
+      "file": "7.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "7.2"
+    },
+    {
+      "file": "7.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "7.3"
+    },
+    {
+      "file": "7.4.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "7.4"
+    },
+    {
+      "file": "7.5.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "7.5"
+    },
+    {
+      "file": "7.6.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "7.6"
+    },
+    {
+      "file": "7.7.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "7.7"
+    },
+    {
+      "file": "8.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "8.2"
+    },
+    {
+      "file": "8.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "8.3"
+    },
+    {
+      "file": "8.4.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "8.4"
+    },
+    {
+      "file": "8.5.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "8.5"
+    },
+    {
+      "file": "8.6.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "8.6"
+    },
+    {
+      "file": "8.7.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "8.7"
+    },
+    {
+      "file": "9.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "9"
+    },
+    {
+      "file": "10.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "10.2"
+    },
+    {
+      "file": "10.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "10.3"
+    },
+    {
+      "file": "10.4.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "10.4"
+    },
+    {
+      "file": "10.5.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "10.5"
+    },
+    {
+      "file": "10.6.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "10.6"
+    },
+    {
+      "file": "10.7.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "10.7"
+    },
+    {
+      "file": "10.8.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "10.8"
+    },
+    {
+      "file": "11..2.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "11..2"
+    },
+    {
+      "file": "11.1.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "11.1"
+    },
+    {
+      "file": "11.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "11.2"
+    },
+    {
+      "file": "11.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "11.3"
+    },
+    {
+      "file": "11.4-1.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "11.4 1"
+    },
+    {
+      "file": "11.4.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "11.4"
+    },
+    {
+      "file": "11.6.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "11.6"
+    },
+    {
+      "file": "11.7.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "11.7"
+    },
+    {
+      "file": "11.8.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "11.8"
+    },
+    {
+      "file": "BW 2025 - 02.jpg",
+      "width": 1243,
+      "height": 1623,
+      "ratio": 0.7659,
+      "title": "Bw 2025 02"
+    },
+    {
+      "file": "DSCF7238.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dscf7238"
+    },
+    {
+      "file": "DSCF7388-HDR.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dscf7388 Hdr"
+    },
+    {
+      "file": "DSCF7424.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dscf7424"
+    },
+    {
+      "file": "Dunlo-IG-CarouselArtboard-1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dunlo Ig Carouselartboard 1"
+    },
+    {
+      "file": "Dunlo-IG-CarouselArtboard-5.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dunlo Ig Carouselartboard 5"
+    },
+    {
+      "file": "Dunlo-IG-CarouselArtboard-6.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dunlo Ig Carouselartboard 6"
+    },
+    {
+      "file": "Dunlo-IG-CarouselArtboard-8.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dunlo Ig Carouselartboard 8"
+    },
+    {
+      "file": "ENEA-VELVET-NUBOLA-TECHWALL-2025.jpg",
+      "width": 2400,
+      "height": 1570,
+      "ratio": 1.5287,
+      "title": "Enea Velvet Nubola Techwall 2025"
+    },
+    {
+      "file": "Etro 14.jpg",
+      "width": 1566,
+      "height": 2096,
+      "ratio": 0.7471,
+      "title": "Etro 14"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 1"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 2"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-3.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 3"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-4.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 4"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-5.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 5"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-6.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 6"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-7.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 7"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-8.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 8"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-9.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 9"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-10.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 10"
+    },
+    {
+      "file": "HOOGA.png",
+      "width": 530,
+      "height": 470,
+      "ratio": 1.1277,
+      "title": "Hooga"
+    },
+    {
+      "file": "MW11.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw11.1"
+    },
+    {
+      "file": "MW12.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw12.1"
+    },
+    {
+      "file": "PORTA.png",
+      "width": 530,
+      "height": 470,
+      "ratio": 1.1277,
+      "title": "Porta"
+    }
+  ]
 };
