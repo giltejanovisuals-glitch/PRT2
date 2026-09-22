@@ -3010,7 +3010,246 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Womens Month E Greeting Card"
     }
   ],
-  "print-brand-collateral": [],
+  "print-brand-collateral": [
+    {
+      "file": "1.2.png",
+      "width": 1672,
+      "height": 1594,
+      "ratio": 1.0489,
+      "title": "1.2"
+    },
+    {
+      "file": "2.2.png",
+      "width": 2057,
+      "height": 1086,
+      "ratio": 1.8941,
+      "title": "2.2"
+    },
+    {
+      "file": "3.2.png",
+      "width": 1639,
+      "height": 1086,
+      "ratio": 1.5092,
+      "title": "3.2"
+    },
+    {
+      "file": "4.2.png",
+      "width": 2216,
+      "height": 1086,
+      "ratio": 2.0405,
+      "title": "4.2"
+    },
+    {
+      "file": "5.2.png",
+      "width": 2744,
+      "height": 1086,
+      "ratio": 2.5267,
+      "title": "5.2"
+    },
+    {
+      "file": "6.2.png",
+      "width": 1448,
+      "height": 2110,
+      "ratio": 0.6863,
+      "title": "6.2"
+    },
+    {
+      "file": "7.2.png",
+      "width": 2113,
+      "height": 1402,
+      "ratio": 1.5071,
+      "title": "7.2"
+    },
+    {
+      "file": "8.2.png",
+      "width": 2132,
+      "height": 1402,
+      "ratio": 1.5207,
+      "title": "8.2"
+    },
+    {
+      "file": "9.2.png",
+      "width": 1921,
+      "height": 1402,
+      "ratio": 1.3702,
+      "title": "9.2"
+    },
+    {
+      "file": "10.2.png",
+      "width": 2045,
+      "height": 1402,
+      "ratio": 1.4586,
+      "title": "10.2"
+    },
+    {
+      "file": "11.2.png",
+      "width": 1892,
+      "height": 1402,
+      "ratio": 1.3495,
+      "title": "11.2"
+    },
+    {
+      "file": "12.2.png",
+      "width": 1913,
+      "height": 1402,
+      "ratio": 1.3645,
+      "title": "12.2"
+    },
+    {
+      "file": "13.2.png",
+      "width": 2109,
+      "height": 1402,
+      "ratio": 1.5043,
+      "title": "13.2"
+    },
+    {
+      "file": "14.2.png",
+      "width": 1448,
+      "height": 2196,
+      "ratio": 0.6594,
+      "title": "14.2"
+    },
+    {
+      "file": "15.2.png",
+      "width": 1448,
+      "height": 2196,
+      "ratio": 0.6594,
+      "title": "15.2"
+    },
+    {
+      "file": "17.2.png",
+      "width": 1448,
+      "height": 2196,
+      "ratio": 0.6594,
+      "title": "17.2"
+    },
+    {
+      "file": "18.2.png",
+      "width": 1448,
+      "height": 1807,
+      "ratio": 0.8013,
+      "title": "18.2"
+    },
+    {
+      "file": "19.2.png",
+      "width": 1844,
+      "height": 1080,
+      "ratio": 1.7074,
+      "title": "19.2"
+    },
+    {
+      "file": "20.2.png",
+      "width": 1836,
+      "height": 1080,
+      "ratio": 1.7,
+      "title": "20.2"
+    },
+    {
+      "file": "21.2.png",
+      "width": 2984,
+      "height": 1086,
+      "ratio": 2.7477,
+      "title": "21.2"
+    },
+    {
+      "file": "22.2.png",
+      "width": 721,
+      "height": 1080,
+      "ratio": 0.6676,
+      "title": "22.2"
+    },
+    {
+      "file": "23.2.png",
+      "width": 5823,
+      "height": 3000,
+      "ratio": 1.941,
+      "title": "23.2"
+    },
+    {
+      "file": "24.2.png",
+      "width": 2129,
+      "height": 1491,
+      "ratio": 1.4279,
+      "title": "24.2"
+    },
+    {
+      "file": "25.2.png",
+      "width": 1448,
+      "height": 2110,
+      "ratio": 0.6863,
+      "title": "25.2"
+    },
+    {
+      "file": "26.2.png",
+      "width": 1324,
+      "height": 1402,
+      "ratio": 0.9444,
+      "title": "26.2"
+    },
+    {
+      "file": "27.2.png",
+      "width": 1536,
+      "height": 2110,
+      "ratio": 0.728,
+      "title": "27.2"
+    },
+    {
+      "file": "28.2.png",
+      "width": 1448,
+      "height": 2110,
+      "ratio": 0.6863,
+      "title": "28.2"
+    },
+    {
+      "file": "30.2.png",
+      "width": 1915,
+      "height": 1080,
+      "ratio": 1.7731,
+      "title": "30.2"
+    },
+    {
+      "file": "31.2.png",
+      "width": 2207,
+      "height": 1491,
+      "ratio": 1.4802,
+      "title": "31.2"
+    },
+    {
+      "file": "32.2.png",
+      "width": 2207,
+      "height": 1491,
+      "ratio": 1.4802,
+      "title": "32.2"
+    },
+    {
+      "file": "33.2.png",
+      "width": 2071,
+      "height": 1491,
+      "ratio": 1.389,
+      "title": "33.2"
+    },
+    {
+      "file": "34.2.png",
+      "width": 1672,
+      "height": 1744,
+      "ratio": 0.9587,
+      "title": "34.2"
+    },
+    {
+      "file": "35.2.png",
+      "width": 1448,
+      "height": 1782,
+      "ratio": 0.8126,
+      "title": "35.2"
+    },
+    {
+      "file": "36.2.png",
+      "width": 1672,
+      "height": 1744,
+      "ratio": 0.9587,
+      "title": "36.2"
+    }
+  ],
   "commercial-lifestyle-photography": [
     {
       "file": "_DSF2214.webp のコピー.jpg",
