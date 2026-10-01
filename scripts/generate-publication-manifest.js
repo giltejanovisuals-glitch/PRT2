@@ -26,10 +26,12 @@ const { createCanvas } = require("@napi-rs/canvas");
 const SOURCE_DIR = path.join(__dirname, "..", "assets", "documents", "editorial-layout");
 const COVER_DIR = path.join(SOURCE_DIR, "covers");
 const PREVIEW_DIR = path.join(SOURCE_DIR, "previews");
+const PAGES_DIR = path.join(SOURCE_DIR, "pages");
 const OUTPUT_FILE = path.join(__dirname, "..", "js", "publication-manifest.js");
 const COVER_TARGET_WIDTH = 900;
 const PREVIEW_TARGET_WIDTH = 520;
 const PREVIEW_COUNT = 3;
+const PAGE_IMAGE_TARGET_WIDTH = 1600;
 const PDF_WARNING_BYTES = 25 * 1024 * 1024;
 const COMBINED_WARNING_BYTES = 90 * 1024 * 1024;
 
@@ -118,6 +120,22 @@ async function processPdf(pdfjsLib, file) {
     previewImages.push(`previews/${previewFile}`);
   }
 
+  // Every page as a JPEG too: the reader falls back to these when the page
+  // is opened straight from disk (file://), where browsers refuse to load
+  // PDF.js or fetch the PDF itself.
+  const pageDir = path.join(PAGES_DIR, baseName);
+  fs.rmSync(pageDir, { recursive: true, force: true });
+  fs.mkdirSync(pageDir, { recursive: true });
+  const pageImages = [];
+  for (let i = 1; i <= doc.numPages; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    const page = i === 1 ? page1 : await doc.getPage(i);
+    const pageFile = `page-${String(i).padStart(3, "0")}.jpg`;
+    // eslint-disable-next-line no-await-in-loop
+    await renderPageImage(page, PAGE_IMAGE_TARGET_WIDTH, 80, path.join(pageDir, pageFile));
+    pageImages.push(`pages/${baseName}/${pageFile}`);
+  }
+
   if (typeof doc.cleanup === "function") await doc.cleanup();
 
   return {
@@ -126,6 +144,7 @@ async function processPdf(pdfjsLib, file) {
     pageCount: doc.numPages,
     cover: `covers/${coverFile}`,
     previewImages,
+    pageImages,
     pages,
     dominantOrientation: dominantOrientation(pages),
     fileSizeBytes,
@@ -169,6 +188,17 @@ function removeOrphanPreviews(expectedPreviews) {
     const previewPath = path.join(PREVIEW_DIR, preview);
     fs.unlinkSync(previewPath);
     console.log(`[publication-manifest] Removed orphan preview ${path.relative(process.cwd(), previewPath)}`);
+  }
+}
+
+function removeOrphanPageDirs(expectedBaseNames) {
+  if (!fs.existsSync(PAGES_DIR)) return;
+
+  for (const entry of fs.readdirSync(PAGES_DIR, { withFileTypes: true })) {
+    if (!entry.isDirectory() || expectedBaseNames.has(entry.name)) continue;
+    const dirPath = path.join(PAGES_DIR, entry.name);
+    fs.rmSync(dirPath, { recursive: true, force: true });
+    console.log(`[publication-manifest] Removed orphan page images ${path.relative(process.cwd(), dirPath)}`);
   }
 }
 
@@ -221,6 +251,7 @@ async function build() {
 
   removeOrphanCovers(expectedCovers);
   removeOrphanPreviews(expectedPreviews);
+  removeOrphanPageDirs(new Set(manifest.map((entry) => path.basename(entry.file, path.extname(entry.file)))));
 
   const header = [
     "/*",

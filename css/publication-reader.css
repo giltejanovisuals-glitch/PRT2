@@ -1,38 +1,40 @@
-/* Editorial & Layout Design — curated publication archive for
+/* Editorial & Layout Design — publication library + book reader for
    pages/editorial-layout.html only. Every other Project Gallery category
    keeps using the shared moving-wall interface in css/gallery-editorial.css
    (three image categories) or their own dedicated interfaces (reels),
-   untouched.
+   untouched. Behaviour lives in js/publication-reader.js.
 
    Two parts:
-   1. .pub-shelf — a grid of lightweight CSS-3D book mockups (cover, spine,
-      page-edge) laid out with a deliberately asymmetrical span/offset
-      pattern rather than a rigid grid, in keeping with the rest of the
-      portfolio's editorial, negative-space-first visual language.
-   2. .pub-immersive — a fullscreen overlay (same fixed/backdrop/z-index
-      convention as the shared .lightbox in project-gallery.css) that opens
-      on click and pages through the real PDF as rendered book spreads,
-      with a light CSS rotateY "flip" between turns instead of a plain
-      crossfade.
+   1. .pub-shelf — the library: one CSS-3D book per PDF, side by side,
+      each wearing its PDF's first page as the cover.
+   2. .pub-immersive — a full-viewport reader the cover flies into. Pages
+      sit in two slots either side of the spine; a turn is a curling
+      .pub-leaf of hinged strips bending around it, with paper stacks (.pub-stack) on the
+      outer edges and cast shadows (.pub-cast) on the pages underneath.
 
-   Colors are drawn from the site's existing tokens in css/style.css
-   (--background/--surface/--text/--muted/--accent/--line), except the
-   reading stage itself, which stays a fixed dark charcoal regardless of
-   site theme — the same "always dark" convention the shared lightbox
-   already uses, so a publication's own light pages always read as the
-   brightest thing on screen. */
+   Colours follow the site's identity: the library uses the theme tokens in
+   css/style.css (--background/--surface/--text/--muted/--accent/--line);
+   the reader is always a dark charcoal stage with off-white paper and
+   deep-teal accents, regardless of theme, so the publication's own pages
+   are always the brightest thing on screen. */
 
 .pub-interface {
-  --pub-stage-bg: #141311;
-  --pub-stage-bg-rgb: 20, 19, 17;
-  --pub-page-bg: #efeee9;
-  --pub-gutter: clamp(10px, 1.6vw, 22px);
+  --pub-stage-bg: #131312;
+  --pub-stage-bg-rgb: 19, 19, 18;
+  --pub-paper: #f4f2ec;
+  --pub-teal: #3fac9f;
+  --pub-teal-deep: #0f4c4c;
+  --pub-ink: rgba(242, 240, 234, 0.92);
+  --pub-ink-muted: rgba(242, 240, 234, 0.55);
+  --pub-hairline: rgba(242, 240, 234, 0.14);
   width: 100%;
   max-width: 92rem;
   margin: clamp(2rem, 5vh, 3rem) auto 0;
 }
 
-/* --- Archive head --- */
+/* ==========================================================================
+   Library
+   ========================================================================== */
 
 .pub-archive-head {
   display: flex;
@@ -40,7 +42,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 0.5rem 1.5rem;
-  margin-bottom: clamp(2.5rem, 6vh, 4rem);
+  margin-bottom: clamp(2.5rem, 7vh, 4.5rem);
   padding-bottom: clamp(1rem, 2.5vh, 1.5rem);
   border-bottom: 1px solid var(--line);
 }
@@ -64,21 +66,26 @@
   text-transform: uppercase;
 }
 
-/* --- Shelf: asymmetrical exhibition grid of 3D book mockups --- */
-
+/* Two books side by side, bottoms aligned like objects on one surface. */
 .pub-shelf {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: end;
-  gap: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem);
+  gap: clamp(3rem, 7vh, 5rem) clamp(2rem, 6vw, 6rem);
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 0 clamp(0rem, 2vw, 2rem);
 }
 
-.pub-book {
+.pub-book-card {
   position: relative;
-  grid-column: span 5;
+  display: block;
+  width: 100%;
   padding: 0;
   border: 0;
   background: transparent;
+  color: inherit;
+  font: inherit;
   text-align: left;
   cursor: pointer;
   opacity: 0;
@@ -87,33 +94,40 @@
   transition-delay: var(--book-delay, 0ms);
 }
 
-.pub-book.is-revealed {
+.pub-book-card.is-revealed {
   opacity: 1;
   transform: translateY(0);
 }
 
-.pub-book[data-size="feature"] {
-  grid-column: span 7;
+/* Portrait books are narrower so both covers read at a similar visual weight. */
+.pub-book-card[data-orientation="portrait"] .pub-book-figure {
+  max-width: 74%;
 }
 
-.pub-book:nth-child(even) {
-  margin-top: clamp(1.5rem, 5vw, 3.5rem);
-}
-
-.pub-book:disabled {
+.pub-book-card:disabled {
   cursor: default;
 }
 
-/* Figure: perspective stage for the 3D block */
+.pub-book-card:focus-visible {
+  outline: none;
+}
+
+/* While a book is open in the reader its cover is "away" — the flying
+   cover stands in for it. */
+.pub-book-card.is-away .pub-book-figure {
+  visibility: hidden;
+}
 
 .pub-book-figure {
   position: relative;
+  display: block;
   perspective: 1600px;
   padding: 0 0 clamp(18px, 3vw, 30px) clamp(10px, 2vw, 18px);
 }
 
 .pub-book-block {
   position: relative;
+  display: block;
   transform-style: preserve-3d;
   transform: rotateY(-14deg) rotateX(2deg);
   transition: transform 650ms var(--ease);
@@ -121,17 +135,13 @@
 }
 
 @media (hover: hover) {
-  .pub-book:not(:disabled):hover .pub-book-block {
-    transform: rotateY(-24deg) rotateX(4deg) translateY(-10px) scale(1.015);
+  .pub-book-card:not(:disabled):hover .pub-book-block {
+    transform: rotateY(-22deg) rotateX(4deg) translateY(-10px) scale(1.015);
   }
 }
 
-.pub-book:not(:disabled):focus-visible .pub-book-block {
-  transform: rotateY(-24deg) rotateX(4deg) translateY(-10px) scale(1.015);
-}
-
-.pub-book:focus-visible {
-  outline: none;
+.pub-book-card:not(:disabled):focus-visible .pub-book-block {
+  transform: rotateY(-22deg) rotateX(4deg) translateY(-10px) scale(1.015);
 }
 
 .pub-book-shadow {
@@ -140,14 +150,14 @@
   right: 4%;
   bottom: 6px;
   height: clamp(16px, 3vw, 28px);
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.32), transparent 72%);
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.34), transparent 72%);
   filter: blur(7px);
   opacity: 0.6;
   transition: opacity 550ms var(--ease), transform 550ms var(--ease);
 }
 
 @media (hover: hover) {
-  .pub-book:not(:disabled):hover .pub-book-shadow {
+  .pub-book-card:not(:disabled):hover .pub-book-shadow {
     opacity: 0.85;
     transform: scale(1.08) translateY(4px);
   }
@@ -155,25 +165,32 @@
 
 .pub-book-cover {
   position: relative;
+  display: block;
   width: 100%;
   aspect-ratio: var(--book-ar, 0.75);
   overflow: hidden;
-  background: var(--surface);
-  box-shadow: 8px 12px 0 rgba(0, 0, 0, 0.05), 0 18px 38px rgba(0, 0, 0, 0.16);
+  background: var(--pub-paper);
+  box-shadow: 8px 12px 0 rgba(0, 0, 0, 0.05), 0 18px 38px rgba(0, 0, 0, 0.18);
   transition: box-shadow 550ms var(--ease);
 }
 
+.pub-book-card:not(:disabled):focus-visible .pub-book-cover {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+
 @media (hover: hover) {
-  .pub-book:not(:disabled):hover .pub-book-cover {
-    box-shadow: 14px 22px 0 rgba(0, 0, 0, 0.04), 0 34px 68px rgba(0, 0, 0, 0.22);
+  .pub-book-card:not(:disabled):hover .pub-book-cover {
+    box-shadow: 14px 22px 0 rgba(0, 0, 0, 0.04), 0 34px 68px rgba(0, 0, 0, 0.24);
   }
 }
 
+/* The cover's box has the page's own ratio, so contain shows it whole. */
 .pub-book-cover img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .pub-book-cover.is-missing {
@@ -197,12 +214,10 @@
 }
 
 @media (hover: hover) {
-  .pub-book:not(:disabled):hover .pub-book-sheen {
+  .pub-book-card:not(:disabled):hover .pub-book-sheen {
     opacity: 1;
   }
 }
-
-/* Spine: thin rotated face along the left edge of the cover */
 
 .pub-book-spine {
   position: absolute;
@@ -210,17 +225,10 @@
   bottom: 0;
   left: 0;
   width: var(--book-spine, 12px);
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.12) 60%,
-    rgba(255, 255, 255, 0.05)
-  );
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.12) 60%, rgba(255, 255, 255, 0.05));
   transform-origin: left center;
   transform: rotateY(-90deg);
 }
-
-/* Page edge: thin rotated face along the right edge, mimicking stacked paper */
 
 .pub-book-pages-edge {
   position: absolute;
@@ -228,13 +236,7 @@
   bottom: 3px;
   right: 0;
   width: clamp(6px, 1vw, 10px);
-  background: repeating-linear-gradient(
-    to bottom,
-    #f6f4ee 0,
-    #f6f4ee 1px,
-    #dcd8cc 1px,
-    #dcd8cc 2.4px
-  );
+  background: repeating-linear-gradient(to bottom, #f6f4ee 0, #f6f4ee 1px, #dcd8cc 1px, #dcd8cc 2.4px);
   transform-origin: right center;
   transform: rotateY(90deg);
 }
@@ -269,13 +271,9 @@
   margin: 0.1rem 0 0;
   color: var(--text);
   font-family: var(--font-headline);
-  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  font-size: clamp(1.1rem, 1.9vw, 1.5rem);
   font-weight: 400;
   line-height: 1.2;
-}
-
-.pub-book[data-size="feature"] .pub-book-title {
-  font-size: clamp(1.2rem, 2.2vw, 1.7rem);
 }
 
 .pub-book-meta {
@@ -287,19 +285,18 @@
 
 .pub-book-open {
   position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
+  top: 0.75rem;
+  right: 0.75rem;
   z-index: 1;
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.3rem 0.55rem;
-  background: rgba(var(--background-rgb), 0.9);
-  color: var(--text);
+  padding: 0.35rem 0.65rem;
+  background: var(--pub-teal-deep);
+  color: #f2f0ea;
   font-family: var(--font-body);
   font-size: 0.6rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0;
   transform: translateY(-4px);
@@ -308,13 +305,13 @@
 }
 
 @media (hover: hover) {
-  .pub-book:not(:disabled):hover .pub-book-open {
+  .pub-book-card:not(:disabled):hover .pub-book-open {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.pub-book:not(:disabled):focus-visible .pub-book-open {
+.pub-book-card:not(:disabled):focus-visible .pub-book-open {
   opacity: 1;
   transform: translateY(0);
 }
@@ -328,60 +325,25 @@
   text-align: center;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .pub-book {
-    transition: opacity 300ms linear;
-    transform: none;
-  }
-  .pub-book-block,
-  .pub-book-cover,
-  .pub-book-shadow,
-  .pub-book-sheen,
-  .pub-book-open {
-    transition: none;
-  }
-  @media (hover: hover) {
-    .pub-book:not(:disabled):hover .pub-book-block {
-      transform: none;
-    }
-  }
-}
-
-/* --- Tablet / mobile shelf --- */
-
-@media (max-width: 980px) {
-  .pub-book,
-  .pub-book[data-size="feature"] {
-    grid-column: span 6;
-  }
-}
-
-@media (max-width: 640px) {
+@media (max-width: 520px) {
   .pub-shelf {
-    gap: 3rem 0;
-  }
-  .pub-book,
-  .pub-book[data-size="feature"] {
-    grid-column: 1 / -1;
-    margin-top: 0 !important;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3.5rem;
+    padding: 0;
   }
 }
 
 /* ==========================================================================
-   Immersive reader — full-viewport overlay, opened on book click
+   Reader
    ========================================================================== */
 
 .pub-immersive {
   position: fixed;
   z-index: 92;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(0.75rem, 4vh, 2.5rem) clamp(0.75rem, 4vw, 3rem);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 350ms var(--ease), visibility 350ms;
+  transition: opacity 420ms var(--ease), visibility 420ms;
 }
 
 .pub-immersive.is-open {
@@ -389,10 +351,16 @@
   visibility: visible;
 }
 
+.pub-immersive:fullscreen {
+  background: var(--pub-stage-bg);
+}
+
 .pub-immersive-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(8, 8, 7, 0.97);
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 46%, rgba(63, 172, 159, 0.06), transparent 70%),
+    radial-gradient(ellipse at 50% 45%, #22211e 0%, var(--pub-stage-bg) 72%);
 }
 
 body.pub-immersive-open {
@@ -404,117 +372,129 @@ body.pub-immersive-open {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  width: min(100%, 78rem);
+  width: 100%;
   height: 100%;
-  max-height: 100%;
-  background: var(--pub-stage-bg);
-  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.5);
-  transform: scale(0.96) translateY(14px);
-  opacity: 0;
-  transition: transform 450ms var(--ease), opacity 380ms var(--ease);
+  color: var(--pub-ink);
+  outline: none;
 }
 
-.pub-immersive.is-open .pub-reader {
-  transform: scale(1) translateY(0);
-  opacity: 1;
-}
-
-.pub-reader:fullscreen {
-  width: 100vw;
-  height: 100dvh;
-  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0)
-    env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
-}
-
-/* --- Header bar: title, brand/year, actions --- */
+/* --- Header bar --- */
 
 .pub-immersive-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.75rem 1.5rem;
-  padding: clamp(0.9rem, 2vh, 1.35rem) clamp(1rem, 2.5vw, 1.75rem);
-  background: rgba(var(--pub-stage-bg-rgb), 0.92);
-  transition: opacity 400ms var(--ease);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding: clamp(0.75rem, 2vh, 1.1rem) clamp(1rem, 2.5vw, 1.75rem);
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: opacity 400ms var(--ease) 120ms, transform 500ms var(--ease) 120ms;
 }
 
-.pub-immersive-bar.is-idle {
-  opacity: 0.35;
-}
-
-.pub-reader:focus-within .pub-immersive-bar,
-.pub-reader:hover .pub-immersive-bar {
+.pub-immersive.is-open .pub-immersive-bar {
+  transform: none;
   opacity: 1;
+}
+
+.pub-back-btn {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.25rem;
+  padding: 0 0.95rem 0 0.75rem;
+  border: 1px solid var(--pub-hairline);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--pub-ink);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.pub-back-btn:hover,
+.pub-back-btn:focus-visible {
+  border-color: var(--pub-teal);
+  background: rgba(63, 172, 159, 0.1);
+}
+
+.pub-immersive-identity {
+  min-width: 0;
+  text-align: center;
 }
 
 .pub-immersive-index {
-  margin: 0 0 0.3rem;
-  color: rgba(255, 255, 255, 0.45);
+  margin: 0 0 0.2rem;
+  color: var(--pub-teal);
   font-family: var(--font-body);
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
 .pub-immersive-title {
   margin: 0;
+  overflow: hidden;
   color: #fff;
   font-family: var(--font-headline);
-  font-size: clamp(1.05rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 1.7vw, 1.3rem);
   font-weight: 400;
   line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .pub-immersive-subline {
-  margin: 0.25rem 0 0;
-  color: rgba(255, 255, 255, 0.55);
+  margin: 0.2rem 0 0;
+  color: var(--pub-ink-muted);
   font-family: var(--font-body);
-  font-size: 0.78rem;
-}
-
-.pub-immersive-role {
-  max-width: 42rem;
-  margin: 0.4rem 0 0;
-  color: rgba(255, 255, 255, 0.4);
   font-size: 0.72rem;
-  line-height: 1.5;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.pub-immersive-role[hidden] {
-  display: none;
 }
 
 .pub-immersive-actions {
+  justify-self: end;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 0.4rem 1.1rem;
+  gap: 0.4rem;
 }
 
-.pub-immersive-action {
-  color: var(--accent, #3fac9f);
+.pub-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin-right: 0.35rem;
+  padding: 0.15rem;
+  border: 1px solid var(--pub-hairline);
+  border-radius: 999px;
+}
+
+.pub-zoom .pub-icon-btn {
+  width: 1.95rem;
+  height: 1.95rem;
+  border-color: transparent;
+  background: transparent;
+}
+
+.pub-zoom-level {
+  min-width: 3.1rem;
+  padding: 0.3rem 0.2rem;
+  border: 0;
+  background: transparent;
+  color: var(--pub-ink-muted);
   font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  transition: opacity 200ms ease;
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
 }
 
-.pub-immersive-action:hover,
-.pub-immersive-action:focus-visible {
-  opacity: 0.75;
-}
-
-.pub-immersive-action[hidden] {
-  display: none;
+.pub-zoom-level:hover,
+.pub-zoom-level:focus-visible {
+  color: var(--pub-teal);
 }
 
 .pub-icon-btn {
@@ -523,19 +503,38 @@ body.pub-immersive-open {
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid var(--pub-hairline);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--pub-ink);
   cursor: pointer;
   transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
 }
 
-.pub-icon-btn:hover,
+.pub-icon-btn:hover:not(:disabled),
 .pub-icon-btn:focus-visible {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: var(--pub-teal);
+  background: rgba(63, 172, 159, 0.14);
   color: #fff;
+}
+
+.pub-icon-btn.is-active {
+  border-color: var(--pub-teal);
+  color: var(--pub-teal);
+}
+
+.pub-icon-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.pub-icon-btn[hidden] {
+  display: none;
+}
+
+.pub-reader :focus-visible {
+  outline: 2px solid var(--pub-teal);
+  outline-offset: 2px;
 }
 
 /* --- Stage --- */
@@ -544,136 +543,265 @@ body.pub-immersive-open {
   position: relative;
   flex: 1;
   min-height: 0;
-  overflow: hidden;
-  perspective: 2400px;
-  touch-action: pan-y;
 }
 
-.pub-stage:focus-visible {
+.pub-scroll {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: pan-y;
+  outline: none;
+  cursor: pointer;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.pub-scroll:focus-visible {
   outline: none;
 }
 
-.pub-pages {
+.pub-stage.is-zoomed .pub-scroll {
+  overflow: auto;
+  touch-action: pan-x pan-y;
+  cursor: grab;
+}
+
+.pub-stage.is-panning .pub-scroll {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.pub-canvas {
+  position: relative;
+}
+
+/* The book is two page-slots wide; it slides sideways so a lone cover or
+   back page sits centred. */
+.pub-book {
+  position: absolute;
+  perspective: 2800px;
+  transform-style: preserve-3d;
+}
+
+.pub-book[hidden],
+.pub-slot[hidden] {
+  display: none;
+}
+
+.pub-book.is-arriving {
+  visibility: hidden;
+}
+
+.pub-slot {
+  position: absolute;
+  top: 0;
+  width: var(--page-w);
+  height: var(--page-h);
+}
+
+.pub-slot-left {
+  left: 0;
+}
+
+.pub-slot-right {
+  left: var(--page-w);
+}
+
+.pub-sheet {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--pub-gutter);
-  padding: clamp(1.25rem, 3.5vh, 2.5rem) clamp(1.25rem, 5vw, 4rem);
-  transform-origin: center;
+  overflow: hidden;
+  background: var(--pub-paper);
 }
 
-.pub-pages::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    100deg,
-    transparent 38%,
-    rgba(255, 255, 255, 0.14) 50%,
-    transparent 62%
-  );
-  opacity: 0;
-  transition: opacity 260ms ease;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-}
-
-.pub-pages.is-flipping::after {
-  opacity: 1;
-}
-
-.pub-page {
-  position: relative;
-  flex: 0 0 auto;
-  transform-origin: center;
-}
-
-.pub-page-sheet {
-  position: relative;
+/* Never crop or stretch: every page keeps its own ratio inside the slot. */
+.pub-sheet canvas,
+.pub-sheet img {
   display: block;
-  background: var(--pub-page-bg);
-  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-/* Subtle stacked-page depth on the outer edge only (the edge away from the
-   gutter), suggesting the rest of the publication without any texture or
-   mockup framing. */
-.pub-page-left .pub-page-sheet::before,
-.pub-page-right .pub-page-sheet::before {
+/* Gutter: the paper curves into the spine. */
+.pub-book:not(.is-single) .pub-slot-left .pub-sheet::after,
+.pub-book:not(.is-single) .pub-slot-right .pub-sheet::after {
   content: "";
   position: absolute;
-  top: 3px;
-  bottom: 3px;
-  width: 5px;
-  background: linear-gradient(to right, rgba(var(--pub-stage-bg-rgb), 0.35), transparent);
+  inset: 0;
   pointer-events: none;
 }
 
-.pub-page-left .pub-page-sheet::before {
-  left: -5px;
-  background: linear-gradient(to left, rgba(var(--pub-stage-bg-rgb), 0.35), transparent);
+.pub-book:not(.is-single) .pub-slot-left .pub-sheet::after {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.07) 3.5%, transparent 9%);
 }
 
-.pub-page-right .pub-page-sheet::before {
-  right: -5px;
+.pub-book:not(.is-single) .pub-slot-right .pub-sheet::after {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.07) 3.5%, transparent 9%);
 }
 
-.pub-page canvas {
+.pub-book.is-cover .pub-slot-right .pub-sheet::after {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.16), transparent 3%);
+}
+
+.pub-book.is-back .pub-slot-left .pub-sheet::after {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.16), transparent 3%);
+}
+
+/* Paper stack: the box-shadow layers are set from JS by pages remaining. */
+.pub-stack {
+  position: absolute;
+  inset: 0;
+  background: var(--pub-paper);
+}
+
+.pub-cast {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pub-slot-right .pub-cast {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.18) 35%, transparent 75%);
+}
+
+.pub-slot-left .pub-cast {
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.18) 35%, transparent 75%);
+}
+
+.pub-book.is-single .pub-slot-right .pub-cast {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.45), transparent 60%);
+}
+
+/* The turning page: a chain of thin strips, each hinged on the one before
+   it (the first on the spine) and angled a little further, so the sheet
+   bends like paper. js/publication-reader.js sets every strip's angle and
+   shading per frame. */
+.pub-leaf {
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  width: var(--page-w);
+  height: var(--page-h);
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.pub-leaf-right {
+  left: var(--page-w);
+}
+
+.pub-leaf-left {
+  left: 0;
+}
+
+.pub-strip {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.pub-strip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.pub-strip-back {
+  transform: rotateY(180deg);
+}
+
+.pub-strip-face canvas {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .pub-pages {
-    transition: opacity 220ms linear !important;
-    transform: none !important;
-  }
-  .pub-pages::after {
-    display: none;
-  }
-}
-
-.pub-edge {
+.pub-strip-shade {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 2;
-  width: 15%;
-  min-width: 40px;
-  border: 0;
-  background: transparent;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Cover in flight between library and reader. */
+.pub-flyer {
+  position: fixed;
+  z-index: 96;
+  background: var(--pub-paper);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+  transform-origin: center;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.pub-flyer img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Side arrows */
+.pub-turn {
+  position: absolute;
+  top: 50%;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  margin-top: -1.45rem;
+  border: 1px solid var(--pub-hairline);
+  border-radius: 50%;
+  background: rgba(var(--pub-stage-bg-rgb), 0.55);
+  color: var(--pub-ink);
   cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: opacity 300ms ease, border-color 200ms ease, background-color 200ms ease;
 }
 
-.pub-edge-prev {
-  left: 0;
+.pub-turn:hover:not(:disabled),
+.pub-turn:focus-visible {
+  border-color: var(--pub-teal);
+  background: rgba(15, 76, 76, 0.75);
 }
 
-.pub-edge-next {
-  right: 0;
+.pub-turn:disabled {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.pub-edge:disabled {
-  cursor: default;
+.pub-turn-prev {
+  left: clamp(0.5rem, 1.6vw, 1.5rem);
+}
+
+.pub-turn-next {
+  right: clamp(0.5rem, 1.6vw, 1.5rem);
 }
 
 .pub-loading {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 3;
+  top: 0.75rem;
+  left: 50%;
+  z-index: 7;
   display: none;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 0.65rem;
-  background: rgba(var(--pub-stage-bg-rgb), 0.6);
-  color: rgba(255, 255, 255, 0.75);
+  padding: 0.4rem 0.7rem;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(var(--pub-stage-bg-rgb), 0.75);
+  color: var(--pub-ink-muted);
   font-family: var(--font-body);
-  font-size: 0.62rem;
-  letter-spacing: 0.06em;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -685,15 +813,9 @@ body.pub-immersive-open {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  border: 1.5px solid rgba(var(--accent-rgb), 0.35);
-  border-top-color: var(--accent);
+  border: 1.5px solid rgba(63, 172, 159, 0.35);
+  border-top-color: var(--pub-teal);
   animation: pub-spin 800ms linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pub-loading-dot {
-    animation: none;
-  }
 }
 
 @keyframes pub-spin {
@@ -709,9 +831,8 @@ body.pub-immersive-open {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
   padding: 2rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--pub-ink-muted);
   text-align: center;
   font-family: var(--font-body);
   font-size: 0.85rem;
@@ -721,143 +842,289 @@ body.pub-immersive-open {
   display: flex;
 }
 
-/* --- Footer: page-turn controls + thumbnails --- */
+/* --- Footer: counter, progress, thumbnails --- */
 
 .pub-immersive-footer {
+  padding: 0.5rem clamp(0.75rem, 2.5vw, 1.75rem) clamp(0.6rem, 1.6vh, 1rem);
+  transform: translateY(10px);
+  opacity: 0;
+  transition: opacity 400ms var(--ease) 160ms, transform 500ms var(--ease) 160ms;
+}
+
+.pub-immersive.is-open .pub-immersive-footer {
+  transform: none;
+  opacity: 1;
+}
+
+.pub-footer-row {
   display: flex;
   align-items: center;
-  gap: clamp(0.5rem, 1.5vw, 1rem);
-  padding: 0.6rem clamp(0.75rem, 2vw, 1.5rem);
-  background: rgba(var(--pub-stage-bg-rgb), 0.92);
-  transition: opacity 400ms var(--ease);
-}
-
-.pub-immersive-footer.is-idle {
-  opacity: 0.35;
-}
-
-.pub-reader:focus-within .pub-immersive-footer,
-.pub-reader:hover .pub-immersive-footer {
-  opacity: 1;
+  gap: clamp(0.4rem, 1.2vw, 0.9rem);
 }
 
 .pub-nav-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 36px;
-  min-height: 36px;
+  width: 2.25rem;
+  height: 2.25rem;
   border: 0;
+  border-radius: 50%;
   background: transparent;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--pub-ink);
   cursor: pointer;
   transition: color 200ms ease, background-color 200ms ease;
 }
 
 .pub-nav-btn:hover:not(:disabled) {
+  background: rgba(63, 172, 159, 0.14);
   color: #fff;
-  background: rgba(255, 255, 255, 0.08);
 }
 
 .pub-nav-btn:disabled {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.22);
   cursor: default;
 }
 
 .pub-page-field {
   display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  color: rgba(255, 255, 255, 0.6);
+  align-items: baseline;
+  gap: 0.35rem;
+  min-width: 5.5rem;
+  margin: 0;
+  justify-content: center;
+  color: var(--pub-ink);
   font-family: var(--font-body);
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
 }
 
-/* --- Thumbnail filmstrip --- */
+.pub-page-sep,
+#pub-page-total {
+  color: var(--pub-ink-muted);
+}
 
-.pub-thumbnails {
+.pub-progress {
+  position: relative;
   flex: 1;
-  min-width: 0;
-  margin-left: clamp(0.5rem, 2vw, 1.5rem);
+  height: 2px;
+  min-width: 2rem;
+  background: var(--pub-hairline);
+}
+
+.pub-progress span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: var(--pub-teal);
+  transition: width 500ms var(--ease);
 }
 
 .pub-thumbnails-toggle {
-  display: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.25rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--pub-hairline);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pub-ink);
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 200ms ease, color 200ms ease;
+}
+
+.pub-thumbnails-toggle:hover,
+.pub-thumbnails-toggle[aria-expanded="true"] {
+  border-color: var(--pub-teal);
+  color: var(--pub-teal);
 }
 
 .pub-thumbnails-track {
-  display: flex;
-  gap: 8px;
+  display: none;
+  gap: 2px;
+  margin-top: 0.6rem;
+  padding: 0.35rem 0.25rem 0.4rem;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.is-thumbs-open .pub-thumbnails-track {
+  display: flex;
 }
 
 .pub-thumb {
   flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
   padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
-  text-align: center;
+}
+
+/* Gaps fall between spreads (cover | 2–3 | 4–5 …), not inside them. */
+.pub-thumb.is-spread-start,
+.pub-thumb:nth-child(2) {
+  margin-left: 12px;
 }
 
 .pub-thumb-sheet {
-  width: 40px;
+  display: block;
+  height: 48px;
   aspect-ratio: var(--pub-thumb-ar, 0.75);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.07);
   outline: 2px solid transparent;
   outline-offset: 2px;
-  transition: outline-color 200ms ease;
+  opacity: 0.6;
+  transition: outline-color 200ms ease, opacity 200ms ease;
 }
 
-.pub-thumb canvas,
-.pub-thumb img {
+.pub-thumb canvas {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
-.pub-thumb[aria-current="true"] .pub-thumb-sheet {
-  outline-color: var(--accent);
+.pub-thumb-num {
+  color: var(--pub-ink-muted);
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.pub-thumb:hover .pub-thumb-sheet {
+  opacity: 1;
+}
+
+.pub-thumb[aria-current="page"] .pub-thumb-sheet {
+  outline-color: var(--pub-teal);
+  opacity: 1;
+}
+
+.pub-thumb[aria-current="page"] .pub-thumb-num {
+  color: var(--pub-teal);
+}
+
+.pub-reader .pub-thumb:focus-visible {
+  outline: none;
 }
 
 .pub-thumb:focus-visible .pub-thumb-sheet {
-  outline-color: var(--accent);
+  outline-color: #fff;
+  opacity: 1;
 }
 
-/* --- Tablet --- */
+/* Chrome dims after a few idle seconds so the pages own the screen. */
+.pub-reader.is-idle .pub-immersive-bar,
+.pub-reader.is-idle .pub-immersive-footer,
+.pub-reader.is-idle .pub-turn:not(:disabled) {
+  opacity: 0.35;
+  transition-delay: 0ms;
+}
+
+/* --- Tablet / mobile --- */
 
 @media (max-width: 980px) {
-  .pub-thumbnails {
+  .pub-immersive-bar {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .pub-immersive-subline {
+    display: none;
+  }
+
+  .pub-zoom-level {
     display: none;
   }
 }
 
-/* --- Mobile --- */
-
 @media (max-width: 760px) {
-  .pub-immersive {
-    padding: 0;
-  }
-
-  .pub-reader {
-    width: 100%;
-  }
-
   .pub-immersive-bar {
-    padding: 0.85rem 1rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.5rem 0.75rem;
+    padding: 0.7rem 0.85rem 0.5rem;
   }
 
-  .pub-pages {
-    padding: 0.75rem 1rem;
+  .pub-back-btn span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
   }
 
+  .pub-back-btn {
+    width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .pub-immersive-identity {
+    text-align: left;
+  }
+
+  .pub-immersive-actions {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    justify-content: space-between;
+  }
+
+  .pub-icon-btn,
   .pub-nav-btn {
-    min-width: 44px;
-    min-height: 44px;
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+
+  .pub-turn {
+    display: none;
+  }
+
+  .pub-thumbnails-toggle span {
+    display: none;
+  }
+}
+
+/* --- Reduced motion: no flights, flips, or slides — just quick fades --- */
+
+@media (prefers-reduced-motion: reduce) {
+  .pub-book-card {
+    transition: opacity 300ms linear;
+    transform: none;
+  }
+
+  .pub-book-block,
+  .pub-book-cover,
+  .pub-book-shadow,
+  .pub-book-sheen,
+  .pub-book-open,
+  .pub-progress span {
+    transition: none;
+  }
+
+  @media (hover: hover) {
+    .pub-book-card:not(:disabled):hover .pub-book-block {
+      transform: rotateY(-14deg) rotateX(2deg);
+    }
+  }
+
+  .pub-immersive-bar,
+  .pub-immersive-footer {
+    transform: none;
+  }
+
+  .pub-loading-dot {
+    animation: none;
   }
 }

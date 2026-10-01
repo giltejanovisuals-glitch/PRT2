@@ -958,12 +958,10 @@ body.is-scrolled .nav-backdrop {
   overflow: hidden;
 }
 
-.showcase-panel-media picture {
-  position: absolute;
-  inset: 0;
-  display: block;
-}
-
+/* Two stacked preview layers per panel, built by js/gallery-index.js from
+   js/home-previews.js: the .is-active one is visible, and the hover
+   slideshow crossfades by loading the next image into the hidden layer and
+   swapping the class. */
 .showcase-panel-img {
   position: absolute;
   inset: 0;
@@ -972,32 +970,56 @@ body.is-scrolled .nav-backdrop {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  opacity: 0;
   transform: scale(1);
-  transition: transform 550ms var(--ease);
+  transition:
+    opacity 700ms var(--ease),
+    transform 550ms var(--ease);
 }
 
+.showcase-panel-img.is-active {
+  opacity: 1;
+}
+
+/* The outgoing slide keeps its zoom while it fades, then resets to 1
+   once it's invisible — so it never visibly shrinks mid-crossfade. */
+.showcase-panel-img:not(.is-active) {
+  transition:
+    opacity 700ms var(--ease),
+    transform 0s linear 700ms;
+}
+
+/* Gentle zoom on whichever image is showing; the long duration keeps it
+   drifting slowly through each slide rather than snapping. */
+.showcase-panel:hover .showcase-panel-img.is-active,
+.showcase-panel:focus-within .showcase-panel-img.is-active,
+.showcase-panel.is-expanded .showcase-panel-img.is-active {
+  transform: scale(1.06);
+  transition:
+    opacity 700ms var(--ease),
+    transform 2400ms var(--ease);
+}
+
+/* Even wash plus a soft darker pool behind the centered title/summary, so
+   the text stays readable over bright artwork. */
 .showcase-panel-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.52) 50%,
-    rgba(0, 0, 0, 0.42) 100%
-  );
+  background:
+    radial-gradient(ellipse 85% 42% at 50% 50%, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0) 100%),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.52) 50%,
+      rgba(0, 0, 0, 0.42) 100%
+    );
   transition: opacity 550ms var(--ease);
-}
-
-.showcase-panel:hover .showcase-panel-img,
-.showcase-panel:focus-within .showcase-panel-img,
-.showcase-panel.is-expanded .showcase-panel-img {
-  transform: scale(1.02);
 }
 
 .showcase-panel:hover .showcase-panel-overlay,
 .showcase-panel:focus-within .showcase-panel-overlay,
 .showcase-panel.is-expanded .showcase-panel-overlay {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 /* Title stays perfectly still: the panel centers its content, and the

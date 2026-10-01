@@ -27,12 +27,12 @@
     </script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/project-gallery.css" />
-    <link rel="stylesheet" href="../css/publication-reader.css" />
+    <link rel="stylesheet" href="../css/publication-reader.css?v=5" />
     <script src="../js/gallery-categories-data.js" defer></script>
     <script src="../js/gallery-editorial.js" defer></script>
-    <script src="../js/publication-manifest.js" defer></script>
+    <script src="../js/publication-manifest.js?v=4" defer></script>
     <script src="../js/publication-meta.js" defer></script>
-    <script src="../js/publication-reader.js" type="module"></script>
+    <script src="../js/publication-reader.js?v=5" defer></script>
   </head>
 
   <body>
@@ -120,31 +120,68 @@
         <div class="pub-immersive" id="pub-immersive" aria-hidden="true">
           <div class="pub-immersive-backdrop" id="pub-immersive-backdrop"></div>
 
-          <div class="pub-reader" id="pub-reader" role="dialog" aria-modal="true" aria-labelledby="pub-info-title">
+          <div class="pub-reader" id="pub-reader" role="dialog" aria-modal="true" aria-labelledby="pub-info-title" tabindex="-1">
             <header class="pub-immersive-bar" id="pub-controls">
+              <button class="pub-back-btn" id="pub-back" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>
+                <span>Library</span>
+              </button>
+
               <div class="pub-immersive-identity">
                 <p class="pub-immersive-index" id="pub-info-index">01 / 01</p>
                 <h2 class="pub-immersive-title" id="pub-info-title">—</h2>
                 <p class="pub-immersive-subline" id="pub-info-subline">—</p>
-                <p class="pub-immersive-role" id="pub-info-role" hidden>—</p>
               </div>
+
               <div class="pub-immersive-actions">
-                <a class="pub-immersive-action" id="pub-info-case-study" href="#" hidden>Case Study</a>
-                <a class="pub-immersive-action" id="pub-info-download" href="#" target="_blank" rel="noopener">View Full PDF</a>
-                <button class="pub-icon-btn" id="pub-fullscreen" type="button" aria-label="Enter fullscreen">
+                <div class="pub-zoom" role="group" aria-label="Zoom">
+                  <button class="pub-icon-btn" id="pub-zoom-out" type="button" aria-label="Zoom out" title="Zoom out">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg>
+                  </button>
+                  <button class="pub-zoom-level" id="pub-zoom-level" type="button" aria-label="Reset zoom" title="Reset zoom">100%</button>
+                  <button class="pub-icon-btn" id="pub-zoom-in" type="button" aria-label="Zoom in" title="Zoom in">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+                  </button>
+                </div>
+                <a class="pub-icon-btn" id="pub-info-case-study" href="#" hidden aria-label="View case study" title="Case study">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+                </a>
+                <a class="pub-icon-btn" id="pub-info-download" href="#" download aria-label="Download PDF" title="Download PDF">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>
+                </a>
+                <button class="pub-icon-btn" id="pub-fullscreen" type="button" aria-label="Enter fullscreen" title="Fullscreen">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
                 </button>
-                <button class="pub-icon-btn pub-icon-btn-close" id="pub-immersive-close" type="button" aria-label="Close reader">
+                <button class="pub-icon-btn" id="pub-immersive-close" type="button" aria-label="Close reader" title="Close">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
                 </button>
               </div>
             </header>
 
-            <div class="pub-stage" id="pub-stage" tabindex="0" role="region" aria-label="Publication reader">
-              <div class="pub-pages" id="pub-pages"></div>
+            <div class="pub-stage" id="pub-stage">
+              <div class="pub-scroll" id="pub-scroll" tabindex="0" role="region" aria-roledescription="book" aria-label="Publication pages. Use the arrow keys to turn pages.">
+                <div class="pub-canvas" id="pub-canvas">
+                  <div class="pub-book" id="pub-book">
+                    <div class="pub-slot pub-slot-left">
+                      <span class="pub-stack" aria-hidden="true"></span>
+                      <div class="pub-sheet"></div>
+                      <span class="pub-cast" aria-hidden="true"></span>
+                    </div>
+                    <div class="pub-slot pub-slot-right">
+                      <span class="pub-stack" aria-hidden="true"></span>
+                      <div class="pub-sheet"></div>
+                      <span class="pub-cast" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-              <button class="pub-edge pub-edge-prev" id="pub-edge-prev" type="button" aria-label="Previous page"></button>
-              <button class="pub-edge pub-edge-next" id="pub-edge-next" type="button" aria-label="Next page"></button>
+              <button class="pub-turn pub-turn-prev" id="pub-edge-prev" type="button" aria-label="Previous page">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+              </button>
+              <button class="pub-turn pub-turn-next" id="pub-edge-next" type="button" aria-label="Next page">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+              </button>
 
               <div class="pub-loading" id="pub-loading" aria-hidden="true">
                 <span class="pub-loading-dot"></span>
@@ -157,25 +194,23 @@
             </div>
 
             <footer class="pub-immersive-footer">
-              <button class="pub-nav-btn" id="pub-prev" type="button" aria-label="Previous page">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
-              </button>
-
-              <div class="pub-page-field">
-                <span id="pub-page-current">1</span><span aria-hidden="true">/</span><span id="pub-page-total">1</span>
-              </div>
-
-              <button class="pub-nav-btn" id="pub-next" type="button" aria-label="Next page">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
-              </button>
-
-              <div class="pub-thumbnails" id="pub-thumbnails">
-                <button class="pub-thumbnails-toggle" id="pub-thumbnails-toggle" type="button" aria-expanded="true" aria-controls="pub-thumbnails-track">
-                  <svg class="pub-thumbnails-toggle-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
-                  Pages
+              <div class="pub-footer-row">
+                <button class="pub-nav-btn" id="pub-prev" type="button" aria-label="Previous page">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
                 </button>
-                <div class="pub-thumbnails-track" id="pub-thumbnails-track"></div>
+                <p class="pub-page-field">
+                  <span id="pub-page-current">1</span><span class="pub-page-sep" aria-hidden="true">/</span><span id="pub-page-total">1</span>
+                </p>
+                <button class="pub-nav-btn" id="pub-next" type="button" aria-label="Next page">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+                </button>
+                <div class="pub-progress" aria-hidden="true"><span id="pub-progress-bar"></span></div>
+                <button class="pub-thumbnails-toggle" id="pub-thumbnails-toggle" type="button" aria-expanded="true" aria-controls="pub-thumbnails-track">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
+                  <span>Pages</span>
+                </button>
               </div>
+              <div class="pub-thumbnails-track" id="pub-thumbnails-track" role="group" aria-label="Page thumbnails"></div>
             </footer>
           </div>
         </div>

@@ -141,34 +141,29 @@ project types) and every tile renders as a CSS gradient (the
 `showcase-tone-*` classes in `css/style.css`) until real project entries
 and images replace them.
 
-### Dropping in the five showcase cover images
+### Homepage showcase previews
 
-Each homepage panel already has real `<picture>`/`<img>` markup pointing at
-files that don't exist yet, so nothing needs to change in the HTML/CSS —
-just add files at these exact paths and they'll appear automatically (the
-gradient stays as a silent fallback if a file is ever missing or fails to
-load):
+Each homepage panel shows a random static image drawn only from its own
+category, and crossfades through more of them (every 800–1200ms) while a
+mouse hovers it. Touch devices and `prefers-reduced-motion` users get the
+static image only. The images come from `js/home-previews.js`, written by
+`scripts/generate-home-previews.js` (part of `npm run build`), which
+downsizes up to 16 evenly spaced images per category into
+`assets/images/home-previews/<id>/`:
 
+- Editorial & Layout — the publication page previews in `assets/documents/editorial-layout/previews/`
+- Social, Print, Photography — `assets/images/gallery/<id>/`
+- Short-Form Video & Reels — the poster frames in `assets/videos/short-form-reels/`
+
+Nothing to hand-edit: add or remove source images and rebuild. If a
+category has no images, its panel falls back to the tone gradient.
+
+To shift a category's crop away from dead-center, tune `object-position`
+via its tone class, e.g.:
+
+```css
+.showcase-tone-retail .showcase-panel-img { object-position: center 30%; }
 ```
-assets/images/gallery/editorial-layout-cover.{avif,webp,jpg}
-assets/images/gallery/social-media-campaigns-cover.{avif,webp,jpg}
-assets/images/gallery/print-brand-collateral-cover.{avif,webp,jpg}
-assets/images/gallery/commercial-lifestyle-photography-cover.{avif,webp,jpg}
-assets/images/gallery/short-form-video-reels-cover.{avif,webp,jpg}
-```
-
-(This is just the homepage's own static cover thumbnail for the category — unrelated to that category page's actual video content, see "Short-Form Video & Reels player" below.)
-
-- Only the `.jpg` is required (it's the `<img src>` fallback); `.avif`/
-  `.webp` are optional but preferred — the browser picks the first format
-  it supports.
-- Target roughly 200–350 KB per image, landscape, at least 1200px on the
-  short edge (panels can grow to `clamp(440px, 60vh, 620px)` tall).
-- If an image's important content sits somewhere other than dead-center,
-  tune `object-position` for that one image via its tone class, e.g.:
-  ```css
-  .showcase-tone-retail .showcase-panel-img { object-position: center 30%; }
-  ```
 
 ## Project Gallery moving-wall categories
 
