@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Social Media Campaigns — scroll-led three-column showcase
    Adapted from the supplied 21st.dev reference for this static HTML/CSS/JS site. */
 
@@ -140,10 +141,114 @@
 
   .social-showcase-scroll .editorial-row-track {
     gap: 8px;
+=======
+/* Social Media Campaigns & Key Visuals — scroll-led showcase for
+   pages/social-media-campaigns.html only (other Project Gallery pages keep
+   the shared moving wall in css/gallery-editorial.css). Behaviour lives in
+   js/social-campaign-showcase.js; the lightbox styling is still the shared
+   one from project-gallery.css + gallery-editorial.css.
+
+   Tiles are transparent and sized by each image's own aspect ratio (set
+   inline from the manifest), so nothing is cropped, stretched, letterboxed
+   or backed by a filler colour. Colours come from the site's theme tokens. */
+
+.scs {
+  --scs-gap: clamp(10px, 1.25vw, 18px);
+  position: relative;
+  max-width: 84rem;
+  margin: clamp(2.5rem, 6vh, 4rem) auto clamp(3rem, 7vh, 4.5rem);
+  /* Keeps the tilted plane and drifting columns from spilling sideways or
+     over the closing section. */
+  overflow: clip;
+  overflow-clip-margin: 24px;
+}
+
+.scs[hidden] {
+  display: none;
+}
+
+.scs.is-motion {
+  perspective: 1400px;
+  perspective-origin: 50% 0%;
+}
+
+.scs-plane {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--scs-gap);
+  transform-origin: 50% 0%;
+}
+
+.scs.is-motion .scs-plane {
+  will-change: transform;
+}
+
+.scs-col {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--scs-gap);
+}
+
+.scs.is-motion .scs-col {
+  will-change: transform;
+}
+
+.scs-tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.scs-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 450ms var(--ease), filter 450ms var(--ease);
+}
+
+/* Hover/focus: the image grows and brightens in place — transform only, so
+   neighbouring tiles never move. */
+@media (hover: hover) {
+  .scs-tile:hover {
+    z-index: 1;
+  }
+
+  .scs-tile:hover .scs-img {
+    transform: scale(1.035);
+    filter: brightness(1.08);
+  }
+}
+
+.scs-tile:focus-visible {
+  z-index: 1;
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.scs-tile:focus-visible .scs-img {
+  transform: scale(1.035);
+  filter: brightness(1.08);
+}
+
+/* Phones: two plain columns, no perspective or drift (the script also
+   switches motion off below 761px). */
+@media (max-width: 760px) {
+  .scs {
+    --scs-gap: 10px;
+    margin-top: 2rem;
+>>>>>>> 7d369f4 (Update portfolio)
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+<<<<<<< HEAD
   .social-showcase-scroll {
     height: auto;
   }
@@ -158,5 +263,9 @@
   .social-showcase-scroll .editorial-row,
   .social-showcase-scroll .editorial-row-track {
     transform: none !important;
+=======
+  .scs-img {
+    transition: none;
+>>>>>>> 7d369f4 (Update portfolio)
   }
 }

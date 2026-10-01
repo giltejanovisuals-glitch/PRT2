@@ -1,0 +1,629 @@
+/* Landing hero (index.html, .hero) — merges the old intro and the Brand
+   Identity & Visual Systems section into one split-screen composition:
+   a large stage on the left (intro copy + a horizontally scrollable row
+   of 3D-style brand folders) and a narrower charcoal information panel on
+   the right that updates with the selected brand. Behaviour lives in
+   js/hero-folders.js, which sets each folder's depth transform from its
+   distance to the centre of the row.
+
+   Palette: the site's tokens (--background/--text/--muted/--accent) for
+   the stage; the panel and folders are always charcoal with warm
+   off-white type and deep-teal accents, in both themes. */
+
+.hero {
+  --hx-paper: #f2f0ea;
+  --hx-paper-muted: rgba(242, 240, 234, 0.62);
+  --hx-hairline: rgba(242, 240, 234, 0.16);
+  --hx-teal: #3fac9f;
+  --hx-teal-deep: #0f4c4c;
+  --hx-panel-w: clamp(320px, 31vw, 470px);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--hx-panel-w);
+  min-height: max(640px, 100svh);
+}
+
+/* --- Stage --- */
+
+.hero-stage {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--header-h) + clamp(0.5rem, 3vh, 2rem)) 0 clamp(1.5rem, 4.5vh, 2.75rem);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 62%, rgba(255, 255, 255, 0.55), transparent 70%),
+    var(--background);
+}
+
+:root[data-theme="dark"] .hero-stage {
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 62%, rgba(255, 255, 255, 0.045), transparent 70%),
+    var(--background);
+}
+
+.hero-intro {
+  max-width: 48rem;
+  padding: 0 clamp(2.75rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.hero-eyebrow {
+  margin: 0 0 clamp(0.75rem, 2vh, 1.1rem);
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  max-width: 24ch;
+  margin: 0 auto;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: clamp(1.55rem, 2.55vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  line-height: 1.14;
+  text-wrap: balance;
+}
+
+.hero-sub {
+  max-width: 36rem;
+  margin: clamp(0.75rem, 2vh, 1.1rem) auto 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+/* Vertical "Project Gallery" tab on the stage's left edge. */
+.hero-side-tab {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.5rem 0.8rem;
+  background: linear-gradient(0deg, #141413 0%, var(--hx-teal-deep) 100%);
+  color: var(--hx-paper);
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: translateY(-50%) rotate(180deg);
+  transition: padding 300ms var(--ease);
+}
+
+.hero-side-tab strong {
+  font-weight: 700;
+}
+
+.hero-side-tab svg {
+  transform: rotate(90deg);
+}
+
+.hero-side-tab:hover,
+.hero-side-tab:focus-visible {
+  padding-right: 1.05rem;
+}
+
+.hero-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  margin-top: clamp(0.5rem, 2vh, 1.25rem);
+  padding: 0 2.6rem;
+  border: 1px solid var(--text);
+  border-radius: 999px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+.hero-contact:hover,
+.hero-contact:focus-visible {
+  background: var(--text);
+  color: var(--background);
+}
+
+/* --- Folder row --- */
+
+.hero-folders {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  align-items: center;
+  min-height: clamp(300px, 47vh, 540px);
+}
+
+.hf-track {
+  --fw: clamp(240px, 25vw, 410px);
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  /* First and last folders can still reach the centre. */
+  padding: clamp(0.5rem, 2vh, 1.5rem) calc(50% - var(--fw) / 2);
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+  outline: none;
+}
+
+.hf-track::-webkit-scrollbar {
+  display: none;
+}
+
+.hf-track.is-dragging {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  user-select: none;
+}
+
+.hf-folder {
+  position: relative;
+  flex: 0 0 var(--fw);
+  aspect-ratio: 1 / 1.02;
+  /* Folders overlap slightly so neighbours tuck in behind the selected one. */
+  margin-inline: calc(var(--fw) * -0.06);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  scroll-snap-align: center;
+  transform-origin: 50% 60%;
+  will-change: transform, filter;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hf-folder:focus-visible {
+  outline: none;
+}
+
+.hf-folder:focus-visible .hf-front {
+  outline: 2px solid var(--hx-teal);
+  outline-offset: 4px;
+}
+
+/* Back panel with its tab. */
+.hf-back {
+  position: absolute;
+  right: 4%;
+  bottom: 6%;
+  left: 4%;
+  height: 60%;
+  border-radius: 4px 10px 8px 8px;
+  background: linear-gradient(172deg, #3a3834, #22211f 70%);
+  box-shadow: 0 34px 60px -26px rgba(0, 0, 0, 0.55), 0 10px 22px -12px rgba(0, 0, 0, 0.35);
+}
+
+.hf-back::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 38%;
+  height: 8%;
+  min-height: 10px;
+  border-radius: 6px 10px 0 0;
+  background: #3a3834;
+  transition: box-shadow 500ms var(--ease);
+}
+
+.hf-folder.is-active .hf-back::before {
+  box-shadow: inset 0 2px 0 var(--hx-teal);
+}
+
+/* Brand visuals inside the folder: tucked in when closed, fanned out above
+   the front flap when the folder is selected. Each keeps its own ratio. */
+.hf-sheets {
+  position: absolute;
+  inset: 0;
+}
+
+.hf-sheet {
+  position: absolute;
+  bottom: 16%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  max-width: 58%;
+  max-height: 50%;
+  border-radius: 2px;
+  box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.45);
+  transform-origin: 50% 100%;
+  transform: translate(-50%, 12%) rotate(0deg);
+  transition: transform 750ms var(--ease), filter 750ms var(--ease);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.hf-sheet:nth-child(1) {
+  z-index: 3;
+}
+
+.hf-sheet:nth-child(2) {
+  z-index: 2;
+  transform: translate(-56%, 10%) rotate(-3deg);
+  filter: brightness(0.92);
+}
+
+.hf-sheet:nth-child(3) {
+  z-index: 1;
+  transform: translate(-44%, 10%) rotate(3deg);
+  filter: brightness(0.86);
+}
+
+.hf-folder.is-active .hf-sheet:nth-child(1) {
+  transform: translate(-50%, -34%) rotate(0deg);
+  transition-delay: 90ms;
+}
+
+.hf-folder.is-active .hf-sheet:nth-child(2) {
+  transform: translate(-96%, -16%) rotate(-8deg);
+  filter: brightness(0.96);
+  transition-delay: 30ms;
+}
+
+.hf-folder.is-active .hf-sheet:nth-child(3) {
+  transform: translate(-4%, -16%) rotate(8deg);
+  filter: brightness(0.93);
+  transition-delay: 150ms;
+}
+
+@media (hover: hover) {
+  .hf-folder.is-active:hover .hf-sheet:nth-child(1) {
+    transform: translate(-50%, -38%) rotate(0deg);
+  }
+}
+
+/* Front flap: hinged at the bottom, tips forward to open. */
+.hf-front {
+  position: absolute;
+  right: 4%;
+  bottom: 6%;
+  left: 4%;
+  z-index: 4;
+  display: flex;
+  height: 47%;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 7% 8%;
+  border-radius: 6px 6px 8px 8px;
+  background: linear-gradient(176deg, #44413c, #2a2926 62%, #242320);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 -6px 18px -10px rgba(0, 0, 0, 0.4);
+  transform-origin: 50% 100%;
+  transform: perspective(900px) rotateX(0deg);
+  transition: transform 750ms var(--ease);
+}
+
+.hf-folder.is-active .hf-front {
+  transform: perspective(900px) rotateX(-22deg);
+}
+
+.hf-logo {
+  /* Width/height are set inline per brand at equal visual area, so wide
+     wordmarks and compact logos read at the same weight; 1em = this size. */
+  display: block;
+  max-width: 100%;
+  font-size: clamp(8px, 0.85vw, 12px);
+  background-color: var(--hx-paper);
+  /* mask-image is set inline per brand (a url() inside a custom property
+     would resolve against this stylesheet's folder, not the page). */
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  opacity: 0.92;
+}
+
+.hf-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7em;
+  margin-top: 0.8rem;
+  color: var(--hx-paper-muted);
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.hf-num {
+  color: var(--hx-teal);
+}
+
+/* --- Information panel --- */
+
+.hero-panel {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: calc(var(--header-h) + clamp(1.5rem, 6vh, 4rem)) clamp(1.75rem, 3.2vw, 3.25rem) clamp(1.5rem, 4.5vh, 2.75rem);
+  background:
+    radial-gradient(ellipse 90% 50% at 85% 0%, rgba(63, 172, 159, 0.11), transparent 60%),
+    linear-gradient(180deg, #1b1b19, #111110);
+  color: var(--hx-paper);
+}
+
+:root[data-theme="dark"] .hero-panel {
+  border-left: 1px solid rgba(242, 240, 234, 0.07);
+  background:
+    radial-gradient(ellipse 90% 50% at 85% 0%, rgba(63, 172, 159, 0.09), transparent 60%),
+    linear-gradient(180deg, #121211, #0b0b0a);
+}
+
+.hp-eyebrow {
+  margin: 0 0 clamp(1.25rem, 4.5vh, 2.75rem);
+  color: rgba(242, 240, 234, 0.5);
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+/* Swapped content crossfades in place; every block reserves its height so
+   nothing below it moves between brands. */
+.hp-swap {
+  transition: opacity 260ms ease, transform 360ms var(--ease);
+}
+
+.hp-swap.is-swapping {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.hp-number {
+  margin: 0 0 clamp(0.75rem, 2.5vh, 1.25rem);
+  color: transparent;
+  font-family: var(--font-headline);
+  font-size: clamp(3rem, 5.5vw, 5.25rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  -webkit-text-stroke: 1px rgba(242, 240, 234, 0.24);
+}
+
+.hp-title {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 1.25em;
+  margin: 0;
+  color: var(--hx-paper);
+  font-family: var(--font-headline);
+  font-size: clamp(1.15rem, 1.8vw, 1.65rem);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hp-title::before {
+  content: "";
+  align-self: stretch;
+  width: 3px;
+  flex: none;
+  background: var(--hx-teal);
+}
+
+.hp-summary {
+  display: -webkit-box;
+  min-height: calc(4 * 1.7em);
+  margin: clamp(0.9rem, 2.5vh, 1.25rem) 0 0;
+  overflow: hidden;
+  color: rgba(242, 240, 234, 0.68);
+  font-size: 0.84rem;
+  line-height: 1.7;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.hp-facts {
+  display: grid;
+  gap: clamp(0.8rem, 2vh, 1.1rem);
+  margin: clamp(1.1rem, 3vh, 1.6rem) 0 0;
+  padding-top: clamp(1.1rem, 3vh, 1.5rem);
+  border-top: 1px solid var(--hx-hairline);
+}
+
+.hp-facts dt {
+  color: var(--hx-teal);
+  font-family: var(--font-body);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.hp-facts dd {
+  display: -webkit-box;
+  min-height: calc(2 * 1.55em);
+  margin: 0.3rem 0 0;
+  overflow: hidden;
+  color: rgba(242, 240, 234, 0.84);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.hp-cta {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: clamp(1.25rem, 4vh, 2.25rem);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(242, 240, 234, 0.55);
+  color: var(--hx-paper);
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 250ms ease, border-color 250ms ease;
+}
+
+.hp-cta span {
+  transition: transform 300ms var(--ease);
+}
+
+.hp-cta:hover,
+.hp-cta:focus-visible {
+  border-color: var(--hx-teal);
+  color: var(--hx-teal);
+}
+
+.hp-cta:hover span,
+.hp-cta:focus-visible span {
+  transform: translateX(4px);
+}
+
+.hp-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: clamp(1.5rem, 4vh, 2.5rem);
+}
+
+.hp-counter {
+  margin: 0;
+  color: var(--hx-paper);
+  font-family: var(--font-headline);
+  font-size: 1.1rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+}
+
+.hp-counter-sep,
+.hp-counter span:last-child {
+  color: rgba(242, 240, 234, 0.45);
+}
+
+.hp-arrows {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hp-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--hx-hairline);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--hx-paper);
+  cursor: pointer;
+  transition: border-color 250ms ease, background-color 250ms ease;
+}
+
+.hp-arrow:hover,
+.hp-arrow:focus-visible {
+  border-color: var(--hx-teal);
+  background: rgba(63, 172, 159, 0.12);
+}
+
+.hero-panel :focus-visible {
+  outline: 2px solid var(--hx-teal);
+  outline-offset: 3px;
+}
+
+/* --- Tablet / mobile: stage on top, panel below --- */
+
+@media (max-width: 899px) {
+  .hero {
+    display: block;
+    min-height: 0;
+  }
+
+  .hero-stage {
+    padding-top: calc(var(--header-h) + 1.25rem);
+  }
+
+  .hero-intro {
+    padding: 0 var(--page-padding);
+  }
+
+  .hero-side-tab {
+    display: none;
+  }
+
+  .hero-folders {
+    min-height: 0;
+    margin-top: 0.5rem;
+  }
+
+  .hf-track {
+    --fw: clamp(220px, 60vw, 380px);
+  }
+
+  .hero-panel {
+    padding: clamp(2rem, 6vw, 2.75rem) var(--page-padding) 2rem;
+  }
+
+  .hp-eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .hp-number {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-title {
+    font-size: 1.45rem;
+  }
+
+  .hp-title {
+    font-size: 1.05rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* --- Reduced motion: no opening, fanning, or crossfade movement --- */
+
+@media (prefers-reduced-motion: reduce) {
+  .hf-sheet,
+  .hf-front,
+  .hf-back::before,
+  .hp-swap,
+  .hp-cta span,
+  .hero-side-tab {
+    transition: none;
+  }
+
+  .hp-swap.is-swapping {
+    transform: none;
+  }
+}

@@ -9,8 +9,8 @@ image manifest (see below), which Vercel runs automatically via
 
 ```
 PRT2/
-├── index.html                 Homepage — hero, selected work, and the
-│                               Project Gallery showcase section
+├── index.html                 Homepage — split-screen hero with the brand
+│                               folders, and the Project Gallery showcase
 ├── pages/
 │   ├── porta-mobili.html      Brand case study pages. All four share one
 │   ├── hooga.html             template; each resolves its own content
@@ -32,7 +32,7 @@ PRT2/
 ├── assets/
 │   ├── images/
 │   │   ├── about/               About Me portrait (see below)
-│   │   ├── home/               Hero background photo + portrait PNG (see below)
+│   │   ├── hero-folders/       Generated brand visuals for the hero folders (see below)
 │   │   ├── gallery/
 │   │   │   ├── editorial-layout/                Source images for each
 │   │   │   ├── social-media-campaigns/           Project Gallery category
@@ -68,8 +68,8 @@ PRT2/
 │                                 two-column video-selection interface (see
 │                                 "Short-Form Video & Reels player" below)
 ├── js/
-│   ├── script.js                Homepage: theme/menu toggles, hero
-│   │                             carousel, work panel
+│   ├── script.js                Shared: theme/menu toggles, header
+│   ├── hero-folders.js          Homepage: hero brand-folder selector + panel
 │   ├── gallery-index.js         Homepage: Project Gallery mobile
 │   │                             accordion (desktop hover is CSS-only)
 │   ├── project-gallery.js       Brand pages: resolves the project from
@@ -110,7 +110,8 @@ PRT2/
 ## Adding or editing a project
 
 1. Edit its entry in `js/projects-data.js` (or add a new one — order there
-   sets homepage thumbnail order and the "Project 0N" numbering).
+   sets each page's "Project 0N" numbering). The homepage hero's folders
+   are hand-written in `index.html` — see "Homepage hero" below.
 2. Drop that project's images into `assets/images/<id>/`.
 3. If it's a new project, copy any file in `pages/` to `pages/<id>.html` —
    the page needs no edits; it resolves its own id from its filename.
@@ -259,24 +260,25 @@ its poster image until selected, so adding more videos never front-loads
 their weight. Keyboard: arrow keys move focus across the grid, Enter/Space
 selects.
 
-### Dropping in the hero images
+### Homepage hero
 
-The homepage hero (`index.html`, `.hero`) is a two-panel layout: a
-full-bleed background photo on the left with a white card panel inset on
-the right, and a portrait photo overlapping the seam between them. Both
-are currently flat placeholder boxes — replace them like this:
+The landing hero (`index.html`, `.hero`; `css/hero-folders.css`,
+`js/hero-folders.js`) is a split screen: the intro copy and a horizontally
+scrollable row of brand folders on the left, and a charcoal panel on the
+right showing the selected brand's name, summary, role, deliverables,
+number, and **Explore Project →** link.
 
-- **Background photo** — `.hero-bg` in `css/style.css`. Swap its
-  `background: #6d6b64;` for `background: url("../assets/images/home/hero-background.jpg") center/cover;`
-  and delete the `.hero-bg::after` rule (the "Background photo
-  placeholder" corner label).
-- **Portrait photo** — `.hero-portrait` in `css/style.css`, and the
-  placeholder `<div class="hero-portrait">…</div>` in `index.html`. Drop
-  a transparent-background PNG at `assets/images/home/hero-portrait.png`,
-  replace the placeholder `<div>`'s contents with an `<img>` pointing at
-  it, and remove the dashed border / gradient fill / "Portrait PNG" label
-  from `.hero-portrait`. Keep it a tall crop — the box is positioned to
-  straddle the background/panel seam like the reference composition.
+- **Folder copy** lives on each folder's `data-*` attributes in
+  `index.html` (`data-title`, `data-summary`, `data-role`,
+  `data-deliverables`, `data-href`); the first folder's copy is also
+  written into the panel so it shows before any script runs.
+- **Folder visuals** are three per brand, picked in
+  `scripts/generate-hero-folders.js` (`SOURCES`) from the gallery folders
+  and written as small WebPs to `assets/images/hero-folders/<brand>-<n>.webp`
+  by `npm run build`. To swap one, edit `SOURCES`, delete that output file,
+  and rebuild.
+- **Logos** on the folder fronts are the SVGs in `assets/images/brands/`,
+  recoloured with a CSS mask and sized inline at equal visual area.
 
 ### Dropping in the About Me portrait
 

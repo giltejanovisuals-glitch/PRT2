@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Static portfolio site. The only build step is regenerating the Project Gallery image, reel-video, and publication manifests.",
   "scripts": {
-    "build": "node scripts/copy-pdfjs-assets.js && node scripts/generate-gallery-manifest.js && node scripts/generate-reel-manifest.js && node scripts/generate-publication-manifest.js && node scripts/generate-home-previews.js",
+    "build": "node scripts/copy-pdfjs-assets.js && node scripts/generate-gallery-manifest.js && node scripts/generate-gallery-thumbs.js && node scripts/generate-reel-manifest.js && node scripts/generate-publication-manifest.js && node scripts/generate-home-previews.js && node scripts/generate-hero-folders.js",
     "dev": "node scripts/serve-static.js",
     "optimize:publications": "node scripts/optimize-publication-pdfs.js"
   },

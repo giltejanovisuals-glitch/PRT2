@@ -182,6 +182,12 @@
   const rowEls = [0, 1, 2].map((i) => document.getElementById(`editorial-row-${i}`));
   const trackEls = [0, 1, 2].map((i) => document.getElementById(`editorial-row-track-${i}`));
 
+  // Shared with the lightbox below, which runs on any page that has one —
+  // with or without this wall (pages/social-media-campaigns.html swaps the
+  // wall for its own scroll showcase, js/social-campaign-showcase.js).
+  let lightboxOpen = false;
+  let openLightbox = () => {};
+
   if (galleryWall && flatEntries.length && rowEls.every(Boolean) && trackEls.every(Boolean)) {
     const mobileQuery = window.matchMedia("(max-width: 760px)");
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -194,7 +200,6 @@
     const BASE_SCROLL_SPEED_PX_PER_SECOND = 14;
     const ROW_SPEED_MULTIPLIERS = [1, 0.9, 1.08];
     let rowStates = [];
-    let lightboxOpen = false;
 
     const distribute = (entries, rowCount) => {
       const groups = Array.from({ length: rowCount }, () => []);
@@ -353,8 +358,6 @@
     });
 
     // --- Lightbox click/keyboard triggers, delegated on the stable tracks ---
-    let openLightbox = () => {};
-
     trackEls.forEach((trackEl) => {
       trackEl.addEventListener("click", (event) => {
         const tile = event.target.closest(".editorial-tile[data-flat-index]");
@@ -430,8 +433,10 @@
 
     buildRows();
     if (!reducedMotion) startLoop();
+  }
 
-    // --- Fullscreen lightbox ---
+  // --- Fullscreen lightbox ---
+  {
     const lightbox = document.getElementById("lightbox");
     const lightboxStage = document.getElementById("lightbox-stage");
     const lightboxClose = document.querySelector(".lightbox-close");
@@ -440,7 +445,7 @@
     const lightboxCurrent = document.getElementById("lightbox-current");
     const lightboxTotal = document.getElementById("lightbox-total");
 
-    if (lightbox && lightboxStage) {
+    if (lightbox && lightboxStage && flatEntries.length) {
       if (lightboxTotal) lightboxTotal.textContent = String(flatEntries.length).padStart(2, "0");
 
       const slides = flatEntries.map((entry) => {
@@ -456,7 +461,9 @@
           // so nothing shows behind the image but the lightbox's own scrim.
           slide.className = "editorial-lightbox-media";
           const img = document.createElement("img");
-          img.src = entry.src;
+          // Full-size originals load only when shown (or about to be) —
+          // setting every src up front downloaded the whole category.
+          img.dataset.src = entry.src;
           img.alt = entry.alt || "";
           img.decoding = "async";
           if (entry.width) {
@@ -473,7 +480,16 @@
       let activeSlide = 0;
       let lastTrigger = null;
 
+      const loadSlide = (i) => {
+        const img = slides[(i + slides.length) % slides.length]?.querySelector("img[data-src]");
+        if (img) {
+          img.src = img.dataset.src;
+          img.removeAttribute("data-src");
+        }
+      };
+
       const showSlide = (i) => {
+        [i, i + 1, i - 1].forEach(loadSlide);
         slides[activeSlide]?.classList.remove("is-active");
         activeSlide = i;
         slides[activeSlide]?.classList.add("is-active");
@@ -496,6 +512,13 @@
         body.classList.remove("lightbox-open");
         lightboxOpen = false;
         lastTrigger?.focus();
+      };
+
+      // Lets a page-specific gallery (e.g. js/social-campaign-showcase.js)
+      // reuse this lightbox and the same entry order instead of its own.
+      window.ProjectGalleryLightbox = {
+        entries: flatEntries,
+        open: (i, trigger) => openLightbox(i, trigger),
       };
 
       const goNext = () => showSlide((activeSlide + 1) % slides.length);
