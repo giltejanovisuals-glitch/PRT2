@@ -28,10 +28,13 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/project-gallery.css" />
     <link rel="stylesheet" href="../css/gallery-editorial.css" />
+    <link rel="stylesheet" href="../css/print-collateral-showcase.css?v=1" />
     <script src="../js/gallery-categories-data.js" defer></script>
     <script src="../js/gallery-editorial-manifest.js" defer></script>
     <script src="../js/gallery-editorial-meta.js" defer></script>
-    <script src="../js/gallery-editorial.js" defer></script>
+    <script src="../js/gallery-thumbs.js?v=2" defer></script>
+    <script src="../js/gallery-editorial.js?v=2" defer></script>
+    <script src="../js/print-collateral-showcase.js?v=1" defer></script>
   </head>
 
   <body>
@@ -107,15 +110,34 @@
         <p class="project-overview" id="category-intro">—</p>
       </header>
 
-      <section class="editorial-wall" id="editorial-wall" aria-label="Print and brand collateral gallery, scrolls automatically and can be dragged or swiped">
-        <div class="editorial-row" id="editorial-row-0">
-          <div class="editorial-row-track" id="editorial-row-track-0"></div>
-        </div>
-        <div class="editorial-row" id="editorial-row-1">
-          <div class="editorial-row-track" id="editorial-row-track-1"></div>
-        </div>
-        <div class="editorial-row" id="editorial-row-2">
-          <div class="editorial-row-track" id="editorial-row-track-2"></div>
+      <section class="pbc" id="pbc" aria-label="Print and brand collateral gallery">
+        <div class="pbc-stage" id="pbc-stage">
+          <div class="pbc-preview">
+            <div class="pbc-preview-bar">
+              <p class="pbc-category" id="pbc-category">Print &amp; Brand Collateral</p>
+              <div class="pbc-bar-end">
+                <p class="pbc-counter" aria-live="polite">
+                  <span id="pbc-current">01</span><span class="pbc-counter-total"> / <span id="pbc-total">01</span></span>
+                </p>
+                <button class="pbc-expand" id="pbc-expand" type="button" aria-label="View the selected visual fullscreen">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path>
+                  </svg>
+                  <span class="pbc-expand-label">Fullscreen</span>
+                </button>
+              </div>
+            </div>
+
+            <button class="pbc-frame" id="pbc-frame" type="button" aria-label="Selected visual. Press Enter to view fullscreen, arrow keys to browse."></button>
+
+            <div class="pbc-caption" id="pbc-caption">
+              <p class="pbc-type" id="pbc-type">—</p>
+              <h2 class="pbc-title" id="pbc-title">—</h2>
+              <p class="pbc-detail" id="pbc-detail" hidden></p>
+            </div>
+          </div>
+
+          <div class="pbc-rail" id="pbc-rail" role="group" aria-label="Thumbnails. Use the arrow keys to move between them."></div>
         </div>
       </section>
 

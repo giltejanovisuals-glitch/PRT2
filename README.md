@@ -170,7 +170,11 @@ via its tone class, e.g.:
 
 Four of the five `pages/<category-id>.html` pages (`editorial-layout`,
 `social-media-campaigns`, `print-brand-collateral`,
-`commercial-lifestyle-photography`) share one interface: a wall of 2–3
+`commercial-lifestyle-photography`) share one data pipeline. Two of them
+swap the default wall for their own layout on top of it:
+`social-media-campaigns` (scroll-led showcase,
+`js/social-campaign-showcase.js`) and `print-brand-collateral` (see
+"Print & Brand Collateral split-screen" below). The default is a wall of 2–3
 horizontally auto-scrolling rows of mixed-aspect-ratio images
 (`css/gallery-editorial.css`, `js/gallery-editorial.js`). Each page resolves
 its own category from its filename (same pattern as the brand pages) and
@@ -215,6 +219,26 @@ Row count (3 desktop / 2 mobile), scroll speed (35–50s per loop, tuned per
 row in `ROW_DURATIONS_MS`), pause-on-hover/focus/drag/lightbox, and
 `prefers-reduced-motion` handling all live in that same file if they need
 tuning — shared by these four categories.
+
+### Print & Brand Collateral split-screen
+
+`pages/print-brand-collateral.html` (`css/print-collateral-showcase.css`,
+`js/print-collateral-showcase.js`) shows a sticky preview of the selected
+visual on the left, at its own ratio, with the category title, application
+type, and an image counter. On the right are three thumbnail columns driven
+by the page's own scroll: columns 1 and 3 drift down and column 2 drifts up
+while the stage is pinned. Click a thumbnail to preview it. Click it again,
+click the preview, or press `F` to open it fullscreen. Arrow keys, `Home`,
+and `End` step through the images. Phones get the preview first and a
+single scrolling gallery below it. With `prefers-reduced-motion`, the
+columns are a plain scrolling panel and there are no transitions.
+
+Images come from the same manifest as above. Thumbnails are WebP copies
+from `scripts/generate-gallery-thumbs.js` (both run in `npm run build`).
+The preview's type line reads `type` from `js/gallery-editorial-meta.js`
+and falls back to "Print application". Its title line reads `title`, then
+`project`, then the category title. Drift speed and smoothing are
+`DRIFT_SPEED` and `SMOOTHING_MS` at the top of the script.
 
 ## Short-Form Video & Reels player
 

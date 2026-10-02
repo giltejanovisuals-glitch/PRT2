@@ -1,0 +1,416 @@
+/* Print & Brand Collateral — split-screen showcase for
+   pages/print-brand-collateral.html only. Behaviour (modes, scroll-linked
+   column drift, selection, keyboard) lives in
+   js/print-collateral-showcase.js; the fullscreen view is the shared
+   lightbox from project-gallery.css + gallery-editorial.css.
+
+   Every image keeps its own natural ratio: thumbnails reserve it inline
+   from the manifest, and the preview sizes itself to fit the frame by that
+   ratio (container query units), so nothing is cropped, stretched,
+   letterboxed or backed by a filler colour. Colours come only from the
+   site's theme tokens in css/style.css. */
+
+.pbc {
+  --pbc-gap: clamp(1.5rem, 3.2vw, 3.25rem);
+  --pbc-thumb-gap: clamp(8px, 0.8vw, 12px);
+  --pbc-stage-h: max(30rem, calc(100dvh - var(--header-h) - clamp(5rem, 11vh, 6.5rem)));
+  --pbc-pin-top: calc(var(--header-h) + 0.75rem);
+  position: relative;
+  max-width: 92rem;
+  margin: clamp(2rem, 5vh, 3rem) auto 0;
+}
+
+.pbc[hidden] {
+  display: none;
+}
+
+.pbc-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: var(--pbc-gap);
+  height: var(--pbc-stage-h);
+}
+
+.pbc[data-mode="motion"] .pbc-stage {
+  position: sticky;
+  top: var(--pbc-pin-top);
+}
+
+/* --- Left: selected visual ------------------------------------------------ */
+
+.pbc-preview {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  gap: clamp(0.85rem, 1.8vh, 1.25rem);
+}
+
+.pbc-preview-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: clamp(0.7rem, 1.4vh, 0.9rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.pbc-category {
+  margin: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pbc-bar-end {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pbc-counter {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+}
+
+.pbc-counter-total {
+  color: var(--muted);
+}
+
+.pbc-expand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
+}
+
+.pbc-expand:hover,
+.pbc-expand:focus-visible {
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+.pbc-expand svg {
+  flex: 0 0 auto;
+}
+
+/* The frame is a size container, so each shot can fit itself by its own
+   ratio against real numbers (cqw/cqh) without any wrapper box. */
+.pbc-frame {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: zoom-in;
+  container-type: size;
+  perspective: 1600px;
+}
+
+.pbc-frame:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+
+.pbc-shot {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  /* Largest size that fits the frame at the image's own ratio, never
+     upscaled past its natural width. */
+  width: min(100cqw, calc(100cqh * var(--ar, 1)), var(--nw, 9999px));
+  height: min(100cqh, calc(100cqw / var(--ar, 1)), calc(var(--nw, 9999px) / var(--ar, 1)));
+  opacity: 0;
+  transform: translate3d(0, 10px, -60px) scale(1.03);
+  filter: blur(6px);
+  transition:
+    opacity 560ms var(--ease),
+    transform 820ms var(--ease),
+    filter 560ms var(--ease),
+    box-shadow 820ms var(--ease);
+  will-change: opacity, transform;
+}
+
+.pbc-shot.is-active {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  box-shadow: 0 34px 70px -38px rgba(0, 0, 0, 0.45);
+}
+
+.pbc-shot.is-leaving {
+  opacity: 0;
+  transform: translate3d(0, -6px, -40px) scale(0.975);
+  filter: blur(4px);
+  transition-duration: 420ms, 620ms, 420ms, 420ms;
+  pointer-events: none;
+}
+
+.pbc-shot-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pbc-caption {
+  display: grid;
+  gap: 0.35rem;
+  min-height: 3.6rem;
+  transition: opacity 180ms ease, transform 260ms var(--ease);
+}
+
+.pbc-caption.is-switching {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.pbc-type {
+  margin: 0;
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pbc-title {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: clamp(1.3rem, 2vw, 1.85rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.pbc-detail {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.pbc-detail[hidden] {
+  display: none;
+}
+
+/* --- Right: thumbnail columns ---------------------------------------------- */
+
+.pbc-rail {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  align-items: flex-start;
+  gap: var(--pbc-thumb-gap);
+  /* Room for the selected tile's outline at the outer edges. */
+  padding: 0 5px;
+  overflow: hidden;
+  overflow: clip;
+}
+
+.pbc[data-mode="motion"] .pbc-rail {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+}
+
+.pbc-col {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--pbc-thumb-gap);
+}
+
+/* End padding keeps the first/last thumbnails clear of the rail's edge
+   fade when a column has travelled all the way. */
+.pbc[data-mode="motion"] .pbc-col {
+  padding-block: clamp(2.5rem, 6vh, 3.5rem);
+  will-change: transform;
+}
+
+.pbc-tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: 2px solid transparent;
+  outline-offset: 3px;
+  transition: outline-color 300ms ease, opacity 300ms ease;
+}
+
+.pbc-tile-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 600ms var(--ease), filter 600ms var(--ease);
+}
+
+@media (hover: hover) {
+  .pbc-tile:hover .pbc-tile-img {
+    transform: scale(1.045);
+    filter: brightness(1.05);
+  }
+}
+
+.pbc-tile:focus-visible {
+  outline-color: var(--muted);
+}
+
+.pbc-tile:focus-visible .pbc-tile-img {
+  transform: scale(1.045);
+}
+
+/* Selected: accent ring outside the tile plus a hairline inside it —
+   outline and inset shadow only, so the grid never shifts. */
+.pbc-tile.is-selected {
+  outline-color: var(--accent);
+  cursor: zoom-in;
+}
+
+.pbc-tile::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb), 0);
+  pointer-events: none;
+  transition: box-shadow 300ms ease;
+}
+
+.pbc-tile.is-selected::after {
+  box-shadow: inset 0 0 0 1px rgba(var(--background-rgb), 0.6);
+}
+
+/* Reduced-motion desktop: the rail is a plain scrolling panel. */
+.pbc[data-mode="static"] .pbc-rail {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+/* --- Phones: preview first, one scrolling gallery -------------------------- */
+
+@media (max-width: 760px) {
+  .pbc {
+    --pbc-preview-h: clamp(16rem, 46svh, 26rem);
+    margin-top: 1.5rem;
+  }
+
+  .pbc-stage {
+    display: block;
+    height: auto;
+  }
+
+  .pbc-preview {
+    position: sticky;
+    z-index: 2;
+    top: var(--header-h);
+    height: var(--pbc-preview-h);
+    gap: 0.6rem;
+    margin: 0 calc(-1 * var(--page-padding));
+    padding: 0.5rem var(--page-padding) 0.85rem;
+    background: var(--background);
+    box-shadow: 0 1px 0 var(--line);
+  }
+
+  .pbc-preview-bar {
+    padding-bottom: 0.5rem;
+  }
+
+  .pbc-expand-label {
+    display: none;
+  }
+
+  .pbc-expand {
+    width: 2.75rem;
+    min-height: 2.75rem;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .pbc-caption {
+    min-height: 0;
+    gap: 0.15rem;
+  }
+
+  .pbc-title {
+    font-size: 1.05rem;
+  }
+
+  .pbc-detail {
+    display: none;
+  }
+
+  .pbc-rail {
+    display: block;
+    padding: 1rem 4px 0;
+    overflow: visible;
+  }
+
+  .pbc-col-flow {
+    display: block;
+    columns: 2;
+    column-gap: 10px;
+  }
+
+  .pbc-tile {
+    margin-bottom: 10px;
+    break-inside: avoid;
+    /* Land below the pinned preview when brought into view. */
+    scroll-margin-top: calc(var(--header-h) + var(--pbc-preview-h) + 1rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pbc-shot,
+  .pbc-shot.is-leaving,
+  .pbc-caption,
+  .pbc-tile,
+  .pbc-tile-img {
+    transition: none;
+  }
+
+  .pbc-shot {
+    transform: none;
+    filter: none;
+  }
+
+  .pbc-tile:hover .pbc-tile-img,
+  .pbc-tile:focus-visible .pbc-tile-img {
+    transform: none;
+  }
+}
