@@ -27,12 +27,12 @@
     </script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/project-gallery.css?v=3" />
-    <link rel="stylesheet" href="../css/reel-gallery.css" />
+    <link rel="stylesheet" href="../css/print-collateral-showcase.css?v=6" />
     <script src="../js/gallery-categories-data.js" defer></script>
-    <script src="../js/gallery-editorial.js" defer></script>
+    <script src="../js/gallery-editorial.js?v=2" defer></script>
     <script src="../js/reel-manifest.js" defer></script>
     <script src="../js/reel-meta.js" defer></script>
-    <script src="../js/reel-gallery.js" defer></script>
+    <script src="../js/print-collateral-showcase.js?v=5" defer></script>
   </head>
 
   <body>
@@ -101,54 +101,57 @@
       </div>
     </header>
 
-    <main class="project" id="main-content">
-      <header class="project-header">
-        <p class="section-index" id="category-eyebrow">Category 05 — Project Gallery</p>
-        <h1 class="project-headline" id="category-title">—</h1>
-        <p class="project-overview" id="category-intro">—</p>
-      </header>
+    <main class="project pbc-project" id="main-content">
+      <section
+        class="pbc"
+        id="pbc"
+        data-category="short-form-video-reels"
+        data-kind="video"
+        data-video-base="../assets/videos/short-form-reels/"
+        data-type-fallback="Reel"
+        aria-label="Short-form video and reels gallery"
+      >
+        <div class="pbc-stage" id="pbc-stage">
+          <div class="pbc-side">
+            <header class="project-header pbc-intro">
+              <p class="section-index" id="category-eyebrow">Category 05 — Project Gallery</p>
+              <h1 class="project-headline" id="category-title">—</h1>
+              <p class="project-overview" id="category-intro">—</p>
+            </header>
 
-      <section class="reel-interface" id="reel-interface" aria-label="Short-form video and reels selector">
-        <p class="reel-watermark" aria-hidden="true">REELS</p>
-
-        <div class="reel-layout">
-          <div class="reel-preview">
-            <p class="reel-counter" id="reel-counter" aria-hidden="true">01 / 01</p>
-
-            <div class="reel-preview-frame">
-              <div class="reel-player" id="reel-player">
-                <video
-                  class="reel-video"
-                  id="reel-video"
-                  controls
-                  muted
-                  playsinline
-                  preload="metadata"
-                ></video>
-                <div class="reel-player-placeholder showcase-tone-digital" id="reel-player-placeholder" aria-hidden="true"></div>
+            <div class="pbc-preview">
+              <div class="pbc-preview-bar">
+                <p class="pbc-category" id="pbc-category">Short-Form Video &amp; Reels</p>
+                <div class="pbc-bar-end">
+                  <p class="pbc-counter" aria-live="polite">
+                    <span id="pbc-current">01</span><span class="pbc-counter-total"> / <span id="pbc-total">01</span></span>
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div class="reel-meta">
-              <p class="reel-meta-project" id="reel-meta-project">—</p>
-              <h2 class="reel-meta-title" id="reel-meta-title">—</h2>
-              <p class="reel-meta-line" id="reel-meta-line">—</p>
-              <div class="reel-progress" aria-hidden="true">
-                <span class="reel-progress-fill" id="reel-progress-fill"></span>
-              </div>
+              <div class="pbc-frame" id="pbc-frame" role="group" aria-label="Selected video"></div>
             </div>
           </div>
 
-          <div class="reel-gallery">
-            <p class="reel-gallery-label" id="reel-gallery-label">Select a Video</p>
-            <div class="reel-grid-viewport">
-              <div class="reel-grid" id="reel-grid" role="group" aria-labelledby="reel-gallery-label"></div>
-              <div class="reel-grid-fade" id="reel-grid-fade" aria-hidden="true"></div>
+          <div class="pbc-gallery" id="pbc-gallery">
+            <div class="pbc-gallery-bar">
+              <p class="pbc-gallery-label">Gallery</p>
+              <div
+                class="pbc-progress"
+                id="pbc-progress"
+                role="progressbar"
+                aria-label="Gallery scroll position"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+              >
+                <span class="pbc-progress-fill" id="pbc-progress-fill"></span>
+              </div>
             </div>
+
+            <div class="pbc-rail" id="pbc-rail" role="group" aria-label="Video thumbnails. Arrow keys move between them; Enter plays one; F plays it fullscreen; Page Up, Page Down and Space scroll the gallery."></div>
           </div>
         </div>
-
-        <p class="sr-only" id="reel-sr-status" role="status" aria-live="polite"></p>
       </section>
 
       <section class="project-closing">

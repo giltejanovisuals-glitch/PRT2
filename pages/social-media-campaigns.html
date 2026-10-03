@@ -28,13 +28,13 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/project-gallery.css?v=3" />
     <link rel="stylesheet" href="../css/gallery-editorial.css?v=2" />
-    <link rel="stylesheet" href="../css/social-campaign-showcase.css?v=1" />
+    <link rel="stylesheet" href="../css/print-collateral-showcase.css?v=6" />
     <script src="../js/gallery-categories-data.js" defer></script>
     <script src="../js/gallery-editorial-manifest.js" defer></script>
     <script src="../js/gallery-editorial-meta.js" defer></script>
-    <script src="../js/gallery-thumbs.js?v=1" defer></script>
+    <script src="../js/gallery-thumbs.js?v=2" defer></script>
     <script src="../js/gallery-editorial.js?v=2" defer></script>
-    <script src="../js/social-campaign-showcase.js?v=2" defer></script>
+    <script src="../js/print-collateral-showcase.js?v=5" defer></script>
   </head>
 
   <body>
@@ -103,15 +103,55 @@
       </div>
     </header>
 
-    <main class="project" id="main-content">
-      <header class="project-header">
-        <p class="section-index" id="category-eyebrow">Category 02 — Project Gallery</p>
-        <h1 class="project-headline" id="category-title">—</h1>
-        <p class="project-overview" id="category-intro">—</p>
-      </header>
+    <main class="project pbc-project" id="main-content">
+      <section
+        class="pbc"
+        id="pbc"
+        data-category="social-media-campaigns"
+        data-type-fallback="Campaign visual"
+        aria-label="Social media campaigns and key visuals gallery"
+      >
+        <div class="pbc-stage" id="pbc-stage">
+          <div class="pbc-side">
+            <header class="project-header pbc-intro">
+              <p class="section-index" id="category-eyebrow">Category 02 — Project Gallery</p>
+              <h1 class="project-headline" id="category-title">—</h1>
+              <p class="project-overview" id="category-intro">—</p>
+            </header>
 
-      <section class="scs" id="scs" aria-label="Social media campaigns and key visuals gallery. Select any image to open it fullscreen.">
-        <div class="scs-plane" id="scs-plane"></div>
+            <div class="pbc-preview">
+              <div class="pbc-preview-bar">
+                <p class="pbc-category" id="pbc-category">Social Media Campaigns &amp; Key Visuals</p>
+                <div class="pbc-bar-end">
+                  <p class="pbc-counter" aria-live="polite">
+                    <span id="pbc-current">01</span><span class="pbc-counter-total"> / <span id="pbc-total">01</span></span>
+                  </p>
+                </div>
+              </div>
+
+              <button class="pbc-frame" id="pbc-frame" type="button" aria-label="Selected visual. Press Enter to view fullscreen, arrow keys to browse."></button>
+            </div>
+          </div>
+
+          <div class="pbc-gallery" id="pbc-gallery">
+            <div class="pbc-gallery-bar">
+              <p class="pbc-gallery-label">Gallery</p>
+              <div
+                class="pbc-progress"
+                id="pbc-progress"
+                role="progressbar"
+                aria-label="Gallery scroll position"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+              >
+                <span class="pbc-progress-fill" id="pbc-progress-fill"></span>
+              </div>
+            </div>
+
+            <div class="pbc-rail" id="pbc-rail" role="group" aria-label="Thumbnails. Arrow keys move between them; Page Up, Page Down and Space scroll the gallery."></div>
+          </div>
+        </div>
       </section>
 
       <section class="project-closing">

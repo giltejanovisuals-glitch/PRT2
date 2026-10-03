@@ -1,8 +1,18 @@
 /*
- * Print & Brand Collateral — split-screen showcase for
- * pages/print-brand-collateral.html only (loaded after gallery-editorial.js,
- * which still runs this page's header, category copy, prev/next nav, and
- * the shared fullscreen lightbox).
+ * Split-screen gallery showcase, shared by four Project Gallery category
+ * pages: Print & Brand Collateral, Social Media Campaigns & Key Visuals,
+ * Commercial & Lifestyle Photography and Short-Form Video & Reels. It's
+ * loaded after gallery-editorial.js, which still runs each page's header,
+ * category copy, prev/next nav, and (for images) the shared fullscreen
+ * lightbox. The #pbc section configures it:
+ *
+ *   data-category       gallery category id (defaults to print-brand-collateral)
+ *   data-type-fallback  label used when an item has no `type` in its meta
+ *   data-kind="video"   Reels: items come from window.REEL_MANIFEST /
+ *                       REEL_META, the tiles show each video's poster, and
+ *                       the preview is a <video> with native controls;
+ *                       fullscreen is the video's own fullscreen.
+ *   data-video-base     folder the video and poster files live in
  *
  * Desktop locks the whole interface to the viewport (html.pbc-locked, see
  * the CSS): the header, project information, left preview and category
@@ -21,12 +31,13 @@
  *             thumbnail rail is a plain natively scrolling panel (no
  *             opposed motion, no easing).
  *   stacked — phones: normal page scrolling, preview first, then one
- *             vertical column of thumbnails; a tap opens it fullscreen.
+ *             vertical column of thumbnails; a tap opens an image
+ *             fullscreen, or plays a video in the preview.
  *
  * Images come from the category's generated manifest (via
  * window.ProjectGalleryLightbox.entries), so files dropped into
- * assets/images/gallery/print-brand-collateral/ appear after `npm run
- * build`. Thumbnails use the lightweight WebP copies from
+ * assets/images/gallery/<category>/ appear after `npm run build`.
+ * Thumbnails use the lightweight WebP copies from
  * scripts/generate-gallery-thumbs.js, falling back to the original file;
  * the preview upgrades to the original once it has loaded.
  */
@@ -38,14 +49,36 @@
   const rail = document.getElementById("pbc-rail");
   if (!section || !stage || !frame || !gallery || !rail) return;
 
+  const CATEGORY_ID = section.dataset.category || "print-brand-collateral";
+  const IS_VIDEO = section.dataset.kind === "video";
+  const TYPE_FALLBACK = section.dataset.typeFallback || "Print application";
+
+  const videoEntries = () => {
+    const base = section.dataset.videoBase || "";
+    const meta = window.REEL_META || {};
+    return (window.REEL_MANIFEST || []).map((item) => {
+      const info = meta[item.file] || {};
+      return {
+        src: base + encodeURIComponent(item.file),
+        poster: item.poster ? base + encodeURIComponent(item.poster) : "",
+        width: item.width,
+        height: item.height,
+        ratio: item.ratio || (item.width && item.height ? item.width / item.height : 9 / 16),
+        type: info.type || "",
+        alt: info.alt || info.title || item.title || "Video",
+      };
+    });
+  };
+
   const lightbox = window.ProjectGalleryLightbox;
-  const entries = ((lightbox && lightbox.entries) || []).filter((entry) => entry.src && !entry.isPlaceholder);
+  const entries = IS_VIDEO
+    ? videoEntries()
+    : ((lightbox && lightbox.entries) || []).filter((entry) => entry.src && !entry.isPlaceholder);
   if (!entries.length) {
     section.hidden = true;
     return;
   }
 
-  const CATEGORY_ID = "print-brand-collateral";
   const category = (window.GALLERY_CATEGORIES || []).find((c) => c.id === CATEGORY_ID) || {};
   const thumbs = (window.GALLERY_THUMBS || {})[CATEGORY_ID] || {};
 
@@ -68,7 +101,6 @@
   const OVERSCROLL_SPRING_MS = 120;
   const PAGE_STEP = 0.85; // Page Up/Down, in rail heights
   const LINE_PX = 40; // wheel deltaMode 1 (lines)
-  const TYPE_FALLBACK = "Print application";
 
   const desktopQuery = window.matchMedia("(min-width: 761px)");
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -86,15 +118,18 @@
   const progressFill = document.getElementById("pbc-progress-fill");
 
   if (totalEl) totalEl.textContent = pad(entries.length);
-  if (categoryEl) categoryEl.textContent = category.title || "Print & Brand Collateral";
+  if (categoryEl && category.title) categoryEl.textContent = category.title;
 
   // Used for thumbnail labels and preview alt text.
   const describe = (entry) => ({ type: entry.type || TYPE_FALLBACK });
 
-  const thumbSrc = (entry) => {
+  // A small build-time WebP copy, if one exists (videos use their poster).
+  const thumbFor = (entry) => {
+    if (IS_VIDEO) return "";
     const thumb = thumbs[fileOf(entry.src)];
-    return thumb ? `../${encodePath(thumb)}` : entry.src;
+    return thumb ? `../${encodePath(thumb)}` : "";
   };
+  const thumbSrc = (entry) => (IS_VIDEO ? entry.poster : thumbFor(entry) || entry.src);
 
   // --- Thumbnails ---------------------------------------------------------
 
@@ -109,7 +144,10 @@
     tile.dataset.pos = String(i);
     tile.tabIndex = -1;
     tile.setAttribute("aria-pressed", "false");
-    tile.setAttribute("aria-label", `Show ${describe(entry).type.toLowerCase()} ${i + 1} of ${entries.length}`);
+    tile.setAttribute(
+      "aria-label",
+      `${IS_VIDEO ? "Play" : "Show"} ${describe(entry).type.toLowerCase()} ${i + 1} of ${entries.length}`
+    );
     // Reserve the image's exact natural shape before it loads.
     tile.style.aspectRatio = entry.width && entry.height ? `${entry.width} / ${entry.height}` : String(entry.ratio || 1);
 
@@ -117,21 +155,31 @@
     img.className = "pbc-tile-img";
     img.alt = "";
     // Desktop tiles sit outside the rail's clip until the columns bring
-    // them in, where native lazy-loading would never see them coming, so
-    // load the (small) thumbnails up front at low priority instead.
-    img.loading = stacked ? "lazy" : "eager";
-    if (!stacked) img.fetchPriority = "low";
+    // them in, so native lazy-loading only starts each one as it appears.
+    // Small WebP thumbnails are cheap enough to load up front (low
+    // priority) instead; full-size fallbacks and posters stay lazy.
+    const eager = !stacked && Boolean(thumbFor(entry));
+    img.loading = eager ? "eager" : "lazy";
+    if (eager) img.fetchPriority = "low";
     img.decoding = "async";
     img.draggable = false;
     if (entry.width) img.width = entry.width;
     if (entry.height) img.height = entry.height;
     img.src = thumbSrc(entry);
-    if (img.src !== entry.src) {
+    if (!IS_VIDEO && img.src !== entry.src) {
       img.addEventListener("error", () => {
         img.src = entry.src;
       }, { once: true });
     }
     tile.appendChild(img);
+
+    if (IS_VIDEO) {
+      const play = document.createElement("span");
+      play.className = "pbc-tile-play";
+      play.setAttribute("aria-hidden", "true");
+      play.innerHTML = '<svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>';
+      tile.appendChild(play);
+    }
     return tile;
   };
 
@@ -186,6 +234,20 @@
     shot.style.setProperty("--ar", String(entry.width && entry.height ? entry.width / entry.height : entry.ratio || 1));
     if (entry.width) shot.style.setProperty("--nw", `${entry.width}px`);
 
+    if (IS_VIDEO) {
+      const video = document.createElement("video");
+      video.className = "pbc-shot-img pbc-shot-video";
+      video.controls = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      if (entry.poster) video.poster = entry.poster;
+      video.src = entry.src;
+      video.setAttribute("aria-label", entry.alt || describe(entry).type);
+      shot.appendChild(video);
+      return shot;
+    }
+
     const img = document.createElement("img");
     img.className = "pbc-shot-img";
     img.alt = entry.alt || describe(entry).type;
@@ -210,13 +272,21 @@
     return shot;
   };
 
-  const showPreview = (entry) => {
+  // autoplay is only ever true from a direct click or tap on a video tile,
+  // and plays muted (the native controls unmute) — never on page load.
+  const showPreview = (entry, autoplay = false) => {
     const next = createShot(entry);
     frame.appendChild(next);
+    if (autoplay) {
+      const video = next.querySelector("video");
+      const playing = video && video.play();
+      if (playing && playing.catch) playing.catch(() => {});
+    }
 
     const previous = activeShot;
     activeShot = next;
     if (previous) {
+      previous.querySelector("video")?.pause();
       previous.classList.remove("is-active");
       previous.classList.add("is-leaving");
       window.setTimeout(() => previous.remove(), motionAllowed() ? 700 : 0);
@@ -232,6 +302,7 @@
   // Warm the next/previous originals so stepping through feels instant.
   const prefetched = new Set();
   const prefetch = (i) => {
+    if (IS_VIDEO) return;
     const entry = entries[(i + entries.length) % entries.length];
     if (!entry || prefetched.has(entry.src)) return;
     prefetched.add(entry.src);
@@ -242,7 +313,7 @@
 
   // --- Selection ------------------------------------------------------------
 
-  const select = (i, { focus = false, reveal = false } = {}) => {
+  const select = (i, { focus = false, reveal = false, autoplay = false } = {}) => {
     i = (i + entries.length) % entries.length;
     const changed = i !== selected || !activeShot;
 
@@ -259,7 +330,7 @@
     tile.tabIndex = 0;
 
     if (changed) {
-      showPreview(entries[i]);
+      showPreview(entries[i], autoplay);
       prefetch(i + 1);
       prefetch(i - 1);
     }
@@ -268,6 +339,15 @@
   };
 
   const openFullscreen = (trigger) => {
+    if (IS_VIDEO) {
+      const video = activeShot && activeShot.querySelector("video");
+      if (!video) return;
+      if (video.requestFullscreen) video.requestFullscreen().catch(() => {});
+      else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+      const playing = video.play();
+      if (playing && playing.catch) playing.catch(() => {});
+      return;
+    }
     if (lightbox) lightbox.open(entries[selected].flatIndex, trigger || frame);
   };
 
@@ -548,6 +628,12 @@
     if (!tile) return;
     const pos = Number(tile.dataset.pos);
     if (mode === "stacked") {
+      if (IS_VIDEO) {
+        // Phones: play it in the preview above and bring that into view.
+        select(pos, { autoplay: true });
+        frame.scrollIntoView({ block: "center", behavior: motionAllowed() ? "smooth" : "auto" });
+        return;
+      }
       // Phones: the preview is off-screen above, so a tap goes straight to
       // fullscreen (and keeps the preview in step for later).
       select(pos);
@@ -556,7 +642,7 @@
     }
     // A second click on the selected thumbnail opens it fullscreen.
     if (pos === selected && activeShot) openFullscreen(tile);
-    else select(pos);
+    else select(pos, { autoplay: IS_VIDEO });
   });
 
   // Tabbing into the gallery brings the focused thumbnail into view.
@@ -565,7 +651,8 @@
     if (tile && mode !== "stacked") revealTile(tile);
   });
 
-  frame.addEventListener("click", () => openFullscreen(frame));
+  // A video preview's clicks belong to its own controls.
+  if (!IS_VIDEO) frame.addEventListener("click", () => openFullscreen(frame));
 
   section.addEventListener("keydown", (event) => {
     if (event.altKey || event.ctrlKey || event.metaKey) return;
@@ -641,7 +728,7 @@
   // paged through.
   const lightboxCurrent = document.getElementById("lightbox-current");
   const lightboxEl = document.getElementById("lightbox");
-  if (lightboxCurrent && lightboxEl && "MutationObserver" in window) {
+  if (!IS_VIDEO && lightboxCurrent && lightboxEl && "MutationObserver" in window) {
     new MutationObserver(() => {
       if (!lightboxEl.classList.contains("is-open")) return;
       const flat = Number(lightboxCurrent.textContent) - 1;

@@ -183,8 +183,8 @@
   const trackEls = [0, 1, 2].map((i) => document.getElementById(`editorial-row-track-${i}`));
 
   // Shared with the lightbox below, which runs on any page that has one —
-  // with or without this wall (pages/social-media-campaigns.html swaps the
-  // wall for its own scroll showcase, js/social-campaign-showcase.js).
+  // with or without this wall (the image category pages swap the wall for
+  // the split-screen showcase, js/print-collateral-showcase.js).
   let lightboxOpen = false;
   let openLightbox = () => {};
 
@@ -514,7 +514,7 @@
         lastTrigger?.focus();
       };
 
-      // Lets a page-specific gallery (e.g. js/social-campaign-showcase.js)
+      // Lets a page-specific gallery (e.g. js/print-collateral-showcase.js)
       // reuse this lightbox and the same entry order instead of its own.
       window.ProjectGalleryLightbox = {
         entries: flatEntries,

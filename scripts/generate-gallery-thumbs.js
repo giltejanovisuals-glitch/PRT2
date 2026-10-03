@@ -1,11 +1,10 @@
 /*
- * Build-time thumbnail generator for gallery pages that show their whole
- * category at once (currently the Social Media Campaigns & Key Visuals
- * scroll showcase — see js/social-campaign-showcase.js — and the Print &
- * Brand Collateral split-screen — see js/print-collateral-showcase.js). The
- * source images are multi-megabyte PNGs, so the showcases show these
- * lightweight WebP copies instead, at the same aspect ratio; the fullscreen
- * lightbox (and the print preview, once loaded) still use the original file.
+ * Build-time thumbnail generator for the image categories that use the
+ * split-screen gallery showcase (js/print-collateral-showcase.js), which
+ * shows a whole category at once. The source images are multi-megabyte, so
+ * the thumbnail columns show these lightweight WebP copies instead, at the
+ * same aspect ratio; the fullscreen lightbox (and the preview, once
+ * loaded) still use the original file.
  *
  * Reads assets/images/gallery/<id>/ (same folders and filter as
  * scripts/generate-gallery-manifest.js), writes
@@ -24,7 +23,7 @@ const GALLERY_ROOT = path.join(ROOT, "assets", "images", "gallery");
 const THUMB_ROOT = path.join(ROOT, "assets", "images", "gallery-thumbs");
 const OUTPUT_FILE = path.join(ROOT, "js", "gallery-thumbs.js");
 
-const CATEGORY_IDS = ["social-media-campaigns", "print-brand-collateral"];
+const CATEGORY_IDS = ["social-media-campaigns", "print-brand-collateral", "commercial-lifestyle-photography"];
 const TARGET_WIDTH = 720; // ~one desktop showcase column at 1.5–2x density
 const WEBP_QUALITY = 80;
 

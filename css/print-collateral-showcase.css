@@ -410,6 +410,43 @@ html.pbc-locked .project-closing {
   box-shadow: inset 0 0 0 1px rgba(var(--background-rgb), 0.6);
 }
 
+/* --- Video mode (Reels): poster tiles with a play mark, <video> preview --- */
+
+.pbc[data-kind="video"] .pbc-frame {
+  cursor: auto;
+}
+
+.pbc-shot-video {
+  background: #000;
+}
+
+.pbc-tile-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  padding-left: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.4);
+  color: #fff;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  pointer-events: none;
+  transition: background-color 300ms ease, transform 300ms var(--ease);
+}
+
+.pbc-tile:hover .pbc-tile-play,
+.pbc-tile:focus-visible .pbc-tile-play,
+.pbc-tile.is-selected .pbc-tile-play {
+  background: rgba(var(--accent-rgb), 0.85);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
 /* Reduced-motion desktop: the rail is a plain natively scrolling panel
    (columns move together, no easing), scrollbar hidden like motion mode. */
 .pbc[data-mode="static"] .pbc-rail {

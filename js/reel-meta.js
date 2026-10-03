@@ -1,9 +1,9 @@
 /*
  * Optional hand-authored metadata for videos in
  * assets/videos/short-form-reels/, keyed by filename exactly as it appears
- * in that folder. Anything a file doesn't have an entry for falls back to a
- * title guessed from its filename and empty brand/type/year/alt fields —
- * see js/reel-gallery.js.
+ * in that folder, read by the split-screen showcase in video mode
+ * (js/print-collateral-showcase.js). `type` labels the video's thumbnail
+ * (falling back to "Reel") and `alt` (or `title`) labels the player.
  *
  * Example:
  * window.REEL_META = {

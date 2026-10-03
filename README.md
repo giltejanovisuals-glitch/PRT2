@@ -58,15 +58,11 @@ PRT2/
 │   │                            (including the Project Gallery showcase)
 │   ├── project-gallery.css     Case-study-only: gallery, lightbox,
 │   │                            nav dock, floating counters
-│   ├── gallery-editorial.css   Four of the five Project Gallery category
-│   │                             pages: the moving rows, tile hover/
-│   │                             caption, and a couple of lightbox
-│   │                             additions (see below) — not
-│   │                             short-form-video-reels, which has its own
-│   │                             css/reel-gallery.css instead
-│   └── reel-gallery.css        short-form-video-reels.html only: the
-│                                 two-column video-selection interface (see
-│                                 "Short-Form Video & Reels player" below)
+│   ├── gallery-editorial.css   Image category pages: the (now unused)
+│   │                             moving rows and the lightbox additions
+│   └── print-collateral-showcase.css  Split-screen gallery showcase used by
+│                                 Social, Print, Photography and Reels (see
+│                                 "Split-screen gallery showcase" below)
 ├── js/
 │   ├── script.js                Shared: theme/menu toggles, header
 │   ├── hero-folders.js          Homepage: hero brand-folder selector + panel
@@ -82,9 +78,9 @@ PRT2/
 │   │                             on the four moving-wall pages only — row
 │   │                             distribution, auto-scroll, drag/swipe,
 │   │                             hover captions, lightbox
-│   └── reel-gallery.js          short-form-video-reels.html only: builds
-│                                 the video grid, preview swap/crossfade,
-│                                 keyboard nav — see below
+│   ├── print-collateral-showcase.js  Split-screen showcase (images, or
+│   │                             videos on the Reels page) — see below
+│   └── nav-dock.js              Bottom dock: magnification, current page
 ├── js/projects-data.js          Single source of truth for all brand
 │                                 project copy (title, overview, gallery
 │                                 layout, credits, etc.)
@@ -170,21 +166,19 @@ via its tone class, e.g.:
 
 Four of the five `pages/<category-id>.html` pages (`editorial-layout`,
 `social-media-campaigns`, `print-brand-collateral`,
-`commercial-lifestyle-photography`) share one data pipeline. Two of them
-swap the default wall for their own layout on top of it:
-`social-media-campaigns` (scroll-led showcase,
-`js/social-campaign-showcase.js`) and `print-brand-collateral` (see
-"Print & Brand Collateral split-screen" below). The default is a wall of 2–3
-horizontally auto-scrolling rows of mixed-aspect-ratio images
-(`css/gallery-editorial.css`, `js/gallery-editorial.js`). Each page resolves
+`commercial-lifestyle-photography`) share one data pipeline. The three
+image categories (`social-media-campaigns`, `print-brand-collateral`,
+`commercial-lifestyle-photography`) show their images in the split-screen
+showcase (see "Split-screen gallery showcase" below), and so does
+`short-form-video-reels`, in video mode. The original default, a wall of
+2–3 horizontally auto-scrolling rows of mixed-aspect-ratio images
+(`css/gallery-editorial.css`, `js/gallery-editorial.js`), is no longer used
+by any page but still works for a page that includes `#editorial-wall`. Each page resolves
 its own category from its filename (same pattern as the brand pages) and
 sources its images through a generated manifest instead of hand-written
 `<img>` tags, so a plain drag-and-drop of files into that category's folder
 is enough to populate it — no HTML/JS edits needed, even for a brand-new
 category page.
-
-The fifth, `short-form-video-reels`, has its own dedicated two-column video
-player instead — see "Short-Form Video & Reels player" below.
 
 **To add images to a category:**
 
@@ -220,10 +214,19 @@ row in `ROW_DURATIONS_MS`), pause-on-hover/focus/drag/lightbox, and
 `prefers-reduced-motion` handling all live in that same file if they need
 tuning — shared by these four categories.
 
-### Print & Brand Collateral split-screen
+### Split-screen gallery showcase
 
-`pages/print-brand-collateral.html` (`css/print-collateral-showcase.css`,
-`js/print-collateral-showcase.js`) locks the whole interface to the
+Print & Brand Collateral, Social Media Campaigns & Key Visuals, Commercial &
+Lifestyle Photography and Short-Form Video & Reels all use one interface
+(`css/print-collateral-showcase.css`, `js/print-collateral-showcase.js`).
+Each page's `#pbc` section sets which category it shows with
+`data-category`, the label used when an item has no `type` with
+`data-type-fallback`, and, for Reels, `data-kind="video"` plus
+`data-video-base`. To give another category this interface, copy the `#pbc`
+section from one of those pages and change those attributes. If a category
+has no real images (or videos), the section hides itself.
+
+It locks the whole interface to the
 viewport on desktop (`100dvh`, no document scroll). The header, the project
 intro, the preview of the selected visual (at its own ratio, with an image
 counter) and the category nav stay fixed.
@@ -244,21 +247,22 @@ column of thumbnails, and tapping one opens it fullscreen. With
 (no opposed drift) and there are no transitions.
 
 Images come from the same manifest as above. Thumbnails are WebP copies
-from `scripts/generate-gallery-thumbs.js` (both run in `npm run build`).
-Thumbnail labels and the preview's alt text use `type` from
-`js/gallery-editorial-meta.js`, falling back to "Print application". Drift speed, inertia and the elastic
+from `scripts/generate-gallery-thumbs.js` (both run in `npm run build`;
+its `CATEGORY_IDS` lists the categories it covers). Until a category's
+thumbnails exist, its tiles fall back to the full-size originals, loaded
+lazily. Thumbnail labels and the preview's alt text use `type` from
+`js/gallery-editorial-meta.js`, falling back to the page's
+`data-type-fallback`. Drift speed, inertia and the elastic
 bounce are tuned by `DRIFT_SPEED`, `SMOOTHING_MS`, `GLIDE_MS` and
 `OVERSCROLL_*` at the top of the script.
 
 ## Short-Form Video & Reels player
 
-`pages/short-form-video-reels.html` doesn't use the moving-wall interface
-above — it's a two-column video selector instead: a large selected-video
-preview on the left (`~42%` width) and a scrollable `3×2` thumbnail grid on
-the right (`~58%`), both sharing the same top/bottom bounds
-(`css/reel-gallery.css`, `js/reel-gallery.js`). It follows the same
-generated-manifest pattern as the image categories, just for video files
-instead of images.
+`pages/short-form-video-reels.html` uses the split-screen showcase above in
+video mode: the three drifting columns show each video's poster with a play
+mark, and the preview is a `<video>` with native controls. It follows the
+same generated-manifest pattern as the image categories, just for video
+files instead of images.
 
 **To add a video:**
 
@@ -280,19 +284,20 @@ instead of images.
 **Never hand-edit `js/reel-manifest.js`** — it's overwritten by
 `npm run build` every time.
 
-While `assets/videos/short-form-reels/` is empty (as shipped), the page
-renders 12 placeholder tiles from this category's own
-`js/gallery-categories-data.js` entries, the same fallback convention the
-four image categories use — see `buildPlaceholderEntries` in
-`js/reel-gallery.js`. They disappear automatically the moment a real video
-+ poster pair is added.
+If `assets/videos/short-form-reels/` is empty, the gallery section hides
+itself.
 
-Selecting a thumbnail swaps the preview (a ~300ms crossfade), autoplays it
-muted, and updates its metadata — nothing autoplays on page load. Only the
-active video ever gets a `<video>` element; every other thumbnail is just
-its poster image until selected, so adding more videos never front-loads
-their weight. Keyboard: arrow keys move focus across the grid, Enter/Space
-selects.
+Clicking (or pressing Enter on) a thumbnail swaps the preview and plays it
+muted — nothing autoplays on page load, and stepping with the arrow keys
+swaps without playing. Clicking the selected thumbnail again, or pressing
+`F`, plays it fullscreen. On phones, a tap plays it in the preview above
+and scrolls that into view. Only the selected video ever gets a `<video>`
+element; every other thumbnail is just its poster image, so adding more
+videos never front-loads their weight.
+
+`js/reel-gallery.js` and `css/reel-gallery.css` (the earlier two-column
+player) and `js/social-campaign-showcase.js` /
+`css/social-campaign-showcase.css` are no longer loaded by any page.
 
 ### Homepage hero
 
