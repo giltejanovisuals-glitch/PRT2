@@ -1,7 +1,7 @@
 /* Project Gallery moving wall — shared by all five pages/<category-id>.html
    category pages (each sourcing its own images/tone). Reuses .project /
    .project-header / .project-headline / .project-overview / .project-closing /
-   .brand-nav / .lightbox and friends from project-gallery.css for chrome and
+   .nav-dock / .lightbox and friends from project-gallery.css for chrome and
    typography; everything below is specific to the horizontally-scrolling
    image rows themselves. */
 
@@ -140,7 +140,17 @@
      size, only ever shrunk to fit the viewport. */
   max-width: min(92vw, var(--natural-w, 92vw));
   max-height: 86dvh;
+  /* Fit the stage itself, not the viewport: the stage is capped narrower
+     than 92vw and clips its overflow, so viewport-based limits cropped
+     wide images on large screens. */
+  max-width: min(100cqw, var(--natural-w, 100cqw));
+  max-height: 100cqh;
   object-fit: contain;
+}
+
+/* Size container for the cqw/cqh limits above. */
+.lightbox-stage {
+  container-type: size;
 }
 
 @media (max-width: 760px) {
@@ -151,6 +161,8 @@
   .editorial-lightbox-media img {
     max-width: min(94vw, var(--natural-w, 94vw));
     max-height: 80dvh;
+    max-width: min(100cqw, var(--natural-w, 100cqw));
+    max-height: 100cqh;
   }
 
   /* project-gallery.css shrinks this to 36px on mobile; this page's spec

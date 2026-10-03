@@ -57,7 +57,7 @@ PRT2/
 │   ├── style.css               Shared: tokens, reset, header/nav, homepage
 │   │                            (including the Project Gallery showcase)
 │   ├── project-gallery.css     Case-study-only: gallery, lightbox,
-│   │                            brand-nav, floating counters
+│   │                            nav dock, floating counters
 │   ├── gallery-editorial.css   Four of the five Project Gallery category
 │   │                             pages: the moving rows, tile hover/
 │   │                             caption, and a couple of lightbox
@@ -223,22 +223,32 @@ tuning — shared by these four categories.
 ### Print & Brand Collateral split-screen
 
 `pages/print-brand-collateral.html` (`css/print-collateral-showcase.css`,
-`js/print-collateral-showcase.js`) shows a sticky preview of the selected
-visual on the left, at its own ratio, with the category title, application
-type, and an image counter. On the right are three thumbnail columns driven
-by the page's own scroll: columns 1 and 3 drift down and column 2 drifts up
-while the stage is pinned. Click a thumbnail to preview it. Click it again,
-click the preview, or press `F` to open it fullscreen. Arrow keys, `Home`,
-and `End` step through the images. Phones get the preview first and a
-single scrolling gallery below it. With `prefers-reduced-motion`, the
-columns are a plain scrolling panel and there are no transitions.
+`js/print-collateral-showcase.js`) locks the whole interface to the
+viewport on desktop (`100dvh`, no document scroll). The header, the project
+intro, the preview of the selected visual (at its own ratio, with an image
+counter) and the category nav stay fixed.
+Only the three thumbnail columns on the right move. Wheel, trackpad and
+touch input over them drives a virtual scroll position that never reaches
+the page: columns 1 and 3 drift down and column 2 drifts up, eased for
+controlled inertia (touch flicks glide on). A progress line in the
+gallery bar shows the position and marks the start and end, and
+pushing past either end gives a short elastic bounce.
+
+Click a thumbnail to preview it. Click it again, click the preview, or
+press `F` to open it fullscreen. Arrow keys, `Home` and `End` step through
+the images, and `Page Up` / `Page Down` scroll the gallery. With nothing
+focused, `Space`, the arrow keys, `Home` and `End` scroll the gallery too.
+Phones scroll the page normally: the preview comes first, then one vertical
+column of thumbnails, and tapping one opens it fullscreen. With
+`prefers-reduced-motion`, the desktop columns are a plain scrolling panel
+(no opposed drift) and there are no transitions.
 
 Images come from the same manifest as above. Thumbnails are WebP copies
 from `scripts/generate-gallery-thumbs.js` (both run in `npm run build`).
-The preview's type line reads `type` from `js/gallery-editorial-meta.js`
-and falls back to "Print application". Its title line reads `title`, then
-`project`, then the category title. Drift speed and smoothing are
-`DRIFT_SPEED` and `SMOOTHING_MS` at the top of the script.
+Thumbnail labels and the preview's alt text use `type` from
+`js/gallery-editorial-meta.js`, falling back to "Print application". Drift speed, inertia and the elastic
+bounce are tuned by `DRIFT_SPEED`, `SMOOTHING_MS`, `GLIDE_MS` and
+`OVERSCROLL_*` at the top of the script.
 
 ## Short-Form Video & Reels player
 
