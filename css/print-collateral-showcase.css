@@ -524,6 +524,199 @@ html.pbc-locked .project-closing {
     scroll-margin-top: calc(var(--header-h) + 1rem);
     scroll-margin-bottom: 5rem;
   }
+
+  /* --- Feed layout (data-mobile-layout="feed", set as [data-feed]) -------- */
+
+  /* Featured key visual: full width at its own ratio, no frame box. */
+  .pbc[data-feed] .pbc-preview {
+    height: auto;
+  }
+
+  .pbc[data-feed] .pbc-category,
+  .pbc[data-feed] .pbc-counter {
+    display: none;
+  }
+
+  .pbc[data-feed] .pbc-feed-label,
+  .pbc[data-feed] .pbc-feed-count {
+    display: block;
+  }
+
+  .pbc[data-feed] .pbc-frame {
+    container-type: normal;
+    perspective: none;
+  }
+
+  .pbc[data-feed] .pbc-shot {
+    position: static;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+  }
+
+  .pbc[data-feed] .pbc-shot.is-leaving {
+    display: none;
+  }
+
+  /* Reels on phones: no featured player — the library is the page, and a
+     tap opens the fullscreen viewer (css/reel-viewer.css). */
+  .pbc[data-feed][data-kind="video"] .pbc-preview {
+    display: none;
+  }
+
+  /* No closing section on this page, so the gallery itself keeps its last
+     row clear of the floating dock. */
+  .pbc[data-feed][data-kind="video"] .pbc-gallery {
+    margin-top: 0;
+    padding-bottom: 6.5rem;
+  }
+
+  /* Two columns of posters at their natural ratio, no cards. */
+  .pbc-reels {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 10px;
+  }
+
+  .pbc[data-feed] .pbc-reels .pbc-tile {
+    opacity: 1;
+    color: #f2f0ea;
+    text-align: left;
+  }
+
+  /* Title and duration sit quietly over the foot of the poster, on a soft
+     scrim so they stay legible on light frames. */
+  .pbc-tile-caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 28px 8px 8px;
+    background: linear-gradient(to top, rgba(23, 27, 28, 0.78), rgba(23, 27, 28, 0));
+    pointer-events: none;
+  }
+
+  .pbc-tile-title {
+    display: -webkit-box;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 0.72rem;
+    font-weight: 500;
+    line-height: 1.3;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .pbc-tile-duration {
+    flex: 0 0 auto;
+    color: #b8c1bd;
+    font-size: 0.68rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pbc-tile-duration[hidden] {
+    display: none;
+  }
+
+  /* The last reel watched keeps a thin teal outline after closing. */
+  .pbc[data-feed].has-watched .pbc-reels .pbc-tile.is-selected {
+    outline-color: var(--accent);
+  }
+
+  .pbc[data-feed] .pbc-shot-img,
+  .pbc[data-feed] .pbc-tile-img {
+    width: 100%;
+    height: auto;
+    object-fit: initial;
+  }
+
+  .pbc[data-feed] .pbc-gallery-bar {
+    margin-bottom: 0.25rem;
+  }
+
+  .pbc[data-feed] .pbc-rail {
+    padding: 0;
+  }
+
+  .pbc-feed {
+    --feed-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--feed-gap);
+  }
+
+  .pbc-feed-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: var(--feed-gap);
+  }
+
+  .pbc-feed-pair > div {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--feed-gap);
+  }
+
+  /* No selection ring or inner hairline: tiles are plain images. */
+  .pbc[data-feed] .pbc-tile,
+  .pbc[data-feed] .pbc-tile.is-selected {
+    outline-color: transparent;
+  }
+
+  .pbc[data-feed] .pbc-tile::after {
+    display: none;
+  }
+
+  .pbc[data-feed] .pbc-tile:focus-visible {
+    outline-color: var(--accent);
+  }
+
+  /* One restrained fade the first time each tile scrolls into view. */
+  .pbc[data-feed] .pbc-tile {
+    opacity: 0;
+    transition: opacity 500ms var(--ease), outline-color 300ms ease;
+  }
+
+  .pbc[data-feed] .pbc-tile.is-in {
+    opacity: 1;
+  }
+
+  /* Keep the last row clear of the floating category dock. */
+  .pbc[data-feed] ~ .project-closing,
+  .pbc-project:has(.pbc[data-feed]) .project-closing {
+    padding-bottom: 6rem;
+  }
+}
+
+/* Feed-only labels stay hidden outside the phone feed. */
+.pbc-feed-label,
+.pbc-feed-count {
+  display: none;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pbc-feed-label {
+  color: var(--muted);
+}
+
+.pbc-feed-count {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,0 +1,142 @@
+/* Fullscreen reel viewer — pairs with js/reel-viewer.js (phone layout of
+   the Short-Form Video & Reels page). Always dark, from the portfolio's
+   palette: charcoal ground, warm off-white text, muted gray secondary
+   text, teal for the counter and focus. Every control is at least 44px. */
+
+.reel-viewer {
+  --rv-bg: #171b1c;
+  --rv-text: #f2f0ea;
+  --rv-muted: #b8c1bd;
+  --rv-accent: #60a899;
+  --rv-line: rgba(242, 240, 234, 0.22);
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  background: var(--rv-bg);
+  color: var(--rv-text);
+  opacity: 0;
+  transition: opacity 180ms ease;
+  overscroll-behavior: contain;
+}
+
+.reel-viewer[hidden] {
+  display: none;
+}
+
+.reel-viewer.is-open {
+  opacity: 1;
+}
+
+.reel-viewer-top,
+.reel-viewer-bottom {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+}
+
+.reel-viewer-top {
+  justify-content: space-between;
+}
+
+.reel-viewer-bottom {
+  justify-content: center;
+  gap: 20px;
+}
+
+.reel-viewer-title {
+  min-width: 0;
+  margin: 0 0 0 4px;
+  overflow: hidden;
+  color: var(--rv-muted);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.reel-viewer-btn {
+  display: grid;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--rv-line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--rv-text);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.reel-viewer-btn:active {
+  background: rgba(242, 240, 234, 0.1);
+}
+
+.reel-viewer-btn:focus-visible,
+.reel-viewer-video:focus-visible {
+  outline: 2px solid var(--rv-accent);
+  outline-offset: 3px;
+}
+
+.reel-viewer-counter {
+  min-width: 5.5em;
+  margin: 0;
+  color: var(--rv-muted);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.reel-viewer-current {
+  color: var(--rv-accent);
+}
+
+/* The stage is a size container so the video can be the largest box that
+   fits at its own ratio — never cropped, stretched or upscaled into bars. */
+.reel-viewer-stage {
+  display: grid;
+  flex: 1 1 auto;
+  min-height: 0;
+  place-items: center;
+  padding: 0 12px;
+  container-type: size;
+  touch-action: pan-y pinch-zoom;
+}
+
+.reel-viewer-video {
+  display: block;
+  width: min(100cqw, calc(100cqh * var(--ar, 0.5625)));
+  height: auto;
+  max-height: 100cqh;
+  aspect-ratio: var(--ar, 0.5625);
+  object-fit: contain;
+  background: #000;
+}
+
+/* While open: the page behind stays put and the floating dock steps away. */
+.reel-viewer-open body {
+  overflow: hidden;
+}
+
+.reel-viewer-open .nav-dock,
+.reel-viewer-open .project-counter {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-viewer {
+    transition: none;
+  }
+}

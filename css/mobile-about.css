@@ -1,0 +1,88 @@
+@media (max-width: 760px) {
+  #about {
+    padding: 80px max(20px, env(safe-area-inset-right)) 80px max(20px, env(safe-area-inset-left));
+    scroll-margin-top: var(--header-h);
+  }
+  #about .about-inner { gap: 36px; }
+  #about .about-label { margin: 0; font-size: 10px; letter-spacing: .16em; color: var(--accent); }
+  #about .about-headline { margin: -20px 0 0; max-width: 19ch; font-size: clamp(34px, 9.8vw, 42px); line-height: 1.12; letter-spacing: -.03em; }
+  #about .about-media { padding: 0; border: 0; }
+  #about .about-portrait { max-width: none; margin: 0; border: 0; border-radius: 0; background: none; aspect-ratio: 4 / 5; }
+  #about .about-portrait::after,
+  #about .about-portrait-accent { display: none; }
+  #about .about-portrait-img,
+  #about .about-media:hover .about-portrait-img { filter: saturate(.78); transform: none; transition: none; }
+  #about .about-text { margin: 0; max-width: 38ch; }
+  #about .about-lede,
+  #about .about-support { font-size: 16px; line-height: 1.65; text-align: left; text-wrap: pretty; }
+  #about .about-lede { margin-bottom: 20px; }
+  #about .about-support { color: var(--muted); }
+  #about .about-highlights { order: 5; display: flex; flex-direction: column; margin: 0; padding: 0; border: 0; }
+  #about .about-highlight,
+  #about .about-highlight:first-child,
+  #about .about-highlight:last-child {
+    position: relative;
+    flex: none;
+    min-width: 0;
+    padding: 18px 0 18px 17px !important;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+  #about .about-highlight:last-child { border-bottom: 1px solid var(--line); }
+  #about .about-highlight::before { content: ''; position: absolute; left: 0; top: 25px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+  #about .about-highlight h3 { font-size: 15px; font-weight: 500; margin-bottom: 5px; }
+  #about .about-highlight p { font-size: 14px; line-height: 1.55; }
+  #about .about-quote { order: 6; margin: 0; max-width: 30ch; }
+  #about .about-quote-accent { display: none; }
+  #about .about-quote p { font-size: 21px; line-height: 1.45; font-style: italic; letter-spacing: -.01em; }
+  #about .about-actions { order: 7; align-items: flex-start; }
+  #about .about-actions .cta-btn-outline { display: none; }
+  #about .about-actions .cta-btn-primary {
+    display: inline-flex;
+    gap: 8px;
+    justify-content: flex-start;
+    min-height: 48px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--accent);
+    font-size: 14px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  #about .about-actions .cta-btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+  #timeline-heading { scroll-margin-top: calc(var(--header-h) + 20px); }
+
+  /* Visible by default: scripts and motion are enhancements. */
+  #about .about-label,
+  #about .about-headline,
+  #about .about-media,
+  #about .about-text,
+  #about .about-highlights,
+  #about .about-quote,
+  #about .about-actions { opacity: 1; transform: none; transition: none; }
+  @keyframes mobile-about-reveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  #about.is-inview .about-label,
+  #about.is-inview .about-headline,
+  #about.is-inview .about-media,
+  #about.is-inview .about-text,
+  #about.is-inview .about-highlights,
+  #about.is-inview .about-quote,
+  #about.is-inview .about-actions { animation: mobile-about-reveal 340ms var(--ease) both; }
+  #about.is-inview .about-media { animation-delay: 80ms; }
+  #about.is-inview .about-text { animation-delay: 150ms; }
+  #about.is-inview .about-highlights { animation-delay: 200ms; }
+  #about.is-inview .about-quote { animation-delay: 240ms; }
+  #about.is-inview .about-actions { animation-delay: 280ms; }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  #about.is-inview .about-label,
+  #about.is-inview .about-headline,
+  #about.is-inview .about-media,
+  #about.is-inview .about-text,
+  #about.is-inview .about-highlights,
+  #about.is-inview .about-quote,
+  #about.is-inview .about-actions { animation: none; }
+}

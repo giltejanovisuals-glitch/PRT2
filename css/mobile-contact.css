@@ -1,0 +1,66 @@
+.mobile-contact-copy,
+.mobile-inquiry-type { display: none; }
+.project-scope { margin-bottom: 24px; }
+.project-scope summary { display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding: 8px 0; color: var(--text); cursor: pointer; list-style: none; font-size: 14px; }
+.project-scope summary::-webkit-details-marker { display: none; }
+.project-scope[open] .scope-plus { transform: rotate(45deg); }
+.scope-plus { transition: transform 300ms var(--ease); }
+.project-scope .form-row-scope { margin-top: 16px; }
+.template-confirmation { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.5; }
+.template-confirmation[hidden] { display: none; }
+.template-confirmation p { margin: 0 0 8px; }
+.template-confirmation button { min-height: 48px; margin-right: 12px; padding: 8px 0; color: var(--text); border: 0; border-bottom: 1px solid var(--line); background: none; cursor: pointer; font: inherit; }
+@media (max-width: 760px) {
+  #contact { align-items: stretch; gap: 0; margin-inline: calc(-1 * var(--page-padding)); padding: 80px max(20px, env(safe-area-inset-right)) 56px max(20px, env(safe-area-inset-left)); background: var(--background); text-align: left; }
+  #contact .mobile-contact-copy { display: block; }
+  #contact .cta-label { order: 0; margin: 0 0 20px; font-size: 10px; color: var(--muted); letter-spacing: .12em; }
+  #contact .cta-heading { order: 1; margin: 0 0 20px; max-width: 18ch; font-size: clamp(32px, 9vw, 40px); line-height: 1.15; letter-spacing: -.025em; color: var(--text); }
+  #contact .cta-emphasis { color: var(--text); }
+  #contact .contact-reassurance { order: 2; margin: 0 0 28px; max-width: 38ch; font-size: 15px; line-height: 1.6; color: var(--muted); }
+  #contact .cta-actions { order: 3; margin: 0; display: block; }
+  #contact .cta-actions > a,
+  #contact > .cta-socials,
+  #contact > .cta-socials-label { display: none; }
+  #contact #cta-start-trigger,
+  #contact .form-submit-btn { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 52px; border-radius: 3px; font-size: 15px; }
+  #contact .cta-form-wrap { order: 4; margin: 0; max-width: none; transition: grid-template-rows 350ms var(--ease); }
+  #contact .inquiry-panel { margin-top: 28px; padding: 28px 0 0; }
+  #contact .inquiry-intro,
+  #contact .inquiry-response,
+  #contact .chip-group { display: none; }
+  #contact .inquiry-grid { display: block; }
+  #contact .inquiry-main { display: block; }
+  #contact .form-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+  #contact .form-field { margin-bottom: 24px; }
+  #contact .mobile-inquiry-type { display: block; }
+  #contact .form-label { display: block; margin-bottom: 8px; color: var(--text); font-size: 14px; line-height: 1.4; }
+  #contact .form-input { min-height: 48px; padding: 12px; font-size: 16px; border-radius: 3px; }
+  #contact .form-textarea { height: 150px; min-height: 150px; }
+  #contact .template-row { margin-bottom: 24px; }
+  #contact .template-buttons { gap: 8px; }
+  #contact .template-btn { min-height: 48px; padding: 10px 12px; border-radius: 3px; font-size: 12px; }
+  #contact .project-scope summary { color: var(--muted); }
+  #contact .form-actions { margin: 0; }
+  #contact .form-actions-note { font-size: 12px; }
+  #contact .form-consent { font-size: 11px; }
+  #contact .inquiry-success { padding: 20px 0; text-align: left; }
+  #contact .inquiry-success[hidden],
+  #contact .inquiry-form[hidden] { display: none; }
+  #contact .inquiry-success-title { color: var(--accent); font-size: 26px; }
+  #contact .inquiry-success-body { font-size: 15px; margin: 0; }
+  #contact .inquiry-success-reset { min-height: 48px; }
+  #contact .contact-secondary-links { order: 5; display: flex; flex-direction: column; gap: 4px; margin-top: 28px; }
+  #contact .contact-profile-links { order: 6; display: flex; flex-wrap: wrap; gap: 24px; margin-top: 24px; }
+  #contact .contact-secondary-links a,
+  #contact .contact-profile-links a { display: inline-flex; align-items: center; min-height: 48px; color: var(--muted); font-size: 14px; }  #contact a:focus-visible,
+  #contact summary:focus-visible,
+  #contact button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  #contact select option { color: var(--text); background: var(--background); }
+  .profile { padding-bottom: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scope-plus { transition: none; }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  #contact .cta-form-wrap { transition: none; }
+}

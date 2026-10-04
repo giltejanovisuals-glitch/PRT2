@@ -1,0 +1,65 @@
+.mobile-capabilities { display: none; }
+@media (max-width: 760px) {
+  #capabilities {
+    display: block;
+    margin-inline: calc(-1 * var(--page-padding));
+    padding: 80px max(20px, env(safe-area-inset-right)) 80px max(20px, env(safe-area-inset-left));
+    border-top: 1px solid var(--m-line);
+    background: var(--m-bg);
+    color: var(--m-text);
+    scroll-margin-top: var(--header-h);
+  }
+  #capabilities .cap-track,
+  #capabilities .cap-nav,
+  #capabilities .cap-head > .section-index { display: none; }
+  #capabilities .cap-head { margin: 0 0 32px; }
+  #capabilities .cap-head h2 { margin: 0 0 14px; color: var(--m-text); font-size: 20px; line-height: 1.3; letter-spacing: .08em; text-transform: uppercase; }
+  #capabilities .profile-block-lede { max-width: 29ch; color: var(--m-muted); font-size: 16px; line-height: 1.6; }
+  .mobile-capabilities { display: block; min-width: 0; overflow-x: clip; interpolate-size: allow-keywords; }
+  .mobile-capability { border-top: 1px solid var(--m-line); }
+  .mobile-capability:last-of-type { border-bottom: 1px solid var(--m-line); }
+  .mobile-capability summary {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr) 26px;
+    gap: 10px;
+    align-items: center;
+    min-height: 64px;
+    padding: 16px 0;
+    list-style: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-capability summary::-webkit-details-marker { display: none; }
+  .capability-number { font-size: 11px; font-variant-numeric: tabular-nums; color: var(--m-accent); }
+  .capability-title { font-family: var(--font-headline); font-size: 16px; line-height: 1.4; color: var(--m-text); }
+  .capability-plus { display: block; justify-self: center; width: 18px; height: 18px; color: var(--m-accent); font-size: 23px; line-height: 18px; text-align: center; transition: transform 350ms var(--ease); }
+  .mobile-capability[open] .capability-title { color: var(--m-accent); }
+  .mobile-capability[open] .capability-plus { transform: rotate(45deg); }
+  .mobile-capability summary:focus-visible { outline: 2px solid var(--m-accent); outline-offset: -3px; }
+  .mobile-capabilities a:focus-visible { outline: 2px solid var(--m-accent); outline-offset: 3px; }
+  .mobile-capability summary:active .capability-title { color: var(--m-accent); }
+  /* Native details keeps a real open state and exclusive grouping, while
+     the content box interpolates smoothly without moving its own title. */
+  .mobile-capability::details-content {
+    block-size: 0;
+    opacity: 0;
+    overflow: clip;
+    transition: block-size 350ms var(--ease), opacity 350ms ease, content-visibility 350ms;
+    transition-behavior: allow-discrete;
+  }
+  .mobile-capability[open]::details-content { block-size: auto; opacity: 1; }
+  .capability-panel { padding: 0 28px 22px 32px; color: var(--m-muted); }
+  .capability-panel > p { margin: 0 0 14px; font-size: 14px; line-height: 1.6; }
+  .capability-panel ul { margin: 0; padding-left: 16px; font-size: 13px; line-height: 1.7; }
+  .capability-panel li + li { margin-top: 4px; }
+  .capability-panel li::marker { color: var(--m-accent); }
+  .capability-panel a,
+  .capability-explore { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--m-accent); font-size: 13px; }
+  .capability-panel a { margin-top: 10px; }
+  .capability-explore { margin-top: 28px; }
+  .capability-explore:focus-visible { outline-offset: -3px; }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .mobile-capability::details-content,
+  .capability-plus { transition: none; }
+}

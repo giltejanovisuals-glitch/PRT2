@@ -38,7 +38,7 @@ window.GALLERY_CATEGORIES = [
     lede:
       "Campaign key visuals developed into full social systems — feed, stories, paid social, and launch content built from one central idea.",
     intro:
-      "Campaigns built from a single big idea through to a key visual and a full system of social executions, connecting design decisions to real marketing goals rather than one-off graphics.",
+      "Campaign visuals created to give products, promotions, and brand stories a clear and consistent presence across digital platforms.",
     entries: [
       { layout: "landscape", brand: "Mooni", year: "2025", type: "Campaign Key Visual", contribution: "Big-idea concept, key visual, and system adapted across social, digital, and OOH formats." },
       { layout: "landscape", brand: "Client Name", year: "2024", type: "Social Media Campaign" },
@@ -98,7 +98,7 @@ window.GALLERY_CATEGORIES = [
     lede:
       "Reels, TikToks, and short-form video content built for fast-paced social feeds and campaign launches.",
     intro:
-      "Short-form video direction for social-first content — reels, product demos, and campaign teasers edited for pacing, hook, and platform-native storytelling.",
+      "Reels, TikToks, and short-form video content built for fast-paced social feeds and campaign launches.",
     entries: [
       { layout: "landscape", brand: "Client Name", year: "2025", type: "Instagram Reel", contribution: "Short-form video concept, shot list, and edit direction for a product-launch Reel series." },
       { layout: "landscape", brand: "Client Name", year: "2024", type: "TikTok Video" },

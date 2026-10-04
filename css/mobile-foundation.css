@@ -1,0 +1,23 @@
+.mobile-foundation-copy { display: none; }
+@media (max-width: 760px) {
+  #foundation { display: block; margin-inline: calc(-1 * var(--page-padding)); padding: 80px max(20px, env(safe-area-inset-right)) 80px max(20px, env(safe-area-inset-left)); background: var(--m-bg); color: var(--m-text); border-top: 1px solid var(--m-line); scroll-margin-top: var(--header-h); }
+  #foundation .profile-block-head { margin-bottom: 32px; }
+  #foundation .section-index { margin: 0 0 16px; color: var(--m-accent); font-size: 10px; letter-spacing: .15em; }
+  #foundation h2 { margin: 0 0 16px; color: var(--m-text); font-size: clamp(32px, 8.8vw, 38px); line-height: 1.15; letter-spacing: -.025em; }
+  #foundation .mobile-foundation-copy { display: block; }
+  #foundation .foundation-intro { margin: 0; max-width: 38ch; color: var(--m-muted); font-size: 15px; line-height: 1.6; }
+  #foundation .found-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  #foundation .found-item { margin: 0; padding: 28px 0 0; border: 0; border-top: 1px solid var(--m-line); background: none; box-shadow: none; }
+  #foundation .foundation-number { margin: 0 0 14px; color: var(--m-accent); font-size: 12px; font-variant-numeric: tabular-nums; letter-spacing: .08em; }
+  #foundation .found-years { margin: 0 0 10px; color: var(--m-accent); font-size: 12px; line-height: 1.5; letter-spacing: .08em; }
+  #foundation .found-degree { margin: 0; color: var(--m-text); font-size: 18px; line-height: 1.4; font-weight: 400; text-transform: uppercase; }
+  #foundation .found-school { margin: 8px 0 0; color: var(--m-muted); font-size: 15px; line-height: 1.5; }
+  #foundation .found-tag { margin: 12px 0 0; padding: 0; border: 0; background: none; border-radius: 0; color: var(--m-muted); font-size: 14px; font-weight: 400; line-height: 1.5; letter-spacing: 0; text-transform: none; }
+  #foundation .foundation-relevance { margin: 16px 0 0; max-width: 38ch; color: var(--m-muted); font-size: 14px; line-height: 1.6; }
+  #foundation .foundation-connection { margin: 36px 0 0; padding-top: 28px; border-top: 1px solid var(--m-line); max-width: 38ch; color: var(--m-muted); font-size: 14px; line-height: 1.65; }
+  #foundation .found-item.is-revealing { animation: foundation-reveal 320ms var(--ease); }
+  @keyframes foundation-reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  #foundation .found-item.is-revealing { animation: none; }
+}

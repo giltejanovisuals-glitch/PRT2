@@ -173,3 +173,35 @@
     font-size: 1.3rem;
   }
 }
+
+/* Fullscreen caption (campaign or category name), top-left opposite the
+   close button. The lightbox is always dark, so its teal is fixed. */
+.lightbox-caption {
+  position: absolute;
+  top: clamp(1rem, 3vh, 2rem);
+  right: calc(clamp(1rem, 3vw, 2rem) + 56px);
+  left: clamp(1rem, 3vw, 2rem);
+  z-index: 2;
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  margin: 0;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.lightbox-caption:empty {
+  display: none;
+}
+
+.lightbox:has(.lightbox-caption) #lightbox-current {
+  color: #60a899;
+}

@@ -224,7 +224,7 @@
         year: info.year || "",
         description: info.description || "",
         caseStudyLink: info.caseStudyLink || "",
-        downloadAllowed: info.downloadAllowed !== false,
+        downloadAllowed: info.downloadAllowed === true,
       };
     });
 

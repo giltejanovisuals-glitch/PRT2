@@ -33,6 +33,12 @@
  *   stacked — phones: normal page scrolling, preview first, then one
  *             vertical column of thumbnails; a tap opens an image
  *             fullscreen, or plays a video in the preview.
+ *   feed    — phones with data-mobile-layout="feed" (all four category
+ *             pages): a stacked variant with a full-width featured
+ *             visual, then a two-column masonry archive where landscape
+ *             visuals span both columns; a tap opens the image in the
+ *             lightbox. Reels skip the featured visual: every poster is
+ *             shown in two columns and a tap opens js/reel-viewer.js.
  *
  * Images come from the category's generated manifest (via
  * window.ProjectGalleryLightbox.entries), so files dropped into
@@ -52,11 +58,31 @@
   const CATEGORY_ID = section.dataset.category || "print-brand-collateral";
   const IS_VIDEO = section.dataset.kind === "video";
   const TYPE_FALLBACK = section.dataset.typeFallback || "Print application";
+  // data-mobile-layout="feed": phones get a featured visual followed by a
+  // two-column masonry archive (landscape visuals span both columns)
+  // instead of the single stacked column. data-featured names the file
+  // shown first; it defaults to the first image.
+  const FEED = section.dataset.mobileLayout === "feed";
+  const LANDSCAPE_RATIO = 1.2;
+
+  const encodePath = (p) => p.split("/").map(encodeURIComponent).join("/");
+  // Accepts seconds (24) or "m:ss" ("0:24"); anything else is unknown.
+  const parseDuration = (value) => {
+    if (typeof value === "number" && value > 0) return value;
+    const match = /^(\d+):(\d{1,2})$/.exec(String(value || "").trim());
+    return match ? Number(match[1]) * 60 + Number(match[2]) : 0;
+  };
+  const formatDuration = (seconds) => {
+    const s = Math.round(seconds);
+    return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+  };
+  // Data saver: no metadata requests until a reel is actually played.
+  const saveData = Boolean(navigator.connection && navigator.connection.saveData);
 
   const videoEntries = () => {
     const base = section.dataset.videoBase || "";
     const meta = window.REEL_META || {};
-    return (window.REEL_MANIFEST || []).map((item) => {
+    return (window.REEL_MANIFEST || []).map((item, i) => {
       const info = meta[item.file] || {};
       return {
         src: base + encodeURIComponent(item.file),
@@ -65,7 +91,16 @@
         height: item.height,
         ratio: item.ratio || (item.width && item.height ? item.width / item.height : 9 / 16),
         type: info.type || "",
-        alt: info.alt || info.title || item.title || "Video",
+        // Only hand-written titles are ever shown — never the filename.
+        // `label` is what screen readers hear when there's no title.
+        alt: info.alt || info.title || `Reel ${i + 1}`,
+        title: info.title || "",
+        label: info.title || `Reel ${i + 1}`,
+        brand: info.brand || info.project || "",
+        year: info.year ? String(info.year) : "",
+        // Seconds, or "m:ss"; otherwise read from the file's metadata.
+        duration: parseDuration(info.duration),
+        captions: info.captions ? base + encodePath(info.captions) : "",
       };
     });
   };
@@ -81,6 +116,11 @@
 
   const category = (window.GALLERY_CATEGORIES || []).find((c) => c.id === CATEGORY_ID) || {};
   const thumbs = (window.GALLERY_THUMBS || {})[CATEGORY_ID] || {};
+  const featuredIndex = Math.max(
+    0,
+    entries.findIndex((entry) => entry.src.split("/").pop() === section.dataset.featured)
+  );
+  const ratioOf = (entry) => (entry.width && entry.height ? entry.width / entry.height : entry.ratio || 1);
 
   const COLUMN_COUNT = 3;
   // Column pixels moved per pixel of wheel/drag input (for the longest
@@ -106,7 +146,6 @@
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const root = document.documentElement;
 
-  const encodePath = (p) => p.split("/").map(encodeURIComponent).join("/");
   const fileOf = (src) => src.split("/").pop();
   const pad = (n) => String(n).padStart(2, "0");
   const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
@@ -137,7 +176,7 @@
   let columns = [];
   let selected = 0;
 
-  const createTile = (entry, i, stacked) => {
+  const createTile = (entry, i, stacked, feed = false) => {
     const tile = document.createElement("button");
     tile.type = "button";
     tile.className = "pbc-tile";
@@ -148,8 +187,11 @@
       "aria-label",
       `${IS_VIDEO ? "Play" : "Show"} ${describe(entry).type.toLowerCase()} ${i + 1} of ${entries.length}`
     );
-    // Reserve the image's exact natural shape before it loads.
-    tile.style.aspectRatio = entry.width && entry.height ? `${entry.width} / ${entry.height}` : String(entry.ratio || 1);
+    // Reserve the image's exact natural shape before it loads. The feed
+    // leaves that to the img's own width/height attributes (height: auto).
+    if (!feed) {
+      tile.style.aspectRatio = entry.width && entry.height ? `${entry.width} / ${entry.height}` : String(entry.ratio || 1);
+    }
 
     const img = document.createElement("img");
     img.className = "pbc-tile-img";
@@ -166,8 +208,16 @@
     if (entry.width) img.width = entry.width;
     if (entry.height) img.height = entry.height;
     img.src = thumbSrc(entry);
+    // Feed: let the browser pick the 720px WebP or the original by the
+    // tile's rendered width (half the screen, or all of it for landscape).
+    const thumb = thumbFor(entry);
+    if (feed && thumb && entry.width > 720) {
+      img.srcset = `${thumb} 720w, ${encodePath(entry.src)} ${entry.width}w`;
+      img.sizes = ratioOf(entry) >= LANDSCAPE_RATIO ? "calc(100vw - 40px)" : "calc(50vw - 25px)";
+    }
     if (!IS_VIDEO && img.src !== entry.src) {
       img.addEventListener("error", () => {
+        img.removeAttribute("srcset");
         img.src = entry.src;
       }, { once: true });
     }
@@ -183,12 +233,173 @@
     return tile;
   };
 
+  // Each feed tile fades in once, the first time it scrolls into view.
+  let revealObserver = null;
+  const feedCount = document.getElementById("pbc-feed-count");
+
+  // Phones, feed layout: the featured visual sits above, so the archive is
+  // everything else. Runs of square/portrait visuals fill two columns
+  // (each tile goes to the shorter column); a landscape visual breaks the
+  // run and spans the full width.
+  const buildFeed = () => {
+    const feed = document.createElement("div");
+    feed.className = "pbc-feed";
+    let pair = null;
+    let heights = [0, 0];
+    // A landscape visual waits until both columns are level (within a
+    // fifth of a tile) so it never leaves a gap beside the shorter one;
+    // anything still waiting goes at the end.
+    let waiting = [];
+    const level = () => !pair || Math.abs(heights[0] - heights[1]) < 0.2;
+    const placeWide = (tile) => {
+      pair = null;
+      const wide = document.createElement("div");
+      wide.className = "pbc-feed-wide";
+      wide.appendChild(tile);
+      feed.appendChild(wide);
+    };
+    const flushWide = () => {
+      waiting.forEach(placeWide);
+      waiting = [];
+    };
+    entries.forEach((entry, i) => {
+      if (i === featuredIndex) return;
+      const tile = tiles[i];
+      if (ratioOf(entry) >= LANDSCAPE_RATIO) {
+        if (level()) placeWide(tile);
+        else waiting.push(tile);
+        return;
+      }
+      if (!pair) {
+        pair = document.createElement("div");
+        pair.className = "pbc-feed-pair";
+        pair.append(document.createElement("div"), document.createElement("div"));
+        feed.appendChild(pair);
+        heights = [0, 0];
+      }
+      const col = heights[0] <= heights[1] ? 0 : 1;
+      pair.children[col].appendChild(tile);
+      heights[col] += 1 / ratioOf(entry);
+      if (waiting.length && level()) flushWide();
+    });
+    flushWide();
+    rail.appendChild(feed);
+    if (feedCount) feedCount.textContent = `${entries.length} ${IS_VIDEO ? "reels" : "visuals"}`;
+
+    if (motionAllowed() && "IntersectionObserver" in window) {
+      revealObserver = new IntersectionObserver(
+        (seen) => {
+          seen.forEach((item) => {
+            if (!item.isIntersecting) return;
+            item.target.classList.add("is-in");
+            revealObserver.unobserve(item.target);
+          });
+        },
+        { rootMargin: "0px 0px -8% 0px" }
+      );
+      feed.querySelectorAll(".pbc-tile").forEach((tile) => revealObserver.observe(tile));
+    } else {
+      feed.querySelectorAll(".pbc-tile").forEach((tile) => tile.classList.add("is-in"));
+    }
+    // Every tile is a plain tab stop here (no roving selection).
+    tiles.forEach((tile) => {
+      tile.tabIndex = 0;
+    });
+  };
+
+  // --- Phones, video feed: reel library -------------------------------------
+  //
+  // Every reel at once in a two-column grid of posters at their natural
+  // ratio, each with its title and duration laid subtly over the bottom of
+  // the poster. A tap opens js/reel-viewer.js fullscreen over the page.
+  // Durations come from the meta; otherwise each file's header is read as
+  // its tile nears the screen (never under data saver) — add `duration` in
+  // js/reel-meta.js to skip that request.
+
+  let durationObserver = null;
+  const reelViewer =
+    IS_VIDEO && FEED && window.createReelViewer
+      ? window.createReelViewer(entries, { typeFallback: TYPE_FALLBACK, formatDuration })
+      : null;
+
+  const rememberDuration = (entry, seconds) => {
+    entry.duration = seconds;
+    const badge = tiles[entries.indexOf(entry)]?.querySelector(".pbc-tile-duration");
+    if (badge) {
+      badge.textContent = formatDuration(seconds);
+      badge.hidden = false;
+    }
+  };
+
+  const readDuration = (entry) => {
+    if (entry.duration || saveData) return;
+    const probe = document.createElement("video");
+    probe.preload = "metadata";
+    probe.muted = true;
+    probe.addEventListener("loadedmetadata", () => {
+      if (Number.isFinite(probe.duration) && probe.duration > 0) rememberDuration(entry, probe.duration);
+      probe.removeAttribute("src");
+      probe.load();
+    }, { once: true });
+    probe.src = entry.src;
+  };
+
+  const buildReelLibrary = () => {
+    const grid = document.createElement("div");
+    grid.className = "pbc-reels";
+    entries.forEach((entry, i) => {
+      const tile = tiles[i];
+      const caption = document.createElement("span");
+      caption.className = "pbc-tile-caption";
+      const title = document.createElement("span");
+      title.className = "pbc-tile-title";
+      title.textContent = entry.title;
+      const badge = document.createElement("span");
+      badge.className = "pbc-tile-duration";
+      badge.hidden = !entry.duration;
+      badge.textContent = entry.duration ? formatDuration(entry.duration) : "";
+      caption.append(title, badge);
+      tile.appendChild(caption);
+      tile.setAttribute("aria-label", `Play ${entry.label}${entry.brand ? `, ${entry.brand}` : ""}`);
+      tile.tabIndex = 0;
+      grid.appendChild(tile);
+    });
+    rail.appendChild(grid);
+    if (feedCount) feedCount.textContent = `${entries.length} reels`;
+
+    if (!saveData && "IntersectionObserver" in window) {
+      durationObserver = new IntersectionObserver(
+        (seen) => {
+          seen.forEach((item) => {
+            if (!item.isIntersecting) return;
+            durationObserver.unobserve(item.target);
+            readDuration(entries[Number(item.target.dataset.pos)]);
+          });
+        },
+        { rootMargin: "200px 0px" }
+      );
+      tiles.forEach((tile) => durationObserver.observe(tile));
+    }
+  };
+
   const build = () => {
     const stacked = !desktopQuery.matches;
+    const feed = stacked && FEED;
+    section.toggleAttribute("data-feed", feed);
+    revealObserver?.disconnect();
+    revealObserver = null;
+    durationObserver?.disconnect();
+    durationObserver = null;
     rail.replaceChildren();
-    tiles = entries.map((entry, i) => createTile(entry, i, stacked));
+    tiles = entries.map((entry, i) => createTile(entry, i, stacked, feed));
 
-    if (stacked) {
+    if (feed && IS_VIDEO) {
+      buildReelLibrary();
+      columns = [];
+    } else if (feed) {
+      buildFeed();
+      columns = [];
+    } else if (stacked) {
       // Phones: a single vertical column in manifest order.
       const col = document.createElement("div");
       col.className = "pbc-col pbc-col-flow";
@@ -240,10 +451,21 @@
       video.controls = true;
       video.muted = true;
       video.playsInline = true;
-      video.preload = "metadata";
+      video.preload = saveData ? "none" : "metadata";
       if (entry.poster) video.poster = entry.poster;
       video.src = entry.src;
-      video.setAttribute("aria-label", entry.alt || describe(entry).type);
+      video.setAttribute("aria-label", `${entry.label}${entry.brand ? `, ${entry.brand}` : ""}`);
+      if (entry.captions) {
+        const track = document.createElement("track");
+        track.kind = "captions";
+        track.srclang = "en";
+        track.label = "English";
+        track.src = entry.captions;
+        track.default = true;
+        video.appendChild(track);
+      }
+      // Black behind the player only for non-vertical sources.
+      shot.dataset.vertical = String(ratioOf(entry) < 1);
       shot.appendChild(video);
       return shot;
     }
@@ -252,6 +474,8 @@
     img.className = "pbc-shot-img";
     img.alt = entry.alt || describe(entry).type;
     img.decoding = "async";
+    // The first preview is the page's lead image: fetch it before the rest.
+    if (!activeShot) img.fetchPriority = "high";
     if (entry.width) img.width = entry.width;
     if (entry.height) img.height = entry.height;
     // Show the (usually already cached) thumbnail at once, then swap in the
@@ -321,7 +545,7 @@
     if (prevTile) {
       prevTile.classList.remove("is-selected");
       prevTile.setAttribute("aria-pressed", "false");
-      prevTile.tabIndex = -1;
+      prevTile.tabIndex = FEED && mode === "stacked" ? 0 : -1;
     }
     selected = i;
     const tile = tiles[i];
@@ -329,7 +553,9 @@
     tile.setAttribute("aria-pressed", "true");
     tile.tabIndex = 0;
 
-    if (changed) {
+    // Phone reels have no preview (the viewer plays them), so nothing is
+    // fetched for it; desktop builds it when the layout switches.
+    if (changed && !(IS_VIDEO && FEED && mode === "stacked")) {
       showPreview(entries[i], autoplay);
       prefetch(i + 1);
       prefetch(i - 1);
@@ -343,7 +569,18 @@
       const video = activeShot && activeShot.querySelector("video");
       if (!video) return;
       if (video.requestFullscreen) video.requestFullscreen().catch(() => {});
-      else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+      else if (video.webkitEnterFullscreen) {
+        // iPhone: throws until metadata has loaded, so retry once it has.
+        try {
+          video.webkitEnterFullscreen();
+        } catch (e) {
+          video.addEventListener("loadedmetadata", () => {
+            try {
+              video.webkitEnterFullscreen();
+            } catch (err) {}
+          }, { once: true });
+        }
+      }
       const playing = video.play();
       if (playing && playing.catch) playing.catch(() => {});
       return;
@@ -627,6 +864,19 @@
     const tile = event.target.closest(".pbc-tile");
     if (!tile) return;
     const pos = Number(tile.dataset.pos);
+    // Feed: images open in the lightbox and the featured visual stays put;
+    // reels open in the fullscreen reel viewer, which plays from this tap
+    // and leaves the page exactly where it was.
+    if (mode === "stacked" && FEED) {
+      if (IS_VIDEO) {
+        select(pos);
+        section.classList.add("has-watched"); // outline only once watched
+        reelViewer?.open(pos, tile);
+      } else if (lightbox) {
+        lightbox.open(entries[pos].flatIndex, tile);
+      }
+      return;
+    }
     if (mode === "stacked") {
       if (IS_VIDEO) {
         // Phones: play it in the preview above and bring that into view.
@@ -659,6 +909,7 @@
     const inRail = rail.contains(event.target);
     const inPreview = event.target === frame;
     if (!inRail && !inPreview) return;
+    if (FEED && mode === "stacked") return; // feed tiles are plain buttons
 
     let next = null;
     switch (event.key) {
@@ -730,7 +981,7 @@
   const lightboxEl = document.getElementById("lightbox");
   if (!IS_VIDEO && lightboxCurrent && lightboxEl && "MutationObserver" in window) {
     new MutationObserver(() => {
-      if (!lightboxEl.classList.contains("is-open")) return;
+      if (!lightboxEl.classList.contains("is-open") || (FEED && mode === "stacked")) return;
       const flat = Number(lightboxCurrent.textContent) - 1;
       const pos = entries.findIndex((entry) => entry.flatIndex === flat);
       if (pos >= 0 && pos !== selected) select(pos, { reveal: mode !== "stacked" });
@@ -759,10 +1010,11 @@
   desktopQuery.addEventListener("change", () => {
     build();
     applyMode();
+    if (!activeShot && mode !== "stacked") showPreview(entries[selected]);
   });
   reducedMotionQuery.addEventListener("change", applyMode);
 
   build();
   applyMode();
-  select(0);
+  select(featuredIndex);
 })();

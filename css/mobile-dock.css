@@ -1,0 +1,49 @@
+.mobile-dock { display: none; }
+@media (max-width: 760px) {
+  #creative-dock { display: block; margin-inline: calc(-1 * var(--page-padding)); padding: 80px max(20px, env(safe-area-inset-right)) 80px max(20px, env(safe-area-inset-left)); background: var(--m-bg); color: var(--m-text); border-top: 1px solid var(--m-line); scroll-margin-top: var(--header-h); }
+  #creative-dock > .dock-body { display: none; }
+  #creative-dock > .profile-block-head { margin-bottom: 28px; }
+  #creative-dock .section-index { color: var(--m-accent); font-size: 10px; letter-spacing: .15em; margin: 0 0 16px; }
+  #creative-dock .profile-block-head h2 { color: var(--m-text); font-size: clamp(28px, 8vw, 34px); line-height: 1.15; letter-spacing: -.025em; margin-bottom: 16px; }
+  #creative-dock .profile-block-lede { color: var(--m-muted); font-size: 15px; line-height: 1.6; max-width: 38ch; }
+  .mobile-dock { display: block; min-width: 0; }
+  .mobile-dock-track { display: flex; gap: 20px; height: 116px; padding: 12px 0 8px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; touch-action: pan-x pan-y pinch-zoom; }
+  .mobile-dock-track::-webkit-scrollbar { display: none; }
+  .mobile-dock-tool { position: relative; display: flex; flex-direction: column; align-items: center; flex: 0 0 max(48px, calc((100% - 100px) / 4)); min-width: 48px; min-height: 96px; padding: 0; border: 0; background: none; box-shadow: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .mobile-dock-tool input { position: absolute; left: 50%; top: 32px; width: 1px; height: 1px; padding: 0; opacity: 0; }
+  .mobile-dock-icon { position: relative; display: flex; align-items: center; justify-content: center; width: 48px; height: 64px; flex: none; }
+  .mobile-dock-icon img { display: block; width: 44px; height: 44px; object-fit: contain; opacity: .78; transform: none; transition: transform 220ms var(--ease), opacity 160ms ease; }
+  .mobile-dock-name { display: block; width: 100%; min-height: 26px; color: var(--m-muted); font-size: 10px; line-height: 1.3; text-align: center; visibility: hidden; overflow-wrap: anywhere; transition: none; }
+  .mobile-dock-tool input:checked ~ .mobile-dock-name { visibility: visible; }
+  .mobile-dock-tool input:checked ~ .mobile-dock-icon img { opacity: 1; transform: translateY(-4px) scale(1.12); }
+  .mobile-dock-tool.is-neighbor .mobile-dock-icon img { transform: translateY(-1px) scale(1.04); }
+  .mobile-dock-tool input:checked ~ .mobile-dock-icon::after { content: ''; position: absolute; bottom: 3px; left: 50%; width: 4px; height: 4px; border-radius: 50%; background: var(--m-accent); transform: translateX(-50%); }
+  .mobile-dock-tool:has(input:focus-visible) { outline: 2px solid var(--m-accent); outline-offset: -2px; }
+  .mobile-dock-info { height: 220px; min-height: 220px; padding: 24px 0 0; border-top: 1px solid var(--m-line); }
+  .mobile-tool-panel { display: none; }
+  .mobile-tool-panel h3 { margin: 0 0 14px; color: var(--m-text); font-size: 13px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; }
+  .mobile-tool-description { margin: 0 0 16px; max-width: 38ch; color: var(--m-muted); font-size: 14px; line-height: 1.65; }
+  .mobile-tool-tags { margin: 0; color: var(--m-accent); font-size: 11px; line-height: 1.65; }
+  @keyframes mobile-tool-fade { from { opacity: 0; } to { opacity: 1; } }
+  .mobile-dock:has(input[value="photoshop"]:checked) [data-tool="photoshop"],
+  .mobile-dock:has(input[value="illustrator"]:checked) [data-tool="illustrator"],
+  .mobile-dock:has(input[value="lightroom"]:checked) [data-tool="lightroom"],
+  .mobile-dock:has(input[value="indesign"]:checked) [data-tool="indesign"],
+  .mobile-dock:has(input[value="premiere-pro"]:checked) [data-tool="premiere-pro"],
+  .mobile-dock:has(input[value="davinci-resolve"]:checked) [data-tool="davinci-resolve"],
+  .mobile-dock:has(input[value="capcut"]:checked) [data-tool="capcut"],
+  .mobile-dock:has(input[value="sketchup"]:checked) [data-tool="sketchup"],
+  .mobile-dock:has(input[value="vscode"]:checked) [data-tool="vscode"],
+  .mobile-dock:has(input[value="canva"]:checked) [data-tool="canva"] { display: block; animation: mobile-tool-fade 160ms ease; }
+}
+@media (max-width: 340px) {
+  /* Leave the fourth icon partially visible on the narrowest phones,
+     while retaining enough width for the selected software name. */
+  .mobile-dock-tool { flex-basis: 60px; min-width: 60px; }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .mobile-dock-icon img { transition: none; }
+  .mobile-dock-tool input:checked ~ .mobile-dock-icon img,
+  .mobile-dock-tool.is-neighbor .mobile-dock-icon img { transform: none; }
+  .mobile-dock .mobile-tool-panel { animation: none !important; }
+}

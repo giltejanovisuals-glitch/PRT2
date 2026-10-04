@@ -28,8 +28,11 @@
       const y = window.scrollY;
       document.body.classList.toggle("is-scrolled", y > SCROLL_THRESHOLD);
       if (heroFade) {
-        const fadeDistance = hero.offsetHeight || window.innerHeight;
-        const progress = Math.min(1, Math.max(0, y / fadeDistance));
+        // Measured from the hero's on-screen position, and over at most one
+        // viewport: the parallax hero is several screens tall and its
+        // folders pass under the nav well before it ends.
+        const fadeDistance = Math.min(hero.offsetHeight, window.innerHeight) || window.innerHeight;
+        const progress = Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / fadeDistance));
         root.style.setProperty("--nav-fade", String(progress));
       }
       scrollTicking = false;
@@ -157,6 +160,7 @@
     let activePointerId = null;
 
     track.addEventListener("pointerdown", (event) => {
+      if (track.id === "brands-track" && window.matchMedia('(max-width: 760px)').matches) return;
       if (event.pointerType === "touch") return;
       isDragging = true;
       dragMoved = false;
@@ -201,8 +205,8 @@
     );
   };
 
-  // About Me — reveal label/headline, body copy, then portrait once on
-  // scroll into view (see .about.is-inview in style.css for the stagger)
+  // One-time About reveal. Mobile starts when the section enters view;
+  // its portrait follows the headline, with the full stagger under 650ms.
   const aboutSection = document.querySelector(".about");
 
   if (aboutSection && "IntersectionObserver" in window) {
@@ -215,7 +219,7 @@
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: window.matchMedia('(max-width: 760px)').matches ? 0 : 0.2 }
     );
     aboutObserver.observe(aboutSection);
   } else if (aboutSection) {
@@ -481,22 +485,29 @@
   if (startTrigger && formWrap) {
     const openForm = () => {
       formWrap.classList.add("is-open");
+      formWrap.inert = false;
+      formWrap.setAttribute("aria-hidden", "false");
       startTrigger.setAttribute("aria-expanded", "true");
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       window.requestAnimationFrame(() => {
-        formWrap.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        formWrap.scrollIntoView({ behavior: reduced ? "instant" : "smooth", block: "nearest" });
       });
       window.setTimeout(() => {
-        document.getElementById("inq-name")?.focus();
-      }, 350);
+        const target = inquiryForm?.hidden ? document.getElementById("inquiry-success") : document.getElementById("inq-name");
+        target?.focus({ preventScroll: true });
+        target?.scrollIntoView({ behavior: reduced ? "instant" : "smooth", block: "center" });
+      }, reduced ? 0 : 350);
     };
 
     const closeForm = () => {
       formWrap.classList.remove("is-open");
+      formWrap.inert = true;
+      formWrap.setAttribute("aria-hidden", "true");
       startTrigger.setAttribute("aria-expanded", "false");
     };
 
     startTrigger.addEventListener("click", () => {
-      if (formWrap.classList.contains("is-open")) {
+      if (formWrap.classList.contains("is-open") && !window.matchMedia('(max-width: 760px)').matches) {
         closeForm();
       } else {
         openForm();
@@ -514,16 +525,39 @@
 
   const templateButtons = Array.from(document.querySelectorAll(".template-btn"));
   const messageField = document.getElementById("inq-message");
+  const templateConfirmation = document.getElementById("template-confirmation");
+  let pendingTemplate = null;
+  const applyTemplate = (btn) => {
+    messageField.value = TEMPLATES[btn.dataset.template];
+    messageField.dispatchEvent(new Event('input', { bubbles: true }));
+    messageField.focus();
+    templateButtons.forEach(other => {
+      other.classList.toggle("is-active", other === btn);
+      other.setAttribute('aria-pressed', String(other === btn));
+    });
+    if (templateConfirmation) templateConfirmation.hidden = true;
+    pendingTemplate = null;
+  };
 
   templateButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const text = TEMPLATES[btn.dataset.template];
       if (messageField && text) {
-        messageField.value = text;
-        messageField.focus();
+        if (messageField.value.trim()) {
+          pendingTemplate = btn;
+          templateConfirmation.hidden = false;
+          document.getElementById('template-keep')?.focus();
+        } else applyTemplate(btn);
       }
-      templateButtons.forEach((other) => other.classList.toggle("is-active", other === btn));
     });
+  });
+  document.getElementById('template-replace')?.addEventListener('click', () => {
+    if (pendingTemplate) applyTemplate(pendingTemplate);
+  });
+  document.getElementById('template-keep')?.addEventListener('click', () => {
+    pendingTemplate = null;
+    templateConfirmation.hidden = true;
+    messageField.focus();
   });
 
   if (inquiryForm) {
@@ -540,6 +574,9 @@
     const successPanel = document.getElementById("inquiry-success");
     const successBody = document.getElementById("inquiry-success-body");
     const resetBtn = document.getElementById("inquiry-reset-btn");
+    const mobileType = document.getElementById('inq-mobile-type');
+    const mobileContact = window.matchMedia('(max-width: 760px)');
+    let sending = false;
 
     const setFieldError = (input, errorId, message) => {
       const errorEl = document.getElementById(errorId);
@@ -586,15 +623,23 @@
         setFieldError(messageField, "inq-message-error", "");
       }
 
-      const hasChip = chipInputs.some((chip) => chip.checked);
-      if (chipError) chipError.hidden = hasChip;
-      if (!hasChip) {
+      const hasType = mobileContact.matches ? !!mobileType.value : chipInputs.some(chip => chip.checked);
+      if (mobileContact.matches) setFieldError(mobileType, 'inq-mobile-type-error', hasType ? '' : 'Please choose an inquiry type.');
+      else if (chipError) chipError.hidden = hasType;
+      if (!hasType) {
         valid = false;
-        firstInvalid = firstInvalid || chipInputs[0];
+        firstInvalid = firstInvalid || (mobileContact.matches ? mobileType : chipInputs[0]);
       }
 
       return { valid, firstInvalid };
     };
+    [nameInput, emailInput, messageField].forEach(input => input.addEventListener('input', () => {
+      if (input.hasAttribute('aria-invalid')) setFieldError(input, `${input.id}-error`, '');
+    }));
+    mobileType.addEventListener('change', () => setFieldError(mobileType, 'inq-mobile-type-error', ''));
+    chipInputs.forEach(input => input.addEventListener('change', () => {
+      if (chipError) chipError.hidden = chipInputs.some(chip => chip.checked);
+    }));
 
     // Sends the owner-notification email via EmailJS, then best-effort
     // fires the optional client-confirmation template (its failure never
@@ -606,11 +651,12 @@
         );
       }
 
-      const ownerSend = window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_OWNER, templateParams);
+      const options = { publicKey: EMAILJS_PUBLIC_KEY };
+      const ownerSend = Promise.resolve().then(() => window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_OWNER, templateParams, options));
 
       if (EMAILJS_TEMPLATE_CLIENT) {
         ownerSend.then(() => {
-          window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CLIENT, templateParams).catch(() => {});
+          window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CLIENT, templateParams, options).catch(() => {});
         });
       }
 
@@ -619,6 +665,7 @@
 
     inquiryForm.addEventListener("submit", (event) => {
       event.preventDefault();
+      if (sending || inquiryForm.hidden) return;
       if (errorBanner) errorBanner.hidden = true;
 
       const { valid, firstInvalid } = validate();
@@ -628,7 +675,7 @@
       }
 
       const name = nameInput.value.trim();
-      const selectedTypes = chipInputs.filter((chip) => chip.checked).map((chip) => chip.value);
+      const selectedTypes = mobileContact.matches ? [mobileType.value] : chipInputs.filter(chip => chip.checked).map(chip => chip.value);
       const templateParams = {
         name,
         email: emailInput.value.trim(),
@@ -639,13 +686,15 @@
         timeline: timelineInput.value.trim() || "Not provided",
       };
 
+      sending = true;
+      inquiryForm.setAttribute('aria-busy', 'true');
       if (submitBtn) submitBtn.disabled = true;
       if (submitLabel) submitLabel.textContent = "Sending…";
 
       submitInquiry(templateParams)
         .then(() => {
           if (successBody) {
-            successBody.textContent = `Thank you for sharing your project, ${name}. I'll review the details and get back to you within 1-2 business days.`;
+            successBody.textContent = "Thanks for sharing your project. I’ll review the details and respond within 1–2 business days.";
           }
           inquiryForm.hidden = true;
           if (successPanel) {
@@ -658,6 +707,8 @@
           if (errorBanner) errorBanner.hidden = false;
         })
         .finally(() => {
+          sending = false;
+          inquiryForm.removeAttribute('aria-busy');
           if (submitBtn) submitBtn.disabled = false;
           if (submitLabel) submitLabel.textContent = "Send Project Inquiry";
         });
@@ -665,8 +716,12 @@
 
     resetBtn?.addEventListener("click", () => {
       inquiryForm.reset();
-      templateButtons.forEach((btn) => btn.classList.remove("is-active"));
-      [nameInput, emailInput, messageField].forEach((field) => field.removeAttribute("aria-invalid"));
+      templateButtons.forEach(btn => { btn.classList.remove("is-active"); btn.setAttribute('aria-pressed', 'false'); });
+      pendingTemplate = null;
+      templateConfirmation.hidden = true;
+      inquiryForm.querySelector('.project-scope').open = false;
+      if (errorBanner) errorBanner.hidden = true;
+      [nameInput, emailInput, messageField, mobileType].forEach(field => field.removeAttribute("aria-invalid"));
       document.querySelectorAll(".form-field-error").forEach((el) => (el.hidden = true));
       if (successPanel) successPanel.hidden = true;
       inquiryForm.hidden = false;

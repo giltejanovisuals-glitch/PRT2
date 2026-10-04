@@ -30,6 +30,17 @@
   --font-headline: "TT Modernist", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
     sans-serif;
+  /* Mobile feature panels (hero, capabilities, timeline, …). */
+  --m-bg: #e6e3db;
+  --m-bg-rgb: 230, 227, 219;
+  --m-text: #151515;
+  --m-soft: #2a2f2d;
+  --m-muted: #4f5753;
+  --m-subtle: #5e6763;
+  --m-accent: #0f4c4c;
+  --m-accent-rgb: 15, 76, 76;
+  --m-line: rgba(21, 21, 21, 0.12);
+  --m-line-strong: rgba(21, 21, 21, 0.22);
   --cue-prev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36'%3E%3Ccircle cx='18' cy='18' r='17' fill='white' fill-opacity='0.85' stroke='%23151515' stroke-opacity='0.2'/%3E%3Cpath d='M20 11l-7 7 7 7' fill='none' stroke='%23151515' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
     18 18;
   --cue-next: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36'%3E%3Ccircle cx='18' cy='18' r='17' fill='white' fill-opacity='0.85' stroke='%23151515' stroke-opacity='0.2'/%3E%3Cpath d='M16 11l7 7-7 7' fill='none' stroke='%23151515' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
@@ -50,6 +61,16 @@
     --nav-hover: #0f4c4c;
     --danger: #e8836a;
     --danger-rgb: 232, 131, 106;
+    --m-bg: #171b1c;
+    --m-bg-rgb: 23, 27, 28;
+    --m-text: #f2f0ea;
+    --m-soft: #d5ded9;
+    --m-muted: #b8c1bd;
+    --m-subtle: #a9b8b1;
+    --m-accent: #60a899;
+    --m-accent-rgb: 96, 168, 153;
+    --m-line: rgba(255, 255, 255, 0.12);
+    --m-line-strong: rgba(255, 255, 255, 0.25);
     color-scheme: dark;
   }
 }
@@ -66,6 +87,16 @@
   --nav-hover: #0f4c4c;
   --danger: #e8836a;
   --danger-rgb: 232, 131, 106;
+  --m-bg: #171b1c;
+  --m-bg-rgb: 23, 27, 28;
+  --m-text: #f2f0ea;
+  --m-soft: #d5ded9;
+  --m-muted: #b8c1bd;
+  --m-subtle: #a9b8b1;
+  --m-accent: #60a899;
+  --m-accent-rgb: 96, 168, 153;
+  --m-line: rgba(255, 255, 255, 0.12);
+  --m-line-strong: rgba(255, 255, 255, 0.25);
   color-scheme: dark;
 }
 
@@ -2135,14 +2166,12 @@ body.is-scrolled .nav-backdrop {
   }
 
   .mobile-nav-brand-text {
-    overflow: hidden;
     color: var(--text);
     font-size: 0.7rem;
     font-weight: 500;
     letter-spacing: 0.05em;
-    text-overflow: ellipsis;
+    line-height: 1.5;
     text-transform: uppercase;
-    white-space: nowrap;
   }
 
   .mobile-nav-close {

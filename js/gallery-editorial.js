@@ -444,6 +444,7 @@
     const lightboxNext = document.querySelector(".lightbox-zone-next");
     const lightboxCurrent = document.getElementById("lightbox-current");
     const lightboxTotal = document.getElementById("lightbox-total");
+    const lightboxCaption = document.getElementById("lightbox-caption");
 
     if (lightbox && lightboxStage && flatEntries.length) {
       if (lightboxTotal) lightboxTotal.textContent = String(flatEntries.length).padStart(2, "0");
@@ -494,6 +495,8 @@
         activeSlide = i;
         slides[activeSlide]?.classList.add("is-active");
         if (lightboxCurrent) lightboxCurrent.textContent = String(activeSlide + 1).padStart(2, "0");
+        // Campaign/project name when the meta has one, else the category.
+        if (lightboxCaption) lightboxCaption.textContent = flatEntries[activeSlide]?.project || category.title || "";
       };
 
       openLightbox = (i, trigger) => {
@@ -525,8 +528,10 @@
       const goPrev = () => showSlide((activeSlide - 1 + slides.length) % slides.length);
 
       lightboxClose?.addEventListener("click", closeLightbox);
-      lightboxPrev?.addEventListener("click", goPrev);
-      lightboxNext?.addEventListener("click", goNext);
+      // While pinch-zoomed, a tap is part of panning, not a page turn.
+      const zoomedIn = () => Boolean(window.visualViewport && window.visualViewport.scale > 1.01);
+      lightboxPrev?.addEventListener("click", () => zoomedIn() || goPrev());
+      lightboxNext?.addEventListener("click", () => zoomedIn() || goNext());
 
       lightbox.addEventListener("click", (event) => {
         if (event.target === lightbox) closeLightbox();
@@ -539,11 +544,19 @@
         if (event.key === "ArrowLeft") goPrev();
       });
 
+      // Swipe pages; a pinch (two fingers at any point) or a zoomed-in view
+      // never does, so typography can be inspected and panned freely.
       let touchStartX = 0;
       let touchStartY = 0;
+      let multiTouch = false;
       lightbox.addEventListener(
         "touchstart",
         (event) => {
+          if (event.touches.length > 1) {
+            multiTouch = true;
+            return;
+          }
+          multiTouch = false;
           touchStartX = event.touches[0].clientX;
           touchStartY = event.touches[0].clientY;
         },
@@ -551,8 +564,17 @@
       );
 
       lightbox.addEventListener(
+        "touchmove",
+        (event) => {
+          if (event.touches.length > 1) multiTouch = true;
+        },
+        { passive: true }
+      );
+
+      lightbox.addEventListener(
         "touchend",
         (event) => {
+          if (event.touches.length || multiTouch || zoomedIn()) return;
           const deltaX = event.changedTouches[0].clientX - touchStartX;
           const deltaY = event.changedTouches[0].clientY - touchStartY;
           if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY)) return;

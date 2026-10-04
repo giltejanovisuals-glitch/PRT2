@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Short-Form Video &amp; Reels — Gil Tejano Culas, creative specialist." />
+    <meta name="description" content="Short-Form Video &amp; Reels — Gil Tejano Culas, senior graphic designer and creative specialist." />
     <title>Short-Form Video &amp; Reels | Gil Tejano Culas</title>
     <link rel="icon" href="../assets/icons/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,13 +26,17 @@
       })();
     </script>
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/content-protection.css" />
+    <script src="../js/content-protection.js" defer></script>
     <link rel="stylesheet" href="../css/project-gallery.css?v=3" />
-    <link rel="stylesheet" href="../css/print-collateral-showcase.css?v=6" />
-    <script src="../js/gallery-categories-data.js" defer></script>
-    <script src="../js/gallery-editorial.js?v=2" defer></script>
+    <link rel="stylesheet" href="../css/print-collateral-showcase.css?v=12" />
+    <link rel="stylesheet" href="../css/reel-viewer.css?v=1" />
+    <script src="../js/gallery-categories-data.js?v=4" defer></script>
+    <script src="../js/gallery-editorial.js?v=3" defer></script>
     <script src="../js/reel-manifest.js" defer></script>
-    <script src="../js/reel-meta.js" defer></script>
-    <script src="../js/print-collateral-showcase.js?v=5" defer></script>
+    <script src="../js/reel-meta.js?v=4" defer></script>
+    <script src="../js/reel-viewer.js?v=2" defer></script>
+    <script src="../js/print-collateral-showcase.js?v=12" defer></script>
   </head>
 
   <body>
@@ -50,7 +54,7 @@
           <div class="mobile-nav-head">
             <a class="mobile-nav-brand" href="../index.html" aria-label="Gil Tejano Culas, home">
               <img class="brand-mark" src="../assets/icons/logo.png" alt="" aria-hidden="true" />
-              <span class="mobile-nav-brand-text">Gil Tejano &mdash; Creative Specialist</span>
+              <span class="mobile-nav-brand-text">Gil Tejano Culas &mdash; Senior Graphic Designer / Creative Specialist</span>
             </a>
             <button type="button" class="mobile-nav-close" aria-label="Close menu">
               <span aria-hidden="true">&times;</span>
@@ -103,7 +107,7 @@
 
     <main class="project pbc-project" id="main-content">
       <section
-        class="pbc"
+        class="pbc" data-mobile-layout="feed"
         id="pbc"
         data-category="short-form-video-reels"
         data-kind="video"
@@ -154,13 +158,6 @@
         </div>
       </section>
 
-      <section class="project-closing">
-        <p class="project-closing-label" id="category-closing-label">—</p>
-        <p class="project-closing-text" id="category-closing-text">—</p>
-        <a class="project-overview-link" href="../index.html#gallery">
-          <span aria-hidden="true">←</span> Back to Project Gallery
-        </a>
-      </section>
     </main>
 
     <p class="project-counter" id="project-counter" aria-hidden="true">05 / 05</p>

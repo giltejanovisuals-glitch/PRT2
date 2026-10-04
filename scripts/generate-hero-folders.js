@@ -1,6 +1,6 @@
 /*
  * Build-time image step for the landing hero's brand folders (index.html,
- * .hero; behaviour in js/hero-folders.js). Each folder reveals a few of
+ * .hero-parallax; css/hero-parallax.css). Each folder reveals a few of
  * that brand's own visuals, hand-picked below from the gallery folders.
  * The sources are multi-megabyte PNGs, so this writes small WebP copies
  * with stable names (assets/images/hero-folders/<brand>-<n>.webp) that the

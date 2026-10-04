@@ -3,7 +3,7 @@
  * assets/documents/editorial-layout/, keyed by filename exactly as it
  * appears in that folder. Anything a file doesn't have an entry for falls
  * back to a title guessed from its filename and empty brand/type/role/
- * description/caseStudyLink, with downloadAllowed defaulting to true —
+ * description/caseStudyLink, with downloadAllowed defaulting to false —
  * see js/publication-reader.js.
  *
  * Example:
@@ -16,7 +16,7 @@
  *     role: "Editorial direction, grid development, typography, image sequencing, and production preparation.",
  *     description: "A full-line catalogue spanning living, dining, and bedroom collections.",
  *     caseStudyLink: "porta-mobili.html",
- *     downloadAllowed: true,
+ *     downloadAllowed: false,
  *   },
  * };
  */
@@ -27,7 +27,7 @@ window.PUBLICATION_META = {
     type: "Brand Book",
     year: "2026",
     role: "Editorial direction, layout development, typography, image sequencing, and production preparation.",
-    downloadAllowed: true,
+    downloadAllowed: false,
   },
 
   "porta-mobili-brand-deck-web.pdf": {
@@ -36,6 +36,6 @@ window.PUBLICATION_META = {
     type: "Brand Presentation",
     year: "2026",
     role: "Presentation structure, editorial layout, typography, and visual storytelling.",
-    downloadAllowed: true,
+    downloadAllowed: false,
   },
 };

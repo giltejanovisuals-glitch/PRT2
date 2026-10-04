@@ -1,0 +1,272 @@
+/* Landing hero (index.html, .hero-parallax): a scroll-driven wall of
+   Project Gallery images under the intro copy, after the HeroParallax
+   pattern. On load the wall is tilted back and faint; over the first fifth
+   of the section's scroll it springs upright, fades in and drops into
+   place, and from then on the three rows slide sideways in alternating
+   directions. js/hero-parallax.js fills the rows with a random pick of
+   gallery previews on every visit and only adds .is-live (and the inline
+   transforms) when motion is allowed, so with prefers-reduced-motion the
+   rows are plain, swipeable strips. */
+
+.hero-parallax {
+  --hx-paper: #f2f0ea;
+  --hx-teal: #3fac9f;
+  --pc-h: clamp(13rem, 24vw, 24rem);
+  --pc-gap: clamp(1.75rem, 4.5vw, 5rem);
+  position: relative;
+  padding: calc(var(--header-h) + clamp(2rem, 8vh, 6rem)) 0 clamp(3rem, 8vh, 6rem);
+  overflow: hidden;
+  background: var(--background);
+  perspective: 1000px;
+}
+
+/* --- Intro copy --- */
+
+.hpx-header {
+  position: relative;
+  z-index: 2;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 var(--page-padding) clamp(3rem, 10vh, 8rem);
+  /* The copy sits over the faint wall; let clicks through to the images
+     except on the buttons. */
+  pointer-events: none;
+}
+
+.hpx-eyebrow {
+  margin: 0 0 clamp(1rem, 2.5vh, 1.5rem);
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.hpx-title {
+  max-width: 17ch;
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: clamp(2.1rem, 5.6vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.hpx-sub {
+  max-width: 38rem;
+  margin: clamp(1.25rem, 3vh, 2rem) 0 0;
+  color: var(--muted);
+  font-size: clamp(0.92rem, 1.2vw, 1.1rem);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.hpx-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.5rem, 4vh, 2.5rem);
+  pointer-events: auto;
+}
+
+.hpx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  padding: 0 2.2rem;
+  border: 1px solid var(--text);
+  border-radius: 999px;
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+.hpx-btn-solid,
+.hpx-btn:hover,
+.hpx-btn:focus-visible {
+  background: var(--text);
+  color: var(--background);
+}
+
+.hpx-btn-solid:hover,
+.hpx-btn-solid:focus-visible {
+  background: var(--background);
+  color: var(--text);
+}
+
+/* --- Image wall --- */
+
+.hpx-wall {
+  position: relative;
+  z-index: 1;
+}
+
+.hpx-row {
+  display: flex;
+  gap: var(--pc-gap);
+  margin-bottom: var(--pc-gap);
+}
+
+.hpx-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Reversed rows start from the right edge and overflow to the left. */
+.hpx-row-rev {
+  flex-direction: row-reverse;
+}
+
+/* Motion on: tall section to scroll through, and the wall's starting pose
+   (tilted, faint, lifted) until the script takes over. */
+.hero-parallax.is-live {
+  height: 300vh;
+  padding-bottom: 0;
+}
+
+.hero-parallax.is-live .hpx-wall {
+  opacity: 0.2;
+  transform: translateY(-70vh) rotateX(15deg) rotateZ(20deg);
+  will-change: transform, opacity;
+}
+
+.hero-parallax.is-live .hpx-row {
+  will-change: transform;
+}
+
+/* --- Image card: lifts on hover/focus, darkens, and names its gallery.
+   Every card shares one height and takes its width from its image's own
+   ratio (--pc-ratio, set by js/hero-parallax.js once the image loads), so
+   nothing is cropped. Until then it holds a square placeholder. --- */
+
+.pc-card {
+  position: relative;
+  display: block;
+  flex: none;
+  height: var(--pc-h);
+  aspect-ratio: var(--pc-ratio, 1);
+  overflow: hidden;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--text) 8%, var(--background));
+  box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.45);
+  transition: transform 450ms var(--ease), box-shadow 450ms var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pc-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* matches the card's ratio once loaded: no crop */
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.pc-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  transition: opacity 350ms ease;
+  pointer-events: none;
+}
+
+.pc-title {
+  position: absolute;
+  right: 1.1rem;
+  bottom: 1rem;
+  left: 1.1rem;
+  z-index: 1;
+  color: var(--hx-paper);
+  font-family: var(--font-headline);
+  font-size: clamp(0.95rem, 1.4vw, 1.3rem);
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 350ms ease, transform 450ms var(--ease);
+}
+
+.pc-title small {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--hx-teal);
+  font-family: var(--font-body);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.pc-card:hover,
+.pc-card:focus-visible {
+  transform: translateY(-20px);
+  box-shadow: 0 40px 70px -30px rgba(0, 0, 0, 0.6);
+}
+
+.pc-card:hover::after,
+.pc-card:focus-visible::after {
+  opacity: 0.7;
+}
+
+.pc-card:hover .pc-title,
+.pc-card:focus-visible .pc-title {
+  opacity: 1;
+  transform: none;
+}
+
+.pc-card:focus-visible {
+  outline: 2px solid var(--hx-teal);
+  outline-offset: 4px;
+}
+
+/* --- Small screens: smaller cards and a shorter scroll --- */
+
+@media (max-width: 699px) {
+  .hero-parallax {
+    --pc-h: clamp(10.5rem, 50vw, 13.5rem);
+    --pc-gap: 1.5rem;
+  }
+
+  .hero-parallax.is-live {
+    height: 240vh;
+  }
+}
+
+/* --- No motion (prefers-reduced-motion): each row is a plain horizontal
+   strip you can swipe or scroll. --- */
+
+.hero-parallax:not(.is-live) .hpx-row {
+  flex-direction: row;
+  /* Room above for the hover lift. */
+  padding: 1.5rem var(--page-padding) 0.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--page-padding);
+  scrollbar-width: none;
+}
+
+.hero-parallax:not(.is-live) .hpx-row::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-parallax:not(.is-live) .pc-card {
+  scroll-snap-align: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-card,
+  .pc-card::after,
+  .pc-title {
+    transition: none;
+  }
+}
