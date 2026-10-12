@@ -7,11 +7,144 @@
 window.GALLERY_EDITORIAL_MANIFEST = {
   "social-media-campaigns": [
     {
+      "file": "portajul7.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Portajul7"
+    },
+    {
+      "file": "5 - Copy.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "5 Copy"
+    },
+    {
+      "file": "MDG-5.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mdg 5"
+    },
+    {
+      "file": "HMS5.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hms5"
+    },
+    {
+      "file": "DP 7.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dp 7"
+    },
+    {
+      "file": "MARW32.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Marw32.1"
+    },
+    {
+      "file": "MDG-4.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mdg 4"
+    },
+    {
+      "file": "PORTA-JUNE-3.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Porta June 3"
+    },
+    {
       "file": "1 - Copy.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "1 Copy"
+    },
+    {
+      "file": "HMS2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hms2"
+    },
+    {
+      "file": "APR-LSAW4S3-astralux-striplight 3.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw4s3 Astralux Striplight 3"
+    },
+    {
+      "file": "6 DR FLEX v2.png",
+      "width": 1024,
+      "height": 1024,
+      "ratio": 1,
+      "title": "6 Dr Flex V2"
+    },
+    {
+      "file": "PORTA-JUNE-6.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Porta June 6"
+    },
+    {
+      "file": "m0904 3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "M0904 3"
+    },
+    {
+      "file": "HOOGA ROCKWELL sq.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Hooga Rockwell Sq"
+    },
+    {
+      "file": "APR-LSAW4S1-archi-linear-light.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw4s1 Archi Linear Light"
+    },
+    {
+      "file": "DP JUNE5.jpg",
+      "width": 1500,
+      "height": 1500,
+      "ratio": 1,
+      "title": "Dp June5"
+    },
+    {
+      "file": "p08043.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "P08043.2"
+    },
+    {
+      "file": "5.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "5"
+    },
+    {
+      "file": "MYW11.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Myw11"
     },
     {
       "file": "1 FEATHER RECLINER v2.png",
@@ -21,11 +154,417 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "1 Feather Recliner V2"
     },
     {
-      "file": "1 ORTHOREST PILLOW.png",
+      "file": "MARW33.1.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
-      "title": "1 Orthorest Pillow"
+      "title": "Marw33.1"
+    },
+    {
+      "file": "HMS1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hms1"
+    },
+    {
+      "file": "portajul10.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Portajul10"
+    },
+    {
+      "file": "DP-LSAW3S3.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dp Lsaw3s3"
+    },
+    {
+      "file": "MW23.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw23.1"
+    },
+    {
+      "file": "portajul8.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Portajul8"
+    },
+    {
+      "file": "h08128.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "H08128"
+    },
+    {
+      "file": "DP-CEBU-DAVAO9.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp Cebu Davao9"
+    },
+    {
+      "file": "APR-LSAW4S3-astralux-striplight 1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw4s3 Astralux Striplight 1"
+    },
+    {
+      "file": "MOONI-JUNE-CONTENT2.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mooni June Content2"
+    },
+    {
+      "file": "portajul3.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Portajul3"
+    },
+    {
+      "file": "0904 8.png",
+      "width": 3240,
+      "height": 4050,
+      "ratio": 0.8,
+      "title": "0904 8"
+    },
+    {
+      "file": "MYW18.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Myw18"
+    },
+    {
+      "file": "MW2 2.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw2 2.1"
+    },
+    {
+      "file": "h08127.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "H08127"
+    },
+    {
+      "file": "MIM-JUNE-CONTENT6.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mim June Content6"
+    },
+    {
+      "file": "p08049.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "P08049"
+    },
+    {
+      "file": "DP-LSAW4S1-.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dp Lsaw4s1"
+    },
+    {
+      "file": "m0904 1.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "M0904 1"
+    },
+    {
+      "file": "4 JJ-SL-DLO064A.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "4 Jj Sl Dlo064a"
+    },
+    {
+      "file": "4.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "4"
+    },
+    {
+      "file": "0904 2.png",
+      "width": 1122,
+      "height": 1402,
+      "ratio": 0.8003,
+      "title": "0904 2"
+    },
+    {
+      "file": "0904 5.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "0904 5"
+    },
+    {
+      "file": "0904 4 THUMBNAIL.png",
+      "width": 3240,
+      "height": 4050,
+      "ratio": 0.8,
+      "title": "0904 4 Thumbnail"
+    },
+    {
+      "file": "0904 6 THUMBNAIL.png",
+      "width": 3240,
+      "height": 4050,
+      "ratio": 0.8,
+      "title": "0904 6 Thumbnail"
+    },
+    {
+      "file": "05124.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "05124"
+    },
+    {
+      "file": "05125.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "05125"
+    },
+    {
+      "file": "05127.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "05127"
+    },
+    {
+      "file": "051211..2.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "051211..2"
+    },
+    {
+      "file": "260115_Hooga_ZontaAd 9.jpg",
+      "width": 2480,
+      "height": 3508,
+      "ratio": 0.707,
+      "title": "260115 Hooga Zontaad 9"
+    },
+    {
+      "file": "260113_MIM_JanAds 4.jpg",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "260113 Mim Janads 4"
+    },
+    {
+      "file": "2511 5.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "2511 5"
+    },
+    {
+      "file": "2511 4.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "2511 4"
+    },
+    {
+      "file": "2512 2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "2512 2"
+    },
+    {
+      "file": "2512 8.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "2512 8"
+    },
+    {
+      "file": "2512 11.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "2512 11"
+    },
+    {
+      "file": "10.3.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "10.3"
+    },
+    {
+      "file": "25113.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "25113"
+    },
+    {
+      "file": "5 OKARA + HAVEN.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "5 Okara + Haven"
+    },
+    {
+      "file": "7.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "7"
+    },
+    {
+      "file": "7 MICAH XIA.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "7 Micah Xia"
+    },
+    {
+      "file": "5 NL CL F60XDNSP.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "5 Nl Cl F60xdnsp"
+    },
+    {
+      "file": "11_.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "11"
+    },
+    {
+      "file": "7 COOLSILK CONTOUR.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "7 Coolsilk Contour"
+    },
+    {
+      "file": "8 - Copy.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "8 Copy"
+    },
+    {
+      "file": "9 BOLSTER PILLOW v3.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "9 Bolster Pillow V3"
+    },
+    {
+      "file": "11 BRANDING.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "11 Branding"
+    },
+    {
+      "file": "0904 7.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "0904 7"
+    },
+    {
+      "file": "0904 9.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "0904 9.2"
+    },
+    {
+      "file": "0904 9.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "0904 9.3"
+    },
+    {
+      "file": "2 - Copy.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "2 Copy"
+    },
+    {
+      "file": "3 BRANDIN.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "3 Brandin"
+    },
+    {
+      "file": "3.2.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "3.2"
+    },
+    {
+      "file": "3.3.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "3.3"
+    },
+    {
+      "file": "3.4.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "3.4"
+    },
+    {
+      "file": "3.5.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "3.5"
+    },
+    {
+      "file": "260112_Dunlo_JanAds SQUARE.jpg",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "260112 Dunlo Janads Square"
+    },
+    {
+      "file": "260206_Dunlo_ValentinesAd v2.jpg",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "260206 Dunlo Valentinesad V2"
+    },
+    {
+      "file": "7 DANI Y.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "7 Dani Y"
     },
     {
       "file": "1 RELAX PILLOW.png",
@@ -33,6 +572,972 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1080,
       "ratio": 1,
       "title": "1 Relax Pillow"
+    },
+    {
+      "file": "1 ORTHOREST PILLOW.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "1 Orthorest Pillow"
+    },
+    {
+      "file": "2 DR FLEX.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "2 Dr Flex"
+    },
+    {
+      "file": "6 JADE PENDANT LAMP.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "6 Jade Pendant Lamp"
+    },
+    {
+      "file": "2511 7.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "2511 7"
+    },
+    {
+      "file": "4 - Copy.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "4 Copy"
+    },
+    {
+      "file": "4 INFINITE.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "4 Infinite"
+    },
+    {
+      "file": "260210_Dunlo_WSDEasel sq.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "260210 Dunlo Wsdeasel Sq"
+    },
+    {
+      "file": "260429 2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "260429 2"
+    },
+    {
+      "file": "260429 4.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "260429 4"
+    },
+    {
+      "file": "260429 5.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "260429 5"
+    },
+    {
+      "file": "260429 7.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "260429 7"
+    },
+    {
+      "file": "260429 8.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "260429 8"
+    },
+    {
+      "file": "260709post 1.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "260709post 1"
+    },
+    {
+      "file": "260709post 2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "260709post 2"
+    },
+    {
+      "file": "2603166.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "2603166"
+    },
+    {
+      "file": "ads oct.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Ads Oct"
+    },
+    {
+      "file": "Apr-LSAW3S1-QOVA.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw3s1 Qova"
+    },
+    {
+      "file": "Apr-LSAW3S2-DANI-Y-LEG.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw3s2 Dani Y Leg"
+    },
+    {
+      "file": "Apr-LSAW3S2-VENUS.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw3s2 Venus"
+    },
+    {
+      "file": "Apr-LSAW3S3-DORKA.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw3s3 Dorka"
+    },
+    {
+      "file": "APR-LSAW4S3-astralux-striplight 2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw4s3 Astralux Striplight 2"
+    },
+    {
+      "file": "APR-LSAW3S3-mini-50-glareless.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw3s3 Mini 50 Glareless"
+    },
+    {
+      "file": "APR-LSAW3S2-updown-wall-light.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw3s2 Updown Wall Light"
+    },
+    {
+      "file": "CT2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Ct2"
+    },
+    {
+      "file": "APR-LSAW3S1-astralux-mesa.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw3s1 Astralux Mesa"
+    },
+    {
+      "file": "Apr-LSAW3S1-douglas.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw3s1 Douglas"
+    },
+    {
+      "file": "Apr-LSAW3S3-HAMILTON.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Apr Lsaw3s3 Hamilton"
+    },
+    {
+      "file": "DILARA LS.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dilara Ls"
+    },
+    {
+      "file": "DP 1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dp 1"
+    },
+    {
+      "file": "DP 4.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dp 4"
+    },
+    {
+      "file": "DP 5.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dp 5"
+    },
+    {
+      "file": "DP 6.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dp 6"
+    },
+    {
+      "file": "DP MOTHERS DAY SOCMED GREETING.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dp Mothers Day Socmed Greeting"
+    },
+    {
+      "file": "DP-CEBU-DAVAO1.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp Cebu Davao1"
+    },
+    {
+      "file": "DP-CEBU-DAVAO4.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp Cebu Davao4"
+    },
+    {
+      "file": "DP-CEBU-DAVAO6.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp Cebu Davao6"
+    },
+    {
+      "file": "DP-JUNE2.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp June2"
+    },
+    {
+      "file": "DP-JUNE4.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp June4"
+    },
+    {
+      "file": "DP-JUNE7.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp June7"
+    },
+    {
+      "file": "DP-JUNE8.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp June8"
+    },
+    {
+      "file": "DP-JUNE11.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp June11"
+    },
+    {
+      "file": "DP-LSAW4S2-.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dp Lsaw4s2"
+    },
+    {
+      "file": "DP-CEBU-DAVAO8.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp Cebu Davao8"
+    },
+    {
+      "file": "DP-CEBU-DAVAO10.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp Cebu Davao10"
+    },
+    {
+      "file": "DP-CEBU-DAVAO11.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp Cebu Davao11"
+    },
+    {
+      "file": "DP-LSAW3S1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dp Lsaw3s1"
+    },
+    {
+      "file": "DP-LSAW3S2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dp Lsaw3s2"
+    },
+    {
+      "file": "DS2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Ds2"
+    },
+    {
+      "file": "DP-CEBU-DAVAO7.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp Cebu Davao7"
+    },
+    {
+      "file": "DP-CEBU-DAVAO3.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Dp Cebu Davao3"
+    },
+    {
+      "file": "DP 2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dp 2"
+    },
+    {
+      "file": "260303 1.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "260303 1.1"
+    },
+    {
+      "file": "260429 1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "260429 1"
+    },
+    {
+      "file": "FW1 2.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Fw1 2.1"
+    },
+    {
+      "file": "FW1 1.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Fw1 1.1"
+    },
+    {
+      "file": "FW22.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Fw22.1"
+    },
+    {
+      "file": "FW1 1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Fw1 1"
+    },
+    {
+      "file": "FW1 2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Fw1 2"
+    },
+    {
+      "file": "h08123.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "H08123"
+    },
+    {
+      "file": "h08126.1.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "H08126.1"
+    },
+    {
+      "file": "HMS7.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hms7"
+    },
+    {
+      "file": "HMS8.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hms8"
+    },
+    {
+      "file": "HOOGA NRD SOCMED.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "Hooga Nrd Socmed"
+    },
+    {
+      "file": "HOOGA SOFT OPENING E-INVITATION.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Hooga Soft Opening E Invitation"
+    },
+    {
+      "file": "HOOGA-JUNE-CONTENT1.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Hooga June Content1"
+    },
+    {
+      "file": "HOOGA-JUNE-CONTENT2.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Hooga June Content2"
+    },
+    {
+      "file": "HOOGA-JUNE-CONTENT4.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Hooga June Content4"
+    },
+    {
+      "file": "HOOGA-JUNE-CONTENT5.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Hooga June Content5"
+    },
+    {
+      "file": "HOOGA-JUNE-CONTENT7.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Hooga June Content7"
+    },
+    {
+      "file": "HOOGA-JUNE-CONTENT8.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Hooga June Content8"
+    },
+    {
+      "file": "HOOGA-JUNE-CONTENT11.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Hooga June Content11"
+    },
+    {
+      "file": "INDEPENDENCE.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Independence"
+    },
+    {
+      "file": "h08126.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "H08126.2"
+    },
+    {
+      "file": "julmooni8.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Julmooni8"
+    },
+    {
+      "file": "m08122.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "M08122"
+    },
+    {
+      "file": "m08124.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "M08124"
+    },
+    {
+      "file": "m08125.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "M08125"
+    },
+    {
+      "file": "m08127.1.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "M08127.1"
+    },
+    {
+      "file": "MARW31.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Marw31.1"
+    },
+    {
+      "file": "m08128.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "M08128"
+    },
+    {
+      "file": "MDG-3.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mdg 3"
+    },
+    {
+      "file": "MDG-7.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mdg 7"
+    },
+    {
+      "file": "MDG-8.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mdg 8"
+    },
+    {
+      "file": "MIM-JUNE-CONTENT1.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mim June Content1"
+    },
+    {
+      "file": "MIM-JUNE-CONTENT4.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mim June Content4"
+    },
+    {
+      "file": "MIM-JUNE-CONTENT7.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mim June Content7"
+    },
+    {
+      "file": "MOONI-JUNE-CONTENT3.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mooni June Content3"
+    },
+    {
+      "file": "MOONI MOTHERS DAY GREETING.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mooni Mothers Day Greeting"
+    },
+    {
+      "file": "MOONI FW22.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mooni Fw22"
+    },
+    {
+      "file": "MOONI ADS.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mooni Ads"
+    },
+    {
+      "file": "MOONI 50 OFF 2.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mooni 50 Off 2"
+    },
+    {
+      "file": "MOONI 50 OFF 1.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mooni 50 Off 1"
+    },
+    {
+      "file": "MOONI-JUNE-CONTENT4.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mooni June Content4"
+    },
+    {
+      "file": "MOONI-JUNE-CONTENT5.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mooni June Content5"
+    },
+    {
+      "file": "MOONI-JUNE-CONTENT6.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Mooni June Content6"
+    },
+    {
+      "file": "MW2 1.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw2 1.1"
+    },
+    {
+      "file": "MW2 3.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw2 3.1"
+    },
+    {
+      "file": "MW3 1.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw3 1.1"
+    },
+    {
+      "file": "MW3 2.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw3 2.1"
+    },
+    {
+      "file": "MW3 3.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw3 3.1"
+    },
+    {
+      "file": "MW12.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw12.1"
+    },
+    {
+      "file": "MW21.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw21.1"
+    },
+    {
+      "file": "MW22.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw22.1"
+    },
+    {
+      "file": "MW31.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw31.1"
+    },
+    {
+      "file": "MW32.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw32"
+    },
+    {
+      "file": "MW33.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw33"
+    },
+    {
+      "file": "MYW12.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Myw12"
+    },
+    {
+      "file": "MYW14.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Myw14"
+    },
+    {
+      "file": "MYW15.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Myw15"
+    },
+    {
+      "file": "MYW17.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Myw17"
+    },
+    {
+      "file": "OCT AD SQ .png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Oct Ad Sq"
+    },
+    {
+      "file": "p08041.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "P08041"
+    },
+    {
+      "file": "p08042.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "P08042.2"
+    },
+    {
+      "file": "Porta at Rockwell E-Invitation.png",
+      "width": 8334,
+      "height": 8334,
+      "ratio": 1,
+      "title": "Porta At Rockwell E Invitation"
+    },
+    {
+      "file": "PORTA-JUNE-1.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Porta June 1"
+    },
+    {
+      "file": "PORTA-JUNE-2.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Porta June 2"
+    },
+    {
+      "file": "PORTA-JUNE-4.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Porta June 4"
+    },
+    {
+      "file": "PORTA-JUNE-5.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Porta June 5"
+    },
+    {
+      "file": "PORTA-JUNE-7.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Porta June 7"
+    },
+    {
+      "file": "PORTA-JUNE-8.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Porta June 8"
+    },
+    {
+      "file": "portajul1.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Portajul1"
+    },
+    {
+      "file": "portajul2.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Portajul2"
+    },
+    {
+      "file": "portajul4.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Portajul4"
+    },
+    {
+      "file": "portajul5.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Portajul5"
+    },
+    {
+      "file": "portajul6.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Portajul6"
+    },
+    {
+      "file": "portajul9.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Portajul9"
+    },
+    {
+      "file": "portajul11.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Portajul11"
+    },
+    {
+      "file": "portajul12.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "Portajul12"
+    },
+    {
+      "file": "RIF 1080.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Rif 1080"
+    },
+    {
+      "file": "SHANG HOLY WEEK MALL HOURS NOTICE 2.0.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Shang Holy Week Mall Hours Notice 2.0"
+    },
+    {
+      "file": "SHANGRILA HOLY WEEK MALL HOURS NOTICE.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Shangrila Holy Week Mall Hours Notice"
+    },
+    {
+      "file": "SOCIAL INVITATION v2.png",
+      "width": 1233,
+      "height": 1233,
+      "ratio": 1,
+      "title": "Social Invitation V2"
+    },
+    {
+      "file": "SOCIAL INVITATION.png",
+      "width": 1233,
+      "height": 1233,
+      "ratio": 1,
+      "title": "Social Invitation"
+    },
+    {
+      "file": "SQUARE.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Square"
+    },
+    {
+      "file": "UPTOWN HOLY WEEK MALL HOURS NOTICE 2.0.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Uptown Holy Week Mall Hours Notice 2.0"
+    },
+    {
+      "file": "VEER LS.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Veer Ls"
+    },
+    {
+      "file": "VISCO BLISS.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Visco Bliss"
+    },
+    {
+      "file": "WINTER2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Winter2"
     },
     {
       "file": "1 SICCATHERM BULB.png",
@@ -54,27 +1559,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1080,
       "ratio": 1,
       "title": "1"
-    },
-    {
-      "file": "2 - Copy.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "2 Copy"
-    },
-    {
-      "file": "2 DR FLEX.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "2 Dr Flex"
-    },
-    {
-      "file": "2 LUXURY.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "2 Luxury"
     },
     {
       "file": "2 VISCO.png",
@@ -112,27 +1596,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "2.4"
     },
     {
-      "file": "2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "2"
-    },
-    {
-      "file": "3 - Copy.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "3 Copy"
-    },
-    {
-      "file": "3 BRANDIN.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "3 Brandin"
-    },
-    {
       "file": "3 ISADORA v2.png",
       "width": 1024,
       "height": 1024,
@@ -147,46 +1610,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "3.1"
     },
     {
-      "file": "3.2.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "3.2"
-    },
-    {
-      "file": "3.3.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "3.3"
-    },
-    {
-      "file": "3.4.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "3.4"
-    },
-    {
-      "file": "3.5.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "3.5"
-    },
-    {
       "file": "3.6.png",
       "width": 2000,
       "height": 2000,
       "ratio": 1,
       "title": "3.6"
-    },
-    {
-      "file": "4 - Copy.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "4 Copy"
     },
     {
       "file": "4 DANI Y.png",
@@ -196,60 +1624,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "4 Dani Y"
     },
     {
-      "file": "4 FORTUNA v2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "4 Fortuna V2"
-    },
-    {
-      "file": "4 INFINITE.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "4 Infinite"
-    },
-    {
-      "file": "4 JJ-SL-DLO064A.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "4 Jj Sl Dlo064a"
-    },
-    {
       "file": "4.1.png",
       "width": 1080,
       "height": 1350,
       "ratio": 0.8,
       "title": "4.1"
-    },
-    {
-      "file": "4.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "4"
-    },
-    {
-      "file": "5 - Copy.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "5 Copy"
-    },
-    {
-      "file": "5 NL CL F60XDNSP.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "5 Nl Cl F60xdnsp"
-    },
-    {
-      "file": "5 OKARA + HAVEN.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "5 Okara + Haven"
     },
     {
       "file": "5.1.png",
@@ -259,53 +1638,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "5.1"
     },
     {
-      "file": "5.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "5"
-    },
-    {
-      "file": "6 DR FLEX v2.png",
-      "width": 1024,
-      "height": 1024,
-      "ratio": 1,
-      "title": "6 Dr Flex V2"
-    },
-    {
-      "file": "6 JADE PENDANT LAMP.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "6 Jade Pendant Lamp"
-    },
-    {
-      "file": "7 - Copy.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "7 Copy"
-    },
-    {
       "file": "7 3 PILLOWS.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "7 3 Pillows"
-    },
-    {
-      "file": "7 COOLSILK CONTOUR.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "7 Coolsilk Contour"
-    },
-    {
-      "file": "7 DANI Y.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "7 Dani Y"
     },
     {
       "file": "7 MATTRESS PROTECTOR.png",
@@ -315,39 +1652,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "7 Mattress Protector"
     },
     {
-      "file": "7 MICAH XIA.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "7 Micah Xia"
-    },
-    {
       "file": "7.1.png",
       "width": 1080,
       "height": 1350,
       "ratio": 0.8,
       "title": "7.1"
-    },
-    {
-      "file": "7.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "7"
-    },
-    {
-      "file": "8 - Copy.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "8 Copy"
-    },
-    {
-      "file": "8 CLASSIC.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "8 Classic"
     },
     {
       "file": "8 DR FLEX.png",
@@ -371,20 +1680,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "8.1"
     },
     {
-      "file": "9 - Copy.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "9 Copy"
-    },
-    {
-      "file": "9 BOLSTER PILLOW v3.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "9 Bolster Pillow V3"
-    },
-    {
       "file": "9 BRANDING.png",
       "width": 1080,
       "height": 1080,
@@ -406,32 +1701,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "10.1"
     },
     {
-      "file": "10.3.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "10.3"
-    },
-    {
       "file": "10.4.png",
       "width": 2000,
       "height": 2000,
       "ratio": 1,
       "title": "10.4"
-    },
-    {
-      "file": "11 BRANDING.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "11 Branding"
-    },
-    {
-      "file": "11_.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "11"
     },
     {
       "file": "11..2.png",
@@ -490,39 +1764,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "0904 5.2"
     },
     {
-      "file": "0904 7.1.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "0904 7.1"
-    },
-    {
       "file": "0904 7.2.png",
       "width": 1080,
       "height": 1350,
       "ratio": 0.8,
       "title": "0904 7.2"
-    },
-    {
-      "file": "0904 9.1.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "0904 9.1"
-    },
-    {
-      "file": "0904 9.2.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "0904 9.2"
-    },
-    {
-      "file": "0904 9.3.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "0904 9.3"
     },
     {
       "file": "01162.png",
@@ -539,81 +1785,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "2026 Cny"
     },
     {
-      "file": "2511 4.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "2511 4"
-    },
-    {
-      "file": "2511 5.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "2511 5"
-    },
-    {
-      "file": "2511 7.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "2511 7"
-    },
-    {
-      "file": "2512 1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "2512 1"
-    },
-    {
-      "file": "2512 2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "2512 2"
-    },
-    {
-      "file": "2512 8.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "2512 8"
-    },
-    {
       "file": "2512 10.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "2512 10"
-    },
-    {
-      "file": "2512 11.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "2512 11"
-    },
-    {
-      "file": "05124.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "05124"
-    },
-    {
-      "file": "05125.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "05125"
-    },
-    {
-      "file": "05127.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "05127"
     },
     {
       "file": "25112.png",
@@ -623,32 +1799,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "25112"
     },
     {
-      "file": "25113.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "25113"
-    },
-    {
-      "file": "25117.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "25117"
-    },
-    {
       "file": "051210.3.png",
       "width": 2000,
       "height": 2000,
       "ratio": 1,
       "title": "051210.3"
-    },
-    {
-      "file": "051211..2.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "051211..2"
     },
     {
       "file": "051211.1.png",
@@ -663,27 +1818,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1080,
       "ratio": 1,
       "title": "260107 Mim Noticesocmedpost"
-    },
-    {
-      "file": "260112_Dunlo_JanAds SQUARE.jpg",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "260112 Dunlo Janads Square"
-    },
-    {
-      "file": "260113_MIM_JanAds 4.jpg",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "260113 Mim Janads 4"
-    },
-    {
-      "file": "260115_Hooga_ZontaAd 9.jpg",
-      "width": 2480,
-      "height": 3508,
-      "ratio": 0.707,
-      "title": "260115 Hooga Zontaad 9"
     },
     {
       "file": "260116 1.2.png",
@@ -707,39 +1841,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "260116 2.1"
     },
     {
-      "file": "260206_Dunlo_ValentinesAd v2.jpg",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "260206 Dunlo Valentinesad V2"
-    },
-    {
-      "file": "260210_Dunlo_WSDEasel 30 horizontal.png",
-      "width": 1910,
-      "height": 1000,
-      "ratio": 1.91,
-      "title": "260210 Dunlo Wsdeasel 30 Horizontal"
-    },
-    {
       "file": "260210_Dunlo_WSDEasel 30 Vertical.png",
       "width": 1080,
       "height": 1920,
       "ratio": 0.5625,
       "title": "260210 Dunlo Wsdeasel 30 Vertical"
-    },
-    {
-      "file": "260210_Dunlo_WSDEasel sq.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "260210 Dunlo Wsdeasel Sq"
-    },
-    {
-      "file": "260303 1.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "260303 1.1"
     },
     {
       "file": "260303 1.2.png",
@@ -754,62 +1860,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1920,
       "ratio": 0.5625,
       "title": "260303 Dunlo Arawdabaw Story"
-    },
-    {
-      "file": "260429 1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "260429 1"
-    },
-    {
-      "file": "260429 2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "260429 2"
-    },
-    {
-      "file": "260429 4.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "260429 4"
-    },
-    {
-      "file": "260429 5.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "260429 5"
-    },
-    {
-      "file": "260429 7.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "260429 7"
-    },
-    {
-      "file": "260429 8.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "260429 8"
-    },
-    {
-      "file": "260709post 1.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "260709post 1"
-    },
-    {
-      "file": "260709post 2.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "260709post 2"
     },
     {
       "file": "2603161.png",
@@ -831,20 +1881,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1080,
       "ratio": 1,
       "title": "2603164"
-    },
-    {
-      "file": "2603166.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "2603166"
-    },
-    {
-      "file": "ads oct.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Ads Oct"
     },
     {
       "file": "Apr-AW3S1-douglas.png",
@@ -880,97 +1916,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1080,
       "ratio": 1,
       "title": "Apr Aw3s3 Hamilton"
-    },
-    {
-      "file": "APR-LSAW3S1-astralux-mesa.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw3s1 Astralux Mesa"
-    },
-    {
-      "file": "Apr-LSAW3S1-douglas.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw3s1 Douglas"
-    },
-    {
-      "file": "Apr-LSAW3S1-QOVA.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw3s1 Qova"
-    },
-    {
-      "file": "Apr-LSAW3S2-DANI-Y-LEG.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw3s2 Dani Y Leg"
-    },
-    {
-      "file": "APR-LSAW3S2-updown-wall-light.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw3s2 Updown Wall Light"
-    },
-    {
-      "file": "Apr-LSAW3S2-VENUS.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw3s2 Venus"
-    },
-    {
-      "file": "Apr-LSAW3S3-DORKA.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw3s3 Dorka"
-    },
-    {
-      "file": "Apr-LSAW3S3-HAMILTON.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw3s3 Hamilton"
-    },
-    {
-      "file": "APR-LSAW3S3-mini-50-glareless.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw3s3 Mini 50 Glareless"
-    },
-    {
-      "file": "APR-LSAW4S1-archi-linear-light.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw4s1 Archi Linear Light"
-    },
-    {
-      "file": "APR-LSAW4S3-astralux-striplight 1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw4s3 Astralux Striplight 1"
-    },
-    {
-      "file": "APR-LSAW4S3-astralux-striplight 2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw4s3 Astralux Striplight 2"
-    },
-    {
-      "file": "APR-LSAW4S3-astralux-striplight 3.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Apr Lsaw4s3 Astralux Striplight 3"
     },
     {
       "file": "APR-SPECSAW3S1-astralux-mesa.png",
@@ -1036,13 +1981,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Ct1"
     },
     {
-      "file": "CT2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Ct2"
-    },
-    {
       "file": "CT3.png",
       "width": 1080,
       "height": 1080,
@@ -1064,13 +2002,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Davao Holy Week Mall Hours Notice 2.0"
     },
     {
-      "file": "DILARA LS.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dilara Ls"
-    },
-    {
       "file": "DLARA.png",
       "width": 1080,
       "height": 1080,
@@ -1078,67 +2009,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Dlara"
     },
     {
-      "file": "DP 1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dp 1"
-    },
-    {
-      "file": "DP 2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dp 2"
-    },
-    {
       "file": "DP 3.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "Dp 3"
-    },
-    {
-      "file": "DP 4.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dp 4"
-    },
-    {
-      "file": "DP 5.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dp 5"
-    },
-    {
-      "file": "DP 6.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dp 6"
-    },
-    {
-      "file": "DP 7.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dp 7"
-    },
-    {
-      "file": "DP JUNE5.jpg",
-      "width": 1500,
-      "height": 1500,
-      "ratio": 1,
-      "title": "Dp June5"
-    },
-    {
-      "file": "DP MOTHERS DAY SOCMED GREETING.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dp Mothers Day Socmed Greeting"
     },
     {
       "file": "DP OCT AD STORY 2.png",
@@ -1162,13 +2037,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Dp Story"
     },
     {
-      "file": "DP-CEBU-DAVAO1.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp Cebu Davao1"
-    },
-    {
       "file": "DP-CEBU-DAVAO2.png",
       "width": 2000,
       "height": 2000,
@@ -1176,67 +2044,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Dp Cebu Davao2"
     },
     {
-      "file": "DP-CEBU-DAVAO3.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp Cebu Davao3"
-    },
-    {
-      "file": "DP-CEBU-DAVAO4.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp Cebu Davao4"
-    },
-    {
       "file": "DP-CEBU-DAVAO5.png",
       "width": 2000,
       "height": 2000,
       "ratio": 1,
       "title": "Dp Cebu Davao5"
-    },
-    {
-      "file": "DP-CEBU-DAVAO6.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp Cebu Davao6"
-    },
-    {
-      "file": "DP-CEBU-DAVAO7.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp Cebu Davao7"
-    },
-    {
-      "file": "DP-CEBU-DAVAO8.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp Cebu Davao8"
-    },
-    {
-      "file": "DP-CEBU-DAVAO9.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp Cebu Davao9"
-    },
-    {
-      "file": "DP-CEBU-DAVAO10.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp Cebu Davao10"
-    },
-    {
-      "file": "DP-CEBU-DAVAO11.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp Cebu Davao11"
     },
     {
       "file": "DP-CEBU-DAVAO12.png",
@@ -1253,81 +2065,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Dp June1"
     },
     {
-      "file": "DP-JUNE2.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp June2"
-    },
-    {
-      "file": "DP-JUNE4.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp June4"
-    },
-    {
-      "file": "DP-JUNE7.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp June7"
-    },
-    {
-      "file": "DP-JUNE8.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp June8"
-    },
-    {
       "file": "DP-JUNE10.png",
       "width": 2000,
       "height": 2000,
       "ratio": 1,
       "title": "Dp June10"
-    },
-    {
-      "file": "DP-JUNE11.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Dp June11"
-    },
-    {
-      "file": "DP-LSAW3S1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dp Lsaw3s1"
-    },
-    {
-      "file": "DP-LSAW3S2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dp Lsaw3s2"
-    },
-    {
-      "file": "DP-LSAW3S3.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dp Lsaw3s3"
-    },
-    {
-      "file": "DP-LSAW4S1-.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dp Lsaw4s1"
-    },
-    {
-      "file": "DP-LSAW4S2-.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dp Lsaw4s2"
     },
     {
       "file": "DP-LSAW4S3-.png",
@@ -1386,13 +2128,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Ds1"
     },
     {
-      "file": "DS2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Ds2"
-    },
-    {
       "file": "DS3.png",
       "width": 1080,
       "height": 1080,
@@ -1414,13 +2149,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Dunlopillo Compilation"
     },
     {
-      "file": "FW1 1.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Fw1 1.1"
-    },
-    {
       "file": "FW1 01.2.png",
       "width": 1080,
       "height": 1080,
@@ -1433,20 +2161,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1080,
       "ratio": 1,
       "title": "Fw1 1.2"
-    },
-    {
-      "file": "FW1 1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Fw1 1"
-    },
-    {
-      "file": "FW1 2.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Fw1 2.1"
     },
     {
       "file": "FW1 02.2.png",
@@ -1463,13 +2177,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Fw1 2.2"
     },
     {
-      "file": "FW1 2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Fw1 2"
-    },
-    {
       "file": "FW21.1.png",
       "width": 1080,
       "height": 1080,
@@ -1484,39 +2191,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Fw21.2"
     },
     {
-      "file": "FW22.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Fw22.1"
-    },
-    {
       "file": "FW22.2.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "Fw22.2"
-    },
-    {
-      "file": "h08123.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "H08123"
-    },
-    {
-      "file": "h08126.1.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "H08126.1"
-    },
-    {
-      "file": "h08126.2.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "H08126.2"
     },
     {
       "file": "h08126.3.png",
@@ -1526,60 +2205,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "H08126.3"
     },
     {
-      "file": "h08127.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "H08127"
-    },
-    {
-      "file": "h08128.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "H08128"
-    },
-    {
-      "file": "HMS1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Hms1"
-    },
-    {
-      "file": "HMS2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Hms2"
-    },
-    {
       "file": "HMS4.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "Hms4"
-    },
-    {
-      "file": "HMS5.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Hms5"
-    },
-    {
-      "file": "HMS7.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Hms7"
-    },
-    {
-      "file": "HMS8.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Hms8"
     },
     {
       "file": "HOLY WEEK MALL HOURS NOTICE.png",
@@ -1589,25 +2219,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Holy Week Mall Hours Notice"
     },
     {
-      "file": "HOOGA NRD SOCMED.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "Hooga Nrd Socmed"
-    },
-    {
       "file": "HOOGA OCT PORTRAIT AD.png",
       "width": 1080,
       "height": 1920,
       "ratio": 0.5625,
       "title": "Hooga Oct Portrait Ad"
-    },
-    {
-      "file": "HOOGA ROCKWELL sq.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Hooga Rockwell Sq"
     },
     {
       "file": "HOOGA ROCKWELL.png",
@@ -1624,13 +2240,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Hooga Socmed Post"
     },
     {
-      "file": "HOOGA SOFT OPENING E-INVITATION.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Hooga Soft Opening E Invitation"
-    },
-    {
       "file": "HOOGA STORY.png",
       "width": 1080,
       "height": 1920,
@@ -1645,67 +2254,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Hooga Mailchimpv2"
     },
     {
-      "file": "HOOGA-JUNE-CONTENT1.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Hooga June Content1"
-    },
-    {
-      "file": "HOOGA-JUNE-CONTENT2.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Hooga June Content2"
-    },
-    {
-      "file": "HOOGA-JUNE-CONTENT4.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Hooga June Content4"
-    },
-    {
-      "file": "HOOGA-JUNE-CONTENT5.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Hooga June Content5"
-    },
-    {
-      "file": "HOOGA-JUNE-CONTENT7.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Hooga June Content7"
-    },
-    {
-      "file": "HOOGA-JUNE-CONTENT8.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Hooga June Content8"
-    },
-    {
       "file": "HOOGA-JUNE-CONTENT10.png",
       "width": 2000,
       "height": 2000,
       "ratio": 1,
       "title": "Hooga June Content10"
-    },
-    {
-      "file": "HOOGA-JUNE-CONTENT11.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Hooga June Content11"
-    },
-    {
-      "file": "INDEPENDENCE.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Independence"
     },
     {
       "file": "julmooni1.png",
@@ -1813,13 +2366,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Julmooni7"
     },
     {
-      "file": "julmooni8.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Julmooni8"
-    },
-    {
       "file": "LAZADA DSKTP.png",
       "width": 1200,
       "height": 128,
@@ -1841,25 +2387,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Lri Holy Week Mall Hours Notice 2.0"
     },
     {
-      "file": "m0904 1.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "M0904 1"
-    },
-    {
       "file": "m0904 2.png",
       "width": 1080,
       "height": 1350,
       "ratio": 0.8,
       "title": "M0904 2"
-    },
-    {
-      "file": "m0904 3.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "M0904 3"
     },
     {
       "file": "m0904 4.png",
@@ -1876,13 +2408,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "M0904 5"
     },
     {
-      "file": "m08122.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "M08122"
-    },
-    {
       "file": "m08123.png",
       "width": 1080,
       "height": 1350,
@@ -1890,32 +2415,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "M08123"
     },
     {
-      "file": "m08124.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "M08124"
-    },
-    {
-      "file": "m08125.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "M08125"
-    },
-    {
       "file": "m08126.png",
       "width": 1080,
       "height": 1350,
       "ratio": 0.8,
       "title": "M08126"
-    },
-    {
-      "file": "m08127.1.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "M08127.1"
     },
     {
       "file": "m08127.2.png",
@@ -1932,39 +2436,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "M08127.3"
     },
     {
-      "file": "m08128.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "M08128"
-    },
-    {
       "file": "MARW22.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "Marw22"
-    },
-    {
-      "file": "MARW31.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Marw31.1"
-    },
-    {
-      "file": "MARW32.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Marw32.1"
-    },
-    {
-      "file": "MARW33.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Marw33.1"
     },
     {
       "file": "MAY1.png",
@@ -2065,41 +2541,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Mdg 2"
     },
     {
-      "file": "MDG-3.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mdg 3"
-    },
-    {
-      "file": "MDG-4.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mdg 4"
-    },
-    {
-      "file": "MDG-5.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mdg 5"
-    },
-    {
-      "file": "MDG-7.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mdg 7"
-    },
-    {
-      "file": "MDG-8.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mdg 8"
-    },
-    {
       "file": "MIM MOTHERS DAY GREETING SOCMED POST.png",
       "width": 1080,
       "height": 1080,
@@ -2107,46 +2548,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Mim Mothers Day Greeting Socmed Post"
     },
     {
-      "file": "MIM-JUNE-CONTENT1.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mim June Content1"
-    },
-    {
       "file": "MIM-JUNE-CONTENT2.png",
       "width": 2000,
       "height": 2000,
       "ratio": 1,
       "title": "Mim June Content2"
-    },
-    {
-      "file": "MIM-JUNE-CONTENT4.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mim June Content4"
-    },
-    {
-      "file": "MIM-JUNE-CONTENT5.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mim June Content5"
-    },
-    {
-      "file": "MIM-JUNE-CONTENT6.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mim June Content6"
-    },
-    {
-      "file": "MIM-JUNE-CONTENT7.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mim June Content7"
     },
     {
       "file": "MIM-JUNE-CONTENT8.png",
@@ -2170,32 +2576,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Mim June Content11"
     },
     {
-      "file": "MOONI ADS.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mooni Ads"
-    },
-    {
       "file": "MOONI FW21.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "Mooni Fw21"
-    },
-    {
-      "file": "MOONI FW22.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mooni Fw22"
-    },
-    {
-      "file": "MOONI MOTHERS DAY GREETING.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mooni Mothers Day Greeting"
     },
     {
       "file": "MOONI NRD SOCMED.png",
@@ -2210,41 +2595,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 2000,
       "ratio": 1,
       "title": "Mooni June Content1"
-    },
-    {
-      "file": "MOONI-JUNE-CONTENT2.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mooni June Content2"
-    },
-    {
-      "file": "MOONI-JUNE-CONTENT3.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mooni June Content3"
-    },
-    {
-      "file": "MOONI-JUNE-CONTENT4.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mooni June Content4"
-    },
-    {
-      "file": "MOONI-JUNE-CONTENT5.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mooni June Content5"
-    },
-    {
-      "file": "MOONI-JUNE-CONTENT6.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Mooni June Content6"
     },
     {
       "file": "MOONI-JUNE-CONTENT8.png",
@@ -2296,25 +2646,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Mooni Lsaw4s3"
     },
     {
-      "file": "MW1 2.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw1 2.1"
-    },
-    {
       "file": "MW1 2.2.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "Mw1 2.2"
-    },
-    {
-      "file": "MW2 1.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw2 1.1"
     },
     {
       "file": "MW2 1.2.png",
@@ -2324,25 +2660,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Mw2 1.2"
     },
     {
-      "file": "MW2 2.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw2 2.1"
-    },
-    {
       "file": "MW2 2.2.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "Mw2 2.2"
-    },
-    {
-      "file": "MW2 3.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw2 3.1"
     },
     {
       "file": "MW2 3.2.png",
@@ -2352,13 +2674,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Mw2 3.2"
     },
     {
-      "file": "MW3 1.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw3 1.1"
-    },
-    {
       "file": "MW3 1.2.png",
       "width": 1080,
       "height": 1080,
@@ -2366,25 +2681,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Mw3 1.2"
     },
     {
-      "file": "MW3 2.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw3 2.1"
-    },
-    {
       "file": "MW3 2.2.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "Mw3 2.2"
-    },
-    {
-      "file": "MW3 3.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw3 3.1"
     },
     {
       "file": "MW3 3.2.png",
@@ -2408,25 +2709,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Mw11.2"
     },
     {
-      "file": "MW12.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw12.1"
-    },
-    {
       "file": "MW12.2.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "Mw12.2"
-    },
-    {
-      "file": "MW21.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw21.1"
     },
     {
       "file": "MW21.2.png",
@@ -2436,13 +2723,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Mw21.2"
     },
     {
-      "file": "MW22.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw22.1"
-    },
-    {
       "file": "MW22.2.png",
       "width": 1080,
       "height": 1080,
@@ -2450,25 +2730,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Mw22.2"
     },
     {
-      "file": "MW23.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw23.1"
-    },
-    {
       "file": "MW23.2.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "Mw23.2"
-    },
-    {
-      "file": "MW31.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw31.1"
     },
     {
       "file": "MW31.2.png",
@@ -2485,25 +2751,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Mw32.2"
     },
     {
-      "file": "MW32.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw32"
-    },
-    {
       "file": "MW33.2.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "Mw33.2"
-    },
-    {
-      "file": "MW33.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw33"
     },
     {
       "file": "MYW1SPECS_A1.png",
@@ -2548,81 +2800,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Myw1specs A8"
     },
     {
-      "file": "MYW11.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Myw11"
-    },
-    {
-      "file": "MYW12.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Myw12"
-    },
-    {
-      "file": "MYW14.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Myw14"
-    },
-    {
-      "file": "MYW15.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Myw15"
-    },
-    {
-      "file": "MYW17.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Myw17"
-    },
-    {
-      "file": "MYW18.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Myw18"
-    },
-    {
       "file": "OCT AD 1920.png",
       "width": 1080,
       "height": 1920,
       "ratio": 0.5625,
       "title": "Oct Ad 1920"
-    },
-    {
-      "file": "OCT AD SQ .png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Oct Ad Sq"
-    },
-    {
-      "file": "p08041.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "P08041"
-    },
-    {
-      "file": "p08042.2.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "P08042.2"
-    },
-    {
-      "file": "p08043.2.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "P08043.2"
     },
     {
       "file": "p08047.png",
@@ -2639,13 +2821,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "P08048"
     },
     {
-      "file": "p08049.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "P08049"
-    },
-    {
       "file": "p080405.png",
       "width": 1080,
       "height": 1350,
@@ -2658,153 +2833,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1350,
       "ratio": 0.8,
       "title": "P080406"
-    },
-    {
-      "file": "Porta at Rockwell E-Invitation.png",
-      "width": 8334,
-      "height": 8334,
-      "ratio": 1,
-      "title": "Porta At Rockwell E Invitation"
-    },
-    {
-      "file": "PORTA-JUNE-1.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Porta June 1"
-    },
-    {
-      "file": "PORTA-JUNE-2.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Porta June 2"
-    },
-    {
-      "file": "PORTA-JUNE-3.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Porta June 3"
-    },
-    {
-      "file": "PORTA-JUNE-4.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Porta June 4"
-    },
-    {
-      "file": "PORTA-JUNE-5.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Porta June 5"
-    },
-    {
-      "file": "PORTA-JUNE-6.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Porta June 6"
-    },
-    {
-      "file": "PORTA-JUNE-7.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Porta June 7"
-    },
-    {
-      "file": "PORTA-JUNE-8.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Porta June 8"
-    },
-    {
-      "file": "portajul1.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Portajul1"
-    },
-    {
-      "file": "portajul2.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Portajul2"
-    },
-    {
-      "file": "portajul3.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Portajul3"
-    },
-    {
-      "file": "portajul4.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Portajul4"
-    },
-    {
-      "file": "portajul5.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Portajul5"
-    },
-    {
-      "file": "portajul6.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Portajul6"
-    },
-    {
-      "file": "portajul7.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Portajul7"
-    },
-    {
-      "file": "portajul8.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Portajul8"
-    },
-    {
-      "file": "portajul9.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Portajul9"
-    },
-    {
-      "file": "portajul10.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Portajul10"
-    },
-    {
-      "file": "portajul11.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Portajul11"
-    },
-    {
-      "file": "portajul12.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Portajul12"
     },
     {
       "file": "POST.png",
@@ -2821,32 +2849,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Rhet"
     },
     {
-      "file": "RIF 1080.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Rif 1080"
-    },
-    {
       "file": "RIF STORY.png",
       "width": 1080,
       "height": 1920,
       "ratio": 0.5625,
       "title": "Rif Story"
-    },
-    {
-      "file": "SHANG HOLY WEEK MALL HOURS NOTICE 2.0.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Shang Holy Week Mall Hours Notice 2.0"
-    },
-    {
-      "file": "SHANGRILA HOLY WEEK MALL HOURS NOTICE.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Shangrila Holy Week Mall Hours Notice"
     },
     {
       "file": "SHOPEE DSKTP_.png",
@@ -2856,32 +2863,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Shopee Dsktp"
     },
     {
-      "file": "SOCIAL INVITATION v2.png",
-      "width": 1233,
-      "height": 1233,
-      "ratio": 1,
-      "title": "Social Invitation V2"
-    },
-    {
-      "file": "SOCIAL INVITATION.png",
-      "width": 1233,
-      "height": 1233,
-      "ratio": 1,
-      "title": "Social Invitation"
-    },
-    {
       "file": "SOCMED BGC.png",
       "width": 2000,
       "height": 2000,
       "ratio": 1,
       "title": "Socmed Bgc"
-    },
-    {
-      "file": "SP NIGHT POST.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "Sp Night Post"
     },
     {
       "file": "SPECS_A1.png",
@@ -2947,39 +2933,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Specs B8"
     },
     {
-      "file": "SQUARE.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Square"
-    },
-    {
-      "file": "UPTOWN HOLY WEEK MALL HOURS NOTICE 2.0.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Uptown Holy Week Mall Hours Notice 2.0"
-    },
-    {
-      "file": "VEER LS.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Veer Ls"
-    },
-    {
       "file": "VEER.png",
       "width": 1080,
       "height": 1080,
       "ratio": 1,
       "title": "Veer"
-    },
-    {
-      "file": "VISCO BLISS.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Visco Bliss"
     },
     {
       "file": "WINTER 1.png",
@@ -2996,13 +2954,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Winter 3"
     },
     {
-      "file": "WINTER2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Winter2"
-    },
-    {
       "file": "womens month e-greeting card.png",
       "width": 1080,
       "height": 1080,
@@ -3012,6 +2963,34 @@ window.GALLERY_EDITORIAL_MANIFEST = {
   ],
   "print-brand-collateral": [
     {
+      "file": "Dunlopillo Science of Deeper Sleep Display.png",
+      "width": 1448,
+      "height": 1583,
+      "ratio": 0.9147,
+      "title": "Dunlopillo Science Of Deeper Sleep Display"
+    },
+    {
+      "file": "mockup EDSA WALL MURAL.png",
+      "width": 1448,
+      "height": 2239,
+      "ratio": 0.6467,
+      "title": "Mockup Edsa Wall Mural"
+    },
+    {
+      "file": "34.2.png",
+      "width": 1672,
+      "height": 1744,
+      "ratio": 0.9587,
+      "title": "34.2"
+    },
+    {
+      "file": "18.2.png",
+      "width": 1448,
+      "height": 1807,
+      "ratio": 0.8013,
+      "title": "18.2"
+    },
+    {
       "file": "1.2.png",
       "width": 1672,
       "height": 1594,
@@ -3019,11 +2998,67 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "1.2"
     },
     {
-      "file": "2.2.png",
-      "width": 2057,
-      "height": 1086,
-      "ratio": 1.8941,
-      "title": "2.2"
+      "file": "uptown mall 1.png",
+      "width": 1557,
+      "height": 1510,
+      "ratio": 1.0311,
+      "title": "Uptown Mall 1"
+    },
+    {
+      "file": "31.2.png",
+      "width": 2207,
+      "height": 1491,
+      "ratio": 1.4802,
+      "title": "31.2"
+    },
+    {
+      "file": "11.2.png",
+      "width": 1892,
+      "height": 1402,
+      "ratio": 1.3495,
+      "title": "11.2"
+    },
+    {
+      "file": "36.2.png",
+      "width": 1672,
+      "height": 1744,
+      "ratio": 0.9587,
+      "title": "36.2"
+    },
+    {
+      "file": "uptown mall 2.png",
+      "width": 1557,
+      "height": 1510,
+      "ratio": 1.0311,
+      "title": "Uptown Mall 2"
+    },
+    {
+      "file": "35.2.png",
+      "width": 1448,
+      "height": 1782,
+      "ratio": 0.8126,
+      "title": "35.2"
+    },
+    {
+      "file": "24.2.png",
+      "width": 2129,
+      "height": 1491,
+      "ratio": 1.4279,
+      "title": "24.2"
+    },
+    {
+      "file": "9.2.png",
+      "width": 1921,
+      "height": 1402,
+      "ratio": 1.3702,
+      "title": "9.2"
+    },
+    {
+      "file": "Porta Mobili RIFLESSI Delivery Truck.png",
+      "width": 1672,
+      "height": 1744,
+      "ratio": 0.9587,
+      "title": "Porta Mobili Riflessi Delivery Truck"
     },
     {
       "file": "3.2.png",
@@ -3031,6 +3066,76 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1086,
       "ratio": 1.5092,
       "title": "3.2"
+    },
+    {
+      "file": "33.2.png",
+      "width": 2071,
+      "height": 1491,
+      "ratio": 1.389,
+      "title": "33.2"
+    },
+    {
+      "file": "Hooga Living Design Truck Mockup.png",
+      "width": 1448,
+      "height": 1782,
+      "ratio": 0.8126,
+      "title": "Hooga Living Design Truck Mockup"
+    },
+    {
+      "file": "PURE BREEZE.png",
+      "width": 2109,
+      "height": 1491,
+      "ratio": 1.4145,
+      "title": "Pure Breeze"
+    },
+    {
+      "file": "32.2.png",
+      "width": 2207,
+      "height": 1491,
+      "ratio": 1.4802,
+      "title": "32.2"
+    },
+    {
+      "file": "LIBIS BILLBOARD.png",
+      "width": 1905,
+      "height": 2731,
+      "ratio": 0.6975,
+      "title": "Libis Billboard"
+    },
+    {
+      "file": "30.2.png",
+      "width": 1915,
+      "height": 1080,
+      "ratio": 1.7731,
+      "title": "30.2"
+    },
+    {
+      "file": "mockup UPTOWN ART EVENT GREETING CARD.png",
+      "width": 1500,
+      "height": 2171,
+      "ratio": 0.6909,
+      "title": "Mockup Uptown Art Event Greeting Card"
+    },
+    {
+      "file": "22.2.png",
+      "width": 721,
+      "height": 1080,
+      "ratio": 0.6676,
+      "title": "22.2"
+    },
+    {
+      "file": "10.2.png",
+      "width": 2045,
+      "height": 1402,
+      "ratio": 1.4586,
+      "title": "10.2"
+    },
+    {
+      "file": "2.2.png",
+      "width": 2057,
+      "height": 1086,
+      "ratio": 1.8941,
+      "title": "2.2"
     },
     {
       "file": "4.2.png",
@@ -3068,27 +3173,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "8.2"
     },
     {
-      "file": "9.2.png",
-      "width": 1921,
-      "height": 1402,
-      "ratio": 1.3702,
-      "title": "9.2"
-    },
-    {
-      "file": "10.2.png",
-      "width": 2045,
-      "height": 1402,
-      "ratio": 1.4586,
-      "title": "10.2"
-    },
-    {
-      "file": "11.2.png",
-      "width": 1892,
-      "height": 1402,
-      "ratio": 1.3495,
-      "title": "11.2"
-    },
-    {
       "file": "12.2.png",
       "width": 1913,
       "height": 1402,
@@ -3124,13 +3208,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "17.2"
     },
     {
-      "file": "18.2.png",
-      "width": 1448,
-      "height": 1807,
-      "ratio": 0.8013,
-      "title": "18.2"
-    },
-    {
       "file": "19.2.png",
       "width": 1844,
       "height": 1080,
@@ -3152,25 +3229,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "21.2"
     },
     {
-      "file": "22.2.png",
-      "width": 721,
-      "height": 1080,
-      "ratio": 0.6676,
-      "title": "22.2"
-    },
-    {
       "file": "23.2.png",
       "width": 5823,
       "height": 3000,
       "ratio": 1.941,
       "title": "23.2"
-    },
-    {
-      "file": "24.2.png",
-      "width": 2129,
-      "height": 1491,
-      "ratio": 1.4279,
-      "title": "24.2"
     },
     {
       "file": "25.2.png",
@@ -3201,56 +3264,392 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "28.2"
     },
     {
-      "file": "30.2.png",
-      "width": 1915,
-      "height": 1080,
-      "ratio": 1.7731,
-      "title": "30.2"
+      "file": "ID.png",
+      "width": 1536,
+      "height": 2225,
+      "ratio": 0.6903,
+      "title": "Id"
     },
     {
-      "file": "31.2.png",
-      "width": 2207,
-      "height": 1491,
-      "ratio": 1.4802,
-      "title": "31.2"
+      "file": "Luxury Mall Soft Launch Poster.png",
+      "width": 1910,
+      "height": 1402,
+      "ratio": 1.3623,
+      "title": "Luxury Mall Soft Launch Poster"
     },
     {
-      "file": "32.2.png",
-      "width": 2207,
-      "height": 1491,
-      "ratio": 1.4802,
-      "title": "32.2"
-    },
-    {
-      "file": "33.2.png",
-      "width": 2071,
-      "height": 1491,
-      "ratio": 1.389,
-      "title": "33.2"
-    },
-    {
-      "file": "34.2.png",
-      "width": 1672,
-      "height": 1744,
-      "ratio": 0.9587,
-      "title": "34.2"
-    },
-    {
-      "file": "35.2.png",
+      "file": "Porta Mobili Complimentary Drinks Menu.png",
       "width": 1448,
-      "height": 1782,
-      "ratio": 0.8126,
-      "title": "35.2"
+      "height": 1086,
+      "ratio": 1.3333,
+      "title": "Porta Mobili Complimentary Drinks Menu"
     },
     {
-      "file": "36.2.png",
-      "width": 1672,
-      "height": 1744,
-      "ratio": 0.9587,
-      "title": "36.2"
+      "file": "WAREHOUSE SALE.png",
+      "width": 1823,
+      "height": 2314,
+      "ratio": 0.7878,
+      "title": "Warehouse Sale"
+    },
+    {
+      "file": "White Recessed Track Light Label Close-Up copy.png",
+      "width": 1448,
+      "height": 1562,
+      "ratio": 0.927,
+      "title": "White Recessed Track Light Label Close Up Copy"
     }
   ],
   "commercial-lifestyle-photography": [
+    {
+      "file": "DSCF7388-HDR.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dscf7388 Hdr"
+    },
+    {
+      "file": "Etro 14.jpg",
+      "width": 1566,
+      "height": 2096,
+      "ratio": 0.7471,
+      "title": "Etro 14"
+    },
+    {
+      "file": "_DSF2353-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2353 Hdr.webp のコピー"
+    },
+    {
+      "file": "11..2.png",
+      "width": 2000,
+      "height": 2000,
+      "ratio": 1,
+      "title": "11..2"
+    },
+    {
+      "file": "Dunlo-IG-CarouselArtboard-8.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dunlo Ig Carouselartboard 8"
+    },
+    {
+      "file": "PORTA.png",
+      "width": 530,
+      "height": 470,
+      "ratio": 1.1277,
+      "title": "Porta"
+    },
+    {
+      "file": "DSCF7238.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dscf7238"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-6.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 6"
+    },
+    {
+      "file": "_DSF2341-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2341 Hdr.webp のコピー"
+    },
+    {
+      "file": "9.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "9"
+    },
+    {
+      "file": "MW12.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw12.1"
+    },
+    {
+      "file": "_DSF2375.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2375.webp のコピー"
+    },
+    {
+      "file": "BW 2025 - 02.jpg",
+      "width": 1243,
+      "height": 1623,
+      "ratio": 0.7659,
+      "title": "Bw 2025 02"
+    },
+    {
+      "file": "_DSF2331-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2331 Hdr.webp のコピー"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-7.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 7"
+    },
+    {
+      "file": "1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "1"
+    },
+    {
+      "file": "DSCF7424.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dscf7424"
+    },
+    {
+      "file": "11.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "11.3"
+    },
+    {
+      "file": "ENEA-VELVET-NUBOLA-TECHWALL-2025.jpg",
+      "width": 2400,
+      "height": 1570,
+      "ratio": 1.5287,
+      "title": "Enea Velvet Nubola Techwall 2025"
+    },
+    {
+      "file": "MW11.1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Mw11.1"
+    },
+    {
+      "file": "3.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "3"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 1"
+    },
+    {
+      "file": "_DSF2299.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2299.webp のコピー"
+    },
+    {
+      "file": "Dunlo-IG-CarouselArtboard-6.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dunlo Ig Carouselartboard 6"
+    },
+    {
+      "file": "02.2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "02.2"
+    },
+    {
+      "file": "10.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "10.2"
+    },
+    {
+      "file": "_DSF2387.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2387.webp のコピー"
+    },
+    {
+      "file": "_DSF2362.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2362.webp のコピー"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-5.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 5"
+    },
+    {
+      "file": "2.5.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "2.5"
+    },
+    {
+      "file": "4.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "4"
+    },
+    {
+      "file": "6.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "6"
+    },
+    {
+      "file": "7.7.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "7.7"
+    },
+    {
+      "file": "_DSF2311-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2311 Hdr.webp のコピー"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-8.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 8"
+    },
+    {
+      "file": "_DSF2241.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2241.webp のコピー"
+    },
+    {
+      "file": "_DSF2338.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2338.webp のコピー"
+    },
+    {
+      "file": "_DSF2383.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2383.webp のコピー"
+    },
+    {
+      "file": "_DSF2317-HDR.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2317 Hdr.webp のコピー"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-2.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 2"
+    },
+    {
+      "file": "Dunlo-IG-CarouselArtboard-1.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dunlo Ig Carouselartboard 1"
+    },
+    {
+      "file": "Dunlo-IG-CarouselArtboard-5.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Dunlo Ig Carouselartboard 5"
+    },
+    {
+      "file": "11.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "11.2"
+    },
+    {
+      "file": "10.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "10.3"
+    },
+    {
+      "file": "Hooga-IG-CarouselArtboard-10.png",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1,
+      "title": "Hooga Ig Carouselartboard 10"
+    },
+    {
+      "file": "_DSF2394.webp のコピー.jpg",
+      "width": 1800,
+      "height": 2400,
+      "ratio": 0.75,
+      "title": "Dsf2394.webp のコピー"
+    },
+    {
+      "file": "_DSF2257.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2257.webp のコピー"
+    },
+    {
+      "file": "_DSF2401.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2401.webp のコピー"
+    },
+    {
+      "file": "_DSF2281.webp のコピー.jpg",
+      "width": 2400,
+      "height": 1800,
+      "ratio": 1.3333,
+      "title": "Dsf2281.webp のコピー"
+    },
+    {
+      "file": "2.png",
+      "width": 1536,
+      "height": 1024,
+      "ratio": 1.5,
+      "title": "2"
+    },
     {
       "file": "_DSF2214.webp のコピー.jpg",
       "width": 1800,
@@ -3278,13 +3677,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 2400,
       "ratio": 0.75,
       "title": "Dsf2235.webp のコピー"
-    },
-    {
-      "file": "_DSF2241.webp のコピー.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dsf2241.webp のコピー"
     },
     {
       "file": "_DSF2242.webp のコピー.jpg",
@@ -3336,13 +3728,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Dsf2255.webp のコピー"
     },
     {
-      "file": "_DSF2257.webp のコピー.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dsf2257.webp のコピー"
-    },
-    {
       "file": "_DSF2258.webp のコピー.jpg",
       "width": 2400,
       "height": 1800,
@@ -3392,13 +3777,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Dsf2278.webp のコピー"
     },
     {
-      "file": "_DSF2281.webp のコピー.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dsf2281.webp のコピー"
-    },
-    {
       "file": "_DSF2282.webp のコピー.jpg",
       "width": 2400,
       "height": 1800,
@@ -3418,13 +3796,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1800,
       "ratio": 1.3333,
       "title": "Dsf2284.webp のコピー"
-    },
-    {
-      "file": "_DSF2299.webp のコピー.jpg",
-      "width": 1800,
-      "height": 2400,
-      "ratio": 0.75,
-      "title": "Dsf2299.webp のコピー"
     },
     {
       "file": "_DSF2301.webp のコピー.jpg",
@@ -3455,25 +3826,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Dsf2304.webp のコピー"
     },
     {
-      "file": "_DSF2311-HDR.webp のコピー.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dsf2311 Hdr.webp のコピー"
-    },
-    {
       "file": "_DSF2314-HDR.webp のコピー.jpg",
       "width": 1800,
       "height": 2400,
       "ratio": 0.75,
       "title": "Dsf2314 Hdr.webp のコピー"
-    },
-    {
-      "file": "_DSF2317-HDR.webp のコピー.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dsf2317 Hdr.webp のコピー"
     },
     {
       "file": "_DSF2323.webp のコピー.jpg",
@@ -3490,46 +3847,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Dsf2326 Hdr.webp のコピー"
     },
     {
-      "file": "_DSF2331-HDR.webp のコピー.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dsf2331 Hdr.webp のコピー"
-    },
-    {
       "file": "_DSF2335-HDR.webp のコピー.jpg",
       "width": 2400,
       "height": 1800,
       "ratio": 1.3333,
       "title": "Dsf2335 Hdr.webp のコピー"
-    },
-    {
-      "file": "_DSF2338.webp のコピー.jpg",
-      "width": 1800,
-      "height": 2400,
-      "ratio": 0.75,
-      "title": "Dsf2338.webp のコピー"
-    },
-    {
-      "file": "_DSF2341-HDR.webp のコピー.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dsf2341 Hdr.webp のコピー"
-    },
-    {
-      "file": "_DSF2353-HDR.webp のコピー.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dsf2353 Hdr.webp のコピー"
-    },
-    {
-      "file": "_DSF2362.webp のコピー.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dsf2362.webp のコピー"
     },
     {
       "file": "_DSF2368.webp のコピー.jpg",
@@ -3553,55 +3875,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Dsf2373.webp のコピー"
     },
     {
-      "file": "_DSF2375.webp のコピー.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dsf2375.webp のコピー"
-    },
-    {
-      "file": "_DSF2383.webp のコピー.jpg",
-      "width": 1800,
-      "height": 2400,
-      "ratio": 0.75,
-      "title": "Dsf2383.webp のコピー"
-    },
-    {
-      "file": "_DSF2387.webp のコピー.jpg",
-      "width": 1800,
-      "height": 2400,
-      "ratio": 0.75,
-      "title": "Dsf2387.webp のコピー"
-    },
-    {
-      "file": "_DSF2394.webp のコピー.jpg",
-      "width": 1800,
-      "height": 2400,
-      "ratio": 0.75,
-      "title": "Dsf2394.webp のコピー"
-    },
-    {
-      "file": "_DSF2401.webp のコピー.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dsf2401.webp のコピー"
-    },
-    {
-      "file": "1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "1"
-    },
-    {
-      "file": "02.2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "02.2"
-    },
-    {
       "file": "2.2.png",
       "width": 1080,
       "height": 1350,
@@ -3623,13 +3896,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "2.4"
     },
     {
-      "file": "2.5.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "2.5"
-    },
-    {
       "file": "2.6.png",
       "width": 1080,
       "height": 1350,
@@ -3649,20 +3915,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1350,
       "ratio": 0.8,
       "title": "2.8"
-    },
-    {
-      "file": "2.png",
-      "width": 1536,
-      "height": 1024,
-      "ratio": 1.5,
-      "title": "2"
-    },
-    {
-      "file": "3.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "3"
     },
     {
       "file": "4.2.png",
@@ -3698,13 +3950,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1350,
       "ratio": 0.8,
       "title": "4.6"
-    },
-    {
-      "file": "4.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "4"
     },
     {
       "file": "5.2.png",
@@ -3756,13 +4001,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "5.8"
     },
     {
-      "file": "6.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "6"
-    },
-    {
       "file": "7.2.png",
       "width": 1080,
       "height": 1350,
@@ -3796,13 +4034,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1350,
       "ratio": 0.8,
       "title": "7.6"
-    },
-    {
-      "file": "7.7.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "7.7"
     },
     {
       "file": "8.2.png",
@@ -3847,27 +4078,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "8.7"
     },
     {
-      "file": "9.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "9"
-    },
-    {
-      "file": "10.2.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "10.2"
-    },
-    {
-      "file": "10.3.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "10.3"
-    },
-    {
       "file": "10.4.png",
       "width": 1080,
       "height": 1350,
@@ -3903,32 +4113,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "10.8"
     },
     {
-      "file": "11..2.png",
-      "width": 2000,
-      "height": 2000,
-      "ratio": 1,
-      "title": "11..2"
-    },
-    {
       "file": "11.1.png",
       "width": 2000,
       "height": 2000,
       "ratio": 1,
       "title": "11.1"
-    },
-    {
-      "file": "11.2.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "11.2"
-    },
-    {
-      "file": "11.3.png",
-      "width": 1080,
-      "height": 1350,
-      "ratio": 0.8,
-      "title": "11.3"
     },
     {
       "file": "11.4-1.png",
@@ -3966,90 +4155,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "11.8"
     },
     {
-      "file": "BW 2025 - 02.jpg",
-      "width": 1243,
-      "height": 1623,
-      "ratio": 0.7659,
-      "title": "Bw 2025 02"
-    },
-    {
-      "file": "DSCF7238.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dscf7238"
-    },
-    {
-      "file": "DSCF7388-HDR.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dscf7388 Hdr"
-    },
-    {
-      "file": "DSCF7424.jpg",
-      "width": 2400,
-      "height": 1800,
-      "ratio": 1.3333,
-      "title": "Dscf7424"
-    },
-    {
-      "file": "Dunlo-IG-CarouselArtboard-1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dunlo Ig Carouselartboard 1"
-    },
-    {
-      "file": "Dunlo-IG-CarouselArtboard-5.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dunlo Ig Carouselartboard 5"
-    },
-    {
-      "file": "Dunlo-IG-CarouselArtboard-6.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dunlo Ig Carouselartboard 6"
-    },
-    {
-      "file": "Dunlo-IG-CarouselArtboard-8.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Dunlo Ig Carouselartboard 8"
-    },
-    {
-      "file": "ENEA-VELVET-NUBOLA-TECHWALL-2025.jpg",
-      "width": 2400,
-      "height": 1570,
-      "ratio": 1.5287,
-      "title": "Enea Velvet Nubola Techwall 2025"
-    },
-    {
-      "file": "Etro 14.jpg",
-      "width": 1566,
-      "height": 2096,
-      "ratio": 0.7471,
-      "title": "Etro 14"
-    },
-    {
-      "file": "Hooga-IG-CarouselArtboard-1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Hooga Ig Carouselartboard 1"
-    },
-    {
-      "file": "Hooga-IG-CarouselArtboard-2.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Hooga Ig Carouselartboard 2"
-    },
-    {
       "file": "Hooga-IG-CarouselArtboard-3.png",
       "width": 1080,
       "height": 1080,
@@ -4064,34 +4169,6 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Hooga Ig Carouselartboard 4"
     },
     {
-      "file": "Hooga-IG-CarouselArtboard-5.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Hooga Ig Carouselartboard 5"
-    },
-    {
-      "file": "Hooga-IG-CarouselArtboard-6.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Hooga Ig Carouselartboard 6"
-    },
-    {
-      "file": "Hooga-IG-CarouselArtboard-7.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Hooga Ig Carouselartboard 7"
-    },
-    {
-      "file": "Hooga-IG-CarouselArtboard-8.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Hooga Ig Carouselartboard 8"
-    },
-    {
       "file": "Hooga-IG-CarouselArtboard-9.png",
       "width": 1080,
       "height": 1080,
@@ -4099,39 +4176,11 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "Hooga Ig Carouselartboard 9"
     },
     {
-      "file": "Hooga-IG-CarouselArtboard-10.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Hooga Ig Carouselartboard 10"
-    },
-    {
       "file": "HOOGA.png",
       "width": 530,
       "height": 470,
       "ratio": 1.1277,
       "title": "Hooga"
-    },
-    {
-      "file": "MW11.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw11.1"
-    },
-    {
-      "file": "MW12.1.png",
-      "width": 1080,
-      "height": 1080,
-      "ratio": 1,
-      "title": "Mw12.1"
-    },
-    {
-      "file": "PORTA.png",
-      "width": 530,
-      "height": 470,
-      "ratio": 1.1277,
-      "title": "Porta"
     }
   ]
 };

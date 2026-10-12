@@ -46,7 +46,7 @@ window.MOBILE_GALLERY_DATA = [
     "label": "CAMPAIGNS",
     "title": "Social Media Campaigns & Key Visuals",
     "description": "Key visuals and cohesive social campaign systems.",
-    "count": 429,
+    "count": 422,
     "unit": "images",
     "number": "02",
     "previews": [
@@ -56,57 +56,57 @@ window.MOBILE_GALLERY_DATA = [
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/social-media-campaigns/4-dani-y-1c0lt.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/9-bolster-pillow-v3-o86w.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/2512-2-zbpv.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/260429-1-16a6m.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/apr-lsaw4s1-archi-linear-light-rwxw.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/dp-june5-1bmn1.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/dp-lsaw4s1-13zlp.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/h08126-1-19myy.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/4-1-96tl.webp",
         "width": 720,
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/social-media-campaigns/hooga-june-content11-2j8n5.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/11-branding-15crx.webp",
         "width": 900,
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/social-media-campaigns/m08123-ydu2.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/2512-11-1bgk2.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/260429-7-uhv9.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/apr-lsaw4s3-astralux-striplight-3-13kuq.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/dp-story-1zvkp.webp",
+        "width": 640,
+        "height": 1138
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/dp-specsaw3s1-6l8q.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/h08127-whva.webp",
         "width": 720,
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/social-media-campaigns/mdg-3-2xgr1.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/julmooni1-2n1up.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/m08124-txxs.webp",
+        "width": 720,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/mdg-5-1pwxs.webp",
         "width": 900,
         "height": 900
       },
@@ -126,7 +126,7 @@ window.MOBILE_GALLERY_DATA = [
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/social-media-campaigns/rif-1080-10lib.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/rhet-5zsm.webp",
         "width": 900,
         "height": 900
       }
@@ -137,7 +137,7 @@ window.MOBILE_GALLERY_DATA = [
     "label": "PRINT",
     "title": "Print & Brand Collateral",
     "description": "Brochures, sales materials, and branded print.",
-    "count": 34,
+    "count": 48,
     "unit": "images",
     "number": "03",
     "previews": [
@@ -147,13 +147,8 @@ window.MOBILE_GALLERY_DATA = [
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/print-brand-collateral/3-2-1pjbr.webp",
-        "width": 1358,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/5-2-20hsm.webp",
-        "width": 2274,
+        "src": "assets/images/home-previews/print-brand-collateral/4-2-1rgdj.webp",
+        "width": 1836,
         "height": 900
       },
       {
@@ -162,13 +157,8 @@ window.MOBILE_GALLERY_DATA = [
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/print-brand-collateral/9-2-2gzgt.webp",
-        "width": 1233,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/11-2-2244y.webp",
-        "width": 1215,
+        "src": "assets/images/home-previews/print-brand-collateral/10-2-2come.webp",
+        "width": 1313,
         "height": 900
       },
       {
@@ -177,18 +167,13 @@ window.MOBILE_GALLERY_DATA = [
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/print-brand-collateral/15-2-29swr.webp",
+        "src": "assets/images/home-previews/print-brand-collateral/17-2-1saxe.webp",
         "width": 640,
         "height": 971
       },
       {
-        "src": "assets/images/home-previews/print-brand-collateral/19-2-1ph1q.webp",
-        "width": 1537,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/21-2-2rmfn.webp",
-        "width": 2473,
+        "src": "assets/images/home-previews/print-brand-collateral/20-2-s0i7.webp",
+        "width": 1530,
         "height": 900
       },
       {
@@ -197,13 +182,8 @@ window.MOBILE_GALLERY_DATA = [
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/print-brand-collateral/25-2-1nsv7.webp",
-        "width": 640,
-        "height": 933
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/27-2-2ysne.webp",
-        "width": 655,
+        "src": "assets/images/home-previews/print-brand-collateral/26-2-13c73.webp",
+        "width": 850,
         "height": 900
       },
       {
@@ -212,13 +192,33 @@ window.MOBILE_GALLERY_DATA = [
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/print-brand-collateral/32-2-2mg45.webp",
-        "width": 1332,
+        "src": "assets/images/home-previews/print-brand-collateral/33-2-1qi3k.webp",
+        "width": 1250,
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/print-brand-collateral/34-2-2tfml.webp",
+        "src": "assets/images/home-previews/print-brand-collateral/36-2-2uaoq.webp",
         "width": 863,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/print-brand-collateral/id-1r2ap.webp",
+        "width": 640,
+        "height": 927
+      },
+      {
+        "src": "assets/images/home-previews/print-brand-collateral/mockup-edsa-wall-mural-3kcha.webp",
+        "width": 640,
+        "height": 990
+      },
+      {
+        "src": "assets/images/home-previews/print-brand-collateral/porta-mobili-riflessi-delivery-truck-2obyt.webp",
+        "width": 863,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/print-brand-collateral/uptown-mall-2-1vzel.webp",
+        "width": 928,
         "height": 900
       }
     ]
@@ -319,7 +319,7 @@ window.MOBILE_GALLERY_DATA = [
     "label": "MOTION",
     "title": "Short-Form Video & Reels",
     "description": "Short-form stories for social feeds and launches.",
-    "count": 56,
+    "count": 59,
     "unit": "videos",
     "number": "05",
     "previews": [
@@ -344,27 +344,27 @@ window.MOBILE_GALLERY_DATA = [
         "height": 1138
       },
       {
-        "src": "assets/images/home-previews/short-form-video-reels/2601-2-hooga-reels-3hi7.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/0904-9-2ln9.webp",
         "width": 640,
         "height": 1138
       },
       {
-        "src": "assets/images/home-previews/short-form-video-reels/260116-hooga-week1content1-1c13.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/260116-dunlo-febcontentweek1-2-1ems.webp",
         "width": 640,
         "height": 1138
       },
       {
-        "src": "assets/images/home-previews/short-form-video-reels/260429-9-6y84.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/260429-6-4qsq.webp",
         "width": 640,
         "height": 1138
       },
       {
-        "src": "assets/images/home-previews/short-form-video-reels/dunlo-outro-1a8h.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/dp-jr2-3zbl.webp",
         "width": 640,
         "height": 1138
       },
       {
-        "src": "assets/images/home-previews/short-form-video-reels/h08129-ygc.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/h08122-3lu9.webp",
         "width": 640,
         "height": 1138
       },
@@ -374,7 +374,7 @@ window.MOBILE_GALLERY_DATA = [
         "height": 1138
       },
       {
-        "src": "assets/images/home-previews/short-form-video-reels/hooga-july-3-367h.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/hooga-july-2-497x.webp",
         "width": 640,
         "height": 1138
       },
@@ -384,17 +384,17 @@ window.MOBILE_GALLERY_DATA = [
         "height": 1138
       },
       {
-        "src": "assets/images/home-previews/short-form-video-reels/may6-25qn.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/may3-2guz.webp",
         "width": 640,
         "height": 1138
       },
       {
-        "src": "assets/images/home-previews/short-form-video-reels/mooni-fw20202-3-3v26.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/mim-jr1-1t1q.webp",
         "width": 640,
         "height": 1138
       },
       {
-        "src": "assets/images/home-previews/short-form-video-reels/mooni-3o6i.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/mooni-reel-598f.webp",
         "width": 640,
         "height": 1138
       },

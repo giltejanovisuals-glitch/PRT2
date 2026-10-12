@@ -86,6 +86,14 @@ window.REEL_MANIFEST = [
     "title": "0904 2"
   },
   {
+    "file": "0904 4 THOMAS.mp4",
+    "poster": "0904 4 THOMAS.jpg",
+    "width": 1080,
+    "height": 1440,
+    "ratio": 0.75,
+    "title": "0904 4 Thomas"
+  },
+  {
     "file": "0904 4.mp4",
     "poster": "0904 4.jpg",
     "width": 1080,
@@ -108,6 +116,14 @@ window.REEL_MANIFEST = [
     "height": 1920,
     "ratio": 0.5625,
     "title": "0904 8"
+  },
+  {
+    "file": "0904 9.mp4",
+    "poster": "0904 9.jpg",
+    "width": 1080,
+    "height": 1920,
+    "ratio": 0.5625,
+    "title": "0904 9"
   },
   {
     "file": "1120JUNE-REELS_Dunlopillo-Dr.Flex.mp4",
@@ -324,6 +340,14 @@ window.REEL_MANIFEST = [
     "height": 3840,
     "ratio": 0.5625,
     "title": "June Reels Dunlopillo Firmrest"
+  },
+  {
+    "file": "m0904 1.mp4",
+    "poster": "m0904 1.jpg",
+    "width": 1080,
+    "height": 1920,
+    "ratio": 0.5625,
+    "title": "M0904 1"
   },
   {
     "file": "m08121.mp4",

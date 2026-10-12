@@ -200,6 +200,13 @@ category page.
 **Never hand-edit `js/gallery-editorial-manifest.js`** — it's overwritten
 by `npm run build` every time.
 
+**Display order:** `scripts/gallery-priority.js` lists each category's
+strongest visuals in the order they should appear; the first one is the
+visual the page opens on. The build puts those first, then every other
+image by filename. New uploads land after the curated list — add a file's
+name there (and rebuild) to move it up. Listed files that no longer exist
+are skipped with a build warning.
+
 While a category's source folder is empty (as shipped, for all four),
 that page renders 21 placeholder tiles generated from its own
 `js/gallery-categories-data.js` entries — reusing each entry's

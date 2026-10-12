@@ -19,10 +19,14 @@
  * directly with `node scripts/generate-gallery-manifest.js`. Titles,
  * project names, years, and alt text are kept separately in the
  * hand-authored js/gallery-editorial-meta.js — this script never touches it.
+ *
+ * Order: files listed in scripts/gallery-priority.js come first, in that
+ * order; everything else follows sorted by filename.
  */
 const fs = require("fs");
 const path = require("path");
 const { SUPPORTED_EXTENSIONS, readImageSize } = require("./lib/image-size");
+const PRIORITY = require("./gallery-priority");
 
 const GALLERY_ROOT = path.join(__dirname, "..", "assets", "images", "gallery");
 const OUTPUT_FILE = path.join(__dirname, "..", "js", "gallery-editorial-manifest.js");
@@ -49,10 +53,17 @@ function buildCategoryManifest(categoryId) {
     fs.mkdirSync(sourceDir, { recursive: true });
   }
 
-  const files = fs
+  const available = fs
     .readdirSync(sourceDir)
     .filter((name) => SUPPORTED_EXTENSIONS.has(path.extname(name).toLowerCase()))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+  const priority = (PRIORITY[categoryId] || []).filter((file) => {
+    if (available.includes(file)) return true;
+    console.warn(`[gallery-manifest] ${categoryId}: priority file "${file}" not found — skipping.`);
+    return false;
+  });
+  const files = [...new Set(priority), ...available.filter((file) => !priority.includes(file))];
 
   const manifest = [];
   files.forEach((file) => {
