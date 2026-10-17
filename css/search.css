@@ -1,0 +1,509 @@
+/* Site-wide portfolio search (js/search.js): a header button, then a
+   centred panel on desktop or a full-screen sheet on phones. Warm
+   off-white or charcoal with the theme, thin borders, a little blur, deep
+   teal for matches and the active result. */
+
+/* --- Header button ------------------------------------------------------------ */
+.search-toggle {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: rgba(var(--text-rgb), 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  color: var(--text);
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 250ms ease, border-color 300ms ease, color 250ms ease;
+}
+
+.search-toggle:hover,
+.search-toggle:focus-visible {
+  background: rgba(var(--text-rgb), 0.1);
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+/* Shortcut tooltip, matching the theme switch. */
+.search-toggle::after {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.35rem;
+  background: var(--text);
+  color: var(--background);
+  content: attr(data-tooltip);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .search-toggle:hover::after,
+  .search-toggle:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+
+/* --- Overlay ---------------------------------------------------------------------- */
+html.search-open,
+html.search-open body {
+  overflow: hidden;
+}
+
+.search {
+  position: fixed;
+  z-index: 80;
+  inset: 0;
+}
+
+.search[hidden] {
+  display: none;
+}
+
+.search-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 12, 12, 0.42);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.search-panel {
+  position: absolute;
+  top: 12vh;
+  left: 50%;
+  display: flex;
+  width: min(640px, calc(100% - 2rem));
+  max-height: min(70vh, 640px);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(var(--background-rgb), 0.96);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 30px 60px -28px rgba(0, 0, 0, 0.5);
+  color: var(--text);
+  font-family: var(--font-body);
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  transition: opacity 200ms ease, transform 260ms var(--ease);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.search.is-open .search-backdrop {
+  opacity: 1;
+}
+
+.search.is-open .search-panel {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* --- Field --------------------------------------------------------------------------- */
+.search-bar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.search-bar-icon {
+  display: flex;
+  flex: none;
+  color: var(--muted);
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 0.5rem;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+  letter-spacing: -0.005em;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.search-input::placeholder {
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+.search-input::-webkit-search-cancel-button,
+.search-input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.search-clear,
+.search-close {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.search-clear[hidden] {
+  display: none;
+}
+
+.search-close {
+  border: 1px solid var(--line);
+}
+
+.search-clear:hover,
+.search-clear:focus-visible,
+.search-close:hover,
+.search-close:focus-visible {
+  background: rgba(var(--accent-rgb), 0.08);
+  color: var(--accent);
+}
+
+.search-bar :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The field shows its focus on the whole bar instead of a ring. */
+.search-bar:has(.search-input:focus-visible) {
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+/* --- Results ----------------------------------------------------------------------------- */
+.search-results {
+  flex: 1;
+  min-height: 0;
+  padding: 0.5rem 0.5rem 0.75rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.search-group + .search-group,
+.search-group + .search-option-more {
+  margin-top: 0.5rem;
+}
+
+.search-group-label {
+  padding: 0.75rem 0.75rem 0.4rem;
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.search-option {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.search-option[aria-selected="true"] {
+  border-color: rgba(var(--accent-rgb), 0.28);
+  background: rgba(var(--accent-rgb), 0.08);
+}
+
+.search-option-media {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(var(--text-rgb), 0.04);
+  color: var(--muted);
+}
+
+.search-option-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Brand logos are drawn whole on a light tile, inverted in dark mode. */
+.search-option-media.is-logo img {
+  padding: 6px;
+  object-fit: contain;
+}
+
+:root[data-theme="dark"] .search-option-media.is-logo img {
+  filter: invert(1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .search-option-media.is-logo img {
+    filter: invert(1);
+  }
+}
+
+.search-option[aria-selected="true"] .search-option-media {
+  border-color: rgba(var(--accent-rgb), 0.35);
+  color: var(--accent);
+}
+
+.search-option-text {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.search-option-title {
+  overflow: hidden;
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-option-meta {
+  display: flex;
+  min-width: 0;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.search-option-kind {
+  flex: none;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.search-option-context {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-option mark {
+  border-radius: 2px;
+  background: rgba(var(--accent-rgb), 0.14);
+  color: var(--accent);
+}
+
+.search-option-go {
+  display: flex;
+  flex: none;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 180ms ease, transform 220ms var(--ease);
+}
+
+.search-option[aria-selected="true"] .search-option-go {
+  color: var(--accent);
+  opacity: 1;
+  transform: none;
+}
+
+.search-option-more {
+  justify-content: flex-start;
+  border-color: var(--line);
+}
+
+.search-option-more .search-option-media {
+  border: 0;
+  background: transparent;
+}
+
+.search-option-more .search-option-title {
+  color: var(--accent);
+}
+
+/* --- Messages and footer --------------------------------------------------------------------- */
+.search-message {
+  padding: 1.75rem 0.75rem 0.75rem;
+  text-align: left;
+}
+
+.search-message-title {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-headline);
+  font-size: 1.1rem;
+}
+
+.search-message-detail {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.search-foot {
+  display: flex;
+  flex: none;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.search-foot kbd {
+  display: inline-block;
+  min-width: 1.4em;
+  margin-right: 0.25rem;
+  padding: 0.05rem 0.3rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.65rem;
+  text-align: center;
+}
+
+/* --- Phones: full-screen sheet --------------------------------------------------------------- */
+@media (max-width: 760px) {
+  /* Beside the menu button in the compact header. */
+  .header-controls {
+    gap: 0.5rem;
+  }
+
+  /* Stays under the open menu (unlike the menu button), where the menu's
+     own theme switch takes this spot. */
+  .search-toggle {
+    background: rgba(var(--background-rgb), 0.55);
+    box-shadow: none;
+  }
+
+  .search-backdrop {
+    display: none;
+  }
+
+  /* Sized to the visible viewport (js), so the keyboard never covers the
+     results; the field stays put while the results scroll beneath it. */
+  .search-panel {
+    top: var(--search-top, 0px);
+    left: 0;
+    width: 100%;
+    height: var(--search-vh, 100dvh);
+    max-height: none;
+    border: 0;
+    border-radius: 0;
+    background: rgba(var(--background-rgb), 0.985);
+    box-shadow: none;
+    transform: translateY(12px);
+  }
+
+  .search.is-open .search-panel {
+    transform: none;
+  }
+
+  .search-bar {
+    gap: 0.35rem;
+    padding: calc(0.5rem + env(safe-area-inset-top, 0px)) max(0.5rem, env(safe-area-inset-right)) 0.5rem max(1rem, env(safe-area-inset-left));
+  }
+
+  .search-input {
+    font-size: 16px; /* no zoom-on-focus in iOS */
+  }
+
+  .search-results {
+    padding: 0.25rem max(0.5rem, env(safe-area-inset-right)) calc(1rem + env(safe-area-inset-bottom, 0px)) max(0.5rem, env(safe-area-inset-left));
+  }
+
+  .search-option {
+    min-height: 64px;
+    padding: 0.6rem 0.75rem;
+  }
+
+  .search-option-title {
+    font-size: 0.98rem;
+    white-space: normal;
+  }
+
+  .search-option-go {
+    opacity: 1;
+    transform: none;
+  }
+
+  .search-foot {
+    display: none;
+  }
+}
+
+/* No hover arrows on touch: they show for the active row only. */
+@media (hover: none) {
+  .search-option-go {
+    opacity: 0.6;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-backdrop,
+  .search-panel,
+  .search-option-go,
+  .search-toggle {
+    transition: none;
+  }
+
+  .search-panel,
+  .search.is-open .search-panel {
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 760px) {
+  .search-panel,
+  .search.is-open .search-panel {
+    transform: none;
+  }
+}
