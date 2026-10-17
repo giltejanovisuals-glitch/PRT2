@@ -38,7 +38,27 @@ window.GALLERY_CATEGORIES = [
     lede:
       "Campaign key visuals developed into full social systems — feed, stories, paid social, and launch content built from one central idea.",
     intro:
-      "Campaign visuals created to give products, promotions, and brand stories a clear and consistent presence across digital platforms.",
+      "Campaign key visuals developed into complete social systems — feed, stories, paid social, and launch content — giving products, promotions, and brand stories one clear, consistent presence across digital platforms.",
+    // Hand-picked Featured key visuals, in display order (see the
+    // commercial-lifestyle-photography entry for how `featured` is used).
+    featured: [
+      "1 FEATHER RECLINER v2.png", // Dunlopillo — recliner in the forest
+      "05125.png", // Hooga — "Design Speaks Many Languages"
+      "MARW33.1.png", // Mooni — "Comfort that breaks through"
+      "MDG-4.png", // Metal-Lite — contemporary residence at night
+      "PORTA-JUNE-3.png", // Porta Mobili — "Furniture with a point of view"
+      "DP 7.png", // Dunlopillo — polar bear, "Truly deep sleep"
+      "HMS2.png", // Hooga — "Calm comfort" outdoors
+      "MOONI-JUNE-CONTENT2.png", // Mooni — "Drift into calm"
+      "MW32.png", // Metal-Lite — "The hidden lighting designers love"
+      "p08041.png", // Porta Mobili — sunset through a doorway
+      "6 DR FLEX v2.png", // Dunlopillo — mattress on glacier ice
+      "HOOGA ROCKWELL sq.png", // Hooga — "A new sense of comfort"
+      "m08125.png", // Mooni — rainy-night POV
+      "APR-LSAW3S1-astralux-mesa.png", // Metal-Lite — track light on artwork
+      "DP-CEBU-DAVAO9.png", // Dunlopillo — "Sleep like a king"
+      "HOOGA-JUNE-CONTENT7.png", // Hooga — "Made for relaxed, vibrant living"
+    ],
     entries: [
       { layout: "landscape", brand: "Mooni", year: "2025", type: "Campaign Key Visual", contribution: "Big-idea concept, key visual, and system adapted across social, digital, and OOH formats." },
       { layout: "landscape", brand: "Client Name", year: "2024", type: "Social Media Campaign" },
@@ -58,7 +78,27 @@ window.GALLERY_CATEGORIES = [
     lede:
       "Brochures, sales sheets, stationery, and branded print materials built to carry a brand consistently off-screen.",
     intro:
-      "Print-first collateral designed to represent a brand in hand — brochures, sales materials, stationery, and presentation pieces built with the same rigor as any digital touchpoint.",
+      "Brochures, sales materials, stationery, and branded print built to carry a brand consistently off-screen — from billboards and vehicle wraps to pieces held in hand, designed with the same rigor as any digital touchpoint.",
+    // Hand-picked Featured key visuals, in display order (see the
+    // commercial-lifestyle-photography entry for how `featured` is used).
+    featured: [
+      "mockup EDSA WALL MURAL.png", // Hooga — wall mural
+      "1.2.png", // Dunlopillo — highway billboard
+      "34.2.png", // Etro / Porta Mobili — ad and truck wrap
+      "23.2.png", // Metal-Lite × Endo — private lunch invitation
+      "15.2.png", // Dunlopillo × Hooga — gift voucher
+      "28.2.png", // Dunlopillo — Royal Comfort tri-fold brochure
+      "22.2.png", // Porta Mobili — tote bag
+      "11.2.png", // Hooga — "Her Moment" poster
+      "31.2.png", // Dunlopillo — Royal Comfort mall lightbox
+      "Porta Mobili Complimentary Drinks Menu.png", // Porta Mobili — table menu
+      "Dunlopillo Science of Deeper Sleep Display.png", // Dunlopillo — exhibition booth
+      "uptown mall 2.png", // Hooga — mall standee
+      "13.2.png", // Metal-Lite — product flyer
+      "mockup UPTOWN ART EVENT GREETING CARD.png", // Hooga — event thank-you card
+      "9.2.png", // Hooga — "Timeless Design" poster
+      "24.2.png", // Dunlopillo — "Your world of deep sleep" poster
+    ],
     entries: [
       { layout: "landscape", brand: "Client Name", year: "2025", type: "Brand Brochure", contribution: "Print-ready brand brochure system carrying consistent grid, typography, and messaging across every spread." },
       { layout: "landscape", brand: "Client Name", year: "2024", type: "Sales Sheet / One-Pager" },
@@ -78,7 +118,30 @@ window.GALLERY_CATEGORIES = [
     lede:
       "Product, showroom, and lifestyle photography styled and directed to support campaigns, catalogs, and retail environments.",
     intro:
-      "Photography direction for commercial and lifestyle contexts — product shots, showroom sets, and lifestyle scenes styled and art-directed to support campaigns, catalogs, and retail environments.",
+      "Product, showroom, and lifestyle photography, styled and art-directed for campaigns, catalogs, and retail environments — with consistent lighting, styling, and color across every shoot.",
+    // Hand-picked Featured Photos, in display order (filenames in
+    // assets/images/gallery/<id>/). The first is the page's featured
+    // photograph and the homepage preview; the rest are the homepage
+    // slideshow. Used as-is — never sampled or shuffled. Rebuild
+    // (`npm run build`) after editing so the homepage previews follow.
+    featured: [
+      "BW 2025 - 02.jpg", // lifestyle — model on sculpted sofa
+      "_DSF2269-HDR.webp のコピー.jpg", // interior — living room and piano
+      "2.5.png", // product — bouclé lounge chair
+      "DSCF7388-HDR.jpg", // environmental — residence at dusk
+      "8.3.png", // detail — marble-top drawer
+      "ENEA-VELVET-NUBOLA-TECHWALL-2025.jpg", // interior — dining and shelving system
+      "9.png", // lifestyle product — rattan lounge chair
+      "_DSF2375.webp のコピー.jpg", // interior — dining room with orchids
+      "3.png", // product — leather sofa
+      "_DSF2401.webp のコピー.jpg", // detail — artwork and marimba
+      "DSCF7424.jpg", // interior — kitchen island
+      "7.7.png", // product — leather swivel chair
+      "_DSF2331-HDR.webp のコピー.jpg", // interior — foyer floral table
+      "Etro 14.jpg", // lifestyle — Etro armchairs, marble floor
+      "4.5.png", // detail — walnut base and upholstery
+      "_DSF2317-HDR.webp のコピー.jpg", // environmental — view through glass doors
+    ],
     entries: [
       { layout: "landscape", brand: "Client Name", year: "2023", type: "Commercial Product Photography", contribution: "Product photography system art-directed for consistent lighting, styling, and color across a full catalogue." },
       { layout: "landscape", brand: "Client Name", year: "2024", type: "Lifestyle Photoshoot" },

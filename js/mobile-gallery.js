@@ -20,7 +20,9 @@
       const card = root.querySelector(`[data-category="${category.id}"]`);
       if (!card || !category.previews.length) return;
       const image = card.querySelector('.mobile-gallery-preview');
-      const preview = category.previews[Math.floor(Math.random() * category.previews.length)];
+      // Hand-picked categories always lead with their first featured photo.
+      const curated = (window.GALLERY_CATEGORIES || []).some(c => c.id === category.id && c.featured?.length);
+      const preview = curated ? category.previews[0] : category.previews[Math.floor(Math.random() * category.previews.length)];
       // Apply the real ratio synchronously before starting the request.
       image.width = preview.width;
       image.height = preview.height;

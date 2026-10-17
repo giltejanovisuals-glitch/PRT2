@@ -74,8 +74,13 @@
     // shows one randomly picked static image; while a mouse hovers it, it
     // crossfades through the rest in a shuffled order and stops on whatever
     // image is showing when the mouse leaves. Touch devices and reduced-motion
-    // users only ever get the static image.
+    // users only ever get the static image. A category with a hand-picked
+    // `featured` list (js/gallery-categories-data.js) is never shuffled: it
+    // rests on its first featured photo and cycles in the chosen order.
     const previews = window.HOME_GALLERY_PREVIEWS || {};
+    const curated = new Set(
+      (window.GALLERY_CATEGORIES || []).filter((c) => c.featured && c.featured.length).map((c) => c.id)
+    );
     const hoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const SLIDE_MIN_MS = 800;
@@ -94,7 +99,8 @@
 
     panels.forEach((panel) => {
       const media = panel.querySelector(".showcase-panel-media");
-      const order = shuffle((previews[panel.dataset.category] || []).map(encodeAssetPath));
+      const sources = (previews[panel.dataset.category] || []).map(encodeAssetPath);
+      const order = curated.has(panel.dataset.category) ? sources : shuffle(sources);
       if (!media || !order.length) return;
 
       const overlay = media.querySelector(".showcase-panel-overlay");
@@ -107,7 +113,7 @@
         return img;
       });
 
-      // order[0] is the random static pick; the second layer stays empty
+      // order[0] is the static pick; the second layer stays empty
       // until the slideshow needs it.
       let front = 0;
       let position = 0;

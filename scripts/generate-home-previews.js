@@ -5,7 +5,9 @@
  * hover (see js/gallery-index.js) — but the category source files are
  * multi-megabyte PNGs, far too heavy to cycle every second, so this script
  * downsizes an evenly spaced sample of each category's own images into
- * small WebP previews.
+ * small WebP previews. A category with a hand-picked `featured` list in
+ * js/gallery-categories-data.js uses exactly those files, in that order,
+ * instead of the sample (and js/gallery-index.js shows them unshuffled).
  *
  * Sources (each category only ever draws from its own folder):
  *   - editorial-layout: the publication page previews rendered by
@@ -22,6 +24,7 @@
  */
 const fs = require("fs");
 const path = require("path");
+const vm = require("vm");
 const { loadImage, createCanvas } = require("@napi-rs/canvas");
 const { SUPPORTED_EXTENSIONS } = require("./lib/image-size");
 
@@ -46,6 +49,20 @@ const CATEGORY_SOURCES = {
   "commercial-lifestyle-photography": path.join(ROOT, "assets", "images", "gallery", "commercial-lifestyle-photography"),
   "short-form-video-reels": path.join(ROOT, "assets", "videos", "short-form-reels"),
 };
+
+// Hand-picked `featured` filenames per category id, read from the browser
+// data file (it only assigns window.GALLERY_CATEGORIES).
+function readFeatured() {
+  const sandbox = { window: {} };
+  vm.runInNewContext(fs.readFileSync(path.join(ROOT, "js", "gallery-categories-data.js"), "utf8"), sandbox);
+  const featured = {};
+  (sandbox.window.GALLERY_CATEGORIES || []).forEach((category) => {
+    if (Array.isArray(category.featured) && category.featured.length) featured[category.id] = category.featured;
+  });
+  return featured;
+}
+
+const FEATURED = readFeatured();
 
 function slugify(text) {
   return text
@@ -82,8 +99,17 @@ async function buildCategory(categoryId, sourceDir) {
         .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
     : [];
 
+  let picks = sampleEvenly(files, MAX_PER_CATEGORY);
+  if (FEATURED[categoryId]) {
+    const available = new Set(files);
+    FEATURED[categoryId]
+      .filter((file) => !available.has(file))
+      .forEach((file) => console.warn(`[home-previews] ${categoryId}: featured file not found: "${file}"`));
+    picks = FEATURED[categoryId].filter((file) => available.has(file));
+  }
+
   const previews = [];
-  for (const file of sampleEvenly(files, MAX_PER_CATEGORY)) {
+  for (const file of picks) {
     const sourcePath = path.join(sourceDir, file);
     const { size } = fs.statSync(sourcePath);
     const outputName = `${slugify(path.basename(file, path.extname(file)))}-${size.toString(36)}.webp`;

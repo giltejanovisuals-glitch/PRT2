@@ -163,11 +163,7 @@
   body.mobile-hero-visible .floating-nav { color: var(--text); }
   body.mobile-hero-visible .nav-backdrop { opacity: 1; background: rgba(var(--m-bg-rgb), .73); }
   .hero-parallax ~ * { scroll-margin-top: var(--header-h); }
-  body:has(.mobile-projects) .site-header { padding: calc(8px + env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) 8px max(20px, env(safe-area-inset-left)); }
-  body:has(.mobile-projects) .site-header > .brand { min-height: 48px; }
-  body:has(.mobile-projects) .site-header > .brand .brand-name { display: none; }
-  body:has(.mobile-projects) .theme-toggle { width: 44px; height: 44px; }
-  body:has(.mobile-projects) .menu-toggle { min-height: 48px; }
+  /* Header size and layout: css/style.css (shared by every page). */
   body:has(.mobile-projects) .mobile-nav-close,
   body:has(.mobile-projects) .mobile-nav-socials a { min-width: 44px; min-height: 44px; }
 

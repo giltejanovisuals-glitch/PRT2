@@ -61,7 +61,8 @@
   // data-mobile-layout="feed": phones get a featured visual followed by a
   // two-column masonry archive (landscape visuals span both columns)
   // instead of the single stacked column. data-featured names the file
-  // shown first; it defaults to the first image.
+  // shown first; it defaults to the category's first `featured` file, then
+  // to the first image.
   const FEED = section.dataset.mobileLayout === "feed";
   const LANDSCAPE_RATIO = 1.2;
 
@@ -116,9 +117,12 @@
 
   const category = (window.GALLERY_CATEGORIES || []).find((c) => c.id === CATEGORY_ID) || {};
   const thumbs = (window.GALLERY_THUMBS || {})[CATEGORY_ID] || {};
+  // data-featured wins; otherwise the category's hand-picked `featured`
+  // list (js/gallery-categories-data.js) names the first photo shown.
+  const featuredFile = section.dataset.featured || (category.featured || [])[0];
   const featuredIndex = Math.max(
     0,
-    entries.findIndex((entry) => entry.src.split("/").pop() === section.dataset.featured)
+    entries.findIndex((entry) => entry.src.split("/").pop() === featuredFile)
   );
   const ratioOf = (entry) => (entry.width && entry.height ? entry.width / entry.height : entry.ratio || 1);
 
@@ -470,6 +474,19 @@
       return shot;
     }
 
+    // Phone feed: a blurred, enlarged copy fills the 4:5 frame behind the
+    // complete photo (css: "Featured frame"). It is only shown — and, being
+    // lazy, only fetched — there; the small thumbnail is plenty under blur.
+    const backdrop = document.createElement("img");
+    backdrop.className = "pbc-shot-backdrop";
+    backdrop.alt = "";
+    backdrop.setAttribute("aria-hidden", "true");
+    backdrop.loading = "lazy";
+    backdrop.decoding = "async";
+    backdrop.draggable = false;
+    backdrop.src = thumbSrc(entry);
+    shot.appendChild(backdrop);
+
     const img = document.createElement("img");
     img.className = "pbc-shot-img";
     img.alt = entry.alt || describe(entry).type;
@@ -537,7 +554,10 @@
 
   // --- Selection ------------------------------------------------------------
 
-  const select = (i, { focus = false, reveal = false, autoplay = false } = {}) => {
+  // Told about every selection the visitor makes (not the slideshow's own).
+  let onManualSelect = null;
+
+  const select = (i, { focus = false, reveal = false, autoplay = false, auto = false } = {}) => {
     i = (i + entries.length) % entries.length;
     const changed = i !== selected || !activeShot;
 
@@ -562,6 +582,7 @@
     }
     if (reveal) revealTile(tile);
     if (focus) tile.focus({ preventScroll: true });
+    if (!auto && onManualSelect) onManualSelect(i);
   };
 
   const openFullscreen = (trigger) => {
@@ -1016,5 +1037,85 @@
 
   build();
   applyMode();
-  select(featuredIndex);
+  select(featuredIndex, { auto: true });
+
+  // --- Featured slideshow ---------------------------------------------------
+  //
+  // With a hand-picked `featured` list, the preview crossfades through those
+  // photos every SLIDE_MS — no controls. It waits while the preview is off
+  // screen, the tab is hidden, the mouse or focus is on the photo, or the
+  // fullscreen view or menu is open. Once the visitor picks a photo
+  // themselves the preview is theirs and the slideshow stops. Under
+  // prefers-reduced-motion it never starts.
+  const SLIDE_MS = 5000;
+  const slidePositions = IS_VIDEO
+    ? []
+    : [...new Set((category.featured || []).map((file) => entries.findIndex((entry) => fileOf(entry.src) === file)))]
+        .filter((i) => i >= 0);
+  if (slidePositions.length < 2) return;
+
+  let slide = Math.max(0, slidePositions.indexOf(selected));
+  let playing = false;
+  let held = false; // mouse or keyboard focus on the photo
+  let frameInView = true;
+  let slideTimer = 0;
+
+  const blocked = () =>
+    document.body.classList.contains("lightbox-open") || document.body.classList.contains("menu-open");
+
+  const schedule = () => {
+    window.clearTimeout(slideTimer);
+    if (!playing || !frameInView || held || document.hidden) return;
+    slideTimer = window.setTimeout(() => {
+      if (blocked()) {
+        schedule();
+        return;
+      }
+      slide = (slide + 1) % slidePositions.length;
+      select(slidePositions[slide], { auto: true });
+      schedule();
+    }, SLIDE_MS);
+  };
+
+  const setPlaying = (on) => {
+    playing = on;
+    schedule();
+  };
+
+  onManualSelect = () => setPlaying(false);
+
+  frame.addEventListener("pointerenter", (event) => {
+    if (event.pointerType !== "mouse") return;
+    held = true;
+    schedule();
+  });
+  frame.addEventListener("pointerleave", (event) => {
+    if (event.pointerType !== "mouse" || document.activeElement === frame) return;
+    held = false;
+    schedule();
+  });
+  frame.addEventListener("focus", () => {
+    held = true;
+    schedule();
+  });
+  frame.addEventListener("blur", () => {
+    held = frame.matches(":hover");
+    schedule();
+  });
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(
+      ([item]) => {
+        frameInView = item.isIntersecting;
+        schedule();
+      },
+      { threshold: 0.4 }
+    ).observe(frame);
+  }
+  document.addEventListener("visibilitychange", schedule);
+  reducedMotionQuery.addEventListener("change", () => {
+    if (reducedMotionQuery.matches) setPlaying(false);
+  });
+
+  setPlaying(!reducedMotionQuery.matches);
 })();

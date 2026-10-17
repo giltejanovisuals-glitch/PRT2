@@ -1,0 +1,131 @@
+/* Main mobile section bar (homepage only; js/mobile-tabbar.js). A rounded,
+   floating bar of five evenly spaced line icons with small labels — Work,
+   Gallery, About, Capabilities, Contact. The section in view gets a
+   deep-teal icon and label on a faint teal capsule; the rest stay muted.
+   Project pages use their own category dock instead, so it never shows
+   there. */
+
+.mobile-tabbar {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --tabbar-h: 62px;
+    --tabbar-offset: 10px; /* gap between the bar and the screen edge */
+  }
+
+  /* Room at the end of the page so the bar never covers content. */
+  body:has(.mobile-tabbar) {
+    padding-bottom: calc(var(--tabbar-h) + 2 * var(--tabbar-offset) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .mobile-tabbar {
+    position: fixed;
+    z-index: 35;
+    right: max(var(--tabbar-offset), env(safe-area-inset-right, 0px));
+    bottom: calc(var(--tabbar-offset) + env(safe-area-inset-bottom, 0px));
+    left: max(var(--tabbar-offset), env(safe-area-inset-left, 0px));
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 2px;
+    max-width: 30rem;
+    height: var(--tabbar-h);
+    margin-inline: auto;
+    padding: 6px;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: rgba(var(--background-rgb), 0.8);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.05) inset,
+      0 12px 30px -14px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+
+  .mobile-tabbar-item {
+    display: flex;
+    min-width: 44px;
+    min-height: 44px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border-radius: 16px;
+    color: var(--muted);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.1;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 220ms ease;
+  }
+
+  /* The capsule sits behind the icon only, like a native tab bar. */
+  .mobile-tabbar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 26px;
+    border-radius: 999px;
+    background: transparent;
+    transition: background-color 220ms ease;
+  }
+
+  .mobile-tabbar-label {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-tabbar-item[aria-current] {
+    color: var(--accent);
+  }
+
+  .mobile-tabbar-item[aria-current] .mobile-tabbar-icon {
+    background: rgba(var(--accent-rgb), 0.12);
+  }
+
+  .mobile-tabbar-item:active .mobile-tabbar-icon {
+    background: rgba(var(--accent-rgb), 0.18);
+  }
+
+  .mobile-tabbar-item:focus-visible {
+    color: var(--accent);
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+  }
+
+  /* First item: the official logo alone, no label, returning to the top of
+     the landing page. A little taller than the icons so the mark reads. */
+  .mobile-tabbar-home .mobile-tabbar-icon {
+    height: 40px;
+  }
+
+  .mobile-tabbar-home img {
+    display: block;
+    width: auto;
+    height: 24px;
+  }
+
+  /* The bar's logo is the home control, so the header shows the name and
+     subtitle without its own logo. */
+  body:has(.mobile-tabbar) .site-header > .brand .brand-mark {
+    display: none;
+  }
+
+  /* Safety net: never alongside a project page's category dock. */
+  body:has(.nav-dock) .mobile-tabbar {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .mobile-tabbar-item,
+  .mobile-tabbar-icon {
+    transition: none;
+  }
+}

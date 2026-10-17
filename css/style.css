@@ -253,6 +253,15 @@ body.is-scrolled .nav-backdrop {
   object-fit: contain;
 }
 
+/* Desktop keeps the single uppercase name; the subtitle is phones-only. */
+.brand-text {
+  display: contents;
+}
+
+.brand-title {
+  display: none;
+}
+
 .floating-nav {
   display: flex;
   height: 40px;
@@ -2106,12 +2115,158 @@ body.is-scrolled .nav-backdrop {
 }
 
 @media (max-width: 760px) {
+  /* Header — one compact bar: name and subtitle on the left, a 44px round
+     menu button on the right. Its backdrop starts clear and turns into a
+     soft blur once the page scrolls (js/mobile-nav.js adds
+     .header-scrolled). The name and button stay above the open menu, so
+     opening it moves nothing — the icon just turns into a close. */
+  :root {
+    --mh-h: 60px;
+    --mh-pad-l: max(16px, env(safe-area-inset-left, 0px));
+    --mh-pad-r: max(16px, env(safe-area-inset-right, 0px));
+  }
+
   .site-header {
-    padding-top: calc(1.25rem + env(safe-area-inset-top, 0px));
+    gap: 1rem;
+    height: calc(var(--mh-h) + env(safe-area-inset-top, 0px));
+    padding: env(safe-area-inset-top, 0px) var(--mh-pad-r) 0 var(--mh-pad-l);
   }
 
   .nav-backdrop {
-    height: calc(clamp(80px, 14vh, 110px) + env(safe-area-inset-top, 0px));
+    height: calc(var(--mh-h) + env(safe-area-inset-top, 0px));
+    border-bottom: 1px solid transparent;
+    background: rgba(var(--background-rgb), 0);
+    -webkit-mask-image: none;
+    mask-image: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    transition:
+      background-color 300ms ease,
+      border-color 300ms ease,
+      backdrop-filter 300ms ease,
+      -webkit-backdrop-filter 300ms ease;
+  }
+
+  :root.header-scrolled .nav-backdrop {
+    border-bottom-color: rgba(var(--text-rgb), 0.08);
+    background: rgba(var(--background-rgb), 0.78);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+
+  .site-header .brand {
+    position: relative;
+    z-index: 45;
+    min-width: 0;
+    gap: 0.6rem;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .site-header .brand-mark {
+    flex-shrink: 0;
+    height: 1.6rem;
+  }
+
+  .brand-text {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .brand-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.15;
+  }
+
+  /* The small deep-teal accent. */
+  .brand-name::after {
+    flex-shrink: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    content: "";
+    background: var(--accent);
+  }
+
+  .brand-title {
+    display: block;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 0.66rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .header-controls {
+    flex-shrink: 0;
+  }
+
+  .menu-toggle {
+    position: relative;
+    z-index: 45;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: rgba(var(--background-rgb), 0.55);
+    color: var(--text);
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color 250ms ease, background-color 250ms ease, color 250ms ease;
+  }
+
+  .menu-toggle:hover,
+  .menu-toggle:focus-visible {
+    border-color: var(--accent-line);
+    color: var(--accent);
+  }
+
+  .menu-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* Three lines that fold into a cross: the outer two slide to the middle
+     and rotate while the centre one fades. */
+  .menu-toggle .menu-icon {
+    width: 18px;
+    transition: background-color 150ms ease;
+  }
+
+  .menu-toggle .menu-icon::before {
+    top: -6px;
+  }
+
+  .menu-toggle .menu-icon::after {
+    top: 6px;
+  }
+
+  .menu-toggle .menu-icon::before,
+  .menu-toggle .menu-icon::after {
+    transition: top 200ms var(--ease), transform 280ms var(--ease);
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-icon::before,
+  .menu-toggle[aria-expanded="true"] .menu-icon::after {
+    top: 0;
+  }
+
+  /* Phones switch theme from inside the menu (js/mobile-nav.js); the header
+     button stays in the page, hidden, as the one place the theme is set. */
+  .site-header .theme-toggle {
+    display: none;
   }
 
   .floating-nav {
@@ -2125,14 +2280,13 @@ body.is-scrolled .nav-backdrop {
     justify-content: flex-start;
     padding: 0;
     padding-top: env(safe-area-inset-top);
-    padding-right: env(safe-area-inset-right);
     padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
     border: 0;
     border-radius: 0;
     background: rgba(var(--background-rgb), 0.98);
     opacity: 0;
     visibility: hidden;
+    overscroll-behavior: contain;
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
   }
@@ -2147,15 +2301,29 @@ body.is-scrolled .nav-backdrop {
     color: var(--accent);
   }
 
-  /* Top row — monogram, name, close control */
+  /* The desktop pill's hover underline doesn't belong on the list rows. */
+  .mobile-nav-links a::after {
+    display: none;
+  }
+
+  /* Top row — exactly the header's height and padding, so the header's own
+     name and menu button (kept above the menu) sit in it. Its own brand and
+     close button hold their places invisibly; the theme switch
+     (js/mobile-nav.js) sits just left of the menu button. */
   .mobile-nav-head {
     display: flex;
     flex-shrink: 0;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1.1rem clamp(20px, 5vw, 24px);
-    border-bottom: 1px solid rgba(var(--text-rgb), 0.1);
+    height: var(--mh-h);
+    padding: 0 var(--mh-pad-r) 0 var(--mh-pad-l);
+    border-bottom: 1px solid rgba(var(--text-rgb), 0.14);
+  }
+
+  .mobile-nav-head .mobile-nav-brand,
+  .mobile-nav-head .mobile-nav-close {
+    visibility: hidden;
   }
 
   .mobile-nav-brand {
@@ -2167,20 +2335,31 @@ body.is-scrolled .nav-backdrop {
 
   .mobile-nav-brand-text {
     color: var(--text);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 500;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     line-height: 1.5;
     text-transform: uppercase;
   }
 
-  .mobile-nav-close {
+  .mobile-nav-actions {
     display: flex;
     flex-shrink: 0;
-    width: 2.25rem;
-    height: 2.25rem;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Matching circular controls, each a full 44px touch target. */
+  .mobile-nav-close,
+  .mobile-nav-theme {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
     align-items: center;
     justify-content: center;
+    padding: 0;
     border: 1px solid var(--line);
     border-radius: 50%;
     background: transparent;
@@ -2188,40 +2367,58 @@ body.is-scrolled .nav-backdrop {
     font-size: 1.4rem;
     line-height: 1;
     cursor: pointer;
-    transition: border-color 250ms ease, color 250ms ease;
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color 250ms ease, color 250ms ease, background-color 250ms ease;
   }
 
   .mobile-nav-close:hover,
-  .mobile-nav-close:focus-visible {
+  .mobile-nav-close:focus-visible,
+  .mobile-nav-theme:hover,
+  .mobile-nav-theme:focus-visible {
     border-color: var(--accent-line);
+    background: rgba(var(--accent-rgb), 0.08);
     color: var(--accent);
   }
 
-  /* Middle — the numbered link list */
+  .mobile-nav-close:focus-visible,
+  .mobile-nav-theme:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* Middle — the numbered, left-aligned link list, as one column of
+     consistent width so every divider lines up. */
   .mobile-nav-links {
     display: flex;
     flex: 1;
     flex-direction: column;
     justify-content: center;
-    padding: 0.5rem clamp(20px, 5vw, 24px);
+    width: min(100%, 21rem);
+    margin-inline: auto;
+    padding: 1rem clamp(28px, 7vw, 36px);
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .mobile-nav-links a {
     position: relative;
     display: flex;
-    min-height: 56px;
+    min-height: 60px;
     align-items: center;
-    gap: 0.85rem;
+    gap: 1rem;
     color: var(--text);
-    font-size: clamp(1.3rem, 5.5vw, 1.6rem);
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-size: clamp(1.4rem, 6vw, 1.7rem);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
     text-transform: none;
-    border-bottom: 1px solid rgba(var(--text-rgb), 0.08);
+    border-bottom: 1px solid rgba(var(--text-rgb), 0.14);
     opacity: 0;
-    transform: translateY(8px);
-    transition: color 250ms ease, opacity 220ms ease, transform 220ms ease;
+    transform: translateY(6px);
+    transition:
+      color 250ms ease,
+      opacity 320ms var(--ease),
+      transform 420ms var(--ease);
   }
 
   .mobile-nav-links a:last-child {
@@ -2231,14 +2428,16 @@ body.is-scrolled .nav-backdrop {
   .nav-index {
     display: inline-flex;
     flex-shrink: 0;
-    width: 1.6rem;
+    width: 1.75rem;
     color: var(--muted);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 500;
-    letter-spacing: 0.03em;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
     transition: color 250ms ease;
   }
 
+  /* Current page or section: teal text and a slim teal marker. */
   .mobile-nav-links a.is-current {
     color: var(--accent);
   }
@@ -2250,13 +2449,27 @@ body.is-scrolled .nav-backdrop {
   .mobile-nav-links a.is-current::before {
     position: absolute;
     top: 50%;
-    left: calc(-1 * clamp(12px, 3vw, 14px));
+    left: calc(-1 * clamp(14px, 3.5vw, 16px));
     width: 3px;
-    height: 1.1rem;
+    height: 1.25rem;
     border-radius: 2px;
     content: "";
     background: var(--accent);
     transform: translateY(-50%);
+  }
+
+  /* Opening: the head and foot fade in, then the rows rise in a short,
+     restrained stagger. Closing is a single quick fade. */
+  .mobile-nav-head,
+  .mobile-nav-foot {
+    opacity: 0;
+    transition: opacity 260ms ease;
+  }
+
+  .floating-nav.is-open .mobile-nav-head,
+  .floating-nav.is-open .mobile-nav-foot {
+    opacity: 1;
+    transition-delay: 60ms;
   }
 
   .floating-nav.is-open .mobile-nav-links a {
@@ -2265,23 +2478,23 @@ body.is-scrolled .nav-backdrop {
   }
 
   .floating-nav.is-open .mobile-nav-links a:nth-child(1) {
-    transition-delay: 160ms;
+    transition-delay: 0ms, 110ms, 110ms;
   }
 
   .floating-nav.is-open .mobile-nav-links a:nth-child(2) {
-    transition-delay: 210ms;
+    transition-delay: 0ms, 150ms, 150ms;
   }
 
   .floating-nav.is-open .mobile-nav-links a:nth-child(3) {
-    transition-delay: 260ms;
+    transition-delay: 0ms, 190ms, 190ms;
   }
 
   .floating-nav.is-open .mobile-nav-links a:nth-child(4) {
-    transition-delay: 310ms;
+    transition-delay: 0ms, 230ms, 230ms;
   }
 
   .floating-nav.is-open .mobile-nav-links a:nth-child(5) {
-    transition-delay: 360ms;
+    transition-delay: 0ms, 270ms, 270ms;
   }
 
   /* Bottom row — availability status + compact social links */
@@ -2290,7 +2503,7 @@ body.is-scrolled .nav-backdrop {
     flex-shrink: 0;
     flex-direction: column;
     gap: 0.85rem;
-    padding: 1.1rem clamp(20px, 5vw, 24px);
+    padding: 1.1rem var(--mh-pad-r) 1.1rem var(--mh-pad-l);
     border-top: 1px solid rgba(var(--text-rgb), 0.1);
   }
 
@@ -2577,6 +2790,23 @@ body.is-scrolled .nav-backdrop {
   .dock-row {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* Theme switch: for a moment after either theme control is pressed
+   (js/mobile-nav.js adds .theme-transition), every colour eases between the
+   off-white and charcoal themes instead of snapping. The sun/moon icons
+   keep their own rotate-and-fade. */
+:root.theme-transition,
+:root.theme-transition *:not(.theme-icon),
+:root.theme-transition *::before,
+:root.theme-transition *::after {
+  transition:
+    background-color 320ms ease,
+    color 320ms ease,
+    border-color 320ms ease,
+    fill 320ms ease,
+    stroke 320ms ease !important;
+  transition-delay: 0s !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

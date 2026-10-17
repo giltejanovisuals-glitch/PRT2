@@ -695,6 +695,91 @@ html.pbc-locked .project-closing {
   .pbc-project:has(.pbc[data-feed]) .project-closing {
     padding-bottom: 6rem;
   }
+
+  /* Pages without a closing section end on the last photograph, kept clear
+     of the floating category dock. */
+  .pbc-project:not(:has(.project-closing)) .pbc[data-feed]:not([data-kind="video"]) .pbc-gallery {
+    padding-bottom: 6.5rem;
+  }
+
+  /* --- Featured frame (#pbc[data-featured-frame]) -------------------------
+     Every featured photo sits in one fixed 4:5 frame, so nothing below ever
+     moves. The complete photo is shown sharp and uncropped on top
+     (contain); behind it, an enlarged, heavily blurred and darkened copy
+     (cover) fills the rest, under a light dark wash for separation. Photos
+     swap with a plain crossfade: opacity only, no slide or zoom. */
+  .pbc[data-feed][data-featured-frame] .pbc-frame {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #151515;
+  }
+
+  .pbc[data-feed][data-featured-frame] .pbc-shot,
+  .pbc[data-feed][data-featured-frame] .pbc-shot.is-active,
+  .pbc[data-feed][data-featured-frame] .pbc-shot.is-leaving {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: none;
+    filter: none;
+    box-shadow: none;
+    transition: opacity 600ms ease-in-out;
+    will-change: opacity;
+  }
+
+  .pbc[data-feed][data-featured-frame] .pbc-shot.is-active {
+    opacity: 1;
+  }
+
+  .pbc[data-feed][data-featured-frame] .pbc-shot.is-leaving {
+    opacity: 0;
+  }
+
+  .pbc[data-feed][data-featured-frame] .pbc-shot-backdrop {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Enlarged so the blur's soft edges fall outside the frame. */
+    transform: scale(1.2);
+    filter: blur(28px) brightness(0.6) saturate(1.1);
+    pointer-events: none;
+  }
+
+  .pbc[data-feed][data-featured-frame] .pbc-shot::before {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 12, 12, 0.22);
+    content: "";
+    pointer-events: none;
+  }
+
+  .pbc[data-feed][data-featured-frame] .pbc-shot-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+/* The blurred backdrop belongs to the phone featured frame only. */
+.pbc-shot-backdrop {
+  display: none;
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .pbc[data-feed][data-featured-frame] .pbc-shot,
+  .pbc[data-feed][data-featured-frame] .pbc-shot.is-active,
+  .pbc[data-feed][data-featured-frame] .pbc-shot.is-leaving {
+    transition: none;
+  }
 }
 
 /* Feed-only labels stay hidden outside the phone feed. */
@@ -735,5 +820,9 @@ html.pbc-locked .project-closing {
   .pbc-tile:hover .pbc-tile-img,
   .pbc-tile:focus-visible .pbc-tile-img {
     transform: none;
+  }
+
+  .pbc-frame {
+    transition: none !important;
   }
 }

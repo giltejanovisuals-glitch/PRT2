@@ -373,8 +373,8 @@
   transform: translateX(-50%);
 }
 
-/* Phones: no cursor magnification (the script stands down too); a compact
-   dock with the icon above each label, all three always visible. */
+/* Phones: no cursor magnification (the script stands down too); a compact,
+   icon-only dock of three 48px squares. Each link's aria-label names it. */
 @media (max-width: 760px) {
   .nav-dock {
     gap: 4px;
@@ -385,21 +385,76 @@
 
   .nav-dock-item,
   .nav-dock-item-next {
-    flex-direction: column;
     justify-content: center;
-    gap: 0.3rem;
-    height: auto;
-    min-height: 48px;
-    min-width: 64px;
-    padding: 0.45rem 0.75rem;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    padding: 0;
     border-radius: 14px;
     transform: none;
     margin-inline: 0;
   }
 
-  .nav-dock-label {
-    font-size: 0.56rem;
-    letter-spacing: 0.06em;
+  .nav-dock .nav-dock-label,
+  .nav-dock .nav-dock-label-swap {
+    display: none;
+  }
+}
+
+/* Contextual dock button (js/dock-context.js): the dock's home link
+   (Project Gallery or Brand Applications) becomes "Back to Top" once the
+   page intro has scrolled away. Both icons share one spot, and so do both
+   labels; the grid fades out as the arrow rises in and the labels
+   crossfade, so the button never changes size. */
+.nav-dock-label-swap {
+  display: grid;
+}
+
+.nav-dock-label-swap > .nav-dock-label {
+  grid-area: 1 / 1;
+  transition: opacity 220ms var(--ease), visibility 0s linear 0s;
+}
+
+.nav-dock-label-top,
+.nav-dock-item[data-context="top"] .nav-dock-label-home {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 220ms var(--ease), visibility 0s linear 220ms;
+}
+
+.nav-dock-item[data-context="top"] .nav-dock-label-top {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-dock-icon-swap {
+  display: grid;
+  flex: 0 0 auto;
+}
+
+.nav-dock-icon-swap > .nav-dock-icon {
+  grid-area: 1 / 1;
+  transition:
+    opacity 220ms var(--ease),
+    transform 320ms var(--ease);
+}
+
+.nav-dock-icon-top,
+.nav-dock-item[data-context="top"] .nav-dock-icon-gallery {
+  opacity: 0;
+  transform: translateY(5px) scale(0.85);
+}
+
+.nav-dock-item[data-context="top"] .nav-dock-icon-top {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-dock-icon-swap > .nav-dock-icon,
+  .nav-dock-label-swap > .nav-dock-label {
+    transition: none;
+    transform: none !important;
   }
 }
 
