@@ -1,5 +1,5 @@
 {
-  "_comment": "Hand-authored search content. scripts/generate-search-index.js merges this with js/projects-data.js, js/gallery-categories-data.js and the publication manifest into data/search-index.json. URLs are relative to the site root. 'group' is one of: projects, brands, capabilities, tools, sections. 'aliases' adds extra keywords to entries generated from the data files, keyed by URL.",
+  "_comment": "Hand-authored search content. scripts/generate-search-index.js merges this with js/gallery-categories-data.js and the publication manifest into data/search-index.json. URLs are relative to the site root. 'group' is one of: projects, brands, capabilities, tools, sections. 'aliases' adds extra keywords to entries generated from the data files, keyed by URL.",
 
   "shortcuts": [
     { "title": "Selected Work", "kind": "Section", "url": "index.html#main-content" },
@@ -10,19 +10,15 @@
   ],
 
   "aliases": {
-    "pages/editorial-layout.html": ["catalogue", "catalog", "brochure", "lookbook", "brand book", "magazine", "publication", "editorial", "layout", "grid", "typography", "print"],
+    "pages/editorial-layout.html": ["catalogue", "catalog", "brochure", "lookbook", "brand book", "brand deck", "magazine", "publication", "editorial", "layout", "grid", "typography", "print", "porta mobili", "furniture"],
     "pages/social-media-campaigns.html": ["social media", "instagram", "facebook", "key visual", "campaign", "paid social", "ads", "advertising", "digital", "content", "posts", "stories", "mooni", "hooga", "dunlopillo", "metal-lite", "porta mobili"],
-    "pages/print-brand-collateral.html": ["print", "collateral", "poster", "billboard", "flyer", "voucher", "invitation", "brochure", "menu", "tote bag", "standee", "signage", "truck wrap", "pos", "retail", "stationery"],
-    "pages/commercial-lifestyle-photography.html": ["photography", "photo", "photoshoot", "product photography", "lifestyle", "interior", "furniture", "showroom", "architecture", "camera"],
-    "pages/short-form-video-reels.html": ["video", "reels", "reel", "tiktok", "motion", "short-form", "editing", "animation", "film"],
-    "pages/porta-mobili.html": ["furniture", "european furniture", "catalogue", "luxury", "interior"],
-    "pages/hooga.html": ["furniture", "home", "home essentials", "catalogue", "hygge", "lifestyle"],
-    "pages/dunlopillo.html": ["mattress", "bedding", "pillow", "sleep", "campaign"],
-    "pages/metal-lite.html": ["lighting", "lights", "lamps", "home improvement", "architectural lighting"]
+    "pages/print-brand-collateral.html": ["print", "collateral", "poster", "billboard", "flyer", "voucher", "invitation", "brochure", "menu", "tote bag", "standee", "signage", "truck wrap", "pos", "retail", "stationery", "dunlopillo", "hooga", "porta mobili", "riflessi", "mattress"],
+    "pages/commercial-lifestyle-photography.html": ["photography", "photo", "photoshoot", "product photography", "lifestyle", "interior", "furniture", "showroom", "architecture", "camera", "bw", "porta mobili", "hooga"],
+    "pages/short-form-video-reels.html": ["video", "reels", "reel", "tiktok", "motion", "short-form", "editing", "animation", "film"]
   },
 
   "entries": [
-    { "group": "sections", "kind": "Section", "title": "Selected Work", "description": "Featured brand projects at the top of the homepage.", "keywords": ["work", "portfolio", "featured", "projects", "home"], "url": "index.html#main-content" },
+    { "group": "sections", "kind": "Section", "title": "Selected Work", "description": "Featured work at the top of the homepage.", "keywords": ["work", "portfolio", "featured", "projects", "home"], "url": "index.html#main-content" },
     { "group": "sections", "kind": "Section", "title": "Project Gallery", "description": "Editorial, campaigns, print, photography, and motion collections.", "keywords": ["gallery", "all projects", "collections", "work"], "url": "index.html#gallery" },
     { "group": "sections", "kind": "Section", "title": "About Me", "description": "Background, approach, and design philosophy.", "keywords": ["about", "bio", "profile", "designer", "gil tejano culas"], "url": "index.html#about" },
     { "group": "sections", "kind": "Section", "title": "Creative Capabilities", "description": "Services from concept development to final production.", "keywords": ["capabilities", "services", "skills", "expertise"], "url": "index.html#capabilities" },
@@ -76,15 +72,15 @@
     { "group": "tools", "kind": "Software", "title": "Gemini", "description": "AI-assisted research and ideation.", "keywords": ["gemini", "ai", "google"], "url": "index.html#creative-dock" },
 
     { "group": "brands", "kind": "Supported brand", "title": "Mooni", "description": "Mattress brand — social campaigns and key visuals.", "keywords": ["mooni", "mattress", "sleep", "bedding"], "url": "pages/social-media-campaigns.html", "thumb": "assets/images/brands/mooni.svg" },
-    { "group": "brands", "kind": "Supported brand", "title": "Etro Home Interiors", "description": "Represented by Porta Mobili — see the Porta Mobili project.", "keywords": ["etro", "furniture", "italian", "porta mobili"], "url": "pages/porta-mobili.html", "thumb": "assets/images/brands/etro.svg" },
-    { "group": "brands", "kind": "Supported brand", "title": "Stoneleaf", "description": "Represented by Porta Mobili — see the Porta Mobili project.", "keywords": ["stoneleaf", "stone", "surfaces", "porta mobili"], "url": "pages/porta-mobili.html", "thumb": "assets/images/brands/stoneleaf.svg" },
-    { "group": "brands", "kind": "Supported brand", "title": "Riflessi", "description": "Italian furniture represented by Porta Mobili.", "keywords": ["riflessi", "italian", "furniture", "porta mobili"], "url": "pages/porta-mobili.html", "thumb": "assets/images/brands/riflessi.svg" },
-    { "group": "brands", "kind": "Supported brand", "title": "Tisettanta", "description": "Italian furniture represented by Porta Mobili.", "keywords": ["tisettanta", "italian", "furniture", "porta mobili"], "url": "pages/porta-mobili.html", "thumb": "assets/images/brands/tisettanta.svg" },
-    { "group": "brands", "kind": "Supported brand", "title": "BW Bespoke Works", "description": "Bespoke furniture represented by Porta Mobili.", "keywords": ["bw", "bespoke works", "furniture", "porta mobili"], "url": "pages/porta-mobili.html", "thumb": "assets/images/brands/bw.svg" },
-    { "group": "brands", "kind": "Supported brand", "title": "Panasonic", "description": "Lighting and home products carried by Metal-Lite.", "keywords": ["panasonic", "lighting", "metal-lite"], "url": "pages/metal-lite.html" },
-    { "group": "brands", "kind": "Supported brand", "title": "ENDO Lighting", "description": "Architectural lighting carried by Metal-Lite.", "keywords": ["endo", "lighting", "metal-lite"], "url": "pages/metal-lite.html" },
-    { "group": "brands", "kind": "Supported brand", "title": "Astralux", "description": "Strip and accent lighting carried by Metal-Lite.", "keywords": ["astralux", "strip light", "lighting", "metal-lite"], "url": "pages/metal-lite.html" },
-    { "group": "brands", "kind": "Supported brand", "title": "Stella", "description": "Outdoor and linear lighting carried by Metal-Lite.", "keywords": ["stella", "outdoor lighting", "lighting", "metal-lite"], "url": "pages/metal-lite.html" },
-    { "group": "brands", "kind": "Supported brand", "title": "LEDVANCE", "description": "Lighting carried by Metal-Lite.", "keywords": ["ledvance", "led", "lighting", "metal-lite"], "url": "pages/metal-lite.html" }
+    { "group": "brands", "kind": "Supported brand", "title": "Etro Home Interiors", "description": "Represented by Porta Mobili — see the Porta Mobili publications.", "keywords": ["etro", "furniture", "italian", "porta mobili"], "url": "pages/editorial-layout.html", "thumb": "assets/images/brands/etro.svg" },
+    { "group": "brands", "kind": "Supported brand", "title": "Stoneleaf", "description": "Represented by Porta Mobili — see the Porta Mobili publications.", "keywords": ["stoneleaf", "stone", "surfaces", "porta mobili"], "url": "pages/editorial-layout.html", "thumb": "assets/images/brands/stoneleaf.svg" },
+    { "group": "brands", "kind": "Supported brand", "title": "Riflessi", "description": "Italian furniture represented by Porta Mobili.", "keywords": ["riflessi", "italian", "furniture", "porta mobili"], "url": "pages/print-brand-collateral.html", "thumb": "assets/images/brands/riflessi.svg" },
+    { "group": "brands", "kind": "Supported brand", "title": "Tisettanta", "description": "Italian furniture represented by Porta Mobili.", "keywords": ["tisettanta", "italian", "furniture", "porta mobili"], "url": "pages/editorial-layout.html", "thumb": "assets/images/brands/tisettanta.svg" },
+    { "group": "brands", "kind": "Supported brand", "title": "BW Bespoke Works", "description": "Bespoke furniture represented by Porta Mobili.", "keywords": ["bw", "bespoke works", "furniture", "porta mobili"], "url": "pages/commercial-lifestyle-photography.html", "thumb": "assets/images/brands/bw.svg" },
+    { "group": "brands", "kind": "Supported brand", "title": "Panasonic", "description": "Lighting and home products carried by Metal-Lite.", "keywords": ["panasonic", "lighting", "metal-lite"], "url": "pages/social-media-campaigns.html" },
+    { "group": "brands", "kind": "Supported brand", "title": "ENDO Lighting", "description": "Architectural lighting carried by Metal-Lite.", "keywords": ["endo", "lighting", "metal-lite"], "url": "pages/social-media-campaigns.html" },
+    { "group": "brands", "kind": "Supported brand", "title": "Astralux", "description": "Strip and accent lighting carried by Metal-Lite.", "keywords": ["astralux", "strip light", "lighting", "metal-lite"], "url": "pages/social-media-campaigns.html" },
+    { "group": "brands", "kind": "Supported brand", "title": "Stella", "description": "Outdoor and linear lighting carried by Metal-Lite.", "keywords": ["stella", "outdoor lighting", "lighting", "metal-lite"], "url": "pages/social-media-campaigns.html" },
+    { "group": "brands", "kind": "Supported brand", "title": "LEDVANCE", "description": "Lighting carried by Metal-Lite.", "keywords": ["ledvance", "led", "lighting", "metal-lite"], "url": "pages/social-media-campaigns.html" }
   ]
 }

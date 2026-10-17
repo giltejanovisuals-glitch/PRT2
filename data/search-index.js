@@ -32,120 +32,6 @@ window.SEARCH_INDEX = {
  ],
  "entries": [
   {
-   "title": "Porta Mobili",
-   "group": "projects",
-   "kind": "Brand identity & visual system",
-   "description": "Editorial Design · Brand Application · Catalogue System · 2025-2026",
-   "keywords": [
-    "brand identity",
-    "visual system",
-    "editorial design",
-    "brand application",
-    "catalogue system",
-    "catalogue design",
-    "editorial layout",
-    "art direction",
-    "typography",
-    "image composition",
-    "product storytelling",
-    "print preparation",
-    "2025-2026",
-    "furniture",
-    "european furniture",
-    "catalogue",
-    "luxury",
-    "interior"
-   ],
-   "url": "pages/porta-mobili.html",
-   "body": "Porta Mobili curates premium European furniture for contemporary Filipino spaces, supported by personalized guidance, project collaboration, delivery, installation, and after-sales service. This catalogue translates that positioning into a refined editorial experience that introduces the company, communicates its service-led approach, and presents its partner collections with clarity. I developed a cohesive visual system across the 66-page catalogue, balancing atmospheric interiors, product information, brand stories, and service content while allowing each represented European brand to retain its distinct character.",
-   "thumb": "assets/images/hero-folders/porta-mobili-1.webp"
-  },
-  {
-   "title": "Hooga",
-   "group": "projects",
-   "kind": "Brand identity & visual system",
-   "description": "Editorial Design · Brand Application · Retail Communication · 2025-2026",
-   "keywords": [
-    "brand identity",
-    "visual system",
-    "editorial design",
-    "brand application",
-    "retail communication",
-    "catalogue design",
-    "editorial layout",
-    "campaign visuals",
-    "image composition",
-    "product communication",
-    "print and digital adaptation",
-    "2025-2026",
-    "furniture",
-    "home",
-    "home essentials",
-    "catalogue",
-    "hygge",
-    "lifestyle"
-   ],
-   "url": "pages/hooga.html",
-   "body": "Hooga curates contemporary furniture and home essentials that combine comfort, style, and thoughtful living. Inspired by the warmth of hygge, the brand presents globally sourced collections for living, dining, bedrooms, outdoor spaces, lighting, and home accessories. I developed catalogue and visual applications that organize Hooga's extensive product offering into a cohesive and accessible system. The work uses structured layouts, lifestyle imagery, product information, and consistent typography to help customers explore each collection while preserving the brand's refined yet welcoming character.",
-   "thumb": "assets/images/hero-folders/hooga-1.webp"
-  },
-  {
-   "title": "Dunlopillo",
-   "group": "projects",
-   "kind": "Brand identity & visual system",
-   "description": "Campaign Design · Brand Application · Retail Communication · 2025-2026",
-   "keywords": [
-    "brand identity",
-    "visual system",
-    "campaign design",
-    "brand application",
-    "retail communication",
-    "campaign visuals",
-    "retail graphics",
-    "product communication",
-    "promotional materials",
-    "digital content",
-    "image composition",
-    "2025-2026",
-    "mattress",
-    "bedding",
-    "pillow",
-    "sleep",
-    "campaign"
-   ],
-   "url": "pages/dunlopillo.html",
-   "body": "Dunlopillo is a premium bedding brand built on decades of mattress innovation. Its mattresses, pillows, and sleep accessories combine specialized materials and technologies designed around comfort, support, breathability, hygiene, and reduced sleep disturbance. I developed campaign and visual applications that translate Dunlopillo's technical product benefits into clear and approachable customer communication. The work balances lifestyle imagery, product information, promotional messaging, and consistent brand elements across retail and digital touchpoints.",
-   "thumb": "assets/images/hero-folders/dunlopillo-1.webp"
-  },
-  {
-   "title": "Metal-Lite",
-   "group": "projects",
-   "kind": "Brand identity & visual system",
-   "description": "Campaign Design · Brand Application · Retail Communication · 2025-2026",
-   "keywords": [
-    "brand identity",
-    "visual system",
-    "campaign design",
-    "brand application",
-    "retail communication",
-    "campaign visuals",
-    "retail graphics",
-    "product communication",
-    "promotional materials",
-    "digital content",
-    "image composition",
-    "2025-2026",
-    "lighting",
-    "lights",
-    "lamps",
-    "home improvement",
-    "architectural lighting"
-   ],
-   "url": "pages/metal-lite.html",
-   "body": "Metal-Lite offers decorative, architectural, technical, and emergency lighting alongside selected home-improvement products. Its portfolio includes brands such as Panasonic, LEDVANCE, ENDO Lighting, Astralux, and Stella, providing solutions for both residential and commercial environments. I developed retail campaign and visual applications that organize Metal-Lite's diverse product offering into clear, engaging customer communication. The work combines product imagery, technical information, promotional messaging, and consistent brand elements across print, showroom, and digital materials.",
-   "thumb": "assets/images/hero-folders/metal-lite-1.webp"
-  },
-  {
    "title": "Editorial & Layout Design",
    "group": "projects",
    "kind": "Gallery collection",
@@ -161,13 +47,16 @@ window.SEARCH_INDEX = {
     "report",
     "catalogue",
     "catalog",
+    "brand deck",
     "magazine",
     "publication",
     "editorial",
     "layout",
     "grid",
     "typography",
-    "print"
+    "print",
+    "porta mobili",
+    "furniture"
    ],
    "url": "pages/editorial-layout.html",
    "body": "Editorial systems that organize product and brand storytelling into clear, well-paced layouts — grid, typography, hierarchy, and composition built to hold up across long-form print and digital documents.",
@@ -239,7 +128,12 @@ window.SEARCH_INDEX = {
     "truck wrap",
     "pos",
     "retail",
-    "stationery"
+    "stationery",
+    "dunlopillo",
+    "hooga",
+    "porta mobili",
+    "riflessi",
+    "mattress"
    ],
    "url": "pages/print-brand-collateral.html",
    "body": "Brochures, sales materials, stationery, and branded print built to carry a brand consistently off-screen — from billboards and vehicle wraps to pieces held in hand, designed with the same rigor as any digital touchpoint.",
@@ -269,7 +163,10 @@ window.SEARCH_INDEX = {
     "furniture",
     "showroom",
     "architecture",
-    "camera"
+    "camera",
+    "bw",
+    "porta mobili",
+    "hooga"
    ],
    "url": "pages/commercial-lifestyle-photography.html",
    "body": "Product, showroom, and lifestyle photography, styled and art-directed for campaigns, catalogs, and retail environments — with consistent lighting, styling, and color across every shoot.",
@@ -347,7 +244,7 @@ window.SEARCH_INDEX = {
    "title": "Selected Work",
    "group": "sections",
    "kind": "Section",
-   "description": "Featured brand projects at the top of the homepage.",
+   "description": "Featured work at the top of the homepage.",
    "keywords": [
     "work",
     "portfolio",
@@ -1018,14 +915,14 @@ window.SEARCH_INDEX = {
    "title": "Etro Home Interiors",
    "group": "brands",
    "kind": "Supported brand",
-   "description": "Represented by Porta Mobili — see the Porta Mobili project.",
+   "description": "Represented by Porta Mobili — see the Porta Mobili publications.",
    "keywords": [
     "etro",
     "furniture",
     "italian",
     "porta mobili"
    ],
-   "url": "pages/porta-mobili.html",
+   "url": "pages/editorial-layout.html",
    "thumb": "assets/images/brands/etro.svg",
    "logo": true
   },
@@ -1033,14 +930,14 @@ window.SEARCH_INDEX = {
    "title": "Stoneleaf",
    "group": "brands",
    "kind": "Supported brand",
-   "description": "Represented by Porta Mobili — see the Porta Mobili project.",
+   "description": "Represented by Porta Mobili — see the Porta Mobili publications.",
    "keywords": [
     "stoneleaf",
     "stone",
     "surfaces",
     "porta mobili"
    ],
-   "url": "pages/porta-mobili.html",
+   "url": "pages/editorial-layout.html",
    "thumb": "assets/images/brands/stoneleaf.svg",
    "logo": true
   },
@@ -1055,7 +952,7 @@ window.SEARCH_INDEX = {
     "furniture",
     "porta mobili"
    ],
-   "url": "pages/porta-mobili.html",
+   "url": "pages/print-brand-collateral.html",
    "thumb": "assets/images/brands/riflessi.svg",
    "logo": true
   },
@@ -1070,7 +967,7 @@ window.SEARCH_INDEX = {
     "furniture",
     "porta mobili"
    ],
-   "url": "pages/porta-mobili.html",
+   "url": "pages/editorial-layout.html",
    "thumb": "assets/images/brands/tisettanta.svg",
    "logo": true
   },
@@ -1085,7 +982,7 @@ window.SEARCH_INDEX = {
     "furniture",
     "porta mobili"
    ],
-   "url": "pages/porta-mobili.html",
+   "url": "pages/commercial-lifestyle-photography.html",
    "thumb": "assets/images/brands/bw.svg",
    "logo": true
   },
@@ -1099,7 +996,7 @@ window.SEARCH_INDEX = {
     "lighting",
     "metal-lite"
    ],
-   "url": "pages/metal-lite.html"
+   "url": "pages/social-media-campaigns.html"
   },
   {
    "title": "ENDO Lighting",
@@ -1111,7 +1008,7 @@ window.SEARCH_INDEX = {
     "lighting",
     "metal-lite"
    ],
-   "url": "pages/metal-lite.html"
+   "url": "pages/social-media-campaigns.html"
   },
   {
    "title": "Astralux",
@@ -1124,7 +1021,7 @@ window.SEARCH_INDEX = {
     "lighting",
     "metal-lite"
    ],
-   "url": "pages/metal-lite.html"
+   "url": "pages/social-media-campaigns.html"
   },
   {
    "title": "Stella",
@@ -1137,7 +1034,7 @@ window.SEARCH_INDEX = {
     "lighting",
     "metal-lite"
    ],
-   "url": "pages/metal-lite.html"
+   "url": "pages/social-media-campaigns.html"
   },
   {
    "title": "LEDVANCE",
@@ -1150,7 +1047,7 @@ window.SEARCH_INDEX = {
     "lighting",
     "metal-lite"
    ],
-   "url": "pages/metal-lite.html"
+   "url": "pages/social-media-campaigns.html"
   }
  ]
 };

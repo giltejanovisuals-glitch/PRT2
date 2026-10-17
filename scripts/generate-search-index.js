@@ -2,7 +2,6 @@
  * Build-time generator for the site-wide search (js/search.js).
  *
  * Writes data/search-index.json — one flat list of entries — from:
- *   - js/projects-data.js            brand projects (Brand Identity & Visual Systems)
  *   - js/gallery-categories-data.js  Project Gallery collections
  *   - js/publication-manifest.js     editorial publications that have a
  *     + js/publication-meta.js       hand-written title in the meta
@@ -50,7 +49,6 @@ const unique = (list) => [...new Set(list.map((item) => String(item).trim().toLo
 const content = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "search-content.json"), "utf8"));
 const aliases = content.aliases || {};
 const data = readWindowData(
-  "projects-data.js",
   "gallery-categories-data.js",
   "publication-manifest.js",
   "publication-meta.js",
@@ -58,29 +56,6 @@ const data = readWindowData(
 );
 
 const entries = [];
-
-// --- Brand projects -------------------------------------------------------------
-(data.PROJECTS || []).forEach((project) => {
-  const url = `pages/${project.id}.html`;
-  entries.push({
-    title: project.title,
-    group: "projects",
-    kind: "Brand identity & visual system",
-    description: `${project.category}${project.year ? ` · ${project.year}` : ""}`,
-    keywords: [
-      "brand identity",
-      "visual system",
-      ...splitList(project.category),
-      ...splitList(project.role.replace(/^Developed\s+/i, "")),
-      ...splitList(project.deliverables),
-      project.year,
-      ...(aliases[url] || []),
-    ],
-    body: `${project.overview} ${project.contribution}`,
-    url,
-    thumb: `assets/images/hero-folders/${project.id}-1.webp`,
-  });
-});
 
 // --- Project Gallery collections -----------------------------------------------
 const previews = data.HOME_GALLERY_PREVIEWS || {};

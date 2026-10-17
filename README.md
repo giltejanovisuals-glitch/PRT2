@@ -9,14 +9,10 @@ image manifest (see below), which Vercel runs automatically via
 
 ```
 PRT2/
-├── index.html                 Homepage — split-screen hero with the brand
-│                               folders, and the Project Gallery showcase
+├── index.html                 Homepage — image-wall hero (desktop) or
+│                               featured carousel (mobile), and the
+│                               Project Gallery showcase
 ├── pages/
-│   ├── porta-mobili.html      Brand case study pages. All four share one
-│   ├── hooga.html             template; each resolves its own content
-│   ├── dunlopillo.html        from js/projects-data.js by matching its
-│   ├── metal-lite.html        own filename (see js/project-gallery.js)
-│   │
 │   ├── editorial-layout.html  Project Gallery category pages. All five
 │   ├── social-media-campaigns.html   share one moving-wall template;
 │   ├── print-brand-collateral.html   each resolves its own content
@@ -32,7 +28,7 @@ PRT2/
 ├── assets/
 │   ├── images/
 │   │   ├── about/               About Me portrait (see below)
-│   │   ├── hero-folders/       Generated brand visuals for the hero folders (see below)
+│   │   ├── featured/           Generated mobile carousel images (see below)
 │   │   ├── gallery/
 │   │   │   ├── editorial-layout/                Source images for each
 │   │   │   ├── social-media-campaigns/           Project Gallery category
@@ -40,10 +36,6 @@ PRT2/
 │   │   │   ├── commercial-lifestyle-photography/ into the matching
 │   │   │   └── short-form-video-reels/           category's folder, don't
 │   │   │                                          edit the manifest by hand
-│   │   ├── porta-mobili/       10 images, 1920×1080 (16:9), flush stacked
-│   │   ├── hooga/
-│   │   ├── dunlopillo/
-│   │   └── metal-lite/
 │   ├── icons/
 │   │   └── favicon.png         Linked from every page's <head>
 │   ├── fonts/                  Empty — fonts are currently loaded from
@@ -56,8 +48,8 @@ PRT2/
 ├── css/
 │   ├── style.css               Shared: tokens, reset, header/nav, homepage
 │   │                            (including the Project Gallery showcase)
-│   ├── project-gallery.css     Case-study-only: gallery, lightbox,
-│   │                            nav dock, floating counters
+│   ├── project-gallery.css     Category pages: lightbox, nav dock,
+│   │                            floating counters
 │   ├── gallery-editorial.css   Image category pages: the (now unused)
 │   │                             moving rows and the lightbox additions
 │   └── print-collateral-showcase.css  Split-screen gallery showcase used by
@@ -68,9 +60,6 @@ PRT2/
 │   ├── hero-parallax.js         Homepage: scroll-driven folder wall (hero)
 │   ├── gallery-index.js         Homepage: Project Gallery mobile
 │   │                             accordion (desktop hover is CSS-only)
-│   ├── project-gallery.js       Brand pages: resolves the project from
-│   │                             projects-data.js, builds the gallery,
-│   │                             lightbox, prev/next nav
 │   ├── gallery-editorial.js     Every category page: resolves the category
 │   │                             from gallery-categories-data.js by
 │   │                             filename, then the shared eyebrow/title/
@@ -81,9 +70,6 @@ PRT2/
 │   ├── print-collateral-showcase.js  Split-screen showcase (images, or
 │   │                             videos on the Reels page) — see below
 │   └── nav-dock.js              Bottom dock: magnification, current page
-├── js/projects-data.js          Single source of truth for all brand
-│                                 project copy (title, overview, gallery
-│                                 layout, credits, etc.)
 ├── js/gallery-categories-data.js  Single source of truth for all category
 │                                    copy (title, intro, lede, tone,
 │                                    numbering, prev/next nav) for all five
@@ -103,19 +89,9 @@ PRT2/
                                      filename
 ```
 
-## Adding or editing a project
-
-1. Edit its entry in `js/projects-data.js` (or add a new one — order there
-   sets each page's "Project 0N" numbering). The homepage hero's folders
-   are hand-written in `index.html` — see "Homepage hero" below.
-2. Drop that project's images into `assets/images/<id>/`.
-3. If it's a new project, copy any file in `pages/` to `pages/<id>.html` —
-   the page needs no edits; it resolves its own id from its filename.
-
-Currently no real photography is wired in yet — all gallery tiles render as
-CSS placeholder gradients (see the `project-<id>` tone classes in
-`css/style.css`) until real `<img>`/background assets are dropped into
-`assets/images/`.
+The brand case-study pages (Porta Mobili, Hooga, Dunlopillo, Metal-Lite —
+"Brand Identity & Guidelines") have been retired; their work is shown
+through the Project Gallery categories instead.
 
 ## Adding or editing a Project Gallery category
 
@@ -131,7 +107,7 @@ CSS placeholder gradients (see the `project-<id>` tone classes in
    you change a category's title or description.
 3. If it's a new category, copy any file in `pages/` (e.g.
    `pages/print-brand-collateral.html`) to `pages/<id>.html` — it resolves
-   its own id from its filename, same as the brand pages.
+   its own id from its filename.
 
 All category copy is currently placeholder ("Client Name", generic
 project types) and every tile renders as a CSS gradient (the
@@ -174,7 +150,7 @@ showcase (see "Split-screen gallery showcase" below), and so does
 2–3 horizontally auto-scrolling rows of mixed-aspect-ratio images
 (`css/gallery-editorial.css`, `js/gallery-editorial.js`), is no longer used
 by any page but still works for a page that includes `#editorial-wall`. Each page resolves
-its own category from its filename (same pattern as the brand pages) and
+its own category from its filename and
 sources its images through a generated manifest instead of hand-written
 `<img>` tags, so a plain drag-and-drop of files into that category's folder
 is enough to populate it — no HTML/JS edits needed, even for a brand-new
@@ -323,21 +299,57 @@ scroll, then its three rows slide sideways in alternating directions. With
 - **Each card** links to its category page and shows the category name on
   hover/focus; names and links are read from the Project Gallery panels
   (`.showcase-panel[data-category]`) further down `index.html`.
-- On mobile, `css/mobile-folders.css` and `js/mobile-folders.js` show one
-  brand folder at a time with shorter copy in a `100dvh` charcoal hero.
-  Folders link to the existing brand project pages. Swipe left or right
-  over the folder to change projects, with a 600ms transition lock and
-  horizontal wheel momentum suppression. Left/right arrow keys also work.
-  Vertical gestures always scroll the page to Project Gallery. The mobile
-  folder stands alone without a metadata
-  row, counter, navigation buttons, project escape link, or scroll cue.
-- The first WebP folder preview is in the HTML; subsequent previews load
-  only when selected. The desktop image wall is not populated on mobile.
-  `scripts/generate-hero-folders.js` regenerates the optimized previews in
-  `assets/images/hero-folders/`.
-- Reduced motion and data saving disable transitions and scroll capture.
-  A native horizontal strip exposes all four projects. Screens shorter
-  than 620px use natural page scrolling so content remains reachable.
+- On mobile (up to 760px), `css/mobile-featured.css` and
+  `js/mobile-featured.js` replace the wall with a label, headline,
+  supporting line, a 4:5 carousel of six featured visuals, and a brand and
+  title caption. Each image links to its project. The desktop image wall
+  is not populated on mobile.
+- **Featured collection** is hand-approved in `FEATURED` in
+  `scripts/generate-mobile-featured.js` (one visual per category and
+  brand). The first entry is always the opening slide; the other five are
+  shuffled once per browsing session (`sessionStorage`) and never reorder
+  mid-visit. To change a slide, edit its entry, delete its files in
+  `assets/images/featured/`, and run `npm run build`. The script writes
+  480w/960w WebP copies, an inline placeholder per slide,
+  `js/mobile-featured-data.js`, the opening slide's markup, and its
+  `<link rel="preload">` (between the `MOBILE FEATURED` markers in
+  `index.html`). An optional `crop` trims source edges.
+- **Images** are shown whole (`object-fit: contain`) over an enlarged,
+  blurred, darkened copy of the placeholder, so other ratios never stretch,
+  crop, or show flat bars. Only the current and next slides receive image
+  sources; the placeholder shows until each full image loads.
+- **Interaction**: swipe (the first 10px choose the axis; vertical always
+  scrolls the page, 40px horizontal steps one slide) and left/right arrow
+  keys. Instagram-style dots over the bottom of the image mark the
+  position. Slides crossfade over 600ms with a slight 1.5% settle.
+  Autoplay advances every 5.5s, pauses during touch, focus, hover, hidden
+  tabs, and while offscreen, and stops for the visit after any manual
+  step. Reduced motion or data saving disables autoplay and transitions.
+- **Accessibility**: each slide is a labelled group ("2 of 6"); manual
+  steps are announced through a polite live region; hidden slides are
+  `inert`. Without JavaScript only the opening slide and its links show.
+- **Links**: each slide opens its piece directly on its Project Gallery
+  page via `?open=<file name>` (`openIn()` in the generator). The showcase
+  pages (`js/print-collateral-showcase.js`) open that image in the
+  fullscreen lightbox, or that reel in the phone reel viewer or desktop
+  preview; the editorial page (`js/publication-reader.js`) opens that PDF
+  in the reader. The parameter is then removed from the address bar.
+  Linked reels use the reel viewer on every screen size. Closing a piece
+  opened this way (close button or Escape) returns the visitor to the page
+  they came from (`js/return-trip.js`, loaded on the five gallery
+  pages), or to the homepage if they arrived another way. The carousel
+  then shows the same slide again, with autoplay paused.
+
+### Returning to the homepage
+
+The homepage turns off the browser's own scroll restoration, so
+`js/home-return.js` remembers where the visitor was when they left for a
+Project Gallery page. Coming back with the browser's Back button, or
+through any "back to the gallery" link on those pages (the dock's Back to
+Project Gallery button or the menu's Gallery link, anything pointing at
+`index.html#gallery`; flagged by `js/return-trip.js`), restores that exact
+position on phones and desktop. Other links (Work, About, Contact…) and
+fresh visits behave as before.
 
 ### Mobile Project Gallery
 
@@ -372,9 +384,16 @@ JavaScript. Desktop keeps its existing capabilities track.
 ### Mobile Creative Dock
 
 At widths up to 760px, `css/mobile-dock.css` replaces the desktop software
-grid with ten prioritized tools in a native horizontal dock. Mobile SVG
-variants in `assets/icons/tools/mobile/` omit background tiles and use
-cropped visible bounds for consistent 44px icon sizing. Native radio inputs
+grid with all 23 desktop tools, in the desktop order, in a native
+horizontal dock. Mobile variants in `assets/icons/tools/mobile/` omit
+background tiles and use cropped visible bounds for consistent 44px icon
+sizing; tools whose desktop icon is already a bare logo (CorelDRAW,
+Upscayl, Microsoft 365, Figma, Gemini, Firefly) reuse it, and Capture One
+is a 132px WebP render of its heavy raster SVG. Single-colour logos
+(Affinity, Canva, CapCut, Runway, ChatGPT) are drawn dark and carry
+`class="is-mono"`, which inverts them in dark mode so they stay visible
+in both themes. Each tool needs a matching `:has()` selector in
+`css/mobile-dock.css` to show its panel. Native radio inputs
 select a single tool, show its name and teal indicator, and update a fixed
 220px information panel. The dock never automatically scrolls or cycles.
 

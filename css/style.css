@@ -454,23 +454,6 @@ body.is-scrolled .nav-backdrop {
   transform: rotate(-45deg);
 }
 
-/* Brand tones — also used by the case-study pages (js/project-gallery.js). */
-.project-dunlopillo {
-  background: linear-gradient(150deg, #33424a, #5f7a86);
-}
-
-.project-metal {
-  background: linear-gradient(150deg, #3a3a3a, #6b6b6b);
-}
-
-.project-porta {
-  background: linear-gradient(150deg, #5c4632, #8a6b4a);
-}
-
-.project-hooga {
-  background: linear-gradient(150deg, #3f5347, #6d8874);
-}
-
 .section-index {
   margin: 0 0 0.6rem;
   color: var(--muted);

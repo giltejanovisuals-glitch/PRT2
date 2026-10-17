@@ -1039,6 +1039,49 @@
   applyMode();
   select(featuredIndex, { auto: true });
 
+  // --- Deep link: ?open=<file> ---------------------------------------------
+  //
+  // The landing carousel links straight to one piece (an image's file name,
+  // or a reel's .mp4). It opens at once in the fullscreen lightbox or, for
+  // a reel, the reel viewer (on every screen size, so there is always a
+  // close button). Closing it returns the visitor to the page they came
+  // from (js/return-trip.js). The parameter is dropped from the address
+  // so a reload or a shared link to the page itself doesn't reopen it.
+  const params = new URLSearchParams(window.location.search);
+  const requested = params.get("open");
+  const decodeFile = (name) => {
+    try {
+      return decodeURIComponent(name);
+    } catch (e) {
+      return name;
+    }
+  };
+  const linkedPos = requested ? entries.findIndex((entry) => decodeFile(fileOf(entry.src)) === requested) : -1;
+  if (requested) {
+    params.delete("open");
+    const query = params.toString();
+    history.replaceState(history.state, "", `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
+  }
+  if (linkedPos >= 0) {
+    const stackedFeed = mode === "stacked" && FEED;
+    if (!stackedFeed) select(linkedPos, { reveal: mode !== "stacked" });
+    if (IS_VIDEO) {
+      const viewer = reelViewer || (window.createReelViewer
+        ? window.createReelViewer(entries, { typeFallback: TYPE_FALLBACK, formatDuration })
+        : null);
+      if (viewer) {
+        window.returnOnClose?.(root, "reel-viewer-open");
+        viewer.open(linkedPos, tiles[linkedPos]);
+      } else {
+        frame.scrollIntoView({ block: "center" });
+      }
+    } else if (lightbox) {
+      window.returnOnClose?.(document.body, "lightbox-open");
+      if (stackedFeed) lightbox.open(entries[linkedPos].flatIndex, tiles[linkedPos]);
+      else openFullscreen(frame);
+    }
+  }
+
   // --- Featured slideshow ---------------------------------------------------
   //
   // With a hand-picked `featured` list, the preview crossfades through those
@@ -1117,5 +1160,6 @@
     if (reducedMotionQuery.matches) setPlaying(false);
   });
 
-  setPlaying(!reducedMotionQuery.matches);
+  // A linked piece stays in the preview; the slideshow never takes it over.
+  setPlaying(!reducedMotionQuery.matches && linkedPos < 0);
 })();

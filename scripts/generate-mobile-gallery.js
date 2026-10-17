@@ -34,7 +34,7 @@ const cards = categories.map(category => {
           </div>
           <div class="mobile-gallery-info">
             <p class="mobile-gallery-number">${category.number} / ${category.label}</p>
-            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-${category.number}">${escape(category.title)}</h3><span aria-hidden="true">↗</span></div>
+            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-${category.number}">${escape(category.title)}</h3></div>
             <p class="mobile-gallery-description">${escape(category.description)}</p>
             <p class="mobile-gallery-count">${category.count} ${category.unit}</p>
           </div>

@@ -14,6 +14,9 @@
   .mobile-dock-icon { position: relative; display: flex; align-items: center; justify-content: center; width: 48px; height: 64px; flex: none; }
   .mobile-dock-icon img { display: block; width: 44px; height: 44px; object-fit: contain; opacity: .78; transform: none; transition: transform 220ms var(--ease), opacity 160ms ease; }
   .mobile-dock-name { display: block; width: 100%; min-height: 26px; color: var(--m-muted); font-size: 10px; line-height: 1.3; text-align: center; visibility: hidden; overflow-wrap: anywhere; transition: none; }
+  /* Single-colour logos (CapCut, Canva, Affinity, Runway, ChatGPT) ship dark
+     for day mode and are inverted for night mode. */
+  :root[data-theme="dark"] .mobile-dock-icon img.is-mono { filter: invert(1) brightness(.94); }
   .mobile-dock-tool input:checked ~ .mobile-dock-name { visibility: visible; }
   .mobile-dock-tool input:checked ~ .mobile-dock-icon img { opacity: 1; transform: translateY(-4px) scale(1.12); }
   .mobile-dock-tool.is-neighbor .mobile-dock-icon img { transform: translateY(-1px) scale(1.04); }
@@ -28,13 +31,29 @@
   .mobile-dock:has(input[value="photoshop"]:checked) [data-tool="photoshop"],
   .mobile-dock:has(input[value="illustrator"]:checked) [data-tool="illustrator"],
   .mobile-dock:has(input[value="lightroom"]:checked) [data-tool="lightroom"],
-  .mobile-dock:has(input[value="indesign"]:checked) [data-tool="indesign"],
-  .mobile-dock:has(input[value="premiere-pro"]:checked) [data-tool="premiere-pro"],
-  .mobile-dock:has(input[value="davinci-resolve"]:checked) [data-tool="davinci-resolve"],
-  .mobile-dock:has(input[value="capcut"]:checked) [data-tool="capcut"],
+  .mobile-dock:has(input[value="affinity"]:checked) [data-tool="affinity"],
+  .mobile-dock:has(input[value="bridge"]:checked) [data-tool="bridge"],
+  .mobile-dock:has(input[value="capture-one"]:checked) [data-tool="capture-one"],
+  .mobile-dock:has(input[value="coreldraw"]:checked) [data-tool="coreldraw"],
   .mobile-dock:has(input[value="sketchup"]:checked) [data-tool="sketchup"],
+  .mobile-dock:has(input[value="upscayl"]:checked) [data-tool="upscayl"],
+  .mobile-dock:has(input[value="indesign"]:checked) [data-tool="indesign"],
+  .mobile-dock:has(input[value="canva"]:checked) [data-tool="canva"],
+  .mobile-dock:has(input[value="microsoft-365"]:checked) [data-tool="microsoft-365"],
+  .mobile-dock:has(input[value="after-effects"]:checked) [data-tool="after-effects"],
+  .mobile-dock:has(input[value="premiere-pro"]:checked) [data-tool="premiere-pro"],
+  .mobile-dock:has(input[value="capcut"]:checked) [data-tool="capcut"],
+  .mobile-dock:has(input[value="davinci-resolve"]:checked) [data-tool="davinci-resolve"],
   .mobile-dock:has(input[value="vscode"]:checked) [data-tool="vscode"],
-  .mobile-dock:has(input[value="canva"]:checked) [data-tool="canva"] { display: block; animation: mobile-tool-fade 160ms ease; }
+  .mobile-dock:has(input[value="figma"]:checked) [data-tool="figma"],
+  .mobile-dock:has(input[value="gemini"]:checked) [data-tool="gemini"],
+  .mobile-dock:has(input[value="runway"]:checked) [data-tool="runway"],
+  .mobile-dock:has(input[value="chatgpt"]:checked) [data-tool="chatgpt"],
+  .mobile-dock:has(input[value="claude"]:checked) [data-tool="claude"],
+  .mobile-dock:has(input[value="firefly"]:checked) [data-tool="firefly"] { display: block; animation: mobile-tool-fade 160ms ease; }
+}
+@media (max-width: 760px) and (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .mobile-dock-icon img.is-mono { filter: invert(1) brightness(.94); }
 }
 @media (max-width: 340px) {
   /* Leave the fourth icon partially visible on the narrowest phones,

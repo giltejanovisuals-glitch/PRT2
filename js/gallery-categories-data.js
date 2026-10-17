@@ -1,7 +1,6 @@
 /*
  * Placeholder data for the Project Gallery category pages (pages/<id>.html).
- * Mirrors js/projects-data.js's role for the brand pages, but keyed by
- * application type instead of by client. Most entries here are clearly
+ * Keyed by application type rather than by client. Most entries here are clearly
  * generic placeholders — swap in real projects, images, and copy as they
  * become available; see README.md.
  *

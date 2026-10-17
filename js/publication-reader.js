@@ -1603,4 +1603,21 @@
   updateZoomUI();
   buildShelf();
   armReveal();
+
+  // Deep link: ?open=<pdf file> (from the landing carousel) opens that
+  // publication in the reader at once, then leaves the address clean.
+  // Closing the reader returns the visitor to the page they came from
+  // (js/return-trip.js).
+  const params = new URLSearchParams(window.location.search);
+  const requested = params.get("open");
+  if (requested) {
+    params.delete("open");
+    const query = params.toString();
+    history.replaceState(history.state, "", `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
+    const linked = publications.find((pub) => pub.file === requested);
+    if (linked) {
+      window.returnOnClose?.(document.body, "pub-immersive-open");
+      openReader(linked.index);
+    }
+  }
 })();

@@ -1,6 +1,6 @@
 /*
  * Floating Mac-style dock — the shared prev / home / next navigation on
- * every brand and Project Gallery page (styles in css/project-gallery.css).
+ * every Project Gallery page (styles in css/project-gallery.css).
  *
  * - Marks a dock link that points at the page being viewed with
  *   aria-current="page". It runs after the page scripts (all deferred), so

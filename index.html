@@ -42,7 +42,8 @@
     <link rel="stylesheet" href="css/content-protection.css" />
     <script src="js/content-protection.js" defer></script>
     <link rel="stylesheet" href="css/hero-parallax.css" />
-    <link rel="stylesheet" href="css/mobile-folders.css?v=4" />
+    <link rel="stylesheet" href="css/mobile-featured.css" />
+    <!-- MOBILE FEATURED PRELOAD START --><link rel="preload" as="image" type="image/webp" media="(max-width: 760px)" imagesrcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" imagesizes="(max-width: 760px) calc(100vw - 40px), 1px" fetchpriority="high" /><!-- MOBILE FEATURED PRELOAD END -->
     <link rel="stylesheet" href="css/mobile-gallery.css" />
     <link rel="stylesheet" href="css/mobile-about.css" />
     <link rel="stylesheet" href="css/mobile-capabilities.css" />
@@ -64,7 +65,8 @@
     <script src="js/script.js" defer></script>
     <script src="js/home-previews.js" defer></script>
     <script src="js/hero-parallax.js" defer></script>
-    <script src="js/mobile-folders.js?v=3" defer></script>
+    <script src="js/mobile-featured-data.js" defer></script>
+    <script src="js/mobile-featured.js" defer></script>
     <script src="js/gallery-index.js?v=2" defer></script>
   </head>
 
@@ -154,27 +156,39 @@
 
     <main class="hero hero-parallax" id="main-content" aria-labelledby="hero-title">
       <div class="hpx-header">
-        <p class="hpx-eyebrow">Gil Tejano Culas — Senior Graphic Designer / Creative Specialist</p>
-        <h1 class="hpx-title" id="hero-title"><span class="desktop-hero-copy">Building premium visual systems where creativity meets commercial purpose.</span><span class="mobile-hero-copy">Premium visual systems for product-driven brands.</span></h1>
-        <p class="hpx-sub"><span class="desktop-hero-copy">Brand identities, campaign applications, and visual experiences created for furniture, lifestyle, retail, and product-driven brands.</span><span class="mobile-hero-copy">Campaigns, catalogues, retail applications, and digital experiences designed with clarity and commercial purpose.</span></p>
+        <p class="hpx-eyebrow"><span class="desktop-hero-copy">Gil Tejano Culas — Senior Graphic Designer / Creative Specialist</span><span class="mobile-hero-copy"><strong>Gil Tejano Culas</strong> Senior Graphic Designer / Creative Specialist</span></p>
+        <h1 class="hpx-title" id="hero-title"><span class="desktop-hero-copy">Building premium visual systems where creativity meets commercial purpose.</span><span class="mobile-hero-copy">Visual experiences shaped for brands, products, and commercial purpose.</span></h1>
+        <p class="hpx-sub"><span class="desktop-hero-copy">Brand identities, campaign applications, and visual experiences created for furniture, lifestyle, retail, and product-driven brands.</span><span class="mobile-hero-copy">Campaign visuals, brand applications, and creative content for furniture, lifestyle, retail, and product-driven brands.</span></p>
         <div class="hpx-actions">
           <a class="hpx-btn hpx-btn-solid" href="#gallery">Project Gallery</a>
           <a class="hpx-btn" href="#contact">Make Contact</a>
         </div>
       </div>
 
-      <div class="mobile-projects" role="region" aria-roledescription="carousel" aria-label="Featured brand projects">
-        <div class="mobile-folder-stage">
-          <div class="mobile-folder-track">
-            <a class="mobile-folder is-active" href="pages/porta-mobili.html" data-brand="porta-mobili" aria-label="Explore Porta Mobili projects" aria-roledescription="slide">
-              <span class="folder-tab" aria-hidden="true">SELECTED WORK / 01</span>
-              <span class="folder-preview"><picture><source media="(max-width: 760px)" srcset="assets/images/hero-folders/porta-mobili-1.webp" /><img width="640" height="640" alt="Porta Mobili furniture campaign" decoding="async" fetchpriority="high" /></picture></span>
-              <span class="folder-front" aria-hidden="true"><span>PORTA MOBILI</span><small>Open project ↗</small></span>
+      <!-- Mobile landing carousel: the approved featured collection lives in
+           scripts/generate-mobile-featured.js; the first slide is rendered
+           here, js/mobile-featured.js adds the rest. -->
+      <section class="mobile-featured" aria-roledescription="carousel" aria-label="Featured work">
+        <div class="featured-frame">
+          <!-- MOBILE FEATURED START -->
+          <div class="featured-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 6" data-id="hooga-key-visual" style="--placeholder: url('data:image/webp;base64,UklGRgQDAABXRUJQVlA4WAoAAAAgAAAAFwAAIAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggFgEAAFAGAJ0BKhgAIQA+0VqmTSglI6IquAwBABoJQBdma/KgCQWTNfF+K4BcBKUYwSr0bK4HY4ZlgW49L/YAAP7r9W9sBE0D5HUi2O14rPdZb07rwrNQldqv5+kLo1nsEItEwheiKUJiUNx6PR2fXy0XTjNGBUZrvOSpJysnt7viKGNppn8/dwFHrdqIJXqxBJUK5x0T5bTUz87vHiM6A01LfnGNfWza8Gcm/CQoQkbdJaShhnVKi823ivlhvJUD8OD+qP3P5DoadcZQqcwyBeHAaS9GPOm3Zbbt/34e0cHjJaCIGK6k7oQsy5Bia1jZbzK2m3knIKAP/UCbxlx0zQB1nHAIMYOZSK1mPx/1XEpkAWaXq6TIAAAA')">
+            <a class="featured-media" href="pages/social-media-campaigns.html?open=HOOGA%20ROCKWELL.png">
+              <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" sizes="(max-width: 760px) calc(100vw - 40px), 1px" /><img width="960" height="1332" alt="Hooga “A New Sense of Comfort” key visual: a tan leather sofa beneath glowing circular ceiling lights in a warm walnut-toned room." decoding="async" fetchpriority="high" /></picture>
             </a>
           </div>
-          <span class="folder-next-edge" aria-hidden="true"></span>
+          <!-- MOBILE FEATURED END -->
+          <div class="featured-dots" aria-hidden="true"></div>
         </div>
-      </div>
+        <div class="featured-details">
+          <div class="featured-caption">
+          <!-- MOBILE FEATURED CAPTION START -->
+          <p class="featured-brand">Hooga</p>
+          <p class="featured-title">Brand Campaign Key Visual</p>
+          <!-- MOBILE FEATURED CAPTION END -->
+          </div>
+        </div>
+        <p class="featured-status sr-only" aria-live="polite" aria-atomic="true"></p>
+      </section>
 
       <!-- Filled by js/hero-parallax.js with random Project Gallery images
            (window.HOME_GALLERY_PREVIEWS), five per row. -->
@@ -203,7 +217,7 @@
           </div>
           <div class="mobile-gallery-info">
             <p class="mobile-gallery-number">01 / EDITORIAL</p>
-            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-01">Editorial &amp; Layout Design</h3><span aria-hidden="true">↗</span></div>
+            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-01">Editorial &amp; Layout Design</h3></div>
             <p class="mobile-gallery-description">Catalogues, lookbooks, and publication systems.</p>
             <p class="mobile-gallery-count">2 publications</p>
           </div>
@@ -215,7 +229,7 @@
           </div>
           <div class="mobile-gallery-info">
             <p class="mobile-gallery-number">02 / CAMPAIGNS</p>
-            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-02">Social Media Campaigns &amp; Key Visuals</h3><span aria-hidden="true">↗</span></div>
+            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-02">Social Media Campaigns &amp; Key Visuals</h3></div>
             <p class="mobile-gallery-description">Key visuals and cohesive social campaign systems.</p>
             <p class="mobile-gallery-count">422 images</p>
           </div>
@@ -227,7 +241,7 @@
           </div>
           <div class="mobile-gallery-info">
             <p class="mobile-gallery-number">03 / PRINT</p>
-            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-03">Print &amp; Brand Collateral</h3><span aria-hidden="true">↗</span></div>
+            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-03">Print &amp; Brand Collateral</h3></div>
             <p class="mobile-gallery-description">Brochures, sales materials, and branded print.</p>
             <p class="mobile-gallery-count">48 images</p>
           </div>
@@ -239,7 +253,7 @@
           </div>
           <div class="mobile-gallery-info">
             <p class="mobile-gallery-number">04 / PHOTOGRAPHY</p>
-            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-04">Commercial &amp; Lifestyle Photography</h3><span aria-hidden="true">↗</span></div>
+            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-04">Commercial &amp; Lifestyle Photography</h3></div>
             <p class="mobile-gallery-description">Product, showroom, and lifestyle photography.</p>
             <p class="mobile-gallery-count">126 photographs</p>
           </div>
@@ -251,7 +265,7 @@
           </div>
           <div class="mobile-gallery-info">
             <p class="mobile-gallery-number">05 / MOTION</p>
-            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-05">Short-Form Video &amp; Reels</h3><span aria-hidden="true">↗</span></div>
+            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-05">Short-Form Video &amp; Reels</h3></div>
             <p class="mobile-gallery-description">Short-form stories for social feeds and launches.</p>
             <p class="mobile-gallery-count">59 videos</p>
           </div>
@@ -387,7 +401,7 @@
           </ul>
 
           <div class="about-actions">
-            <a class="cta-btn cta-btn-primary" href="#timeline-heading">View My Experience<span class="mobile-hero-copy" aria-hidden="true"> →</span></a>
+            <a class="cta-btn cta-btn-primary" href="#timeline-heading">View My Experience</a>
             <a class="cta-btn cta-btn-outline" href="assets/files/Gil-Tejano-CV.pdf" download>
               Download CV
             </a>
@@ -440,7 +454,7 @@
             <div class="capability-panel" id="capability-panel-01" role="region" aria-labelledby="capability-trigger-01">
               <p>Strategy, visual direction, campaign concepts, and brand consistency.</p>
               <ul><li>Creative strategy</li><li>Campaign concepts</li><li>Visual direction &amp; brand consistency</li></ul>
-              <a href="pages/social-media-campaigns.html">View campaign work <span aria-hidden="true">→</span></a>
+              <a href="pages/social-media-campaigns.html">View campaign work</a>
             </div>
           </details>
           <details class="mobile-capability" name="mobile-capabilities">
@@ -448,7 +462,7 @@
             <div class="capability-panel" id="capability-panel-02" role="region" aria-labelledby="capability-trigger-02">
               <p>Brand applications, catalogues, brochures, retail graphics, and print materials.</p>
               <ul><li>Brand &amp; retail applications</li><li>Editorial systems</li><li>Print production</li></ul>
-              <a href="pages/editorial-layout.html">View editorial work <span aria-hidden="true">→</span></a>
+              <a href="pages/editorial-layout.html">View editorial work</a>
             </div>
           </details>
           <details class="mobile-capability" name="mobile-capabilities">
@@ -456,7 +470,7 @@
             <div class="capability-panel" id="capability-panel-03" role="region" aria-labelledby="capability-trigger-03">
               <p>Product photography, lifestyle imagery, retouching, compositing, and photo manipulation.</p>
               <ul><li>Product &amp; lifestyle photography</li><li>Retouching &amp; image enhancement</li><li>Compositing &amp; photo manipulation</li></ul>
-              <a href="pages/commercial-lifestyle-photography.html">View photography work <span aria-hidden="true">→</span></a>
+              <a href="pages/commercial-lifestyle-photography.html">View photography work</a>
             </div>
           </details>
           <details class="mobile-capability" name="mobile-capabilities">
@@ -464,7 +478,7 @@
             <div class="capability-panel" id="capability-panel-04" role="region" aria-labelledby="capability-trigger-04">
               <p>Videography, reels, campaign videos, product demonstrations, and editing.</p>
               <ul><li>Videography &amp; product demonstrations</li><li>Reels &amp; campaign videos</li><li>Video editing</li></ul>
-              <a href="pages/short-form-video-reels.html">View motion work <span aria-hidden="true">→</span></a>
+              <a href="pages/short-form-video-reels.html">View motion work</a>
             </div>
           </details>
           <details class="mobile-capability" name="mobile-capabilities">
@@ -474,7 +488,7 @@
               <ul><li>3D visualization &amp; mockups</li><li>Presentation systems</li><li>Website interface design</li></ul>
             </div>
           </details>
-          <a class="capability-explore" href="#gallery">Explore Related Projects <span aria-hidden="true">→</span></a>
+          <a class="capability-explore" href="#gallery">Explore Related Projects</a>
         </div>
 
         <div class="cap-track" id="cap-track" role="list" aria-labelledby="cap-heading" tabindex="0">
@@ -559,24 +573,24 @@
               <span class="mobile-dock-name" aria-hidden="true">Lightroom</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="indesign" aria-label="Show Adobe InDesign details" />
-              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/indesign.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
-              <span class="mobile-dock-name" aria-hidden="true">InDesign</span>
+              <input type="radio" name="mobile-software-tool" value="affinity" aria-label="Show Affinity details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img class="is-mono" src="assets/icons/tools/mobile/affinity.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">Affinity</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="premiere-pro" aria-label="Show Adobe Premiere Pro details" />
-              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/premiere-pro.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
-              <span class="mobile-dock-name" aria-hidden="true">Premiere Pro</span>
+              <input type="radio" name="mobile-software-tool" value="bridge" aria-label="Show Adobe Bridge details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/bridge.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">Bridge</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="davinci-resolve" aria-label="Show DaVinci Resolve details" />
-              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/davinci-resolve.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
-              <span class="mobile-dock-name" aria-hidden="true">DaVinci Resolve</span>
+              <input type="radio" name="mobile-software-tool" value="capture-one" aria-label="Show Capture One details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/capture-one.webp" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">Capture One</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="capcut" aria-label="Show CapCut details" />
-              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/capcut.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
-              <span class="mobile-dock-name" aria-hidden="true">CapCut</span>
+              <input type="radio" name="mobile-software-tool" value="coreldraw" aria-label="Show CorelDRAW details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/coreldraw.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">CorelDRAW</span>
             </label>
             <label class="mobile-dock-tool">
               <input type="radio" name="mobile-software-tool" value="sketchup" aria-label="Show SketchUp details" />
@@ -584,14 +598,79 @@
               <span class="mobile-dock-name" aria-hidden="true">SketchUp</span>
             </label>
             <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="upscayl" aria-label="Show Upscayl details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/upscayl.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">Upscayl</span>
+            </label>
+            <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="indesign" aria-label="Show Adobe InDesign details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/indesign.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">InDesign</span>
+            </label>
+            <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="canva" aria-label="Show Canva details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img class="is-mono" src="assets/icons/tools/mobile/canva.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">Canva</span>
+            </label>
+            <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="microsoft-365" aria-label="Show Microsoft 365 details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/microsoft-365.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">Microsoft 365</span>
+            </label>
+            <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="after-effects" aria-label="Show Adobe After Effects details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/after-effects.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">After Effects</span>
+            </label>
+            <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="premiere-pro" aria-label="Show Adobe Premiere Pro details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/premiere-pro.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">Premiere Pro</span>
+            </label>
+            <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="capcut" aria-label="Show CapCut details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img class="is-mono" src="assets/icons/tools/mobile/capcut.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">CapCut</span>
+            </label>
+            <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="davinci-resolve" aria-label="Show DaVinci Resolve details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/davinci-resolve.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">DaVinci Resolve</span>
+            </label>
+            <label class="mobile-dock-tool">
               <input type="radio" name="mobile-software-tool" value="vscode" aria-label="Show Visual Studio Code details" />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/vscode.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">VS Code</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="canva" aria-label="Show Canva details" />
-              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/canva.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
-              <span class="mobile-dock-name" aria-hidden="true">Canva</span>
+              <input type="radio" name="mobile-software-tool" value="figma" aria-label="Show Figma details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/figma.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">Figma</span>
+            </label>
+            <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="gemini" aria-label="Show Gemini details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/gemini.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">Gemini</span>
+            </label>
+            <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="runway" aria-label="Show Runway details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img class="is-mono" src="assets/icons/tools/mobile/runway.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">Runway</span>
+            </label>
+            <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="chatgpt" aria-label="Show ChatGPT details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img class="is-mono" src="assets/icons/tools/mobile/chatgpt.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">ChatGPT</span>
+            </label>
+            <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="claude" aria-label="Show Claude details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/claude.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">Claude</span>
+            </label>
+            <label class="mobile-dock-tool">
+              <input type="radio" name="mobile-software-tool" value="firefly" aria-label="Show Adobe Firefly details" />
+              <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/firefly.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
+              <span class="mobile-dock-name" aria-hidden="true">Firefly</span>
             </label>
           </div>
           <div class="mobile-dock-info" aria-live="polite" aria-atomic="true">
@@ -610,40 +689,105 @@
               <p class="mobile-tool-description">Photo culling, batch editing, and color grading for shoots.</p>
               <p class="mobile-tool-tags">Photography · Color Grading · Asset Preparation</p>
             </div>
-            <div class="mobile-tool-panel" data-tool="indesign">
-              <h3>Adobe InDesign</h3>
-              <p class="mobile-tool-description">Catalogues, brochures, and multi-page print layout production.</p>
-              <p class="mobile-tool-tags">Catalogues · Editorial Systems · Print Production</p>
+            <div class="mobile-tool-panel" data-tool="affinity">
+              <h3>Affinity</h3>
+              <p class="mobile-tool-description">Cross-platform design and photo retouching for design work.</p>
+              <p class="mobile-tool-tags">Design · Retouching · Print Layout</p>
             </div>
-            <div class="mobile-tool-panel" data-tool="premiere-pro">
-              <h3>Adobe Premiere Pro</h3>
-              <p class="mobile-tool-description">Video editing and sequencing for campaign and brand content.</p>
-              <p class="mobile-tool-tags">Video Editing · Campaign Videos · Brand Content</p>
+            <div class="mobile-tool-panel" data-tool="bridge">
+              <h3>Adobe Bridge</h3>
+              <p class="mobile-tool-description">Asset organization, metadata tagging, and file management across projects.</p>
+              <p class="mobile-tool-tags">Asset Management · File Organization · Batch Processing</p>
             </div>
-            <div class="mobile-tool-panel" data-tool="davinci-resolve">
-              <h3>DaVinci Resolve</h3>
-              <p class="mobile-tool-description">Color grading and final delivery for finished video projects.</p>
-              <p class="mobile-tool-tags">Color Grading · Video Finishing · Final Delivery</p>
+            <div class="mobile-tool-panel" data-tool="capture-one">
+              <h3>Capture One</h3>
+              <p class="mobile-tool-description">Tethered capture and high-fidelity photo editing during shoots.</p>
+              <p class="mobile-tool-tags">Product Photography · Tethered Capture · Color Correction</p>
             </div>
-            <div class="mobile-tool-panel" data-tool="capcut">
-              <h3>CapCut</h3>
-              <p class="mobile-tool-description">Quick-turnaround edits for social-first video content.</p>
-              <p class="mobile-tool-tags">Social Video · Reels · Mobile Editing</p>
+            <div class="mobile-tool-panel" data-tool="coreldraw">
+              <h3>CorelDRAW</h3>
+              <p class="mobile-tool-description">Vector illustration and layout for print and signage work.</p>
+              <p class="mobile-tool-tags">Vector Illustration · Print Layout · Signage</p>
             </div>
             <div class="mobile-tool-panel" data-tool="sketchup">
               <h3>SketchUp</h3>
               <p class="mobile-tool-description">3D modeling for spatial concepts, retail layouts, and mockups.</p>
               <p class="mobile-tool-tags">3D Visualization · Retail Layouts · Mockups</p>
             </div>
-            <div class="mobile-tool-panel" data-tool="vscode">
-              <h3>Visual Studio Code</h3>
-              <p class="mobile-tool-description">Front-end builds, website interfaces, and implementation work.</p>
-              <p class="mobile-tool-tags">Web Interfaces · Front-end Development · Site Updates</p>
+            <div class="mobile-tool-panel" data-tool="upscayl">
+              <h3>Upscayl</h3>
+              <p class="mobile-tool-description">AI image upscaling and restoration for low-resolution assets.</p>
+              <p class="mobile-tool-tags">Image Upscaling · Asset Restoration · AI Tools</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="indesign">
+              <h3>Adobe InDesign</h3>
+              <p class="mobile-tool-description">Catalogues, brochures, and multi-page print layout production.</p>
+              <p class="mobile-tool-tags">Catalogues · Editorial Systems · Print Production</p>
             </div>
             <div class="mobile-tool-panel" data-tool="canva">
               <h3>Canva</h3>
               <p class="mobile-tool-description">Social graphics, campaign templates, and presentation systems.</p>
               <p class="mobile-tool-tags">Campaign Templates · Presentations · Social Content</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="microsoft-365">
+              <h3>Microsoft 365</h3>
+              <p class="mobile-tool-description">Documents, decks, and presentations for internal and client use.</p>
+              <p class="mobile-tool-tags">Documents · Presentations · Client Decks</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="after-effects">
+              <h3>Adobe After Effects</h3>
+              <p class="mobile-tool-description">Motion graphics and animated assets for campaigns and social.</p>
+              <p class="mobile-tool-tags">Motion Graphics · Animation · Social Campaigns</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="premiere-pro">
+              <h3>Adobe Premiere Pro</h3>
+              <p class="mobile-tool-description">Video editing and sequencing for campaign and brand content.</p>
+              <p class="mobile-tool-tags">Video Editing · Campaign Videos · Brand Content</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="capcut">
+              <h3>CapCut</h3>
+              <p class="mobile-tool-description">Quick-turnaround edits for social-first video content.</p>
+              <p class="mobile-tool-tags">Social Video · Reels · Mobile Editing</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="davinci-resolve">
+              <h3>DaVinci Resolve</h3>
+              <p class="mobile-tool-description">Color grading and final delivery for finished video projects.</p>
+              <p class="mobile-tool-tags">Color Grading · Video Finishing · Final Delivery</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="vscode">
+              <h3>Visual Studio Code</h3>
+              <p class="mobile-tool-description">Front-end builds, website interfaces, and implementation work.</p>
+              <p class="mobile-tool-tags">Web Interfaces · Front-end Development · Site Updates</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="figma">
+              <h3>Figma</h3>
+              <p class="mobile-tool-description">UI layout, interactive prototypes, and design handoff.</p>
+              <p class="mobile-tool-tags">UI Design · Prototyping · Design Handoff</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="gemini">
+              <h3>Gemini</h3>
+              <p class="mobile-tool-description">Research, ideation, and content drafting support.</p>
+              <p class="mobile-tool-tags">Research · Ideation · Content Drafting</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="runway">
+              <h3>Runway</h3>
+              <p class="mobile-tool-description">AI video generation and editing for experimental content.</p>
+              <p class="mobile-tool-tags">AI Video · Generative Editing · Experimental Content</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="chatgpt">
+              <h3>ChatGPT</h3>
+              <p class="mobile-tool-description">Copywriting, research, and ideation across projects.</p>
+              <p class="mobile-tool-tags">Copywriting · Research · Ideation</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="claude">
+              <h3>Claude</h3>
+              <p class="mobile-tool-description">Writing, research, and workflow support across projects.</p>
+              <p class="mobile-tool-tags">Writing · Research · Workflow Support</p>
+            </div>
+            <div class="mobile-tool-panel" data-tool="firefly">
+              <h3>Adobe Firefly</h3>
+              <p class="mobile-tool-description">Generative image creation and text effects for creative concepts.</p>
+              <p class="mobile-tool-tags">Generative Imagery · Text Effects · Concept Work</p>
             </div>
           </div>
         </div>
@@ -864,7 +1008,7 @@
               </details>
             </li>
           </ol>
-          <a class="career-cv" href="assets/files/Gil-Tejano-CV.pdf" download>Download Full CV <span aria-hidden="true">→</span></a>
+          <a class="career-cv" href="assets/files/Gil-Tejano-CV.pdf" download>Download Full CV</a>
         </div>
 
         <div class="tl-track" id="tl-track" aria-labelledby="timeline-heading">
@@ -1033,7 +1177,7 @@
 
         <div class="cta-actions">
           <button type="button" class="cta-btn cta-btn-primary" id="cta-start-trigger" aria-expanded="false" aria-controls="cta-form-wrap">
-            Start a Project<span class="mobile-hero-copy" aria-hidden="true"> →</span>
+            Start a Project
           </button>
           <a class="cta-btn cta-btn-outline" href="assets/files/Gil-Tejano-CV.pdf" download>
             Download CV
@@ -1202,8 +1346,8 @@
           </div>
         </div>
         <div class="mobile-contact-copy contact-secondary-links" aria-label="More about my work">
-          <a href="assets/files/Gil-Tejano-CV.pdf" download>Download CV →</a>
-          <a href="#work">View Selected Work →</a>
+          <a href="assets/files/Gil-Tejano-CV.pdf" download>Download CV</a>
+          <a href="#work">View Selected Work</a>
         </div>
         <nav class="mobile-contact-copy contact-profile-links" aria-label="Contact and creative profiles">
           <a href="mailto:giltejano.visuals@gmail.com">Email</a>
@@ -1246,5 +1390,6 @@
       </a>
     </nav>
     <script src="js/mobile-tabbar.js?v=2" defer></script>
+    <script src="js/home-return.js" defer></script>
   </body>
 </html>

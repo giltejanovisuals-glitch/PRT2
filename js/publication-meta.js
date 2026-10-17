@@ -15,7 +15,7 @@
  *     year: "2025",
  *     role: "Editorial direction, grid development, typography, image sequencing, and production preparation.",
  *     description: "A full-line catalogue spanning living, dining, and bedroom collections.",
- *     caseStudyLink: "porta-mobili.html",
+ *     caseStudyLink: "print-brand-collateral.html",
  *     downloadAllowed: false,
  *   },
  * };
