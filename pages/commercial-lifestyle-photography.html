@@ -25,13 +25,202 @@
         } catch (e) {}
       })();
     </script>
-    <link rel="stylesheet" href="../css/style.css?v=4" />
+    <!-- PAGE TRANSITION HEAD START -->
+    <style>
+      /* Welcome / page-transition overlay. Inlined into every page's <head> by
+         scripts/generate-page-transition.js (edit here, then `npm run build`), so
+         it paints with the first frame: no flash of the page before it. CSS alone
+         plays and removes it (pt-out ends hidden), so it can never stick; the
+         boot script and js/page-transition.js only lock scrolling meanwhile,
+         skip it when it shouldn't play, and remove it from the DOM. ~2.4s:
+         everything is in place by ~1.4s and holds, fully legible, until the
+         overlay fades from 1.9s. */
+      .pt-overlay,
+      .pt-cover {
+        --pt-bg: #f2f0ea;
+        --pt-text: #151515;
+        --pt-muted: #66645f;
+        --pt-accent: #0f4c4c;
+        position: fixed;
+        inset: 0;
+        z-index: 2147483000;
+        background: var(--pt-bg);
+        color: var(--pt-text);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .pt-overlay,
+        :root:not([data-theme="light"]) .pt-cover {
+          --pt-bg: #171b1c;
+          --pt-text: #f2f0ea;
+          --pt-muted: #b8c1bd;
+          --pt-accent: #60a899;
+        }
+      }
+      :root[data-theme="dark"] .pt-overlay,
+      :root[data-theme="dark"] .pt-cover {
+        --pt-bg: #171b1c;
+        --pt-text: #f2f0ea;
+        --pt-muted: #b8c1bd;
+        --pt-accent: #60a899;
+      }
+      .pt-overlay {
+        display: grid;
+        height: 100vh;
+        height: 100dvh;
+        place-items: center;
+        padding: max(24px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+        text-align: center;
+        pointer-events: auto;
+        animation: pt-out 500ms cubic-bezier(0.22, 1, 0.36, 1) 1900ms forwards;
+      }
+      .pt-skip .pt-overlay {
+        display: none;
+      }
+      .pt-inner {
+        display: flex;
+        max-width: 34rem;
+        flex-direction: column;
+        align-items: center;
+      }
+      .pt-mark {
+        display: block;
+        width: clamp(48px, 13vw, 68px);
+        aspect-ratio: 304 / 180;
+        margin-bottom: clamp(18px, 3vh, 26px);
+        background: var(--pt-accent);
+        -webkit-mask: var(--pt-logo) center / contain no-repeat;
+        mask: var(--pt-logo) center / contain no-repeat;
+        animation: pt-fade 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .pt-number {
+        margin: 0 0 clamp(12px, 2.4vh, 18px);
+        color: var(--pt-accent);
+        font-family: var(--font-body, "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
+        font-size: clamp(0.78rem, 2.6vw, 0.9rem);
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        font-variant-numeric: tabular-nums;
+        animation: pt-rise 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .pt-title {
+        margin: 0;
+        color: var(--pt-text);
+        font-family: var(--font-headline, "Helvetica Neue", Arial, sans-serif);
+        font-size: clamp(1.05rem, 4.6vw, 1.6rem);
+        font-weight: 400;
+        line-height: 1.25;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        text-wrap: balance;
+        animation: pt-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 300ms both;
+      }
+      .pt-title-home {
+        white-space: nowrap;
+      }
+      .pt-title-project {
+        max-width: 22ch;
+        font-size: clamp(1.15rem, 5.2vw, 2rem);
+        letter-spacing: 0.14em;
+      }
+      .pt-sub {
+        margin: 10px 0 0;
+        color: var(--pt-muted);
+        font-family: var(--font-body, "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
+        font-size: clamp(0.72rem, 2.9vw, 0.85rem);
+        line-height: 1.5;
+        letter-spacing: 0.04em;
+        animation: pt-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 450ms both;
+      }
+      .pt-sub span {
+        white-space: nowrap;
+      }
+      .pt-line {
+        display: block;
+        width: clamp(56px, 18vw, 120px);
+        height: 1px;
+        margin-top: clamp(18px, 3vh, 24px);
+        background: var(--pt-accent);
+        transform: scaleX(0);
+        animation: pt-line 800ms cubic-bezier(0.22, 1, 0.36, 1) 600ms both;
+      }
+      @keyframes pt-fade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes pt-rise {
+        from { opacity: 0; transform: translate3d(0, 10px, 0); }
+        to { opacity: 1; transform: none; }
+      }
+      @keyframes pt-line {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @keyframes pt-out {
+        to { opacity: 0; visibility: hidden; pointer-events: none; }
+      }
+      /* Leaving for another page: a plain cover fades in over the current one. */
+      .pt-cover {
+        opacity: 0;
+        transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .pt-cover.is-visible {
+        opacity: 1;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .pt-overlay {
+          display: none;
+        }
+        .pt-cover {
+          transition: none;
+        }
+      }
+    </style>
+    <script>
+      /* Page-transition boot. Inlined into every page's <head> by
+         scripts/generate-page-transition.js (edit here, then `npm run build`), so
+         it runs before the overlay is parsed. Skips the intro for Back/Forward,
+         ?open= links straight to a piece, and reduced motion; otherwise marks
+         <html class="pt-intro"> and blocks scroll input until the overlay is done
+         (js/page-transition.js calls __ptEnd; a timeout guarantees it). */
+      (function () {
+        var root = document.documentElement;
+        var nav = window.performance && performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
+        var reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if ((nav && nav.type === "back_forward") || /[?&]open=/.test(location.search) || reduced) {
+          root.classList.add("pt-skip");
+          return;
+        }
+        root.classList.add("pt-intro");
+        var keys = { " ": 1, ArrowUp: 1, ArrowDown: 1, PageUp: 1, PageDown: 1, Home: 1, End: 1 };
+        var types = ["wheel", "touchmove", "keydown"];
+        var options = { passive: false, capture: true };
+        var block = function (event) {
+          if (event.type !== "keydown" || keys[event.key]) event.preventDefault();
+        };
+        types.forEach(function (type) {
+          window.addEventListener(type, block, options);
+        });
+        var ended = false;
+        window.__ptEnd = function () {
+          if (ended) return;
+          ended = true;
+          root.classList.remove("pt-intro");
+          types.forEach(function (type) {
+            window.removeEventListener(type, block, options);
+          });
+        };
+        setTimeout(window.__ptEnd, 3000);
+      })();
+    </script>
+    <script src="../js/page-transition.js?v=3" defer></script>
+    <!-- PAGE TRANSITION HEAD END -->
+    <link rel="stylesheet" href="../css/style.css?v=5" />
     <link rel="stylesheet" href="../css/search.css?v=1" />
-    <script src="../js/search.js?v=2" defer></script>
+    <script src="../js/search.js?v=3" defer></script>
     <script src="../js/mobile-nav.js?v=2" defer></script>
     <link rel="stylesheet" href="../css/content-protection.css" />
     <script src="../js/content-protection.js" defer></script>
-    <link rel="stylesheet" href="../css/project-gallery.css?v=5" />
+    <link rel="stylesheet" href="../css/project-gallery.css?v=8" />
     <link rel="stylesheet" href="../css/gallery-editorial.css?v=3" />
     <link rel="stylesheet" href="../css/print-collateral-showcase.css?v=17" />
     <script src="../js/gallery-categories-data.js?v=6" defer></script>
@@ -44,6 +233,15 @@
   </head>
 
   <body>
+    <!-- PAGE TRANSITION OVERLAY START -->
+    <div class="pt-overlay" aria-hidden="true" inert>
+      <div class="pt-inner">
+        <p class="pt-number">04</p>
+        <p class="pt-title pt-title-project">Commercial &amp; Lifestyle Photography</p>
+        <span class="pt-line"></span>
+      </div>
+    </div>
+    <!-- PAGE TRANSITION OVERLAY END -->
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <div class="nav-backdrop" aria-hidden="true"></div>
@@ -195,7 +393,7 @@
         <span class="nav-dock-label" aria-hidden="true"><span class="nav-dock-label-full">Next Category</span><span class="nav-dock-label-short">Next</span></span>
       </a>
     </nav>
-    <script src="../js/nav-dock.js?v=1" defer></script>
+    <script src="../js/nav-dock.js?v=2" defer></script>
 
     <script src="../js/dock-context.js?v=2" defer></script>
 

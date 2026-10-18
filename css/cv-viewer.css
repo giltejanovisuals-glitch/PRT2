@@ -1,0 +1,144 @@
+/* CV preview page (cv/index.html). The CV is shown as watermarked page
+   images (scripts/render-cv-preview.ps1), stacked and fitted to the column
+   width — no download, share or print. The pages start below the fixed
+   header, so it never covers them. Printing shows a notice instead of the
+   CV. */
+
+.cv-page {
+  --cv-top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: calc(var(--cv-top) + 1.5rem) var(--page-padding) calc(4rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* --- Intro ---------------------------------------------------------------- */
+
+.cv-intro {
+  margin-bottom: clamp(1.5rem, 4vh, 2.25rem);
+}
+
+.cv-title {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-headline);
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.cv-lede {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* --- Pages ---------------------------------------------------------------- */
+
+.cv-viewer {
+  outline: none;
+}
+
+.cv-pages {
+  display: flex;
+  width: min(100%, 820px);
+  flex-direction: column;
+  gap: clamp(14px, 2.5vw, 24px);
+  margin-inline: auto;
+}
+
+.cv-sheet {
+  margin: 0;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px rgba(var(--text-rgb), 0.08),
+    0 18px 40px -24px rgba(0, 0, 0, 0.45);
+}
+
+.cv-sheet img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* --- Request a copy ------------------------------------------------------- */
+
+.cv-request {
+  max-width: 34rem;
+  margin: clamp(2.5rem, 7vh, 4rem) auto 0;
+  padding-top: clamp(2rem, 5vh, 2.75rem);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.cv-request-title {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-headline);
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  font-weight: 400;
+}
+
+.cv-request-text {
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.cv-request-btn {
+  min-height: 44px;
+}
+
+/* --- Phones --------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .cv-page {
+    --cv-top: calc(var(--mh-h) + env(safe-area-inset-top, 0px));
+    padding-right: max(12px, env(safe-area-inset-right, 0px));
+    padding-left: max(12px, env(safe-area-inset-left, 0px));
+  }
+
+  .cv-intro {
+    padding-inline: 4px;
+  }
+}
+
+/* --- Notices: printing, and being framed by another site ------------------ */
+
+.cv-print-notice,
+.cv-framed-notice {
+  display: none;
+}
+
+:root.cv-framed body > :not(.cv-framed-notice) {
+  display: none !important;
+}
+
+:root.cv-framed .cv-framed-notice {
+  display: block;
+  max-width: 30rem;
+  margin: 20vh auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+@media print {
+  body > :not(.cv-print-notice) {
+    display: none !important;
+  }
+
+  .cv-print-notice {
+    display: block;
+    max-width: 30rem;
+    margin: 3cm auto;
+    color: #151515;
+    font-size: 12pt;
+    line-height: 1.5;
+    text-align: center;
+  }
+}

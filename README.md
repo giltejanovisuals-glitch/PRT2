@@ -42,9 +42,17 @@ PRT2/
 │   │                            Google Fonts CDN in each page's <head>.
 │   │                            Drop self-hosted font files here if that
 │   │                            changes.
-│   └── files/
-│       └── Gil-Tejano-CV.pdf   Linked from both "Download CV" buttons
-│                                in index.html (About Me + closing CTA)
+├── cv/
+│   ├── index.html              /cv/ — the CV preview every "View CV" link
+│   │                            opens (styles: css/cv-viewer.css).
+│   │                            noindex, no framing
+│   │                            (vercel.json). No download or print.
+│   └── pages/                  Watermarked, redacted page images made by
+│                                scripts/render-cv-preview.ps1 — the only
+│                                CV files published. The original PDF stays
+│                                in private/cv/ (ignored by git and Vercel);
+│                                copies go out only on approved requests
+│                                (the contact form's "CV Request" type).
 ├── css/
 │   ├── style.css               Shared: tokens, reset, header/nav, homepage
 │   │                            (including the Project Gallery showcase)
@@ -412,7 +420,7 @@ receives the current-position highlight, including the supplied approximate
 40% production-cost result. Existing dates and the GJF senior title remain.
 
 The section uses 20px margins, a line at 14px, 36px content indentation,
-48px spacing between entries, and a native full-CV download link.
+48px spacing between entries, and a "View Full CV" link to the /cv/ preview.
 `js/mobile-timeline.js` synchronizes `aria-expanded` and adds arrow-key,
 Home, and End navigation. Native disclosure remains usable without scripts;
 350ms expansion transitions are disabled for reduced motion. The desktop

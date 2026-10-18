@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="robots" content="noindex, noarchive, nosnippet, noimageindex" />
+    <meta name="referrer" content="same-origin" />
+    <meta name="description" content="Curriculum vitae preview — Gil Tejano Culas, creative specialist and graphic designer." />
+    <title>Curriculum Vitae | Gil Tejano Culas</title>
+    <link rel="icon" href="../assets/icons/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        // Framed on another site: show nothing (vercel.json also forbids it).
+        if (window.top !== window.self) document.documentElement.classList.add("cv-framed");
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme =
+            stored ||
+            (window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
+    <!-- PAGE TRANSITION HEAD START -->
+    <style>
+      /* Welcome / page-transition overlay. Inlined into every page's <head> by
+         scripts/generate-page-transition.js (edit here, then `npm run build`), so
+         it paints with the first frame: no flash of the page before it. CSS alone
+         plays and removes it (pt-out ends hidden), so it can never stick; the
+         boot script and js/page-transition.js only lock scrolling meanwhile,
+         skip it when it shouldn't play, and remove it from the DOM. ~2.4s:
+         everything is in place by ~1.4s and holds, fully legible, until the
+         overlay fades from 1.9s. */
+      .pt-overlay,
+      .pt-cover {
+        --pt-bg: #f2f0ea;
+        --pt-text: #151515;
+        --pt-muted: #66645f;
+        --pt-accent: #0f4c4c;
+        position: fixed;
+        inset: 0;
+        z-index: 2147483000;
+        background: var(--pt-bg);
+        color: var(--pt-text);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .pt-overlay,
+        :root:not([data-theme="light"]) .pt-cover {
+          --pt-bg: #171b1c;
+          --pt-text: #f2f0ea;
+          --pt-muted: #b8c1bd;
+          --pt-accent: #60a899;
+        }
+      }
+      :root[data-theme="dark"] .pt-overlay,
+      :root[data-theme="dark"] .pt-cover {
+        --pt-bg: #171b1c;
+        --pt-text: #f2f0ea;
+        --pt-muted: #b8c1bd;
+        --pt-accent: #60a899;
+      }
+      .pt-overlay {
+        display: grid;
+        height: 100vh;
+        height: 100dvh;
+        place-items: center;
+        padding: max(24px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+        text-align: center;
+        pointer-events: auto;
+        animation: pt-out 500ms cubic-bezier(0.22, 1, 0.36, 1) 1900ms forwards;
+      }
+      .pt-skip .pt-overlay {
+        display: none;
+      }
+      .pt-inner {
+        display: flex;
+        max-width: 34rem;
+        flex-direction: column;
+        align-items: center;
+      }
+      .pt-mark {
+        display: block;
+        width: clamp(48px, 13vw, 68px);
+        aspect-ratio: 304 / 180;
+        margin-bottom: clamp(18px, 3vh, 26px);
+        background: var(--pt-accent);
+        -webkit-mask: var(--pt-logo) center / contain no-repeat;
+        mask: var(--pt-logo) center / contain no-repeat;
+        animation: pt-fade 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .pt-number {
+        margin: 0 0 clamp(12px, 2.4vh, 18px);
+        color: var(--pt-accent);
+        font-family: var(--font-body, "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
+        font-size: clamp(0.78rem, 2.6vw, 0.9rem);
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        font-variant-numeric: tabular-nums;
+        animation: pt-rise 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .pt-title {
+        margin: 0;
+        color: var(--pt-text);
+        font-family: var(--font-headline, "Helvetica Neue", Arial, sans-serif);
+        font-size: clamp(1.05rem, 4.6vw, 1.6rem);
+        font-weight: 400;
+        line-height: 1.25;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        text-wrap: balance;
+        animation: pt-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 300ms both;
+      }
+      .pt-title-home {
+        white-space: nowrap;
+      }
+      .pt-title-project {
+        max-width: 22ch;
+        font-size: clamp(1.15rem, 5.2vw, 2rem);
+        letter-spacing: 0.14em;
+      }
+      .pt-sub {
+        margin: 10px 0 0;
+        color: var(--pt-muted);
+        font-family: var(--font-body, "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
+        font-size: clamp(0.72rem, 2.9vw, 0.85rem);
+        line-height: 1.5;
+        letter-spacing: 0.04em;
+        animation: pt-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 450ms both;
+      }
+      .pt-sub span {
+        white-space: nowrap;
+      }
+      .pt-line {
+        display: block;
+        width: clamp(56px, 18vw, 120px);
+        height: 1px;
+        margin-top: clamp(18px, 3vh, 24px);
+        background: var(--pt-accent);
+        transform: scaleX(0);
+        animation: pt-line 800ms cubic-bezier(0.22, 1, 0.36, 1) 600ms both;
+      }
+      @keyframes pt-fade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes pt-rise {
+        from { opacity: 0; transform: translate3d(0, 10px, 0); }
+        to { opacity: 1; transform: none; }
+      }
+      @keyframes pt-line {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @keyframes pt-out {
+        to { opacity: 0; visibility: hidden; pointer-events: none; }
+      }
+      /* Leaving for another page: a plain cover fades in over the current one. */
+      .pt-cover {
+        opacity: 0;
+        transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .pt-cover.is-visible {
+        opacity: 1;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .pt-overlay {
+          display: none;
+        }
+        .pt-cover {
+          transition: none;
+        }
+      }
+    </style>
+    <script>
+      /* Page-transition boot. Inlined into every page's <head> by
+         scripts/generate-page-transition.js (edit here, then `npm run build`), so
+         it runs before the overlay is parsed. Skips the intro for Back/Forward,
+         ?open= links straight to a piece, and reduced motion; otherwise marks
+         <html class="pt-intro"> and blocks scroll input until the overlay is done
+         (js/page-transition.js calls __ptEnd; a timeout guarantees it). */
+      (function () {
+        var root = document.documentElement;
+        var nav = window.performance && performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
+        var reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if ((nav && nav.type === "back_forward") || /[?&]open=/.test(location.search) || reduced) {
+          root.classList.add("pt-skip");
+          return;
+        }
+        root.classList.add("pt-intro");
+        var keys = { " ": 1, ArrowUp: 1, ArrowDown: 1, PageUp: 1, PageDown: 1, Home: 1, End: 1 };
+        var types = ["wheel", "touchmove", "keydown"];
+        var options = { passive: false, capture: true };
+        var block = function (event) {
+          if (event.type !== "keydown" || keys[event.key]) event.preventDefault();
+        };
+        types.forEach(function (type) {
+          window.addEventListener(type, block, options);
+        });
+        var ended = false;
+        window.__ptEnd = function () {
+          if (ended) return;
+          ended = true;
+          root.classList.remove("pt-intro");
+          types.forEach(function (type) {
+            window.removeEventListener(type, block, options);
+          });
+        };
+        setTimeout(window.__ptEnd, 3000);
+      })();
+    </script>
+    <script src="../js/page-transition.js?v=3" defer></script>
+    <!-- PAGE TRANSITION HEAD END -->
+    <link rel="stylesheet" href="../css/style.css?v=5" />
+    <link rel="stylesheet" href="../css/search.css?v=1" />
+    <script src="../js/search.js?v=3" defer></script>
+    <script src="../js/mobile-nav.js?v=2" defer></script>
+    <link rel="stylesheet" href="../css/content-protection.css" />
+    <script src="../js/content-protection.js" defer></script>
+    <link rel="stylesheet" href="../css/cv-viewer.css?v=2" />
+    <script src="../js/gallery-editorial.js?v=3" defer></script>
+  </head>
+
+  <body>
+    <!-- PAGE TRANSITION OVERLAY START -->
+    <div class="pt-overlay" aria-hidden="true" inert>
+      <div class="pt-inner">
+        <p class="pt-number">CV</p>
+        <p class="pt-title pt-title-project">Curriculum Vitae</p>
+        <span class="pt-line"></span>
+      </div>
+    </div>
+    <!-- PAGE TRANSITION OVERLAY END -->
+    <a class="skip-link" href="#cv-viewer">Skip to CV</a>
+
+    <div class="nav-backdrop" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Gil Tejano Culas, home">
+        <img class="brand-mark" src="../assets/icons/logo.png" alt="" aria-hidden="true" />
+        <span class="brand-text"><span class="brand-name">Gil Tejano Culas</span><span class="brand-title">Senior Graphic Designer / Creative Specialist</span></span>
+      </a>
+
+      <div class="header-controls">
+        <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation">
+          <div class="mobile-nav-head">
+            <a class="mobile-nav-brand" href="../index.html" aria-label="Gil Tejano Culas, home">
+              <img class="brand-mark" src="../assets/icons/logo.png" alt="" aria-hidden="true" />
+              <span class="mobile-nav-brand-text">Gil Tejano Culas &mdash; Senior Graphic Designer / Creative Specialist</span>
+            </a>
+            <button type="button" class="mobile-nav-close" aria-label="Close menu">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="mobile-nav-links">
+            <a href="../index.html#work"><span class="nav-index" aria-hidden="true">01</span><span class="nav-label">Work</span></a>
+            <a href="../index.html#gallery"><span class="nav-index" aria-hidden="true">02</span><span class="nav-label">Gallery</span></a>
+            <a href="../index.html#about"><span class="nav-index" aria-hidden="true">03</span><span class="nav-label">About</span></a>
+            <a href="../index.html#capabilities"><span class="nav-index" aria-hidden="true">04</span><span class="nav-label">Capabilities</span></a>
+            <a href="mailto:giltejano.visuals@gmail.com"><span class="nav-index" aria-hidden="true">05</span><span class="nav-label">Contact</span></a>
+          </div>
+        </nav>
+
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-pressed="false"
+          aria-label="Switch to dark mode"
+          data-tooltip="Switch to dark mode"
+        >
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <line x1="12" y1="2" x2="12" y2="4"></line>
+            <line x1="12" y1="20" x2="12" y2="22"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="2" y1="12" x2="4" y2="12"></line>
+            <line x1="20" y1="12" x2="22" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+          </svg>
+        </button>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          aria-label="Open menu"
+        >
+          <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="cv-page" id="main-content">
+      <div class="cv-intro">
+        <p class="section-index">Curriculum Vitae</p>
+        <h1 class="cv-title">Gil Tejano Culas</h1>
+        <p class="cv-lede">Senior Graphic Designer &amp; Creative Specialist &mdash; portfolio preview of the current CV.</p>
+      </div>
+
+      <!-- Professional summary for screen readers: the pages below are
+           images, so this is what assistive technology reads instead. -->
+      <section class="cv-summary sr-only" aria-labelledby="cv-summary-title">
+        <h2 id="cv-summary-title">CV summary</h2>
+        <p>Gil Tejano Culas — Senior Graphic Designer and Creative Specialist based in Cavite, Philippines. Contact through this website or giltejano.visuals@gmail.com.</p>
+        <p>6+ years creating brand-focused visuals for retail, furniture, lighting, manufacturing, events, and print production: campaign visuals, social media content, catalogs, showroom materials, sales presentations, and production-ready layouts.</p>
+        <h3>Experience</h3>
+        <ul>
+          <li>Creative Specialist / Graphic Designer, Metal-Lite Illuminazione Marketing, Quezon City — July 2025 to present.</li>
+          <li>Senior Graphic Designer, GJF Design and Printing Manufacturing Corporation, Dasmariñas City — July 2024 to July 2025.</li>
+          <li>Graphic Designer, JAMS Advertising, Peñablanca — April 2023 to September 2023.</li>
+          <li>Graphic Designer, Sticker Runner, Tanza — December 2022 to April 2023.</li>
+          <li>Freelance Graphic Designer (work from home, project-based), JVP Innovation — March 2021 to October 2022.</li>
+          <li>Graphic Designer (on-site), JVP Innovation — October 2019 to February 2021.</li>
+        </ul>
+        <h3>Skills</h3>
+        <p>Brand campaign visuals, social media design, print and digital layout, catalog and brochure design, retail and showroom materials, sales presentations, production-ready artwork, photo manipulation, photo and video content capture. Software: Adobe Photoshop, Illustrator, Lightroom, Affinity, SketchUp, Canva, CapCut, DaVinci Resolve, Visual Studio Code, Microsoft PowerPoint, Microsoft Office and Google Workspace.</p>
+        <h3>Education and training</h3>
+        <p>BS Information Technology (undergraduate, 4th year level), Cavite State University, 2019–2024. Senior High School, TVL Drafting Animation, Tanza National Trade School, 2017–2019. Graphic Design and Computer Hardware Training, Datacom Institute of Computer Technology, 2018. Seminar Series on Excelling in the Virtual Workforce, Cavite State University, 2024.</p>
+      </section>
+
+      <section class="cv-viewer" id="cv-viewer" tabindex="-1" aria-label="CV preview, 2 pages">
+        <!-- Watermarked, redacted page images rendered by
+             scripts/render-cv-preview.ps1 — the original document is never
+             published. Keep this list in step with that script's output. -->
+        <div class="cv-stage" id="cv-stage">
+          <div class="cv-pages" id="cv-pages">
+            <figure class="cv-sheet" id="cv-page-1" data-page="1">
+              <img
+                src="pages/cv-page-1-1100.jpg"
+                srcset="pages/cv-page-1-1100.jpg 1100w, pages/cv-page-1-2000.jpg 2000w"
+                sizes="(max-width: 900px) calc(100vw - 24px), 820px"
+                width="1100"
+                height="1555"
+                alt="CV page 1 of 2 (image): header, professional summary, core skills, and experience from July 2025 back to April 2023. The CV summary for screen readers is above."
+                decoding="async"
+                fetchpriority="high"
+                draggable="false"
+              />
+            </figure>
+            <figure class="cv-sheet" id="cv-page-2" data-page="2">
+              <img
+                src="pages/cv-page-2-1100.jpg"
+                srcset="pages/cv-page-2-1100.jpg 1100w, pages/cv-page-2-2000.jpg 2000w"
+                sizes="(max-width: 900px) calc(100vw - 24px), 820px"
+                width="1100"
+                height="1555"
+                alt="CV page 2 of 2 (image): earlier experience, education, and certificates and training."
+                loading="lazy"
+                decoding="async"
+                draggable="false"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="cv-request" aria-labelledby="cv-request-title">
+        <h2 class="cv-request-title" id="cv-request-title">Need a formal copy?</h2>
+        <p class="cv-request-text"><em>Verified employers and clients may request a current PDF version directly.</em></p>
+        <a class="cta-btn cta-btn-primary cv-request-btn" href="../index.html?inquiry=cv-request#contact">Request CV Copy</a>
+      </section>
+    </main>
+
+    <p class="cv-print-notice" aria-hidden="true">This CV preview isn&rsquo;t available for printing. Verified employers and clients can request a formal copy through the contact form at the portfolio website.</p>
+    <p class="cv-framed-notice" aria-hidden="true">This CV preview can only be viewed on Gil Tejano Culas&rsquo;s portfolio website.</p>
+  </body>
+</html>

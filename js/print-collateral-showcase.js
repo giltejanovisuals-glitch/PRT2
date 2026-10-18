@@ -38,7 +38,9 @@
  *             visual, then a two-column masonry archive where landscape
  *             visuals span both columns; a tap opens the image in the
  *             lightbox. Reels skip the featured visual: every poster is
- *             shown in two columns and a tap opens js/reel-viewer.js.
+ *             shown in two columns, the (up to two) reels clearly in view
+ *             play muted inline previews (js/reel-preview.js), and a tap
+ *             on either opens it in js/reel-viewer.js.
  *
  * Images come from the category's generated manifest (via
  * window.ProjectGalleryLightbox.entries), so files dropped into
@@ -88,6 +90,9 @@
       return {
         src: base + encodeURIComponent(item.file),
         poster: item.poster ? base + encodeURIComponent(item.poster) : "",
+        // Short, light clip for the inline preview (previews/ subfolder),
+        // when one has been made; otherwise the preview plays the reel.
+        preview: item.preview ? base + encodePath(item.preview) : "",
         width: item.width,
         height: item.height,
         ratio: item.ratio || (item.width && item.height ? item.width / item.height : 9 / 16),
@@ -316,14 +321,29 @@
   // Every reel at once in a two-column grid of posters at their natural
   // ratio, each with its title and duration laid subtly over the bottom of
   // the poster. A tap opens js/reel-viewer.js fullscreen over the page.
-  // Durations come from the meta; otherwise each file's header is read as
-  // its tile nears the screen (never under data saver) — add `duration` in
+  // The (at most two) reels clearly in view play a muted, looping preview
+  // over their posters (js/reel-preview.js) — the light clip from the
+  // manifest's `preview` when there is one — never under reduced motion or
+  // data saving. Durations come from the meta; otherwise from a preview
+  // that plays the full reel, or each file's header is read as its tile
+  // nears the screen (never under data saver) — add `duration` in
   // js/reel-meta.js to skip that request.
 
   let durationObserver = null;
   const reelViewer =
     IS_VIDEO && FEED && window.createReelViewer
       ? window.createReelViewer(entries, { typeFallback: TYPE_FALLBACK, formatDuration })
+      : null;
+  const reelPreviews =
+    IS_VIDEO && FEED && window.createReelPreviews
+      ? window.createReelPreviews({
+          max: 2, // both reels of a row
+          onMetadata: (tile, seconds) => {
+            const entry = entries[Number(tile.dataset.pos)];
+            // A preview clip's length isn't the reel's.
+            if (entry && !entry.duration && !entry.preview) rememberDuration(entry, seconds);
+          },
+        })
       : null;
 
   const rememberDuration = (entry, seconds) => {
@@ -336,7 +356,8 @@
   };
 
   const readDuration = (entry) => {
-    if (entry.duration || saveData) return;
+    // A playing preview reports its own duration; don't fetch it twice.
+    if (entry.duration || saveData || (reelPreviews?.enabled() && !entry.preview)) return;
     const probe = document.createElement("video");
     probe.preload = "metadata";
     probe.muted = true;
@@ -367,6 +388,7 @@
       tile.setAttribute("aria-label", `Play ${entry.label}${entry.brand ? `, ${entry.brand}` : ""}`);
       tile.tabIndex = 0;
       grid.appendChild(tile);
+      reelPreviews?.add(tile, entry.preview || entry.src, entry.poster);
     });
     rail.appendChild(grid);
     if (feedCount) feedCount.textContent = `${entries.length} reels`;
@@ -394,6 +416,7 @@
     revealObserver = null;
     durationObserver?.disconnect();
     durationObserver = null;
+    reelPreviews?.clear();
     rail.replaceChildren();
     tiles = entries.map((entry, i) => createTile(entry, i, stacked, feed));
 
@@ -1049,6 +1072,7 @@
   // so a reload or a shared link to the page itself doesn't reopen it.
   const params = new URLSearchParams(window.location.search);
   const requested = params.get("open");
+  const spotlight = params.get("reel");
   const decodeFile = (name) => {
     try {
       return decodeURIComponent(name);
@@ -1057,8 +1081,9 @@
     }
   };
   const linkedPos = requested ? entries.findIndex((entry) => decodeFile(fileOf(entry.src)) === requested) : -1;
-  if (requested) {
+  if (requested || spotlight) {
     params.delete("open");
+    params.delete("reel");
     const query = params.toString();
     history.replaceState(history.state, "", `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
   }
@@ -1080,6 +1105,28 @@
       if (stackedFeed) lightbox.open(entries[linkedPos].flatIndex, tiles[linkedPos]);
       else openFullscreen(frame);
     }
+  }
+
+  // --- Arrival from a reel watched on the homepage: ?reel=<file> ---------
+  //
+  // The homepage's reel viewer continues here when closed. That reel is the
+  // selected item, the gallery opens at it, and it's briefly highlighted
+  // (then keeps the "last watched" outline) so the visitor can carry on
+  // exploring. Back still returns to the homepage, where they left it.
+  const spotPos = spotlight ? entries.findIndex((entry) => decodeFile(fileOf(entry.src)) === spotlight) : -1;
+  if (spotPos >= 0 && linkedPos < 0) {
+    const tile = tiles[spotPos];
+    select(spotPos, { reveal: mode !== "stacked" });
+    section.classList.add("has-watched");
+    if (mode === "stacked") tile.scrollIntoView({ block: "center", behavior: "instant" });
+    tile.focus({ preventScroll: true });
+    // The pulse waits until the page-transition intro has cleared.
+    const pulse = () => {
+      tile.classList.add("is-spotlit");
+      window.setTimeout(() => tile.classList.remove("is-spotlit"), 2400);
+    };
+    if (window.pageTransition) window.pageTransition.whenRevealed(pulse);
+    else pulse();
   }
 
   // --- Featured slideshow ---------------------------------------------------

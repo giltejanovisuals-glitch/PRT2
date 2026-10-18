@@ -23,12 +23,20 @@ const server = http.createServer((req, res) => {
   const requestedUrl = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
   const decodedPath = decodeURIComponent(requestedUrl.pathname);
   const normalized = path.normalize(decodedPath).replace(/^([/\\])+/, "");
-  const filePath = path.join(ROOT, normalized || "index.html");
+  let filePath = path.join(ROOT, normalized || "index.html");
 
-  if (!filePath.startsWith(ROOT)) {
+  // private/ holds source documents (the original CV) that are never served.
+  if (!filePath.startsWith(ROOT) || /^private([/\\]|$)/i.test(normalized)) {
     res.writeHead(403);
     res.end("Forbidden");
     return;
+  }
+
+  // A folder serves its index.html, as on Vercel (/cv/ → cv/index.html).
+  try {
+    if (fs.statSync(filePath).isDirectory()) filePath = path.join(filePath, "index.html");
+  } catch (e) {
+    /* falls through to the 404 below */
   }
 
   fs.stat(filePath, (statError, stats) => {
@@ -39,10 +47,17 @@ const server = http.createServer((req, res) => {
     }
 
     const ext = path.extname(filePath).toLowerCase();
+    // Same viewing rules for the CV preview as vercel.json sets in production.
+    const cv = /^cv([/\\]|$)/i.test(normalized);
     res.writeHead(200, {
       "Content-Type": MIME_TYPES[ext] || "application/octet-stream",
       "Content-Length": stats.size,
       "Cache-Control": "no-store",
+      ...(cv && {
+        "X-Robots-Tag": "noindex, noarchive, nosnippet, noimageindex",
+        "X-Frame-Options": "DENY",
+        "Content-Security-Policy": "frame-ancestors 'none'",
+      }),
     });
 
     if (req.method === "HEAD") {

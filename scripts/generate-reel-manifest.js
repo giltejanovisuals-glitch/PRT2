@@ -21,6 +21,10 @@ const path = require("path");
 const { SUPPORTED_EXTENSIONS: POSTER_EXTENSIONS, readImageSize } = require("./lib/image-size");
 
 const SOURCE_DIR = path.join(__dirname, "..", "assets", "videos", "short-form-reels");
+// Optional short, light clips for the muted inline previews, same base name
+// as their reel (see this folder's README). The full reel is used without one.
+const PREVIEW_DIR = path.join(SOURCE_DIR, "previews");
+const PREVIEW_EXTENSIONS = [".mp4", ".webm"];
 const OUTPUT_FILE = path.join(__dirname, "..", "js", "reel-manifest.js");
 const VIDEO_EXTENSIONS = new Set([".mp4", ".webm", ".mov"]);
 
@@ -48,6 +52,15 @@ function build() {
   const allFiles = fs.readdirSync(SOURCE_DIR).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
   const videoFiles = allFiles.filter((name) => VIDEO_EXTENSIONS.has(path.extname(name).toLowerCase()));
 
+  const previewFiles = fs.existsSync(PREVIEW_DIR) ? fs.readdirSync(PREVIEW_DIR) : [];
+  const findPreview = (baseName) => {
+    for (const ext of PREVIEW_EXTENSIONS) {
+      const candidate = previewFiles.find((name) => name.toLowerCase() === `${baseName}${ext}`.toLowerCase());
+      if (candidate) return `previews/${candidate}`;
+    }
+    return null;
+  };
+
   const manifest = [];
   videoFiles.forEach((file) => {
     const ext = path.extname(file).toLowerCase();
@@ -72,9 +85,11 @@ function build() {
       return;
     }
 
+    const preview = findPreview(baseName);
     manifest.push({
       file,
       poster: posterFile,
+      ...(preview && { preview }),
       width: size.width,
       height: size.height,
       ratio: Number((size.width / size.height).toFixed(4)),

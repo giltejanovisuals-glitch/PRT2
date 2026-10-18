@@ -481,6 +481,7 @@
   const startTrigger = document.getElementById("cta-start-trigger");
   const formWrap = document.getElementById("cta-form-wrap");
   const inquiryForm = document.getElementById("inquiry-form");
+  let openInquiryForm = null; // set below; used by the ?inquiry=cv-request link
 
   if (startTrigger && formWrap) {
     const openForm = () => {
@@ -498,6 +499,8 @@
         target?.scrollIntoView({ behavior: reduced ? "instant" : "smooth", block: "center" });
       }, reduced ? 0 : 350);
     };
+
+    openInquiryForm = openForm;
 
     const closeForm = () => {
       formWrap.classList.remove("is-open");
@@ -578,6 +581,46 @@
     const mobileContact = window.matchMedia('(max-width: 760px)');
     let sending = false;
 
+    // --- CV requests --------------------------------------------------------
+    // Choosing "CV Request" (or arriving from the CV page's "Request CV
+    // Copy", ?inquiry=cv-request) turns the form into a request form: name,
+    // company, professional email, role and reason are required, the
+    // project-only parts step aside, and the request is sent for manual
+    // review — no document is ever sent automatically.
+    const CV_TYPE = "CV Request";
+    const roleField = inquiryForm.querySelector(".field-role");
+    const roleInput = document.getElementById("inq-role");
+    const cvNote = document.getElementById("form-cv-note");
+    const cvChip = chipInputs.find((chip) => chip.value === CV_TYPE);
+    const cvLabels = Array.from(inquiryForm.querySelectorAll("label[data-cv-label]")).map((label) => ({ label, html: label.innerHTML }));
+    const isCvRequest = () => (mobileContact.matches ? mobileType.value === CV_TYPE : Boolean(cvChip && cvChip.checked));
+    const submitText = () => (isCvRequest() ? "Send CV Request" : "Send Project Inquiry");
+
+    const applyRequestMode = () => {
+      const cv = isCvRequest();
+      inquiryForm.dataset.mode = cv ? "cv" : "project";
+      if (roleField) roleField.hidden = !cv;
+      if (cvNote) cvNote.hidden = !cv;
+      roleInput?.toggleAttribute("required", cv);
+      companyInput.toggleAttribute("required", cv);
+      cvLabels.forEach(({ label, html }) => {
+        if (cv) label.textContent = label.dataset.cvLabel;
+        else label.innerHTML = html;
+      });
+      if (!cv) {
+        [companyInput, roleInput].forEach((input) => input && setFieldError(input, `${input.id}-error`, ""));
+      }
+      if (submitLabel && !sending) submitLabel.textContent = submitText();
+    };
+
+    // Keeps both inquiry-type controls (desktop chips, phone select) in step.
+    const selectCvRequest = () => {
+      if (cvChip) cvChip.checked = true;
+      mobileType.value = CV_TYPE;
+      if (chipError) chipError.hidden = true;
+      applyRequestMode();
+    };
+
     const setFieldError = (input, errorId, message) => {
       const errorEl = document.getElementById(errorId);
       if (message) {
@@ -615,8 +658,27 @@
         setFieldError(emailInput, "inq-email-error", "");
       }
 
+      if (isCvRequest()) {
+        [
+          [companyInput, "Please enter your company."],
+          [roleInput, "Please enter your role or job title."],
+        ].forEach(([input, message]) => {
+          if (!input) return;
+          const missing = !input.value.trim();
+          setFieldError(input, `${input.id}-error`, missing ? message : "");
+          if (missing) {
+            valid = false;
+            firstInvalid = firstInvalid || input;
+          }
+        });
+      }
+
       if (!messageField.value.trim()) {
-        setFieldError(messageField, "inq-message-error", "Please share a few details about the project.");
+        setFieldError(
+          messageField,
+          "inq-message-error",
+          isCvRequest() ? "Please share why you're requesting the CV." : "Please share a few details about the project."
+        );
         valid = false;
         firstInvalid = firstInvalid || messageField;
       } else {
@@ -633,13 +695,20 @@
 
       return { valid, firstInvalid };
     };
-    [nameInput, emailInput, messageField].forEach(input => input.addEventListener('input', () => {
+    [nameInput, emailInput, messageField, companyInput, roleInput].filter(Boolean).forEach(input => input.addEventListener('input', () => {
       if (input.hasAttribute('aria-invalid')) setFieldError(input, `${input.id}-error`, '');
     }));
-    mobileType.addEventListener('change', () => setFieldError(mobileType, 'inq-mobile-type-error', ''));
+    mobileType.addEventListener('change', () => {
+      setFieldError(mobileType, 'inq-mobile-type-error', '');
+      if (cvChip) cvChip.checked = mobileType.value === CV_TYPE;
+      applyRequestMode();
+    });
     chipInputs.forEach(input => input.addEventListener('change', () => {
       if (chipError) chipError.hidden = chipInputs.some(chip => chip.checked);
+      if (input === cvChip && !mobileContact.matches) mobileType.value = cvChip.checked ? CV_TYPE : (mobileType.value === CV_TYPE ? '' : mobileType.value);
+      applyRequestMode();
     }));
+    mobileContact.addEventListener('change', applyRequestMode);
 
     // Sends the owner-notification email via EmailJS, then best-effort
     // fires the optional client-confirmation template (its failure never
@@ -675,15 +744,25 @@
       }
 
       const name = nameInput.value.trim();
+      const cvRequest = isCvRequest();
       const selectedTypes = mobileContact.matches ? [mobileType.value] : chipInputs.filter(chip => chip.checked).map(chip => chip.value);
+      const role = roleInput ? roleInput.value.trim() : "";
+      const company = companyInput.value.trim();
+      const reason = messageField.value.trim();
       const templateParams = {
         name,
         email: emailInput.value.trim(),
-        company: companyInput.value.trim() || "Not provided",
+        company: company || "Not provided",
         inquiry_types: selectedTypes.join(", "),
-        message: messageField.value.trim(),
-        budget: budgetInput.value.trim() || "Not provided",
-        timeline: timelineInput.value.trim() || "Not provided",
+        // A CV request carries its role and reason in the message too, so it
+        // reads in full with the existing EmailJS template.
+        message: cvRequest
+          ? `CV REQUEST (review before sharing a copy)\nName: ${name}\nCompany: ${company}\nRole: ${role}\nProfessional email: ${emailInput.value.trim()}\nReason: ${reason}`
+          : reason,
+        role: role || "Not provided",
+        request_reason: cvRequest ? reason : "Not applicable",
+        budget: cvRequest ? "Not applicable" : budgetInput.value.trim() || "Not provided",
+        timeline: cvRequest ? "Not applicable" : timelineInput.value.trim() || "Not provided",
       };
 
       sending = true;
@@ -694,7 +773,9 @@
       submitInquiry(templateParams)
         .then(() => {
           if (successBody) {
-            successBody.textContent = "Thanks for sharing your project. I’ll review the details and respond within 1–2 business days.";
+            successBody.textContent = cvRequest
+              ? "Thanks — your CV request has been received. I review every request personally and will reply by email within 1–2 business days."
+              : "Thanks for sharing your project. I’ll review the details and respond within 1–2 business days.";
           }
           inquiryForm.hidden = true;
           if (successPanel) {
@@ -710,7 +791,7 @@
           sending = false;
           inquiryForm.removeAttribute('aria-busy');
           if (submitBtn) submitBtn.disabled = false;
-          if (submitLabel) submitLabel.textContent = "Send Project Inquiry";
+          if (submitLabel) submitLabel.textContent = submitText();
         });
     });
 
@@ -721,11 +802,25 @@
       templateConfirmation.hidden = true;
       inquiryForm.querySelector('.project-scope').open = false;
       if (errorBanner) errorBanner.hidden = true;
-      [nameInput, emailInput, messageField, mobileType].forEach(field => field.removeAttribute("aria-invalid"));
+      [nameInput, emailInput, messageField, mobileType, companyInput, roleInput].filter(Boolean).forEach(field => field.removeAttribute("aria-invalid"));
       document.querySelectorAll(".form-field-error").forEach((el) => (el.hidden = true));
       if (successPanel) successPanel.hidden = true;
       inquiryForm.hidden = false;
+      applyRequestMode();
       nameInput.focus();
     });
+
+    applyRequestMode();
+
+    // Arriving from the CV page: ?inquiry=cv-request opens the form as a CV
+    // request. The parameter is then dropped, so a reload doesn't repeat it.
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("inquiry") === "cv-request") {
+      params.delete("inquiry");
+      const query = params.toString();
+      history.replaceState(history.state, "", `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
+      selectCvRequest();
+      openInquiryForm?.();
+    }
   }
 })();

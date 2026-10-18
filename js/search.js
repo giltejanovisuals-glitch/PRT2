@@ -450,7 +450,9 @@
     const target = new URL(relative, ROOT);
     const here = new URL(window.location.href);
     if (pagePath(target) !== pagePath(here)) {
-      window.location.assign(target.href); // ordinary navigation: Back works
+      // Ordinary navigation (Back works), through the page transition.
+      if (window.pageTransition) window.pageTransition.go(target.href);
+      else window.location.assign(target.href);
       return;
     }
     close({ restoreFocus: !target.hash });

@@ -12,6 +12,12 @@ const previews = readManifest('home-previews.js');
 const images = readManifest('gallery-editorial-manifest.js');
 const publications = readManifest('publication-manifest.js');
 const reels = readManifest('reel-manifest.js');
+// Reel previews are downsized poster frames, named <slug>-<size>.webp by
+// scripts/generate-home-previews.js. Name the video each one came from so
+// the card can play it inline and open it in the reel viewer.
+const slugify = text => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'image';
+const reelByPreview = new Map(reels.filter(reel => reel.poster).map(reel => [slugify(path.basename(reel.poster, path.extname(reel.poster))), reel]));
+const reelFor = src => reelByPreview.get(path.basename(src, '.webp').replace(/-[a-z0-9]+$/, ''));
 const categories = [
   { id: 'editorial-layout', label: 'EDITORIAL', title: 'Editorial & Layout Design', description: 'Catalogues, lookbooks, and publication systems.', count: publications.length, unit: 'publications' },
   { id: 'social-media-campaigns', label: 'CAMPAIGNS', title: 'Social Media Campaigns & Key Visuals', description: 'Key visuals and cohesive social campaign systems.', count: images['social-media-campaigns'].length, unit: 'images' },
@@ -21,7 +27,10 @@ const categories = [
 ].map((category, i) => ({ ...category, number: String(i + 1).padStart(2, '0'), previews: (previews[category.id] || []).map(src => {
   const size = readImageSize(fs.readFileSync(path.join(root, src)), '.webp');
   if (!size) throw new Error(`Missing preview dimensions: ${src}`);
-  return { src, ...size };
+  const reel = category.id === 'short-form-video-reels' ? reelFor(src) : undefined;
+  if (!reel) return { src, ...size };
+  // `reelPreview`: the reel's light preview clip, when one has been made.
+  return { src, ...size, reel: reel.file, ...(reel.preview && { reelPreview: reel.preview }) };
 }) }));
 const escape = text => String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const cards = categories.map(category => {

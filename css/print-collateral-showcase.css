@@ -410,6 +410,21 @@ html.pbc-locked .project-closing {
   box-shadow: inset 0 0 0 1px rgba(var(--background-rgb), 0.6);
 }
 
+/* Arriving from a reel watched on the homepage: the reel's tile draws in an
+   accent ring and pulses once, then settles into the selected outline. The
+   animation wins over the feed's transparent outline while it runs. */
+@keyframes pbc-spotlight {
+  0% { outline-color: rgba(var(--accent-rgb), 0); outline-offset: 12px; }
+  30% { outline-color: var(--accent); outline-offset: 3px; }
+  55% { outline-color: rgba(var(--accent-rgb), 0.3); }
+  80%,
+  100% { outline-color: var(--accent); outline-offset: 3px; }
+}
+
+.pbc-tile.is-spotlit {
+  animation: pbc-spotlight 1.6s var(--ease) both;
+}
+
 /* --- Video mode (Reels): poster tiles with a play mark, <video> preview --- */
 
 .pbc[data-kind="video"] .pbc-frame {
@@ -625,6 +640,32 @@ html.pbc-locked .project-closing {
     display: none;
   }
 
+  /* Muted inline preview (js/reel-preview.js), laid over the poster. It
+     fades in once frames are playing and drops away at once when stopped,
+     so the rewind is never seen; the play mark steps aside meanwhile. */
+  .pbc-reels .reel-preview {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .pbc-reels .is-previewing .reel-preview {
+    opacity: 1;
+    transition: opacity 300ms ease;
+  }
+
+  .pbc-reels .pbc-tile-play {
+    transition: opacity 300ms ease, background-color 300ms ease, transform 300ms var(--ease);
+  }
+
+  .pbc-reels .is-previewing .pbc-tile-play {
+    opacity: 0;
+  }
+
   /* The last reel watched keeps a thin teal outline after closing. */
   .pbc[data-feed].has-watched .pbc-reels .pbc-tile.is-selected {
     outline-color: var(--accent);
@@ -824,5 +865,11 @@ html.pbc-locked .project-closing {
 
   .pbc-frame {
     transition: none !important;
+  }
+
+  /* No pulse: the arriving reel just shows its accent ring. */
+  .pbc-tile.is-spotlit {
+    animation: none;
+    outline-color: var(--accent);
   }
 }

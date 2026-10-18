@@ -1999,6 +1999,25 @@ body.is-scrolled .nav-backdrop {
   line-height: 1.5;
 }
 
+/* CV requests (js/script.js): the project-only parts step aside, and a
+   note explains that each request is reviewed before a copy is shared. */
+.inquiry-form[data-mode="cv"] .template-row,
+.inquiry-form[data-mode="cv"] .project-scope,
+.field-role[hidden],
+.form-cv-note[hidden] {
+  display: none;
+}
+
+.form-cv-note {
+  max-width: 30rem;
+  margin: 0 0 1rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--accent);
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
 .form-consent {
   margin: 0.4rem 0 0;
   max-width: 30rem;
@@ -2705,6 +2724,7 @@ body.is-scrolled .nav-backdrop {
   .chip-group { order: 1; }
   .form-row-contact { order: 2; }
   .field-company { order: 3; }
+  .field-role { order: 3; }
   .template-row { order: 4; }
   .field-message { order: 5; }
   .form-row-scope { order: 6; }

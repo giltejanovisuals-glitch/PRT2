@@ -6,3 +6,6 @@ source-publications/
 test-fixtures/
 tmp/
 tmp-test.pdf
+
+# Private source documents (e.g. the original CV). Never committed or deployed.
+private/

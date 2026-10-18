@@ -22,6 +22,12 @@
 
     const collapseAll = () => panels.forEach((panel) => setExpanded(panel, false));
 
+    // Through the page transition (js/page-transition.js) when it's there.
+    const open = (href) => {
+      if (window.pageTransition) window.pageTransition.go(href);
+      else window.location.href = href;
+    };
+
     // Keep the first category open by default, but only in accordion mode —
     // .is-expanded's visual effect (summary fade-in) isn't width-gated in
     // CSS, since it's shared with the desktop :hover/:focus-within reveal,
@@ -49,7 +55,7 @@
       panel.addEventListener("click", (event) => {
         if (desktopQuery.matches) {
           const href = panel.dataset.href;
-          if (href) window.location.href = href;
+          if (href) open(href);
           return;
         }
 
@@ -58,7 +64,7 @@
         const alreadyOpen = panel.classList.contains("is-expanded");
         if (alreadyOpen) {
           const href = panel.dataset.href;
-          if (href) window.location.href = href;
+          if (href) open(href);
           return;
         }
 

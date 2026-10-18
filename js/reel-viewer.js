@@ -1,8 +1,12 @@
 /*
  * Fullscreen reel viewer for the phone layout of the Short-Form Video &
- * Reels page. js/print-collateral-showcase.js creates it with
- * window.createReelViewer(entries, options) and calls open(index, trigger)
- * when a reel in the library is tapped.
+ * Reels page and the reels card on the homepage. js/print-collateral-
+ * showcase.js and js/mobile-gallery.js create it with
+ * window.createReelViewer(entries, options) and call open(index, trigger)
+ * when a reel is tapped. With a single entry there is no previous/next.
+ * Option `closeTo(entry)` returns a URL to go to on close instead of
+ * revealing the page again (the homepage card hands over to the reel's
+ * category page); the viewer stays up until that page loads.
  *
  * One <video> is reused for every reel and is given a source only when a
  * reel is opened, so the page itself loads nothing but posters. Playback
@@ -22,7 +26,7 @@
  * A horizontal swipe on the video changes reel (not on the bottom control
  * strip, which belongs to the native progress bar).
  */
-window.createReelViewer = (entries, { formatDuration } = {}) => {
+window.createReelViewer = (entries, { formatDuration, closeTo } = {}) => {
   if (!entries || !entries.length) return null;
 
   const pad = (n) => String(n).padStart(2, "0");
@@ -71,6 +75,7 @@ window.createReelViewer = (entries, { formatDuration } = {}) => {
     titleEl = el.querySelector(".reel-viewer-title");
     currentEl = el.querySelector(".reel-viewer-current");
     closeBtn = el.querySelector(".reel-viewer-close");
+    el.querySelector(".reel-viewer-bottom").hidden = entries.length < 2;
 
     closeBtn.addEventListener("click", close);
     el.querySelector(".reel-viewer-prev").addEventListener("click", () => step(-1));
@@ -80,6 +85,13 @@ window.createReelViewer = (entries, { formatDuration } = {}) => {
       if (isOpen) onKey(event);
     });
     bindSwipe(el.querySelector(".reel-viewer-stage"));
+    // Back from a closeTo page, restored whole from the back/forward
+    // cache: the viewer that was left covering it must go.
+    window.addEventListener("pageshow", (event) => {
+      if (!event.persisted || isOpen) return;
+      el.classList.remove("is-open");
+      el.hidden = true;
+    });
   };
 
   // Play with sound (the visitor asked for it); if the browser refuses,
@@ -127,7 +139,7 @@ window.createReelViewer = (entries, { formatDuration } = {}) => {
   };
 
   const step = (dir) => {
-    if (isOpen) show(index + dir, true);
+    if (isOpen && entries.length > 1) show(index + dir, true);
   };
 
   // --- Scroll lock: the page is pinned where it is, never scrolled -------
@@ -175,6 +187,14 @@ window.createReelViewer = (entries, { formatDuration } = {}) => {
     video.removeAttribute("src");
     video.replaceChildren();
     video.load();
+    const next = closeTo && closeTo(entries[index]);
+    if (next) {
+      // Unpin the page first so its real scroll position is what gets
+      // remembered for Back; the viewer keeps covering it meanwhile.
+      unlockPage();
+      window.location.assign(next);
+      return;
+    }
     el.classList.remove("is-open");
     const finish = () => {
       if (!isOpen) el.hidden = true;

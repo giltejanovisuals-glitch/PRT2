@@ -1,5 +1,6 @@
 /* Fullscreen reel viewer — pairs with js/reel-viewer.js (phone layout of
-   the Short-Form Video & Reels page). Always dark, from the portfolio's
+   the Short-Form Video & Reels page, and the homepage's reels card).
+   Always dark, from the portfolio's
    palette: charcoal ground, warm off-white text, muted gray secondary
    text, teal for the counter and focus. Every control is at least 44px. */
 
@@ -46,6 +47,11 @@
 .reel-viewer-bottom {
   justify-content: center;
   gap: 20px;
+}
+
+/* A single reel (the homepage card) has no previous/next. */
+.reel-viewer-bottom[hidden] {
+  display: none;
 }
 
 .reel-viewer-title {
@@ -131,7 +137,8 @@
 }
 
 .reel-viewer-open .nav-dock,
-.reel-viewer-open .project-counter {
+.reel-viewer-open .project-counter,
+.reel-viewer-open .mobile-tabbar {
   display: none;
 }
 

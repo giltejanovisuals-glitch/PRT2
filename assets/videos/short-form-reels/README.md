@@ -33,6 +33,26 @@ Project Gallery categories use.
 **Never hand-edit `js/reel-manifest.js`** — it's overwritten by
 `npm run build` every time.
 
+**Lightweight preview clips (recommended):** on phones, the reels in view
+play muted inline previews (`js/reel-preview.js`), up to two at a time.
+Without a clip, a preview streams the full reel. To keep that light, put a
+short, small clip with the reel's **same base name** in `previews/`:
+
+```text
+previews/mooni-launch-reel.mp4
+```
+
+`npm run build` adds it to the manifest as `preview`, and the previews (on
+this page and the homepage card) use it; tapping still opens the full reel.
+Aim for 4–6 seconds, about 480px wide, no audio, under ~500 KB, e.g.:
+
+```sh
+ffmpeg -i "mooni-launch-reel.mp4" -t 5 -an -vf "scale=480:-2" -c:v libx264 -crf 28 -preset slow -profile:v main -pix_fmt yuv420p -movflags +faststart "previews/mooni-launch-reel.mp4"
+```
+
+Keep `-movflags +faststart` so `preload="metadata"` only fetches a small
+header.
+
 While this folder is empty (as shipped), the page renders 12 placeholder
 tiles generated from this category's own entries in
 `js/gallery-categories-data.js`, the same fallback convention the other
