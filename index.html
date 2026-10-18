@@ -232,8 +232,8 @@
     <link rel="stylesheet" href="css/content-protection.css" />
     <script src="js/content-protection.js" defer></script>
     <link rel="stylesheet" href="css/hero-parallax.css" />
-    <link rel="stylesheet" href="css/mobile-featured.css" />
-    <!-- MOBILE FEATURED PRELOAD START --><link rel="preload" as="image" type="image/webp" media="(max-width: 760px)" imagesrcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" imagesizes="(max-width: 760px) calc(100vw - 40px), 1px" fetchpriority="high" /><!-- MOBILE FEATURED PRELOAD END -->
+    <link rel="stylesheet" href="css/mobile-featured.css?v=2" />
+    <!-- MOBILE FEATURED PRELOAD START --><link rel="preload" as="image" type="image/webp" media="(max-width: 760px)" imagesrcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" imagesizes="(max-width: 760px) calc((100vw - 40px) * 0.58), 1px" fetchpriority="high" /><!-- MOBILE FEATURED PRELOAD END -->
     <link rel="stylesheet" href="css/mobile-gallery.css?v=2" />
     <link rel="stylesheet" href="css/reel-viewer.css?v=2" />
     <link rel="stylesheet" href="css/mobile-about.css" />
@@ -258,8 +258,8 @@
     <script src="js/script.js?v=2" defer></script>
     <script src="js/home-previews.js" defer></script>
     <script src="js/hero-parallax.js" defer></script>
-    <script src="js/mobile-featured-data.js" defer></script>
-    <script src="js/mobile-featured.js" defer></script>
+    <script src="js/mobile-featured-data.js?v=2" defer></script>
+    <script src="js/mobile-featured.js?v=2" defer></script>
     <script src="js/gallery-index.js?v=3" defer></script>
   </head>
 
@@ -296,7 +296,7 @@
           </div>
 
           <div class="mobile-nav-links">
-            <a href="#work"><span class="nav-index" aria-hidden="true">01</span><span class="nav-label">Work</span></a>
+            <a href="#main-content"><span class="nav-index" aria-hidden="true">01</span><span class="nav-label">Home</span></a>
             <a href="#gallery"><span class="nav-index" aria-hidden="true">02</span><span class="nav-label">Gallery</span></a>
             <a href="#about"><span class="nav-index" aria-hidden="true">03</span><span class="nav-label">About</span></a>
             <a href="#capabilities"><span class="nav-index" aria-hidden="true">04</span><span class="nav-label">Capabilities</span></a>
@@ -368,26 +368,47 @@
         </div>
       </div>
 
-      <!-- Mobile landing carousel: the approved featured collection lives in
-           scripts/generate-mobile-featured.js; the first slide is rendered
-           here, js/mobile-featured.js adds the rest. -->
+      <!-- Mobile landing carousel: curated groups of 2–3 visuals, defined in
+           scripts/featured-groups.js and built by
+           scripts/generate-mobile-featured.js. The opening group is rendered
+           here; js/mobile-featured.js adds the rest. -->
       <section class="mobile-featured" aria-roledescription="carousel" aria-label="Featured work">
         <div class="featured-frame">
-          <!-- MOBILE FEATURED START -->
-          <div class="featured-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 6" data-id="hooga-key-visual" style="--placeholder: url('data:image/webp;base64,UklGRgQDAABXRUJQVlA4WAoAAAAgAAAAFwAAIAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggFgEAAFAGAJ0BKhgAIQA+0VqmTSglI6IquAwBABoJQBdma/KgCQWTNfF+K4BcBKUYwSr0bK4HY4ZlgW49L/YAAP7r9W9sBE0D5HUi2O14rPdZb07rwrNQldqv5+kLo1nsEItEwheiKUJiUNx6PR2fXy0XTjNGBUZrvOSpJysnt7viKGNppn8/dwFHrdqIJXqxBJUK5x0T5bTUz87vHiM6A01LfnGNfWza8Gcm/CQoQkbdJaShhnVKi823ivlhvJUD8OD+qP3P5DoadcZQqcwyBeHAaS9GPOm3Zbbt/34e0cHjJaCIGK6k7oQsy5Bia1jZbzK2m3knIKAP/UCbxlx0zQB1nHAIMYOZSK1mPx/1XEpkAWaXq6TIAAAA')">
-            <a class="featured-media" href="pages/social-media-campaigns.html?open=HOOGA%20ROCKWELL.png">
-              <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" sizes="(max-width: 760px) calc(100vw - 40px), 1px" /><img width="960" height="1332" alt="Hooga “A New Sense of Comfort” key visual: a tan leather sofa beneath glowing circular ceiling lights in a warm walnut-toned room." decoding="async" fetchpriority="high" /></picture>
-            </a>
+          <div class="featured-groups">
+            <!-- MOBILE FEATURED START -->
+            <div class="featured-group is-active" data-layout="feature" data-id="social-campaigns" role="group" aria-roledescription="slide" aria-label="1 of 8: Social Media Campaigns &amp; Key Visuals">
+              <a class="featured-tile is-fill" href="pages/social-media-campaigns.html?open=HOOGA%20ROCKWELL.png" style="--placeholder: url('data:image/webp;base64,UklGRgQDAABXRUJQVlA4WAoAAAAgAAAAFwAAIAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggFgEAAFAGAJ0BKhgAIQA+0VqmTSglI6IquAwBABoJQBdma/KgCQWTNfF+K4BcBKUYwSr0bK4HY4ZlgW49L/YAAP7r9W9sBE0D5HUi2O14rPdZb07rwrNQldqv5+kLo1nsEItEwheiKUJiUNx6PR2fXy0XTjNGBUZrvOSpJysnt7viKGNppn8/dwFHrdqIJXqxBJUK5x0T5bTUz87vHiM6A01LfnGNfWza8Gcm/CQoQkbdJaShhnVKi823ivlhvJUD8OD+qP3P5DoadcZQqcwyBeHAaS9GPOm3Zbbt/34e0cHjJaCIGK6k7oQsy5Bia1jZbzK2m3knIKAP/UCbxlx0zQB1nHAIMYOZSK1mPx/1XEpkAWaXq6TIAAAA')">
+                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" sizes="(max-width: 760px) calc((100vw - 40px) * 0.58), 1px" /><img width="960" height="1332" alt="Hooga “A New Sense of Comfort” key visual: a tan leather sofa beneath glowing circular ceiling lights in a warm walnut-toned room." decoding="async" fetchpriority="high" /></picture>
+              </a>
+              <a class="featured-tile is-fill" href="pages/social-media-campaigns.html?open=1%20FEATHER%20RECLINER%20v2.png" style="--placeholder: url('data:image/webp;base64,UklGRhwDAABXRUJQVlA4WAoAAAAgAAAAFwAAFwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggLgEAANAFAJ0BKhgAGAA+0VykTqglIyIoCqkAGgljALe6ALsljb69rC8AUU/iGIl95T3Vo5gkig0Sq5gA/ttrhp7oh9XHz7lKwPnyTg69x/4apIgNSkd0CmHBrs1zxSz002GxE3PnsR3Y1EmzNY2p3CaOyBygmXhoGy1UuHEFw4PTgykG9aXVCzcVSuKaib4gHfOeex+kHMBj8hcRbhvPuZ5DUFHLa4JXC9PXKrCixU0SW+OklXPyw7bocbNG07LN0oSPyy/J+v1oe87hpzcTb3kqubbpSLPLPM4PEYn8jb5wK6Kh91XxG1o2mIpqJSIY5SW9kxeFMGXJLg+qBDaEPV1/Iloc/7HOpjmN/yr/hJJT5xFzYGsMS1F/39dwdTdhFhBxsvwq4BgxYpNjfF8pwAAA')">
+                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/dunlopillo-recliner-480.webp 480w, assets/images/featured/dunlopillo-recliner-960.webp 960w" sizes="(max-width: 760px) calc((100vw - 40px) * 0.42), 1px" /><img width="960" height="960" alt="Dunlopillo “Find your sanctuary” key visual: a white leather recliner in a misty, sunlit forest." decoding="async" /></picture>
+              </a>
+              <a class="featured-tile is-fill" href="pages/social-media-campaigns.html?open=MARW33.1.png" style="--placeholder: url('data:image/webp;base64,UklGRhQDAABXRUJQVlA4WAoAAAAgAAAAFwAAFwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggJgEAAJAGAJ0BKhgAGAA+0VyjTaglIyIoDVEAGglAFU94C4BHOrgHVZe1hUD8d24g/twIsPWEqMFdGrNrsrrCaWAA4n9SIvujNVcW40Nku0pNNsScaPM4lOPyFRT1btJIkiPYv+eDNxQwdwXKxbWpNvq2UfAdBGYCuoRH9DnSGsIpj4G7n+xsUnKYONeAylD8H6fSd6bPNG1pibZLpFKAgfFqsHDnz0ZG/BueSXUJ2OUz6xXC028Ih785Yaejo6WrlADQaeRTMac/pHjLGxN5eD59T43bVWot8XLM4vT/7Ke28ZKDwoq1OaOfTj2S7Ww6jSaOkOzK3x6slvA0+cKlcLu+Wv73fNZ7QB3C5e7bpYC/gEtH8X5ge6xIR5pZk9uFyN8+HUgkwAAAAA==')">
+                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/mooni-overhead-480.webp 480w, assets/images/featured/mooni-overhead-960.webp 960w" sizes="(max-width: 760px) calc((100vw - 40px) * 0.42), 1px" /><img width="960" height="960" alt="Mooni campaign visual seen from above: a woman in a grey robe stretched across a Mooni mattress, her face hidden behind a book." decoding="async" /></picture>
+              </a>
+            </div>
+            <!-- MOBILE FEATURED END -->
           </div>
-          <!-- MOBILE FEATURED END -->
-          <div class="featured-dots" aria-hidden="true"></div>
         </div>
+        <div class="featured-progress" aria-hidden="true"><span class="featured-progress-fill"></span></div>
         <div class="featured-details">
           <div class="featured-caption">
-          <!-- MOBILE FEATURED CAPTION START -->
-          <p class="featured-brand">Hooga</p>
-          <p class="featured-title">Brand Campaign Key Visual</p>
-          <!-- MOBILE FEATURED CAPTION END -->
+            <!-- MOBILE FEATURED CAPTION START -->
+            <p class="featured-title">Social Media Campaigns &amp; Key Visuals</p>
+            <p class="featured-subtitle">Campaign key visuals across brands</p>
+            <!-- MOBILE FEATURED CAPTION END -->
+          </div>
+          <p class="featured-count" aria-hidden="true"><!-- MOBILE FEATURED COUNT START --><span class="featured-current">01</span> / <span class="featured-total">08</span><!-- MOBILE FEATURED COUNT END --></p>
+        </div>
+        <div class="featured-actions">
+          <!-- MOBILE FEATURED LINK START --><a class="featured-link" href="pages/social-media-campaigns.html">View Project <span aria-hidden="true">&rarr;</span></a><!-- MOBILE FEATURED LINK END -->
+          <div class="featured-controls">
+            <button type="button" class="featured-step" data-step="-1" aria-label="Previous group" disabled>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+            <button type="button" class="featured-step" data-step="1" aria-label="Next group" disabled>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
           </div>
         </div>
         <p class="featured-status sr-only" aria-live="polite" aria-atomic="true"></p>
@@ -565,7 +586,7 @@
           <div class="about-text">
             <p class="about-lede">
               <span class="desktop-hero-copy">I&rsquo;m Gil Tejano Culas, a senior graphic designer and
-              creative specialist with 6+ years of experience creating brand-focused
+              creative specialist with 7+ years of experience creating brand-focused
               visuals for furniture, lighting, retail, manufacturing, and
               events. My work spans campaign visuals, catalogs, showroom
               materials, sales presentations, and production-ready layouts.</span><span class="mobile-hero-copy">I’m Gil Tejano Culas, a Senior Graphic Designer and Creative Specialist creating polished, brand-consistent visuals for furniture, lighting, lifestyle, retail, and manufacturing brands.</span>
@@ -1148,7 +1169,7 @@
                 <summary>
                   <span class="career-date">Jul 2025 — Present <span class="career-current">Current</span></span>
                   <span class="career-role">Senior Graphic Designer / Creative Specialist</span>
-                  <span class="career-company">Metal-lite</span>
+                  <span class="career-company">Metal-Lite</span>
                 </summary>
                 <div class="career-contribution">
                   <p>Developing brand-consistent campaigns, product visuals, catalogues, retail materials, and digital content for a portfolio of premium lifestyle brands.</p>
@@ -1175,7 +1196,7 @@
                 <summary>
                   <span class="career-date">Apr — Sep 2023</span>
                   <span class="career-role">Graphic Designer</span>
-                  <span class="career-company">Jams Advertising</span>
+                  <span class="career-company">JAMS Advertising</span>
                 </summary>
                 <div class="career-contribution"><p>Created graphic design work in an advertising production environment.</p></div>
               </details>
@@ -1194,8 +1215,8 @@
               <details>
                 <summary>
                   <span class="career-date">Mar 2021 — Oct 2022</span>
-                  <span class="career-role">Graphic Designer</span>
-                  <span class="career-company">JVP Innovations</span>
+                  <span class="career-role">Freelance Graphic Designer</span>
+                  <span class="career-company">JVP Innovation</span>
                 </summary>
                 <div class="career-contribution"><p>Provided freelance graphic design support across client projects.</p></div>
               </details>
@@ -1205,7 +1226,7 @@
                 <summary>
                   <span class="career-date">Oct 2019 — Feb 2021</span>
                   <span class="career-role">Graphic Designer</span>
-                  <span class="career-company">JVP Innovations</span>
+                  <span class="career-company">JVP Innovation</span>
                 </summary>
                 <div class="career-contribution"><p>Built practical graphic design experience in an on-site production environment.</p></div>
               </details>
@@ -1225,7 +1246,7 @@
               <p class="tl-desc">Campaign visuals, showroom materials, and sales presentations for high-end furniture and lighting brands, plus event photo/video capture.</p>
             </li>
 
-            <li class="tl-item is-current">
+            <li class="tl-item is-featured">
               <span class="tl-dot" aria-hidden="true"></span>
               <p class="tl-date">Jul 2024 — Jul 2025</p>
               <span class="tl-tag">Full-time</span>
@@ -1278,54 +1299,44 @@
 
         <div class="brands-track" id="brands-track" aria-label="Brands I've supported" tabindex="0">
           <a class="brand-logo is-linked" href="https://www.instagram.com/portamobili/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Visit Porta Mobili&rsquo;s official page">
-            <img class="brand-logo-img" src="assets/images/brands/porta-mobili.svg" alt="Porta Mobili" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <img class="brand-logo-img" src="assets/images/brands/porta-mobili.svg" alt="Porta Mobili" style="--logo-ratio: 11.62" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Porta Mobili</span>
-            <span class="mobile-brand-meta" aria-hidden="true"><span>Porta Mobili</span></span>
           </a>
           <a class="brand-logo is-linked" href="https://etrohomeinteriors.onirogroup.it/" target="_blank" rel="noopener noreferrer" aria-label="Visit Etro&rsquo;s official website">
-            <img class="brand-logo-img" src="assets/images/brands/etro.svg" alt="Etro" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <img class="brand-logo-img" src="assets/images/brands/etro.svg" alt="Etro" style="--logo-ratio: 2.08" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Etro</span>
-            <span class="mobile-brand-meta" aria-hidden="true"><span>Etro</span></span>
           </a>
           <a class="brand-logo is-linked" href="https://stoneleaf.fr/en" target="_blank" rel="noopener noreferrer" aria-label="Visit Stoneleaf&rsquo;s official website">
-            <img class="brand-logo-img" src="assets/images/brands/stoneleaf.svg" alt="Stoneleaf" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <img class="brand-logo-img" src="assets/images/brands/stoneleaf.svg" alt="Stoneleaf" style="--logo-ratio: 1.62" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Stoneleaf</span>
-            <span class="mobile-brand-meta" aria-hidden="true"><span>Stoneleaf</span></span>
           </a>
           <a class="brand-logo is-linked" href="https://hooga.ph/" target="_blank" rel="noopener noreferrer" aria-label="Visit Hooga&rsquo;s official website">
-            <img class="brand-logo-img" src="assets/images/brands/hooga.svg" alt="Hooga" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <img class="brand-logo-img" src="assets/images/brands/hooga.svg" alt="Hooga" style="--logo-ratio: 2.39" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Hooga</span>
-            <span class="mobile-brand-meta" aria-hidden="true"><span>Hooga</span></span>
           </a>
           <a class="brand-logo is-linked" href="https://www.instagram.com/mooni.ph/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Visit Mooni&rsquo;s official page">
-            <img class="brand-logo-img" src="assets/images/brands/mooni.svg" alt="Mooni" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <img class="brand-logo-img" src="assets/images/brands/mooni.svg" alt="Mooni" style="--logo-ratio: 3.51" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Mooni</span>
-            <span class="mobile-brand-meta" aria-hidden="true"><span>Mooni</span></span>
           </a>
           <span class="brand-logo">
-            <img class="brand-logo-img" src="assets/images/brands/bw.svg" alt="BW" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <img class="brand-logo-img" src="assets/images/brands/bw.svg" alt="BW" style="--logo-ratio: 0.76" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>BW</span>
-            <span class="mobile-brand-meta" aria-hidden="true"><span>BW</span></span>
           </span>
           <a class="brand-logo is-linked" href="https://dunlopilloph.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dunlopillo&rsquo;s official website">
-            <img class="brand-logo-img" src="assets/images/brands/dunlopillo.svg" alt="Dunlopillo" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <img class="brand-logo-img" src="assets/images/brands/dunlopillo.svg" alt="Dunlopillo" style="--logo-ratio: 3.68" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Dunlopillo</span>
-            <span class="mobile-brand-meta" aria-hidden="true"><span>Dunlopillo</span></span>
           </a>
           <a class="brand-logo is-linked" href="https://www.metallite.shop/" target="_blank" rel="noopener noreferrer" aria-label="Visit Metal-Lite&rsquo;s official website">
-            <img class="brand-logo-img" src="assets/images/brands/metal-lite.svg" alt="Metal-Lite" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <img class="brand-logo-img" src="assets/images/brands/metal-lite.svg" alt="Metal-Lite" style="--logo-ratio: 7.77" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Metal-Lite</span>
-            <span class="mobile-brand-meta" aria-hidden="true"><span>Metal-Lite</span></span>
           </a>
           <a class="brand-logo is-linked" href="https://www.riflessi.it/en/home" target="_blank" rel="noopener noreferrer" aria-label="Visit Riflessi&rsquo;s official website">
-            <img class="brand-logo-img" src="assets/images/brands/riflessi.svg" alt="Riflessi" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <img class="brand-logo-img" src="assets/images/brands/riflessi.svg" alt="Riflessi" style="--logo-ratio: 1.92" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Riflessi</span>
-            <span class="mobile-brand-meta" aria-hidden="true"><span>Riflessi</span></span>
           </a>
           <a class="brand-logo is-linked" href="https://www.instagram.com/tisettanta_official/" target="_blank" rel="noopener noreferrer" aria-label="Visit Tisettanta&rsquo;s official page">
-            <img class="brand-logo-img" src="assets/images/brands/tisettanta.svg" alt="Tisettanta" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
+            <img class="brand-logo-img" src="assets/images/brands/tisettanta.svg" alt="Tisettanta" style="--logo-ratio: 5.39" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Tisettanta</span>
-            <span class="mobile-brand-meta" aria-hidden="true"><span>Tisettanta</span></span>
           </a>
         </div>
       </div>
@@ -1342,7 +1353,7 @@
           <div class="found-item">
             <p class="mobile-foundation-copy foundation-number">01</p>
             <p class="found-years">2019 – 2024</p>
-            <h3 class="found-degree">BS Information Technology — Undergraduate</h3>
+            <h3 class="found-degree">BS Information Technology — Undergraduate, 4th Year Level</h3>
             <p class="found-school">Cavite State University</p>
             <p class="found-tag">Web &amp; Systems Development</p>
             <p class="mobile-foundation-copy foundation-relevance">Developed an understanding of web systems, interfaces, and structured problem-solving.</p>
@@ -1364,6 +1375,27 @@
             <p class="found-school">Tanza National Trade School</p>
             <p class="found-tag"><span class="desktop-hero-copy">2D AutoCAD &amp; Drafting</span><span class="mobile-hero-copy">2D Drafting &amp; Technical Foundations</span></p>
             <p class="mobile-foundation-copy foundation-relevance">Established precision, spatial awareness, and attention to detail.</p>
+          </div>
+        </div>
+
+        <h3 class="found-subhead" id="certificates-heading">Certificates &amp; Training</h3>
+        <div class="found-body found-certs" aria-labelledby="certificates-heading">
+          <div class="found-item">
+            <p class="mobile-foundation-copy foundation-number">04</p>
+            <p class="found-years">August 2018</p>
+            <h4 class="found-degree">Graphic Design and Computer Hardware Training</h4>
+            <p class="found-school">Datacom Institute of Computer Technology</p>
+            <p class="found-tag">Design Principles &amp; Hardware</p>
+            <p class="mobile-foundation-copy foundation-relevance">Training in design principles, visual communication, graphic design software, and computer assembly, maintenance, and troubleshooting.</p>
+          </div>
+
+          <div class="found-item">
+            <p class="mobile-foundation-copy foundation-number">05</p>
+            <p class="found-years">April 2024</p>
+            <h4 class="found-degree">Seminar Series on Excelling in the Virtual Workforce</h4>
+            <p class="found-school">Cavite State University — Department of Information Technology</p>
+            <p class="found-tag">Virtual Workforce Readiness</p>
+            <p class="mobile-foundation-copy foundation-relevance">Seminar training in virtual workforce readiness, professional communication, and foundational remote-work skills.</p>
           </div>
         </div>
         <p class="mobile-foundation-copy foundation-connection">This combination of design and technology allows me to create visuals that are expressive, structured, and practical across platforms.</p>

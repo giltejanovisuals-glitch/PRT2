@@ -2,84 +2,42 @@
  * Build-time step for the mobile landing carousel (index.html,
  * .mobile-featured; css/mobile-featured.css, js/mobile-featured.js).
  *
- * FEATURED is the manually approved collection — never a random pick from
- * the gallery folders. The first entry is the fixed opening slide; the
- * browser shuffles the other five once per session. Keep one visual per
- * category and brand, and prefer artwork that reads well at phone width.
+ * The curated groups live in scripts/featured-groups.js. For each image this
+ * writes 480w and 960w WebP copies (assets/images/featured/<id>-<w>.webp;
+ * existing files are skipped — delete them to regenerate) and a tiny inline
+ * WebP placeholder; reels get the same from the poster frame that
+ * scripts/make-featured-clips.js saved beside their preview clip. It then
+ * rewrites js/mobile-featured-data.js and the marked first-group, caption,
+ * and preload blocks in index.html.
  *
- * For each entry this writes 480w and 960w WebP copies
- * (assets/images/featured/<id>-<w>.webp, existing files are skipped — delete
- * them to regenerate) and a tiny inline WebP placeholder, then rewrites
- * js/mobile-featured-data.js and the marked first-slide and preload blocks
- * in index.html.
+ * Each item also records whether its proportions differ from its slot's:
+ * those are shown whole over a blurred copy of themselves (`fill`).
  */
 const fs = require("fs");
 const path = require("path");
 const { loadImage, createCanvas } = require("@napi-rs/canvas");
+const GROUPS = require("./featured-groups");
 
 const ROOT = path.join(__dirname, "..");
 const OUTPUT_DIR = path.join(ROOT, "assets", "images", "featured");
+const CLIP_DIR = "assets/videos/featured";
+const REEL_DIR = path.join(ROOT, "assets", "videos", "short-form-reels");
 const WIDTHS = [480, 960];
 const WEBP_QUALITY = 80;
 const PLACEHOLDER_WIDTH = 24;
-const SIZES = "(max-width: 760px) calc(100vw - 40px), 1px";
+const AUTOPLAY_MS = 6500;
 
-// Each slide opens its piece directly on its Project Gallery page: the image
-// in the fullscreen lightbox, the publication in the reader, or the reel in
-// its player (js/print-collateral-showcase.js, js/publication-reader.js).
-const openIn = (page, file) => `pages/${page}.html?open=${encodeURIComponent(file)}`;
-
-const FEATURED = [
-  {
-    id: "hooga-key-visual",
-    brand: "Hooga",
-    title: "Brand Campaign Key Visual",
-    href: openIn("social-media-campaigns", "HOOGA ROCKWELL.png"),
-    source: "assets/images/gallery/social-media-campaigns/HOOGA ROCKWELL.png",
-    alt: "Hooga “A New Sense of Comfort” key visual: a tan leather sofa beneath glowing circular ceiling lights in a warm walnut-toned room.",
-  },
-  {
-    id: "porta-mobili-brand-deck",
-    brand: "Porta Mobili",
-    title: "Editorial Brand Deck",
-    href: openIn("editorial-layout", "porta-mobili-brand-deck-web.pdf"),
-    source: "assets/documents/editorial-layout/pages/porta-mobili-brand-deck-web/page-001.jpg",
-    crop: { left: 14 }, // the page render has a thin white edge
-    alt: "Porta Mobili brand deck cover: the sculpted curve of a cream chair emerging from deep shadow beside the Porta Mobili wordmark.",
-  },
-  {
-    id: "bw-product-photography",
-    brand: "BW",
-    title: "Commercial Product Photography",
-    href: openIn("commercial-lifestyle-photography", "BW 2025 - 02.jpg"),
-    source: "assets/images/gallery/commercial-lifestyle-photography/BW 2025 - 02.jpg",
-    alt: "A model dressed in white seated on a curved bouclé sofa beside a polished round side table, photographed for BW furniture.",
-  },
-  {
-    id: "dunlopillo-retail",
-    brand: "Dunlopillo",
-    title: "Print & Retail Application",
-    href: openIn("print-brand-collateral", "36.2.png"),
-    source: "assets/images/gallery/print-brand-collateral/36.2.png",
-    alt: "Dunlopillo “Your World of Deep Sleep” campaign on a showroom poster and a delivery truck wrap, showing a mattress on a misty forest lake.",
-  },
-  {
-    id: "metal-lite-lighting",
-    brand: "Metal-Lite",
-    title: "Lighting Campaign Visual",
-    href: openIn("social-media-campaigns", "APR-LSAW4S3-astralux-striplight 3.png"),
-    source: "assets/images/gallery/social-media-campaigns/APR-LSAW4S3-astralux-striplight 3.png",
-    alt: "Metal-Lite Astra Lux strip lighting campaign: warm light tracing a floating timber staircase and dark feature wall in a modern interior.",
-  },
-  {
-    id: "mooni-reel",
-    brand: "Mooni",
-    title: "Short-Form Reel",
-    href: openIn("short-form-video-reels", "MOONI FW20202.3.mp4"),
-    source: "assets/videos/short-form-reels/MOONI FW20202.3.jpg",
-    alt: "Frame from a Mooni “GRWM to sleep” reel: a woman in green loungewear preparing a mattress in a softly lit bedroom.",
-  },
-];
+// Slot proportions (width / height) in the square frame, and the share of
+// the frame's width each slot takes (for `sizes`).
+const SLOTS = {
+  feature: [{ ratio: 0.58, share: 0.58 }, { ratio: 0.84, share: 0.42 }, { ratio: 0.84, share: 0.42 }],
+  "feature-rev": [{ ratio: 0.58, share: 0.58 }, { ratio: 0.84, share: 0.42 }, { ratio: 0.84, share: 0.42 }],
+  pair: [{ ratio: 0.5, share: 0.5 }, { ratio: 0.5, share: 0.5 }],
+  wide: [{ ratio: 2, share: 1 }, { ratio: 1, share: 0.5 }, { ratio: 1, share: 0.5 }],
+};
+// Within this, the artwork is shown on the plain stage without the blur.
+const FILL_TOLERANCE = 0.06;
+const sizesFor = (share) => `(max-width: 760px) calc((100vw - 40px) * ${share}), 1px`;
 
 const escape = (text) => String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 
@@ -95,84 +53,164 @@ function encode(image, width, quality, crop = {}) {
   return { buffer: canvas.toBuffer("image/webp", quality), width: canvas.width, height: canvas.height };
 }
 
+// Duration of an MP4 in seconds, from its mvhd box.
+function mp4Duration(file) {
+  const fd = fs.openSync(file, "r");
+  const read = (pos, len) => {
+    const buffer = Buffer.alloc(len);
+    fs.readSync(fd, buffer, 0, len, pos);
+    return buffer;
+  };
+  const walk = (start, end) => {
+    for (let pos = start; pos + 8 <= end; ) {
+      const head = read(pos, 16);
+      let length = head.readUInt32BE(0);
+      const type = head.toString("latin1", 4, 8);
+      let header = 8;
+      if (length === 1) { length = Number(head.readBigUInt64BE(8)); header = 16; }
+      if (length === 0) length = end - pos;
+      if (type === "moov") return walk(pos + header, pos + length);
+      if (type === "mvhd") {
+        const box = read(pos + header, 32);
+        return box[0] === 1 ? Number(box.readBigUInt64BE(24)) / box.readUInt32BE(20) : box.readUInt32BE(16) / box.readUInt32BE(12);
+      }
+      pos += length;
+    }
+    return 0;
+  };
+  try { return walk(0, fs.fstatSync(fd).size); } finally { fs.closeSync(fd); }
+}
+const clock = (seconds) => {
+  const s = Math.round(seconds);
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+};
+
+async function webp(id, sourcePath, crop) {
+  const outputs = WIDTHS.map((w) => path.join(OUTPUT_DIR, `${id}-${w}.webp`));
+  let source = null;
+  const sizes = [];
+  for (let i = 0; i < WIDTHS.length; i += 1) {
+    if (fs.existsSync(outputs[i])) {
+      // eslint-disable-next-line no-await-in-loop
+      const existing = await loadImage(fs.readFileSync(outputs[i]));
+      sizes.push({ width: existing.width, height: existing.height });
+      continue;
+    }
+    if (!source) {
+      const file = path.join(ROOT, sourcePath);
+      if (!fs.existsSync(file)) throw new Error(`missing source ${sourcePath}`);
+      // eslint-disable-next-line no-await-in-loop
+      source = await loadImage(fs.readFileSync(file));
+    }
+    const result = encode(source, WIDTHS[i], WEBP_QUALITY, crop);
+    fs.writeFileSync(outputs[i], result.buffer);
+    sizes.push({ width: result.width, height: result.height });
+    console.log(`[mobile-featured] ${path.basename(outputs[i])}  ${result.width}x${result.height}`);
+  }
+  // The placeholder comes from the small copy, so cached builds stay fast.
+  const small = await loadImage(fs.readFileSync(outputs[0]));
+  const placeholder = encode(small, PLACEHOLDER_WIDTH, 50);
+  const large = sizes[sizes.length - 1];
+  return {
+    width: large.width,
+    height: large.height,
+    srcset: WIDTHS.map((w, i) => `assets/images/featured/${id}-${w}.webp ${sizes[i].width}w`).join(", "),
+    placeholder: `data:image/webp;base64,${placeholder.buffer.toString("base64")}`,
+  };
+}
+
 async function build() {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-  const slides = [];
-  for (const item of FEATURED) {
-    const outputs = WIDTHS.map((w) => path.join(OUTPUT_DIR, `${item.id}-${w}.webp`));
-    let source = null;
-    const sourceImage = async () => {
-      if (!source) {
-        const file = path.join(ROOT, item.source);
-        if (!fs.existsSync(file)) throw new Error(`missing source ${item.source}`);
-        // eslint-disable-next-line no-await-in-loop
-        source = await loadImage(fs.readFileSync(file));
-      }
-      return source;
-    };
-    const sizes = [];
-    for (let i = 0; i < WIDTHS.length; i += 1) {
-      if (fs.existsSync(outputs[i])) {
-        // eslint-disable-next-line no-await-in-loop
-        const existing = await loadImage(fs.readFileSync(outputs[i]));
-        sizes.push({ width: existing.width, height: existing.height });
-        continue;
+  const ids = new Set();
+  const groups = [];
+  for (const group of GROUPS) {
+    const slots = SLOTS[group.layout];
+    if (!slots) throw new Error(`${group.id}: unknown layout ${group.layout}`);
+    if (group.items.length !== slots.length) throw new Error(`${group.id}: ${group.layout} takes ${slots.length} items`);
+    if (group.items.filter((item) => item.kind === "reel").length > 2) throw new Error(`${group.id}: at most two reels`);
+    const items = [];
+    for (let i = 0; i < group.items.length; i += 1) {
+      const item = group.items[i];
+      if (ids.has(item.id)) throw new Error(`${item.id} appears twice`);
+      ids.add(item.id);
+      const reel = item.kind === "reel";
+      if (reel && !fs.existsSync(path.join(ROOT, CLIP_DIR, `${item.id}.mp4`))) {
+        throw new Error(`missing ${CLIP_DIR}/${item.id}.mp4 — run scripts/make-featured-clips.js`);
       }
       // eslint-disable-next-line no-await-in-loop
-      const result = encode(await sourceImage(), WIDTHS[i], WEBP_QUALITY, item.crop);
-      fs.writeFileSync(outputs[i], result.buffer);
-      sizes.push({ width: result.width, height: result.height });
-      console.log(`[mobile-featured] ${path.basename(outputs[i])}  ${result.width}x${result.height}`);
+      const image = await webp(item.id, reel ? `${CLIP_DIR}/${item.id}.jpg` : item.source, item.crop);
+      const fill = Math.abs(Math.log(image.width / image.height / slots[i].ratio)) > FILL_TOLERANCE;
+      const base = { id: item.id, alt: item.alt, ...image, sizes: sizesFor(slots[i].share), fill };
+      if (reel) {
+        items.push({
+          ...base,
+          kind: "reel",
+          label: item.label,
+          file: item.file,
+          clip: `${CLIP_DIR}/${item.id}.mp4`,
+          duration: clock(mp4Duration(path.join(REEL_DIR, item.file))),
+        });
+      } else {
+        items.push({ ...base, kind: "image", href: item.href });
+      }
     }
-    // The placeholder comes from the small copy, so cached builds stay fast.
-    // eslint-disable-next-line no-await-in-loop
-    const small = await loadImage(fs.readFileSync(outputs[0]));
-    const placeholder = encode(small, PLACEHOLDER_WIDTH, 50);
-    const large = sizes[sizes.length - 1];
-    slides.push({
-      id: item.id,
-      brand: item.brand,
-      title: item.title,
-      href: item.href,
-      alt: item.alt,
-      width: large.width,
-      height: large.height,
-      srcset: WIDTHS.map((w, i) => `assets/images/featured/${item.id}-${w}.webp ${sizes[i].width}w`).join(", "),
-      placeholder: `data:image/webp;base64,${placeholder.buffer.toString("base64")}`,
+    // A group with reel previews stays up for one full pass of its clips.
+    const clipMs = Math.max(0, ...group.items.filter((item) => item.kind === "reel").map((item) => item.length * 1000 + 500));
+    groups.push({
+      id: group.id,
+      title: group.title,
+      subtitle: group.subtitle,
+      href: group.href,
+      layout: group.layout,
+      family: group.family || "",
+      dwell: Math.max(AUTOPLAY_MS, clipMs),
+      items,
     });
   }
 
-  const first = slides[0];
-  const slideBlock = `<!-- MOBILE FEATURED START -->
-          <div class="featured-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of ${slides.length}" data-id="${first.id}" style="--placeholder: url('${first.placeholder}')">
-            <a class="featured-media" href="${first.href}">
-              <picture><source media="(max-width: 760px)" type="image/webp" srcset="${first.srcset}" sizes="${SIZES}" /><img width="${first.width}" height="${first.height}" alt="${escape(first.alt)}" decoding="async" fetchpriority="high" /></picture>
-            </a>
-          </div>
-          <!-- MOBILE FEATURED END -->`;
+  // The opening group is rendered into index.html. Its sources sit on a
+  // <source> that only matches phones, so desktop never downloads them.
+  const first = groups[0];
+  if (first.items.some((item) => item.kind === "reel")) throw new Error("the opening group must be images only");
+  const tiles = first.items
+    .map((item, i) => `<a class="featured-tile${item.fill ? " is-fill" : ""}" href="${item.href}" style="--placeholder: url('${item.placeholder}')">
+                <picture><source media="(max-width: 760px)" type="image/webp" srcset="${item.srcset}" sizes="${item.sizes}" /><img width="${item.width}" height="${item.height}" alt="${escape(item.alt)}" decoding="async"${i === 0 ? ' fetchpriority="high"' : ""} /></picture>
+              </a>`)
+    .join("\n              ");
+  const groupBlock = `<!-- MOBILE FEATURED START -->
+            <div class="featured-group is-active" data-layout="${first.layout}" data-id="${first.id}" role="group" aria-roledescription="slide" aria-label="1 of ${groups.length}: ${escape(first.title)}">
+              ${tiles}
+            </div>
+            <!-- MOBILE FEATURED END -->`;
   const captionBlock = `<!-- MOBILE FEATURED CAPTION START -->
-          <p class="featured-brand">${escape(first.brand)}</p>
-          <p class="featured-title">${escape(first.title)}</p>
-          <!-- MOBILE FEATURED CAPTION END -->`;
-  const preloadBlock = `<!-- MOBILE FEATURED PRELOAD START --><link rel="preload" as="image" type="image/webp" media="(max-width: 760px)" imagesrcset="${first.srcset}" imagesizes="${SIZES}" fetchpriority="high" /><!-- MOBILE FEATURED PRELOAD END -->`;
+            <p class="featured-title">${escape(first.title)}</p>
+            <p class="featured-subtitle">${escape(first.subtitle)}</p>
+            <!-- MOBILE FEATURED CAPTION END -->`;
+  const countBlock = `<!-- MOBILE FEATURED COUNT START --><span class="featured-current">01</span> / <span class="featured-total">${String(groups.length).padStart(2, "0")}</span><!-- MOBILE FEATURED COUNT END -->`;
+  const linkBlock = `<!-- MOBILE FEATURED LINK START --><a class="featured-link" href="${first.href}">View Project <span aria-hidden="true">&rarr;</span></a><!-- MOBILE FEATURED LINK END -->`;
+  const lead = first.items[0];
+  const preloadBlock = `<!-- MOBILE FEATURED PRELOAD START --><link rel="preload" as="image" type="image/webp" media="(max-width: 760px)" imagesrcset="${lead.srcset}" imagesizes="${lead.sizes}" fetchpriority="high" /><!-- MOBILE FEATURED PRELOAD END -->`;
 
   const indexPath = path.join(ROOT, "index.html");
   let html = fs.readFileSync(indexPath, "utf8");
   const replaceBlock = (name, block) => {
-    const pattern = new RegExp(`<!-- MOBILE FEATURED ${name ? `${name} ` : ""}START -->[\\s\\S]*?<!-- MOBILE FEATURED ${name ? `${name} ` : ""}END -->`);
-    if (!pattern.test(html)) throw new Error(`index.html is missing the MOBILE FEATURED ${name || "slide"} markers`);
+    const label = `MOBILE FEATURED ${name ? `${name} ` : ""}`;
+    const pattern = new RegExp(`<!-- ${label}START -->[\\s\\S]*?<!-- ${label}END -->`);
+    if (!pattern.test(html)) throw new Error(`index.html is missing the ${label}markers`);
     html = html.replace(pattern, () => block);
   };
-  replaceBlock("", slideBlock);
+  replaceBlock("", groupBlock);
   replaceBlock("CAPTION", captionBlock);
+  replaceBlock("COUNT", countBlock);
+  replaceBlock("LINK", linkBlock);
   replaceBlock("PRELOAD", preloadBlock);
   fs.writeFileSync(indexPath, html);
 
   fs.writeFileSync(
     path.join(ROOT, "js", "mobile-featured-data.js"),
-    `/* Generated by scripts/generate-mobile-featured.js — edit FEATURED there. */\nwindow.MOBILE_FEATURED = ${JSON.stringify({ sizes: SIZES, slides }, null, 2)};\n`
+    `/* Generated by scripts/generate-mobile-featured.js — edit scripts/featured-groups.js. */\nwindow.MOBILE_FEATURED = ${JSON.stringify({ groups }, null, 2)};\n`
   );
-  console.log(`[mobile-featured] ${slides.length} featured slides`);
+  console.log(`[mobile-featured] ${groups.length} featured groups, ${ids.size} visuals`);
 }
 
 build().catch((error) => {

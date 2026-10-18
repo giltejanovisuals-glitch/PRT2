@@ -309,44 +309,68 @@ scroll, then its three rows slide sideways in alternating directions. With
   (`.showcase-panel[data-category]`) further down `index.html`.
 - On mobile (up to 760px), `css/mobile-featured.css` and
   `js/mobile-featured.js` replace the wall with a label, headline,
-  supporting line, a 4:5 carousel of six featured visuals, and a brand and
-  title caption. Each image links to its project. The desktop image wall
-  is not populated on mobile.
-- **Featured collection** is hand-approved in `FEATURED` in
-  `scripts/generate-mobile-featured.js` (one visual per category and
-  brand). The first entry is always the opening slide; the other five are
-  shuffled once per browsing session (`sessionStorage`) and never reorder
-  mid-visit. To change a slide, edit its entry, delete its files in
+  supporting line, and a carousel of eight curated **groups** of 2–3
+  visuals in a fixed square frame, with a thin teal progress line, the
+  group's title, subtitle and count (`03 / 08`), a **View Project →** link,
+  and previous/next buttons. The desktop image wall is not populated on
+  mobile.
+- **Featured collection** is hand-approved in `scripts/featured-groups.js`
+  (never a random pick from the gallery folders; no visual repeats across
+  groups). The first group is always the opening group; the others are
+  shuffled once per browsing session (`sessionStorage`), never placing two
+  groups with the same layout or the same `family` tag (Porta Mobili,
+  reels) side by side. Four layouts: `feature` / `feature-rev` (one tall
+  visual beside two stacked), `pair` (two equal verticals), and `wide`
+  (one wide visual above two squares); slot proportions live in `SLOTS`
+  in `scripts/generate-mobile-featured.js` and must match the grid in the
+  stylesheet. To change a visual, edit its entry, delete its files in
   `assets/images/featured/`, and run `npm run build`. The script writes
-  480w/960w WebP copies, an inline placeholder per slide,
-  `js/mobile-featured-data.js`, the opening slide's markup, and its
-  `<link rel="preload">` (between the `MOBILE FEATURED` markers in
-  `index.html`). An optional `crop` trims source edges.
-- **Images** are shown whole (`object-fit: contain`) over an enlarged,
-  blurred, darkened copy of the placeholder, so other ratios never stretch,
-  crop, or show flat bars. Only the current and next slides receive image
-  sources; the placeholder shows until each full image loads.
+  480w/960w WebP copies, an inline placeholder per visual,
+  `js/mobile-featured-data.js`, and the opening group's markup, caption,
+  count, link, and `<link rel="preload">` (between the `MOBILE FEATURED`
+  markers in `index.html`). An optional `crop` trims source edges.
+- **Images** are always shown whole (`object-fit: contain`). Only visuals
+  whose proportions differ from their slot (`fill` in the data) sit over an
+  enlarged, blurred, darkened copy of themselves with a subtle overlay.
+  Only the current and next groups receive image sources.
+- **Reels** play as muted, looping, inline previews from light clips
+  (`assets/videos/featured/<id>.mp4`, 540px wide, a few hundred KB) made by
+  `scripts/make-featured-clips.js` from each reel's `start`/`length`. That
+  script needs ffmpeg and is run by hand (`FFMPEG=<path>` if it isn't on
+  PATH); commit its output, since the deploy build has no ffmpeg. Previews
+  load and play only while their group is active and the carousel is on
+  screen (at most two at once, `preload="metadata"`, poster first), and
+  are stopped, rewound, and unloaded when the group is left, the tab is
+  hidden, or the carousel scrolls away. Under reduced motion or reduced
+  data they stay still posters. Each shows a reel icon and the full reel's
+  duration. A tap opens the full reel in the fullscreen viewer
+  (`js/reel-viewer.js`); closing it continues to the Short-Form Video &
+  Reels page with that reel picked out (`?reel=<file>`).
 - **Interaction**: swipe (the first 10px choose the axis; vertical always
-  scrolls the page, 40px horizontal steps one slide) and left/right arrow
-  keys. Instagram-style dots over the bottom of the image mark the
-  position. Slides crossfade over 600ms with a slight 1.5% settle.
-  Autoplay advances every 5.5s, pauses during touch, focus, hover, hidden
-  tabs, and while offscreen, and stops for the visit after any manual
-  step. Reduced motion or data saving disables autoplay and transitions.
-- **Accessibility**: each slide is a labelled group ("2 of 6"); manual
-  steps are announced through a polite live region; hidden slides are
-  `inert`. Without JavaScript only the opening slide and its links show.
-- **Links**: each slide opens its piece directly on its Project Gallery
-  page via `?open=<file name>` (`openIn()` in the generator). The showcase
+  scrolls the page, 40px horizontal steps exactly one group), the
+  previous/next buttons, and left/right arrow keys. Groups crossfade over
+  600ms with a 10px drift in the direction of travel. Autoplay advances
+  every 6.5s (a reel group stays for one full pass of its clips), pauses
+  during touch, focus, hover, the reel viewer, hidden tabs, and while
+  offscreen, and stops for the visit after any manual step or opened
+  piece. Reduced motion or data saving disables autoplay and transitions.
+- **Accessibility**: each group is a labelled slide ("3 of 8: Commercial &
+  Lifestyle Photography"); manual steps are announced through a polite
+  live region; hidden groups are `inert`. Every image has alt text, reel
+  buttons describe the reel and its length, and every control is at least
+  44px. Without JavaScript only the opening group and its links show.
+- **Links**: each image opens its piece directly on its Project Gallery
+  page via `?open=<file name>` (`openIn()` in `scripts/featured-groups.js`),
+  and **View Project →** opens the group's page. The showcase
   pages (`js/print-collateral-showcase.js`) open that image in the
-  fullscreen lightbox, or that reel in the phone reel viewer or desktop
-  preview; the editorial page (`js/publication-reader.js`) opens that PDF
-  in the reader. The parameter is then removed from the address bar.
-  Linked reels use the reel viewer on every screen size. Closing a piece
+  fullscreen lightbox; the editorial page (`js/publication-reader.js`)
+  opens that PDF in the reader. The parameter is then removed from the
+  address bar. Closing a piece
   opened this way (close button or Escape) returns the visitor to the page
   they came from (`js/return-trip.js`, loaded on the five gallery
   pages), or to the homepage if they arrived another way. The carousel
-  then shows the same slide again, with autoplay paused.
+  then shows the same group again, with autoplay paused.
+
 
 ### Returning to the homepage
 
@@ -504,6 +528,11 @@ assets/images/brands/metal-lite.svg
   box, so mismatched logo proportions still sit level in the row. Prefer
   a version with tight/no internal padding so the visual weight matches
   its neighbors.
+- On mobile (`css/mobile-brands.css`) the logos sit in a two-column grid
+  and are sized by visual weight instead: each `<img>` carries an inline
+  `--logo-ratio` (its SVG viewBox width ÷ height), and wider marks get
+  proportionally less height. When you add or replace a logo, update its
+  `--logo-ratio` to match.
 - Logos render grayscale at rest and switch to full color on hover/focus.
   If a mark is a single flat color already (not literally grayscale), pick
   a source file with transparent (not white) background so it isn't boxed

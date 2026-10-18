@@ -1,7 +1,7 @@
-/* Mobile landing: intro copy, then one curated image carousel
-   (js/mobile-featured.js) with its caption. Desktop keeps its
-   image wall; the .desktop-/.mobile-hero-copy toggles are shared by every
-   homepage section. */
+/* Mobile landing: intro copy, then a carousel of curated groups of
+   visuals (js/mobile-featured.js) with its caption and controls. Desktop
+   keeps its image wall; the .desktop-/.mobile-hero-copy toggles are
+   shared by every homepage section. */
 .mobile-hero-copy,
 .mobile-featured { display: none; }
 
@@ -58,128 +58,236 @@
     color: var(--m-muted);
   }
 
-  /* 4: the carousel. Its width follows the screen height so the whole
-     4:5 frame clears the bottom tab bar on first view (about 430px of
-     header, intro copy, and tab bar sit around it). */
+
+  /* 4: the carousel — one curated group of 2–3 visuals at a time in a
+     fixed square frame. Its width follows the screen height so the frame
+     and its caption clear the bottom tab bar on first view (about 520px of
+     header, intro copy, caption, and tab bar sit around it). */
   .mobile-featured {
     display: block;
-    width: min(100%, max(260px, (100svh - 430px) * .8), 30rem);
+    width: min(100%, max(260px, 100svh - 520px), 30rem);
     margin: 24px auto 0;
   }
   .featured-frame {
     position: relative;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    border-radius: 4px;
-    background: #141716; /* artwork stage: dark in both themes */
+    aspect-ratio: 1;
     touch-action: pan-y pinch-zoom;
     -webkit-tap-highlight-color: transparent;
   }
-  .featured-slide {
+  .featured-groups { position: absolute; inset: 0; }
+
+  /* Groups crossfade with a 10px drift in the direction of travel
+     (--shift: 10px forward, -10px back; js/mobile-featured.js). */
+  .featured-group {
+    --shift: 10px;
     position: absolute;
     inset: 0;
+    display: grid;
+    gap: 3px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 600ms var(--ease), visibility 0s linear 600ms;
+    transform: translateX(var(--shift));
+    transition: opacity 600ms var(--ease), transform 600ms var(--ease), visibility 0s linear 600ms;
   }
-  .featured-slide.is-active {
+  .mobile-featured[data-direction="back"] .featured-group { --shift: -10px; }
+  .featured-group.is-leaving { transform: translateX(calc(var(--shift) * -1)); }
+  .featured-group.is-active {
     z-index: 1;
     opacity: 1;
     visibility: visible;
-    transition: opacity 600ms var(--ease), visibility 0s;
+    transform: none;
+    transition: opacity 600ms var(--ease), transform 600ms var(--ease), visibility 0s;
   }
-  /* Soft fill for artwork whose ratio is not 4:5: the slide's own tiny
-     placeholder, enlarged, blurred, and darkened behind the sharp image. */
-  .featured-slide::before,
-  .featured-slide::after {
+
+  /* The four layouts. Slot proportions are mirrored in
+     scripts/generate-mobile-featured.js (SLOTS) — change both together. */
+  .featured-group[data-layout="feature"] { grid-template: 1fr 1fr / 58fr 42fr; }
+  .featured-group[data-layout="feature"] > :first-child { grid-row: 1 / 3; }
+  .featured-group[data-layout="feature-rev"] { grid-template: 1fr 1fr / 42fr 58fr; }
+  .featured-group[data-layout="feature-rev"] > :first-child { grid-area: 1 / 2 / 3 / 3; }
+  .featured-group[data-layout="feature-rev"] > :nth-child(n + 2) { grid-column: 1; }
+  .featured-group[data-layout="pair"] { grid-template: 1fr / 1fr 1fr; }
+  .featured-group[data-layout="wide"] { grid-template: 1fr 1fr / 1fr 1fr; }
+  .featured-group[data-layout="wide"] > :first-child { grid-column: 1 / 3; }
+
+  /* Each visual is shown whole on a dark stage (both themes). Artwork whose
+     proportions differ from its slot (.is-fill) sits over an enlarged,
+     blurred, darkened copy of itself; the rest show a soft preview of
+     themselves only until the image arrives. */
+  .featured-tile {
+    position: relative;
+    display: block;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+    border-radius: 2px;
+    background: #141716;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+  }
+  .featured-tile::before,
+  .featured-tile::after {
     content: "";
     position: absolute;
+    inset: 0;
     pointer-events: none;
   }
-  .featured-slide::before {
-    inset: -12%;
-    background: var(--placeholder) center / cover no-repeat;
-    filter: blur(22px) brightness(.5) saturate(1.1);
-  }
-  .featured-slide::after { inset: 0; background: #0a0c0c38; }
-  .featured-media {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: block;
-  }
-  /* Matching low-resolution preview until the full image arrives. */
-  .featured-media::before {
-    content: "";
-    position: absolute;
-    inset: 0;
+  .featured-tile::before {
     background: var(--placeholder) center / contain no-repeat;
     filter: blur(6px);
     transition: opacity 400ms ease;
   }
-  .featured-slide.is-loaded .featured-media::before { opacity: 0; }
-  .featured-media picture { display: contents; }
-  .featured-media img {
-    position: relative;
+  .featured-tile.is-loaded:not(.is-fill)::before { opacity: 0; }
+  .featured-tile.is-fill::before {
+    inset: -15%;
+    background-size: cover;
+    filter: blur(18px) brightness(.5) saturate(1.1);
+  }
+  .featured-tile.is-fill::after { background: #0a0c0c38; }
+  .featured-tile picture { display: contents; }
+  .featured-tile img,
+  .featured-tile video {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+  .featured-tile img {
     opacity: 0;
-    transform: scale(1.015);
-    filter: drop-shadow(0 10px 24px #0006);
-    transition: opacity 400ms ease, transform 700ms var(--ease);
+    transition: opacity 400ms ease;
   }
-  .featured-slide.is-loaded img { opacity: 1; }
-  .featured-slide.is-active img { transform: none; }
-  .featured-media:focus-visible { outline: 2px solid var(--m-accent); outline-offset: -4px; }
+  .featured-tile.is-loaded img { opacity: 1; }
+  .featured-tile:focus-visible { outline: 2px solid var(--m-accent); outline-offset: -2px; }
 
-  /* Position dots over the bottom of the image, as in an Instagram
-     carousel. A soft halo keeps them visible on light and dark artwork. */
-  .featured-dots {
-    position: absolute;
-    inset: auto 0 12px;
+  /* Reels: a muted preview fades in over the poster once frames play. */
+  .featured-tile video {
     z-index: 2;
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    pointer-events: none;
+    opacity: 0;
+    transition: opacity 300ms ease;
   }
-  .featured-dots span {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #fff;
-    opacity: .45;
-    box-shadow: 0 0 0 .5px #0003, 0 1px 3px #0007;
-    transition: opacity 300ms ease, transform 300ms var(--ease);
+  .featured-tile.is-playing video { opacity: 1; }
+  .featured-reel-badge {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 8px 4px 6px;
+    border-radius: 999px;
+    background: rgba(10, 12, 12, .55);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .02em;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
   }
-  .featured-dots span.is-active { opacity: 1; transform: scale(1.15); }
 
-  /* Slide details — fixed height, so title length never shifts the page. */
-  .featured-details { margin-top: 14px; }
-  .featured-caption { min-height: 64px; }
-  .featured-brand {
-    margin: 0 0 4px;
+  /* Progress: a thin teal line filled to the current group. */
+  .featured-progress {
+    height: 2px;
+    margin-top: 12px;
+    overflow: hidden;
+    background: var(--m-line);
+  }
+  .featured-progress-fill {
+    display: block;
+    width: calc(var(--progress, 0) * 100%);
+    height: 100%;
+    background: var(--m-accent);
+    transition: width 600ms var(--ease);
+  }
+
+  /* Caption — fixed height, so title length never shifts the page. */
+  .featured-details {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 12px;
+  }
+  .featured-caption { flex: 1; min-width: 0; min-height: 44px; }
+  .featured-title {
+    margin: 0 0 5px;
+    overflow: hidden;
     font-size: 10px;
     font-weight: 600;
-    letter-spacing: .2em;
+    line-height: 1.5;
+    letter-spacing: .18em;
     text-transform: uppercase;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     color: var(--m-accent);
   }
-  .featured-title {
-    display: -webkit-box;
+  .featured-subtitle {
     margin: 0;
     overflow: hidden;
-    font-size: 16px;
-    line-height: 1.35;
+    font-size: 15px;
+    line-height: 1.4;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     color: var(--m-text);
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
   }
+  .featured-count {
+    margin: 0;
+    font-size: 11px;
+    line-height: 15px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .12em;
+    white-space: nowrap;
+    color: var(--m-muted);
+  }
+  .featured-current { color: var(--m-text); }
   .mobile-featured.is-swapping .featured-caption { animation: featured-caption-in 500ms var(--ease); }
   @keyframes featured-caption-in { from { opacity: 0; } }
+
+  .featured-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 2px;
+  }
+  .featured-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .02em;
+    color: var(--m-text);
+    text-decoration: none;
+  }
+  .featured-link span { color: var(--m-accent); transition: transform 200ms var(--ease); }
+  .featured-link:active span { transform: translateX(3px); }
+  .featured-link:focus-visible { outline: 2px solid var(--m-accent); outline-offset: 2px; border-radius: 2px; }
+  .featured-controls { display: flex; gap: 8px; }
+  .featured-step {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--m-line-strong);
+    border-radius: 50%;
+    background: none;
+    color: var(--m-text);
+    cursor: pointer;
+    transition: background-color 200ms ease, opacity 200ms ease;
+  }
+  .featured-step:active { background: rgba(var(--m-accent-rgb), .1); }
+  .featured-step:disabled { opacity: .35; cursor: default; }
+  .featured-step:focus-visible { outline: 2px solid var(--m-accent); outline-offset: 2px; }
 
   /* Keep fixed navigation legible while the hero is in view. */
   body.mobile-hero-visible .site-header { color: var(--m-text); }
@@ -196,11 +304,14 @@
 
 @media (prefers-reduced-motion: reduce) {
   html:has(.mobile-featured) { scroll-behavior: auto; }
-  .featured-slide,
-  .featured-slide.is-active,
-  .featured-media::before,
-  .featured-media img,
-  .featured-dots span { transition: none; }
-  .featured-media img { transform: none; }
+  .featured-group,
+  .featured-group.is-active,
+  .featured-tile::before,
+  .featured-tile img,
+  .featured-tile video,
+  .featured-progress-fill,
+  .featured-link span { transition: none; }
+  .featured-group,
+  .featured-group.is-leaving { transform: none; }
   .mobile-featured.is-swapping .featured-caption { animation: none; }
 }
