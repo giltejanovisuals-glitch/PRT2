@@ -56,7 +56,7 @@
    ],
    "url": "pages/editorial-layout.html",
    "body": "Editorial systems that organize product and brand storytelling into clear, well-paced layouts — grid, typography, hierarchy, and composition built to hold up across long-form print and digital documents.",
-   "thumb": "assets/images/home-previews/editorial-layout/porta-brand-book-web-page-01-7su.webp"
+   "thumb": "assets/images/home-previews/editorial-layout/dunlopillo-suite-mattress-catalogue-2026-web-page-01-3av.webp"
   },
   {
    "title": "Social Media Campaigns & Key Visuals",
@@ -92,7 +92,7 @@
    ],
    "url": "pages/social-media-campaigns.html",
    "body": "Campaign key visuals developed into complete social systems — feed, stories, paid social, and launch content — giving products, promotions, and brand stories one clear, consistent presence across digital platforms.",
-   "thumb": "assets/images/home-previews/social-media-campaigns/1-copy-prg1.webp"
+   "thumb": "assets/images/home-previews/social-media-campaigns/1-feather-recliner-v2-11prl.webp"
   },
   {
    "title": "Print & Brand Collateral",
@@ -133,7 +133,7 @@
    ],
    "url": "pages/print-brand-collateral.html",
    "body": "Brochures, sales materials, stationery, and branded print built to carry a brand consistently off-screen — from billboards and vehicle wraps to pieces held in hand, designed with the same rigor as any digital touchpoint.",
-   "thumb": "assets/images/home-previews/print-brand-collateral/1-2-1yigh.webp"
+   "thumb": "assets/images/home-previews/print-brand-collateral/mockup-edsa-wall-mural-3kcha.webp"
   },
   {
    "title": "Commercial & Lifestyle Photography",
@@ -166,7 +166,7 @@
    ],
    "url": "pages/commercial-lifestyle-photography.html",
    "body": "Product, showroom, and lifestyle photography, styled and art-directed for campaigns, catalogs, and retail environments — with consistent lighting, styling, and color across every shoot.",
-   "thumb": "assets/images/home-previews/commercial-lifestyle-photography/dsf2214-webp-buxw.webp"
+   "thumb": "assets/images/home-previews/commercial-lifestyle-photography/bw-2025-02-8vhg.webp"
   },
   {
    "title": "Short-Form Video & Reels",
@@ -196,6 +196,121 @@
    "url": "pages/short-form-video-reels.html",
    "body": "Reels, TikToks, and short-form video content built for fast-paced social feeds and campaign launches.",
    "thumb": "assets/images/home-previews/short-form-video-reels/02-hooga-dec-2dew.webp"
+  },
+  {
+   "title": "Dunlopillo Suite Mattress Catalogue",
+   "group": "projects",
+   "kind": "Product Catalogue",
+   "description": "Dunlopillo · 2026 · 21 pages",
+   "keywords": [
+    "editorial",
+    "publication",
+    "dunlopillo",
+    "product catalogue",
+    "2026",
+    "catalogue layout",
+    "product page system",
+    "typography",
+    "and production preparation."
+   ],
+   "url": "pages/editorial-layout.html",
+   "thumb": "assets/documents/editorial-layout/covers/dunlopillo-suite-mattress-catalogue-2026-web.jpg"
+  },
+  {
+   "title": "Sync 5 Lighting Catalogue",
+   "group": "projects",
+   "kind": "Product Catalogue",
+   "description": "Endo · 2026 · 29 pages",
+   "keywords": [
+    "editorial",
+    "publication",
+    "endo",
+    "product catalogue",
+    "2026",
+    "editorial layout",
+    "product presentation",
+    "typography",
+    "and image sequencing."
+   ],
+   "url": "pages/editorial-layout.html",
+   "thumb": "assets/documents/editorial-layout/covers/endo-sync-5-catalogue-web.jpg"
+  },
+  {
+   "title": "Hooga Archive Catalogue",
+   "group": "projects",
+   "kind": "Product Catalogue",
+   "description": "Hooga · 2026 · 63 pages",
+   "keywords": [
+    "editorial",
+    "publication",
+    "hooga",
+    "product catalogue",
+    "2026",
+    "editorial direction",
+    "catalogue structure",
+    "layout development",
+    "typography",
+    "and production preparation."
+   ],
+   "url": "pages/editorial-layout.html",
+   "thumb": "assets/documents/editorial-layout/covers/hooga-archive-catalogue-2026-web.jpg"
+  },
+  {
+   "title": "Hooga Dining Collection",
+   "group": "projects",
+   "kind": "Collection Catalogue",
+   "description": "Hooga · 2026 · 43 pages",
+   "keywords": [
+    "editorial",
+    "publication",
+    "hooga",
+    "collection catalogue",
+    "2026",
+    "collection layout",
+    "product page system",
+    "typography",
+    "and image sequencing."
+   ],
+   "url": "pages/editorial-layout.html",
+   "thumb": "assets/documents/editorial-layout/covers/hooga-dining-collection-2026-web.jpg"
+  },
+  {
+   "title": "Hooga Living Room Collection",
+   "group": "projects",
+   "kind": "Collection Catalogue",
+   "description": "Hooga · 2026 · 43 pages",
+   "keywords": [
+    "editorial",
+    "publication",
+    "hooga",
+    "collection catalogue",
+    "2026",
+    "collection layout",
+    "product page system",
+    "typography",
+    "and image sequencing."
+   ],
+   "url": "pages/editorial-layout.html",
+   "thumb": "assets/documents/editorial-layout/covers/hooga-living-room-collection-2026-web.jpg"
+  },
+  {
+   "title": "Hooga Storage and Display Collection",
+   "group": "projects",
+   "kind": "Collection Catalogue",
+   "description": "Hooga · 2026 · 12 pages",
+   "keywords": [
+    "editorial",
+    "publication",
+    "hooga",
+    "collection catalogue",
+    "2026",
+    "collection layout",
+    "product page system",
+    "typography",
+    "and image sequencing."
+   ],
+   "url": "pages/editorial-layout.html",
+   "thumb": "assets/documents/editorial-layout/covers/hooga-storage-display-collection-2026-web.jpg"
   },
   {
    "title": "Porta Brand Book",
@@ -435,7 +550,7 @@
    "title": "BS Information Technology — Cavite State University",
    "group": "sections",
    "kind": "Education",
-   "description": "2019 – 2024 · Undergraduate.",
+   "description": "2019 – 2024 · Undergraduate, 4th Year Level.",
    "keywords": [
     "information technology",
     "it",
@@ -469,6 +584,35 @@
     "autocad",
     "2d drafting",
     "cad"
+   ],
+   "url": "index.html#foundation"
+  },
+  {
+   "title": "Graphic Design and Computer Hardware Training — Datacom",
+   "group": "sections",
+   "kind": "Certificate",
+   "description": "August 2018 · Datacom Institute of Computer Technology.",
+   "keywords": [
+    "certificate",
+    "training",
+    "datacom",
+    "graphic design",
+    "computer hardware"
+   ],
+   "url": "index.html#foundation"
+  },
+  {
+   "title": "Seminar Series on Excelling in the Virtual Workforce",
+   "group": "sections",
+   "kind": "Certificate",
+   "description": "April 2024 · Cavite State University — Department of Information Technology.",
+   "keywords": [
+    "certificate",
+    "seminar",
+    "training",
+    "virtual workforce",
+    "virtual assistant",
+    "cavite state university"
    ],
    "url": "index.html#foundation"
   },

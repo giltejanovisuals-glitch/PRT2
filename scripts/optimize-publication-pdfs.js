@@ -17,6 +17,36 @@ const PUBLICATIONS = [
     output: "porta-mobili-brand-deck-web.pdf",
     title: "Porta Mobili Brand Deck",
   },
+  {
+    input: "DUNLOPILLO SUITE Mattress Catalogue 2026.pdf",
+    output: "dunlopillo-suite-mattress-catalogue-2026-web.pdf",
+    title: "Dunlopillo Suite Mattress Catalogue 2026",
+  },
+  {
+    input: "ENDO SYNC 5 CATALOGUE UPDATED.pdf",
+    output: "endo-sync-5-catalogue-web.pdf",
+    title: "Endo Sync 5 Catalogue",
+  },
+  {
+    input: "HOOGA Archive Catalogue 2026.pdf",
+    output: "hooga-archive-catalogue-2026-web.pdf",
+    title: "Hooga Archive Catalogue 2026",
+  },
+  {
+    input: "Hooga Dining Collection 2026.pdf",
+    output: "hooga-dining-collection-2026-web.pdf",
+    title: "Hooga Dining Collection 2026",
+  },
+  {
+    input: "HOOGA Living Room Collection 2026.pdf",
+    output: "hooga-living-room-collection-2026-web.pdf",
+    title: "Hooga Living Room Collection 2026",
+  },
+  {
+    input: "Hooga Storage and Display Collection 2026.pdf",
+    output: "hooga-storage-display-collection-2026-web.pdf",
+    title: "Hooga Storage and Display Collection 2026",
+  },
 ];
 
 const WEB_PDF_OPTIONS = {
@@ -82,7 +112,12 @@ async function optimizePublication(pdfjsLib, publication) {
 async function main() {
   const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs");
 
-  for (const publication of PUBLICATIONS) {
+  // Optional output filenames on the command line limit the run to those
+  // publications, e.g. `npm run optimize:publications -- new-file-web.pdf`.
+  const only = process.argv.slice(2);
+  const selected = only.length ? PUBLICATIONS.filter((p) => only.includes(p.output)) : PUBLICATIONS;
+
+  for (const publication of selected) {
     // eslint-disable-next-line no-await-in-loop
     await optimizePublication(pdfjsLib, publication);
   }

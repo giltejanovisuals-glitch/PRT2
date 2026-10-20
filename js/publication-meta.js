@@ -38,4 +38,58 @@ window.PUBLICATION_META = {
     role: "Presentation structure, editorial layout, typography, and visual storytelling.",
     downloadAllowed: false,
   },
+
+  "dunlopillo-suite-mattress-catalogue-2026-web.pdf": {
+    title: "Dunlopillo Suite Mattress Catalogue",
+    brand: "Dunlopillo",
+    type: "Product Catalogue",
+    year: "2026",
+    role: "Catalogue layout, product page system, typography, and production preparation.",
+    downloadAllowed: false,
+  },
+
+  "endo-sync-5-catalogue-web.pdf": {
+    title: "Sync 5 Lighting Catalogue",
+    brand: "Endo",
+    type: "Product Catalogue",
+    year: "2026",
+    role: "Editorial layout, product presentation, typography, and image sequencing.",
+    downloadAllowed: false,
+  },
+
+  "hooga-archive-catalogue-2026-web.pdf": {
+    title: "Hooga Archive Catalogue",
+    brand: "Hooga",
+    type: "Product Catalogue",
+    year: "2026",
+    role: "Editorial direction, catalogue structure, layout development, typography, and production preparation.",
+    downloadAllowed: false,
+  },
+
+  "hooga-dining-collection-2026-web.pdf": {
+    title: "Hooga Dining Collection",
+    brand: "Hooga",
+    type: "Collection Catalogue",
+    year: "2026",
+    role: "Collection layout, product page system, typography, and image sequencing.",
+    downloadAllowed: false,
+  },
+
+  "hooga-living-room-collection-2026-web.pdf": {
+    title: "Hooga Living Room Collection",
+    brand: "Hooga",
+    type: "Collection Catalogue",
+    year: "2026",
+    role: "Collection layout, product page system, typography, and image sequencing.",
+    downloadAllowed: false,
+  },
+
+  "hooga-storage-display-collection-2026-web.pdf": {
+    title: "Hooga Storage and Display Collection",
+    brand: "Hooga",
+    type: "Collection Catalogue",
+    year: "2026",
+    role: "Collection layout, product page system, typography, and image sequencing.",
+    downloadAllowed: false,
+  },
 };

@@ -38,189 +38,189 @@
     <!-- PAGE TRANSITION HEAD START -->
     <link rel="preload" as="image" href="assets/icons/logo.png" crossorigin />
     <style>
-      /* Welcome / page-transition overlay. Inlined into every page's <head> by
-         scripts/generate-page-transition.js (edit here, then `npm run build`), so
-         it paints with the first frame: no flash of the page before it. CSS alone
-         plays and removes it (pt-out ends hidden), so it can never stick; the
-         boot script and js/page-transition.js only lock scrolling meanwhile,
-         skip it when it shouldn't play, and remove it from the DOM. ~2.4s:
-         everything is in place by ~1.4s and holds, fully legible, until the
-         overlay fades from 1.9s. */
-      .pt-overlay,
-      .pt-cover {
-        --pt-bg: #f2f0ea;
-        --pt-text: #151515;
-        --pt-muted: #66645f;
-        --pt-accent: #0f4c4c;
-        position: fixed;
-        inset: 0;
-        z-index: 2147483000;
-        background: var(--pt-bg);
-        color: var(--pt-text);
-      }
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) .pt-overlay,
-        :root:not([data-theme="light"]) .pt-cover {
-          --pt-bg: #171b1c;
-          --pt-text: #f2f0ea;
-          --pt-muted: #b8c1bd;
-          --pt-accent: #60a899;
-        }
-      }
-      :root[data-theme="dark"] .pt-overlay,
-      :root[data-theme="dark"] .pt-cover {
-        --pt-bg: #171b1c;
-        --pt-text: #f2f0ea;
-        --pt-muted: #b8c1bd;
-        --pt-accent: #60a899;
-      }
-      .pt-overlay {
-        display: grid;
-        height: 100vh;
-        height: 100dvh;
-        place-items: center;
-        padding: max(24px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
-        text-align: center;
-        pointer-events: auto;
-        animation: pt-out 500ms cubic-bezier(0.22, 1, 0.36, 1) 1900ms forwards;
-      }
-      .pt-skip .pt-overlay {
-        display: none;
-      }
-      .pt-inner {
-        display: flex;
-        max-width: 34rem;
-        flex-direction: column;
-        align-items: center;
-      }
-      .pt-mark {
-        display: block;
-        width: clamp(48px, 13vw, 68px);
-        aspect-ratio: 304 / 180;
-        margin-bottom: clamp(18px, 3vh, 26px);
-        background: var(--pt-accent);
-        -webkit-mask: var(--pt-logo) center / contain no-repeat;
-        mask: var(--pt-logo) center / contain no-repeat;
-        animation: pt-fade 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
-      }
-      .pt-number {
-        margin: 0 0 clamp(12px, 2.4vh, 18px);
-        color: var(--pt-accent);
-        font-family: var(--font-body, "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
-        font-size: clamp(0.78rem, 2.6vw, 0.9rem);
-        font-weight: 500;
-        letter-spacing: 0.24em;
-        font-variant-numeric: tabular-nums;
-        animation: pt-rise 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
-      }
-      .pt-title {
-        margin: 0;
-        color: var(--pt-text);
-        font-family: var(--font-headline, "Helvetica Neue", Arial, sans-serif);
-        font-size: clamp(1.05rem, 4.6vw, 1.6rem);
-        font-weight: 400;
-        line-height: 1.25;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        text-wrap: balance;
-        animation: pt-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 300ms both;
-      }
-      .pt-title-home {
-        white-space: nowrap;
-      }
-      .pt-title-project {
-        max-width: 22ch;
-        font-size: clamp(1.15rem, 5.2vw, 2rem);
-        letter-spacing: 0.14em;
-      }
-      .pt-sub {
-        margin: 10px 0 0;
-        color: var(--pt-muted);
-        font-family: var(--font-body, "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
-        font-size: clamp(0.72rem, 2.9vw, 0.85rem);
-        line-height: 1.5;
-        letter-spacing: 0.04em;
-        animation: pt-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 450ms both;
-      }
-      .pt-sub span {
-        white-space: nowrap;
-      }
-      .pt-line {
-        display: block;
-        width: clamp(56px, 18vw, 120px);
-        height: 1px;
-        margin-top: clamp(18px, 3vh, 24px);
-        background: var(--pt-accent);
-        transform: scaleX(0);
-        animation: pt-line 800ms cubic-bezier(0.22, 1, 0.36, 1) 600ms both;
-      }
-      @keyframes pt-fade {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-      @keyframes pt-rise {
-        from { opacity: 0; transform: translate3d(0, 10px, 0); }
-        to { opacity: 1; transform: none; }
-      }
-      @keyframes pt-line {
-        from { transform: scaleX(0); }
-        to { transform: scaleX(1); }
-      }
-      @keyframes pt-out {
-        to { opacity: 0; visibility: hidden; pointer-events: none; }
-      }
-      /* Leaving for another page: a plain cover fades in over the current one. */
-      .pt-cover {
-        opacity: 0;
-        transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);
-      }
-      .pt-cover.is-visible {
-        opacity: 1;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .pt-overlay {
-          display: none;
-        }
-        .pt-cover {
-          transition: none;
-        }
+      /* Welcome / page-transition overlay. Inlined into every page's <head> by
+         scripts/generate-page-transition.js (edit here, then `npm run build`), so
+         it paints with the first frame: no flash of the page before it. CSS alone
+         plays and removes it (pt-out ends hidden), so it can never stick; the
+         boot script and js/page-transition.js only lock scrolling meanwhile,
+         skip it when it shouldn't play, and remove it from the DOM. ~2.4s:
+         everything is in place by ~1.4s and holds, fully legible, until the
+         overlay fades from 1.9s. */
+      .pt-overlay,
+      .pt-cover {
+        --pt-bg: #f2f0ea;
+        --pt-text: #151515;
+        --pt-muted: #66645f;
+        --pt-accent: #0f4c4c;
+        position: fixed;
+        inset: 0;
+        z-index: 2147483000;
+        background: var(--pt-bg);
+        color: var(--pt-text);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .pt-overlay,
+        :root:not([data-theme="light"]) .pt-cover {
+          --pt-bg: #171b1c;
+          --pt-text: #f2f0ea;
+          --pt-muted: #b8c1bd;
+          --pt-accent: #60a899;
+        }
+      }
+      :root[data-theme="dark"] .pt-overlay,
+      :root[data-theme="dark"] .pt-cover {
+        --pt-bg: #171b1c;
+        --pt-text: #f2f0ea;
+        --pt-muted: #b8c1bd;
+        --pt-accent: #60a899;
+      }
+      .pt-overlay {
+        display: grid;
+        height: 100vh;
+        height: 100dvh;
+        place-items: center;
+        padding: max(24px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+        text-align: center;
+        pointer-events: auto;
+        animation: pt-out 500ms cubic-bezier(0.22, 1, 0.36, 1) 1900ms forwards;
+      }
+      .pt-skip .pt-overlay {
+        display: none;
+      }
+      .pt-inner {
+        display: flex;
+        max-width: 34rem;
+        flex-direction: column;
+        align-items: center;
+      }
+      .pt-mark {
+        display: block;
+        width: clamp(48px, 13vw, 68px);
+        aspect-ratio: 304 / 180;
+        margin-bottom: clamp(18px, 3vh, 26px);
+        background: var(--pt-accent);
+        -webkit-mask: var(--pt-logo) center / contain no-repeat;
+        mask: var(--pt-logo) center / contain no-repeat;
+        animation: pt-fade 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .pt-number {
+        margin: 0 0 clamp(12px, 2.4vh, 18px);
+        color: var(--pt-accent);
+        font-family: var(--font-body, "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
+        font-size: clamp(0.78rem, 2.6vw, 0.9rem);
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        font-variant-numeric: tabular-nums;
+        animation: pt-rise 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .pt-title {
+        margin: 0;
+        color: var(--pt-text);
+        font-family: var(--font-headline, "Helvetica Neue", Arial, sans-serif);
+        font-size: clamp(1.05rem, 4.6vw, 1.6rem);
+        font-weight: 400;
+        line-height: 1.25;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        text-wrap: balance;
+        animation: pt-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 300ms both;
+      }
+      .pt-title-home {
+        white-space: nowrap;
+      }
+      .pt-title-project {
+        max-width: 22ch;
+        font-size: clamp(1.15rem, 5.2vw, 2rem);
+        letter-spacing: 0.14em;
+      }
+      .pt-sub {
+        margin: 10px 0 0;
+        color: var(--pt-muted);
+        font-family: var(--font-body, "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
+        font-size: clamp(0.72rem, 2.9vw, 0.85rem);
+        line-height: 1.5;
+        letter-spacing: 0.04em;
+        animation: pt-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 450ms both;
+      }
+      .pt-sub span {
+        white-space: nowrap;
+      }
+      .pt-line {
+        display: block;
+        width: clamp(56px, 18vw, 120px);
+        height: 1px;
+        margin-top: clamp(18px, 3vh, 24px);
+        background: var(--pt-accent);
+        transform: scaleX(0);
+        animation: pt-line 800ms cubic-bezier(0.22, 1, 0.36, 1) 600ms both;
+      }
+      @keyframes pt-fade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes pt-rise {
+        from { opacity: 0; transform: translate3d(0, 10px, 0); }
+        to { opacity: 1; transform: none; }
+      }
+      @keyframes pt-line {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @keyframes pt-out {
+        to { opacity: 0; visibility: hidden; pointer-events: none; }
+      }
+      /* Leaving for another page: a plain cover fades in over the current one. */
+      .pt-cover {
+        opacity: 0;
+        transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .pt-cover.is-visible {
+        opacity: 1;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .pt-overlay {
+          display: none;
+        }
+        .pt-cover {
+          transition: none;
+        }
       }
     </style>
     <script>
-      /* Page-transition boot. Inlined into every page's <head> by
-         scripts/generate-page-transition.js (edit here, then `npm run build`), so
-         it runs before the overlay is parsed. Skips the intro for Back/Forward,
-         ?open= links straight to a piece, and reduced motion; otherwise marks
-         <html class="pt-intro"> and blocks scroll input until the overlay is done
-         (js/page-transition.js calls __ptEnd; a timeout guarantees it). */
-      (function () {
-        var root = document.documentElement;
-        var nav = window.performance && performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
-        var reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if ((nav && nav.type === "back_forward") || /[?&]open=/.test(location.search) || reduced) {
-          root.classList.add("pt-skip");
-          return;
-        }
-        root.classList.add("pt-intro");
-        var keys = { " ": 1, ArrowUp: 1, ArrowDown: 1, PageUp: 1, PageDown: 1, Home: 1, End: 1 };
-        var types = ["wheel", "touchmove", "keydown"];
-        var options = { passive: false, capture: true };
-        var block = function (event) {
-          if (event.type !== "keydown" || keys[event.key]) event.preventDefault();
-        };
-        types.forEach(function (type) {
-          window.addEventListener(type, block, options);
-        });
-        var ended = false;
-        window.__ptEnd = function () {
-          if (ended) return;
-          ended = true;
-          root.classList.remove("pt-intro");
-          types.forEach(function (type) {
-            window.removeEventListener(type, block, options);
-          });
-        };
-        setTimeout(window.__ptEnd, 3000);
+      /* Page-transition boot. Inlined into every page's <head> by
+         scripts/generate-page-transition.js (edit here, then `npm run build`), so
+         it runs before the overlay is parsed. Skips the intro for Back/Forward,
+         ?open= links straight to a piece, and reduced motion; otherwise marks
+         <html class="pt-intro"> and blocks scroll input until the overlay is done
+         (js/page-transition.js calls __ptEnd; a timeout guarantees it). */
+      (function () {
+        var root = document.documentElement;
+        var nav = window.performance && performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
+        var reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if ((nav && nav.type === "back_forward") || /[?&]open=/.test(location.search) || reduced) {
+          root.classList.add("pt-skip");
+          return;
+        }
+        root.classList.add("pt-intro");
+        var keys = { " ": 1, ArrowUp: 1, ArrowDown: 1, PageUp: 1, PageDown: 1, Home: 1, End: 1 };
+        var types = ["wheel", "touchmove", "keydown"];
+        var options = { passive: false, capture: true };
+        var block = function (event) {
+          if (event.type !== "keydown" || keys[event.key]) event.preventDefault();
+        };
+        types.forEach(function (type) {
+          window.addEventListener(type, block, options);
+        });
+        var ended = false;
+        window.__ptEnd = function () {
+          if (ended) return;
+          ended = true;
+          root.classList.remove("pt-intro");
+          types.forEach(function (type) {
+            window.removeEventListener(type, block, options);
+          });
+        };
+        setTimeout(window.__ptEnd, 3000);
       })();
     </script>
     <script src="js/page-transition.js?v=3" defer></script>
@@ -436,20 +436,20 @@
       <div class="mobile-gallery-index">
         <a class="mobile-gallery-card" href="pages/editorial-layout.html" data-category="editorial-layout" aria-labelledby="mobile-gallery-title-01">
           <div class="mobile-gallery-media">
-            <img class="mobile-gallery-preview" width="520" height="293" alt="Editorial &amp; Layout Design selected work" loading="eager" fetchpriority="high" decoding="async" />
-            <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/editorial-layout/porta-brand-book-web-page-01-7su.webp" /><img width="520" height="293" alt="Editorial &amp; Layout Design selected work"  decoding="async" /></picture></noscript>
+            <img class="mobile-gallery-preview" width="520" height="402" alt="Editorial &amp; Layout Design selected work" loading="eager" fetchpriority="high" decoding="async" />
+            <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/editorial-layout/dunlopillo-suite-mattress-catalogue-2026-web-page-01-3av.webp" /><img width="520" height="402" alt="Editorial &amp; Layout Design selected work"  decoding="async" /></picture></noscript>
           </div>
           <div class="mobile-gallery-info">
             <p class="mobile-gallery-number">01 / EDITORIAL</p>
             <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-01">Editorial &amp; Layout Design</h3></div>
             <p class="mobile-gallery-description">Catalogues, lookbooks, and publication systems.</p>
-            <p class="mobile-gallery-count">2 publications</p>
+            <p class="mobile-gallery-count">8 publications</p>
           </div>
         </a>
         <a class="mobile-gallery-card" href="pages/social-media-campaigns.html" data-category="social-media-campaigns" aria-labelledby="mobile-gallery-title-02">
           <div class="mobile-gallery-media">
             <img class="mobile-gallery-preview" width="900" height="900" alt="Social Media Campaigns &amp; Key Visuals selected work" loading="lazy" decoding="async" />
-            <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/social-media-campaigns/1-copy-prg1.webp" /><img width="900" height="900" alt="Social Media Campaigns &amp; Key Visuals selected work" loading="lazy" decoding="async" /></picture></noscript>
+            <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/social-media-campaigns/1-feather-recliner-v2-11prl.webp" /><img width="900" height="900" alt="Social Media Campaigns &amp; Key Visuals selected work" loading="lazy" decoding="async" /></picture></noscript>
           </div>
           <div class="mobile-gallery-info">
             <p class="mobile-gallery-number">02 / CAMPAIGNS</p>
@@ -460,8 +460,8 @@
         </a>
         <a class="mobile-gallery-card" href="pages/print-brand-collateral.html" data-category="print-brand-collateral" aria-labelledby="mobile-gallery-title-03">
           <div class="mobile-gallery-media">
-            <img class="mobile-gallery-preview" width="944" height="900" alt="Print &amp; Brand Collateral selected work" loading="lazy" decoding="async" />
-            <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/print-brand-collateral/1-2-1yigh.webp" /><img width="944" height="900" alt="Print &amp; Brand Collateral selected work" loading="lazy" decoding="async" /></picture></noscript>
+            <img class="mobile-gallery-preview" width="640" height="990" alt="Print &amp; Brand Collateral selected work" loading="lazy" decoding="async" />
+            <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/print-brand-collateral/mockup-edsa-wall-mural-3kcha.webp" /><img width="640" height="990" alt="Print &amp; Brand Collateral selected work" loading="lazy" decoding="async" /></picture></noscript>
           </div>
           <div class="mobile-gallery-info">
             <p class="mobile-gallery-number">03 / PRINT</p>
@@ -472,8 +472,8 @@
         </a>
         <a class="mobile-gallery-card" href="pages/commercial-lifestyle-photography.html" data-category="commercial-lifestyle-photography" aria-labelledby="mobile-gallery-title-04">
           <div class="mobile-gallery-media">
-            <img class="mobile-gallery-preview" width="675" height="900" alt="Commercial &amp; Lifestyle Photography selected work" loading="lazy" decoding="async" />
-            <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/commercial-lifestyle-photography/dsf2214-webp-buxw.webp" /><img width="675" height="900" alt="Commercial &amp; Lifestyle Photography selected work" loading="lazy" decoding="async" /></picture></noscript>
+            <img class="mobile-gallery-preview" width="689" height="900" alt="Commercial &amp; Lifestyle Photography selected work" loading="lazy" decoding="async" />
+            <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/commercial-lifestyle-photography/bw-2025-02-8vhg.webp" /><img width="689" height="900" alt="Commercial &amp; Lifestyle Photography selected work" loading="lazy" decoding="async" /></picture></noscript>
           </div>
           <div class="mobile-gallery-info">
             <p class="mobile-gallery-number">04 / PHOTOGRAPHY</p>

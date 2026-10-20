@@ -7,6 +7,1374 @@
  */
 window.PUBLICATION_MANIFEST = [
   {
+    "file": "dunlopillo-suite-mattress-catalogue-2026-web.pdf",
+    "title": "Dunlopillo Suite Mattress Catalogue 2026 Web",
+    "pageCount": 21,
+    "cover": "covers/dunlopillo-suite-mattress-catalogue-2026-web.jpg",
+    "previewImages": [
+      "previews/dunlopillo-suite-mattress-catalogue-2026-web-page-01.jpg",
+      "previews/dunlopillo-suite-mattress-catalogue-2026-web-page-02.jpg",
+      "previews/dunlopillo-suite-mattress-catalogue-2026-web-page-03.jpg"
+    ],
+    "pageImages": [
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-001.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-002.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-003.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-004.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-005.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-006.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-007.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-008.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-009.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-010.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-011.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-012.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-013.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-014.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-015.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-016.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-017.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-018.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-019.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-020.jpg",
+      "pages/dunlopillo-suite-mattress-catalogue-2026-web/page-021.jpg"
+    ],
+    "pages": [
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      }
+    ],
+    "dominantOrientation": "landscape",
+    "fileSizeBytes": 5244963
+  },
+  {
+    "file": "endo-sync-5-catalogue-web.pdf",
+    "title": "Endo Sync 5 Catalogue Web",
+    "pageCount": 29,
+    "cover": "covers/endo-sync-5-catalogue-web.jpg",
+    "previewImages": [
+      "previews/endo-sync-5-catalogue-web-page-01.jpg",
+      "previews/endo-sync-5-catalogue-web-page-02.jpg",
+      "previews/endo-sync-5-catalogue-web-page-03.jpg"
+    ],
+    "pageImages": [
+      "pages/endo-sync-5-catalogue-web/page-001.jpg",
+      "pages/endo-sync-5-catalogue-web/page-002.jpg",
+      "pages/endo-sync-5-catalogue-web/page-003.jpg",
+      "pages/endo-sync-5-catalogue-web/page-004.jpg",
+      "pages/endo-sync-5-catalogue-web/page-005.jpg",
+      "pages/endo-sync-5-catalogue-web/page-006.jpg",
+      "pages/endo-sync-5-catalogue-web/page-007.jpg",
+      "pages/endo-sync-5-catalogue-web/page-008.jpg",
+      "pages/endo-sync-5-catalogue-web/page-009.jpg",
+      "pages/endo-sync-5-catalogue-web/page-010.jpg",
+      "pages/endo-sync-5-catalogue-web/page-011.jpg",
+      "pages/endo-sync-5-catalogue-web/page-012.jpg",
+      "pages/endo-sync-5-catalogue-web/page-013.jpg",
+      "pages/endo-sync-5-catalogue-web/page-014.jpg",
+      "pages/endo-sync-5-catalogue-web/page-015.jpg",
+      "pages/endo-sync-5-catalogue-web/page-016.jpg",
+      "pages/endo-sync-5-catalogue-web/page-017.jpg",
+      "pages/endo-sync-5-catalogue-web/page-018.jpg",
+      "pages/endo-sync-5-catalogue-web/page-019.jpg",
+      "pages/endo-sync-5-catalogue-web/page-020.jpg",
+      "pages/endo-sync-5-catalogue-web/page-021.jpg",
+      "pages/endo-sync-5-catalogue-web/page-022.jpg",
+      "pages/endo-sync-5-catalogue-web/page-023.jpg",
+      "pages/endo-sync-5-catalogue-web/page-024.jpg",
+      "pages/endo-sync-5-catalogue-web/page-025.jpg",
+      "pages/endo-sync-5-catalogue-web/page-026.jpg",
+      "pages/endo-sync-5-catalogue-web/page-027.jpg",
+      "pages/endo-sync-5-catalogue-web/page-028.jpg",
+      "pages/endo-sync-5-catalogue-web/page-029.jpg"
+    ],
+    "pages": [
+      {
+        "width": 596,
+        "height": 842,
+        "orientation": "portrait"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 1190,
+        "height": 842,
+        "orientation": "landscape"
+      },
+      {
+        "width": 596,
+        "height": 842,
+        "orientation": "portrait"
+      }
+    ],
+    "dominantOrientation": "landscape",
+    "fileSizeBytes": 8690621
+  },
+  {
+    "file": "hooga-archive-catalogue-2026-web.pdf",
+    "title": "Hooga Archive Catalogue 2026 Web",
+    "pageCount": 63,
+    "cover": "covers/hooga-archive-catalogue-2026-web.jpg",
+    "previewImages": [
+      "previews/hooga-archive-catalogue-2026-web-page-01.jpg",
+      "previews/hooga-archive-catalogue-2026-web-page-02.jpg",
+      "previews/hooga-archive-catalogue-2026-web-page-03.jpg"
+    ],
+    "pageImages": [
+      "pages/hooga-archive-catalogue-2026-web/page-001.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-002.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-003.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-004.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-005.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-006.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-007.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-008.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-009.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-010.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-011.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-012.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-013.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-014.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-015.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-016.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-017.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-018.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-019.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-020.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-021.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-022.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-023.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-024.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-025.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-026.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-027.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-028.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-029.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-030.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-031.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-032.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-033.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-034.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-035.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-036.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-037.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-038.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-039.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-040.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-041.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-042.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-043.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-044.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-045.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-046.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-047.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-048.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-049.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-050.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-051.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-052.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-053.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-054.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-055.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-056.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-057.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-058.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-059.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-060.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-061.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-062.jpg",
+      "pages/hooga-archive-catalogue-2026-web/page-063.jpg"
+    ],
+    "pages": [
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      }
+    ],
+    "dominantOrientation": "landscape",
+    "fileSizeBytes": 12920115
+  },
+  {
+    "file": "hooga-dining-collection-2026-web.pdf",
+    "title": "Hooga Dining Collection 2026 Web",
+    "pageCount": 43,
+    "cover": "covers/hooga-dining-collection-2026-web.jpg",
+    "previewImages": [
+      "previews/hooga-dining-collection-2026-web-page-01.jpg",
+      "previews/hooga-dining-collection-2026-web-page-02.jpg",
+      "previews/hooga-dining-collection-2026-web-page-03.jpg"
+    ],
+    "pageImages": [
+      "pages/hooga-dining-collection-2026-web/page-001.jpg",
+      "pages/hooga-dining-collection-2026-web/page-002.jpg",
+      "pages/hooga-dining-collection-2026-web/page-003.jpg",
+      "pages/hooga-dining-collection-2026-web/page-004.jpg",
+      "pages/hooga-dining-collection-2026-web/page-005.jpg",
+      "pages/hooga-dining-collection-2026-web/page-006.jpg",
+      "pages/hooga-dining-collection-2026-web/page-007.jpg",
+      "pages/hooga-dining-collection-2026-web/page-008.jpg",
+      "pages/hooga-dining-collection-2026-web/page-009.jpg",
+      "pages/hooga-dining-collection-2026-web/page-010.jpg",
+      "pages/hooga-dining-collection-2026-web/page-011.jpg",
+      "pages/hooga-dining-collection-2026-web/page-012.jpg",
+      "pages/hooga-dining-collection-2026-web/page-013.jpg",
+      "pages/hooga-dining-collection-2026-web/page-014.jpg",
+      "pages/hooga-dining-collection-2026-web/page-015.jpg",
+      "pages/hooga-dining-collection-2026-web/page-016.jpg",
+      "pages/hooga-dining-collection-2026-web/page-017.jpg",
+      "pages/hooga-dining-collection-2026-web/page-018.jpg",
+      "pages/hooga-dining-collection-2026-web/page-019.jpg",
+      "pages/hooga-dining-collection-2026-web/page-020.jpg",
+      "pages/hooga-dining-collection-2026-web/page-021.jpg",
+      "pages/hooga-dining-collection-2026-web/page-022.jpg",
+      "pages/hooga-dining-collection-2026-web/page-023.jpg",
+      "pages/hooga-dining-collection-2026-web/page-024.jpg",
+      "pages/hooga-dining-collection-2026-web/page-025.jpg",
+      "pages/hooga-dining-collection-2026-web/page-026.jpg",
+      "pages/hooga-dining-collection-2026-web/page-027.jpg",
+      "pages/hooga-dining-collection-2026-web/page-028.jpg",
+      "pages/hooga-dining-collection-2026-web/page-029.jpg",
+      "pages/hooga-dining-collection-2026-web/page-030.jpg",
+      "pages/hooga-dining-collection-2026-web/page-031.jpg",
+      "pages/hooga-dining-collection-2026-web/page-032.jpg",
+      "pages/hooga-dining-collection-2026-web/page-033.jpg",
+      "pages/hooga-dining-collection-2026-web/page-034.jpg",
+      "pages/hooga-dining-collection-2026-web/page-035.jpg",
+      "pages/hooga-dining-collection-2026-web/page-036.jpg",
+      "pages/hooga-dining-collection-2026-web/page-037.jpg",
+      "pages/hooga-dining-collection-2026-web/page-038.jpg",
+      "pages/hooga-dining-collection-2026-web/page-039.jpg",
+      "pages/hooga-dining-collection-2026-web/page-040.jpg",
+      "pages/hooga-dining-collection-2026-web/page-041.jpg",
+      "pages/hooga-dining-collection-2026-web/page-042.jpg",
+      "pages/hooga-dining-collection-2026-web/page-043.jpg"
+    ],
+    "pages": [
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      }
+    ],
+    "dominantOrientation": "landscape",
+    "fileSizeBytes": 9503563
+  },
+  {
+    "file": "hooga-living-room-collection-2026-web.pdf",
+    "title": "Hooga Living Room Collection 2026 Web",
+    "pageCount": 43,
+    "cover": "covers/hooga-living-room-collection-2026-web.jpg",
+    "previewImages": [
+      "previews/hooga-living-room-collection-2026-web-page-01.jpg",
+      "previews/hooga-living-room-collection-2026-web-page-02.jpg",
+      "previews/hooga-living-room-collection-2026-web-page-03.jpg"
+    ],
+    "pageImages": [
+      "pages/hooga-living-room-collection-2026-web/page-001.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-002.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-003.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-004.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-005.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-006.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-007.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-008.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-009.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-010.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-011.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-012.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-013.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-014.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-015.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-016.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-017.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-018.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-019.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-020.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-021.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-022.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-023.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-024.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-025.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-026.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-027.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-028.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-029.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-030.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-031.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-032.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-033.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-034.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-035.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-036.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-037.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-038.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-039.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-040.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-041.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-042.jpg",
+      "pages/hooga-living-room-collection-2026-web/page-043.jpg"
+    ],
+    "pages": [
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      }
+    ],
+    "dominantOrientation": "landscape",
+    "fileSizeBytes": 12848143
+  },
+  {
+    "file": "hooga-storage-display-collection-2026-web.pdf",
+    "title": "Hooga Storage Display Collection 2026 Web",
+    "pageCount": 12,
+    "cover": "covers/hooga-storage-display-collection-2026-web.jpg",
+    "previewImages": [
+      "previews/hooga-storage-display-collection-2026-web-page-01.jpg",
+      "previews/hooga-storage-display-collection-2026-web-page-02.jpg",
+      "previews/hooga-storage-display-collection-2026-web-page-03.jpg"
+    ],
+    "pageImages": [
+      "pages/hooga-storage-display-collection-2026-web/page-001.jpg",
+      "pages/hooga-storage-display-collection-2026-web/page-002.jpg",
+      "pages/hooga-storage-display-collection-2026-web/page-003.jpg",
+      "pages/hooga-storage-display-collection-2026-web/page-004.jpg",
+      "pages/hooga-storage-display-collection-2026-web/page-005.jpg",
+      "pages/hooga-storage-display-collection-2026-web/page-006.jpg",
+      "pages/hooga-storage-display-collection-2026-web/page-007.jpg",
+      "pages/hooga-storage-display-collection-2026-web/page-008.jpg",
+      "pages/hooga-storage-display-collection-2026-web/page-009.jpg",
+      "pages/hooga-storage-display-collection-2026-web/page-010.jpg",
+      "pages/hooga-storage-display-collection-2026-web/page-011.jpg",
+      "pages/hooga-storage-display-collection-2026-web/page-012.jpg"
+    ],
+    "pages": [
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      }
+    ],
+    "dominantOrientation": "landscape",
+    "fileSizeBytes": 1806143
+  },
+  {
     "file": "porta-brand-book-web.pdf",
     "title": "Porta Brand Book Web",
     "pageCount": 34,

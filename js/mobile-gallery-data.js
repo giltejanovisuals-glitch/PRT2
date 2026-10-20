@@ -5,10 +5,70 @@ window.MOBILE_GALLERY_DATA = [
     "label": "EDITORIAL",
     "title": "Editorial & Layout Design",
     "description": "Catalogues, lookbooks, and publication systems.",
-    "count": 2,
+    "count": 8,
     "unit": "publications",
     "number": "01",
     "previews": [
+      {
+        "src": "assets/images/home-previews/editorial-layout/dunlopillo-suite-mattress-catalogue-2026-web-page-01-3av.webp",
+        "width": 520,
+        "height": 402
+      },
+      {
+        "src": "assets/images/home-previews/editorial-layout/dunlopillo-suite-mattress-catalogue-2026-web-page-02-5cq.webp",
+        "width": 520,
+        "height": 402
+      },
+      {
+        "src": "assets/images/home-previews/editorial-layout/endo-sync-5-catalogue-web-page-01-4vs.webp",
+        "width": 520,
+        "height": 735
+      },
+      {
+        "src": "assets/images/home-previews/editorial-layout/endo-sync-5-catalogue-web-page-02-hvc.webp",
+        "width": 520,
+        "height": 368
+      },
+      {
+        "src": "assets/images/home-previews/editorial-layout/hooga-archive-catalogue-2026-web-page-01-4vr.webp",
+        "width": 520,
+        "height": 402
+      },
+      {
+        "src": "assets/images/home-previews/editorial-layout/hooga-archive-catalogue-2026-web-page-02-3sm.webp",
+        "width": 520,
+        "height": 402
+      },
+      {
+        "src": "assets/images/home-previews/editorial-layout/hooga-dining-collection-2026-web-page-01-4lu.webp",
+        "width": 520,
+        "height": 390
+      },
+      {
+        "src": "assets/images/home-previews/editorial-layout/hooga-dining-collection-2026-web-page-02-3en.webp",
+        "width": 520,
+        "height": 390
+      },
+      {
+        "src": "assets/images/home-previews/editorial-layout/hooga-living-room-collection-2026-web-page-01-4lu.webp",
+        "width": 520,
+        "height": 390
+      },
+      {
+        "src": "assets/images/home-previews/editorial-layout/hooga-living-room-collection-2026-web-page-02-786.webp",
+        "width": 520,
+        "height": 390
+      },
+      {
+        "src": "assets/images/home-previews/editorial-layout/hooga-storage-display-collection-2026-web-page-01-4lu.webp",
+        "width": 520,
+        "height": 390
+      },
+      {
+        "src": "assets/images/home-previews/editorial-layout/hooga-storage-display-collection-2026-web-page-02-6rx.webp",
+        "width": 520,
+        "height": 390
+      },
       {
         "src": "assets/images/home-previews/editorial-layout/porta-brand-book-web-page-01-7su.webp",
         "width": 520,
@@ -20,22 +80,12 @@ window.MOBILE_GALLERY_DATA = [
         "height": 293
       },
       {
-        "src": "assets/images/home-previews/editorial-layout/porta-brand-book-web-page-03-g4d.webp",
-        "width": 520,
-        "height": 293
-      },
-      {
         "src": "assets/images/home-previews/editorial-layout/porta-mobili-brand-deck-web-page-01-gwy.webp",
         "width": 520,
         "height": 402
       },
       {
         "src": "assets/images/home-previews/editorial-layout/porta-mobili-brand-deck-web-page-02-hob.webp",
-        "width": 520,
-        "height": 402
-      },
-      {
-        "src": "assets/images/home-previews/editorial-layout/porta-mobili-brand-deck-web-page-03-kkl.webp",
         "width": 520,
         "height": 402
       }
@@ -51,82 +101,82 @@ window.MOBILE_GALLERY_DATA = [
     "number": "02",
     "previews": [
       {
-        "src": "assets/images/home-previews/social-media-campaigns/1-copy-prg1.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/1-feather-recliner-v2-11prl.webp",
         "width": 900,
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/social-media-campaigns/4-1-96tl.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/05125-2pit7.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/marw33-1-172vf.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/mdg-4-2jrmj.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/porta-june-3-1rnsr.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/dp-7-10hs5.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/hms2-1ae7e.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/mooni-june-content2-2uf81.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/mw32-xn8o.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/social-media-campaigns/p08041-r5vk.webp",
         "width": 720,
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/social-media-campaigns/11-branding-15crx.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/6-dr-flex-v2-rtqg.webp",
         "width": 900,
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/social-media-campaigns/2512-11-1bgk2.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/hooga-rockwell-sq-1527c.webp",
         "width": 900,
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/social-media-campaigns/260429-7-uhv9.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/apr-lsaw4s3-astralux-striplight-3-13kuq.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/dp-story-1zvkp.webp",
-        "width": 640,
-        "height": 1138
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/dp-specsaw3s1-6l8q.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/h08127-whva.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/m08125-1bdpm.webp",
         "width": 720,
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/social-media-campaigns/julmooni1-2n1up.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/apr-lsaw3s1-astralux-mesa-vgsz.webp",
         "width": 900,
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/social-media-campaigns/m08124-txxs.webp",
-        "width": 720,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/mdg-5-1pwxs.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/dp-cebu-davao9-2l5o2.webp",
         "width": 900,
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/social-media-campaigns/mooni-lsaw3s1-fcrj.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/mw22-2-ejz7.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/p08048-iums.webp",
-        "width": 720,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/social-media-campaigns/rhet-5zsm.webp",
+        "src": "assets/images/home-previews/social-media-campaigns/hooga-june-content7-2zyjb.webp",
         "width": 900,
         "height": 900
       }
@@ -142,38 +192,18 @@ window.MOBILE_GALLERY_DATA = [
     "number": "03",
     "previews": [
       {
+        "src": "assets/images/home-previews/print-brand-collateral/mockup-edsa-wall-mural-3kcha.webp",
+        "width": 640,
+        "height": 990
+      },
+      {
         "src": "assets/images/home-previews/print-brand-collateral/1-2-1yigh.webp",
         "width": 944,
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/print-brand-collateral/4-2-1rgdj.webp",
-        "width": 1836,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/7-2-2gm1r.webp",
-        "width": 1356,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/10-2-2come.webp",
-        "width": 1313,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/13-2-2evc3.webp",
-        "width": 1354,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/17-2-1saxe.webp",
-        "width": 640,
-        "height": 971
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/20-2-s0i7.webp",
-        "width": 1530,
+        "src": "assets/images/home-previews/print-brand-collateral/34-2-2tfml.webp",
+        "width": 863,
         "height": 900
       },
       {
@@ -182,43 +212,63 @@ window.MOBILE_GALLERY_DATA = [
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/print-brand-collateral/26-2-13c73.webp",
-        "width": 850,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/30-2-1pawj.webp",
-        "width": 1596,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/33-2-1qi3k.webp",
-        "width": 1250,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/36-2-2uaoq.webp",
-        "width": 863,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/print-brand-collateral/id-1r2ap.webp",
+        "src": "assets/images/home-previews/print-brand-collateral/15-2-29swr.webp",
         "width": 640,
-        "height": 927
+        "height": 971
       },
       {
-        "src": "assets/images/home-previews/print-brand-collateral/mockup-edsa-wall-mural-3kcha.webp",
+        "src": "assets/images/home-previews/print-brand-collateral/28-2-29jzb.webp",
         "width": 640,
-        "height": 990
+        "height": 933
       },
       {
-        "src": "assets/images/home-previews/print-brand-collateral/porta-mobili-riflessi-delivery-truck-2obyt.webp",
-        "width": 863,
+        "src": "assets/images/home-previews/print-brand-collateral/22-2-j6sd.webp",
+        "width": 640,
+        "height": 959
+      },
+      {
+        "src": "assets/images/home-previews/print-brand-collateral/11-2-2244y.webp",
+        "width": 1215,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/print-brand-collateral/31-2-2wd7q.webp",
+        "width": 1332,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/print-brand-collateral/porta-mobili-complimentary-drinks-menu-z4bc.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/print-brand-collateral/dunlopillo-science-of-deeper-sleep-display-22a3s.webp",
+        "width": 823,
         "height": 900
       },
       {
         "src": "assets/images/home-previews/print-brand-collateral/uptown-mall-2-1vzel.webp",
         "width": 928,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/print-brand-collateral/13-2-2evc3.webp",
+        "width": 1354,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/print-brand-collateral/mockup-uptown-art-event-greeting-card-1e870.webp",
+        "width": 640,
+        "height": 926
+      },
+      {
+        "src": "assets/images/home-previews/print-brand-collateral/9-2-2gzgt.webp",
+        "width": 1233,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/print-brand-collateral/24-2-2w6to.webp",
+        "width": 1285,
         "height": 900
       }
     ]
@@ -233,73 +283,28 @@ window.MOBILE_GALLERY_DATA = [
     "number": "04",
     "previews": [
       {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/dsf2214-webp-buxw.webp",
-        "width": 675,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/dsf2244-webp-bb80.webp",
-        "width": 1200,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/dsf2261-webp-7mie.webp",
-        "width": 1200,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/dsf2284-webp-bfe1.webp",
-        "width": 1200,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/dsf2317-hdr-webp-9n0l.webp",
-        "width": 1200,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/dsf2362-webp-64hm.webp",
-        "width": 1200,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/dsf2401-webp-7vey.webp",
-        "width": 1200,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/2-7-1ntan.webp",
-        "width": 720,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/4-6-ynna.webp",
-        "width": 720,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/5-7-18te8.webp",
-        "width": 720,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/7-7-t6nc.webp",
-        "width": 720,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/10-2-14dqy.webp",
-        "width": 720,
-        "height": 900
-      },
-      {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/11-1-22o20.webp",
-        "width": 900,
-        "height": 900
-      },
-      {
         "src": "assets/images/home-previews/commercial-lifestyle-photography/bw-2025-02-8vhg.webp",
         "width": 689,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/dsf2269-hdr-webp-azid.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/2-5-1ib01.webp",
+        "width": 720,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/dscf7388-hdr-h266.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/8-3-145mb.webp",
+        "width": 720,
         "height": 900
       },
       {
@@ -308,8 +313,53 @@ window.MOBILE_GALLERY_DATA = [
         "height": 900
       },
       {
-        "src": "assets/images/home-previews/commercial-lifestyle-photography/hooga-ig-carouselartboard-7-uuwk.webp",
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/9-12af7.webp",
         "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/dsf2375-webp-atvt.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/3-wcd1.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/dsf2401-webp-7vey.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/dscf7424-ewou.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/7-7-t6nc.webp",
+        "width": 720,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/dsf2331-hdr-webp-bv7e.webp",
+        "width": 1200,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/etro-14-187x0.webp",
+        "width": 672,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/4-5-10tx3.webp",
+        "width": 720,
+        "height": 900
+      },
+      {
+        "src": "assets/images/home-previews/commercial-lifestyle-photography/dsf2317-hdr-webp-9n0l.webp",
+        "width": 1200,
         "height": 900
       }
     ]
