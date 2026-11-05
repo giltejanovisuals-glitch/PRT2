@@ -96,7 +96,7 @@ window.MOBILE_GALLERY_DATA = [
     "label": "CAMPAIGNS",
     "title": "Social Media Campaigns & Key Visuals",
     "description": "Key visuals and cohesive social campaign systems.",
-    "count": 422,
+    "count": 441,
     "unit": "images",
     "number": "02",
     "previews": [

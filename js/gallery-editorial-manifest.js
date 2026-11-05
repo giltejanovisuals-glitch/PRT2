@@ -1596,6 +1596,13 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "2.4"
     },
     {
+      "file": "2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "2"
+    },
+    {
       "file": "3 ISADORA v2.png",
       "width": 1024,
       "height": 1024,
@@ -1624,11 +1631,46 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "4 Dani Y"
     },
     {
+      "file": "4.1 v2.png",
+      "width": 1122,
+      "height": 1402,
+      "ratio": 0.8003,
+      "title": "4.1 V2"
+    },
+    {
       "file": "4.1.png",
       "width": 1080,
       "height": 1350,
       "ratio": 0.8,
       "title": "4.1"
+    },
+    {
+      "file": "4.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "4.2"
+    },
+    {
+      "file": "4.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "4.3"
+    },
+    {
+      "file": "4.4.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "4.4"
+    },
+    {
+      "file": "5 v2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "5 V2"
     },
     {
       "file": "5.1.png",
@@ -1650,6 +1692,13 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1080,
       "ratio": 1,
       "title": "7 Mattress Protector"
+    },
+    {
+      "file": "7 v2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "7 V2"
     },
     {
       "file": "7.1.png",
@@ -1722,6 +1771,34 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "title": "11.1"
     },
     {
+      "file": "88.1.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "88.1"
+    },
+    {
+      "file": "88.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "88.2"
+    },
+    {
+      "file": "88.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "88.3"
+    },
+    {
+      "file": "88.4.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "88.4"
+    },
+    {
       "file": "0904 1.1.png",
       "width": 1080,
       "height": 1350,
@@ -1769,6 +1846,62 @@ window.GALLERY_EDITORIAL_MANIFEST = {
       "height": 1350,
       "ratio": 0.8,
       "title": "0904 7.2"
+    },
+    {
+      "file": "1105 1.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "1105 1"
+    },
+    {
+      "file": "1105 3.1.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "1105 3.1"
+    },
+    {
+      "file": "1105 3.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "1105 3.2"
+    },
+    {
+      "file": "1105 3.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "1105 3.3"
+    },
+    {
+      "file": "1105 3.4.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "1105 3.4"
+    },
+    {
+      "file": "1105 4.1.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "1105 4.1"
+    },
+    {
+      "file": "1105 4.2.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "1105 4.2"
+    },
+    {
+      "file": "1105 4.3.png",
+      "width": 1080,
+      "height": 1350,
+      "ratio": 0.8,
+      "title": "1105 4.3"
     },
     {
       "file": "01162.png",
