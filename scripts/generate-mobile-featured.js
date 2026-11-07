@@ -168,17 +168,32 @@ async function build() {
     });
   }
 
+  // The language switcher (js/i18n.js) translates this copy by key; the
+  // English in data/locales/en.json has to say the same as featured-groups.js.
+  const en = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "locales", "en.json"), "utf8"));
+  const expect = (key, value) => {
+    if (value && en[key] !== value) console.warn(`[mobile-featured] data/locales/en.json ${key} should be: ${value}`);
+  };
+  groups.forEach((group) => {
+    expect(`featured.${group.id}.title`, group.title);
+    expect(`featured.${group.id}.subtitle`, group.subtitle);
+    group.items.forEach((item) => {
+      expect(`featured.item.${item.id}.alt`, item.alt);
+      expect(`featured.item.${item.id}.label`, item.label);
+    });
+  });
+
   // The opening group is rendered into index.html. Its sources sit on a
   // <source> that only matches phones, so desktop never downloads them.
   const first = groups[0];
   if (first.items.some((item) => item.kind === "reel")) throw new Error("the opening group must be images only");
   const tiles = first.items
     .map((item, i) => `<a class="featured-tile${item.fill ? " is-fill" : ""}" href="${item.href}" style="--placeholder: url('${item.placeholder}')">
-                <picture><source media="(max-width: 760px)" type="image/webp" srcset="${item.srcset}" sizes="${item.sizes}" /><img width="${item.width}" height="${item.height}" alt="${escape(item.alt)}" decoding="async"${i === 0 ? ' fetchpriority="high"' : ""} /></picture>
+                <picture><source media="(max-width: 760px)" type="image/webp" srcset="${item.srcset}" sizes="${item.sizes}" /><img width="${item.width}" height="${item.height}" alt="${escape(item.alt)}" decoding="async"${i === 0 ? ' fetchpriority="high"' : ""} data-i18n-attr="alt:featured.item.${item.id}.alt" /></picture>
               </a>`)
     .join("\n              ");
   const groupBlock = `<!-- MOBILE FEATURED START -->
-            <div class="featured-group is-active" data-layout="${first.layout}" data-id="${first.id}" role="group" aria-roledescription="slide" aria-label="1 of ${groups.length}: ${escape(first.title)}">
+            <div class="featured-group is-active" data-layout="${first.layout}" data-id="${first.id}" role="group" aria-roledescription="slide" aria-label="1 of ${groups.length}: ${escape(first.title)}" data-i18n-attr="aria-roledescription:a11y.slide">
               ${tiles}
             </div>
             <!-- MOBILE FEATURED END -->`;
@@ -187,7 +202,7 @@ async function build() {
             <p class="featured-subtitle">${escape(first.subtitle)}</p>
             <!-- MOBILE FEATURED CAPTION END -->`;
   const countBlock = `<!-- MOBILE FEATURED COUNT START --><span class="featured-current">01</span> / <span class="featured-total">${String(groups.length).padStart(2, "0")}</span><!-- MOBILE FEATURED COUNT END -->`;
-  const linkBlock = `<!-- MOBILE FEATURED LINK START --><a class="featured-link" href="${first.href}">View Project <span aria-hidden="true">&rarr;</span></a><!-- MOBILE FEATURED LINK END -->`;
+  const linkBlock = `<!-- MOBILE FEATURED LINK START --><a class="featured-link" href="${first.href}"><span data-i18n="featured.viewProject">View Project</span> <span aria-hidden="true">&rarr;</span></a><!-- MOBILE FEATURED LINK END -->`;
   const lead = first.items[0];
   const preloadBlock = `<!-- MOBILE FEATURED PRELOAD START --><link rel="preload" as="image" type="image/webp" media="(max-width: 760px)" imagesrcset="${lead.srcset}" imagesizes="${lead.sizes}" fetchpriority="high" /><!-- MOBILE FEATURED PRELOAD END -->`;
 

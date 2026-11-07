@@ -19,6 +19,8 @@
   const root = document.documentElement;
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const headerToggle = document.querySelector(".site-header .theme-toggle");
+  const I18N = window.i18n;
+  const t = (key, fallback) => (I18N ? I18N.t(key, null, fallback) : fallback);
 
   // --- Theme switch -----------------------------------------------------------
 
@@ -45,10 +47,11 @@
     const sync = () => {
       const isDark = root.getAttribute("data-theme") === "dark";
       themeSwitch.setAttribute("aria-pressed", String(isDark));
-      themeSwitch.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+      themeSwitch.setAttribute("aria-label", isDark ? t("theme.toLight", "Switch to light mode") : t("theme.toDark", "Switch to dark mode"));
     };
     sync();
     new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+    I18N?.onChange(sync);
     themeSwitch.addEventListener("click", () => headerToggle.click());
   }
 
@@ -83,12 +86,17 @@
   // The header's round menu button stays above the open menu and doubles as
   // its close control, so its accessible name follows the state.
   const menuToggle = document.querySelector(".menu-toggle");
-  new MutationObserver(() => {
+  const syncMenu = () => {
     const open = nav.classList.contains("is-open");
     root.classList.toggle("menu-open", open);
     document.body.classList.toggle("menu-open", open);
-    if (menuToggle) menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-  }).observe(nav, { attributes: true, attributeFilter: ["class"] });
+    if (menuToggle) menuToggle.setAttribute("aria-label", open ? t("nav.closeMenu", "Close menu") : t("nav.openMenu", "Open menu"));
+  };
+  new MutationObserver(syncMenu).observe(nav, { attributes: true, attributeFilter: ["class"] });
+  if (menuToggle && I18N) {
+    if (I18N.lang !== "en") syncMenu();
+    I18N.onChange(syncMenu);
+  }
 
   // --- Header backdrop ------------------------------------------------------------
 

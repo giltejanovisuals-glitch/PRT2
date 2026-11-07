@@ -1,0 +1,215 @@
+/* Zoom resilience — loaded last on every page.
+
+   Browser zoom changes the CSS viewport, not the layout rules: at 50% a
+   1440px window is a 2880px-wide viewport, at 400% it is 360 × 225. The
+   page layouts already reflow by width (the 760px phone layout takes over
+   from ~200% up), so this layer only handles what width alone doesn't:
+
+   1. Ultra-wide (zoomed out): the fixed header keeps its controls inside the
+      same centred frame as the content instead of the far screen corners.
+   2. Touch targets: every header and dock control is at least 44 × 44px
+      (--hit) at every size.
+   3. Short viewports (zoomed in on a desktop, or a phone held sideways):
+      the fixed header scrolls away with the page, and the bottom tab bar /
+      category dock shrink to an icon-only 44px row that tucks away while
+      scrolling down (js/zoom-chrome.js) and comes back on scroll up, at
+      the page end, or when it holds focus. Fixed chrome otherwise covers
+      more than half of a 225px-tall viewport.
+
+   Tokens (--hit, --site-max, --header-h) live in css/style.css. */
+
+/* Anchored sections land below the fixed header, not under it. */
+html {
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+/* --- 1 + 2. Desktop header and dock ------------------------------------- */
+
+@media (min-width: 761px) {
+  .site-header {
+    padding-inline: max(var(--page-padding), calc((100% - var(--site-max)) / 2));
+  }
+
+  .project-counter {
+    right: max(var(--page-padding), calc((100% - var(--site-max)) / 2));
+  }
+
+  /* Each nav link fills the pill's height and is at least as wide, so the
+     whole 44px cell is the target, not just its 15px line of text. The
+     spacing between labels is unchanged (gap + padding = the old gap). */
+  .floating-nav {
+    gap: clamp(0.4rem, 1.6vw, 1.4rem);
+    padding-inline: clamp(0.5rem, 1vw, 0.8rem);
+  }
+
+  .floating-nav a {
+    display: inline-flex;
+    min-width: var(--hit);
+    min-height: var(--hit);
+    align-items: center;
+    justify-content: center;
+    padding-inline: 0.3rem;
+  }
+
+  .floating-nav a::after {
+    right: 0.3rem;
+    bottom: calc(50% - 0.65em - 0.25rem);
+    left: 0.3rem;
+  }
+
+  .nav-dock {
+    height: auto;
+    min-height: var(--hit);
+    max-width: calc(100% - 2 * var(--page-padding));
+  }
+
+  .nav-dock-item {
+    min-height: var(--hit);
+  }
+}
+
+/* Short desktop viewports (e.g. 1440 × 900 at 150–200% zoom): a slimmer
+   header bar, so it and the dock leave more of the screen to content. */
+@media (min-width: 761px) and (max-height: 600px) {
+  :root {
+    --header-h: 4rem;
+  }
+
+  .site-header {
+    padding-block: 0.6rem;
+  }
+
+  .nav-backdrop {
+    height: calc(var(--header-h) + 1.5rem);
+  }
+
+  .project-counter {
+    top: calc(var(--header-h) - 0.25rem);
+  }
+
+  .nav-dock {
+    bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* --- Phones: the header subtitle wraps instead of being cut off -------- */
+
+@media (max-width: 760px) {
+  /* Two short lines fit the 60px bar beside the name; a third (only in the
+     longest translations at 400% zoom) is clamped as a last resort. */
+  .brand-title {
+    display: -webkit-box;
+    white-space: normal;
+    text-wrap: balance;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
+/* --- 3. Short viewports ------------------------------------------------- */
+
+@media (max-height: 480px) {
+  html {
+    scroll-padding-top: 1rem;
+  }
+
+  /* The header (and its blur layer) sit at the top of the page and scroll
+     away. While the phone menu is open it is pinned again, so the menu's
+     close button (the header's own toggle) is always on screen. */
+  html:not(.menu-open) .site-header,
+  html:not(.menu-open) .nav-backdrop,
+  .project-counter {
+    position: absolute;
+  }
+
+  /* Tuck-away bars (js/zoom-chrome.js toggles html.chrome-tucked). */
+  .mobile-tabbar,
+  .nav-dock {
+    transition: translate 260ms var(--ease), opacity 200ms ease;
+  }
+
+  html.chrome-tucked .mobile-tabbar:not(:focus-within),
+  html.chrome-tucked .nav-dock:not(:focus-within) {
+    translate: 0 calc(100% + 1.5rem);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* Compact phone bars: icon-only, one 44px row (labels stay in the
+   accessibility tree — the tab bar's are visually hidden, the dock's links
+   carry aria-labels). */
+@media (max-width: 760px) and (max-height: 480px) {
+  :root {
+    --tabbar-h: calc(var(--hit) + 8px);
+    --tabbar-offset: 6px;
+  }
+
+  .mobile-tabbar {
+    max-width: 24rem;
+    padding: 4px;
+    border-radius: 18px;
+  }
+
+  .mobile-tabbar-label,
+  .nav-dock-label,
+  .nav-dock-label-swap {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .mobile-tabbar-icon,
+  .mobile-tabbar-home .mobile-tabbar-icon {
+    height: 2.25rem;
+  }
+
+  .mobile-tabbar-home img {
+    height: 1.25rem;
+  }
+
+  /* The full-screen menu scrolls as one column (links, then language and
+     socials) instead of squeezing the link list into a tiny inner scroller
+     and pushing the footer off-screen. Its head row stays pinned under the
+     header's name and close button. */
+  .floating-nav {
+    overflow-y: auto;
+  }
+
+  .mobile-nav-head {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: rgba(var(--background-rgb), 0.98);
+  }
+
+  .mobile-nav-links {
+    flex: none;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+
+  .mobile-nav-links a {
+    min-height: calc(var(--hit) + 4px);
+    font-size: 1.25rem;
+  }
+
+  .nav-dock {
+    bottom: calc(6px + env(safe-area-inset-bottom, 0px));
+    grid-template-columns: repeat(3, minmax(var(--hit), 3.5rem));
+    height: calc(var(--hit) + 8px);
+    padding: 4px;
+    border-radius: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-tabbar,
+  .nav-dock {
+    transition: none;
+  }
+}

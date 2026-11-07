@@ -247,6 +247,9 @@
 
 .hero-parallax:not(.is-live) .hpx-row {
   flex-direction: row;
+  /* Centred when the strip is narrower than the screen (zoomed out); "safe"
+     falls back to start-aligned once it overflows, so nothing is cut off. */
+  justify-content: safe center;
   /* Room above for the hover lift. */
   padding: 1.5rem var(--page-padding) 0.5rem;
   overflow-x: auto;

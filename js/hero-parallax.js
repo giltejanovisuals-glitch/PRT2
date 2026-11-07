@@ -33,7 +33,11 @@
 
   // --- Fill the rows with random gallery images ---
 
-  const PER_ROW = 5;
+  // Five cards fill a row at 100% zoom on a typical laptop. A wider CSS
+  // viewport (a large screen, or the browser zoomed out) gets more, so the
+  // sliding rows never run out and leave a bare edge. Cards are roughly
+  // 24rem wide, and the rows travel up to ~1100px sideways.
+  const perRow = () => Math.max(5, Math.min(12, Math.round((window.innerWidth + 1100) / 500)));
 
   const shuffle = (list) => {
     const a = list.slice();
@@ -66,12 +70,27 @@
     return shuffle(picks);
   };
 
+  // Card labels in the active language (js/i18n.js); English otherwise.
+  const I18N = window.i18n;
+  const cardTitle = (id) => (I18N && I18N.has(`category.${id}.title`) ? I18N.t(`category.${id}.title`) : categoryInfo(id).title);
+  const kickerText = () => (I18N ? I18N.t("gallery.title", null, "Project Gallery") : "Project Gallery");
+  const cardLabel = (title) => (I18N ? I18N.t("hero.cardLabel", { title }, `${title} — Project Gallery`) : `${title} — Project Gallery`);
+  const labelCard = (card) => {
+    const title = cardTitle(card.dataset.category);
+    card.setAttribute("aria-label", cardLabel(title));
+    const label = card.querySelector(".pc-title");
+    if (label) label.replaceChildren(Object.assign(document.createElement("small"), { textContent: kickerText() }), title);
+  };
+  I18N?.onChange(() => document.querySelectorAll(".pc-card[data-category]").forEach(labelCard));
+
   const makeCard = ({ id, src }) => {
-    const { title, href } = categoryInfo(id);
+    const { href } = categoryInfo(id);
+    const title = cardTitle(id);
     const card = document.createElement("a");
     card.className = "pc-card";
     card.href = href;
-    card.setAttribute("aria-label", `${title} — Project Gallery`);
+    card.dataset.category = id;
+    card.setAttribute("aria-label", cardLabel(title));
     const img = document.createElement("img");
     // Size the card to the image's own ratio so it shows uncropped.
     img.addEventListener(
@@ -90,21 +109,26 @@
     label.className = "pc-title";
     label.setAttribute("aria-hidden", "true");
     const kicker = document.createElement("small");
-    kicker.textContent = "Project Gallery";
+    kicker.textContent = kickerText();
     label.append(kicker, title);
     card.append(img, label);
     return card;
   };
 
-  let wallReady = false;
+  // Fills the rows on first run; later calls (a resize, or zooming out) only
+  // top each row up to the count the new width needs, never removing cards.
+  let filledPerRow = 0;
   const fillWall = () => {
-    if (wallReady || mobileViewport.matches) return;
-    const picks = pickImages(rowEls.length * PER_ROW);
-    wall.hidden = !picks.length;
+    if (mobileViewport.matches) return;
+    const want = perRow();
+    if (want <= filledPerRow) return;
+    const missing = want - filledPerRow;
+    const picks = pickImages(rowEls.length * missing);
+    if (!filledPerRow) wall.hidden = !picks.length;
     rowEls.forEach((row, r) => {
-      picks.slice(r * PER_ROW, (r + 1) * PER_ROW).forEach((pick) => row.append(makeCard(pick)));
+      picks.slice(r * missing, (r + 1) * missing).forEach((pick) => row.append(makeCard(pick)));
     });
-    wallReady = true;
+    filledPerRow = want;
   };
 
   // --- Motion ---

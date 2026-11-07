@@ -40,6 +40,16 @@
   const stepButtons = root.querySelectorAll('.featured-step');
   const pad = (n) => String(n).padStart(2, '0');
 
+  // Copy in the active language (js/i18n.js): group and item text by id
+  // (featured.<group>.title, featured.item.<item>.alt …), English otherwise.
+  const I18N = window.i18n;
+  const tr = (key, english) => (I18N && I18N.lang !== 'en' && I18N.has(key) ? I18N.t(key) : english);
+  const fmt = (key, vars, english) => (I18N ? I18N.t(key, vars, english) : english);
+  const groupText = (group, field) => tr(`featured.${group.id}.${field}`, group[field]);
+  const itemText = (item, field) => tr(`featured.item.${item.id}.${field}`, item[field] || '');
+  const reelLabel = (item) => fmt('featured.playReel', { label: itemText(item, 'label'), duration: item.duration, alt: itemText(item, 'alt') }, `Play ${item.label}, ${item.duration}, in the fullscreen viewer. ${item.alt}`);
+  const slideLabel = (i, total, group) => fmt('featured.slideLabel', { index: i + 1, total, title: groupText(group, 'title') }, `${i + 1} of ${total}: ${group.title}`);
+
   const lowData = () => reducedData.matches || !!connection?.saveData || /2g$/.test(connection?.effectiveType || '');
   const autoplayAllowed = () => !reduced.matches && !lowData();
   const previewsAllowed = () => autoplayAllowed() && 'IntersectionObserver' in window;
@@ -96,7 +106,7 @@
     img.decoding = 'async';
     if (reel) {
       tile.type = 'button';
-      tile.setAttribute('aria-label', `Play ${item.label}, ${item.duration}, in the fullscreen viewer. ${item.alt}`);
+      tile.setAttribute('aria-label', reelLabel(item));
       img.alt = '';
       tile.append(img);
       const badge = document.createElement('span');
@@ -106,7 +116,7 @@
       tile.append(badge);
     } else {
       tile.href = item.href;
-      img.alt = item.alt;
+      img.alt = itemText(item, 'alt');
       tile.append(img);
     }
     return tile;
@@ -117,7 +127,7 @@
     el.dataset.layout = group.layout;
     el.dataset.id = group.id;
     el.setAttribute('role', 'group');
-    el.setAttribute('aria-roledescription', 'slide');
+    el.setAttribute('aria-roledescription', fmt('a11y.slide', null, 'slide'));
     group.items.forEach((item) => el.append(makeTile(item)));
     return el;
   };
@@ -189,18 +199,18 @@
       el.inert = !active;
     });
     const { group } = groups[index];
-    caption.querySelector('.featured-title').textContent = group.title;
-    caption.querySelector('.featured-subtitle').textContent = group.subtitle;
+    caption.querySelector('.featured-title').textContent = groupText(group, 'title');
+    caption.querySelector('.featured-subtitle').textContent = groupText(group, 'subtitle');
     const link = root.querySelector('.featured-link');
     link.href = group.href;
-    link.setAttribute('aria-label', `View project: ${group.title}`);
+    link.setAttribute('aria-label', fmt('featured.viewProjectLabel', { title: groupText(group, 'title') }, `View project: ${group.title}`));
     root.querySelector('.featured-current').textContent = pad(index + 1);
     root.querySelector('.featured-total').textContent = pad(total);
     root.style.setProperty('--progress', String((index + 1) / total));
     load(index);
     load((index + 1) % total);
     syncMedia();
-    if (announce) status.textContent = `Group ${index + 1} of ${total}: ${group.title}`;
+    if (announce) status.textContent = fmt('featured.status', { index: index + 1, total, title: groupText(group, 'title') }, `Group ${index + 1} of ${total}: ${group.title}`);
   };
   const show = (target, direction, announce) => {
     const next = (target + groups.length) % groups.length;
@@ -223,7 +233,7 @@
     const opening = stage.querySelector('.featured-group');
     groups = order.map((group, i) => {
       const el = i === 0 && opening ? opening : stage.appendChild(makeGroup(group));
-      el.setAttribute('aria-label', `${i + 1} of ${order.length}: ${group.title}`);
+      el.setAttribute('aria-label', slideLabel(i, order.length, group));
       const tiles = Array.from(el.querySelectorAll('.featured-tile'), (tile, k) => ({ tile, img: tile.querySelector('img'), item: group.items[k] }));
       const reels = tiles.filter(({ item }) => item.kind === 'reel');
       return { el, group, tiles, reels };
@@ -239,6 +249,22 @@
     root.classList.add('is-ready');
     render(false);
   };
+
+  // A new language: relabel every group and tile, then redo the caption.
+  // The current group, its position, and any playing previews stay put.
+  I18N?.onChange(() => {
+    if (!built) return;
+    groups.forEach(({ el, group, tiles }, i) => {
+      el.setAttribute('aria-label', slideLabel(i, groups.length, group));
+      el.setAttribute('aria-roledescription', fmt('a11y.slide', null, 'slide'));
+      tiles.forEach(({ tile, img, item }) => {
+        if (!item) return;
+        if (item.kind === 'reel') tile.setAttribute('aria-label', reelLabel(item));
+        else if (img && !img.hasAttribute('data-i18n-attr')) img.alt = itemText(item, 'alt');
+      });
+    });
+    render(false);
+  });
 
   // --- Autoplay -----------------------------------------------------------------------
   let playing = autoplayAllowed();

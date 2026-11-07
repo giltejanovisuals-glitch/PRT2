@@ -1,0 +1,444 @@
+/* Language system (js/i18n.js): the globe control, its menu (a popover on
+   desktop, a bottom sheet on phones), the fonts and text rules each script
+   needs, and the brief crossfade when the language changes. Warm
+   off-white or charcoal with the theme, thin borders, deep teal for the
+   active language — the same vocabulary as the search panel. */
+
+/* --- First paint ---------------------------------------------------------------
+   A visitor returning in another language: the page stays hidden (the
+   welcome overlay still plays) until the dictionary has been applied, so
+   English never flashes first. js/i18n.js lifts this after at most 2.5s. */
+html.i18n-loading body > :not(.pt-overlay) {
+  visibility: hidden !important;
+}
+
+/* --- Switching: a short, subtle crossfade of the whole page ------------------------ */
+:root.lang-switching::view-transition-old(root),
+:root.lang-switching::view-transition-new(root) {
+  animation-duration: 200ms;
+  animation-timing-function: ease;
+}
+
+/* --- Fonts per script --------------------------------------------------------------
+   Manrope and TT Modernist stay first so Latin text — names, brands,
+   software — looks the same in every language; each script then falls
+   through to its native system face, then to Noto Sans (loaded from Google
+   Fonts only while that language is active). */
+:root:lang(zh-CN) {
+  --font-body: "Manrope", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", "Source Han Sans SC", sans-serif;
+  --font-headline: "TT Modernist", "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+
+:root:lang(ja) {
+  --font-body: "Manrope", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+  --font-headline: "TT Modernist", "Helvetica Neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+}
+
+:root:lang(ko) {
+  --font-body: "Manrope", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Nanum Gothic", sans-serif;
+  --font-headline: "TT Modernist", "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+
+/* Chinese and Japanese break between characters; strict line breaking
+   keeps small kana and closing punctuation off the start of a line.
+   Korean breaks between words, like English. */
+:root:is(:lang(zh-CN), :lang(ja)) body {
+  line-break: strict;
+}
+
+:root:lang(ko) body {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* Japanese headings break between phrases (文節) where the browser can,
+   instead of mid-word. */
+:root:lang(ja) :is(h1, h2, h3, .cta-heading, .hpx-title) {
+  word-break: auto-phrase;
+}
+
+/* Wide tracking reads as gaps between CJK characters, and these scripts
+   have no capitals for the uppercase labels it was set for. */
+:root:is(:lang(zh-CN), :lang(ja), :lang(ko))
+  :is(
+    .section-index, .brand, .menu-toggle, .cta-label, .dock-group-label, .dock-info-label,
+    .tl-tag, .found-tag, .found-subhead, .search-group-label, .hpx-eyebrow, .hpx-eyebrow strong,
+    .hpx-btn, .pc-title small, .about-label, .brands-label, .featured-title, .career-current,
+    .mobile-gallery-number, .pbc-category, .pbc-gallery-label, .pbc-feed-count, .pbc-feed-label,
+    .project-counter, .lightbox-caption, .pub-archive-eyebrow, .pub-archive-count, .pub-book-open,
+    .pub-back-btn, .pub-loading, .pub-thumbnails-toggle, .reel-viewer-title, .pt-title, .pt-sub,
+    .mobile-nav-brand-text, .floating-nav a, .nav-dock-label
+  ) {
+  letter-spacing: 0.02em !important;
+}
+
+/* The phone carousel caption: English is cut to one line; translations,
+   often longer, may take two (title and subtitle), with room for both
+   reserved so changing slides never moves the page. */
+@media (max-width: 760px) {
+  :root:not(:lang(en)) .featured-caption {
+    min-height: 78px;
+  }
+
+  :root:not(:lang(en)) :is(.featured-title, .featured-subtitle) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    white-space: normal;
+  }
+}
+
+/* Longer Spanish and Filipino words wrap rather than overflow. */
+:root:is(:lang(es), :lang(fil)) :is(h1, h2, h3, h4, p, li, label, summary) {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* --- The control ----------------------------------------------------------------------- */
+.lang-toggle {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 0.85rem 0 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(var(--text-rgb), 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  color: var(--text);
+  font-family: var(--font-body);
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 250ms ease, border-color 300ms ease, color 250ms ease;
+}
+
+.lang-toggle:hover,
+.lang-toggle:focus-visible,
+.lang-toggle[aria-expanded="true"] {
+  background: rgba(var(--text-rgb), 0.1);
+  border-color: var(--accent-line);
+  color: var(--accent);
+}
+
+.lang-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.lang-globe {
+  flex: none;
+}
+
+.lang-toggle-code {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Tooltip, matching the search and theme buttons. */
+.lang-toggle-header::after {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.35rem;
+  background: var(--text);
+  color: var(--background);
+  content: attr(data-tooltip);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lang-toggle-header:hover::after,
+  .lang-toggle-header:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+
+.lang-toggle-header[aria-expanded="true"]::after {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.lang-toggle.is-busy .lang-globe {
+  animation: lang-spin 900ms linear infinite;
+}
+
+@keyframes lang-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* The menu's copy lives in the full-screen menu on phones, where it also
+   names the language in full. */
+.lang-toggle-menu,
+.lang-toggle-name {
+  display: none;
+}
+
+/* --- The menu ------------------------------------------------------------------------------ */
+.lang-menu {
+  position: fixed;
+  z-index: 110;
+  inset: 0;
+}
+
+.lang-menu[hidden] {
+  display: none;
+}
+
+.lang-menu-backdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.lang-menu-panel {
+  position: absolute;
+  top: var(--lang-top, 76px);
+  right: var(--lang-right, 16px);
+  display: flex;
+  min-width: min(14.5rem, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - var(--lang-top, 76px) - 16px);
+  max-height: calc(100dvh - var(--lang-top, 76px) - 16px);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(var(--background-rgb), 0.97);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 24px 50px -24px rgba(0, 0, 0, 0.45);
+  color: var(--text);
+  font-family: var(--font-body);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 180ms ease, transform 220ms var(--ease);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.lang-menu.is-open .lang-menu-panel {
+  opacity: 1;
+  transform: none;
+}
+
+.lang-menu-head {
+  display: none;
+}
+
+.lang-list {
+  margin: 0;
+  padding: 6px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+  outline: none;
+}
+
+.lang-option {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.3;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lang-option.is-active {
+  border-color: rgba(var(--accent-rgb), 0.28);
+  background: rgba(var(--accent-rgb), 0.08);
+}
+
+/* Keyboard focus: a full ring on the option the arrows are on. */
+.lang-list:focus-visible .lang-option.is-active {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.lang-option-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.lang-option.is-selected .lang-option-name {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.lang-option-code {
+  flex: none;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+/* The active language: a check mark (not colour alone) plus aria-selected. */
+.lang-option-check {
+  flex: none;
+  color: var(--accent);
+  visibility: hidden;
+}
+
+.lang-option.is-selected .lang-option-check {
+  visibility: visible;
+}
+
+.lang-menu-close {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lang-menu-close:hover,
+.lang-menu-close:focus-visible {
+  background: rgba(var(--accent-rgb), 0.08);
+  color: var(--accent);
+}
+
+.lang-menu-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --- Phones: in the menu, opening a bottom sheet ---------------------------------------------- */
+@media (max-width: 760px) {
+  .lang-toggle-header {
+    display: none;
+  }
+
+  /* First in the menu's bottom row: globe, the language's own name, its code. */
+  .lang-toggle-menu {
+    display: inline-flex;
+    align-self: center;
+    gap: 0.55rem;
+    max-width: 100%;
+    padding: 0 1rem 0 0.85rem;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .lang-toggle-menu .lang-toggle-name {
+    display: inline;
+    overflow: hidden;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .lang-toggle-menu .lang-toggle-code {
+    color: var(--muted);
+  }
+
+  html.lang-open,
+  html.lang-open body {
+    overflow: hidden;
+  }
+
+  .lang-menu-backdrop {
+    background: rgba(10, 12, 12, 0.42);
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  .lang-menu.is-open .lang-menu-backdrop {
+    opacity: 1;
+  }
+
+  /* Above the bottom tab bar and clear of the home indicator; scrolls if
+     the options outgrow a short screen. */
+  .lang-menu-panel {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    max-height: min(82vh, 34rem);
+    max-height: min(82dvh, 34rem);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    border-width: 1px 0 0;
+    border-radius: 16px 16px 0 0;
+    background: rgba(var(--background-rgb), 0.99);
+    transform: translateY(16px);
+  }
+
+  .lang-menu-head {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem max(1rem, env(safe-area-inset-right)) 0.25rem max(1.25rem, env(safe-area-inset-left));
+  }
+
+  .lang-menu-title {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .lang-list {
+    flex: 1;
+    min-height: 0;
+    padding: 0.25rem max(0.75rem, env(safe-area-inset-right)) 0.9rem max(0.75rem, env(safe-area-inset-left));
+  }
+
+  .lang-option {
+    min-height: 52px;
+    font-size: 1.05rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-menu-panel,
+  .lang-menu-backdrop,
+  .lang-toggle {
+    transition: none;
+  }
+
+  .lang-toggle.is-busy .lang-globe {
+    animation: none;
+  }
+}

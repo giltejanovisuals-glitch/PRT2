@@ -1,5 +1,7 @@
 (() => {
   const root = document.documentElement;
+  const I18N = window.i18n;
+  const t = (key, vars, fallback) => (I18N ? I18N.t(key, vars, fallback) : fallback || "");
 
   // Header: measure real height into --header-h so sections can offset
   // themselves correctly, then track scroll position so the fixed nav's
@@ -58,13 +60,14 @@
   if (themeToggle) {
     const updateToggleState = () => {
       const isDark = root.getAttribute("data-theme") === "dark";
-      const label = isDark ? "Switch to light mode" : "Switch to dark mode";
+      const label = isDark ? t("theme.toLight", null, "Switch to light mode") : t("theme.toDark", null, "Switch to dark mode");
       themeToggle.setAttribute("aria-pressed", String(isDark));
       themeToggle.setAttribute("aria-label", label);
       themeToggle.setAttribute("data-tooltip", label);
     };
 
     updateToggleState();
+    I18N?.onChange(updateToggleState);
 
     themeToggle.addEventListener("click", () => {
       const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
@@ -149,6 +152,9 @@
 })();
 
 (() => {
+  const I18N = window.i18n;
+  const t = (key, vars, fallback) => (I18N ? I18N.t(key, vars, fallback) : fallback || "");
+
   // Shared pointer drag-to-scroll for horizontal tracks (capabilities,
   // brands).
   const enableDragScroll = (track) => {
@@ -271,18 +277,26 @@
   const dockInfoContent = document.getElementById("dock-info-content");
 
   if (dockTools.length && dockInfoContent) {
-    const DOCK_DEFAULT_HTML = dockInfoContent.innerHTML;
+    // The resting panel, in the active language. The markup's own copy is
+    // the English (and the no-script) version.
+    const ENGLISH_DEFAULT_HTML = dockInfoContent.innerHTML;
+    const defaultHtml = () =>
+      !I18N || I18N.lang === "en"
+        ? ENGLISH_DEFAULT_HTML
+        : `<p class="dock-info-default">${escapeHtml(t("dock.default"))}</p>
+              <p class="dock-info-cue">${escapeHtml(t("dock.cue"))}</p>`;
     let activeTool = null;
     let fadeTimeout;
 
-    const escapeHtml = (str) =>
-      str.replace(/[&<>"']/g, (c) => ({
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, (c) => ({
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",
         '"': "&quot;",
         "'": "&#39;",
       }[c]));
+    }
 
     const setPanelContent = (html) => {
       clearTimeout(fadeTimeout);
@@ -293,41 +307,52 @@
       }, 160);
     };
 
-    const showTool = (tool) => {
+    // data-primary and data-tags are translated in place (data-i18n-attr);
+    // tags are comma-separated in every language.
+    const toolHtml = (tool) => {
       const name = escapeHtml(tool.dataset.name || "");
       const primary = escapeHtml(tool.dataset.primary || "");
       const tags = (tool.dataset.tags || "")
-        .split(",")
+        .split(/[,，、]/)
         .map((tag) => tag.trim())
         .filter(Boolean)
         .map(escapeHtml);
 
       const tagsHtml = tags.length
         ? `<div class="dock-info-section">
-            <p class="dock-info-label">Used for</p>
+            <p class="dock-info-label">${escapeHtml(t("dock.usedFor", null, "Used for"))}</p>
             <p class="dock-info-tags">${tags.join(" &middot; ")}</p>
           </div>`
         : "";
 
-      setPanelContent(`
+      return `
         <div>
           <p class="dock-info-name">${name}</p>
           <div class="dock-info-section">
-            <p class="dock-info-label">Primary use</p>
+            <p class="dock-info-label">${escapeHtml(t("dock.primaryUse", null, "Primary use"))}</p>
             <p class="dock-info-text">${primary}</p>
           </div>
         </div>
         ${tagsHtml}
-      `);
+      `;
     };
+    const showTool = (tool) => setPanelContent(toolHtml(tool));
 
     const resetPanel = () => {
       if (activeTool) {
         showTool(activeTool);
       } else {
-        setPanelContent(DOCK_DEFAULT_HTML);
+        setPanelContent(defaultHtml());
       }
     };
+
+    // New language: redraw whatever the panel shows, without the fade.
+    I18N?.onChange(() => {
+      clearTimeout(fadeTimeout);
+      dockInfoContent.classList.remove("is-fading");
+      const shown = dockTools.find((tool) => tool.matches(":hover, :focus")) || activeTool;
+      dockInfoContent.innerHTML = shown ? toolHtml(shown) : defaultHtml();
+    });
 
     dockTools.forEach((tool) => {
       tool.setAttribute("aria-pressed", "false");
@@ -518,20 +543,15 @@
     });
   }
 
-  const TEMPLATES = {
-    new: "Hi Gil, I'm starting a new project and would love your help bringing it to life. It involves [brief description], and I'm hoping to get started around [date]. Could we talk through the creative direction and next steps?",
-    existing: "Hi Gil, I'm looking for design support for an existing brand. The project involves [brief description], and I'm hoping to complete it by [date]. Could you help me determine the right creative direction and deliverables?",
-    improve: "Hi Gil, I have existing materials I'd like to improve or refresh. This includes [brief description], and I'm hoping to have an updated version by [date]. Could you help assess what would make the biggest difference?",
-    ongoing: "Hi Gil, I'm looking for ongoing creative support rather than a one-off project. This would involve [brief description of recurring needs], starting around [date]. Could we discuss how an ongoing collaboration might work?",
-    unsure: "Hi Gil, I have a project in mind but I'm not sure exactly what service or deliverables I need. Here's a bit about it: [brief description]. Could you help me figure out the right direction?",
-  };
+  // Message starters (data/locales: form.tpl.*), in the visitor's language.
+  const templateText = (name) => t(`form.tpl.${name}`);
 
   const templateButtons = Array.from(document.querySelectorAll(".template-btn"));
   const messageField = document.getElementById("inq-message");
   const templateConfirmation = document.getElementById("template-confirmation");
   let pendingTemplate = null;
   const applyTemplate = (btn) => {
-    messageField.value = TEMPLATES[btn.dataset.template];
+    messageField.value = templateText(btn.dataset.template);
     messageField.dispatchEvent(new Event('input', { bubbles: true }));
     messageField.focus();
     templateButtons.forEach(other => {
@@ -544,7 +564,7 @@
 
   templateButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const text = TEMPLATES[btn.dataset.template];
+      const text = templateText(btn.dataset.template);
       if (messageField && text) {
         if (messageField.value.trim()) {
           pendingTemplate = btn;
@@ -580,6 +600,8 @@
     const mobileType = document.getElementById('inq-mobile-type');
     const mobileContact = window.matchMedia('(max-width: 760px)');
     let sending = false;
+    let sentAsCv = false;
+    const successText = () => (sentAsCv ? t("form.successBodyCv") : t("form.successBody"));
 
     // --- CV requests --------------------------------------------------------
     // Choosing "CV Request" (or arriving from the CV page's "Request CV
@@ -592,9 +614,15 @@
     const roleInput = document.getElementById("inq-role");
     const cvNote = document.getElementById("form-cv-note");
     const cvChip = chipInputs.find((chip) => chip.value === CV_TYPE);
+    // Labels that change with the request mode: [project key, CV key].
+    const MODE_LABELS = {
+      "inq-email": ["form.email", "form.emailCv"],
+      "inq-company": ["form.company", "form.companyCv"],
+      "inq-message": ["form.message", "form.messageCv"],
+    };
     const cvLabels = Array.from(inquiryForm.querySelectorAll("label[data-cv-label]")).map((label) => ({ label, html: label.innerHTML }));
     const isCvRequest = () => (mobileContact.matches ? mobileType.value === CV_TYPE : Boolean(cvChip && cvChip.checked));
-    const submitText = () => (isCvRequest() ? "Send CV Request" : "Send Project Inquiry");
+    const submitText = () => (isCvRequest() ? t("form.submitCv", null, "Send CV Request") : t("form.submit", null, "Send Project Inquiry"));
 
     const applyRequestMode = () => {
       const cv = isCvRequest();
@@ -603,9 +631,11 @@
       if (cvNote) cvNote.hidden = !cv;
       roleInput?.toggleAttribute("required", cv);
       companyInput.toggleAttribute("required", cv);
+      const english = !I18N || I18N.lang === "en";
       cvLabels.forEach(({ label, html }) => {
-        if (cv) label.textContent = label.dataset.cvLabel;
-        else label.innerHTML = html;
+        const keys = MODE_LABELS[label.htmlFor];
+        if (cv) label.textContent = keys ? t(keys[1], null, label.dataset.cvLabel) : label.dataset.cvLabel;
+        else label.innerHTML = keys && !english ? t(keys[0]) : html; // locale markup is trusted
       });
       if (!cv) {
         [companyInput, roleInput].forEach((input) => input && setFieldError(input, `${input.id}-error`, ""));
@@ -643,7 +673,7 @@
       let firstInvalid = null;
 
       if (!nameInput.value.trim()) {
-        setFieldError(nameInput, "inq-name-error", "Please enter your name.");
+        setFieldError(nameInput, "inq-name-error", t("form.err.name"));
         valid = false;
         firstInvalid = firstInvalid || nameInput;
       } else {
@@ -651,7 +681,7 @@
       }
 
       if (!emailInput.value.trim() || !emailInput.checkValidity()) {
-        setFieldError(emailInput, "inq-email-error", "Please enter a valid email address.");
+        setFieldError(emailInput, "inq-email-error", t("form.err.email"));
         valid = false;
         firstInvalid = firstInvalid || emailInput;
       } else {
@@ -660,8 +690,8 @@
 
       if (isCvRequest()) {
         [
-          [companyInput, "Please enter your company."],
-          [roleInput, "Please enter your role or job title."],
+          [companyInput, t("form.err.company")],
+          [roleInput, t("form.err.role")],
         ].forEach(([input, message]) => {
           if (!input) return;
           const missing = !input.value.trim();
@@ -677,7 +707,7 @@
         setFieldError(
           messageField,
           "inq-message-error",
-          isCvRequest() ? "Please share why you're requesting the CV." : "Please share a few details about the project."
+          isCvRequest() ? t("form.err.messageCv") : t("form.err.message")
         );
         valid = false;
         firstInvalid = firstInvalid || messageField;
@@ -686,7 +716,7 @@
       }
 
       const hasType = mobileContact.matches ? !!mobileType.value : chipInputs.some(chip => chip.checked);
-      if (mobileContact.matches) setFieldError(mobileType, 'inq-mobile-type-error', hasType ? '' : 'Please choose an inquiry type.');
+      if (mobileContact.matches) setFieldError(mobileType, 'inq-mobile-type-error', hasType ? '' : t("form.err.type"));
       else if (chipError) chipError.hidden = hasType;
       if (!hasType) {
         valid = false;
@@ -763,20 +793,20 @@
         request_reason: cvRequest ? reason : "Not applicable",
         budget: cvRequest ? "Not applicable" : budgetInput.value.trim() || "Not provided",
         timeline: cvRequest ? "Not applicable" : timelineInput.value.trim() || "Not provided",
+        // The language the visitor used the site in (the email itself stays
+        // English; inquiry types are always sent by their English names).
+        site_language: I18N ? I18N.lang : "en",
       };
 
       sending = true;
       inquiryForm.setAttribute('aria-busy', 'true');
       if (submitBtn) submitBtn.disabled = true;
-      if (submitLabel) submitLabel.textContent = "Sending…";
+      if (submitLabel) submitLabel.textContent = t("form.sending", null, "Sending…");
 
       submitInquiry(templateParams)
         .then(() => {
-          if (successBody) {
-            successBody.textContent = cvRequest
-              ? "Thanks — your CV request has been received. I review every request personally and will reply by email within 1–2 business days."
-              : "Thanks for sharing your project. I’ll review the details and respond within 1–2 business days.";
-          }
+          sentAsCv = cvRequest;
+          if (successBody) successBody.textContent = successText();
           inquiryForm.hidden = true;
           if (successPanel) {
             successPanel.hidden = false;
@@ -811,6 +841,16 @@
     });
 
     applyRequestMode();
+
+    // A new language: labels and the submit button follow, messages already
+    // on screen are redone in the new language, and what the visitor typed
+    // stays as it is.
+    I18N?.onChange(() => {
+      applyRequestMode();
+      const errorsShown = inquiryForm.querySelector('[aria-invalid="true"]') || (chipError && !chipError.hidden);
+      if (errorsShown && !inquiryForm.hidden) validate();
+      if (successPanel && !successPanel.hidden && successBody) successBody.textContent = successText();
+    });
 
     // Arriving from the CV page: ?inquiry=cv-request opens the form as a CV
     // request. The parameter is then dropped, so a reload doesn't repeat it.

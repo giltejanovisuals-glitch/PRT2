@@ -1,19 +1,22 @@
 (() => {
   const root = document.documentElement;
   const body = document.body;
+  const I18N = window.i18n;
+  const t = (key, vars, fallback) => (I18N ? I18N.t(key, vars, fallback) : fallback || "");
 
   // --- Header: theme toggle (same behavior as every other page) ---
   const themeToggle = document.querySelector(".theme-toggle");
   if (themeToggle) {
     const updateToggleState = () => {
       const isDark = root.getAttribute("data-theme") === "dark";
-      const label = isDark ? "Switch to light mode" : "Switch to dark mode";
+      const label = isDark ? t("theme.toLight", null, "Switch to light mode") : t("theme.toDark", null, "Switch to dark mode");
       themeToggle.setAttribute("aria-pressed", String(isDark));
       themeToggle.setAttribute("aria-label", label);
       themeToggle.setAttribute("data-tooltip", label);
     };
 
     updateToggleState();
+    I18N?.onChange(updateToggleState);
 
     themeToggle.addEventListener("click", () => {
       const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
@@ -94,28 +97,38 @@
   const total = categories.length;
   const categoryNumber = category.number || String(categoryIndex + 1).padStart(2, "0");
 
-  document.title = `${category.title} | Gil Tejano Culas`;
-  setText("category-eyebrow", `Category ${categoryNumber} — Project Gallery`);
-  setText("category-title", category.title);
-  setText("category-intro", category.intro);
-  setText("category-closing-label", category.title);
-  setText("category-closing-text", category.lede);
-
-  const counterEl = document.getElementById("project-counter");
-  if (counterEl) counterEl.textContent = `${categoryNumber} / ${String(total).padStart(2, "0")}`;
+  // Category copy: js/gallery-categories-data.js is the English; the
+  // data/locales keys category.<id>.* translate it.
+  const copy = (cat, field) => {
+    const key = `category.${cat.id}.${field}`;
+    return I18N && I18N.lang !== "en" && I18N.has(key) ? I18N.t(key) : cat[field] || "";
+  };
 
   const nextCategory = categories[(categoryIndex + 1) % total];
   const prevCategory = categories[(categoryIndex - 1 + total) % total];
 
-  const setCategoryNavLink = (id, target, label) => {
+  const setCategoryNavLink = (id, target, key, english) => {
     const el = document.getElementById(id);
     if (!el || !target) return;
     el.href = `${target.id}.html`;
-    el.setAttribute("aria-label", `${label} ${target.title}`);
+    el.setAttribute("aria-label", t(key, { title: copy(target, "title") }, `${english} ${target.title}`));
   };
 
-  setCategoryNavLink("brand-nav-prev", prevCategory, "Previous category:");
-  setCategoryNavLink("brand-nav-next", nextCategory, "Next category:");
+  const renderCategoryText = () => {
+    document.title = t("meta.categoryTitle", { title: copy(category, "title") }, `${category.title} | Gil Tejano Culas`);
+    setText("category-eyebrow", t("category.eyebrow", { number: categoryNumber }, `Category ${categoryNumber} — Project Gallery`));
+    setText("category-title", copy(category, "title"));
+    setText("category-intro", copy(category, "intro"));
+    setText("category-closing-label", copy(category, "title"));
+    setText("category-closing-text", copy(category, "lede"));
+    setCategoryNavLink("brand-nav-prev", prevCategory, "category.prevLabel", "Previous category:");
+    setCategoryNavLink("brand-nav-next", nextCategory, "category.nextLabel", "Next category:");
+  };
+  renderCategoryText();
+  I18N?.onChange(renderCategoryText);
+
+  const counterEl = document.getElementById("project-counter");
+  if (counterEl) counterEl.textContent = `${categoryNumber} / ${String(total).padStart(2, "0")}`;
 
   // --- Gallery data: build-generated manifest + optional hand-authored meta ---
   // Both are keyed by category id so every category folder
@@ -237,7 +250,7 @@
       } else {
         tile.setAttribute("role", "button");
         tile.tabIndex = 0;
-        tile.setAttribute("aria-label", `Open “${entry.title || "image"}” fullscreen`);
+        tile.setAttribute("aria-label", t("showcase.openFullscreen", { title: entry.title || t("common.image", null, "image") }, `Open “${entry.title || "image"}” fullscreen`));
       }
 
       return tile;
@@ -471,7 +484,7 @@
           video.loop = true;
           video.preload = "none";
           if (entry.poster) video.poster = entry.poster;
-          video.setAttribute("aria-label", entry.alt || entry.title || "Video");
+          video.setAttribute("aria-label", entry.alt || entry.title || t("common.video", null, "Video"));
           video.style.setProperty("--ar", String(entry.ratio || 1));
           if (entry.width) {
             video.width = entry.width;
@@ -529,7 +542,7 @@
         }
         if (lightboxCurrent) lightboxCurrent.textContent = String(activeSlide + 1).padStart(2, "0");
         // Campaign/project name when the meta has one, else the category.
-        if (lightboxCaption) lightboxCaption.textContent = flatEntries[activeSlide]?.project || category.title || "";
+        if (lightboxCaption) lightboxCaption.textContent = flatEntries[activeSlide]?.project || copy(category, "title") || "";
       };
 
       openLightbox = (i, trigger) => {

@@ -34,6 +34,24 @@
   line-height: 1.6;
 }
 
+/* In other languages: says plainly that the CV itself is the English
+   original (js/i18n.js translates the page around it, never the CV). */
+.cv-lang-note {
+  display: inline-flex;
+  max-width: 40rem;
+  margin: 0.85rem 0 0;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+:root:lang(en) .cv-lang-note {
+  display: none;
+}
+
 /* --- Pages ---------------------------------------------------------------- */
 
 .cv-viewer {

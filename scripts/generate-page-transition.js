@@ -44,7 +44,7 @@ const homeOverlay = (prefix) => `<div class="pt-overlay" aria-hidden="true" iner
   <div class="pt-inner">
     <span class="pt-mark" style="--pt-logo: url('${prefix}assets/icons/logo.png')"></span>
     <p class="pt-title pt-title-home">Gil Tejano Culas</p>
-    <p class="pt-sub"><span>Senior Graphic Designer /</span> <span>Creative Specialist</span></p>
+    <p class="pt-sub"><span data-i18n="intro.role1">Senior Graphic Designer /</span> <span data-i18n="intro.role2">Creative Specialist</span></p>
     <span class="pt-line"></span>
   </div>
 </div>`;
@@ -52,7 +52,7 @@ const homeOverlay = (prefix) => `<div class="pt-overlay" aria-hidden="true" iner
 const projectOverlay = (category) => `<div class="pt-overlay" aria-hidden="true" inert>
   <div class="pt-inner">
     <p class="pt-number">${escape(category.number)}</p>
-    <p class="pt-title pt-title-project">${escape(category.title)}</p>
+    <p class="pt-title pt-title-project" data-i18n="${escape(category.i18nKey || `category.${category.id}.title`)}">${escape(category.title)}</p>
     <span class="pt-line"></span>
   </div>
 </div>`;
@@ -75,7 +75,7 @@ const place = (html, re, block, anchor, file) => {
 
 const pages = [
   { file: "index.html", prefix: "", overlay: homeOverlay(""), isHome: true },
-  { file: "cv/index.html", prefix: "../", overlay: projectOverlay({ number: "CV", title: "Curriculum Vitae" }), isHome: false },
+  { file: "cv/index.html", prefix: "../", overlay: projectOverlay({ number: "CV", title: "Curriculum Vitae", i18nKey: "cv.title" }), isHome: false },
   ...categories
     .filter((category) => fs.existsSync(path.join(ROOT, "pages", `${category.id}.html`)))
     .map((category) => ({ file: `pages/${category.id}.html`, prefix: "../", overlay: projectOverlay(category), isHome: false })),

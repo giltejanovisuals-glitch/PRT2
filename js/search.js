@@ -18,6 +18,12 @@
  * - Choosing a homepage section while on the homepage closes the search
  *   and scrolls there (with a history entry, so Back works); anything else
  *   is an ordinary navigation.
+ * - Every language (js/i18n.js): titles, descriptions, kinds and keywords
+ *   are shown and matched in the visitor's language through each entry's
+ *   `l10n` keys, while the English title and keywords stay searchable —
+ *   "branding" or "Photoshop" finds the same work in any language. Results
+ *   always lead to the same pages. Chinese, Japanese and Korean match from
+ *   one character, inside words.
  */
 (() => {
   const header = document.querySelector(".site-header .header-controls");
@@ -25,14 +31,12 @@
 
   const SCRIPT = document.currentScript;
   const ROOT = new URL("..", SCRIPT && SCRIPT.src ? SCRIPT.src : window.location.href);
-  const GROUPS = [
-    ["projects", "Projects"],
-    ["brands", "Brands"],
-    ["capabilities", "Capabilities"],
-    ["tools", "Tools"],
-    ["sections", "Sections"],
-  ];
+  const I18N = window.i18n;
+  const t = (key, vars, fallback) => (I18N ? I18N.t(key, vars, fallback) : fallback || "");
+  const GROUPS = ["projects", "brands", "capabilities", "tools", "sections"];
   const MIN_CHARS = 2;
+  const CJK = /[぀-ヿ㐀-䶿一-鿿가-힯豈-﫿]/;
+  const minChars = (query) => (CJK.test(query) ? 1 : MIN_CHARS);
   const PER_GROUP = 4; // before "View all results"
   const DEBOUNCE_MS = 120;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -56,11 +60,9 @@
   const toggle = document.createElement("button");
   toggle.type = "button";
   toggle.className = "search-toggle";
-  toggle.setAttribute("aria-label", "Search portfolio");
   toggle.setAttribute("aria-haspopup", "dialog");
   toggle.setAttribute("aria-expanded", "false");
   toggle.setAttribute("aria-keyshortcuts", isMac ? "Meta+K" : "Control+K");
-  toggle.dataset.tooltip = `Search portfolio (${isMac ? "⌘" : "Ctrl "}K)`;
   toggle.innerHTML = ICONS.search;
   header.insertBefore(toggle, header.querySelector(".theme-toggle") || header.querySelector(".menu-toggle"));
 
@@ -72,19 +74,18 @@
   overlay.innerHTML = `
     <div class="search-backdrop" data-search-dismiss></div>
     <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="search-title">
-      <h2 class="sr-only" id="search-title">Search portfolio</h2>
+      <h2 class="sr-only" id="search-title"></h2>
       <form class="search-bar" role="search" action="#">
         <span class="search-bar-icon">${ICONS.search}</span>
-        <label class="sr-only" for="search-input">Search portfolio</label>
+        <label class="sr-only" for="search-input"></label>
         <input class="search-input" id="search-input" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go"
-          placeholder="Search projects, brands, skills, or services…"
           role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" />
-        <button class="search-clear" type="button" aria-label="Clear search" hidden>${ICONS.clear}</button>
-        <button class="search-close" type="button" aria-label="Close search">${ICONS.close}</button>
+        <button class="search-clear" type="button" hidden>${ICONS.clear}</button>
+        <button class="search-close" type="button">${ICONS.close}</button>
       </form>
-      <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>
+      <div class="search-results" id="search-results" role="listbox"></div>
       <p class="sr-only" role="status" aria-live="polite" data-search-status></p>
-      <p class="search-foot" aria-hidden="true"><span><kbd>↑</kbd><kbd>↓</kbd> Navigate</span><span><kbd>Enter</kbd> Open</span><span><kbd>Esc</kbd> Close</span></p>
+      <p class="search-foot" aria-hidden="true"><span><kbd>↑</kbd><kbd>↓</kbd> <span data-foot="navigate"></span></span><span><kbd>Enter</kbd> <span data-foot="open"></span></span><span><kbd>Esc</kbd> <span data-foot="close"></span></span></p>
     </div>`;
   document.body.appendChild(overlay);
 
@@ -96,33 +97,78 @@
   const list = overlay.querySelector(".search-results");
   const status = overlay.querySelector("[data-search-status]");
 
+  // Every fixed label, in the active language (again on each change).
+  const applyLabels = () => {
+    const label = t("search.open", null, "Search portfolio");
+    toggle.setAttribute("aria-label", label);
+    toggle.dataset.tooltip = t("search.tooltip", { shortcut: `${isMac ? "⌘" : "Ctrl "}K` }, label);
+    overlay.querySelector("#search-title").textContent = label;
+    overlay.querySelector('label[for="search-input"]').textContent = label;
+    input.placeholder = t("search.placeholder");
+    clearButton.setAttribute("aria-label", t("search.clear"));
+    closeButton.setAttribute("aria-label", t("search.close"));
+    list.setAttribute("aria-label", t("search.results"));
+    overlay.querySelector('[data-foot="navigate"]').textContent = t("search.keyNavigate");
+    overlay.querySelector('[data-foot="open"]').textContent = t("search.keyOpen");
+    overlay.querySelector('[data-foot="close"]').textContent = t("search.keyClose");
+  };
+  applyLabels();
+
   // --- Index ----------------------------------------------------------------------
 
-  let index = null; // { shortcuts, entries }
+  let index = null; // { shortcuts, entries }, localized and prepared
+  let raw = null; // the English index as loaded
   let indexFailed = false;
+  // Lowercase, Latin accents dropped (diseño → diseno), everything that
+  // isn't a letter or digit in any script turned into spaces. NFC again
+  // afterwards, so Korean syllables and Japanese kana stay whole.
   const norm = (text) =>
     String(text || "")
       .toLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9+#]+/g, " ")
+      .normalize("NFC")
+      .replace(/[^\p{L}\p{N}+#]+/gu, " ")
       .trim();
   const words = (text) => (text ? text.split(" ") : []);
 
+  const translated = (key, english) => (key && I18N && I18N.lang !== "en" && I18N.has(key) ? t(key) : english);
+  const localize = (item) => {
+    const l10n = item.l10n || {};
+    const out = { ...item, title: translated(l10n.title, item.title), kind: translated(l10n.kind, item.kind) };
+    if (l10n.parts && I18N && I18N.lang !== "en") {
+      out.description = l10n.parts.map((part) => (typeof part === "string" ? part : I18N.plural(part.key, part.count))).join(" · ");
+    } else {
+      out.description = translated(l10n.description, item.description);
+    }
+    if (item.body !== undefined) out.body = translated(l10n.body, item.body);
+    // Localized keywords join the English ones, which always stay.
+    const extra = l10n.keywords && I18N && I18N.lang !== "en" && I18N.has(l10n.keywords) ? t(l10n.keywords).split(/\s*[,，、]\s*/) : [];
+    out.keywords = [...(item.keywords || []), ...extra.filter(Boolean)];
+    out.enTitle = item.title;
+    return out;
+  };
+
   const prepare = (data) => {
-    data.entries.forEach((entry) => {
+    const entries = data.entries.map((source) => {
+      const entry = localize(source);
       entry.nTitle = norm(entry.title);
       entry.titleWords = words(entry.nTitle);
-      entry.nKeys = (entry.keywords || []).map(norm);
+      entry.nKeys = entry.keywords.map(norm);
       entry.keyWords = entry.nKeys.flatMap(words);
       entry.nKind = norm(entry.kind);
       entry.nDesc = norm(`${entry.description} ${entry.body || ""}`);
       entry.descWords = words(entry.nDesc);
+      // The English title, searchable in every language.
+      entry.nEnTitle = entry.enTitle === entry.title ? "" : norm(entry.enTitle);
+      entry.enWords = words(entry.nEnTitle);
+      return entry;
     });
-    return data;
+    return { shortcuts: (data.shortcuts || []).map(localize), entries };
   };
 
   const ready = (data) => {
+    raw = data;
     index = prepare(data);
     if (!overlay.hidden) update();
   };
@@ -163,14 +209,18 @@
 
   const scoreToken = (entry, token) => {
     let score = 0;
+    // CJK runs carry no spaces: any part of a word counts from one character.
+    const inner = CJK.test(token) ? 1 : 3;
     if (entry.titleWords.includes(token)) score += 40;
     else if (entry.titleWords.some((word) => word.startsWith(token))) score += 30;
     else if (entry.nTitle.includes(token)) score += 18;
     if (entry.nKeys.includes(token)) score += 26;
     else if (entry.keyWords.some((word) => word.startsWith(token))) score += 18;
-    else if (token.length >= 3 && entry.nKeys.some((key) => key.includes(token))) score += 10;
+    else if (token.length >= inner && entry.nKeys.some((key) => key.includes(token))) score += 10;
+    if (entry.enWords.includes(token)) score += 24;
+    else if (entry.enWords.some((word) => word.startsWith(token))) score += 16;
     if (entry.nKind.includes(token)) score += 8;
-    if (token.length >= 3) {
+    if (token.length >= inner) {
       if (entry.descWords.some((word) => word.startsWith(token))) score += 5;
       else if (entry.nDesc.includes(token)) score += 3;
     }
@@ -181,7 +231,7 @@
     const q = norm(query);
     const tokens = words(q);
     if (!tokens.length) return [];
-    const order = Object.fromEntries(GROUPS.map(([id], i) => [id, i]));
+    const order = Object.fromEntries(GROUPS.map((id, i) => [id, i]));
     return index.entries
       .map((entry) => {
         let total = 0;
@@ -190,13 +240,13 @@
           if (!s) return null; // every word must match somewhere
           total += s;
         }
-        if (entry.nTitle === q) total += 100;
+        if (entry.nTitle === q || entry.nEnTitle === q) total += 100;
         else if (entry.nTitle.startsWith(q)) total += 40;
         if (entry.nKeys.includes(q)) total += 35;
         return { entry, score: total };
       })
       .filter(Boolean)
-      .sort((a, b) => b.score - a.score || order[a.entry.group] - order[b.entry.group] || a.entry.title.localeCompare(b.entry.title))
+      .sort((a, b) => b.score - a.score || order[a.entry.group] - order[b.entry.group] || a.entry.title.localeCompare(b.entry.title, I18N ? I18N.lang : undefined))
       .map((result) => result.entry);
   };
 
@@ -212,7 +262,7 @@
   // Text with each typed word wrapped in <mark>, built without innerHTML.
   const highlighted = (text, tokens) => {
     const fragment = document.createDocumentFragment();
-    const usable = tokens.filter((token) => token.length >= 2);
+    const usable = tokens.filter((token) => token.length >= minChars(token));
     if (!usable.length) {
       fragment.append(text);
       return fragment;
@@ -288,14 +338,14 @@
     return el;
   };
 
-  const makeGroup = (label, children) => {
+  const makeGroup = (id, label, children) => {
     const group = document.createElement("div");
     group.className = "search-group";
     group.setAttribute("role", "group");
     const heading = document.createElement("div");
     heading.className = "search-group-label";
     heading.setAttribute("role", "presentation");
-    heading.id = `search-group-${label.toLowerCase().replace(/\W+/g, "-")}`;
+    heading.id = `search-group-${id}`;
     heading.textContent = label;
     group.setAttribute("aria-labelledby", heading.id);
     group.append(heading, ...children);
@@ -324,8 +374,8 @@
     const visible = `${entry.nTitle} ${norm(entry.description)}`;
     const hidden = tokens.find((token) => !visible.includes(token));
     if (hidden) {
-      const keyword = (entry.keywords || []).find((key) => norm(key).includes(hidden));
-      if (keyword) return `Matches “${keyword}” · ${entry.description}`;
+      const keyword = (entry.keywords || []).find((key) => norm(key).includes(hidden)) || (entry.nEnTitle.includes(hidden) ? entry.enTitle : "");
+      if (keyword) return t("search.matches", { keyword, description: entry.description });
     }
     return entry.description;
   };
@@ -353,24 +403,25 @@
     clearButton.hidden = !input.value;
 
     if (!index) {
-      list.append(message(indexFailed ? "Search is unavailable right now." : "Loading the portfolio index…"));
+      const note = indexFailed ? t("search.unavailable") : t("search.loading");
+      list.append(message(note));
       input.setAttribute("aria-expanded", "false");
-      status.textContent = indexFailed ? "Search is unavailable right now." : "";
+      status.textContent = indexFailed ? note : "";
       return;
     }
 
-    if (query.length < MIN_CHARS) {
+    if (query.length < minChars(query)) {
       const shortcuts = (index.shortcuts || []).map((shortcut) =>
         makeOption({
           title: shortcut.title,
           kind: shortcut.kind,
-          icon: shortcut.kind === "Section" ? "sections" : "projects",
+          icon: shortcut.url.includes("#") ? "sections" : "projects",
           action: () => navigate(shortcut.url),
         })
       );
-      list.append(makeGroup("Quick links", shortcuts));
+      list.append(makeGroup("quick-links", t("search.quickLinks"), shortcuts));
       input.setAttribute("aria-expanded", "true");
-      status.textContent = query ? "Type at least two characters to search." : "";
+      status.textContent = query ? t("search.minChars") : "";
       return;
     }
 
@@ -378,25 +429,26 @@
     input.setAttribute("aria-expanded", "true");
 
     if (!results.length) {
-      list.append(message("No matching work found.", "Try another brand, service, software, or project type."));
+      list.append(message(t("search.noResults"), t("search.noResultsHint")));
       list.append(
-        makeGroup("Browse", [
-          makeOption({ title: "View All Projects", kind: "Project Gallery", icon: "projects", action: () => navigate("index.html#gallery") }),
+        makeGroup("browse", t("search.browse"), [
+          makeOption({ title: t("search.viewAllProjects"), kind: t("gallery.title"), icon: "projects", action: () => navigate("index.html#gallery") }),
         ])
       );
-      status.textContent = `No matching work found for ${query}.`;
+      status.textContent = t("search.noResultsStatus", { query });
       return;
     }
 
     let shown = 0;
-    GROUPS.forEach(([id, label]) => {
+    GROUPS.forEach((id) => {
       const inGroup = results.filter((entry) => entry.group === id);
       if (!inGroup.length) return;
       const visible = showAll ? inGroup : inGroup.slice(0, PER_GROUP);
       shown += visible.length;
       list.append(
         makeGroup(
-          label,
+          id,
+          t(`search.group.${id}`),
           visible.map((entry) =>
             makeOption({
               title: entry.title,
@@ -415,7 +467,7 @@
 
     if (shown < results.length) {
       const more = makeOption({
-        title: `View all ${results.length} results`,
+        title: t("search.viewAll", { count: results.length }),
         icon: "search",
         extraClass: "search-option-more",
         action: () => {
@@ -429,7 +481,7 @@
       list.append(more);
     }
 
-    status.textContent = `${results.length} ${results.length === 1 ? "result" : "results"} for ${query}.`;
+    status.textContent = I18N ? I18N.plural("search.status", results.length, { query }) : `${results.length} results for ${query}.`;
     setActive(0, false);
   };
 
@@ -592,4 +644,13 @@
   window.addEventListener("pageshow", () => {
     if (!overlay.hidden) close({ restoreFocus: false });
   });
+
+  // A new language: relabel, re-localize the index, and redo open results.
+  if (I18N) {
+    I18N.onChange(() => {
+      applyLabels();
+      if (raw) index = prepare(raw);
+      if (!overlay.hidden) update();
+    });
+  }
 })();

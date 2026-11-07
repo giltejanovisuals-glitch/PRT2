@@ -16,17 +16,22 @@
   if (!button || !intro || !("IntersectionObserver" in window)) return;
 
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const LABELS = { gallery: button.getAttribute("aria-label"), top: "Back to top of page" };
+  const I18N = window.i18n;
+  const englishHome = button.getAttribute("aria-label");
+  const label = (state) =>
+    state === "top"
+      ? I18N ? I18N.t("dockNav.backToTopLabel", null, "Back to top of page") : "Back to top of page"
+      : I18N && I18N.lang !== "en" ? I18N.t("dockNav.backToGallery", null, englishHome) : englishHome;
 
   let introPassed = false;
   let returning = false; // scrolling back up after a "Back to Top" tap
   let returnTimer = 0;
 
-  const render = () => {
+  const render = (force) => {
     const state = introPassed || returning ? "top" : "gallery";
-    if (button.dataset.context === state) return;
+    if (button.dataset.context === state && force !== true) return;
     button.dataset.context = state;
-    button.setAttribute("aria-label", LABELS[state]);
+    button.setAttribute("aria-label", label(state));
     // As "Back to Top" it acts on the page rather than navigating.
     if (state === "top") button.setAttribute("role", "button");
     else button.removeAttribute("role");
@@ -76,5 +81,6 @@
     backToTop();
   });
 
-  render();
+  render(true);
+  I18N?.onChange(() => render(true));
 })();

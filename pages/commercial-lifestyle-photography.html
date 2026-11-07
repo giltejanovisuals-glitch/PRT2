@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Commercial &amp; Lifestyle Photography — Gil Tejano Culas, senior graphic designer and creative specialist." />
+    <meta name="description" content="Commercial &amp; Lifestyle Photography — Gil Tejano Culas, senior graphic designer and creative specialist." data-i18n-attr="content:meta.categoryDescription" data-i18n-vars='{"title":"@category.commercial-lifestyle-photography.title"}' />
     <title>Commercial &amp; Lifestyle Photography | Gil Tejano Culas</title>
     <link rel="icon" href="../assets/icons/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,6 +25,8 @@
         } catch (e) {}
       })();
     </script>
+    <script src="../js/i18n.js?v=1"></script>
+    <link rel="stylesheet" href="../css/i18n.css?v=1" />
     <!-- PAGE TRANSITION HEAD START -->
     <style>
       /* Welcome / page-transition overlay. Inlined into every page's <head> by
@@ -214,6 +216,7 @@
     </script>
     <script src="../js/page-transition.js?v=3" defer></script>
     <!-- PAGE TRANSITION HEAD END -->
+    <script src="../data/locales/en.js?v=1" defer></script>
     <link rel="stylesheet" href="../css/style.css?v=5" />
     <link rel="stylesheet" href="../css/search.css?v=1" />
     <script src="../js/search.js?v=3" defer></script>
@@ -223,6 +226,8 @@
     <link rel="stylesheet" href="../css/project-gallery.css?v=8" />
     <link rel="stylesheet" href="../css/gallery-editorial.css?v=4" />
     <link rel="stylesheet" href="../css/print-collateral-showcase.css?v=20" />
+    <link rel="stylesheet" href="../css/zoom-resilience.css?v=1" />
+    <script src="../js/zoom-chrome.js?v=1" defer></script>
     <script src="../js/gallery-categories-data.js?v=6" defer></script>
     <script src="../js/gallery-editorial-manifest.js" defer></script>
     <script src="../js/gallery-editorial-meta.js" defer></script>
@@ -237,38 +242,38 @@
     <div class="pt-overlay" aria-hidden="true" inert>
       <div class="pt-inner">
         <p class="pt-number">04</p>
-        <p class="pt-title pt-title-project">Commercial &amp; Lifestyle Photography</p>
+        <p class="pt-title pt-title-project" data-i18n="category.commercial-lifestyle-photography.title">Commercial &amp; Lifestyle Photography</p>
         <span class="pt-line"></span>
       </div>
     </div>
     <!-- PAGE TRANSITION OVERLAY END -->
-    <a class="skip-link" href="#main-content">Skip to content</a>
+    <a class="skip-link" href="#main-content" data-i18n="common.skipToContent">Skip to content</a>
 
     <div class="nav-backdrop" aria-hidden="true"></div>
     <header class="site-header">
-      <a class="brand" href="../index.html" aria-label="Gil Tejano Culas, home">
+      <a class="brand" href="../index.html" aria-label="Gil Tejano Culas, home" data-i18n-attr="aria-label:common.homeLabel">
         <img class="brand-mark" src="../assets/icons/logo.png" alt="" aria-hidden="true" />
-        <span class="brand-text"><span class="brand-name">Gil Tejano Culas</span><span class="brand-title">Senior Graphic Designer / Creative Specialist</span></span>
+        <span class="brand-text"><span class="brand-name">Gil Tejano Culas</span><span class="brand-title" data-i18n="common.roleTitle">Senior Graphic Designer / Creative Specialist</span></span>
       </a>
 
       <div class="header-controls">
-        <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation">
+        <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.primary">
           <div class="mobile-nav-head">
-            <a class="mobile-nav-brand" href="../index.html" aria-label="Gil Tejano Culas, home">
+            <a class="mobile-nav-brand" href="../index.html" aria-label="Gil Tejano Culas, home" data-i18n-attr="aria-label:common.homeLabel">
               <img class="brand-mark" src="../assets/icons/logo.png" alt="" aria-hidden="true" />
-              <span class="mobile-nav-brand-text">Gil Tejano Culas &mdash; Senior Graphic Designer / Creative Specialist</span>
+              <span class="mobile-nav-brand-text" data-i18n="common.brandLine">Gil Tejano Culas &mdash; Senior Graphic Designer / Creative Specialist</span>
             </a>
-            <button type="button" class="mobile-nav-close" aria-label="Close menu">
+            <button type="button" class="mobile-nav-close" aria-label="Close menu" data-i18n-attr="aria-label:nav.closeMenu">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
 
           <div class="mobile-nav-links">
-            <a href="../index.html"><span class="nav-index" aria-hidden="true">01</span><span class="nav-label">Home</span></a>
-            <a href="../index.html#gallery"><span class="nav-index" aria-hidden="true">02</span><span class="nav-label">Gallery</span></a>
-            <a href="../index.html#about"><span class="nav-index" aria-hidden="true">03</span><span class="nav-label">About</span></a>
-            <a href="../index.html#capabilities"><span class="nav-index" aria-hidden="true">04</span><span class="nav-label">Capabilities</span></a>
-            <a href="mailto:giltejano.visuals@gmail.com"><span class="nav-index" aria-hidden="true">05</span><span class="nav-label">Contact</span></a>
+            <a href="../index.html"><span class="nav-index" aria-hidden="true">01</span><span class="nav-label" data-i18n="nav.home">Home</span></a>
+            <a href="../index.html#gallery"><span class="nav-index" aria-hidden="true">02</span><span class="nav-label" data-i18n="nav.gallery">Gallery</span></a>
+            <a href="../index.html#about"><span class="nav-index" aria-hidden="true">03</span><span class="nav-label" data-i18n="nav.about">About</span></a>
+            <a href="../index.html#capabilities"><span class="nav-index" aria-hidden="true">04</span><span class="nav-label" data-i18n="nav.capabilities">Capabilities</span></a>
+            <a href="mailto:giltejano.visuals@gmail.com"><span class="nav-index" aria-hidden="true">05</span><span class="nav-label" data-i18n="nav.contact">Contact</span></a>
           </div>
         </nav>
 
@@ -315,7 +320,7 @@
         data-type-fallback="Photograph"
         data-featured-frame
         data-hover-preview
-        aria-label="Commercial and lifestyle photography gallery"
+        aria-label="Commercial and lifestyle photography gallery" data-i18n-attr="aria-label:showcase.label.commercial-lifestyle-photography"
       >
         <div class="pbc-stage" id="pbc-stage">
           <div class="pbc-side">
@@ -328,7 +333,7 @@
             <div class="pbc-preview">
               <div class="pbc-preview-bar">
                 <p class="pbc-category" id="pbc-category">Commercial &amp; Lifestyle Photography</p>
-                <p class="pbc-feed-label">Featured photos</p>
+                <p class="pbc-feed-label" data-i18n="showcase.featuredPhotos">Featured photos</p>
                 <div class="pbc-bar-end">
                   <p class="pbc-counter" aria-live="polite">
                     <span id="pbc-current">01</span><span class="pbc-counter-total"> / <span id="pbc-total">01</span></span>
@@ -336,13 +341,13 @@
                 </div>
               </div>
 
-              <button class="pbc-frame" id="pbc-frame" type="button" aria-label="Selected photograph. Press Enter to view fullscreen, arrow keys to browse."></button>
+              <button class="pbc-frame" id="pbc-frame" type="button" aria-label="Selected photograph. Press Enter to view fullscreen, arrow keys to browse." data-i18n-attr="aria-label:showcase.framePhoto"></button>
             </div>
           </div>
 
           <div class="pbc-gallery" id="pbc-gallery">
             <div class="pbc-gallery-bar">
-              <p class="pbc-gallery-label">Gallery</p>
+              <p class="pbc-gallery-label" data-i18n="nav.gallery">Gallery</p>
               <p class="pbc-feed-count" id="pbc-feed-count" aria-live="polite"></p>
               <div
                 class="pbc-progress"
@@ -351,13 +356,13 @@
                 aria-label="Gallery scroll position"
                 aria-valuemin="0"
                 aria-valuemax="100"
-                aria-valuenow="0"
+                aria-valuenow="0" data-i18n-attr="aria-label:showcase.progress"
               >
                 <span class="pbc-progress-fill" id="pbc-progress-fill"></span>
               </div>
             </div>
 
-            <div class="pbc-rail" id="pbc-rail" role="group" aria-label="Thumbnails. Arrow keys move between them; Page Up, Page Down and Space scroll the gallery."></div>
+            <div class="pbc-rail" id="pbc-rail" role="group" aria-label="Thumbnails. Arrow keys move between them; Page Up, Page Down and Space scroll the gallery." data-i18n-attr="aria-label:showcase.rail"></div>
           </div>
         </div>
       </section>
@@ -365,12 +370,12 @@
 
     <p class="project-counter" id="project-counter" aria-hidden="true">04 / 05</p>
 
-    <nav class="nav-dock" aria-label="Project Gallery categories">
+    <nav class="nav-dock" aria-label="Project Gallery categories" data-i18n-attr="aria-label:dockNav.label">
       <a class="nav-dock-item" id="brand-nav-prev" href="#" aria-label="Previous Category">
         <svg class="nav-dock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <path d="M15 18l-6-6 6-6"></path>
         </svg>
-        <span class="nav-dock-label" aria-hidden="true"><span class="nav-dock-label-full">Previous Category</span><span class="nav-dock-label-short">Previous</span></span>
+        <span class="nav-dock-label" aria-hidden="true"><span class="nav-dock-label-full" data-i18n="dockNav.prev">Previous Category</span><span class="nav-dock-label-short" data-i18n="dockNav.prevShort">Previous</span></span>
       </a>
       <a class="nav-dock-item nav-dock-item-home" href="../index.html#gallery" aria-label="Back to Project Gallery" data-context="gallery">
         <span class="nav-dock-icon-swap" aria-hidden="true">
@@ -385,26 +390,26 @@
             <path d="M6 11l6-6 6 6"></path>
           </svg>
         </span>
-        <span class="nav-dock-label-swap" aria-hidden="true"><span class="nav-dock-label nav-dock-label-home"><span class="nav-dock-label-full">Project Gallery</span><span class="nav-dock-label-short">Gallery</span></span><span class="nav-dock-label nav-dock-label-top"><span class="nav-dock-label-full">Back to Top</span><span class="nav-dock-label-short">Top</span></span></span>
+        <span class="nav-dock-label-swap" aria-hidden="true"><span class="nav-dock-label nav-dock-label-home"><span class="nav-dock-label-full" data-i18n="gallery.title">Project Gallery</span><span class="nav-dock-label-short" data-i18n="nav.gallery">Gallery</span></span><span class="nav-dock-label nav-dock-label-top"><span class="nav-dock-label-full" data-i18n="dockNav.backToTop">Back to Top</span><span class="nav-dock-label-short" data-i18n="dockNav.top">Top</span></span></span>
       </a>
       <a class="nav-dock-item nav-dock-item-next" id="brand-nav-next" href="#" aria-label="Next Category">
         <svg class="nav-dock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <path d="M9 6l6 6-6 6"></path>
         </svg>
-        <span class="nav-dock-label" aria-hidden="true"><span class="nav-dock-label-full">Next Category</span><span class="nav-dock-label-short">Next</span></span>
+        <span class="nav-dock-label" aria-hidden="true"><span class="nav-dock-label-full" data-i18n="dockNav.next">Next Category</span><span class="nav-dock-label-short" data-i18n="dockNav.nextShort">Next</span></span>
       </a>
     </nav>
     <script src="../js/nav-dock.js?v=2" defer></script>
 
     <script src="../js/dock-context.js?v=2" defer></script>
 
-    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Fullscreen image preview">
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Fullscreen image preview" data-i18n-attr="aria-label:lightbox.label">
       <div class="lightbox-stage" id="lightbox-stage"></div>
 
-      <button class="lightbox-zone lightbox-zone-prev" type="button" tabindex="-1" aria-label="Show previous image"></button>
-      <button class="lightbox-zone lightbox-zone-next" type="button" tabindex="-1" aria-label="Show next image"></button>
+      <button class="lightbox-zone lightbox-zone-prev" type="button" tabindex="-1" aria-label="Show previous image" data-i18n-attr="aria-label:lightbox.prev"></button>
+      <button class="lightbox-zone lightbox-zone-next" type="button" tabindex="-1" aria-label="Show next image" data-i18n-attr="aria-label:lightbox.next"></button>
 
-      <button class="lightbox-close" type="button" aria-label="Close fullscreen preview">
+      <button class="lightbox-close" type="button" aria-label="Close fullscreen preview" data-i18n-attr="aria-label:lightbox.close">
         <span aria-hidden="true">×</span>
       </button>
 

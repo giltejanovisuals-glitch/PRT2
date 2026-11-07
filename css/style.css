@@ -25,7 +25,12 @@
   --danger: #b3452f;
   --danger-rgb: 179, 69, 47;
   --page-padding: clamp(1.25rem, 3vw, 3.5rem);
-  --header-h: 88px;
+  --header-h: 5.5rem;
+  /* Minimum touch target for every control, at any zoom. */
+  --hit: 2.75rem;
+  /* Widest the header/dock frame grows when zoomed out, so the controls stay
+     near the content instead of drifting to the far screen corners. */
+  --site-max: 100rem;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --font-headline: "TT Modernist", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
@@ -112,9 +117,12 @@ html {
 
 body {
   margin: 0;
-  min-width: 320px;
+  /* No fixed min-width: at 400% zoom a narrow window can be under 320 CSS px,
+     and a floor here would force horizontal scrolling. */
+  min-width: 0;
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-wrap: break-word;
   color: var(--text);
   background: var(--background);
   font-family: var(--font-body);
@@ -238,6 +246,7 @@ body.is-scrolled .nav-backdrop {
 
 .brand {
   display: flex;
+  min-height: var(--hit);
   gap: 0.6rem;
   align-items: center;
   font-size: 0.75rem;
@@ -264,7 +273,7 @@ body.is-scrolled .nav-backdrop {
 
 .floating-nav {
   display: flex;
-  height: 40px;
+  min-height: var(--hit);
   gap: clamp(1rem, 2.4vw, 2rem);
   align-items: center;
   padding: 0 1.1rem;
@@ -331,8 +340,8 @@ body.is-scrolled .nav-backdrop {
 .theme-toggle {
   position: relative;
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: var(--hit);
+  height: var(--hit);
   border: 1px solid var(--line);
   border-radius: 50%;
   background: rgba(var(--text-rgb), 0.04);

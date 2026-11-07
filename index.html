@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta
       name="description"
-      content="Gil Tejano Culas — senior graphic designer and creative specialist building visual experiences with commercial purpose."
+      content="Gil Tejano Culas — senior graphic designer and creative specialist building visual experiences with commercial purpose." data-i18n-attr="content:meta.home.description"
     />
-    <title>Gil Tejano Culas | Senior Graphic Designer / Creative Specialist</title>
+    <title data-i18n="meta.home.title">Gil Tejano Culas | Senior Graphic Designer / Creative Specialist</title>
     <link rel="icon" href="assets/icons/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,6 +35,8 @@
         }
       })();
     </script>
+    <script src="js/i18n.js?v=1"></script>
+    <link rel="stylesheet" href="css/i18n.css?v=1" />
     <!-- PAGE TRANSITION HEAD START -->
     <link rel="preload" as="image" href="assets/icons/logo.png" crossorigin />
     <style>
@@ -225,6 +227,7 @@
     </script>
     <script src="js/page-transition.js?v=3" defer></script>
     <!-- PAGE TRANSITION HEAD END -->
+    <script src="data/locales/en.js?v=1" defer></script>
     <link rel="stylesheet" href="css/style.css?v=5" />
     <link rel="stylesheet" href="css/search.css?v=1" />
     <script src="js/search.js?v=3" defer></script>
@@ -244,6 +247,8 @@
     <link rel="stylesheet" href="css/mobile-foundation.css" />
     <link rel="stylesheet" href="css/mobile-contact.css" />
     <link rel="stylesheet" href="css/mobile-tabbar.css?v=3" />
+    <link rel="stylesheet" href="css/zoom-resilience.css?v=1" />
+    <script src="js/zoom-chrome.js?v=1" defer></script>
     <script src="js/gallery-categories-data.js?v=6" defer></script>
     <script src="js/mobile-gallery-data.js?v=2" defer></script>
     <script src="js/reel-preview.js?v=3" defer></script>
@@ -269,43 +274,43 @@
       <div class="pt-inner">
         <span class="pt-mark" style="--pt-logo: url('assets/icons/logo.png')"></span>
         <p class="pt-title pt-title-home">Gil Tejano Culas</p>
-        <p class="pt-sub"><span>Senior Graphic Designer /</span> <span>Creative Specialist</span></p>
+        <p class="pt-sub"><span data-i18n="intro.role1">Senior Graphic Designer /</span> <span data-i18n="intro.role2">Creative Specialist</span></p>
         <span class="pt-line"></span>
       </div>
     </div>
     <!-- PAGE TRANSITION OVERLAY END -->
-    <a class="skip-link" href="#main-content">Skip to content</a>
+    <a class="skip-link" href="#main-content" data-i18n="common.skipToContent">Skip to content</a>
 
     <div class="nav-backdrop" aria-hidden="true"></div>
     <header class="site-header">
-      <a class="brand" href="#" aria-label="Gil Tejano Culas, home">
+      <a class="brand" href="#" aria-label="Gil Tejano Culas, home" data-i18n-attr="aria-label:common.homeLabel">
         <img class="brand-mark" src="assets/icons/logo.png" alt="" aria-hidden="true" />
-        <span class="brand-text"><span class="brand-name">Gil Tejano Culas</span><span class="brand-title">Senior Graphic Designer / Creative Specialist</span></span>
+        <span class="brand-text"><span class="brand-name">Gil Tejano Culas</span><span class="brand-title" data-i18n="common.roleTitle">Senior Graphic Designer / Creative Specialist</span></span>
       </a>
 
       <div class="header-controls">
-        <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation">
+        <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.primary">
           <div class="mobile-nav-head">
-            <a class="mobile-nav-brand" href="#" aria-label="Gil Tejano Culas, home">
+            <a class="mobile-nav-brand" href="#" aria-label="Gil Tejano Culas, home" data-i18n-attr="aria-label:common.homeLabel">
               <img class="brand-mark" src="assets/icons/logo.png" alt="" aria-hidden="true" />
-              <span class="mobile-nav-brand-text">Gil Tejano Culas &mdash; Senior Graphic Designer / Creative Specialist</span>
+              <span class="mobile-nav-brand-text" data-i18n="common.brandLine">Gil Tejano Culas &mdash; Senior Graphic Designer / Creative Specialist</span>
             </a>
-            <button type="button" class="mobile-nav-close" aria-label="Close menu">
+            <button type="button" class="mobile-nav-close" aria-label="Close menu" data-i18n-attr="aria-label:nav.closeMenu">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
 
           <div class="mobile-nav-links">
-            <a href="#main-content"><span class="nav-index" aria-hidden="true">01</span><span class="nav-label">Home</span></a>
-            <a href="#gallery"><span class="nav-index" aria-hidden="true">02</span><span class="nav-label">Gallery</span></a>
-            <a href="#about"><span class="nav-index" aria-hidden="true">03</span><span class="nav-label">About</span></a>
-            <a href="#capabilities"><span class="nav-index" aria-hidden="true">04</span><span class="nav-label">Capabilities</span></a>
-            <a href="#contact"><span class="nav-index" aria-hidden="true">05</span><span class="nav-label">Contact</span></a>
+            <a href="#main-content"><span class="nav-index" aria-hidden="true">01</span><span class="nav-label" data-i18n="nav.home">Home</span></a>
+            <a href="#gallery"><span class="nav-index" aria-hidden="true">02</span><span class="nav-label" data-i18n="nav.gallery">Gallery</span></a>
+            <a href="#about"><span class="nav-index" aria-hidden="true">03</span><span class="nav-label" data-i18n="nav.about">About</span></a>
+            <a href="#capabilities"><span class="nav-index" aria-hidden="true">04</span><span class="nav-label" data-i18n="nav.capabilities">Capabilities</span></a>
+            <a href="#contact"><span class="nav-index" aria-hidden="true">05</span><span class="nav-label" data-i18n="nav.contact">Contact</span></a>
           </div>
 
           <div class="mobile-nav-foot">
-            <p class="mobile-nav-status">Available for selected projects</p>
-            <div class="mobile-nav-socials" aria-label="Social links">
+            <p class="mobile-nav-status" data-i18n="nav.status">Available for selected projects</p>
+            <div class="mobile-nav-socials" aria-label="Social links" data-i18n-attr="aria-label:nav.socialLinks">
               <a href="https://www.linkedin.com/in/gilculas" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.83v1.54h.06c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13V21h-4v-4.97c0-1.19-.02-2.71-1.65-2.71-1.65 0-1.9 1.29-1.9 2.62V21h-4V9.75Z"/></svg>
               </a>
@@ -315,7 +320,7 @@
               <a href="https://www.instagram.com/kv_gil/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
               </a>
-              <a href="mailto:giltejano.visuals@gmail.com" aria-label="Email">
+              <a href="mailto:giltejano.visuals@gmail.com" aria-label="Email" data-i18n-attr="aria-label:nav.email">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
               </a>
             </div>
@@ -359,12 +364,12 @@
 
     <main class="hero hero-parallax" id="main-content" aria-labelledby="hero-title">
       <div class="hpx-header">
-        <p class="hpx-eyebrow"><span class="desktop-hero-copy">Gil Tejano Culas — Senior Graphic Designer / Creative Specialist</span><span class="mobile-hero-copy"><strong>Gil Tejano Culas</strong> Senior Graphic Designer / Creative Specialist</span></p>
-        <h1 class="hpx-title" id="hero-title"><span class="desktop-hero-copy">Building premium visual systems where creativity meets commercial purpose.</span><span class="mobile-hero-copy">Visual experiences shaped for brands, products, and commercial purpose.</span></h1>
-        <p class="hpx-sub"><span class="desktop-hero-copy">Brand identities, campaign applications, and visual experiences created for furniture, lifestyle, retail, and product-driven brands.</span><span class="mobile-hero-copy">Campaign visuals, brand applications, and creative content for furniture, lifestyle, retail, and product-driven brands.</span></p>
+        <p class="hpx-eyebrow"><span class="desktop-hero-copy" data-i18n="common.brandLine">Gil Tejano Culas — Senior Graphic Designer / Creative Specialist</span><span class="mobile-hero-copy" data-i18n-html="hero.eyebrowMobile"><strong>Gil Tejano Culas</strong> Senior Graphic Designer / Creative Specialist</span></p>
+        <h1 class="hpx-title" id="hero-title"><span class="desktop-hero-copy" data-i18n="hero.title">Building premium visual systems where creativity meets commercial purpose.</span><span class="mobile-hero-copy" data-i18n="hero.titleMobile">Visual experiences shaped for brands, products, and commercial purpose.</span></h1>
+        <p class="hpx-sub"><span class="desktop-hero-copy" data-i18n="hero.sub">Brand identities, campaign applications, and visual experiences created for furniture, lifestyle, retail, and product-driven brands.</span><span class="mobile-hero-copy" data-i18n="hero.subMobile">Campaign visuals, brand applications, and creative content for furniture, lifestyle, retail, and product-driven brands.</span></p>
         <div class="hpx-actions">
-          <a class="hpx-btn hpx-btn-solid" href="#gallery">Project Gallery</a>
-          <a class="hpx-btn" href="#contact">Make Contact</a>
+          <a class="hpx-btn hpx-btn-solid" href="#gallery" data-i18n="gallery.title">Project Gallery</a>
+          <a class="hpx-btn" href="#contact" data-i18n="hero.ctaContact">Make Contact</a>
         </div>
       </div>
 
@@ -372,19 +377,19 @@
            scripts/featured-groups.js and built by
            scripts/generate-mobile-featured.js. The opening group is rendered
            here; js/mobile-featured.js adds the rest. -->
-      <section class="mobile-featured" aria-roledescription="carousel" aria-label="Featured work">
+      <section class="mobile-featured" aria-roledescription="carousel" aria-label="Featured work" data-i18n-attr="aria-label:featured.label;aria-roledescription:a11y.carousel">
         <div class="featured-frame">
           <div class="featured-groups">
             <!-- MOBILE FEATURED START -->
-            <div class="featured-group is-active" data-layout="feature" data-id="social-campaigns" role="group" aria-roledescription="slide" aria-label="1 of 8: Social Media Campaigns &amp; Key Visuals">
+            <div class="featured-group is-active" data-layout="feature" data-id="social-campaigns" role="group" aria-roledescription="slide" aria-label="1 of 8: Social Media Campaigns &amp; Key Visuals" data-i18n-attr="aria-roledescription:a11y.slide">
               <a class="featured-tile is-fill" href="pages/social-media-campaigns.html?open=HOOGA%20ROCKWELL.png" style="--placeholder: url('data:image/webp;base64,UklGRgQDAABXRUJQVlA4WAoAAAAgAAAAFwAAIAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggFgEAAFAGAJ0BKhgAIQA+0VqmTSglI6IquAwBABoJQBdma/KgCQWTNfF+K4BcBKUYwSr0bK4HY4ZlgW49L/YAAP7r9W9sBE0D5HUi2O14rPdZb07rwrNQldqv5+kLo1nsEItEwheiKUJiUNx6PR2fXy0XTjNGBUZrvOSpJysnt7viKGNppn8/dwFHrdqIJXqxBJUK5x0T5bTUz87vHiM6A01LfnGNfWza8Gcm/CQoQkbdJaShhnVKi823ivlhvJUD8OD+qP3P5DoadcZQqcwyBeHAaS9GPOm3Zbbt/34e0cHjJaCIGK6k7oQsy5Bia1jZbzK2m3knIKAP/UCbxlx0zQB1nHAIMYOZSK1mPx/1XEpkAWaXq6TIAAAA')">
-                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" sizes="(max-width: 760px) calc((100vw - 40px) * 0.58), 1px" /><img width="960" height="1332" alt="Hooga “A New Sense of Comfort” key visual: a tan leather sofa beneath glowing circular ceiling lights in a warm walnut-toned room." decoding="async" fetchpriority="high" /></picture>
+                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" sizes="(max-width: 760px) calc((100vw - 40px) * 0.58), 1px" /><img width="960" height="1332" alt="Hooga “A New Sense of Comfort” key visual: a tan leather sofa beneath glowing circular ceiling lights in a warm walnut-toned room." decoding="async" fetchpriority="high" data-i18n-attr="alt:featured.item.hooga-key-visual.alt" /></picture>
               </a>
               <a class="featured-tile is-fill" href="pages/social-media-campaigns.html?open=1%20FEATHER%20RECLINER%20v2.png" style="--placeholder: url('data:image/webp;base64,UklGRhwDAABXRUJQVlA4WAoAAAAgAAAAFwAAFwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggLgEAANAFAJ0BKhgAGAA+0VykTqglIyIoCqkAGgljALe6ALsljb69rC8AUU/iGIl95T3Vo5gkig0Sq5gA/ttrhp7oh9XHz7lKwPnyTg69x/4apIgNSkd0CmHBrs1zxSz002GxE3PnsR3Y1EmzNY2p3CaOyBygmXhoGy1UuHEFw4PTgykG9aXVCzcVSuKaib4gHfOeex+kHMBj8hcRbhvPuZ5DUFHLa4JXC9PXKrCixU0SW+OklXPyw7bocbNG07LN0oSPyy/J+v1oe87hpzcTb3kqubbpSLPLPM4PEYn8jb5wK6Kh91XxG1o2mIpqJSIY5SW9kxeFMGXJLg+qBDaEPV1/Iloc/7HOpjmN/yr/hJJT5xFzYGsMS1F/39dwdTdhFhBxsvwq4BgxYpNjfF8pwAAA')">
-                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/dunlopillo-recliner-480.webp 480w, assets/images/featured/dunlopillo-recliner-960.webp 960w" sizes="(max-width: 760px) calc((100vw - 40px) * 0.42), 1px" /><img width="960" height="960" alt="Dunlopillo “Find your sanctuary” key visual: a white leather recliner in a misty, sunlit forest." decoding="async" /></picture>
+                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/dunlopillo-recliner-480.webp 480w, assets/images/featured/dunlopillo-recliner-960.webp 960w" sizes="(max-width: 760px) calc((100vw - 40px) * 0.42), 1px" /><img width="960" height="960" alt="Dunlopillo “Find your sanctuary” key visual: a white leather recliner in a misty, sunlit forest." decoding="async" data-i18n-attr="alt:featured.item.dunlopillo-recliner.alt" /></picture>
               </a>
               <a class="featured-tile is-fill" href="pages/social-media-campaigns.html?open=MARW33.1.png" style="--placeholder: url('data:image/webp;base64,UklGRhQDAABXRUJQVlA4WAoAAAAgAAAAFwAAFwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggJgEAAJAGAJ0BKhgAGAA+0VyjTaglIyIoDVEAGglAFU94C4BHOrgHVZe1hUD8d24g/twIsPWEqMFdGrNrsrrCaWAA4n9SIvujNVcW40Nku0pNNsScaPM4lOPyFRT1btJIkiPYv+eDNxQwdwXKxbWpNvq2UfAdBGYCuoRH9DnSGsIpj4G7n+xsUnKYONeAylD8H6fSd6bPNG1pibZLpFKAgfFqsHDnz0ZG/BueSXUJ2OUz6xXC028Ih785Yaejo6WrlADQaeRTMac/pHjLGxN5eD59T43bVWot8XLM4vT/7Ke28ZKDwoq1OaOfTj2S7Ww6jSaOkOzK3x6slvA0+cKlcLu+Wv73fNZ7QB3C5e7bpYC/gEtH8X5ge6xIR5pZk9uFyN8+HUgkwAAAAA==')">
-                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/mooni-overhead-480.webp 480w, assets/images/featured/mooni-overhead-960.webp 960w" sizes="(max-width: 760px) calc((100vw - 40px) * 0.42), 1px" /><img width="960" height="960" alt="Mooni campaign visual seen from above: a woman in a grey robe stretched across a Mooni mattress, her face hidden behind a book." decoding="async" /></picture>
+                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/mooni-overhead-480.webp 480w, assets/images/featured/mooni-overhead-960.webp 960w" sizes="(max-width: 760px) calc((100vw - 40px) * 0.42), 1px" /><img width="960" height="960" alt="Mooni campaign visual seen from above: a woman in a grey robe stretched across a Mooni mattress, her face hidden behind a book." decoding="async" data-i18n-attr="alt:featured.item.mooni-overhead.alt" /></picture>
               </a>
             </div>
             <!-- MOBILE FEATURED END -->
@@ -401,12 +406,12 @@
           <p class="featured-count" aria-hidden="true"><!-- MOBILE FEATURED COUNT START --><span class="featured-current">01</span> / <span class="featured-total">08</span><!-- MOBILE FEATURED COUNT END --></p>
         </div>
         <div class="featured-actions">
-          <!-- MOBILE FEATURED LINK START --><a class="featured-link" href="pages/social-media-campaigns.html">View Project <span aria-hidden="true">&rarr;</span></a><!-- MOBILE FEATURED LINK END -->
+          <!-- MOBILE FEATURED LINK START --><a class="featured-link" href="pages/social-media-campaigns.html"><span data-i18n="featured.viewProject">View Project</span> <span aria-hidden="true">&rarr;</span></a><!-- MOBILE FEATURED LINK END -->
           <div class="featured-controls">
-            <button type="button" class="featured-step" data-step="-1" aria-label="Previous group" disabled>
+            <button type="button" class="featured-step" data-step="-1" aria-label="Previous group" disabled data-i18n-attr="aria-label:featured.prev">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg>
             </button>
-            <button type="button" class="featured-step" data-step="1" aria-label="Next group" disabled>
+            <button type="button" class="featured-step" data-step="1" aria-label="Next group" disabled data-i18n-attr="aria-label:featured.next">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>
             </button>
           </div>
@@ -416,7 +421,7 @@
 
       <!-- Filled by js/hero-parallax.js with random Project Gallery images
            (window.HOME_GALLERY_PREVIEWS), five per row. -->
-      <div class="hpx-wall" id="work" role="group" aria-label="Selected work from the Project Gallery">
+      <div class="hpx-wall" id="work" role="group" aria-label="Selected work from the Project Gallery" data-i18n-attr="aria-label:hero.wallLabel">
         <div class="hpx-row hpx-row-rev" data-direction="1"></div>
         <div class="hpx-row" data-direction="-1"></div>
         <div class="hpx-row hpx-row-rev" data-direction="1"></div>
@@ -425,10 +430,10 @@
 
     <section class="showcase" id="gallery" aria-labelledby="showcase-heading">
       <div class="showcase-intro">
-        <p class="section-index">02 — Project Gallery</p>
-        <h2 id="showcase-heading">Project Gallery</h2>
+        <p class="section-index" data-i18n="gallery.index">02 — Project Gallery</p>
+        <h2 id="showcase-heading" data-i18n="gallery.title">Project Gallery</h2>
         <p class="showcase-lede">
-          <span class="desktop-hero-copy">Explore selected creative work across editorial layouts, social campaigns, print collateral, photography, and short-form video.</span><span class="mobile-hero-copy">Explore selected work across editorial, campaigns, print, photography, and motion.</span>
+          <span class="desktop-hero-copy" data-i18n="gallery.lede">Explore selected creative work across editorial layouts, social campaigns, print collateral, photography, and short-form video.</span><span class="mobile-hero-copy" data-i18n="gallery.ledeMobile">Explore selected work across editorial, campaigns, print, photography, and motion.</span>
         </p>
       </div>
 
@@ -436,62 +441,62 @@
       <div class="mobile-gallery-index">
         <a class="mobile-gallery-card" href="pages/editorial-layout.html" data-category="editorial-layout" aria-labelledby="mobile-gallery-title-01">
           <div class="mobile-gallery-media">
-            <img class="mobile-gallery-preview" width="520" height="402" alt="Editorial &amp; Layout Design selected work" loading="eager" fetchpriority="high" decoding="async" />
+            <img class="mobile-gallery-preview" width="520" height="402" alt="Editorial &amp; Layout Design selected work" loading="eager" fetchpriority="high" decoding="async" data-i18n-attr="alt:gallery.selectedWork" data-i18n-vars='{"title":"@category.editorial-layout.title"}' />
             <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/editorial-layout/dunlopillo-suite-mattress-catalogue-2026-web-page-01-3av.webp" /><img width="520" height="402" alt="Editorial &amp; Layout Design selected work"  decoding="async" /></picture></noscript>
           </div>
           <div class="mobile-gallery-info">
-            <p class="mobile-gallery-number">01 / EDITORIAL</p>
-            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-01">Editorial &amp; Layout Design</h3></div>
-            <p class="mobile-gallery-description">Catalogues, lookbooks, and publication systems.</p>
-            <p class="mobile-gallery-count">8 publications</p>
+            <p class="mobile-gallery-number">01 / <span data-i18n="category.editorial-layout.label">EDITORIAL</span></p>
+            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-01" data-i18n="category.editorial-layout.title">Editorial &amp; Layout Design</h3></div>
+            <p class="mobile-gallery-description" data-i18n="category.editorial-layout.short">Catalogues, lookbooks, and publication systems.</p>
+            <p class="mobile-gallery-count" data-i18n="gallery.count.publications" data-i18n-count="8">8 publications</p>
           </div>
         </a>
         <a class="mobile-gallery-card" href="pages/social-media-campaigns.html" data-category="social-media-campaigns" aria-labelledby="mobile-gallery-title-02">
           <div class="mobile-gallery-media">
-            <img class="mobile-gallery-preview" width="900" height="900" alt="Social Media Campaigns &amp; Key Visuals selected work" loading="lazy" decoding="async" />
+            <img class="mobile-gallery-preview" width="900" height="900" alt="Social Media Campaigns &amp; Key Visuals selected work" loading="lazy" decoding="async" data-i18n-attr="alt:gallery.selectedWork" data-i18n-vars='{"title":"@category.social-media-campaigns.title"}' />
             <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/social-media-campaigns/1-feather-recliner-v2-11prl.webp" /><img width="900" height="900" alt="Social Media Campaigns &amp; Key Visuals selected work" loading="lazy" decoding="async" /></picture></noscript>
           </div>
           <div class="mobile-gallery-info">
-            <p class="mobile-gallery-number">02 / CAMPAIGNS</p>
-            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-02">Social Media Campaigns &amp; Key Visuals</h3></div>
-            <p class="mobile-gallery-description">Key visuals and cohesive social campaign systems.</p>
-            <p class="mobile-gallery-count">441 images</p>
+            <p class="mobile-gallery-number">02 / <span data-i18n="category.social-media-campaigns.label">CAMPAIGNS</span></p>
+            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-02" data-i18n="category.social-media-campaigns.title">Social Media Campaigns &amp; Key Visuals</h3></div>
+            <p class="mobile-gallery-description" data-i18n="category.social-media-campaigns.short">Key visuals and cohesive social campaign systems.</p>
+            <p class="mobile-gallery-count" data-i18n="gallery.count.images" data-i18n-count="441">441 images</p>
           </div>
         </a>
         <a class="mobile-gallery-card" href="pages/print-brand-collateral.html" data-category="print-brand-collateral" aria-labelledby="mobile-gallery-title-03">
           <div class="mobile-gallery-media">
-            <img class="mobile-gallery-preview" width="640" height="990" alt="Print &amp; Brand Collateral selected work" loading="lazy" decoding="async" />
+            <img class="mobile-gallery-preview" width="640" height="990" alt="Print &amp; Brand Collateral selected work" loading="lazy" decoding="async" data-i18n-attr="alt:gallery.selectedWork" data-i18n-vars='{"title":"@category.print-brand-collateral.title"}' />
             <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/print-brand-collateral/mockup-edsa-wall-mural-3kcha.webp" /><img width="640" height="990" alt="Print &amp; Brand Collateral selected work" loading="lazy" decoding="async" /></picture></noscript>
           </div>
           <div class="mobile-gallery-info">
-            <p class="mobile-gallery-number">03 / PRINT</p>
-            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-03">Print &amp; Brand Collateral</h3></div>
-            <p class="mobile-gallery-description">Brochures, sales materials, and branded print.</p>
-            <p class="mobile-gallery-count">48 images</p>
+            <p class="mobile-gallery-number">03 / <span data-i18n="category.print-brand-collateral.label">PRINT</span></p>
+            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-03" data-i18n="category.print-brand-collateral.title">Print &amp; Brand Collateral</h3></div>
+            <p class="mobile-gallery-description" data-i18n="category.print-brand-collateral.short">Brochures, sales materials, and branded print.</p>
+            <p class="mobile-gallery-count" data-i18n="gallery.count.images" data-i18n-count="48">48 images</p>
           </div>
         </a>
         <a class="mobile-gallery-card" href="pages/commercial-lifestyle-photography.html" data-category="commercial-lifestyle-photography" aria-labelledby="mobile-gallery-title-04">
           <div class="mobile-gallery-media">
-            <img class="mobile-gallery-preview" width="689" height="900" alt="Commercial &amp; Lifestyle Photography selected work" loading="lazy" decoding="async" />
+            <img class="mobile-gallery-preview" width="689" height="900" alt="Commercial &amp; Lifestyle Photography selected work" loading="lazy" decoding="async" data-i18n-attr="alt:gallery.selectedWork" data-i18n-vars='{"title":"@category.commercial-lifestyle-photography.title"}' />
             <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/commercial-lifestyle-photography/bw-2025-02-8vhg.webp" /><img width="689" height="900" alt="Commercial &amp; Lifestyle Photography selected work" loading="lazy" decoding="async" /></picture></noscript>
           </div>
           <div class="mobile-gallery-info">
-            <p class="mobile-gallery-number">04 / PHOTOGRAPHY</p>
-            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-04">Commercial &amp; Lifestyle Photography</h3></div>
-            <p class="mobile-gallery-description">Product, showroom, and lifestyle photography.</p>
-            <p class="mobile-gallery-count">126 photographs</p>
+            <p class="mobile-gallery-number">04 / <span data-i18n="category.commercial-lifestyle-photography.label">PHOTOGRAPHY</span></p>
+            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-04" data-i18n="category.commercial-lifestyle-photography.title">Commercial &amp; Lifestyle Photography</h3></div>
+            <p class="mobile-gallery-description" data-i18n="category.commercial-lifestyle-photography.short">Product, showroom, and lifestyle photography.</p>
+            <p class="mobile-gallery-count" data-i18n="gallery.count.photographs" data-i18n-count="126">126 photographs</p>
           </div>
         </a>
         <a class="mobile-gallery-card" href="pages/short-form-video-reels.html" data-category="short-form-video-reels" aria-labelledby="mobile-gallery-title-05">
           <div class="mobile-gallery-media">
-            <img class="mobile-gallery-preview" width="640" height="1138" alt="Short-Form Video &amp; Reels selected work" loading="lazy" decoding="async" />
+            <img class="mobile-gallery-preview" width="640" height="1138" alt="Short-Form Video &amp; Reels selected work" loading="lazy" decoding="async" data-i18n-attr="alt:gallery.selectedWork" data-i18n-vars='{"title":"@category.short-form-video-reels.title"}' />
             <noscript><picture><source media="(max-width: 760px)" srcset="assets/images/home-previews/short-form-video-reels/02-hooga-dec-2dew.webp" /><img width="640" height="1138" alt="Short-Form Video &amp; Reels selected work" loading="lazy" decoding="async" /></picture></noscript>
           </div>
           <div class="mobile-gallery-info">
-            <p class="mobile-gallery-number">05 / MOTION</p>
-            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-05">Short-Form Video &amp; Reels</h3></div>
-            <p class="mobile-gallery-description">Short-form stories for social feeds and launches.</p>
-            <p class="mobile-gallery-count">59 videos</p>
+            <p class="mobile-gallery-number">05 / <span data-i18n="category.short-form-video-reels.label">MOTION</span></p>
+            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-05" data-i18n="category.short-form-video-reels.title">Short-Form Video &amp; Reels</h3></div>
+            <p class="mobile-gallery-description" data-i18n="category.short-form-video-reels.short">Short-form stories for social feeds and launches.</p>
+            <p class="mobile-gallery-count" data-i18n="gallery.count.videos" data-i18n-count="59">59 videos</p>
           </div>
         </a>
       </div>
@@ -504,9 +509,9 @@
           </div>
           <div class="showcase-panel-content">
             <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-1">
-              <h3 class="showcase-panel-name">Editorial &amp; Layout Design</h3>
+              <h3 class="showcase-panel-name" data-i18n="category.editorial-layout.title">Editorial &amp; Layout Design</h3>
             </button>
-            <p class="showcase-panel-summary" id="showcase-more-1">
+            <p class="showcase-panel-summary" id="showcase-more-1" data-i18n="category.editorial-layout.lede">
               Catalogs, lookbooks, brochures, and brand books built on
               considered grid, typography, and pacing.
             </p>
@@ -519,9 +524,9 @@
           </div>
           <div class="showcase-panel-content">
             <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-2">
-              <h3 class="showcase-panel-name">Social Media Campaigns &amp; Key Visuals</h3>
+              <h3 class="showcase-panel-name" data-i18n="category.social-media-campaigns.title">Social Media Campaigns &amp; Key Visuals</h3>
             </button>
-            <p class="showcase-panel-summary" id="showcase-more-2">
+            <p class="showcase-panel-summary" id="showcase-more-2" data-i18n="category.social-media-campaigns.panel">
               Campaign key visuals developed into full social systems —
               feed, stories, paid social, and launch content.
             </p>
@@ -534,9 +539,9 @@
           </div>
           <div class="showcase-panel-content">
             <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-3">
-              <h3 class="showcase-panel-name">Print &amp; Brand Collateral</h3>
+              <h3 class="showcase-panel-name" data-i18n="category.print-brand-collateral.title">Print &amp; Brand Collateral</h3>
             </button>
-            <p class="showcase-panel-summary" id="showcase-more-3">
+            <p class="showcase-panel-summary" id="showcase-more-3" data-i18n="category.print-brand-collateral.panel">
               Brochures, sales sheets, stationery, and branded print
               materials built to carry a brand off-screen.
             </p>
@@ -549,9 +554,9 @@
           </div>
           <div class="showcase-panel-content">
             <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-4">
-              <h3 class="showcase-panel-name">Commercial &amp; Lifestyle Photography</h3>
+              <h3 class="showcase-panel-name" data-i18n="category.commercial-lifestyle-photography.title">Commercial &amp; Lifestyle Photography</h3>
             </button>
-            <p class="showcase-panel-summary" id="showcase-more-4">
+            <p class="showcase-panel-summary" id="showcase-more-4" data-i18n="category.commercial-lifestyle-photography.panel">
               Product, showroom, and lifestyle photography styled and
               directed for campaigns, catalogs, and retail.
             </p>
@@ -564,9 +569,9 @@
           </div>
           <div class="showcase-panel-content">
             <button type="button" class="showcase-panel-trigger" aria-expanded="false" aria-controls="showcase-more-5">
-              <h3 class="showcase-panel-name">Short-Form Video &amp; Reels</h3>
+              <h3 class="showcase-panel-name" data-i18n="category.short-form-video-reels.title">Short-Form Video &amp; Reels</h3>
             </button>
-            <p class="showcase-panel-summary" id="showcase-more-5">
+            <p class="showcase-panel-summary" id="showcase-more-5" data-i18n="category.short-form-video-reels.lede">
               Reels, TikToks, and short-form video content built for
               fast-paced social feeds and campaign launches.
             </p>
@@ -578,25 +583,25 @@
     <section class="about" id="about" aria-labelledby="about-heading">
       <div class="about-inner">
         <div class="about-content">
-          <p class="section-index about-label"><span class="desktop-hero-copy">03 — About Me</span><span class="mobile-hero-copy">ABOUT ME</span></p>
+          <p class="section-index about-label"><span class="desktop-hero-copy" data-i18n="about.index">03 — About Me</span><span class="mobile-hero-copy" data-i18n="about.indexMobile">ABOUT ME</span></p>
           <h2 id="about-heading" class="about-headline">
-            <span class="desktop-hero-copy">Designing visual experiences with creativity, clarity, and commercial purpose.</span><span class="mobile-hero-copy">Creative thinking grounded in commercial purpose.</span>
+            <span class="desktop-hero-copy" data-i18n="about.title">Designing visual experiences with creativity, clarity, and commercial purpose.</span><span class="mobile-hero-copy" data-i18n="about.titleMobile">Creative thinking grounded in commercial purpose.</span>
           </h2>
 
           <div class="about-text">
             <p class="about-lede">
-              <span class="desktop-hero-copy">I&rsquo;m Gil Tejano Culas, a senior graphic designer and
+              <span class="desktop-hero-copy" data-i18n="about.lede">I&rsquo;m Gil Tejano Culas, a senior graphic designer and
               creative specialist with 7+ years of experience creating brand-focused
               visuals for furniture, lighting, retail, manufacturing, and
               events. My work spans campaign visuals, catalogs, showroom
-              materials, sales presentations, and production-ready layouts.</span><span class="mobile-hero-copy">I’m Gil Tejano Culas, a Senior Graphic Designer and Creative Specialist creating polished, brand-consistent visuals for furniture, lighting, lifestyle, retail, and manufacturing brands.</span>
+              materials, sales presentations, and production-ready layouts.</span><span class="mobile-hero-copy" data-i18n="about.ledeMobile">I’m Gil Tejano Culas, a Senior Graphic Designer and Creative Specialist creating polished, brand-consistent visuals for furniture, lighting, lifestyle, retail, and manufacturing brands.</span>
             </p>
             <p class="about-support">
-              <span class="desktop-hero-copy">I approach every project by understanding the brand, its
+              <span class="desktop-hero-copy" data-i18n="about.support">I approach every project by understanding the brand, its
               audience, and the purpose behind each design &mdash;
               supporting product launches, maintaining brand consistency,
               and creating visual assets that strengthen brand presentation
-              and customer engagement.</span><span class="mobile-hero-copy">My work spans campaign visuals, catalogues, photo manipulation, retail applications, video, 3D visualization, and digital interfaces—always designed to communicate clearly and make products feel more valuable.</span>
+              and customer engagement.</span><span class="mobile-hero-copy" data-i18n="about.supportMobile">My work spans campaign visuals, catalogues, photo manipulation, retail applications, video, 3D visualization, and digital interfaces—always designed to communicate clearly and make products feel more valuable.</span>
             </p>
           </div>
 
@@ -604,29 +609,29 @@
             <span class="about-quote-accent" aria-hidden="true"></span>
             <blockquote>
               <p>
-                <span class="desktop-hero-copy">&ldquo;Good design should attract attention, communicate clearly, and give every visual a reason to exist.&rdquo;</span><span class="mobile-hero-copy">“I design beyond aesthetics—every visual should communicate something.”</span>
+                <span class="desktop-hero-copy" data-i18n="about.quote">&ldquo;Good design should attract attention, communicate clearly, and give every visual a reason to exist.&rdquo;</span><span class="mobile-hero-copy" data-i18n="about.quoteMobile">“I design beyond aesthetics—every visual should communicate something.”</span>
               </p>
             </blockquote>
           </figure>
 
           <ul class="about-highlights">
             <li class="about-highlight">
-              <h3>Brand-focused</h3>
-              <p><span class="desktop-hero-copy">Visual systems that respect and strengthen established identities.</span><span class="mobile-hero-copy">Consistent visual systems and applications</span></p>
+              <h3 data-i18n="about.h1.title">Brand-focused</h3>
+              <p><span class="desktop-hero-copy" data-i18n="about.h1.text">Visual systems that respect and strengthen established identities.</span><span class="mobile-hero-copy" data-i18n="about.h1.textMobile">Consistent visual systems and applications</span></p>
             </li>
             <li class="about-highlight">
-              <h3><span class="desktop-hero-copy">Multi-platform</span><span class="mobile-hero-copy">Commercially aware</span></h3>
-              <p><span class="desktop-hero-copy">Experience across print, retail, showroom, digital, and event production.</span><span class="mobile-hero-copy">Design connected to marketing objectives</span></p>
+              <h3><span class="desktop-hero-copy" data-i18n="about.h2.title">Multi-platform</span><span class="mobile-hero-copy" data-i18n="about.h2.titleMobile">Commercially aware</span></h3>
+              <p><span class="desktop-hero-copy" data-i18n="about.h2.text">Experience across print, retail, showroom, digital, and event production.</span><span class="mobile-hero-copy" data-i18n="about.h2.textMobile">Design connected to marketing objectives</span></p>
             </li>
             <li class="about-highlight">
-              <h3><span class="desktop-hero-copy">Purpose-driven</span><span class="mobile-hero-copy">Multi-format</span></h3>
-              <p><span class="desktop-hero-copy">Design decisions guided by communication and commercial objectives.</span><span class="mobile-hero-copy">Print, digital, retail, photography, video, and 3D</span></p>
+              <h3><span class="desktop-hero-copy" data-i18n="about.h3.title">Purpose-driven</span><span class="mobile-hero-copy" data-i18n="about.h3.titleMobile">Multi-format</span></h3>
+              <p><span class="desktop-hero-copy" data-i18n="about.h3.text">Design decisions guided by communication and commercial objectives.</span><span class="mobile-hero-copy" data-i18n="about.h3.textMobile">Print, digital, retail, photography, video, and 3D</span></p>
             </li>
           </ul>
 
           <div class="about-actions">
-            <a class="cta-btn cta-btn-primary" href="#timeline-heading">View My Experience</a>
-            <a class="cta-btn cta-btn-outline" href="cv/index.html">
+            <a class="cta-btn cta-btn-primary" href="#timeline-heading" data-i18n="about.viewExperience">View My Experience</a>
+            <a class="cta-btn cta-btn-outline" href="cv/index.html" data-i18n="cv.view">
               View CV
             </a>
           </div>
@@ -643,7 +648,7 @@
                 alt="Gil Tejano Culas seated in a light blazer against a plain warm-toned background"
                 loading="lazy"
                 decoding="async"
-                onerror="this.style.display='none'"
+                onerror="this.style.display='none'" data-i18n-attr="alt:about.portraitAlt"
               />
             </picture>
             <span class="about-portrait-accent" aria-hidden="true"></span>
@@ -652,21 +657,21 @@
       </div>
     </section>
 
-    <section class="profile" aria-label="Experience and capabilities">
+    <section class="profile" aria-label="Experience and capabilities" data-i18n-attr="aria-label:profile.label">
 
       <!-- 1. Creative Capabilities -->
       <div class="profile-block cap" id="capabilities">
         <div class="profile-block-head cap-head">
-          <p class="section-index">04 — Creative Capabilities</p>
-          <h2 id="cap-heading">Creative Capabilities</h2>
+          <p class="section-index" data-i18n="cap.index">04 — Creative Capabilities</p>
+          <h2 id="cap-heading" data-i18n="cap.title">Creative Capabilities</h2>
           <p class="profile-block-lede">
-            <span class="desktop-hero-copy">Design support across concept development, campaigns, brand applications, editorial systems, and digital content.</span><span class="mobile-hero-copy">Design support from initial concept to final production.</span>
+            <span class="desktop-hero-copy" data-i18n="cap.lede">Design support across concept development, campaigns, brand applications, editorial systems, and digital content.</span><span class="mobile-hero-copy" data-i18n="cap.ledeMobile">Design support from initial concept to final production.</span>
           </p>
           <div class="cap-nav">
-            <button class="cap-arrow cap-arrow-prev" type="button" aria-label="Show previous capabilities" disabled>
+            <button class="cap-arrow cap-arrow-prev" type="button" aria-label="Show previous capabilities" disabled data-i18n-attr="aria-label:cap.prev">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
             </button>
-            <button class="cap-arrow cap-arrow-next" type="button" aria-label="Show next capabilities">
+            <button class="cap-arrow cap-arrow-next" type="button" aria-label="Show next capabilities" data-i18n-attr="aria-label:cap.next">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
             </button>
           </div>
@@ -674,94 +679,94 @@
 
         <div class="mobile-capabilities" aria-labelledby="cap-heading">
           <details class="mobile-capability" name="mobile-capabilities" open>
-            <summary id="capability-trigger-01" aria-controls="capability-panel-01"><span class="capability-number">01</span><span class="capability-title">Creative Direction &amp; Campaign Concepts</span><span class="capability-plus" aria-hidden="true">+</span></summary>
+            <summary id="capability-trigger-01" aria-controls="capability-panel-01"><span class="capability-number">01</span><span class="capability-title" data-i18n="cap.m1.title">Creative Direction &amp; Campaign Concepts</span><span class="capability-plus" aria-hidden="true">+</span></summary>
             <div class="capability-panel" id="capability-panel-01" role="region" aria-labelledby="capability-trigger-01">
-              <p>Strategy, visual direction, campaign concepts, and brand consistency.</p>
-              <ul><li>Creative strategy</li><li>Campaign concepts</li><li>Visual direction &amp; brand consistency</li></ul>
-              <a href="pages/social-media-campaigns.html">View campaign work</a>
+              <p data-i18n="cap.m1.text">Strategy, visual direction, campaign concepts, and brand consistency.</p>
+              <ul><li data-i18n="cap.m1.item1">Creative strategy</li><li data-i18n="cap.m1.item2">Campaign concepts</li><li data-i18n="cap.m1.item3">Visual direction &amp; brand consistency</li></ul>
+              <a href="pages/social-media-campaigns.html" data-i18n="cap.m1.link">View campaign work</a>
             </div>
           </details>
           <details class="mobile-capability" name="mobile-capabilities">
-            <summary id="capability-trigger-02" aria-controls="capability-panel-02"><span class="capability-number">02</span><span class="capability-title">Brand, Editorial &amp; Layout Design</span><span class="capability-plus" aria-hidden="true">+</span></summary>
+            <summary id="capability-trigger-02" aria-controls="capability-panel-02"><span class="capability-number">02</span><span class="capability-title" data-i18n="cap.m2.title">Brand, Editorial &amp; Layout Design</span><span class="capability-plus" aria-hidden="true">+</span></summary>
             <div class="capability-panel" id="capability-panel-02" role="region" aria-labelledby="capability-trigger-02">
-              <p>Brand applications, catalogues, brochures, retail graphics, and print materials.</p>
-              <ul><li>Brand &amp; retail applications</li><li>Editorial systems</li><li>Print production</li></ul>
-              <a href="pages/editorial-layout.html">View editorial work</a>
+              <p data-i18n="cap.m2.text">Brand applications, catalogues, brochures, retail graphics, and print materials.</p>
+              <ul><li data-i18n="cap.m2.item1">Brand &amp; retail applications</li><li data-i18n="cap.m2.item2">Editorial systems</li><li data-i18n="cap.m2.item3">Print production</li></ul>
+              <a href="pages/editorial-layout.html" data-i18n="cap.m2.link">View editorial work</a>
             </div>
           </details>
           <details class="mobile-capability" name="mobile-capabilities">
-            <summary id="capability-trigger-03" aria-controls="capability-panel-03"><span class="capability-number">03</span><span class="capability-title">Photography &amp; Image Development</span><span class="capability-plus" aria-hidden="true">+</span></summary>
+            <summary id="capability-trigger-03" aria-controls="capability-panel-03"><span class="capability-number">03</span><span class="capability-title" data-i18n="cap.m3.title">Photography &amp; Image Development</span><span class="capability-plus" aria-hidden="true">+</span></summary>
             <div class="capability-panel" id="capability-panel-03" role="region" aria-labelledby="capability-trigger-03">
-              <p>Product photography, lifestyle imagery, retouching, compositing, and photo manipulation.</p>
-              <ul><li>Product &amp; lifestyle photography</li><li>Retouching &amp; image enhancement</li><li>Compositing &amp; photo manipulation</li></ul>
-              <a href="pages/commercial-lifestyle-photography.html">View photography work</a>
+              <p data-i18n="cap.m3.text">Product photography, lifestyle imagery, retouching, compositing, and photo manipulation.</p>
+              <ul><li data-i18n="cap.m3.item1">Product &amp; lifestyle photography</li><li data-i18n="cap.m3.item2">Retouching &amp; image enhancement</li><li data-i18n="cap.m3.item3">Compositing &amp; photo manipulation</li></ul>
+              <a href="pages/commercial-lifestyle-photography.html" data-i18n="cap.m3.link">View photography work</a>
             </div>
           </details>
           <details class="mobile-capability" name="mobile-capabilities">
-            <summary id="capability-trigger-04" aria-controls="capability-panel-04"><span class="capability-number">04</span><span class="capability-title">Motion &amp; Video Production</span><span class="capability-plus" aria-hidden="true">+</span></summary>
+            <summary id="capability-trigger-04" aria-controls="capability-panel-04"><span class="capability-number">04</span><span class="capability-title" data-i18n="cap.m4.title">Motion &amp; Video Production</span><span class="capability-plus" aria-hidden="true">+</span></summary>
             <div class="capability-panel" id="capability-panel-04" role="region" aria-labelledby="capability-trigger-04">
-              <p>Videography, reels, campaign videos, product demonstrations, and editing.</p>
-              <ul><li>Videography &amp; product demonstrations</li><li>Reels &amp; campaign videos</li><li>Video editing</li></ul>
-              <a href="pages/short-form-video-reels.html">View motion work</a>
+              <p data-i18n="cap.m4.text">Videography, reels, campaign videos, product demonstrations, and editing.</p>
+              <ul><li data-i18n="cap.m4.item1">Videography &amp; product demonstrations</li><li data-i18n="cap.m4.item2">Reels &amp; campaign videos</li><li data-i18n="cap.m4.item3">Video editing</li></ul>
+              <a href="pages/short-form-video-reels.html" data-i18n="cap.m4.link">View motion work</a>
             </div>
           </details>
           <details class="mobile-capability" name="mobile-capabilities">
-            <summary id="capability-trigger-05" aria-controls="capability-panel-05"><span class="capability-number">05</span><span class="capability-title">3D, Presentation &amp; Digital Design</span><span class="capability-plus" aria-hidden="true">+</span></summary>
+            <summary id="capability-trigger-05" aria-controls="capability-panel-05"><span class="capability-number">05</span><span class="capability-title" data-i18n="cap.m5.title">3D, Presentation &amp; Digital Design</span><span class="capability-plus" aria-hidden="true">+</span></summary>
             <div class="capability-panel" id="capability-panel-05" role="region" aria-labelledby="capability-trigger-05">
-              <p>3D visualization, presentation systems, mockups, and website interfaces.</p>
-              <ul><li>3D visualization &amp; mockups</li><li>Presentation systems</li><li>Website interface design</li></ul>
+              <p data-i18n="cap.m5.text">3D visualization, presentation systems, mockups, and website interfaces.</p>
+              <ul><li data-i18n="cap.m5.item1">3D visualization &amp; mockups</li><li data-i18n="cap.m5.item2">Presentation systems</li><li data-i18n="cap.m5.item3">Website interface design</li></ul>
             </div>
           </details>
-          <a class="capability-explore" href="#gallery">Explore Related Projects</a>
+          <a class="capability-explore" href="#gallery" data-i18n="cap.explore">Explore Related Projects</a>
         </div>
 
         <div class="cap-track" id="cap-track" role="list" aria-labelledby="cap-heading" tabindex="0">
           <article class="cap-card" role="listitem">
             <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.3 8.7l-2.1 4.5-4.5 2.1 2.1-4.5z"/></svg>
-            <h3 class="cap-card-title">Creative Direction</h3>
-            <p class="cap-card-desc">Shaping visual tone, concept development, and brand direction across campaigns and creative teams.</p>
+            <h3 class="cap-card-title" data-i18n="cap.c1.title">Creative Direction</h3>
+            <p class="cap-card-desc" data-i18n="cap.c1.desc">Shaping visual tone, concept development, and brand direction across campaigns and creative teams.</p>
           </article>
 
           <article class="cap-card" role="listitem">
             <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg>
-            <h3 class="cap-card-title">Visual Design</h3>
-            <p class="cap-card-desc">Premium graphics for campaigns, social media, product launches, and brand communication.</p>
+            <h3 class="cap-card-title" data-i18n="cap.c2.title">Visual Design</h3>
+            <p class="cap-card-desc" data-i18n="cap.c2.desc">Premium graphics for campaigns, social media, product launches, and brand communication.</p>
           </article>
 
           <article class="cap-card" role="listitem">
             <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1.5"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-            <h3 class="cap-card-title">Layout &amp; Editorial Design</h3>
-            <p class="cap-card-desc">Catalogs, brochures, flyers, posters, presentations, and print-ready marketing materials.</p>
+            <h3 class="cap-card-title" data-i18n="cap.c3.title">Layout &amp; Editorial Design</h3>
+            <p class="cap-card-desc" data-i18n="cap.c3.desc">Catalogs, brochures, flyers, posters, presentations, and print-ready marketing materials.</p>
           </article>
 
           <article class="cap-card" role="listitem">
             <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <h3 class="cap-card-title">Retail &amp; Campaign Design</h3>
-            <p class="cap-card-desc">Point-of-sale graphics, window displays, and in-store systems built for retail and showroom environments.</p>
+            <h3 class="cap-card-title" data-i18n="cap.c4.title">Retail &amp; Campaign Design</h3>
+            <p class="cap-card-desc" data-i18n="cap.c4.desc">Point-of-sale graphics, window displays, and in-store systems built for retail and showroom environments.</p>
           </article>
 
           <article class="cap-card" role="listitem">
             <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            <h3 class="cap-card-title">Photography</h3>
-            <p class="cap-card-desc">Product, event, and lifestyle photography that captures clean, campaign-ready visuals.</p>
+            <h3 class="cap-card-title" data-i18n="cap.c5.title">Photography</h3>
+            <p class="cap-card-desc" data-i18n="cap.c5.desc">Product, event, and lifestyle photography that captures clean, campaign-ready visuals.</p>
           </article>
 
           <article class="cap-card" role="listitem">
             <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3l1.5 4.5L19 9l-4.5 1.5L13 15l-1.5-4.5L7 9l4.5-1.5z"/><path d="M5 3v4M3 5h4"/><path d="M6 17v4M4 19h4"/></svg>
-            <h3 class="cap-card-title">Photo Manipulation</h3>
-            <p class="cap-card-desc">Clean product compositions, image enhancements, lifestyle visuals, and refined campaign assets.</p>
+            <h3 class="cap-card-title" data-i18n="cap.c6.title">Photo Manipulation</h3>
+            <p class="cap-card-desc" data-i18n="cap.c6.desc">Clean product compositions, image enhancements, lifestyle visuals, and refined campaign assets.</p>
           </article>
 
           <article class="cap-card" role="listitem">
             <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="1.5"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            <h3 class="cap-card-title">Digital Content</h3>
-            <p class="cap-card-desc">Social-ready graphics, banners, and visual assets built for digital campaigns and e-commerce.</p>
+            <h3 class="cap-card-title" data-i18n="cap.c7.title">Digital Content</h3>
+            <p class="cap-card-desc" data-i18n="cap.c7.desc">Social-ready graphics, banners, and visual assets built for digital campaigns and e-commerce.</p>
           </article>
 
           <article class="cap-card" role="listitem">
             <svg class="cap-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v2H9z"/><path d="M9 13l2.2 2.2L15 11"/></svg>
-            <h3 class="cap-card-title">Production Coordination</h3>
-            <p class="cap-card-desc">Client coordination, production supervision, and job-order tracking that keep output on schedule and on-brief.</p>
+            <h3 class="cap-card-title" data-i18n="cap.c8.title">Production Coordination</h3>
+            <p class="cap-card-desc" data-i18n="cap.c8.desc">Client coordination, production supervision, and job-order tracking that keep output on schedule and on-brief.</p>
           </article>
         </div>
       </div>
@@ -769,130 +774,130 @@
       <!-- 2. My Creative Dock -->
       <div class="profile-block dock" id="creative-dock">
         <div class="profile-block-head">
-          <p class="section-index"><span class="desktop-hero-copy">05 — My Creative Dock</span><span class="mobile-hero-copy">MY CREATIVE DOCK</span></p>
-          <h2 id="dock-heading"><span class="desktop-hero-copy">My Creative Dock</span><span class="mobile-hero-copy">Tools behind the work.</span></h2>
+          <p class="section-index"><span class="desktop-hero-copy" data-i18n="dock.index">05 — My Creative Dock</span><span class="mobile-hero-copy" data-i18n="dock.indexMobile">MY CREATIVE DOCK</span></p>
+          <h2 id="dock-heading"><span class="desktop-hero-copy" data-i18n="dock.title">My Creative Dock</span><span class="mobile-hero-copy" data-i18n="dock.titleMobile">Tools behind the work.</span></h2>
           <p class="profile-block-lede">
-            <span class="desktop-hero-copy">Tools used across visual design, image development, editorial
+            <span class="desktop-hero-copy" data-i18n="dock.lede">Tools used across visual design, image development, editorial
             production, motion, presentations, web implementation, and
-            AI-assisted workflows.</span><span class="mobile-hero-copy">A focused toolkit supporting projects from early visual development to final production.</span>
+            AI-assisted workflows.</span><span class="mobile-hero-copy" data-i18n="dock.ledeMobile">A focused toolkit supporting projects from early visual development to final production.</span>
           </p>
         </div>
 
         <!-- MOBILE DOCK START -->
         <div class="mobile-dock">
-          <div class="mobile-dock-track" role="radiogroup" aria-label="Creative software tools">
+          <div class="mobile-dock-track" role="radiogroup" aria-label="Creative software tools" data-i18n-attr="aria-label:dock.toolsLabel">
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="photoshop" aria-label="Show Adobe Photoshop details" checked />
+              <input type="radio" name="mobile-software-tool" value="photoshop" aria-label="Show Adobe Photoshop details" checked data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Adobe Photoshop"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/photoshop.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Photoshop</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="illustrator" aria-label="Show Adobe Illustrator details" />
+              <input type="radio" name="mobile-software-tool" value="illustrator" aria-label="Show Adobe Illustrator details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Adobe Illustrator"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/illustrator.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Illustrator</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="lightroom" aria-label="Show Adobe Lightroom details" />
+              <input type="radio" name="mobile-software-tool" value="lightroom" aria-label="Show Adobe Lightroom details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Adobe Lightroom"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/lightroom.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Lightroom</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="affinity" aria-label="Show Affinity details" />
+              <input type="radio" name="mobile-software-tool" value="affinity" aria-label="Show Affinity details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Affinity"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img class="is-mono" src="assets/icons/tools/mobile/affinity.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Affinity</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="bridge" aria-label="Show Adobe Bridge details" />
+              <input type="radio" name="mobile-software-tool" value="bridge" aria-label="Show Adobe Bridge details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Adobe Bridge"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/bridge.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Bridge</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="capture-one" aria-label="Show Capture One details" />
+              <input type="radio" name="mobile-software-tool" value="capture-one" aria-label="Show Capture One details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Capture One"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/capture-one.webp" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Capture One</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="coreldraw" aria-label="Show CorelDRAW details" />
+              <input type="radio" name="mobile-software-tool" value="coreldraw" aria-label="Show CorelDRAW details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"CorelDRAW"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/coreldraw.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">CorelDRAW</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="sketchup" aria-label="Show SketchUp details" />
+              <input type="radio" name="mobile-software-tool" value="sketchup" aria-label="Show SketchUp details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"SketchUp"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/sketchup.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">SketchUp</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="upscayl" aria-label="Show Upscayl details" />
+              <input type="radio" name="mobile-software-tool" value="upscayl" aria-label="Show Upscayl details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Upscayl"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/upscayl.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Upscayl</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="indesign" aria-label="Show Adobe InDesign details" />
+              <input type="radio" name="mobile-software-tool" value="indesign" aria-label="Show Adobe InDesign details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Adobe InDesign"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/indesign.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">InDesign</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="canva" aria-label="Show Canva details" />
+              <input type="radio" name="mobile-software-tool" value="canva" aria-label="Show Canva details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Canva"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img class="is-mono" src="assets/icons/tools/mobile/canva.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Canva</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="microsoft-365" aria-label="Show Microsoft 365 details" />
+              <input type="radio" name="mobile-software-tool" value="microsoft-365" aria-label="Show Microsoft 365 details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Microsoft 365"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/microsoft-365.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Microsoft 365</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="after-effects" aria-label="Show Adobe After Effects details" />
+              <input type="radio" name="mobile-software-tool" value="after-effects" aria-label="Show Adobe After Effects details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Adobe After Effects"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/after-effects.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">After Effects</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="premiere-pro" aria-label="Show Adobe Premiere Pro details" />
+              <input type="radio" name="mobile-software-tool" value="premiere-pro" aria-label="Show Adobe Premiere Pro details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Adobe Premiere Pro"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/premiere-pro.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Premiere Pro</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="capcut" aria-label="Show CapCut details" />
+              <input type="radio" name="mobile-software-tool" value="capcut" aria-label="Show CapCut details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"CapCut"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img class="is-mono" src="assets/icons/tools/mobile/capcut.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">CapCut</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="davinci-resolve" aria-label="Show DaVinci Resolve details" />
+              <input type="radio" name="mobile-software-tool" value="davinci-resolve" aria-label="Show DaVinci Resolve details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"DaVinci Resolve"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/davinci-resolve.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">DaVinci Resolve</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="vscode" aria-label="Show Visual Studio Code details" />
+              <input type="radio" name="mobile-software-tool" value="vscode" aria-label="Show Visual Studio Code details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Visual Studio Code"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/vscode.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">VS Code</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="figma" aria-label="Show Figma details" />
+              <input type="radio" name="mobile-software-tool" value="figma" aria-label="Show Figma details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Figma"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/figma.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Figma</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="gemini" aria-label="Show Gemini details" />
+              <input type="radio" name="mobile-software-tool" value="gemini" aria-label="Show Gemini details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Gemini"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/gemini.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Gemini</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="runway" aria-label="Show Runway details" />
+              <input type="radio" name="mobile-software-tool" value="runway" aria-label="Show Runway details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Runway"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img class="is-mono" src="assets/icons/tools/mobile/runway.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Runway</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="chatgpt" aria-label="Show ChatGPT details" />
+              <input type="radio" name="mobile-software-tool" value="chatgpt" aria-label="Show ChatGPT details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"ChatGPT"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img class="is-mono" src="assets/icons/tools/mobile/chatgpt.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">ChatGPT</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="claude" aria-label="Show Claude details" />
+              <input type="radio" name="mobile-software-tool" value="claude" aria-label="Show Claude details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Claude"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/mobile/claude.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Claude</span>
             </label>
             <label class="mobile-dock-tool">
-              <input type="radio" name="mobile-software-tool" value="firefly" aria-label="Show Adobe Firefly details" />
+              <input type="radio" name="mobile-software-tool" value="firefly" aria-label="Show Adobe Firefly details" data-i18n-attr="aria-label:dock.showDetails" data-i18n-vars='{"name":"Adobe Firefly"}' />
               <span class="mobile-dock-icon" aria-hidden="true"><img src="assets/icons/tools/firefly.svg" width="44" height="44" alt="" loading="lazy" decoding="async" /></span>
               <span class="mobile-dock-name" aria-hidden="true">Firefly</span>
             </label>
@@ -900,118 +905,118 @@
           <div class="mobile-dock-info" aria-live="polite" aria-atomic="true">
             <div class="mobile-tool-panel" data-tool="photoshop">
               <h3>Adobe Photoshop</h3>
-              <p class="mobile-tool-description">Image editing, photo manipulation, campaign visuals, and mockup development.</p>
-              <p class="mobile-tool-tags">Brand Applications · Key Visuals · Retouching</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.photoshop.desc">Image editing, photo manipulation, campaign visuals, and mockup development.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.photoshop.tags">Brand Applications · Key Visuals · Retouching</p>
             </div>
             <div class="mobile-tool-panel" data-tool="illustrator">
               <h3>Adobe Illustrator</h3>
-              <p class="mobile-tool-description">Vector graphics, logo development, and scalable brand assets.</p>
-              <p class="mobile-tool-tags">Brand Identity · Illustration · Print Assets</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.illustrator.desc">Vector graphics, logo development, and scalable brand assets.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.illustrator.tags">Brand Identity · Illustration · Print Assets</p>
             </div>
             <div class="mobile-tool-panel" data-tool="lightroom">
               <h3>Adobe Lightroom</h3>
-              <p class="mobile-tool-description">Photo culling, batch editing, and color grading for shoots.</p>
-              <p class="mobile-tool-tags">Photography · Color Grading · Asset Preparation</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.lightroom.desc">Photo culling, batch editing, and color grading for shoots.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.lightroom.tags">Photography · Color Grading · Asset Preparation</p>
             </div>
             <div class="mobile-tool-panel" data-tool="affinity">
               <h3>Affinity</h3>
-              <p class="mobile-tool-description">Cross-platform design and photo retouching for design work.</p>
-              <p class="mobile-tool-tags">Design · Retouching · Print Layout</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.affinity.desc">Cross-platform design and photo retouching for design work.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.affinity.tags">Design · Retouching · Print Layout</p>
             </div>
             <div class="mobile-tool-panel" data-tool="bridge">
               <h3>Adobe Bridge</h3>
-              <p class="mobile-tool-description">Asset organization, metadata tagging, and file management across projects.</p>
-              <p class="mobile-tool-tags">Asset Management · File Organization · Batch Processing</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.bridge.desc">Asset organization, metadata tagging, and file management across projects.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.bridge.tags">Asset Management · File Organization · Batch Processing</p>
             </div>
             <div class="mobile-tool-panel" data-tool="capture-one">
               <h3>Capture One</h3>
-              <p class="mobile-tool-description">Tethered capture and high-fidelity photo editing during shoots.</p>
-              <p class="mobile-tool-tags">Product Photography · Tethered Capture · Color Correction</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.capture-one.desc">Tethered capture and high-fidelity photo editing during shoots.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.capture-one.tags">Product Photography · Tethered Capture · Color Correction</p>
             </div>
             <div class="mobile-tool-panel" data-tool="coreldraw">
               <h3>CorelDRAW</h3>
-              <p class="mobile-tool-description">Vector illustration and layout for print and signage work.</p>
-              <p class="mobile-tool-tags">Vector Illustration · Print Layout · Signage</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.coreldraw.desc">Vector illustration and layout for print and signage work.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.coreldraw.tags">Vector Illustration · Print Layout · Signage</p>
             </div>
             <div class="mobile-tool-panel" data-tool="sketchup">
               <h3>SketchUp</h3>
-              <p class="mobile-tool-description">3D modeling for spatial concepts, retail layouts, and mockups.</p>
-              <p class="mobile-tool-tags">3D Visualization · Retail Layouts · Mockups</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.sketchup.desc">3D modeling for spatial concepts, retail layouts, and mockups.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.sketchup.tags">3D Visualization · Retail Layouts · Mockups</p>
             </div>
             <div class="mobile-tool-panel" data-tool="upscayl">
               <h3>Upscayl</h3>
-              <p class="mobile-tool-description">AI image upscaling and restoration for low-resolution assets.</p>
-              <p class="mobile-tool-tags">Image Upscaling · Asset Restoration · AI Tools</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.upscayl.desc">AI image upscaling and restoration for low-resolution assets.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.upscayl.tags">Image Upscaling · Asset Restoration · AI Tools</p>
             </div>
             <div class="mobile-tool-panel" data-tool="indesign">
               <h3>Adobe InDesign</h3>
-              <p class="mobile-tool-description">Catalogues, brochures, and multi-page print layout production.</p>
-              <p class="mobile-tool-tags">Catalogues · Editorial Systems · Print Production</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.indesign.desc">Catalogues, brochures, and multi-page print layout production.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.indesign.tags">Catalogues · Editorial Systems · Print Production</p>
             </div>
             <div class="mobile-tool-panel" data-tool="canva">
               <h3>Canva</h3>
-              <p class="mobile-tool-description">Social graphics, campaign templates, and presentation systems.</p>
-              <p class="mobile-tool-tags">Campaign Templates · Presentations · Social Content</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.canva.desc">Social graphics, campaign templates, and presentation systems.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.canva.tags">Campaign Templates · Presentations · Social Content</p>
             </div>
             <div class="mobile-tool-panel" data-tool="microsoft-365">
               <h3>Microsoft 365</h3>
-              <p class="mobile-tool-description">Documents, decks, and presentations for internal and client use.</p>
-              <p class="mobile-tool-tags">Documents · Presentations · Client Decks</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.microsoft-365.desc">Documents, decks, and presentations for internal and client use.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.microsoft-365.tags">Documents · Presentations · Client Decks</p>
             </div>
             <div class="mobile-tool-panel" data-tool="after-effects">
               <h3>Adobe After Effects</h3>
-              <p class="mobile-tool-description">Motion graphics and animated assets for campaigns and social.</p>
-              <p class="mobile-tool-tags">Motion Graphics · Animation · Social Campaigns</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.after-effects.desc">Motion graphics and animated assets for campaigns and social.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.after-effects.tags">Motion Graphics · Animation · Social Campaigns</p>
             </div>
             <div class="mobile-tool-panel" data-tool="premiere-pro">
               <h3>Adobe Premiere Pro</h3>
-              <p class="mobile-tool-description">Video editing and sequencing for campaign and brand content.</p>
-              <p class="mobile-tool-tags">Video Editing · Campaign Videos · Brand Content</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.premiere-pro.desc">Video editing and sequencing for campaign and brand content.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.premiere-pro.tags">Video Editing · Campaign Videos · Brand Content</p>
             </div>
             <div class="mobile-tool-panel" data-tool="capcut">
               <h3>CapCut</h3>
-              <p class="mobile-tool-description">Quick-turnaround edits for social-first video content.</p>
-              <p class="mobile-tool-tags">Social Video · Reels · Mobile Editing</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.capcut.desc">Quick-turnaround edits for social-first video content.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.capcut.tags">Social Video · Reels · Mobile Editing</p>
             </div>
             <div class="mobile-tool-panel" data-tool="davinci-resolve">
               <h3>DaVinci Resolve</h3>
-              <p class="mobile-tool-description">Color grading and final delivery for finished video projects.</p>
-              <p class="mobile-tool-tags">Color Grading · Video Finishing · Final Delivery</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.davinci-resolve.desc">Color grading and final delivery for finished video projects.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.davinci-resolve.tags">Color Grading · Video Finishing · Final Delivery</p>
             </div>
             <div class="mobile-tool-panel" data-tool="vscode">
               <h3>Visual Studio Code</h3>
-              <p class="mobile-tool-description">Front-end builds, website interfaces, and implementation work.</p>
-              <p class="mobile-tool-tags">Web Interfaces · Front-end Development · Site Updates</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.vscode.desc">Front-end builds, website interfaces, and implementation work.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.vscode.tags">Web Interfaces · Front-end Development · Site Updates</p>
             </div>
             <div class="mobile-tool-panel" data-tool="figma">
               <h3>Figma</h3>
-              <p class="mobile-tool-description">UI layout, interactive prototypes, and design handoff.</p>
-              <p class="mobile-tool-tags">UI Design · Prototyping · Design Handoff</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.figma.desc">UI layout, interactive prototypes, and design handoff.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.figma.tags">UI Design · Prototyping · Design Handoff</p>
             </div>
             <div class="mobile-tool-panel" data-tool="gemini">
               <h3>Gemini</h3>
-              <p class="mobile-tool-description">Research, ideation, and content drafting support.</p>
-              <p class="mobile-tool-tags">Research · Ideation · Content Drafting</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.gemini.desc">Research, ideation, and content drafting support.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.gemini.tags">Research · Ideation · Content Drafting</p>
             </div>
             <div class="mobile-tool-panel" data-tool="runway">
               <h3>Runway</h3>
-              <p class="mobile-tool-description">AI video generation and editing for experimental content.</p>
-              <p class="mobile-tool-tags">AI Video · Generative Editing · Experimental Content</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.runway.desc">AI video generation and editing for experimental content.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.runway.tags">AI Video · Generative Editing · Experimental Content</p>
             </div>
             <div class="mobile-tool-panel" data-tool="chatgpt">
               <h3>ChatGPT</h3>
-              <p class="mobile-tool-description">Copywriting, research, and ideation across projects.</p>
-              <p class="mobile-tool-tags">Copywriting · Research · Ideation</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.chatgpt.desc">Copywriting, research, and ideation across projects.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.chatgpt.tags">Copywriting · Research · Ideation</p>
             </div>
             <div class="mobile-tool-panel" data-tool="claude">
               <h3>Claude</h3>
-              <p class="mobile-tool-description">Writing, research, and workflow support across projects.</p>
-              <p class="mobile-tool-tags">Writing · Research · Workflow Support</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.claude.desc">Writing, research, and workflow support across projects.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.claude.tags">Writing · Research · Workflow Support</p>
             </div>
             <div class="mobile-tool-panel" data-tool="firefly">
               <h3>Adobe Firefly</h3>
-              <p class="mobile-tool-description">Generative image creation and text effects for creative concepts.</p>
-              <p class="mobile-tool-tags">Generative Imagery · Text Effects · Concept Work</p>
+              <p class="mobile-tool-description" data-i18n="dock.tool.firefly.desc">Generative image creation and text effects for creative concepts.</p>
+              <p class="mobile-tool-tags" data-i18n="dock.tool.firefly.tags">Generative Imagery · Text Effects · Concept Work</p>
             </div>
           </div>
         </div>
@@ -1020,41 +1025,41 @@
         <div class="dock-body" aria-labelledby="dock-heading">
           <div class="dock-tools">
             <div class="dock-group">
-              <p class="dock-group-label">Design</p>
+              <p class="dock-group-label" data-i18n="dock.group.design">Design</p>
               <div class="dock-row">
-                <button class="dock-tool" type="button" data-name="Adobe Photoshop" data-primary="Image editing, photo manipulation, campaign visuals, and mockup development." data-tags="Brand Applications, Social Campaigns, Retail Graphics">
+                <button class="dock-tool" type="button" data-name="Adobe Photoshop" data-primary="Image editing, photo manipulation, campaign visuals, and mockup development." data-tags="Brand Applications, Social Campaigns, Retail Graphics" data-i18n-attr="data-primary:dock.tool.photoshop.desc;data-tags:dock.tool.photoshop.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/photoshop.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Photoshop</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Adobe Illustrator" data-primary="Vector graphics, logo development, and scalable brand assets." data-tags="Brand Identity, Logo Design, Print Assets">
+                <button class="dock-tool" type="button" data-name="Adobe Illustrator" data-primary="Vector graphics, logo development, and scalable brand assets." data-tags="Brand Identity, Logo Design, Print Assets" data-i18n-attr="data-primary:dock.tool.illustrator.desc;data-tags:dock.tool.illustrator.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/illustrator.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Illustrator</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Adobe Lightroom" data-primary="Photo culling, batch editing, and color grading for shoots." data-tags="Photography, Color Grading, Asset Prep">
+                <button class="dock-tool" type="button" data-name="Adobe Lightroom" data-primary="Photo culling, batch editing, and color grading for shoots." data-tags="Photography, Color Grading, Asset Prep" data-i18n-attr="data-primary:dock.tool.lightroom.desc;data-tags:dock.tool.lightroom.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/lightroom.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Lightroom</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Affinity" data-primary="Cross-platform design and photo retouching for design work." data-tags="Design, Retouching, Print Layout">
+                <button class="dock-tool" type="button" data-name="Affinity" data-primary="Cross-platform design and photo retouching for design work." data-tags="Design, Retouching, Print Layout" data-i18n-attr="data-primary:dock.tool.affinity.desc;data-tags:dock.tool.affinity.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/affinity.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Affinity</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Adobe Bridge" data-primary="Asset organization, metadata tagging, and file management across projects." data-tags="Asset Management, File Organization, Batch Processing">
+                <button class="dock-tool" type="button" data-name="Adobe Bridge" data-primary="Asset organization, metadata tagging, and file management across projects." data-tags="Asset Management, File Organization, Batch Processing" data-i18n-attr="data-primary:dock.tool.bridge.desc;data-tags:dock.tool.bridge.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/bridge.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Adobe Bridge</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Capture One" data-primary="Tethered capture and high-fidelity photo editing during shoots." data-tags="Product Photography, Tethered Capture, Color Correction">
+                <button class="dock-tool" type="button" data-name="Capture One" data-primary="Tethered capture and high-fidelity photo editing during shoots." data-tags="Product Photography, Tethered Capture, Color Correction" data-i18n-attr="data-primary:dock.tool.capture-one.desc;data-tags:dock.tool.capture-one.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/capture-one.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Capture One</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="CorelDRAW" data-primary="Vector illustration and layout for print and signage work." data-tags="Vector Illustration, Print Layout, Signage">
+                <button class="dock-tool" type="button" data-name="CorelDRAW" data-primary="Vector illustration and layout for print and signage work." data-tags="Vector Illustration, Print Layout, Signage" data-i18n-attr="data-primary:dock.tool.coreldraw.desc;data-tags:dock.tool.coreldraw.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/coreldraw.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">CorelDRAW</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="SketchUp" data-primary="3D modeling for spatial concepts, retail layouts, and mockups." data-tags="3D Modeling, Retail Layouts, Spatial Concepts">
+                <button class="dock-tool" type="button" data-name="SketchUp" data-primary="3D modeling for spatial concepts, retail layouts, and mockups." data-tags="3D Modeling, Retail Layouts, Spatial Concepts" data-i18n-attr="data-primary:dock.tool.sketchup.desc;data-tags:dock.tool.sketchup.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/sketchup.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">SketchUp</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Upscayl" data-primary="AI image upscaling and restoration for low-resolution assets." data-tags="Image Upscaling, Asset Restoration, AI Tools">
+                <button class="dock-tool" type="button" data-name="Upscayl" data-primary="AI image upscaling and restoration for low-resolution assets." data-tags="Image Upscaling, Asset Restoration, AI Tools" data-i18n-attr="data-primary:dock.tool.upscayl.desc;data-tags:dock.tool.upscayl.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/upscayl.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Upscayl</span>
                 </button>
@@ -1062,17 +1067,17 @@
             </div>
 
             <div class="dock-group">
-              <p class="dock-group-label">Layout &amp; Presentations</p>
+              <p class="dock-group-label" data-i18n="dock.group.layout">Layout &amp; Presentations</p>
               <div class="dock-row">
-                <button class="dock-tool" type="button" data-name="Adobe InDesign" data-primary="Catalogues, brochures, and multi-page print layout production." data-tags="Catalogues, Brochures, Print Production">
+                <button class="dock-tool" type="button" data-name="Adobe InDesign" data-primary="Catalogues, brochures, and multi-page print layout production." data-tags="Catalogues, Brochures, Print Production" data-i18n-attr="data-primary:dock.tool.indesign.desc;data-tags:dock.tool.indesign.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/indesign.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">InDesign</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Canva" data-primary="Fast-turnaround social graphics and campaign templates." data-tags="Social Campaigns, Templates, Quick Turnaround">
+                <button class="dock-tool" type="button" data-name="Canva" data-primary="Fast-turnaround social graphics and campaign templates." data-tags="Social Campaigns, Templates, Quick Turnaround" data-i18n-attr="data-primary:dock.tool.canva.primary;data-tags:dock.tool.canva.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/canva.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Canva</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Microsoft 365" data-primary="Documents, decks, and presentations for internal and client use." data-tags="Documents, Presentations, Client Decks">
+                <button class="dock-tool" type="button" data-name="Microsoft 365" data-primary="Documents, decks, and presentations for internal and client use." data-tags="Documents, Presentations, Client Decks" data-i18n-attr="data-primary:dock.tool.microsoft-365.desc;data-tags:dock.tool.microsoft-365.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/microsoft-365.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Microsoft 365</span>
                 </button>
@@ -1080,21 +1085,21 @@
             </div>
 
             <div class="dock-group">
-              <p class="dock-group-label">Motion &amp; Video</p>
+              <p class="dock-group-label" data-i18n="dock.group.motion">Motion &amp; Video</p>
               <div class="dock-row">
-                <button class="dock-tool" type="button" data-name="Adobe After Effects" data-primary="Motion graphics and animated assets for campaigns and social." data-tags="Motion Graphics, Animation, Social Campaigns">
+                <button class="dock-tool" type="button" data-name="Adobe After Effects" data-primary="Motion graphics and animated assets for campaigns and social." data-tags="Motion Graphics, Animation, Social Campaigns" data-i18n-attr="data-primary:dock.tool.after-effects.desc;data-tags:dock.tool.after-effects.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/after-effects.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">After Effects</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Adobe Premiere Pro" data-primary="Video editing and sequencing for campaign and brand content." data-tags="Video Editing, Brand Content, Sequencing">
+                <button class="dock-tool" type="button" data-name="Adobe Premiere Pro" data-primary="Video editing and sequencing for campaign and brand content." data-tags="Video Editing, Brand Content, Sequencing" data-i18n-attr="data-primary:dock.tool.premiere-pro.desc;data-tags:dock.tool.premiere-pro.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/premiere-pro.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Premiere Pro</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="CapCut" data-primary="Quick-turnaround edits for social-first video content." data-tags="Social Video, Quick Turnaround, Mobile Editing">
+                <button class="dock-tool" type="button" data-name="CapCut" data-primary="Quick-turnaround edits for social-first video content." data-tags="Social Video, Quick Turnaround, Mobile Editing" data-i18n-attr="data-primary:dock.tool.capcut.desc;data-tags:dock.tool.capcut.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/capcut.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">CapCut</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="DaVinci Resolve" data-primary="Color grading and final delivery for finished video projects." data-tags="Color Grading, Final Delivery, Video Finishing">
+                <button class="dock-tool" type="button" data-name="DaVinci Resolve" data-primary="Color grading and final delivery for finished video projects." data-tags="Color Grading, Final Delivery, Video Finishing" data-i18n-attr="data-primary:dock.tool.davinci-resolve.desc;data-tags:dock.tool.davinci-resolve.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/davinci-resolve.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">DaVinci Resolve</span>
                 </button>
@@ -1102,13 +1107,13 @@
             </div>
 
             <div class="dock-group">
-              <p class="dock-group-label">Web &amp; Workflow</p>
+              <p class="dock-group-label" data-i18n="dock.group.web">Web &amp; Workflow</p>
               <div class="dock-row">
-                <button class="dock-tool" type="button" data-name="Visual Studio Code" data-primary="Front-end builds, site edits, and implementation work." data-tags="Web Development, Site Edits, Implementation">
+                <button class="dock-tool" type="button" data-name="Visual Studio Code" data-primary="Front-end builds, site edits, and implementation work." data-tags="Web Development, Site Edits, Implementation" data-i18n-attr="data-primary:dock.tool.vscode.primary;data-tags:dock.tool.vscode.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/vscode.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Visual Studio Code</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Figma" data-primary="UI layout, interactive prototypes, and design handoff." data-tags="UI Design, Prototyping, Design Handoff">
+                <button class="dock-tool" type="button" data-name="Figma" data-primary="UI layout, interactive prototypes, and design handoff." data-tags="UI Design, Prototyping, Design Handoff" data-i18n-attr="data-primary:dock.tool.figma.desc;data-tags:dock.tool.figma.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/figma.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Figma</span>
                 </button>
@@ -1116,25 +1121,25 @@
             </div>
 
             <div class="dock-group">
-              <p class="dock-group-label">AI Creative Tools</p>
+              <p class="dock-group-label" data-i18n="dock.group.ai">AI Creative Tools</p>
               <div class="dock-row">
-                <button class="dock-tool" type="button" data-name="Gemini" data-primary="Research, ideation, and content drafting support." data-tags="Research, Ideation, Content Drafting">
+                <button class="dock-tool" type="button" data-name="Gemini" data-primary="Research, ideation, and content drafting support." data-tags="Research, Ideation, Content Drafting" data-i18n-attr="data-primary:dock.tool.gemini.desc;data-tags:dock.tool.gemini.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/gemini.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Gemini</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Runway" data-primary="AI video generation and editing for experimental content." data-tags="AI Video, Generative Editing, Experimental Content">
+                <button class="dock-tool" type="button" data-name="Runway" data-primary="AI video generation and editing for experimental content." data-tags="AI Video, Generative Editing, Experimental Content" data-i18n-attr="data-primary:dock.tool.runway.desc;data-tags:dock.tool.runway.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/runway.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Runway</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="ChatGPT" data-primary="Copywriting, research, and ideation across projects." data-tags="Copywriting, Research, Ideation">
+                <button class="dock-tool" type="button" data-name="ChatGPT" data-primary="Copywriting, research, and ideation across projects." data-tags="Copywriting, Research, Ideation" data-i18n-attr="data-primary:dock.tool.chatgpt.desc;data-tags:dock.tool.chatgpt.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/chatgpt.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">ChatGPT</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Claude" data-primary="Writing, research, and workflow support across projects." data-tags="Writing, Research, Workflow Support">
+                <button class="dock-tool" type="button" data-name="Claude" data-primary="Writing, research, and workflow support across projects." data-tags="Writing, Research, Workflow Support" data-i18n-attr="data-primary:dock.tool.claude.desc;data-tags:dock.tool.claude.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/claude.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Claude</span>
                 </button>
-                <button class="dock-tool" type="button" data-name="Adobe Firefly" data-primary="Generative image creation and text effects for creative concepts." data-tags="Generative Imagery, Text Effects, Concept Work">
+                <button class="dock-tool" type="button" data-name="Adobe Firefly" data-primary="Generative image creation and text effects for creative concepts." data-tags="Generative Imagery, Text Effects, Concept Work" data-i18n-attr="data-primary:dock.tool.firefly.desc;data-tags:dock.tool.firefly.tagsDesktop">
                   <span class="dock-tool-badge" aria-hidden="true"><img src="assets/icons/tools/firefly.svg" alt="" loading="lazy" /></span>
                   <span class="dock-tool-name">Adobe Firefly</span>
                 </button>
@@ -1154,11 +1159,11 @@
       <!-- 3. Creative Timeline -->
       <div class="profile-block timeline" id="creative-timeline">
         <div class="profile-block-head">
-          <p class="section-index"><span class="desktop-hero-copy">06 — Creative Timeline</span><span class="mobile-hero-copy">CREATIVE TIMELINE</span></p>
-          <h2 id="timeline-heading">Creative Timeline</h2>
+          <p class="section-index"><span class="desktop-hero-copy" data-i18n="tl.index">06 — Creative Timeline</span><span class="mobile-hero-copy" data-i18n="tl.indexMobile">CREATIVE TIMELINE</span></p>
+          <h2 id="timeline-heading" data-i18n="tl.title">Creative Timeline</h2>
           <p class="profile-block-lede">
-            <span class="desktop-hero-copy">A running record of the roles and production environments this practice has grown through.</span>
-            <span class="mobile-hero-copy">Experience built across premium brands, campaign production, and commercial design.</span>
+            <span class="desktop-hero-copy" data-i18n="tl.lede">A running record of the roles and production environments this practice has grown through.</span>
+            <span class="mobile-hero-copy" data-i18n="tl.ledeMobile">Experience built across premium brands, campaign production, and commercial design.</span>
           </p>
         </div>
 
@@ -1167,123 +1172,123 @@
             <li class="career-entry is-current">
               <details open>
                 <summary>
-                  <span class="career-date">Jul 2025 — Present <span class="career-current">Current</span></span>
-                  <span class="career-role">Senior Graphic Designer / Creative Specialist</span>
+                  <span class="career-date" data-i18n-html="tl.dateCurrent">Jul 2025 — Present <span class="career-current">Current</span></span>
+                  <span class="career-role" data-i18n="common.roleTitle">Senior Graphic Designer / Creative Specialist</span>
                   <span class="career-company">Metal-Lite</span>
                 </summary>
                 <div class="career-contribution">
-                  <p>Developing brand-consistent campaigns, product visuals, catalogues, retail materials, and digital content for a portfolio of premium lifestyle brands.</p>
-                  <p class="career-result">Reduced external creative-production costs by approximately 40% through expanded in-house capabilities.</p>
-                  <p class="career-skills">Campaigns · Retail · Digital Design</p>
+                  <p data-i18n="tl.m1.text">Developing brand-consistent campaigns, product visuals, catalogues, retail materials, and digital content for a portfolio of premium lifestyle brands.</p>
+                  <p class="career-result" data-i18n="tl.m1.result">Reduced external creative-production costs by approximately 40% through expanded in-house capabilities.</p>
+                  <p class="career-skills" data-i18n="tl.m1.skills">Campaigns · Retail · Digital Design</p>
                 </div>
               </details>
             </li>
             <li class="career-entry">
               <details open>
                 <summary>
-                  <span class="career-date">Jul 2024 — Jul 2025</span>
-                  <span class="career-role">Senior Graphic Designer</span>
+                  <span class="career-date" data-i18n="tl.date2">Jul 2024 — Jul 2025</span>
+                  <span class="career-role" data-i18n="tl.role.senior">Senior Graphic Designer</span>
                   <span class="career-company">GJF Design and Printing</span>
                 </summary>
                 <div class="career-contribution">
-                  <p>Delivered client-ready print and digital layouts, coordinating quotations and production from briefing to final output.</p>
-                  <p class="career-skills">Print · Digital Layout · Production</p>
+                  <p data-i18n="tl.m2.text">Delivered client-ready print and digital layouts, coordinating quotations and production from briefing to final output.</p>
+                  <p class="career-skills" data-i18n="tl.m2.skills">Print · Digital Layout · Production</p>
                 </div>
               </details>
             </li>
             <li class="career-entry">
               <details>
                 <summary>
-                  <span class="career-date">Apr — Sep 2023</span>
-                  <span class="career-role">Graphic Designer</span>
+                  <span class="career-date" data-i18n="tl.date3">Apr — Sep 2023</span>
+                  <span class="career-role" data-i18n="tl.role.designer">Graphic Designer</span>
                   <span class="career-company">JAMS Advertising</span>
                 </summary>
-                <div class="career-contribution"><p>Created graphic design work in an advertising production environment.</p></div>
+                <div class="career-contribution"><p data-i18n="tl.m3.text">Created graphic design work in an advertising production environment.</p></div>
               </details>
             </li>
             <li class="career-entry">
               <details>
                 <summary>
-                  <span class="career-date">Dec 2022 — Apr 2023</span>
-                  <span class="career-role">Graphic Designer</span>
+                  <span class="career-date" data-i18n="tl.date4">Dec 2022 — Apr 2023</span>
+                  <span class="career-role" data-i18n="tl.role.designer">Graphic Designer</span>
                   <span class="career-company">Sticker Runner</span>
                 </summary>
-                <div class="career-contribution"><p>Supported graphic design within a print production workflow.</p></div>
+                <div class="career-contribution"><p data-i18n="tl.m4.text">Supported graphic design within a print production workflow.</p></div>
               </details>
             </li>
             <li class="career-entry">
               <details>
                 <summary>
-                  <span class="career-date">Mar 2021 — Oct 2022</span>
-                  <span class="career-role">Freelance Graphic Designer</span>
+                  <span class="career-date" data-i18n="tl.date5">Mar 2021 — Oct 2022</span>
+                  <span class="career-role" data-i18n="tl.role.freelance">Freelance Graphic Designer</span>
                   <span class="career-company">JVP Innovation</span>
                 </summary>
-                <div class="career-contribution"><p>Provided freelance graphic design support across client projects.</p></div>
+                <div class="career-contribution"><p data-i18n="tl.m5.text">Provided freelance graphic design support across client projects.</p></div>
               </details>
             </li>
             <li class="career-entry">
               <details>
                 <summary>
-                  <span class="career-date">Oct 2019 — Feb 2021</span>
-                  <span class="career-role">Graphic Designer</span>
+                  <span class="career-date" data-i18n="tl.date6">Oct 2019 — Feb 2021</span>
+                  <span class="career-role" data-i18n="tl.role.designer">Graphic Designer</span>
                   <span class="career-company">JVP Innovation</span>
                 </summary>
-                <div class="career-contribution"><p>Built practical graphic design experience in an on-site production environment.</p></div>
+                <div class="career-contribution"><p data-i18n="tl.m6.text">Built practical graphic design experience in an on-site production environment.</p></div>
               </details>
             </li>
           </ol>
-          <a class="career-cv" href="cv/index.html">View Full CV</a>
+          <a class="career-cv" href="cv/index.html" data-i18n="cv.viewFull">View Full CV</a>
         </div>
 
         <div class="tl-track" id="tl-track" aria-labelledby="timeline-heading">
           <ol class="tl-list">
             <li class="tl-item is-current">
               <span class="tl-dot" aria-hidden="true"></span>
-              <p class="tl-date">Jul 2025 — Present</p>
-              <span class="tl-tag">Full-time</span>
-              <h3 class="tl-role">Senior Graphic Designer / Creative Specialist</h3>
+              <p class="tl-date" data-i18n="tl.date1">Jul 2025 — Present</p>
+              <span class="tl-tag" data-i18n="tl.tag.fullTime">Full-time</span>
+              <h3 class="tl-role" data-i18n="common.roleTitle">Senior Graphic Designer / Creative Specialist</h3>
               <p class="tl-company">Metal-Lite Illuminazione Marketing — Quezon City</p>
-              <p class="tl-desc">Campaign visuals, showroom materials, and sales presentations for high-end furniture and lighting brands, plus event photo/video capture.</p>
+              <p class="tl-desc" data-i18n="tl.d1">Campaign visuals, showroom materials, and sales presentations for high-end furniture and lighting brands, plus event photo/video capture.</p>
             </li>
 
             <li class="tl-item is-featured">
               <span class="tl-dot" aria-hidden="true"></span>
-              <p class="tl-date">Jul 2024 — Jul 2025</p>
-              <span class="tl-tag">Full-time</span>
-              <h3 class="tl-role">Senior Graphic Designer</h3>
+              <p class="tl-date" data-i18n="tl.date2">Jul 2024 — Jul 2025</p>
+              <span class="tl-tag" data-i18n="tl.tag.fullTime">Full-time</span>
+              <h3 class="tl-role" data-i18n="tl.role.senior">Senior Graphic Designer</h3>
               <p class="tl-company">GJF Design and Printing Manufacturing Corp. — Dasmariñas City</p>
-              <p class="tl-desc">Client-ready print and digital layouts, plus quotations and production coordination from briefing to final output.</p>
+              <p class="tl-desc" data-i18n="tl.d2">Client-ready print and digital layouts, plus quotations and production coordination from briefing to final output.</p>
             </li>
 
             <li class="tl-item is-compact">
               <span class="tl-dot" aria-hidden="true"></span>
-              <p class="tl-date">Apr — Sep 2023</p>
-              <span class="tl-tag">On-site</span>
-              <h3 class="tl-role">Graphic Designer</h3>
+              <p class="tl-date" data-i18n="tl.date3">Apr — Sep 2023</p>
+              <span class="tl-tag" data-i18n="tl.tag.onSite">On-site</span>
+              <h3 class="tl-role" data-i18n="tl.role.designer">Graphic Designer</h3>
               <p class="tl-company">JAMS Advertising — Peñablanca</p>
             </li>
 
             <li class="tl-item is-compact">
               <span class="tl-dot" aria-hidden="true"></span>
-              <p class="tl-date">Dec 2022 — Apr 2023</p>
-              <span class="tl-tag">Production</span>
-              <h3 class="tl-role">Graphic Designer</h3>
+              <p class="tl-date" data-i18n="tl.date4">Dec 2022 — Apr 2023</p>
+              <span class="tl-tag" data-i18n="tl.tag.production">Production</span>
+              <h3 class="tl-role" data-i18n="tl.role.designer">Graphic Designer</h3>
               <p class="tl-company">Sticker Runner — Tanza</p>
             </li>
 
             <li class="tl-item is-compact">
               <span class="tl-dot" aria-hidden="true"></span>
-              <p class="tl-date">Mar 2021 — Oct 2022</p>
-              <span class="tl-tag">Freelance</span>
-              <h3 class="tl-role">Graphic Designer</h3>
+              <p class="tl-date" data-i18n="tl.date5">Mar 2021 — Oct 2022</p>
+              <span class="tl-tag" data-i18n="tl.tag.freelance">Freelance</span>
+              <h3 class="tl-role" data-i18n="tl.role.designer">Graphic Designer</h3>
               <p class="tl-company">JVP Innovation — Tanza</p>
             </li>
 
             <li class="tl-item is-compact">
               <span class="tl-dot" aria-hidden="true"></span>
-              <p class="tl-date">Oct 2019 — Feb 2021</p>
-              <span class="tl-tag">On-site</span>
-              <h3 class="tl-role">Graphic Designer</h3>
+              <p class="tl-date" data-i18n="tl.date6">Oct 2019 — Feb 2021</p>
+              <span class="tl-tag" data-i18n="tl.tag.onSite">On-site</span>
+              <h3 class="tl-role" data-i18n="tl.role.designer">Graphic Designer</h3>
               <p class="tl-company">JVP Innovation — Tanza</p>
             </li>
           </ol>
@@ -1293,28 +1298,28 @@
       <!-- 4. Brands I've Supported -->
       <div class="profile-block brands" id="supported-brands">
         <div class="profile-block-head brands-head">
-          <p class="section-index brands-label">Brands I&rsquo;ve Supported</p>
-          <p class="mobile-brands-intro">Creative support for premium furniture, lifestyle, lighting, and retail brands.</p>
+          <p class="section-index brands-label" data-i18n="brands.title">Brands I&rsquo;ve Supported</p>
+          <p class="mobile-brands-intro" data-i18n="brands.intro">Creative support for premium furniture, lifestyle, lighting, and retail brands.</p>
         </div>
 
-        <div class="brands-track" id="brands-track" aria-label="Brands I've supported" tabindex="0">
-          <a class="brand-logo is-linked" href="https://www.instagram.com/portamobili/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Visit Porta Mobili&rsquo;s official page">
+        <div class="brands-track" id="brands-track" aria-label="Brands I've supported" tabindex="0" data-i18n-attr="aria-label:brands.trackLabel">
+          <a class="brand-logo is-linked" href="https://www.instagram.com/portamobili/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Visit Porta Mobili&rsquo;s official page" data-i18n-attr="aria-label:brands.visitPage" data-i18n-vars='{"name":"Porta Mobili"}'>
             <img class="brand-logo-img" src="assets/images/brands/porta-mobili.svg" alt="Porta Mobili" style="--logo-ratio: 11.62" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Porta Mobili</span>
           </a>
-          <a class="brand-logo is-linked" href="https://etrohomeinteriors.onirogroup.it/" target="_blank" rel="noopener noreferrer" aria-label="Visit Etro&rsquo;s official website">
+          <a class="brand-logo is-linked" href="https://etrohomeinteriors.onirogroup.it/" target="_blank" rel="noopener noreferrer" aria-label="Visit Etro&rsquo;s official website" data-i18n-attr="aria-label:brands.visitSite" data-i18n-vars='{"name":"Etro"}'>
             <img class="brand-logo-img" src="assets/images/brands/etro.svg" alt="Etro" style="--logo-ratio: 2.08" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Etro</span>
           </a>
-          <a class="brand-logo is-linked" href="https://stoneleaf.fr/en" target="_blank" rel="noopener noreferrer" aria-label="Visit Stoneleaf&rsquo;s official website">
+          <a class="brand-logo is-linked" href="https://stoneleaf.fr/en" target="_blank" rel="noopener noreferrer" aria-label="Visit Stoneleaf&rsquo;s official website" data-i18n-attr="aria-label:brands.visitSite" data-i18n-vars='{"name":"Stoneleaf"}'>
             <img class="brand-logo-img" src="assets/images/brands/stoneleaf.svg" alt="Stoneleaf" style="--logo-ratio: 1.62" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Stoneleaf</span>
           </a>
-          <a class="brand-logo is-linked" href="https://hooga.ph/" target="_blank" rel="noopener noreferrer" aria-label="Visit Hooga&rsquo;s official website">
+          <a class="brand-logo is-linked" href="https://hooga.ph/" target="_blank" rel="noopener noreferrer" aria-label="Visit Hooga&rsquo;s official website" data-i18n-attr="aria-label:brands.visitSite" data-i18n-vars='{"name":"Hooga"}'>
             <img class="brand-logo-img" src="assets/images/brands/hooga.svg" alt="Hooga" style="--logo-ratio: 2.39" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Hooga</span>
           </a>
-          <a class="brand-logo is-linked" href="https://www.instagram.com/mooni.ph/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Visit Mooni&rsquo;s official page">
+          <a class="brand-logo is-linked" href="https://www.instagram.com/mooni.ph/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Visit Mooni&rsquo;s official page" data-i18n-attr="aria-label:brands.visitPage" data-i18n-vars='{"name":"Mooni"}'>
             <img class="brand-logo-img" src="assets/images/brands/mooni.svg" alt="Mooni" style="--logo-ratio: 3.51" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Mooni</span>
           </a>
@@ -1322,19 +1327,19 @@
             <img class="brand-logo-img" src="assets/images/brands/bw.svg" alt="BW" style="--logo-ratio: 0.76" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>BW</span>
           </span>
-          <a class="brand-logo is-linked" href="https://dunlopilloph.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dunlopillo&rsquo;s official website">
+          <a class="brand-logo is-linked" href="https://dunlopilloph.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Dunlopillo&rsquo;s official website" data-i18n-attr="aria-label:brands.visitSite" data-i18n-vars='{"name":"Dunlopillo"}'>
             <img class="brand-logo-img" src="assets/images/brands/dunlopillo.svg" alt="Dunlopillo" style="--logo-ratio: 3.68" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Dunlopillo</span>
           </a>
-          <a class="brand-logo is-linked" href="https://www.metallite.shop/" target="_blank" rel="noopener noreferrer" aria-label="Visit Metal-Lite&rsquo;s official website">
+          <a class="brand-logo is-linked" href="https://www.metallite.shop/" target="_blank" rel="noopener noreferrer" aria-label="Visit Metal-Lite&rsquo;s official website" data-i18n-attr="aria-label:brands.visitSite" data-i18n-vars='{"name":"Metal-Lite"}'>
             <img class="brand-logo-img" src="assets/images/brands/metal-lite.svg" alt="Metal-Lite" style="--logo-ratio: 7.77" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Metal-Lite</span>
           </a>
-          <a class="brand-logo is-linked" href="https://www.riflessi.it/en/home" target="_blank" rel="noopener noreferrer" aria-label="Visit Riflessi&rsquo;s official website">
+          <a class="brand-logo is-linked" href="https://www.riflessi.it/en/home" target="_blank" rel="noopener noreferrer" aria-label="Visit Riflessi&rsquo;s official website" data-i18n-attr="aria-label:brands.visitSite" data-i18n-vars='{"name":"Riflessi"}'>
             <img class="brand-logo-img" src="assets/images/brands/riflessi.svg" alt="Riflessi" style="--logo-ratio: 1.92" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Riflessi</span>
           </a>
-          <a class="brand-logo is-linked" href="https://www.instagram.com/tisettanta_official/" target="_blank" rel="noopener noreferrer" aria-label="Visit Tisettanta&rsquo;s official page">
+          <a class="brand-logo is-linked" href="https://www.instagram.com/tisettanta_official/" target="_blank" rel="noopener noreferrer" aria-label="Visit Tisettanta&rsquo;s official page" data-i18n-attr="aria-label:brands.visitPage" data-i18n-vars='{"name":"Tisettanta"}'>
             <img class="brand-logo-img" src="assets/images/brands/tisettanta.svg" alt="Tisettanta" style="--logo-ratio: 5.39" loading="lazy" decoding="async" onerror="this.hidden=true; this.nextElementSibling.hidden=false;" />
             <span class="brand-logo-text" hidden>Tisettanta</span>
           </a>
@@ -1344,84 +1349,84 @@
       <!-- 5. Foundation -->
       <div class="profile-block foundation" id="foundation">
         <div class="profile-block-head">
-          <p class="section-index"><span class="desktop-hero-copy">07 — Foundation</span><span class="mobile-hero-copy">FOUNDATION</span></p>
-          <h2 id="foundation-heading">Foundation</h2>
-          <p class="mobile-foundation-copy foundation-intro">A technical and visual foundation that supports thoughtful, production-ready design.</p>
+          <p class="section-index"><span class="desktop-hero-copy" data-i18n="found.index">07 — Foundation</span><span class="mobile-hero-copy" data-i18n="found.indexMobile">FOUNDATION</span></p>
+          <h2 id="foundation-heading" data-i18n="found.title">Foundation</h2>
+          <p class="mobile-foundation-copy foundation-intro" data-i18n="found.intro">A technical and visual foundation that supports thoughtful, production-ready design.</p>
         </div>
 
         <div class="found-body" aria-labelledby="foundation-heading">
           <div class="found-item">
             <p class="mobile-foundation-copy foundation-number">01</p>
             <p class="found-years">2019 – 2024</p>
-            <h3 class="found-degree">BS Information Technology — Undergraduate, 4th Year Level</h3>
+            <h3 class="found-degree" data-i18n="found.e1.degree">BS Information Technology — Undergraduate, 4th Year Level</h3>
             <p class="found-school">Cavite State University</p>
-            <p class="found-tag">Web &amp; Systems Development</p>
-            <p class="mobile-foundation-copy foundation-relevance">Developed an understanding of web systems, interfaces, and structured problem-solving.</p>
+            <p class="found-tag" data-i18n="found.e1.tag">Web &amp; Systems Development</p>
+            <p class="mobile-foundation-copy foundation-relevance" data-i18n="found.e1.relevance">Developed an understanding of web systems, interfaces, and structured problem-solving.</p>
           </div>
 
           <div class="found-item">
             <p class="mobile-foundation-copy foundation-number">02</p>
             <p class="found-years">2017 – 2019</p>
-            <h3 class="found-degree">TVL Drafting Animation</h3>
+            <h3 class="found-degree" data-i18n="found.e2.degree">TVL Drafting Animation</h3>
             <p class="found-school">Tanza National Trade School</p>
-            <p class="found-tag">Visual Design &amp; Layout</p>
-            <p class="mobile-foundation-copy foundation-relevance">Built early skills in visual composition, layout, and digital production.</p>
+            <p class="found-tag" data-i18n="found.e2.tag">Visual Design &amp; Layout</p>
+            <p class="mobile-foundation-copy foundation-relevance" data-i18n="found.e2.relevance">Built early skills in visual composition, layout, and digital production.</p>
           </div>
 
           <div class="found-item">
             <p class="mobile-foundation-copy foundation-number">03</p>
             <p class="found-years">2013 – 2017</p>
-            <h3 class="found-degree">Technical Drafting</h3>
+            <h3 class="found-degree" data-i18n="found.e3.degree">Technical Drafting</h3>
             <p class="found-school">Tanza National Trade School</p>
-            <p class="found-tag"><span class="desktop-hero-copy">2D AutoCAD &amp; Drafting</span><span class="mobile-hero-copy">2D Drafting &amp; Technical Foundations</span></p>
-            <p class="mobile-foundation-copy foundation-relevance">Established precision, spatial awareness, and attention to detail.</p>
+            <p class="found-tag"><span class="desktop-hero-copy" data-i18n="found.e3.tag">2D AutoCAD &amp; Drafting</span><span class="mobile-hero-copy" data-i18n="found.e3.tagMobile">2D Drafting &amp; Technical Foundations</span></p>
+            <p class="mobile-foundation-copy foundation-relevance" data-i18n="found.e3.relevance">Established precision, spatial awareness, and attention to detail.</p>
           </div>
         </div>
 
-        <h3 class="found-subhead" id="certificates-heading">Certificates &amp; Training</h3>
+        <h3 class="found-subhead" id="certificates-heading" data-i18n="found.certs">Certificates &amp; Training</h3>
         <div class="found-body found-certs" aria-labelledby="certificates-heading">
           <div class="found-item">
             <p class="mobile-foundation-copy foundation-number">04</p>
-            <p class="found-years">August 2018</p>
-            <h4 class="found-degree">Graphic Design and Computer Hardware Training</h4>
+            <p class="found-years" data-i18n="found.c1.date">August 2018</p>
+            <h4 class="found-degree" data-i18n="found.c1.title">Graphic Design and Computer Hardware Training</h4>
             <p class="found-school">Datacom Institute of Computer Technology</p>
-            <p class="found-tag">Design Principles &amp; Hardware</p>
-            <p class="mobile-foundation-copy foundation-relevance">Training in design principles, visual communication, graphic design software, and computer assembly, maintenance, and troubleshooting.</p>
+            <p class="found-tag" data-i18n="found.c1.tag">Design Principles &amp; Hardware</p>
+            <p class="mobile-foundation-copy foundation-relevance" data-i18n="found.c1.relevance">Training in design principles, visual communication, graphic design software, and computer assembly, maintenance, and troubleshooting.</p>
           </div>
 
           <div class="found-item">
             <p class="mobile-foundation-copy foundation-number">05</p>
-            <p class="found-years">April 2024</p>
-            <h4 class="found-degree">Seminar Series on Excelling in the Virtual Workforce</h4>
-            <p class="found-school">Cavite State University — Department of Information Technology</p>
-            <p class="found-tag">Virtual Workforce Readiness</p>
-            <p class="mobile-foundation-copy foundation-relevance">Seminar training in virtual workforce readiness, professional communication, and foundational remote-work skills.</p>
+            <p class="found-years" data-i18n="found.c2.date">April 2024</p>
+            <h4 class="found-degree" data-i18n="found.c2.title">Seminar Series on Excelling in the Virtual Workforce</h4>
+            <p class="found-school" data-i18n="found.c2.school">Cavite State University — Department of Information Technology</p>
+            <p class="found-tag" data-i18n="found.c2.tag">Virtual Workforce Readiness</p>
+            <p class="mobile-foundation-copy foundation-relevance" data-i18n="found.c2.relevance">Seminar training in virtual workforce readiness, professional communication, and foundational remote-work skills.</p>
           </div>
         </div>
-        <p class="mobile-foundation-copy foundation-connection">This combination of design and technology allows me to create visuals that are expressive, structured, and practical across platforms.</p>
+        <p class="mobile-foundation-copy foundation-connection" data-i18n="found.connection">This combination of design and technology allows me to create visuals that are expressive, structured, and practical across platforms.</p>
       </div>
 
       <!-- 6. Start a Creative Build -->
       <div class="profile-block cta-build" id="contact">
-        <p class="cta-label"><span class="desktop-hero-copy">Start a Creative Build</span><span class="mobile-hero-copy">AVAILABLE FOR SELECTED PROJECTS</span></p>
+        <p class="cta-label"><span class="desktop-hero-copy" data-i18n="contact.label">Start a Creative Build</span><span class="mobile-hero-copy" data-i18n="contact.labelMobile">AVAILABLE FOR SELECTED PROJECTS</span></p>
         <h2 class="cta-heading">
-          <span class="desktop-hero-copy">Got a brand, product, or idea?</span><span class="mobile-hero-copy">Have a brand, product, or idea?</span>
-          <span class="cta-emphasis"><span class="desktop-hero-copy">Let&rsquo;s make it visually impossible to ignore.</span><span class="mobile-hero-copy">Let&rsquo;s make it impossible to ignore.</span></span>
+          <span class="desktop-hero-copy" data-i18n="contact.heading">Got a brand, product, or idea?</span><span class="mobile-hero-copy" data-i18n="contact.headingMobile">Have a brand, product, or idea?</span>
+          <span class="cta-emphasis"><span class="desktop-hero-copy" data-i18n="contact.emphasis">Let&rsquo;s make it visually impossible to ignore.</span><span class="mobile-hero-copy" data-i18n="contact.emphasisMobile">Let&rsquo;s make it impossible to ignore.</span></span>
         </h2>
-        <p class="mobile-contact-copy contact-reassurance">Tell me what you&rsquo;re working on—even if you&rsquo;re still figuring out the details.</p>
+        <p class="mobile-contact-copy contact-reassurance" data-i18n="contact.reassurance">Tell me what you&rsquo;re working on—even if you&rsquo;re still figuring out the details.</p>
 
         <div class="cta-actions">
-          <button type="button" class="cta-btn cta-btn-primary" id="cta-start-trigger" aria-expanded="false" aria-controls="cta-form-wrap">
+          <button type="button" class="cta-btn cta-btn-primary" id="cta-start-trigger" aria-expanded="false" aria-controls="cta-form-wrap" data-i18n="contact.start">
             Start a Project
           </button>
-          <a class="cta-btn cta-btn-outline" href="cv/index.html">
+          <a class="cta-btn cta-btn-outline" href="cv/index.html" data-i18n="cv.view">
             View CV
           </a>
-          <a class="cta-btn cta-btn-outline" href="#work">View Selected Work</a>
+          <a class="cta-btn cta-btn-outline" href="#work" data-i18n="contact.viewWork">View Selected Work</a>
         </div>
 
-        <p class="cta-socials-label">Contact me wherever&rsquo;s convenient &mdash; pick the platform you prefer.</p>
-        <div class="cta-socials" aria-label="Social links">
+        <p class="cta-socials-label" data-i18n="contact.socialsLabel">Contact me wherever&rsquo;s convenient &mdash; pick the platform you prefer.</p>
+        <div class="cta-socials" aria-label="Social links" data-i18n-attr="aria-label:nav.socialLinks">
           <a class="cta-social-link" href="https://www.linkedin.com/in/gilculas" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-tooltip="LinkedIn">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.83v1.54h.06c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13V21h-4v-4.97c0-1.19-.02-2.71-1.65-2.71-1.65 0-1.9 1.29-1.9 2.62V21h-4V9.75Z"/></svg>
           </a>
@@ -1431,7 +1436,7 @@
           <a class="cta-social-link" href="https://www.instagram.com/kv_gil/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-tooltip="Instagram">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
           </a>
-          <a class="cta-social-link" href="mailto:giltejano.visuals@gmail.com" aria-label="Email" data-tooltip="Email">
+          <a class="cta-social-link" href="mailto:giltejano.visuals@gmail.com" aria-label="Email" data-tooltip="Email" data-i18n-attr="aria-label:nav.email;data-tooltip:nav.email">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
           </a>
         </div>
@@ -1442,57 +1447,57 @@
               <form class="inquiry-form" id="inquiry-form" novalidate>
                 <div class="inquiry-grid">
                   <div class="inquiry-aside">
-                    <p class="inquiry-intro">
+                    <p class="inquiry-intro" data-i18n="form.intro">
                       Tell me a bit about your project and I&rsquo;ll get
                       back to you personally &mdash; no account or sign-up
                       required.
                     </p>
-                    <p class="inquiry-response">
+                    <p class="inquiry-response" data-i18n-html="form.response">
                       <span class="inquiry-response-accent" aria-hidden="true"></span>
                       Typically replies within 1&ndash;2 business days.
                     </p>
 
                     <fieldset class="chip-group" id="inquiry-type-group">
-                      <legend class="form-label">What can I help you with?</legend>
+                      <legend class="form-label" data-i18n="form.helpWith">What can I help you with?</legend>
                       <div class="chip-row">
                         <input class="chip-input" type="checkbox" id="inq-type-1" name="inquiryType" value="Branding or Brand Applications" />
-                        <label class="chip" for="inq-type-1">Branding or Brand Applications</label>
+                        <label class="chip" for="inq-type-1" data-i18n="form.type.branding">Branding or Brand Applications</label>
 
                         <input class="chip-input" type="checkbox" id="inq-type-2" name="inquiryType" value="Social Media Campaign" />
-                        <label class="chip" for="inq-type-2">Social Media Campaign</label>
+                        <label class="chip" for="inq-type-2" data-i18n="form.type.social">Social Media Campaign</label>
 
                         <input class="chip-input" type="checkbox" id="inq-type-3" name="inquiryType" value="Catalogue or Editorial Design" />
-                        <label class="chip" for="inq-type-3">Catalogue or Editorial Design</label>
+                        <label class="chip" for="inq-type-3" data-i18n="form.type.catalogue">Catalogue or Editorial Design</label>
 
                         <input class="chip-input" type="checkbox" id="inq-type-4" name="inquiryType" value="Print Collaterals" />
-                        <label class="chip" for="inq-type-4">Print Collaterals</label>
+                        <label class="chip" for="inq-type-4" data-i18n="form.type.print">Print Collaterals</label>
 
                         <input class="chip-input" type="checkbox" id="inq-type-5" name="inquiryType" value="Retail or In-Store Graphics" />
-                        <label class="chip" for="inq-type-5">Retail or In-Store Graphics</label>
+                        <label class="chip" for="inq-type-5" data-i18n="form.type.retail">Retail or In-Store Graphics</label>
 
                         <input class="chip-input" type="checkbox" id="inq-type-6" name="inquiryType" value="Digital or E-commerce Content" />
-                        <label class="chip" for="inq-type-6">Digital or E-commerce Content</label>
+                        <label class="chip" for="inq-type-6" data-i18n="form.type.digital">Digital or E-commerce Content</label>
 
                         <input class="chip-input" type="checkbox" id="inq-type-7" name="inquiryType" value="Website or Portfolio Design" />
-                        <label class="chip" for="inq-type-7">Website or Portfolio Design</label>
+                        <label class="chip" for="inq-type-7" data-i18n="form.type.website">Website or Portfolio Design</label>
 
                         <input class="chip-input" type="checkbox" id="inq-type-8" name="inquiryType" value="General Inquiry" />
-                        <label class="chip" for="inq-type-8">General Inquiry</label>
+                        <label class="chip" for="inq-type-8" data-i18n="form.type.general">General Inquiry</label>
 
                         <input class="chip-input" type="checkbox" id="inq-type-9" name="inquiryType" value="Not Sure Yet" />
-                        <label class="chip" for="inq-type-9">Not Sure Yet</label>
+                        <label class="chip" for="inq-type-9" data-i18n="form.type.unsure">Not Sure Yet</label>
 
                         <input class="chip-input" type="checkbox" id="inq-type-10" name="inquiryType" value="CV Request" />
-                        <label class="chip" for="inq-type-10">CV Request</label>
+                        <label class="chip" for="inq-type-10" data-i18n="form.type.cv">CV Request</label>
                       </div>
-                      <p class="form-field-error" id="inquiry-type-error" role="alert" hidden>Please select at least one option.</p>
+                      <p class="form-field-error" id="inquiry-type-error" role="alert" hidden data-i18n="form.typeError">Please select at least one option.</p>
                     </fieldset>
                   </div>
 
                   <div class="inquiry-main">
                     <div class="form-row form-row-contact">
                       <div class="form-field">
-                        <label class="form-label" for="inq-name">Name</label>
+                        <label class="form-label" for="inq-name" data-i18n="form.name">Name</label>
                         <input class="form-input" type="text" id="inq-name" name="name" autocomplete="name" aria-describedby="inq-name-error" required />
                         <p class="form-field-error" id="inq-name-error" role="alert" hidden></p>
                       </div>
@@ -1511,41 +1516,41 @@
 
                     <!-- CV requests only (js/script.js shows it with the "CV Request" type). -->
                     <div class="form-field field-role" hidden>
-                      <label class="form-label" for="inq-role">Your role or job title</label>
+                      <label class="form-label" for="inq-role" data-i18n="form.role">Your role or job title</label>
                       <input class="form-input" type="text" id="inq-role" name="role" autocomplete="organization-title" aria-describedby="inq-role-error" />
                       <p class="form-field-error" id="inq-role-error" role="alert" hidden></p>
                     </div>
 
                     <div class="form-field mobile-inquiry-type">
-                      <label class="form-label" for="inq-mobile-type">Inquiry type</label>
+                      <label class="form-label" for="inq-mobile-type" data-i18n="form.inquiryType">Inquiry type</label>
                       <select class="form-input" id="inq-mobile-type" name="mobileInquiryType" aria-describedby="inq-mobile-type-error">
-                        <option value="">Choose an inquiry type</option>
-                        <option>Brand or Campaign Design</option>
-                        <option>Catalogue or Editorial Design</option>
-                        <option>Print and Retail Materials</option>
-                        <option>Social Media Content</option>
-                        <option>Photography or Video</option>
-                        <option>Website or Digital Design</option>
-                        <option>Ongoing Creative Support</option>
-                        <option>Not Sure Yet</option>
-                        <option>CV Request</option>
+                        <option value="" data-i18n="form.chooseType">Choose an inquiry type</option>
+                        <option value="Brand or Campaign Design" data-i18n="form.type.brandCampaign">Brand or Campaign Design</option>
+                        <option value="Catalogue or Editorial Design" data-i18n="form.type.catalogue">Catalogue or Editorial Design</option>
+                        <option value="Print and Retail Materials" data-i18n="form.type.printRetail">Print and Retail Materials</option>
+                        <option value="Social Media Content" data-i18n="form.type.socialContent">Social Media Content</option>
+                        <option value="Photography or Video" data-i18n="form.type.photoVideo">Photography or Video</option>
+                        <option value="Website or Digital Design" data-i18n="form.type.webDigital">Website or Digital Design</option>
+                        <option value="Ongoing Creative Support" data-i18n="form.type.ongoing">Ongoing Creative Support</option>
+                        <option value="Not Sure Yet" data-i18n="form.type.unsure">Not Sure Yet</option>
+                        <option value="CV Request" data-i18n="form.type.cv">CV Request</option>
                       </select>
                       <p class="form-field-error" id="inq-mobile-type-error" role="alert" hidden></p>
                     </div>
 
                     <div class="template-row">
-                      <p class="form-label"><span class="desktop-hero-copy">Not sure how to start? Choose a message template:</span><span class="mobile-hero-copy">Not sure what to write? Start with:</span></p>
-                      <div class="template-buttons" role="group" aria-label="Message templates">
-                        <button type="button" class="template-btn" data-template="new" aria-pressed="false"><span class="desktop-hero-copy">I&rsquo;m starting a new project</span><span class="mobile-hero-copy">New project</span></button>
-                        <button type="button" class="template-btn" data-template="existing" aria-pressed="false"><span class="desktop-hero-copy">I need design support for an existing brand</span><span class="mobile-hero-copy">Existing brand support</span></button>
-                        <button type="button" class="template-btn" data-template="improve" aria-pressed="false"><span class="desktop-hero-copy">I want to improve existing materials</span><span class="mobile-hero-copy">Improve current materials</span></button>
-                        <button type="button" class="template-btn" data-template="ongoing" aria-pressed="false"><span class="desktop-hero-copy">I need ongoing creative support</span><span class="mobile-hero-copy">Ongoing creative support</span></button>
-                        <button type="button" class="template-btn" data-template="unsure" aria-pressed="false"><span class="desktop-hero-copy">I&rsquo;m not sure what service I need</span><span class="mobile-hero-copy">Not sure yet</span></button>
+                      <p class="form-label"><span class="desktop-hero-copy" data-i18n="form.templatePrompt">Not sure how to start? Choose a message template:</span><span class="mobile-hero-copy" data-i18n="form.templatePromptMobile">Not sure what to write? Start with:</span></p>
+                      <div class="template-buttons" role="group" aria-label="Message templates" data-i18n-attr="aria-label:form.templatesLabel">
+                        <button type="button" class="template-btn" data-template="new" aria-pressed="false"><span class="desktop-hero-copy" data-i18n="form.tplBtn.new">I&rsquo;m starting a new project</span><span class="mobile-hero-copy" data-i18n="form.tplBtn.newMobile">New project</span></button>
+                        <button type="button" class="template-btn" data-template="existing" aria-pressed="false"><span class="desktop-hero-copy" data-i18n="form.tplBtn.existing">I need design support for an existing brand</span><span class="mobile-hero-copy" data-i18n="form.tplBtn.existingMobile">Existing brand support</span></button>
+                        <button type="button" class="template-btn" data-template="improve" aria-pressed="false"><span class="desktop-hero-copy" data-i18n="form.tplBtn.improve">I want to improve existing materials</span><span class="mobile-hero-copy" data-i18n="form.tplBtn.improveMobile">Improve current materials</span></button>
+                        <button type="button" class="template-btn" data-template="ongoing" aria-pressed="false"><span class="desktop-hero-copy" data-i18n="form.tplBtn.ongoing">I need ongoing creative support</span><span class="mobile-hero-copy" data-i18n="form.tplBtn.ongoingMobile">Ongoing creative support</span></button>
+                        <button type="button" class="template-btn" data-template="unsure" aria-pressed="false"><span class="desktop-hero-copy" data-i18n="form.tplBtn.unsure">I&rsquo;m not sure what service I need</span><span class="mobile-hero-copy" data-i18n="form.tplBtn.unsureMobile">Not sure yet</span></button>
                       </div>
                       <div class="template-confirmation" id="template-confirmation" role="status" hidden>
-                        <p>You already have a message. Replace it with this starter?</p>
-                        <button type="button" id="template-replace">Replace message</button>
-                        <button type="button" id="template-keep">Keep my message</button>
+                        <p data-i18n="form.templateConfirm">You already have a message. Replace it with this starter?</p>
+                        <button type="button" id="template-replace" data-i18n="form.replace">Replace message</button>
+                        <button type="button" id="template-keep" data-i18n="form.keep">Keep my message</button>
                       </div>
                     </div>
 
@@ -1556,27 +1561,27 @@
                     </div>
 
                     <details class="project-scope">
-                      <summary>Add project details <span class="scope-plus" aria-hidden="true">+</span></summary>
+                      <summary data-i18n-html="form.addDetails">Add project details <span class="scope-plus" aria-hidden="true">+</span></summary>
                       <div class="form-row form-row-scope">
                       <div class="form-field">
-                        <label class="form-label" for="inq-budget">Budget range <span class="form-optional">(optional)</span></label>
-                        <input class="form-input" type="text" id="inq-budget" name="budget" placeholder="e.g. ₱30,000–60,000, or flexible" />
+                        <label class="form-label" for="inq-budget" data-i18n-html="form.budget">Budget range <span class="form-optional">(optional)</span></label>
+                        <input class="form-input" type="text" id="inq-budget" name="budget" placeholder="e.g. ₱30,000–60,000, or flexible" data-i18n-attr="placeholder:form.budgetPlaceholder" />
                       </div>
                       <div class="form-field">
-                        <label class="form-label" for="inq-timeline">Preferred timeline <span class="form-optional">(optional)</span></label>
-                        <input class="form-input" type="text" id="inq-timeline" name="timeline" placeholder="e.g. within a month" />
+                        <label class="form-label" for="inq-timeline" data-i18n-html="form.timeline">Preferred timeline <span class="form-optional">(optional)</span></label>
+                        <input class="form-input" type="text" id="inq-timeline" name="timeline" placeholder="e.g. within a month" data-i18n-attr="placeholder:form.timelinePlaceholder" />
                       </div>
                       </div>
                     </details>
 
                     <div class="form-actions">
-                      <p class="form-cv-note" id="form-cv-note" hidden>CV requests are reviewed personally. A current PDF is shared by email only after the request has been verified.</p>
+                      <p class="form-cv-note" id="form-cv-note" hidden data-i18n="form.cvNote">CV requests are reviewed personally. A current PDF is shared by email only after the request has been verified.</p>
                       <button type="submit" class="cta-btn cta-btn-primary form-submit-btn" id="inquiry-submit-btn">
                         <span class="form-submit-label">Send Project Inquiry</span>
                       </button>
-                      <p class="form-actions-note">Your message will be sent directly to Gil. Expect a response within 1&ndash;2 business days.</p>
-                      <p class="form-consent">The information you submit here is used only to respond to your inquiry &mdash; it&rsquo;s never shared or used for anything else.</p>
-                      <p class="form-error-banner" id="inquiry-error-banner" role="alert" hidden>
+                      <p class="form-actions-note" data-i18n="form.actionsNote">Your message will be sent directly to Gil. Expect a response within 1&ndash;2 business days.</p>
+                      <p class="form-consent" data-i18n="form.consent">The information you submit here is used only to respond to your inquiry &mdash; it&rsquo;s never shared or used for anything else.</p>
+                      <p class="form-error-banner" id="inquiry-error-banner" role="alert" hidden data-i18n-html="form.errorBanner">
                         Something went wrong sending your message. Please try again, or email me directly at
                         <a href="mailto:giltejano.visuals@gmail.com">giltejano.visuals@gmail.com</a>.
                       </p>
@@ -1586,19 +1591,19 @@
               </form>
 
               <div class="inquiry-success" id="inquiry-success" role="status" aria-live="polite" tabindex="-1" hidden>
-                <p class="inquiry-success-title">Your inquiry has been sent.</p>
+                <p class="inquiry-success-title" data-i18n="form.successTitle">Your inquiry has been sent.</p>
                 <p class="inquiry-success-body" id="inquiry-success-body"></p>
-                <button type="button" class="inquiry-success-reset" id="inquiry-reset-btn">Send another inquiry</button>
+                <button type="button" class="inquiry-success-reset" id="inquiry-reset-btn" data-i18n="form.reset">Send another inquiry</button>
               </div>
             </div>
           </div>
         </div>
-        <div class="mobile-contact-copy contact-secondary-links" aria-label="More about my work">
-          <a href="cv/index.html">View CV</a>
-          <a href="#work">View Selected Work</a>
+        <div class="mobile-contact-copy contact-secondary-links" aria-label="More about my work" data-i18n-attr="aria-label:contact.moreLinks">
+          <a href="cv/index.html" data-i18n="cv.view">View CV</a>
+          <a href="#work" data-i18n="contact.viewWork">View Selected Work</a>
         </div>
-        <nav class="mobile-contact-copy contact-profile-links" aria-label="Contact and creative profiles">
-          <a href="mailto:giltejano.visuals@gmail.com">Email</a>
+        <nav class="mobile-contact-copy contact-profile-links" aria-label="Contact and creative profiles" data-i18n-attr="aria-label:contact.profiles">
+          <a href="mailto:giltejano.visuals@gmail.com" data-i18n="nav.email">Email</a>
           <a href="https://www.linkedin.com/in/gilculas" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://www.behance.net/gilvisuals" target="_blank" rel="noopener noreferrer">Behance</a>
         </nav>
@@ -1606,8 +1611,8 @@
 
     </section>
 
-    <nav class="mobile-tabbar" aria-label="Sections">
-      <a class="mobile-tabbar-item mobile-tabbar-home" href="#" data-section="work" aria-label="Gil Tejano Culas, home">
+    <nav class="mobile-tabbar" aria-label="Sections" data-i18n-attr="aria-label:nav.sections">
+      <a class="mobile-tabbar-item mobile-tabbar-home" href="#" data-section="work" aria-label="Gil Tejano Culas, home" data-i18n-attr="aria-label:common.homeLabel">
         <span class="mobile-tabbar-icon" aria-hidden="true">
           <img src="assets/icons/logo.png" width="304" height="180" alt="" decoding="async" />
         </span>
@@ -1616,25 +1621,25 @@
         <span class="mobile-tabbar-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="9.5" r="1.6"></circle><path d="M21 15.5l-5-5-9.5 9.5"></path></svg>
         </span>
-        <span class="mobile-tabbar-label">Gallery</span>
+        <span class="mobile-tabbar-label" data-i18n="tab.gallery">Gallery</span>
       </a>
       <a class="mobile-tabbar-item" href="#about" data-section="about">
         <span class="mobile-tabbar-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c1.2-3.6 3.9-5.5 7-5.5s5.8 1.9 7 5.5"></path></svg>
         </span>
-        <span class="mobile-tabbar-label">About</span>
+        <span class="mobile-tabbar-label" data-i18n="tab.about">About</span>
       </a>
       <a class="mobile-tabbar-item" href="#capabilities" data-section="capabilities">
         <span class="mobile-tabbar-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3.5l8.5 4.5-8.5 4.5-8.5-4.5 8.5-4.5z"></path><path d="M3.5 12.5l8.5 4.5 8.5-4.5"></path><path d="M3.5 16.5l8.5 4.5 8.5-4.5"></path></svg>
         </span>
-        <span class="mobile-tabbar-label">Capabilities</span>
+        <span class="mobile-tabbar-label" data-i18n="tab.capabilities">Capabilities</span>
       </a>
       <a class="mobile-tabbar-item" href="#contact" data-section="contact">
         <span class="mobile-tabbar-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3.5 6.5L12 13l8.5-6.5"></path></svg>
         </span>
-        <span class="mobile-tabbar-label">Contact</span>
+        <span class="mobile-tabbar-label" data-i18n="tab.contact">Contact</span>
       </a>
     </nav>
     <script src="js/mobile-tabbar.js?v=2" defer></script>

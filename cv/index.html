@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="robots" content="noindex, noarchive, nosnippet, noimageindex" />
     <meta name="referrer" content="same-origin" />
-    <meta name="description" content="Curriculum vitae preview — Gil Tejano Culas, creative specialist and graphic designer." />
-    <title>Curriculum Vitae | Gil Tejano Culas</title>
+    <meta name="description" content="Curriculum vitae preview — Gil Tejano Culas, creative specialist and graphic designer." data-i18n-attr="content:meta.cv.description" />
+    <title data-i18n="meta.cv.title">Curriculum Vitae | Gil Tejano Culas</title>
     <link rel="icon" href="../assets/icons/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,6 +29,8 @@
         } catch (e) {}
       })();
     </script>
+    <script src="../js/i18n.js?v=1"></script>
+    <link rel="stylesheet" href="../css/i18n.css?v=1" />
     <!-- PAGE TRANSITION HEAD START -->
     <style>
       /* Welcome / page-transition overlay. Inlined into every page's <head> by
@@ -218,6 +220,7 @@
     </script>
     <script src="../js/page-transition.js?v=3" defer></script>
     <!-- PAGE TRANSITION HEAD END -->
+    <script src="../data/locales/en.js?v=1" defer></script>
     <link rel="stylesheet" href="../css/style.css?v=5" />
     <link rel="stylesheet" href="../css/search.css?v=1" />
     <script src="../js/search.js?v=3" defer></script>
@@ -225,6 +228,8 @@
     <link rel="stylesheet" href="../css/content-protection.css" />
     <script src="../js/content-protection.js" defer></script>
     <link rel="stylesheet" href="../css/cv-viewer.css?v=2" />
+    <link rel="stylesheet" href="../css/zoom-resilience.css?v=1" />
+    <script src="../js/zoom-chrome.js?v=1" defer></script>
     <script src="../js/gallery-editorial.js?v=3" defer></script>
   </head>
 
@@ -233,38 +238,38 @@
     <div class="pt-overlay" aria-hidden="true" inert>
       <div class="pt-inner">
         <p class="pt-number">CV</p>
-        <p class="pt-title pt-title-project">Curriculum Vitae</p>
+        <p class="pt-title pt-title-project" data-i18n="cv.title">Curriculum Vitae</p>
         <span class="pt-line"></span>
       </div>
     </div>
     <!-- PAGE TRANSITION OVERLAY END -->
-    <a class="skip-link" href="#cv-viewer">Skip to CV</a>
+    <a class="skip-link" href="#cv-viewer" data-i18n="cv.skip">Skip to CV</a>
 
     <div class="nav-backdrop" aria-hidden="true"></div>
     <header class="site-header">
-      <a class="brand" href="../index.html" aria-label="Gil Tejano Culas, home">
+      <a class="brand" href="../index.html" aria-label="Gil Tejano Culas, home" data-i18n-attr="aria-label:common.homeLabel">
         <img class="brand-mark" src="../assets/icons/logo.png" alt="" aria-hidden="true" />
-        <span class="brand-text"><span class="brand-name">Gil Tejano Culas</span><span class="brand-title">Senior Graphic Designer / Creative Specialist</span></span>
+        <span class="brand-text"><span class="brand-name">Gil Tejano Culas</span><span class="brand-title" data-i18n="common.roleTitle">Senior Graphic Designer / Creative Specialist</span></span>
       </a>
 
       <div class="header-controls">
-        <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation">
+        <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.primary">
           <div class="mobile-nav-head">
-            <a class="mobile-nav-brand" href="../index.html" aria-label="Gil Tejano Culas, home">
+            <a class="mobile-nav-brand" href="../index.html" aria-label="Gil Tejano Culas, home" data-i18n-attr="aria-label:common.homeLabel">
               <img class="brand-mark" src="../assets/icons/logo.png" alt="" aria-hidden="true" />
-              <span class="mobile-nav-brand-text">Gil Tejano Culas &mdash; Senior Graphic Designer / Creative Specialist</span>
+              <span class="mobile-nav-brand-text" data-i18n="common.brandLine">Gil Tejano Culas &mdash; Senior Graphic Designer / Creative Specialist</span>
             </a>
-            <button type="button" class="mobile-nav-close" aria-label="Close menu">
+            <button type="button" class="mobile-nav-close" aria-label="Close menu" data-i18n-attr="aria-label:nav.closeMenu">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
 
           <div class="mobile-nav-links">
-            <a href="../index.html"><span class="nav-index" aria-hidden="true">01</span><span class="nav-label">Home</span></a>
-            <a href="../index.html#gallery"><span class="nav-index" aria-hidden="true">02</span><span class="nav-label">Gallery</span></a>
-            <a href="../index.html#about"><span class="nav-index" aria-hidden="true">03</span><span class="nav-label">About</span></a>
-            <a href="../index.html#capabilities"><span class="nav-index" aria-hidden="true">04</span><span class="nav-label">Capabilities</span></a>
-            <a href="mailto:giltejano.visuals@gmail.com"><span class="nav-index" aria-hidden="true">05</span><span class="nav-label">Contact</span></a>
+            <a href="../index.html"><span class="nav-index" aria-hidden="true">01</span><span class="nav-label" data-i18n="nav.home">Home</span></a>
+            <a href="../index.html#gallery"><span class="nav-index" aria-hidden="true">02</span><span class="nav-label" data-i18n="nav.gallery">Gallery</span></a>
+            <a href="../index.html#about"><span class="nav-index" aria-hidden="true">03</span><span class="nav-label" data-i18n="nav.about">About</span></a>
+            <a href="../index.html#capabilities"><span class="nav-index" aria-hidden="true">04</span><span class="nav-label" data-i18n="nav.capabilities">Capabilities</span></a>
+            <a href="mailto:giltejano.visuals@gmail.com"><span class="nav-index" aria-hidden="true">05</span><span class="nav-label" data-i18n="nav.contact">Contact</span></a>
           </div>
         </nav>
 
@@ -305,14 +310,17 @@
 
     <main class="cv-page" id="main-content">
       <div class="cv-intro">
-        <p class="section-index">Curriculum Vitae</p>
+        <p class="section-index" data-i18n="cv.title">Curriculum Vitae</p>
         <h1 class="cv-title">Gil Tejano Culas</h1>
-        <p class="cv-lede">Senior Graphic Designer &amp; Creative Specialist &mdash; portfolio preview of the current CV.</p>
+        <p class="cv-lede" data-i18n="cv.lede">Senior Graphic Designer &amp; Creative Specialist &mdash; portfolio preview of the current CV.</p>
+        <p class="cv-lang-note" data-i18n="cv.languageNote">This preview shows the official English version of the CV.</p>
       </div>
 
       <!-- Professional summary for screen readers: the pages below are
-           images, so this is what assistive technology reads instead. -->
-      <section class="cv-summary sr-only" aria-labelledby="cv-summary-title">
+           images, so this is what assistive technology reads instead. It is
+           formal CV content, so it stays in English (lang="en") whatever
+           language the rest of the page is shown in. -->
+      <section class="cv-summary sr-only" lang="en" aria-labelledby="cv-summary-title">
         <h2 id="cv-summary-title">CV summary</h2>
         <p>Gil Tejano Culas — Senior Graphic Designer and Creative Specialist based in Cavite, Philippines. Contact through this website or giltejano.visuals@gmail.com.</p>
         <p>7+ years creating brand-focused visuals for retail, furniture, lighting, manufacturing, events, and print production: campaign visuals, social media content, catalogs, showroom materials, sales presentations, and production-ready layouts.</p>
@@ -331,7 +339,7 @@
         <p>BS Information Technology (undergraduate, 4th year level), Cavite State University, 2019–2024. Senior High School, TVL Drafting Animation, Tanza National Trade School, 2017–2019. Junior High School, Technical Drafting, Tanza National Trade School, 2013–2017. Graphic Design and Computer Hardware Training, Datacom Institute of Computer Technology, August 2018. Seminar Series on Excelling in the Virtual Workforce, Cavite State University, April 2024.</p>
       </section>
 
-      <section class="cv-viewer" id="cv-viewer" tabindex="-1" aria-label="CV preview, 2 pages">
+      <section class="cv-viewer" id="cv-viewer" tabindex="-1" aria-label="CV preview, 2 pages" data-i18n-attr="aria-label:cv.viewerLabel">
         <!-- Watermarked, redacted page images rendered by
              scripts/render-cv-preview.ps1 — the original document is never
              published. Keep this list in step with that script's output. -->
@@ -347,7 +355,7 @@
                 alt="CV page 1 of 2 (image): header, professional summary, core skills, and experience from July 2025 back to April 2023. The CV summary for screen readers is above."
                 decoding="async"
                 fetchpriority="high"
-                draggable="false"
+                draggable="false" data-i18n-attr="alt:cv.page1Alt"
               />
             </figure>
             <figure class="cv-sheet" id="cv-page-2" data-page="2">
@@ -360,7 +368,7 @@
                 alt="CV page 2 of 2 (image): earlier experience, education, and certificates and training."
                 loading="lazy"
                 decoding="async"
-                draggable="false"
+                draggable="false" data-i18n-attr="alt:cv.page2Alt"
               />
             </figure>
           </div>
@@ -368,13 +376,13 @@
       </section>
 
       <section class="cv-request" aria-labelledby="cv-request-title">
-        <h2 class="cv-request-title" id="cv-request-title">Need a formal copy?</h2>
-        <p class="cv-request-text"><em>Verified employers and clients may request a current PDF version directly.</em></p>
-        <a class="cta-btn cta-btn-primary cv-request-btn" href="../index.html?inquiry=cv-request#contact">Request CV Copy</a>
+        <h2 class="cv-request-title" id="cv-request-title" data-i18n="cv.requestTitle">Need a formal copy?</h2>
+        <p class="cv-request-text"><em data-i18n="cv.requestText">Verified employers and clients may request a current PDF version directly.</em></p>
+        <a class="cta-btn cta-btn-primary cv-request-btn" href="../index.html?inquiry=cv-request#contact" data-i18n="cv.requestBtn">Request CV Copy</a>
       </section>
     </main>
 
-    <p class="cv-print-notice" aria-hidden="true">This CV preview isn&rsquo;t available for printing. Verified employers and clients can request a formal copy through the contact form at the portfolio website.</p>
-    <p class="cv-framed-notice" aria-hidden="true">This CV preview can only be viewed on Gil Tejano Culas&rsquo;s portfolio website.</p>
+    <p class="cv-print-notice" aria-hidden="true" data-i18n="cv.printNotice">This CV preview isn&rsquo;t available for printing. Verified employers and clients can request a formal copy through the contact form at the portfolio website.</p>
+    <p class="cv-framed-notice" aria-hidden="true" data-i18n="cv.framedNotice">This CV preview can only be viewed on Gil Tejano Culas&rsquo;s portfolio website.</p>
   </body>
 </html>

@@ -593,8 +593,8 @@
   right: clamp(1rem, 3vw, 2rem);
   z-index: 2;
   display: grid;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: var(--hit);
+  height: var(--hit);
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
@@ -654,8 +654,8 @@ body.lightbox-open {
   }
 
   .lightbox-close {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: var(--hit);
+    height: var(--hit);
     font-size: 1.2rem;
   }
 

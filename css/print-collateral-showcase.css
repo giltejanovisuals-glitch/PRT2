@@ -507,9 +507,19 @@ html.pbc-locked .project-closing {
   padding-bottom: clamp(1.5rem, 4vh, 2.5rem);
 }
 
-/* --- Phones: normal page scroll, preview first, one column ----------------- */
+/* --- Phones: normal page scroll, preview first, one column -----------------
+   Also used by any viewport too short for the locked desktop layout (see
+   desktopQuery in js/print-collateral-showcase.js — keep the two in step). */
 
-@media (max-width: 760px) {
+@media (min-width: 761px) and (max-height: 679.98px) {
+  /* Short but wide (a zoomed-in desktop): the stacked layout in a centred
+     reading column, so its two-up feed doesn't stretch edge to edge. */
+  .pbc {
+    max-width: 56rem;
+  }
+}
+
+@media (max-width: 760px), (max-height: 679.98px) {
   .pbc {
     --pbc-preview-h: clamp(16rem, 52svh, 28rem);
     margin-top: 0;

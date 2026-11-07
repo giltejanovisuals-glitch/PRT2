@@ -18,13 +18,21 @@ const reels = readManifest('reel-manifest.js');
 const slugify = text => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'image';
 const reelByPreview = new Map(reels.filter(reel => reel.poster).map(reel => [slugify(path.basename(reel.poster, path.extname(reel.poster))), reel]));
 const reelFor = src => reelByPreview.get(path.basename(src, '.webp').replace(/-[a-z0-9]+$/, ''));
+// Card copy comes from the English dictionary (data/locales/en.json), the
+// same keys the cards carry for the language switcher (js/i18n.js).
+const en = JSON.parse(fs.readFileSync(path.join(root, 'data', 'locales', 'en.json'), 'utf8'));
+const copy = (id, field) => {
+  const value = en[`category.${id}.${field}`];
+  if (!value) throw new Error(`data/locales/en.json is missing category.${id}.${field}`);
+  return value;
+};
 const categories = [
-  { id: 'editorial-layout', label: 'EDITORIAL', title: 'Editorial & Layout Design', description: 'Catalogues, lookbooks, and publication systems.', count: publications.length, unit: 'publications' },
-  { id: 'social-media-campaigns', label: 'CAMPAIGNS', title: 'Social Media Campaigns & Key Visuals', description: 'Key visuals and cohesive social campaign systems.', count: images['social-media-campaigns'].length, unit: 'images' },
-  { id: 'print-brand-collateral', label: 'PRINT', title: 'Print & Brand Collateral', description: 'Brochures, sales materials, and branded print.', count: images['print-brand-collateral'].length, unit: 'images' },
-  { id: 'commercial-lifestyle-photography', label: 'PHOTOGRAPHY', title: 'Commercial & Lifestyle Photography', description: 'Product, showroom, and lifestyle photography.', count: images['commercial-lifestyle-photography'].length, unit: 'photographs' },
-  { id: 'short-form-video-reels', label: 'MOTION', title: 'Short-Form Video & Reels', description: 'Short-form stories for social feeds and launches.', count: reels.length, unit: 'videos' },
-].map((category, i) => ({ ...category, number: String(i + 1).padStart(2, '0'), previews: (previews[category.id] || []).map(src => {
+  { id: 'editorial-layout', count: publications.length, unit: 'publications' },
+  { id: 'social-media-campaigns', count: images['social-media-campaigns'].length, unit: 'images' },
+  { id: 'print-brand-collateral', count: images['print-brand-collateral'].length, unit: 'images' },
+  { id: 'commercial-lifestyle-photography', count: images['commercial-lifestyle-photography'].length, unit: 'photographs' },
+  { id: 'short-form-video-reels', count: reels.length, unit: 'videos' },
+].map((category, i) => ({ id: category.id, label: copy(category.id, 'label'), title: copy(category.id, 'title'), description: copy(category.id, 'short'), count: category.count, unit: category.unit, number: String(i + 1).padStart(2, '0'), previews: (previews[category.id] || []).map(src => {
   const size = readImageSize(fs.readFileSync(path.join(root, src)), '.webp');
   if (!size) throw new Error(`Missing preview dimensions: ${src}`);
   const reel = category.id === 'short-form-video-reels' ? reelFor(src) : undefined;
@@ -38,14 +46,14 @@ const cards = categories.map(category => {
   if (!preview) throw new Error(`Missing preview: ${category.id}`);
   return `        <a class="mobile-gallery-card" href="pages/${category.id}.html" data-category="${category.id}" aria-labelledby="mobile-gallery-title-${category.number}">
           <div class="mobile-gallery-media">
-            <img class="mobile-gallery-preview" width="${preview.width}" height="${preview.height}" alt="${escape(category.title)} selected work" ${category.number === '01' ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async" />
+            <img class="mobile-gallery-preview" width="${preview.width}" height="${preview.height}" alt="${escape(category.title)} selected work" ${category.number === '01' ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} decoding="async" data-i18n-attr="alt:gallery.selectedWork" data-i18n-vars='{"title":"@category.${category.id}.title"}' />
             <noscript><picture><source media="(max-width: 760px)" srcset="${preview.src}" /><img width="${preview.width}" height="${preview.height}" alt="${escape(category.title)} selected work" ${category.number === '01' ? '' : 'loading="lazy"'} decoding="async" /></picture></noscript>
           </div>
           <div class="mobile-gallery-info">
-            <p class="mobile-gallery-number">${category.number} / ${category.label}</p>
-            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-${category.number}">${escape(category.title)}</h3></div>
-            <p class="mobile-gallery-description">${escape(category.description)}</p>
-            <p class="mobile-gallery-count">${category.count} ${category.unit}</p>
+            <p class="mobile-gallery-number">${category.number} / <span data-i18n="category.${category.id}.label">${escape(category.label)}</span></p>
+            <div class="mobile-gallery-title-row"><h3 id="mobile-gallery-title-${category.number}" data-i18n="category.${category.id}.title">${escape(category.title)}</h3></div>
+            <p class="mobile-gallery-description" data-i18n="category.${category.id}.short">${escape(category.description)}</p>
+            <p class="mobile-gallery-count" data-i18n="gallery.count.${category.unit}" data-i18n-count="${category.count}">${category.count} ${category.unit}</p>
           </div>
         </a>`;
 }).join('\n');

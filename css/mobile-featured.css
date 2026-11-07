@@ -216,7 +216,10 @@
     margin-top: 12px;
   }
   .featured-caption { flex: 1; min-width: 0; min-height: 44px; }
+  /* Title and subtitle wrap (up to two lines each) rather than being cut
+     off on narrow screens or when zoomed in. */
   .featured-title {
+    display: -webkit-box;
     margin: 0 0 5px;
     overflow: hidden;
     font-size: 10px;
@@ -224,17 +227,20 @@
     line-height: 1.5;
     letter-spacing: .18em;
     text-transform: uppercase;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     color: var(--m-accent);
   }
   .featured-subtitle {
+    display: -webkit-box;
     margin: 0;
     overflow: hidden;
     font-size: 15px;
     line-height: 1.4;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     color: var(--m-text);
   }
   .featured-count {

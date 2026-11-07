@@ -401,7 +401,7 @@ body.pub-immersive-open {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  min-height: 2.25rem;
+  min-height: var(--hit);
   padding: 0 0.95rem 0 0.75rem;
   border: 1px solid var(--pub-hairline);
   border-radius: 999px;
@@ -474,14 +474,15 @@ body.pub-immersive-open {
 }
 
 .pub-zoom .pub-icon-btn {
-  width: 1.95rem;
-  height: 1.95rem;
+  width: var(--hit);
+  height: var(--hit);
   border-color: transparent;
   background: transparent;
 }
 
 .pub-zoom-level {
   min-width: 3.1rem;
+  min-height: var(--hit);
   padding: 0.3rem 0.2rem;
   border: 0;
   background: transparent;
@@ -501,8 +502,8 @@ body.pub-immersive-open {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: var(--hit);
+  height: var(--hit);
   border: 1px solid var(--pub-hairline);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.03);
@@ -866,8 +867,8 @@ body.pub-immersive-open {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: var(--hit);
+  height: var(--hit);
   border: 0;
   border-radius: 50%;
   background: transparent;
@@ -924,7 +925,7 @@ body.pub-immersive-open {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  min-height: 2.25rem;
+  min-height: var(--hit);
   padding: 0 0.85rem;
   border: 1px solid var(--pub-hairline);
   border-radius: 999px;
@@ -1065,8 +1066,8 @@ body.pub-immersive-open {
   }
 
   .pub-back-btn {
-    width: 2.5rem;
-    min-height: 2.5rem;
+    width: var(--hit);
+    min-height: var(--hit);
     padding: 0;
     justify-content: center;
   }
@@ -1083,8 +1084,8 @@ body.pub-immersive-open {
 
   .pub-icon-btn,
   .pub-nav-btn {
-    width: 2.6rem;
-    height: 2.6rem;
+    width: var(--hit);
+    height: var(--hit);
   }
 
   .pub-turn {

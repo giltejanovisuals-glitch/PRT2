@@ -16,9 +16,17 @@
  * missing is dropped, and a thumbnail that doesn't exist is left out.
  *
  * Entry shape:
- *   { title, group, kind, description, keywords: [], url, thumb?, logo? }
+ *   { id, title, group, kind, description, keywords: [], url, thumb?, logo?, l10n? }
  * `group` is projects | brands | capabilities | tools | sections; `url` is
  * relative to the site root (page, optionally with a #section).
+ *
+ * The index itself stays English. `l10n` names the data/locales keys that
+ * translate an entry — { title, description, kind, body, keywords } or, for
+ * publications, `parts` joined with " · " — so js/search.js can show and
+ * match it in the visitor's language while the English stays searchable.
+ * Keys come from `search.entry.<id>.<field>`, an explicit `descriptionKey`,
+ * or any en.json string identical to the English (so a section reuses its
+ * heading's translation); only keys that exist in en.json are written.
  */
 const fs = require("fs");
 const path = require("path");
@@ -48,6 +56,28 @@ const unique = (list) => [...new Set(list.map((item) => String(item).trim().toLo
 
 const content = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "search-content.json"), "utf8"));
 const aliases = content.aliases || {};
+
+// --- Translation keys (data/locales/en.json) --------------------------------------
+const en = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "locales", "en.json"), "utf8"));
+const slug = (text) => String(text || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+const keyIf = (key) => (key && typeof en[key] === "string" ? key : undefined);
+// An existing translation of the very same English string.
+const byValue = new Map();
+Object.keys(en)
+  .filter((key) => !key.startsWith("_meta.") && !/\{\w+\}/.test(en[key]) && !key.startsWith("featured."))
+  .sort((a, b) => Number(!a.startsWith("search.")) - Number(!b.startsWith("search.")))
+  .forEach((key) => {
+    if (!byValue.has(en[key])) byValue.set(en[key], key);
+  });
+const valueKey = (value) => (value ? byValue.get(value) : undefined);
+const kindKey = (kind) => keyIf(`search.kind.${slug(kind)}`) || keyIf(`term.${slug(kind)}`);
+const compact = (object) => {
+  const out = {};
+  Object.keys(object).forEach((key) => {
+    if (object[key] !== undefined) out[key] = object[key];
+  });
+  return Object.keys(out).length ? out : undefined;
+};
 const data = readWindowData(
   "gallery-categories-data.js",
   "publication-manifest.js",
@@ -62,6 +92,14 @@ const previews = data.HOME_GALLERY_PREVIEWS || {};
 (data.GALLERY_CATEGORIES || []).forEach((category) => {
   const url = `pages/${category.id}.html`;
   entries.push({
+    id: `collection-${category.id}`,
+    l10n: compact({
+      title: keyIf(`category.${category.id}.title`),
+      description: keyIf(`category.${category.id}.${category.lede ? "lede" : "intro"}`),
+      body: keyIf(`category.${category.id}.intro`),
+      kind: kindKey("Gallery collection"),
+      keywords: keyIf(`search.collection.${category.id}.keywords`),
+    }),
     title: category.title,
     group: "projects",
     kind: "Gallery collection",
@@ -84,6 +122,11 @@ const meta = data.PUBLICATION_META || {};
   if (!info || !info.title) return;
   const url = "pages/editorial-layout.html";
   entries.push({
+    id: `publication-${slug(publication.file.replace(/\.pdf$/i, ""))}`,
+    l10n: compact({
+      kind: kindKey(info.type || "Publication"),
+      parts: [info.brand, info.year, publication.pageCount && { key: "pub.pages", count: publication.pageCount }].filter(Boolean),
+    }),
     title: info.title,
     group: "projects",
     kind: info.type || "Publication",
@@ -96,7 +139,18 @@ const meta = data.PUBLICATION_META || {};
 });
 
 // --- Hand-authored entries -------------------------------------------------------
-(content.entries || []).forEach((entry) => entries.push({ ...entry }));
+(content.entries || []).forEach((entry) => {
+  const { descriptionKey, ...rest } = entry;
+  entries.push({
+    ...rest,
+    l10n: compact({
+      title: keyIf(`search.entry.${entry.id}.title`) || valueKey(entry.title),
+      description: keyIf(descriptionKey) || keyIf(`search.entry.${entry.id}.description`) || valueKey(entry.description),
+      kind: kindKey(entry.kind),
+      keywords: keyIf(`search.entry.${entry.id}.keywords`),
+    }),
+  });
+});
 
 // --- Validate and write -----------------------------------------------------------
 const index = [];
@@ -108,6 +162,7 @@ entries.forEach((entry) => {
     return;
   }
   const out = {
+    id: entry.id || slug(`${entry.group}-${entry.title}`),
     title: entry.title,
     group: entry.group,
     kind: entry.kind || "",
@@ -116,6 +171,7 @@ entries.forEach((entry) => {
     url: entry.url,
   };
   if (entry.body) out.body = entry.body;
+  if (entry.l10n) out.l10n = entry.l10n;
   if (exists(entry.thumb)) {
     out.thumb = entry.thumb;
     if (/\/brands\//.test(entry.thumb)) out.logo = true; // ink logos: inverted in dark mode
@@ -123,7 +179,12 @@ entries.forEach((entry) => {
   index.push(out);
 });
 
-const shortcuts = (content.shortcuts || []).filter((shortcut) => exists(shortcut.url));
+const shortcuts = (content.shortcuts || [])
+  .filter((shortcut) => exists(shortcut.url))
+  .map((shortcut) => {
+    const l10n = compact({ title: valueKey(shortcut.title), kind: kindKey(shortcut.kind) });
+    return l10n ? { ...shortcut, l10n } : shortcut;
+  });
 
 fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
 const json = JSON.stringify({ shortcuts, entries: index }, null, 1);

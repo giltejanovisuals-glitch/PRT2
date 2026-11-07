@@ -106,6 +106,12 @@
   const stackOf = (side) => slotEls[side].querySelector(".pub-stack");
   const castOf = (side) => slotEls[side].querySelector(".pub-cast");
 
+  // Text in the active language (js/i18n.js); types are English data terms.
+  const I18N = window.i18n;
+  const t = (key, vars, fallback) => (I18N ? I18N.t(key, vars, fallback) : fallback);
+  const term = (english) => (I18N ? I18N.term(english) : english);
+  const pagesText = (n) => (I18N ? I18N.plural("pub.pages", n) : `${n} pages`);
+
   const showShelfMessage = (message) => {
     els.shelf.innerHTML = "";
     const p = document.createElement("p");
@@ -117,17 +123,16 @@
 
   const showLoadError = (kind, error, url) => {
     const messages = {
-      "manifest-missing": "The publication manifest could not be loaded. Run npm run build to regenerate it.",
-      "manifest-empty": "No publications are available. Add optimized PDFs and run npm run build to regenerate the manifest.",
-      "pdfjs-module": "The PDF preview module could not be loaded. Check the local PDF.js vendor files and run npm run build.",
-      "pdf-worker": "The PDF worker could not be loaded. Check the local PDF.js worker file and run npm run build.",
-      "pdf-404": "This publication could not be loaded. Check that the PDF exists in the publication folder and run npm run build.",
-      "pdf-too-large": "This PDF is larger than the recommended web preview limit. Use Download PDF while the preview asset is optimized.",
-      "pdf-parse": "This publication could not be parsed. Check the PDF file and run npm run build to regenerate its manifest.",
-      "cover-missing": "This publication cover could not be loaded. Run npm run build to regenerate its cover.",
-      "page-render": "This page could not be rendered. Try another page or download the PDF.",
-      "file-protocol":
-        "Browsers block PDF previews on pages opened straight from disk. Run npm run dev and open http://localhost:3000/pages/editorial-layout.html instead.",
+      "manifest-missing": "pub.err.manifestMissing",
+      "manifest-empty": "pub.err.manifestEmpty",
+      "pdfjs-module": "pub.err.pdfjsModule",
+      "pdf-worker": "pub.err.pdfWorker",
+      "pdf-404": "pub.err.pdf404",
+      "pdf-too-large": "pub.err.pdfTooLarge",
+      "pdf-parse": "pub.err.pdfParse",
+      "cover-missing": "pub.err.coverMissing",
+      "page-render": "pub.err.pageRender",
+      "file-protocol": "pub.err.fileProtocol",
     };
     console.error(`[publication-reader] ${kind}`, { url, error });
     setLoading(false);
@@ -135,7 +140,7 @@
     els.empty?.classList.add("is-active");
     els.empty?.setAttribute("aria-hidden", "false");
     const text = els.empty?.querySelector("p");
-    const message = messages[kind] || "This publication could not be loaded.";
+    const message = t(messages[kind] || "pub.err.default", null, "This publication could not be loaded.");
     if (text) text.textContent = message;
     if (els.srStatus) els.srStatus.textContent = message;
   };
@@ -167,7 +172,7 @@
   const meta = window.PUBLICATION_META || {};
 
   if (manifestMissing) {
-    showShelfMessage("The publication manifest could not be loaded. Run npm run build to regenerate it.");
+    showShelfMessage(t("pub.err.manifestMissing", null, "The publication manifest could not be loaded. Run npm run build to regenerate it."));
     return;
   }
 
@@ -180,7 +185,7 @@
       const src = base[i % base.length];
       return {
         isPlaceholder: true,
-        title: src.type || category.title || "Untitled",
+        title: src.type || category.title || t("pub.untitled", null, "Untitled"),
         brand: src.brand && src.brand !== "Client Name" ? src.brand : "",
         type: src.type || "",
         year: src.year || "",
@@ -218,7 +223,7 @@
         ratio: dominantRatio(item.pages),
         orientation: item.dominantOrientation,
         fileSizeBytes: item.fileSizeBytes,
-        title: info.title || item.title || "Untitled",
+        title: info.title || item.title || t("pub.untitled", null, "Untitled"),
         brand: info.brand || "",
         type: info.type || "",
         year: info.year || "",
@@ -233,27 +238,53 @@
   const realCount = publications.filter((p) => !p.isPlaceholder).length;
 
   if (!total) {
-    showShelfMessage("Add a PDF to assets/documents/editorial-layout/ to open it here.");
+    showShelfMessage(t("pub.emptyHint", null, "Add a PDF to assets/documents/editorial-layout/ to open it here."));
     return;
   }
 
   // --- Library: one 3D book per publication, side by side ---
 
   const orientationLabel = (o) => {
-    if (o === "landscape") return "Landscape";
-    if (o === "square") return "Square";
-    if (o === "mixed") return "Mixed";
-    return "Portrait";
+    const key = ["landscape", "square", "mixed"].includes(o) ? o : "portrait";
+    return t(`pub.orientation.${key}`, null, key.charAt(0).toUpperCase() + key.slice(1));
   };
+  const archiveCountText = () =>
+    realCount ? (I18N ? I18N.plural("pub.count", realCount, { count: String(realCount).padStart(2, "0") }) : `${String(realCount).padStart(2, "0")} Publications`) : "";
+  const bookLabel = (pub) =>
+    pub.isPlaceholder
+      ? t("pub.placeholder", { title: pub.title }, `${pub.title} — placeholder, add a PDF to preview it`)
+      : t("pub.openLabel", { name: [pub.brand, pub.title, term(pub.type)].filter(Boolean).join(" ") }, ["Open", pub.brand, pub.title, pub.type].filter(Boolean).join(" "));
+  const bookMeta = (pub) => [term(pub.type), pub.year, pub.pageCount ? pagesText(pub.pageCount) : "", orientationLabel(pub.orientation)].filter(Boolean).join(" · ");
 
   const bookCards = [];
 
-  const buildShelf = () => {
-    if (els.archiveCount) {
-      els.archiveCount.textContent = realCount
-        ? `${String(realCount).padStart(2, "0")} Publication${realCount === 1 ? "" : "s"}`
-        : "";
+  I18N?.onChange(() => {
+    if (els.archiveCount) els.archiveCount.textContent = archiveCountText();
+    bookCards.forEach((btn) => {
+      const pub = publications[Number(btn.dataset.index)];
+      if (!pub) return;
+      btn.setAttribute("aria-label", bookLabel(pub));
+      const meta = btn.querySelector(".pub-book-meta");
+      if (meta) meta.textContent = bookMeta(pub);
+      const open = btn.querySelector(".pub-book-open");
+      if (open) open.textContent = t("pub.open", null, "Open");
+      const missing = btn.querySelector(".pub-book-cover.is-missing");
+      if (missing) missing.textContent = t("pub.coverUnavailable", null, "Cover unavailable");
+    });
+    fullscreenLabel();
+    if (els.thumbTrack) {
+      els.thumbTrack.querySelectorAll(".pub-thumb[data-page]").forEach((thumb) => {
+        thumb.setAttribute("aria-label", t("pub.goToPage", { page: thumb.dataset.page }, `Go to page ${thumb.dataset.page}`));
+      });
     }
+    if (activePub) {
+      updateInfo(activePub, activePub.index);
+      afterChange();
+    }
+  });
+
+  const buildShelf = () => {
+    if (els.archiveCount) els.archiveCount.textContent = archiveCountText();
 
     publications.forEach((pub, i) => {
       const btn = document.createElement("button");
@@ -268,13 +299,8 @@
       const spineWidth = pub.pageCount ? Math.max(5, Math.min(18, Math.round(pub.pageCount / 5))) : 8;
       btn.style.setProperty("--book-spine", `${spineWidth}px`);
 
-      if (pub.isPlaceholder) {
-        btn.disabled = true;
-        btn.setAttribute("aria-label", `${pub.title} — placeholder, add a PDF to preview it`);
-      } else {
-        const label = ["Open", pub.brand, pub.title, pub.type].filter(Boolean).join(" ");
-        btn.setAttribute("aria-label", label);
-      }
+      if (pub.isPlaceholder) btn.disabled = true;
+      btn.setAttribute("aria-label", bookLabel(pub));
 
       const figure = document.createElement("span");
       figure.className = "pub-book-figure";
@@ -308,7 +334,7 @@
         img.decoding = "async";
         img.onerror = () => {
           console.error("[publication-reader] cover-missing", { url: pub.cover });
-          cover.textContent = "Cover unavailable";
+          cover.textContent = t("pub.coverUnavailable", null, "Cover unavailable");
           cover.classList.add("is-missing");
         };
         cover.appendChild(img);
@@ -324,7 +350,7 @@
         const openTag = document.createElement("span");
         openTag.className = "pub-book-open";
         openTag.setAttribute("aria-hidden", "true");
-        openTag.textContent = "Open";
+        openTag.textContent = t("pub.open", null, "Open");
         figure.appendChild(openTag);
       }
 
@@ -353,9 +379,7 @@
       if (!pub.isPlaceholder) {
         const metaEl = document.createElement("span");
         metaEl.className = "pub-book-meta";
-        metaEl.textContent = [pub.type, pub.year, pub.pageCount ? `${pub.pageCount} pages` : "", orientationLabel(pub.orientation)]
-          .filter(Boolean)
-          .join(" · ");
+        metaEl.textContent = bookMeta(pub);
         caption.appendChild(metaEl);
         btn.addEventListener("click", () => openReader(pub.index));
       }
@@ -1060,8 +1084,10 @@
       els.progressBar.style.width = `${pct}%`;
     }
     if (els.srStatus) {
-      const label = nums.length === 2 ? `pages ${nums[0]} and ${nums[1]}` : `page ${nums[0]}`;
-      els.srStatus.textContent = `${activePub.title}, ${label} of ${activePub.pageCount}`;
+      els.srStatus.textContent =
+        nums.length === 2
+          ? t("pub.spreadStatus", { title: activePub.title, first: nums[0], second: nums[1], total: activePub.pageCount }, `${activePub.title}, pages ${nums[0]} and ${nums[1]} of ${activePub.pageCount}`)
+          : t("pub.pageStatus", { title: activePub.title, page: nums[0], total: activePub.pageCount }, `${activePub.title}, page ${nums[0]} of ${activePub.pageCount}`);
     }
     setActiveThumbs(nums);
     prefetchAround();
@@ -1289,9 +1315,11 @@
     else els.immersive.requestFullscreen?.().catch(() => {});
   };
   els.fullscreenBtn?.addEventListener("click", toggleFullscreen);
+  const fullscreenLabel = () =>
+    els.fullscreenBtn?.setAttribute("aria-label", document.fullscreenElement ? t("pub.fullscreenExit", null, "Exit fullscreen") : t("pub.fullscreenEnter", null, "Enter fullscreen"));
   document.addEventListener("fullscreenchange", () => {
     const on = Boolean(document.fullscreenElement);
-    els.fullscreenBtn?.setAttribute("aria-label", on ? "Exit fullscreen" : "Enter fullscreen");
+    fullscreenLabel();
     els.fullscreenBtn?.classList.toggle("is-active", on);
     relayout();
   });
@@ -1326,7 +1354,7 @@
       btn.type = "button";
       btn.className = "pub-thumb";
       btn.dataset.page = String(n);
-      btn.setAttribute("aria-label", `Go to page ${n}`);
+      btn.setAttribute("aria-label", t("pub.goToPage", { page: n }, `Go to page ${n}`));
       const info = pub.pages && pub.pages[n - 1];
       btn.style.setProperty("--pub-thumb-ar", String(info ? info.width / info.height : pub.ratio));
       // Pair thumbnails visually the way the spreads pair (cover alone).
@@ -1386,7 +1414,7 @@
       els.infoIndex.textContent = `${String(index + 1).padStart(2, "0")} / ${String(realCount).padStart(2, "0")}`;
     }
     els.infoTitle.textContent = pub.title;
-    els.infoSubline.textContent = [pub.brand, pub.type, pub.year, `${pub.pageCount} pages`].filter(Boolean).join(" · ");
+    els.infoSubline.textContent = [pub.brand, term(pub.type), pub.year, pagesText(pub.pageCount)].filter(Boolean).join(" · ");
 
     if (els.infoDownload) {
       if (pub.downloadAllowed) {

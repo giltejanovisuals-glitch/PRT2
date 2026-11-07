@@ -47,27 +47,38 @@ window.createReelViewer = (entries, { formatDuration, closeTo } = {}) => {
   const icon = (path) =>
     `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="${path}"></path></svg>`;
 
+  // Labels in the active language (js/i18n.js).
+  const t = (key, vars, fallback) => (window.i18n ? window.i18n.t(key, vars, fallback) : fallback);
+  const labelOf = (entry) => (entry.reelNumber ? t("showcase.reelNumber", { number: entry.reelNumber }, entry.label) : entry.label || entry.title);
+  const applyLabels = () => {
+    el.setAttribute("aria-label", t("reel.viewer", null, "Reel viewer"));
+    el.querySelector(".reel-viewer-close").setAttribute("aria-label", t("reel.close", null, "Close video"));
+    el.querySelector(".reel-viewer-prev").setAttribute("aria-label", t("reel.prev", null, "Previous reel"));
+    el.querySelector(".reel-viewer-next").setAttribute("aria-label", t("reel.next", null, "Next reel"));
+  };
+
   const build = () => {
     el = document.createElement("div");
     el.className = "reel-viewer";
     el.hidden = true;
     el.setAttribute("role", "dialog");
     el.setAttribute("aria-modal", "true");
-    el.setAttribute("aria-label", "Reel viewer");
     el.innerHTML = `
       <div class="reel-viewer-top">
         <p class="reel-viewer-title"></p>
-        <button class="reel-viewer-btn reel-viewer-close" type="button" aria-label="Close video">${icon("M6 6l12 12M18 6L6 18")}</button>
+        <button class="reel-viewer-btn reel-viewer-close" type="button">${icon("M6 6l12 12M18 6L6 18")}</button>
       </div>
       <div class="reel-viewer-stage">
         <video class="reel-viewer-video" controls playsinline preload="none"></video>
       </div>
       <div class="reel-viewer-bottom">
-        <button class="reel-viewer-btn reel-viewer-prev" type="button" aria-label="Previous reel">${icon("M15 18l-6-6 6-6")}</button>
+        <button class="reel-viewer-btn reel-viewer-prev" type="button">${icon("M15 18l-6-6 6-6")}</button>
         <p class="reel-viewer-counter" aria-live="polite"><span class="reel-viewer-current">01</span><span class="reel-viewer-total"> / ${pad(entries.length)}</span></p>
-        <button class="reel-viewer-btn reel-viewer-next" type="button" aria-label="Next reel">${icon("M9 6l6 6-6 6")}</button>
+        <button class="reel-viewer-btn reel-viewer-next" type="button">${icon("M9 6l6 6-6 6")}</button>
       </div>`;
     body.appendChild(el);
+    applyLabels();
+    window.i18n?.onChange(applyLabels);
 
     video = el.querySelector("video");
     video.setAttribute("controlsList", "nodownload noplaybackrate noremoteplayback");
@@ -129,7 +140,7 @@ window.createReelViewer = (entries, { formatDuration, closeTo } = {}) => {
     video.src = entry.src;
     video.setAttribute(
       "aria-label",
-      `${entry.label || entry.title}${entry.brand ? `, ${entry.brand}` : ""}${entry.duration && formatDuration ? `, ${formatDuration(entry.duration)}` : ""}`
+      `${labelOf(entry)}${entry.brand ? `, ${entry.brand}` : ""}${entry.duration && formatDuration ? `, ${formatDuration(entry.duration)}` : ""}`
     );
 
     // Only hand-written brand/title text — empty when the reel has none.

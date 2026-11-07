@@ -7,31 +7,52 @@ window.SEARCH_INDEX = {
   {
    "title": "Selected Work",
    "kind": "Section",
-   "url": "index.html#main-content"
+   "url": "index.html#main-content",
+   "l10n": {
+    "title": "search.entry.selected-work.title",
+    "kind": "search.kind.section"
+   }
   },
   {
    "title": "Project Gallery",
    "kind": "Section",
-   "url": "index.html#gallery"
+   "url": "index.html#gallery",
+   "l10n": {
+    "title": "gallery.title",
+    "kind": "search.kind.section"
+   }
   },
   {
    "title": "Editorial & Layout Design",
    "kind": "Gallery collection",
-   "url": "pages/editorial-layout.html"
+   "url": "pages/editorial-layout.html",
+   "l10n": {
+    "title": "category.editorial-layout.title",
+    "kind": "search.kind.gallery-collection"
+   }
   },
   {
    "title": "Commercial & Lifestyle Photography",
    "kind": "Gallery collection",
-   "url": "pages/commercial-lifestyle-photography.html"
+   "url": "pages/commercial-lifestyle-photography.html",
+   "l10n": {
+    "title": "category.commercial-lifestyle-photography.title",
+    "kind": "search.kind.gallery-collection"
+   }
   },
   {
    "title": "Contact",
    "kind": "Section",
-   "url": "index.html#contact"
+   "url": "index.html#contact",
+   "l10n": {
+    "title": "nav.contact",
+    "kind": "search.kind.section"
+   }
   }
  ],
  "entries": [
   {
+   "id": "collection-editorial-layout",
    "title": "Editorial & Layout Design",
    "group": "projects",
    "kind": "Gallery collection",
@@ -60,9 +81,17 @@ window.SEARCH_INDEX = {
    ],
    "url": "pages/editorial-layout.html",
    "body": "Editorial systems that organize product and brand storytelling into clear, well-paced layouts — grid, typography, hierarchy, and composition built to hold up across long-form print and digital documents.",
+   "l10n": {
+    "title": "category.editorial-layout.title",
+    "description": "category.editorial-layout.lede",
+    "body": "category.editorial-layout.intro",
+    "kind": "search.kind.gallery-collection",
+    "keywords": "search.collection.editorial-layout.keywords"
+   },
    "thumb": "assets/images/home-previews/editorial-layout/dunlopillo-suite-mattress-catalogue-2026-web-page-01-3av.webp"
   },
   {
+   "id": "collection-social-media-campaigns",
    "title": "Social Media Campaigns & Key Visuals",
    "group": "projects",
    "kind": "Gallery collection",
@@ -96,9 +125,17 @@ window.SEARCH_INDEX = {
    ],
    "url": "pages/social-media-campaigns.html",
    "body": "Campaign key visuals developed into complete social systems — feed, stories, paid social, and launch content — giving products, promotions, and brand stories one clear, consistent presence across digital platforms.",
+   "l10n": {
+    "title": "category.social-media-campaigns.title",
+    "description": "category.social-media-campaigns.lede",
+    "body": "category.social-media-campaigns.intro",
+    "kind": "search.kind.gallery-collection",
+    "keywords": "search.collection.social-media-campaigns.keywords"
+   },
    "thumb": "assets/images/home-previews/social-media-campaigns/1-feather-recliner-v2-11prl.webp"
   },
   {
+   "id": "collection-print-brand-collateral",
    "title": "Print & Brand Collateral",
    "group": "projects",
    "kind": "Gallery collection",
@@ -137,9 +174,17 @@ window.SEARCH_INDEX = {
    ],
    "url": "pages/print-brand-collateral.html",
    "body": "Brochures, sales materials, stationery, and branded print built to carry a brand consistently off-screen — from billboards and vehicle wraps to pieces held in hand, designed with the same rigor as any digital touchpoint.",
+   "l10n": {
+    "title": "category.print-brand-collateral.title",
+    "description": "category.print-brand-collateral.lede",
+    "body": "category.print-brand-collateral.intro",
+    "kind": "search.kind.gallery-collection",
+    "keywords": "search.collection.print-brand-collateral.keywords"
+   },
    "thumb": "assets/images/home-previews/print-brand-collateral/mockup-edsa-wall-mural-3kcha.webp"
   },
   {
+   "id": "collection-commercial-lifestyle-photography",
    "title": "Commercial & Lifestyle Photography",
    "group": "projects",
    "kind": "Gallery collection",
@@ -170,9 +215,17 @@ window.SEARCH_INDEX = {
    ],
    "url": "pages/commercial-lifestyle-photography.html",
    "body": "Product, showroom, and lifestyle photography, styled and art-directed for campaigns, catalogs, and retail environments — with consistent lighting, styling, and color across every shoot.",
+   "l10n": {
+    "title": "category.commercial-lifestyle-photography.title",
+    "description": "category.commercial-lifestyle-photography.lede",
+    "body": "category.commercial-lifestyle-photography.intro",
+    "kind": "search.kind.gallery-collection",
+    "keywords": "search.collection.commercial-lifestyle-photography.keywords"
+   },
    "thumb": "assets/images/home-previews/commercial-lifestyle-photography/bw-2025-02-8vhg.webp"
   },
   {
+   "id": "collection-short-form-video-reels",
    "title": "Short-Form Video & Reels",
    "group": "projects",
    "kind": "Gallery collection",
@@ -199,9 +252,17 @@ window.SEARCH_INDEX = {
    ],
    "url": "pages/short-form-video-reels.html",
    "body": "Reels, TikToks, and short-form video content built for fast-paced social feeds and campaign launches.",
+   "l10n": {
+    "title": "category.short-form-video-reels.title",
+    "description": "category.short-form-video-reels.lede",
+    "body": "category.short-form-video-reels.intro",
+    "kind": "search.kind.gallery-collection",
+    "keywords": "search.collection.short-form-video-reels.keywords"
+   },
    "thumb": "assets/images/home-previews/short-form-video-reels/02-hooga-dec-2dew.webp"
   },
   {
+   "id": "publication-dunlopillo-suite-mattress-catalogue-2026-web",
    "title": "Dunlopillo Suite Mattress Catalogue",
    "group": "projects",
    "kind": "Product Catalogue",
@@ -218,9 +279,21 @@ window.SEARCH_INDEX = {
     "and production preparation."
    ],
    "url": "pages/editorial-layout.html",
+   "l10n": {
+    "kind": "term.product-catalogue",
+    "parts": [
+     "Dunlopillo",
+     "2026",
+     {
+      "key": "pub.pages",
+      "count": 21
+     }
+    ]
+   },
    "thumb": "assets/documents/editorial-layout/covers/dunlopillo-suite-mattress-catalogue-2026-web.jpg"
   },
   {
+   "id": "publication-endo-sync-5-catalogue-web",
    "title": "Sync 5 Lighting Catalogue",
    "group": "projects",
    "kind": "Product Catalogue",
@@ -237,9 +310,21 @@ window.SEARCH_INDEX = {
     "and image sequencing."
    ],
    "url": "pages/editorial-layout.html",
+   "l10n": {
+    "kind": "term.product-catalogue",
+    "parts": [
+     "Endo",
+     "2026",
+     {
+      "key": "pub.pages",
+      "count": 29
+     }
+    ]
+   },
    "thumb": "assets/documents/editorial-layout/covers/endo-sync-5-catalogue-web.jpg"
   },
   {
+   "id": "publication-hooga-archive-catalogue-2026-web",
    "title": "Hooga Archive Catalogue",
    "group": "projects",
    "kind": "Product Catalogue",
@@ -257,9 +342,21 @@ window.SEARCH_INDEX = {
     "and production preparation."
    ],
    "url": "pages/editorial-layout.html",
+   "l10n": {
+    "kind": "term.product-catalogue",
+    "parts": [
+     "Hooga",
+     "2026",
+     {
+      "key": "pub.pages",
+      "count": 63
+     }
+    ]
+   },
    "thumb": "assets/documents/editorial-layout/covers/hooga-archive-catalogue-2026-web.jpg"
   },
   {
+   "id": "publication-hooga-dining-collection-2026-web",
    "title": "Hooga Dining Collection",
    "group": "projects",
    "kind": "Collection Catalogue",
@@ -276,9 +373,21 @@ window.SEARCH_INDEX = {
     "and image sequencing."
    ],
    "url": "pages/editorial-layout.html",
+   "l10n": {
+    "kind": "term.collection-catalogue",
+    "parts": [
+     "Hooga",
+     "2026",
+     {
+      "key": "pub.pages",
+      "count": 43
+     }
+    ]
+   },
    "thumb": "assets/documents/editorial-layout/covers/hooga-dining-collection-2026-web.jpg"
   },
   {
+   "id": "publication-hooga-living-room-collection-2026-web",
    "title": "Hooga Living Room Collection",
    "group": "projects",
    "kind": "Collection Catalogue",
@@ -295,9 +404,21 @@ window.SEARCH_INDEX = {
     "and image sequencing."
    ],
    "url": "pages/editorial-layout.html",
+   "l10n": {
+    "kind": "term.collection-catalogue",
+    "parts": [
+     "Hooga",
+     "2026",
+     {
+      "key": "pub.pages",
+      "count": 43
+     }
+    ]
+   },
    "thumb": "assets/documents/editorial-layout/covers/hooga-living-room-collection-2026-web.jpg"
   },
   {
+   "id": "publication-hooga-storage-display-collection-2026-web",
    "title": "Hooga Storage and Display Collection",
    "group": "projects",
    "kind": "Collection Catalogue",
@@ -314,9 +435,21 @@ window.SEARCH_INDEX = {
     "and image sequencing."
    ],
    "url": "pages/editorial-layout.html",
+   "l10n": {
+    "kind": "term.collection-catalogue",
+    "parts": [
+     "Hooga",
+     "2026",
+     {
+      "key": "pub.pages",
+      "count": 12
+     }
+    ]
+   },
    "thumb": "assets/documents/editorial-layout/covers/hooga-storage-display-collection-2026-web.jpg"
   },
   {
+   "id": "publication-porta-brand-book-web",
    "title": "Porta Brand Book",
    "group": "projects",
    "kind": "Brand Book",
@@ -334,9 +467,21 @@ window.SEARCH_INDEX = {
     "and production preparation."
    ],
    "url": "pages/editorial-layout.html",
+   "l10n": {
+    "kind": "term.brand-book",
+    "parts": [
+     "Porta Mobili",
+     "2026",
+     {
+      "key": "pub.pages",
+      "count": 34
+     }
+    ]
+   },
    "thumb": "assets/documents/editorial-layout/covers/porta-brand-book-web.jpg"
   },
   {
+   "id": "publication-porta-mobili-brand-deck-web",
    "title": "Porta Mobili Brand Deck",
    "group": "projects",
    "kind": "Brand Presentation",
@@ -353,9 +498,21 @@ window.SEARCH_INDEX = {
     "and visual storytelling."
    ],
    "url": "pages/editorial-layout.html",
+   "l10n": {
+    "kind": "term.brand-presentation",
+    "parts": [
+     "Porta Mobili",
+     "2026",
+     {
+      "key": "pub.pages",
+      "count": 82
+     }
+    ]
+   },
    "thumb": "assets/documents/editorial-layout/covers/porta-mobili-brand-deck-web.jpg"
   },
   {
+   "id": "selected-work",
    "title": "Selected Work",
    "group": "sections",
    "kind": "Section",
@@ -367,9 +524,16 @@ window.SEARCH_INDEX = {
     "projects",
     "home"
    ],
-   "url": "index.html#main-content"
+   "url": "index.html#main-content",
+   "l10n": {
+    "title": "search.entry.selected-work.title",
+    "description": "search.entry.selected-work.description",
+    "kind": "search.kind.section",
+    "keywords": "search.entry.selected-work.keywords"
+   }
   },
   {
+   "id": "project-gallery",
    "title": "Project Gallery",
    "group": "sections",
    "kind": "Section",
@@ -380,9 +544,16 @@ window.SEARCH_INDEX = {
     "collections",
     "work"
    ],
-   "url": "index.html#gallery"
+   "url": "index.html#gallery",
+   "l10n": {
+    "title": "gallery.title",
+    "description": "search.entry.project-gallery.description",
+    "kind": "search.kind.section",
+    "keywords": "search.entry.project-gallery.keywords"
+   }
   },
   {
+   "id": "about",
    "title": "About Me",
    "group": "sections",
    "kind": "Section",
@@ -394,9 +565,16 @@ window.SEARCH_INDEX = {
     "designer",
     "gil tejano culas"
    ],
-   "url": "index.html#about"
+   "url": "index.html#about",
+   "l10n": {
+    "title": "search.entry.about.title",
+    "description": "search.entry.about.description",
+    "kind": "search.kind.section",
+    "keywords": "search.entry.about.keywords"
+   }
   },
   {
+   "id": "capabilities",
    "title": "Creative Capabilities",
    "group": "sections",
    "kind": "Section",
@@ -407,9 +585,16 @@ window.SEARCH_INDEX = {
     "skills",
     "expertise"
    ],
-   "url": "index.html#capabilities"
+   "url": "index.html#capabilities",
+   "l10n": {
+    "title": "cap.title",
+    "description": "search.entry.capabilities.description",
+    "kind": "search.kind.section",
+    "keywords": "search.entry.capabilities.keywords"
+   }
   },
   {
+   "id": "creative-dock",
    "title": "My Creative Dock",
    "group": "sections",
    "kind": "Section",
@@ -421,9 +606,16 @@ window.SEARCH_INDEX = {
     "toolkit",
     "creative dock"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "title": "dock.title",
+    "description": "search.entry.creative-dock.description",
+    "kind": "search.kind.section",
+    "keywords": "search.entry.creative-dock.keywords"
+   }
   },
   {
+   "id": "creative-timeline",
    "title": "Creative Timeline",
    "group": "sections",
    "kind": "Section",
@@ -437,10 +629,17 @@ window.SEARCH_INDEX = {
     "cv",
     "work history"
    ],
-   "url": "index.html#creative-timeline"
+   "url": "index.html#creative-timeline",
+   "l10n": {
+    "title": "tl.title",
+    "description": "search.entry.creative-timeline.description",
+    "kind": "search.kind.section",
+    "keywords": "search.entry.creative-timeline.keywords"
+   }
   },
   {
-   "title": "Brands I've Supported",
+   "id": "supported-brands",
+   "title": "Brands I’ve Supported",
    "group": "sections",
    "kind": "Section",
    "description": "Furniture, lighting, bedding, and lifestyle brands.",
@@ -449,9 +648,16 @@ window.SEARCH_INDEX = {
     "clients",
     "supported brands"
    ],
-   "url": "index.html#supported-brands"
+   "url": "index.html#supported-brands",
+   "l10n": {
+    "title": "brands.title",
+    "description": "search.entry.supported-brands.description",
+    "kind": "search.kind.section",
+    "keywords": "search.entry.supported-brands.keywords"
+   }
   },
   {
+   "id": "foundation",
    "title": "Foundation",
    "group": "sections",
    "kind": "Section",
@@ -463,9 +669,16 @@ window.SEARCH_INDEX = {
     "foundation",
     "training"
    ],
-   "url": "index.html#foundation"
+   "url": "index.html#foundation",
+   "l10n": {
+    "title": "found.title",
+    "description": "search.entry.foundation.description",
+    "kind": "search.kind.section",
+    "keywords": "search.entry.foundation.keywords"
+   }
   },
   {
+   "id": "contact",
    "title": "Contact",
    "group": "sections",
    "kind": "Section",
@@ -478,9 +691,16 @@ window.SEARCH_INDEX = {
     "start a project",
     "quote"
    ],
-   "url": "index.html#contact"
+   "url": "index.html#contact",
+   "l10n": {
+    "title": "nav.contact",
+    "description": "search.entry.contact.description",
+    "kind": "search.kind.section",
+    "keywords": "search.entry.contact.keywords"
+   }
   },
   {
+   "id": "exp-metal-lite",
    "title": "Senior Graphic Designer / Creative Specialist — Metal-Lite",
    "group": "sections",
    "kind": "Experience",
@@ -493,9 +713,15 @@ window.SEARCH_INDEX = {
     "2025",
     "current"
    ],
-   "url": "index.html#creative-timeline"
+   "url": "index.html#creative-timeline",
+   "l10n": {
+    "title": "search.entry.exp-metal-lite.title",
+    "description": "search.entry.exp-metal-lite.description",
+    "kind": "search.kind.experience"
+   }
   },
   {
+   "id": "exp-gjf",
    "title": "Senior Graphic Designer — GJF Design and Printing",
    "group": "sections",
    "kind": "Experience",
@@ -507,9 +733,15 @@ window.SEARCH_INDEX = {
     "print production",
     "2024"
    ],
-   "url": "index.html#creative-timeline"
+   "url": "index.html#creative-timeline",
+   "l10n": {
+    "title": "search.entry.exp-gjf.title",
+    "description": "search.entry.exp-gjf.description",
+    "kind": "search.kind.experience"
+   }
   },
   {
+   "id": "exp-jams",
    "title": "Graphic Designer — JAMS Advertising",
    "group": "sections",
    "kind": "Experience",
@@ -521,9 +753,15 @@ window.SEARCH_INDEX = {
     "graphic designer",
     "2023"
    ],
-   "url": "index.html#creative-timeline"
+   "url": "index.html#creative-timeline",
+   "l10n": {
+    "title": "search.entry.exp-jams.title",
+    "description": "search.entry.exp-jams.description",
+    "kind": "search.kind.experience"
+   }
   },
   {
+   "id": "exp-sticker-runner",
    "title": "Graphic Designer — Sticker Runner",
    "group": "sections",
    "kind": "Experience",
@@ -535,9 +773,15 @@ window.SEARCH_INDEX = {
     "graphic designer",
     "2022"
    ],
-   "url": "index.html#creative-timeline"
+   "url": "index.html#creative-timeline",
+   "l10n": {
+    "title": "search.entry.exp-sticker-runner.title",
+    "description": "search.entry.exp-sticker-runner.description",
+    "kind": "search.kind.experience"
+   }
   },
   {
+   "id": "exp-jvp",
    "title": "Graphic Designer — JVP Innovation",
    "group": "sections",
    "kind": "Experience",
@@ -548,9 +792,15 @@ window.SEARCH_INDEX = {
     "2019",
     "2021"
    ],
-   "url": "index.html#creative-timeline"
+   "url": "index.html#creative-timeline",
+   "l10n": {
+    "title": "search.entry.exp-jvp.title",
+    "description": "search.entry.exp-jvp.description",
+    "kind": "search.kind.experience"
+   }
   },
   {
+   "id": "edu-cvsu",
    "title": "BS Information Technology — Cavite State University",
    "group": "sections",
    "kind": "Education",
@@ -562,9 +812,15 @@ window.SEARCH_INDEX = {
     "college",
     "university"
    ],
-   "url": "index.html#foundation"
+   "url": "index.html#foundation",
+   "l10n": {
+    "title": "search.entry.edu-cvsu.title",
+    "description": "search.entry.edu-cvsu.description",
+    "kind": "search.kind.education"
+   }
   },
   {
+   "id": "edu-tvl",
    "title": "TVL Drafting Animation — Tanza National Trade School",
    "group": "sections",
    "kind": "Education",
@@ -576,9 +832,14 @@ window.SEARCH_INDEX = {
     "tanza national trade school",
     "senior high"
    ],
-   "url": "index.html#foundation"
+   "url": "index.html#foundation",
+   "l10n": {
+    "title": "search.entry.edu-tvl.title",
+    "kind": "search.kind.education"
+   }
   },
   {
+   "id": "edu-drafting",
    "title": "Technical Drafting — Tanza National Trade School",
    "group": "sections",
    "kind": "Education",
@@ -589,9 +850,15 @@ window.SEARCH_INDEX = {
     "2d drafting",
     "cad"
    ],
-   "url": "index.html#foundation"
+   "url": "index.html#foundation",
+   "l10n": {
+    "title": "search.entry.edu-drafting.title",
+    "description": "search.entry.edu-drafting.description",
+    "kind": "search.kind.education"
+   }
   },
   {
+   "id": "cert-datacom",
    "title": "Graphic Design and Computer Hardware Training — Datacom",
    "group": "sections",
    "kind": "Certificate",
@@ -603,9 +870,15 @@ window.SEARCH_INDEX = {
     "graphic design",
     "computer hardware"
    ],
-   "url": "index.html#foundation"
+   "url": "index.html#foundation",
+   "l10n": {
+    "title": "search.entry.cert-datacom.title",
+    "description": "search.entry.cert-datacom.description",
+    "kind": "search.kind.certificate"
+   }
   },
   {
+   "id": "cert-seminar",
    "title": "Seminar Series on Excelling in the Virtual Workforce",
    "group": "sections",
    "kind": "Certificate",
@@ -618,9 +891,15 @@ window.SEARCH_INDEX = {
     "virtual assistant",
     "cavite state university"
    ],
-   "url": "index.html#foundation"
+   "url": "index.html#foundation",
+   "l10n": {
+    "title": "found.c2.title",
+    "description": "search.entry.cert-seminar.description",
+    "kind": "search.kind.certificate"
+   }
   },
   {
+   "id": "cap-creative-direction",
    "title": "Creative Direction",
    "group": "capabilities",
    "kind": "Capability",
@@ -632,9 +911,16 @@ window.SEARCH_INDEX = {
     "brand direction",
     "campaign"
    ],
-   "url": "index.html#capabilities"
+   "url": "index.html#capabilities",
+   "l10n": {
+    "title": "cap.c1.title",
+    "description": "search.entry.cap-creative-direction.description",
+    "kind": "search.kind.capability",
+    "keywords": "search.entry.cap-creative-direction.keywords"
+   }
   },
   {
+   "id": "cap-visual-design",
    "title": "Visual Design",
    "group": "capabilities",
    "kind": "Capability",
@@ -646,9 +932,16 @@ window.SEARCH_INDEX = {
     "key visual",
     "product launch"
    ],
-   "url": "index.html#capabilities"
+   "url": "index.html#capabilities",
+   "l10n": {
+    "title": "cap.c2.title",
+    "description": "cap.c2.desc",
+    "kind": "search.kind.capability",
+    "keywords": "search.entry.cap-visual-design.keywords"
+   }
   },
   {
+   "id": "cap-layout",
    "title": "Layout & Editorial Design",
    "group": "capabilities",
    "kind": "Capability",
@@ -664,9 +957,16 @@ window.SEARCH_INDEX = {
     "presentation",
     "print-ready"
    ],
-   "url": "pages/editorial-layout.html"
+   "url": "pages/editorial-layout.html",
+   "l10n": {
+    "title": "cap.c3.title",
+    "description": "cap.c3.desc",
+    "kind": "search.kind.capability",
+    "keywords": "search.entry.cap-layout.keywords"
+   }
   },
   {
+   "id": "cap-retail",
    "title": "Retail & Campaign Design",
    "group": "capabilities",
    "kind": "Capability",
@@ -681,9 +981,16 @@ window.SEARCH_INDEX = {
     "signage",
     "campaign"
    ],
-   "url": "pages/print-brand-collateral.html"
+   "url": "pages/print-brand-collateral.html",
+   "l10n": {
+    "title": "cap.c4.title",
+    "description": "search.entry.cap-retail.description",
+    "kind": "search.kind.capability",
+    "keywords": "search.entry.cap-retail.keywords"
+   }
   },
   {
+   "id": "cap-photography",
    "title": "Photography",
    "group": "capabilities",
    "kind": "Capability",
@@ -695,9 +1002,16 @@ window.SEARCH_INDEX = {
     "lifestyle photography",
     "photoshoot"
    ],
-   "url": "pages/commercial-lifestyle-photography.html"
+   "url": "pages/commercial-lifestyle-photography.html",
+   "l10n": {
+    "title": "cap.c5.title",
+    "description": "search.entry.cap-photography.description",
+    "kind": "search.kind.capability",
+    "keywords": "search.entry.cap-photography.keywords"
+   }
   },
   {
+   "id": "cap-photo-manipulation",
    "title": "Photo Manipulation",
    "group": "capabilities",
    "kind": "Capability",
@@ -709,9 +1023,16 @@ window.SEARCH_INDEX = {
     "image editing",
     "photoshop"
    ],
-   "url": "index.html#capabilities"
+   "url": "index.html#capabilities",
+   "l10n": {
+    "title": "cap.c6.title",
+    "description": "search.entry.cap-photo-manipulation.description",
+    "kind": "search.kind.capability",
+    "keywords": "search.entry.cap-photo-manipulation.keywords"
+   }
   },
   {
+   "id": "cap-digital",
    "title": "Digital Content",
    "group": "capabilities",
    "kind": "Capability",
@@ -723,9 +1044,16 @@ window.SEARCH_INDEX = {
     "e-commerce",
     "online ads"
    ],
-   "url": "pages/social-media-campaigns.html"
+   "url": "pages/social-media-campaigns.html",
+   "l10n": {
+    "title": "cap.c7.title",
+    "description": "search.entry.cap-digital.description",
+    "kind": "search.kind.capability",
+    "keywords": "search.entry.cap-digital.keywords"
+   }
   },
   {
+   "id": "cap-video",
    "title": "Short-Form Video",
    "group": "capabilities",
    "kind": "Capability",
@@ -737,9 +1065,16 @@ window.SEARCH_INDEX = {
     "tiktok",
     "motion graphics"
    ],
-   "url": "pages/short-form-video-reels.html"
+   "url": "pages/short-form-video-reels.html",
+   "l10n": {
+    "title": "search.entry.cap-video.title",
+    "description": "search.entry.cap-video.description",
+    "kind": "search.kind.capability",
+    "keywords": "search.entry.cap-video.keywords"
+   }
   },
   {
+   "id": "cap-production",
    "title": "Production Coordination",
    "group": "capabilities",
    "kind": "Capability",
@@ -751,9 +1086,16 @@ window.SEARCH_INDEX = {
     "project management",
     "supervision"
    ],
-   "url": "index.html#capabilities"
+   "url": "index.html#capabilities",
+   "l10n": {
+    "title": "cap.c8.title",
+    "description": "search.entry.cap-production.description",
+    "kind": "search.kind.capability",
+    "keywords": "search.entry.cap-production.keywords"
+   }
   },
   {
+   "id": "tool-photoshop",
    "title": "Adobe Photoshop",
    "group": "tools",
    "kind": "Software",
@@ -764,9 +1106,14 @@ window.SEARCH_INDEX = {
     "retouching",
     "photo manipulation"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-photoshop.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-illustrator",
    "title": "Adobe Illustrator",
    "group": "tools",
    "kind": "Software",
@@ -777,9 +1124,14 @@ window.SEARCH_INDEX = {
     "vector",
     "logo"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-illustrator.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-indesign",
    "title": "Adobe InDesign",
    "group": "tools",
    "kind": "Software",
@@ -790,9 +1142,14 @@ window.SEARCH_INDEX = {
     "editorial",
     "layout"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-indesign.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-lightroom",
    "title": "Adobe Lightroom",
    "group": "tools",
    "kind": "Software",
@@ -802,9 +1159,14 @@ window.SEARCH_INDEX = {
     "photo editing",
     "color grading"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-lightroom.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-premiere-pro",
    "title": "Adobe Premiere Pro",
    "group": "tools",
    "kind": "Software",
@@ -814,9 +1176,14 @@ window.SEARCH_INDEX = {
     "premiere pro",
     "video editing"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-premiere-pro.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-after-effects",
    "title": "Adobe After Effects",
    "group": "tools",
    "kind": "Software",
@@ -826,9 +1193,14 @@ window.SEARCH_INDEX = {
     "motion graphics",
     "animation"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-after-effects.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-firefly",
    "title": "Adobe Firefly",
    "group": "tools",
    "kind": "Software",
@@ -838,9 +1210,14 @@ window.SEARCH_INDEX = {
     "ai",
     "generative"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-firefly.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-bridge",
    "title": "Adobe Bridge",
    "group": "tools",
    "kind": "Software",
@@ -849,9 +1226,14 @@ window.SEARCH_INDEX = {
     "bridge",
     "asset management"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-bridge.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-davinci-resolve",
    "title": "DaVinci Resolve",
    "group": "tools",
    "kind": "Software",
@@ -862,9 +1244,14 @@ window.SEARCH_INDEX = {
     "video editing",
     "color grading"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-davinci-resolve.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-capcut",
    "title": "CapCut",
    "group": "tools",
    "kind": "Software",
@@ -875,9 +1262,14 @@ window.SEARCH_INDEX = {
     "video editing",
     "tiktok"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-capcut.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-capture-one",
    "title": "Capture One",
    "group": "tools",
    "kind": "Software",
@@ -887,9 +1279,14 @@ window.SEARCH_INDEX = {
     "photography",
     "raw"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-capture-one.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-affinity",
    "title": "Affinity",
    "group": "tools",
    "kind": "Software",
@@ -899,9 +1296,14 @@ window.SEARCH_INDEX = {
     "designer",
     "photo"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-affinity.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-coreldraw",
    "title": "CorelDRAW",
    "group": "tools",
    "kind": "Software",
@@ -912,9 +1314,14 @@ window.SEARCH_INDEX = {
     "vector",
     "print"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-coreldraw.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-sketchup",
    "title": "SketchUp",
    "group": "tools",
    "kind": "Software",
@@ -925,9 +1332,14 @@ window.SEARCH_INDEX = {
     "modeling",
     "visualization"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-sketchup.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-canva",
    "title": "Canva",
    "group": "tools",
    "kind": "Software",
@@ -936,9 +1348,14 @@ window.SEARCH_INDEX = {
     "canva",
     "templates"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-canva.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-figma",
    "title": "Figma",
    "group": "tools",
    "kind": "Software",
@@ -949,9 +1366,14 @@ window.SEARCH_INDEX = {
     "web design",
     "prototype"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-figma.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-vscode",
    "title": "Visual Studio Code",
    "group": "tools",
    "kind": "Software",
@@ -964,9 +1386,14 @@ window.SEARCH_INDEX = {
     "html",
     "css"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-vscode.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-microsoft-365",
    "title": "Microsoft 365",
    "group": "tools",
    "kind": "Software",
@@ -978,9 +1405,14 @@ window.SEARCH_INDEX = {
     "excel",
     "word"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-microsoft-365.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-upscayl",
    "title": "Upscayl",
    "group": "tools",
    "kind": "Software",
@@ -990,9 +1422,14 @@ window.SEARCH_INDEX = {
     "upscaling",
     "ai"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-upscayl.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-runway",
    "title": "Runway",
    "group": "tools",
    "kind": "Software",
@@ -1002,9 +1439,14 @@ window.SEARCH_INDEX = {
     "ai video",
     "generative"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-runway.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-chatgpt",
    "title": "ChatGPT",
    "group": "tools",
    "kind": "Software",
@@ -1014,9 +1456,14 @@ window.SEARCH_INDEX = {
     "ai",
     "openai"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-chatgpt.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-claude",
    "title": "Claude",
    "group": "tools",
    "kind": "Software",
@@ -1026,9 +1473,14 @@ window.SEARCH_INDEX = {
     "ai",
     "anthropic"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-claude.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "tool-gemini",
    "title": "Gemini",
    "group": "tools",
    "kind": "Software",
@@ -1038,9 +1490,14 @@ window.SEARCH_INDEX = {
     "ai",
     "google"
    ],
-   "url": "index.html#creative-dock"
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "description": "search.entry.tool-gemini.description",
+    "kind": "search.kind.software"
+   }
   },
   {
+   "id": "brand-mooni",
    "title": "Mooni",
    "group": "brands",
    "kind": "Supported brand",
@@ -1052,10 +1509,15 @@ window.SEARCH_INDEX = {
     "bedding"
    ],
    "url": "pages/social-media-campaigns.html",
+   "l10n": {
+    "description": "search.entry.brand-mooni.description",
+    "kind": "search.kind.supported-brand"
+   },
    "thumb": "assets/images/brands/mooni.svg",
    "logo": true
   },
   {
+   "id": "brand-etro",
    "title": "Etro Home Interiors",
    "group": "brands",
    "kind": "Supported brand",
@@ -1067,10 +1529,15 @@ window.SEARCH_INDEX = {
     "porta mobili"
    ],
    "url": "pages/editorial-layout.html",
+   "l10n": {
+    "description": "search.entry.brand-etro.description",
+    "kind": "search.kind.supported-brand"
+   },
    "thumb": "assets/images/brands/etro.svg",
    "logo": true
   },
   {
+   "id": "brand-stoneleaf",
    "title": "Stoneleaf",
    "group": "brands",
    "kind": "Supported brand",
@@ -1082,10 +1549,15 @@ window.SEARCH_INDEX = {
     "porta mobili"
    ],
    "url": "pages/editorial-layout.html",
+   "l10n": {
+    "description": "search.entry.brand-etro.description",
+    "kind": "search.kind.supported-brand"
+   },
    "thumb": "assets/images/brands/stoneleaf.svg",
    "logo": true
   },
   {
+   "id": "brand-riflessi",
    "title": "Riflessi",
    "group": "brands",
    "kind": "Supported brand",
@@ -1097,10 +1569,15 @@ window.SEARCH_INDEX = {
     "porta mobili"
    ],
    "url": "pages/print-brand-collateral.html",
+   "l10n": {
+    "description": "search.entry.brand-riflessi.description",
+    "kind": "search.kind.supported-brand"
+   },
    "thumb": "assets/images/brands/riflessi.svg",
    "logo": true
   },
   {
+   "id": "brand-tisettanta",
    "title": "Tisettanta",
    "group": "brands",
    "kind": "Supported brand",
@@ -1112,10 +1589,15 @@ window.SEARCH_INDEX = {
     "porta mobili"
    ],
    "url": "pages/editorial-layout.html",
+   "l10n": {
+    "description": "search.entry.brand-riflessi.description",
+    "kind": "search.kind.supported-brand"
+   },
    "thumb": "assets/images/brands/tisettanta.svg",
    "logo": true
   },
   {
+   "id": "brand-bw",
    "title": "BW Bespoke Works",
    "group": "brands",
    "kind": "Supported brand",
@@ -1127,10 +1609,15 @@ window.SEARCH_INDEX = {
     "porta mobili"
    ],
    "url": "pages/commercial-lifestyle-photography.html",
+   "l10n": {
+    "description": "search.entry.brand-bw.description",
+    "kind": "search.kind.supported-brand"
+   },
    "thumb": "assets/images/brands/bw.svg",
    "logo": true
   },
   {
+   "id": "brand-panasonic",
    "title": "Panasonic",
    "group": "brands",
    "kind": "Supported brand",
@@ -1140,9 +1627,14 @@ window.SEARCH_INDEX = {
     "lighting",
     "metal-lite"
    ],
-   "url": "pages/social-media-campaigns.html"
+   "url": "pages/social-media-campaigns.html",
+   "l10n": {
+    "description": "search.entry.brand-panasonic.description",
+    "kind": "search.kind.supported-brand"
+   }
   },
   {
+   "id": "brand-endo",
    "title": "ENDO Lighting",
    "group": "brands",
    "kind": "Supported brand",
@@ -1152,9 +1644,14 @@ window.SEARCH_INDEX = {
     "lighting",
     "metal-lite"
    ],
-   "url": "pages/social-media-campaigns.html"
+   "url": "pages/social-media-campaigns.html",
+   "l10n": {
+    "description": "search.entry.brand-endo.description",
+    "kind": "search.kind.supported-brand"
+   }
   },
   {
+   "id": "brand-astralux",
    "title": "Astralux",
    "group": "brands",
    "kind": "Supported brand",
@@ -1165,9 +1662,14 @@ window.SEARCH_INDEX = {
     "lighting",
     "metal-lite"
    ],
-   "url": "pages/social-media-campaigns.html"
+   "url": "pages/social-media-campaigns.html",
+   "l10n": {
+    "description": "search.entry.brand-astralux.description",
+    "kind": "search.kind.supported-brand"
+   }
   },
   {
+   "id": "brand-stella",
    "title": "Stella",
    "group": "brands",
    "kind": "Supported brand",
@@ -1178,9 +1680,14 @@ window.SEARCH_INDEX = {
     "lighting",
     "metal-lite"
    ],
-   "url": "pages/social-media-campaigns.html"
+   "url": "pages/social-media-campaigns.html",
+   "l10n": {
+    "description": "search.entry.brand-stella.description",
+    "kind": "search.kind.supported-brand"
+   }
   },
   {
+   "id": "brand-ledvance",
    "title": "LEDVANCE",
    "group": "brands",
    "kind": "Supported brand",
@@ -1191,7 +1698,11 @@ window.SEARCH_INDEX = {
     "lighting",
     "metal-lite"
    ],
-   "url": "pages/social-media-campaigns.html"
+   "url": "pages/social-media-campaigns.html",
+   "l10n": {
+    "description": "search.entry.brand-ledvance.description",
+    "kind": "search.kind.supported-brand"
+   }
   }
  ]
 };

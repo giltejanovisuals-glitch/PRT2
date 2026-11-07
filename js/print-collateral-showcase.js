@@ -63,6 +63,12 @@
   const CATEGORY_ID = section.dataset.category || "print-brand-collateral";
   const IS_VIDEO = section.dataset.kind === "video";
   const TYPE_FALLBACK = section.dataset.typeFallback || "Print application";
+  // Text in the active language (js/i18n.js). Types are English data terms
+  // ("Campaign visual"), translated through term.* keys.
+  const I18N = window.i18n;
+  const t = (key, vars, fallback) => (I18N ? I18N.t(key, vars, fallback) : fallback);
+  const term = (english) => (I18N ? I18N.term(english) : english);
+  const lower = (text) => (I18N && I18N.lang !== "en" ? text.toLocaleLowerCase(I18N.lang) : text.toLowerCase());
   // data-mobile-layout="feed": phones get a featured visual followed by a
   // two-column masonry archive (landscape visuals span both columns)
   // instead of the single stacked column. data-featured names the file
@@ -119,6 +125,8 @@
         alt: info.alt || info.title || `Reel ${i + 1}`,
         title: info.title || "",
         label: info.title || `Reel ${i + 1}`,
+        // Untitled reels are announced by number, in the visitor's language.
+        reelNumber: info.title ? 0 : i + 1,
         brand: info.brand || info.project || "",
         year: info.year ? String(info.year) : "",
         // Seconds, or "m:ss"; otherwise read from the file's metadata.
@@ -168,7 +176,12 @@
   const PAGE_STEP = 0.85; // Page Up/Down, in rail heights
   const LINE_PX = 40; // wheel deltaMode 1 (lines)
 
-  const desktopQuery = window.matchMedia("(min-width: 761px)");
+  // The viewport-locked desktop layout needs room for its 30rem stage plus
+  // the header and dock. A shorter viewport (a short window, or a desktop
+  // zoomed in past ~150%) gets the normal scrolling stacked layout instead,
+  // so nothing is clipped where the page can't scroll to it. Keep in step
+  // with the stacked media query in css/print-collateral-showcase.css.
+  const desktopQuery = window.matchMedia("(min-width: 761px) and (min-height: 680px)");
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const root = document.documentElement;
 
@@ -183,10 +196,12 @@
   const progressFill = document.getElementById("pbc-progress-fill");
 
   if (totalEl) totalEl.textContent = pad(entries.length);
-  if (categoryEl && category.title) categoryEl.textContent = category.title;
+  const categoryTitle = () => (I18N && I18N.lang !== "en" && I18N.has(`category.${CATEGORY_ID}.title`) ? I18N.t(`category.${CATEGORY_ID}.title`) : category.title);
+  if (categoryEl && category.title) categoryEl.textContent = categoryTitle();
+  const labelOf = (entry) => (entry.reelNumber ? t("showcase.reelNumber", { number: entry.reelNumber }, entry.label) : entry.label);
 
   // Used for thumbnail labels and preview alt text.
-  const describe = (entry) => ({ type: entry.type || TYPE_FALLBACK });
+  const describe = (entry) => ({ type: term(entry.type || TYPE_FALLBACK) });
 
   // A video inside an image gallery (a manifest entry with kind "video" and
   // a same-named poster image) — distinct from the all-video Reels page.
@@ -208,6 +223,14 @@
   let columns = [];
   let selected = 0;
 
+  const tileLabel = (entry, i) => {
+    const type = isClip(entry) ? term("video") : lower(describe(entry).type);
+    const english = `${IS_VIDEO ? "Play" : "Show"} ${isClip(entry) ? "video" : (entry.type || TYPE_FALLBACK).toLowerCase()} ${i + 1} of ${entries.length}`;
+    return t(IS_VIDEO ? "showcase.tilePlay" : "showcase.tileShow", { type, index: i + 1, total: entries.length }, english);
+  };
+  const countText = (kind) => (I18N ? I18N.plural(`showcase.count.${kind}`, entries.length) : `${entries.length} ${kind}`);
+  const reelTileLabel = (entry) => t("showcase.play", { label: `${labelOf(entry)}${entry.brand ? `, ${entry.brand}` : ""}` }, `Play ${labelOf(entry)}${entry.brand ? `, ${entry.brand}` : ""}`);
+
   const createTile = (entry, i, stacked, feed = false) => {
     const tile = document.createElement("button");
     tile.type = "button";
@@ -215,10 +238,7 @@
     tile.dataset.pos = String(i);
     tile.tabIndex = -1;
     tile.setAttribute("aria-pressed", "false");
-    tile.setAttribute(
-      "aria-label",
-      `${IS_VIDEO ? "Play" : "Show"} ${isClip(entry) ? "video" : describe(entry).type.toLowerCase()} ${i + 1} of ${entries.length}`
-    );
+    tile.setAttribute("aria-label", tileLabel(entry, i));
     // Reserve the image's exact natural shape before it loads. The feed
     // leaves that to the img's own width/height attributes (height: auto).
     if (!feed) {
@@ -269,6 +289,20 @@
   let revealObserver = null;
   const feedCount = document.getElementById("pbc-feed-count");
 
+  // A new language: relabel what is already on screen — nothing is rebuilt,
+  // so the selection, scroll positions and any playing video stay as they are.
+  I18N?.onChange(() => {
+    if (categoryEl && category.title) categoryEl.textContent = categoryTitle();
+    tiles.forEach((tile, i) => {
+      if (tile) tile.setAttribute("aria-label", "reelTile" in tile.dataset ? reelTileLabel(entries[i]) : tileLabel(entries[i], i));
+    });
+    if (feedCount && feedCount.textContent) feedCount.textContent = countText(IS_VIDEO ? "reels" : "visuals");
+    section.querySelectorAll("img[data-type-alt]").forEach((img) => {
+      img.alt = term(img.dataset.typeAlt);
+    });
+    lastPct = -1; // the progress bar's spoken value follows on the next update
+  });
+
   // Phones, feed layout: the featured visual sits above, so the archive is
   // everything else. Runs of square/portrait visuals fill two columns
   // (each tile goes to the shorter column); a landscape visual breaks the
@@ -316,7 +350,7 @@
     });
     flushWide();
     rail.appendChild(feed);
-    if (feedCount) feedCount.textContent = `${entries.length} ${IS_VIDEO ? "reels" : "visuals"}`;
+    if (feedCount) feedCount.textContent = countText(IS_VIDEO ? "reels" : "visuals");
 
     if (motionAllowed() && "IntersectionObserver" in window) {
       revealObserver = new IntersectionObserver(
@@ -409,13 +443,14 @@
       badge.textContent = entry.duration ? formatDuration(entry.duration) : "";
       caption.append(title, badge);
       tile.appendChild(caption);
-      tile.setAttribute("aria-label", `Play ${entry.label}${entry.brand ? `, ${entry.brand}` : ""}`);
+      tile.setAttribute("aria-label", reelTileLabel(entry));
+      tile.dataset.reelTile = "";
       tile.tabIndex = 0;
       grid.appendChild(tile);
       reelPreviews?.add(tile, entry.preview || entry.src, entry.poster);
     });
     rail.appendChild(grid);
-    if (feedCount) feedCount.textContent = `${entries.length} reels`;
+    if (feedCount) feedCount.textContent = countText("reels");
 
     if (!saveData && "IntersectionObserver" in window) {
       durationObserver = new IntersectionObserver(
@@ -518,7 +553,7 @@
         video.preload = saveData ? "none" : "metadata";
         video.src = entry.src;
       }
-      video.setAttribute("aria-label", `${entry.label}${entry.brand ? `, ${entry.brand}` : ""}`);
+      video.setAttribute("aria-label", `${labelOf(entry)}${entry.brand ? `, ${entry.brand}` : ""}`);
       if (entry.captions) {
         const track = document.createElement("track");
         track.kind = "captions";
@@ -549,7 +584,7 @@
       video.disablePictureInPicture = true;
       video.preload = motionAllowed() ? "auto" : "none";
       if (entry.poster) video.poster = thumbSrc(entry);
-      video.setAttribute("aria-label", entry.alt || entry.title || "Video");
+      video.setAttribute("aria-label", entry.alt || entry.title || t("common.video", null, "Video"));
       video.src = entry.src;
       shot.dataset.clip = "";
       shot.appendChild(video);
@@ -572,6 +607,7 @@
     const img = document.createElement("img");
     img.className = "pbc-shot-img";
     img.alt = entry.alt || describe(entry).type;
+    if (!entry.alt) img.dataset.typeAlt = entry.type || TYPE_FALLBACK;
     img.decoding = "async";
     // The first preview is the page's lead image: fetch it before the rest.
     if (!activeShot) img.fetchPriority = "high";
@@ -758,7 +794,7 @@
       progressEl.setAttribute("aria-valuenow", String(pct));
       progressEl.setAttribute(
         "aria-valuetext",
-        edge === "start" ? "Start of gallery" : edge === "end" || edge === "all" ? "End of gallery" : `${pct}%`
+        edge === "start" ? t("showcase.start", null, "Start of gallery") : edge === "end" || edge === "all" ? t("showcase.end", null, "End of gallery") : `${pct}%`
       );
     }
   };
