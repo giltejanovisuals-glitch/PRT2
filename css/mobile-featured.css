@@ -1,7 +1,6 @@
-/* Mobile landing: intro copy, then a carousel of curated groups of
-   visuals (js/mobile-featured.js) with its caption and controls. Desktop
-   keeps its image wall; the .desktop-/.mobile-hero-copy toggles are
-   shared by every homepage section. */
+/* Mobile landing: intro copy, then a coverflow of curated 4:5 project cards
+   (js/mobile-featured.js) with the active card's caption. Desktop keeps its image wall; the .desktop-/.mobile-hero-
+   copy toggles are shared by every homepage section. */
 .mobile-hero-copy,
 .mobile-featured { display: none; }
 
@@ -13,9 +12,12 @@
 
   .hero-parallax,
   .hero-parallax.is-live {
+    --gutter-l: max(20px, env(safe-area-inset-left, 0px));
+    --gutter-r: max(20px, env(safe-area-inset-right, 0px));
     display: block;
     height: auto;
-    padding: calc(var(--mh-h) + env(safe-area-inset-top, 0px) + 20px) max(20px, env(safe-area-inset-right)) 48px max(20px, env(safe-area-inset-left));
+    padding: calc(var(--mh-h) + env(safe-area-inset-top, 0px) + 20px) var(--gutter-r) 40px var(--gutter-l);
+    overflow-x: clip;
     background: var(--m-bg);
     color: var(--m-text);
     perspective: none;
@@ -27,7 +29,8 @@
     pointer-events: auto;
   }
 
-  /* 1–3: label, headline, supporting statement */
+  /* 2–4: label, headline, supporting statement — kept compact so the
+     carousel stays the focus. */
   .hero-parallax .hpx-eyebrow {
     margin: 0 0 14px;
     font-size: 10px;
@@ -43,258 +46,214 @@
     color: var(--m-text);
   }
   .hero-parallax .hpx-title {
-    max-width: 20ch;
-    font-size: clamp(26px, 7.4vw, 34px);
+    max-width: 19ch;
+    font-size: clamp(25px, 7vw, 32px);
     line-height: 1.08;
     letter-spacing: -.03em;
     color: var(--m-text);
     text-wrap: balance;
   }
   .hero-parallax .hpx-sub {
-    max-width: 40ch;
+    max-width: 36ch;
     margin-top: 12px;
     font-size: 14px;
     line-height: 1.55;
     color: var(--m-muted);
+    text-wrap: pretty;
   }
 
-
-  /* 4: the carousel — one curated group of 2–3 visuals at a time in a
-     fixed square frame. Its width follows the screen height so the frame
-     and its caption clear the bottom tab bar on first view (about 520px of
-     header, intro copy, caption, and tab bar sit around it). */
+  /* 5: the coverflow. The frame runs edge to edge so the neighbouring
+     cards peek in from the sides, and clips them there (no page overflow).
+     Card width follows the screen width and, on short screens, its height,
+     so header, copy, card, and caption fit the first view where possible. */
   .mobile-featured {
+    --card-w: clamp(min(190px, 100vw - 48px), min(68vw, (100svh - 400px) * .8), 300px);
+    --card-h: calc(var(--card-w) * 1.25);
     display: block;
-    width: min(100%, max(260px, 100svh - 520px), 30rem);
-    margin: 24px auto 0;
+    margin-top: 18px;
   }
   .featured-frame {
     position: relative;
-    aspect-ratio: 1;
+    margin: 0 calc(var(--gutter-r) * -1) 0 calc(var(--gutter-l) * -1);
+    padding: 14px 0 22px;
+    overflow: hidden;
     touch-action: pan-y pinch-zoom;
     -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
   }
-  .featured-groups { position: absolute; inset: 0; }
-
-  /* Groups crossfade with a 10px drift in the direction of travel
-     (--shift: 10px forward, -10px back; js/mobile-featured.js). */
-  .featured-group {
-    --shift: 10px;
+  /* Clip only the sides, so the cards' shadows aren't cut off below. */
+  @supports (overflow: clip) {
+    .featured-frame { overflow-x: clip; overflow-y: visible; }
+  }
+  .featured-frame.is-dragging { cursor: grabbing; }
+  .featured-track {
+    position: relative;
+    height: var(--card-h);
+  }
+  /* js/mobile-featured.js sets each slide's transform, opacity, and
+     z-index every frame while it moves; nothing else animates here. */
+  .featured-slide {
     position: absolute;
-    inset: 0;
-    display: grid;
-    gap: 3px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(var(--shift));
-    transition: opacity 600ms var(--ease), transform 600ms var(--ease), visibility 0s linear 600ms;
-  }
-  .mobile-featured[data-direction="back"] .featured-group { --shift: -10px; }
-  .featured-group.is-leaving { transform: translateX(calc(var(--shift) * -1)); }
-  .featured-group.is-active {
-    z-index: 1;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    transition: opacity 600ms var(--ease), transform 600ms var(--ease), visibility 0s;
+    top: 0;
+    left: 50%;
+    width: var(--card-w);
+    height: var(--card-h);
+    margin-left: calc(var(--card-w) / -2);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
   }
 
-  /* The four layouts. Slot proportions are mirrored in
-     scripts/generate-mobile-featured.js (SLOTS) — change both together. */
-  .featured-group[data-layout="feature"] { grid-template: 1fr 1fr / 58fr 42fr; }
-  .featured-group[data-layout="feature"] > :first-child { grid-row: 1 / 3; }
-  .featured-group[data-layout="feature-rev"] { grid-template: 1fr 1fr / 42fr 58fr; }
-  .featured-group[data-layout="feature-rev"] > :first-child { grid-area: 1 / 2 / 3 / 3; }
-  .featured-group[data-layout="feature-rev"] > :nth-child(n + 2) { grid-column: 1; }
-  .featured-group[data-layout="pair"] { grid-template: 1fr / 1fr 1fr; }
-  .featured-group[data-layout="wide"] { grid-template: 1fr 1fr / 1fr 1fr; }
-  .featured-group[data-layout="wide"] > :first-child { grid-column: 1 / 3; }
-
-  /* Each visual is shown whole on a dark stage (both themes). Artwork whose
-     proportions differ from its slot (.is-fill) sits over an enlarged,
-     blurred, darkened copy of itself; the rest show a soft preview of
-     themselves only until the image arrives. */
-  .featured-tile {
+  /* Each card: a dark stage (both themes), restrained radius, thin border,
+     soft shadow. Artwork is always shown whole; artwork that isn't 4:5
+     (.is-fill) sits over an enlarged, blurred, darkened copy of itself. */
+  .featured-card {
     position: relative;
     display: block;
-    min-width: 0;
-    min-height: 0;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     padding: 0;
-    border: 0;
-    border-radius: 2px;
+    border: 1px solid var(--m-line);
+    border-radius: 10px;
     background: #141716;
     color: #fff;
     font: inherit;
+    text-decoration: none;
     cursor: pointer;
+    box-shadow: 0 22px 40px -26px rgba(10, 12, 12, .6), 0 2px 8px rgba(10, 12, 12, .1);
+    -webkit-user-drag: none;
   }
-  .featured-tile::before,
-  .featured-tile::after {
+  .featured-card::before,
+  .featured-card::after {
     content: "";
     position: absolute;
     inset: 0;
     pointer-events: none;
   }
-  .featured-tile::before {
+  /* Soft preview from the inline placeholder until the image arrives. */
+  .featured-card::before {
+    z-index: 0;
     background: var(--placeholder) center / contain no-repeat;
     filter: blur(6px);
     transition: opacity 400ms ease;
   }
-  .featured-tile.is-loaded:not(.is-fill)::before { opacity: 0; }
-  .featured-tile.is-fill::before {
-    inset: -15%;
+  .featured-card.is-fill::before {
+    inset: -12%;
     background-size: cover;
-    filter: blur(18px) brightness(.5) saturate(1.1);
+    filter: blur(18px) brightness(.5);
   }
-  .featured-tile.is-fill::after { background: #0a0c0c38; }
-  .featured-tile picture { display: contents; }
-  .featured-tile img,
-  .featured-tile video {
+  .featured-card.is-loaded:not(.is-fill)::before { opacity: 0; }
+  .featured-card.is-fill::after { z-index: 2; background: rgba(10, 12, 12, .22); }
+  .featured-card picture { display: contents; }
+  .featured-card img,
+  .featured-card video {
     position: absolute;
     inset: 0;
-    z-index: 1;
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    -webkit-user-drag: none;
+    pointer-events: none;
   }
-  .featured-tile img {
+  .featured-backdrop {
+    z-index: 1;
+    object-fit: cover;
+    filter: blur(18px) brightness(.55);
+    transform: scale(1.18);
     opacity: 0;
     transition: opacity 400ms ease;
   }
-  .featured-tile.is-loaded img { opacity: 1; }
-  .featured-tile:focus-visible { outline: 2px solid var(--m-accent); outline-offset: -2px; }
+  .featured-image {
+    z-index: 3;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+  .featured-card.is-loaded .featured-image,
+  .featured-card.is-loaded .featured-backdrop { opacity: 1; }
 
   /* Reels: a muted preview fades in over the poster once frames play. */
-  .featured-tile video {
-    z-index: 2;
+  .featured-card video {
+    z-index: 4;
+    object-fit: contain;
     opacity: 0;
     transition: opacity 300ms ease;
   }
-  .featured-tile.is-playing video { opacity: 1; }
+  .featured-card.is-playing video { opacity: 1; }
   .featured-reel-badge {
     position: absolute;
-    left: 8px;
-    bottom: 8px;
-    z-index: 3;
+    left: 10px;
+    bottom: 10px;
+    z-index: 5;
     display: inline-flex;
     align-items: center;
     gap: 5px;
     padding: 4px 8px 4px 6px;
     border-radius: 999px;
-    background: rgba(10, 12, 12, .55);
+    background: rgba(10, 12, 12, .58);
     font-size: 11px;
     font-weight: 500;
     line-height: 1;
     font-variant-numeric: tabular-nums;
     letter-spacing: .02em;
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
+    color: #fff;
+  }
+  /* Neighbours fade towards the page colour so they never compete with the
+     centred card (opacity set by js/mobile-featured.js). */
+  .featured-shade {
+    position: absolute;
+    inset: -1px;
+    z-index: 6;
+    background: var(--m-bg);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .featured-card:focus-visible {
+    outline: 2px solid var(--m-accent);
+    outline-offset: 3px;
   }
 
-  /* Progress: a thin teal line filled to the current group. */
-  .featured-progress {
-    height: 2px;
-    margin-top: 12px;
-    overflow: hidden;
-    background: var(--m-line);
-  }
-  .featured-progress-fill {
-    display: block;
-    width: calc(var(--progress, 0) * 100%);
-    height: 100%;
-    background: var(--m-accent);
-    transition: width 600ms var(--ease);
-  }
-
-  /* Caption — fixed height, so title length never shifts the page. */
+  /* 6: caption — fixed minimum height, so switching slides never moves
+     the content around it. */
   .featured-details {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    margin-top: 12px;
+    flex-direction: column;
+    align-items: center;
+    max-width: 34ch;
+    margin: 0 auto;
+    text-align: center;
   }
-  .featured-caption { flex: 1; min-width: 0; min-height: 44px; }
-  /* Title and subtitle wrap (up to two lines each) rather than being cut
-     off on narrow screens or when zoomed in. */
+  .featured-caption {
+    width: 100%;
+    min-height: 86px;
+  }
+  .mobile-featured.is-swapping .featured-caption { animation: featured-caption-in 260ms ease-out; }
+  @keyframes featured-caption-in { from { opacity: 0; } }
   .featured-title {
-    display: -webkit-box;
-    margin: 0 0 5px;
-    overflow: hidden;
+    margin: 0 0 6px;
     font-size: 10px;
     font-weight: 600;
     line-height: 1.5;
     letter-spacing: .18em;
     text-transform: uppercase;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
     color: var(--m-accent);
+    text-wrap: balance;
   }
   .featured-subtitle {
-    display: -webkit-box;
     margin: 0;
-    overflow: hidden;
     font-size: 15px;
     line-height: 1.4;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
     color: var(--m-text);
+    text-wrap: balance;
   }
-  .featured-count {
-    margin: 0;
-    font-size: 11px;
-    line-height: 15px;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: .12em;
-    white-space: nowrap;
+  .featured-meta {
+    margin: 6px 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: .02em;
     color: var(--m-muted);
   }
-  .featured-current { color: var(--m-text); }
-  .mobile-featured.is-swapping .featured-caption { animation: featured-caption-in 500ms var(--ease); }
-  @keyframes featured-caption-in { from { opacity: 0; } }
-
-  .featured-actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin-top: 2px;
-  }
-  .featured-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    min-height: 44px;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: .02em;
-    color: var(--m-text);
-    text-decoration: none;
-  }
-  .featured-link span { color: var(--m-accent); transition: transform 200ms var(--ease); }
-  .featured-link:active span { transform: translateX(3px); }
-  .featured-link:focus-visible { outline: 2px solid var(--m-accent); outline-offset: 2px; border-radius: 2px; }
-  .featured-controls { display: flex; gap: 8px; }
-  .featured-step {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border: 1px solid var(--m-line-strong);
-    border-radius: 50%;
-    background: none;
-    color: var(--m-text);
-    cursor: pointer;
-    transition: background-color 200ms ease, opacity 200ms ease;
-  }
-  .featured-step:active { background: rgba(var(--m-accent-rgb), .1); }
-  .featured-step:disabled { opacity: .35; cursor: default; }
-  .featured-step:focus-visible { outline: 2px solid var(--m-accent); outline-offset: 2px; }
-
   /* Keep fixed navigation legible while the hero is in view. */
   body.mobile-hero-visible .site-header { color: var(--m-text); }
   body.mobile-hero-visible .site-header .theme-toggle,
@@ -310,14 +269,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   html:has(.mobile-featured) { scroll-behavior: auto; }
-  .featured-group,
-  .featured-group.is-active,
-  .featured-tile::before,
-  .featured-tile img,
-  .featured-tile video,
-  .featured-progress-fill,
-  .featured-link span { transition: none; }
-  .featured-group,
-  .featured-group.is-leaving { transform: none; }
+  .featured-card::before,
+  .featured-card img,
+  .featured-card video { transition: none; }
   .mobile-featured.is-swapping .featured-caption { animation: none; }
 }

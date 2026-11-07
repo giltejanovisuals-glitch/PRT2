@@ -227,7 +227,7 @@
     </script>
     <script src="js/page-transition.js?v=3" defer></script>
     <!-- PAGE TRANSITION HEAD END -->
-    <script src="data/locales/en.js?v=1" defer></script>
+    <script src="data/locales/en.js?v=2" defer></script>
     <link rel="stylesheet" href="css/style.css?v=5" />
     <link rel="stylesheet" href="css/search.css?v=1" />
     <script src="js/search.js?v=3" defer></script>
@@ -235,8 +235,8 @@
     <link rel="stylesheet" href="css/content-protection.css" />
     <script src="js/content-protection.js" defer></script>
     <link rel="stylesheet" href="css/hero-parallax.css" />
-    <link rel="stylesheet" href="css/mobile-featured.css?v=2" />
-    <!-- MOBILE FEATURED PRELOAD START --><link rel="preload" as="image" type="image/webp" media="(max-width: 760px)" imagesrcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" imagesizes="(max-width: 760px) calc((100vw - 40px) * 0.58), 1px" fetchpriority="high" /><!-- MOBILE FEATURED PRELOAD END -->
+    <link rel="stylesheet" href="css/mobile-featured.css?v=5" />
+    <!-- MOBILE FEATURED PRELOAD START --><link rel="preload" as="image" type="image/webp" media="(max-width: 760px)" imagesrcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" imagesizes="(max-width: 279px) 190px, (max-width: 441px) 68vw, (max-width: 760px) 300px, 1px" fetchpriority="high" /><!-- MOBILE FEATURED PRELOAD END -->
     <link rel="stylesheet" href="css/mobile-gallery.css?v=2" />
     <link rel="stylesheet" href="css/reel-viewer.css?v=2" />
     <link rel="stylesheet" href="css/mobile-about.css" />
@@ -263,8 +263,8 @@
     <script src="js/script.js?v=2" defer></script>
     <script src="js/home-previews.js" defer></script>
     <script src="js/hero-parallax.js" defer></script>
-    <script src="js/mobile-featured-data.js?v=2" defer></script>
-    <script src="js/mobile-featured.js?v=2" defer></script>
+    <script src="js/mobile-featured-data.js?v=3" defer></script>
+    <script src="js/mobile-featured.js?v=6" defer></script>
     <script src="js/gallery-index.js?v=3" defer></script>
   </head>
 
@@ -373,47 +373,31 @@
         </div>
       </div>
 
-      <!-- Mobile landing carousel: curated groups of 2–3 visuals, defined in
-           scripts/featured-groups.js and built by
-           scripts/generate-mobile-featured.js. The opening group is rendered
+      <!-- Mobile landing coverflow: one curated visual per 4:5 card, defined
+           in scripts/featured-slides.js and built by
+           scripts/generate-mobile-featured.js. The opening slide is rendered
            here; js/mobile-featured.js adds the rest. -->
-      <section class="mobile-featured" aria-roledescription="carousel" aria-label="Featured work" data-i18n-attr="aria-label:featured.label;aria-roledescription:a11y.carousel">
+      <section class="mobile-featured" aria-roledescription="carousel" aria-label="Featured portfolio projects" data-i18n-attr="aria-label:featured.label;aria-roledescription:a11y.carousel">
         <div class="featured-frame">
-          <div class="featured-groups">
+          <div class="featured-track">
             <!-- MOBILE FEATURED START -->
-            <div class="featured-group is-active" data-layout="feature" data-id="social-campaigns" role="group" aria-roledescription="slide" aria-label="1 of 8: Social Media Campaigns &amp; Key Visuals" data-i18n-attr="aria-roledescription:a11y.slide">
-              <a class="featured-tile is-fill" href="pages/social-media-campaigns.html?open=HOOGA%20ROCKWELL.png" style="--placeholder: url('data:image/webp;base64,UklGRgQDAABXRUJQVlA4WAoAAAAgAAAAFwAAIAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggFgEAAFAGAJ0BKhgAIQA+0VqmTSglI6IquAwBABoJQBdma/KgCQWTNfF+K4BcBKUYwSr0bK4HY4ZlgW49L/YAAP7r9W9sBE0D5HUi2O14rPdZb07rwrNQldqv5+kLo1nsEItEwheiKUJiUNx6PR2fXy0XTjNGBUZrvOSpJysnt7viKGNppn8/dwFHrdqIJXqxBJUK5x0T5bTUz87vHiM6A01LfnGNfWza8Gcm/CQoQkbdJaShhnVKi823ivlhvJUD8OD+qP3P5DoadcZQqcwyBeHAaS9GPOm3Zbbt/34e0cHjJaCIGK6k7oQsy5Bia1jZbzK2m3knIKAP/UCbxlx0zQB1nHAIMYOZSK1mPx/1XEpkAWaXq6TIAAAA')">
-                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" sizes="(max-width: 760px) calc((100vw - 40px) * 0.58), 1px" /><img width="960" height="1332" alt="Hooga “A New Sense of Comfort” key visual: a tan leather sofa beneath glowing circular ceiling lights in a warm walnut-toned room." decoding="async" fetchpriority="high" data-i18n-attr="alt:featured.item.hooga-key-visual.alt" /></picture>
-              </a>
-              <a class="featured-tile is-fill" href="pages/social-media-campaigns.html?open=1%20FEATHER%20RECLINER%20v2.png" style="--placeholder: url('data:image/webp;base64,UklGRhwDAABXRUJQVlA4WAoAAAAgAAAAFwAAFwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggLgEAANAFAJ0BKhgAGAA+0VykTqglIyIoCqkAGgljALe6ALsljb69rC8AUU/iGIl95T3Vo5gkig0Sq5gA/ttrhp7oh9XHz7lKwPnyTg69x/4apIgNSkd0CmHBrs1zxSz002GxE3PnsR3Y1EmzNY2p3CaOyBygmXhoGy1UuHEFw4PTgykG9aXVCzcVSuKaib4gHfOeex+kHMBj8hcRbhvPuZ5DUFHLa4JXC9PXKrCixU0SW+OklXPyw7bocbNG07LN0oSPyy/J+v1oe87hpzcTb3kqubbpSLPLPM4PEYn8jb5wK6Kh91XxG1o2mIpqJSIY5SW9kxeFMGXJLg+qBDaEPV1/Iloc/7HOpjmN/yr/hJJT5xFzYGsMS1F/39dwdTdhFhBxsvwq4BgxYpNjfF8pwAAA')">
-                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/dunlopillo-recliner-480.webp 480w, assets/images/featured/dunlopillo-recliner-960.webp 960w" sizes="(max-width: 760px) calc((100vw - 40px) * 0.42), 1px" /><img width="960" height="960" alt="Dunlopillo “Find your sanctuary” key visual: a white leather recliner in a misty, sunlit forest." decoding="async" data-i18n-attr="alt:featured.item.dunlopillo-recliner.alt" /></picture>
-              </a>
-              <a class="featured-tile is-fill" href="pages/social-media-campaigns.html?open=MARW33.1.png" style="--placeholder: url('data:image/webp;base64,UklGRhQDAABXRUJQVlA4WAoAAAAgAAAAFwAAFwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggJgEAAJAGAJ0BKhgAGAA+0VyjTaglIyIoDVEAGglAFU94C4BHOrgHVZe1hUD8d24g/twIsPWEqMFdGrNrsrrCaWAA4n9SIvujNVcW40Nku0pNNsScaPM4lOPyFRT1btJIkiPYv+eDNxQwdwXKxbWpNvq2UfAdBGYCuoRH9DnSGsIpj4G7n+xsUnKYONeAylD8H6fSd6bPNG1pibZLpFKAgfFqsHDnz0ZG/BueSXUJ2OUz6xXC028Ih785Yaejo6WrlADQaeRTMac/pHjLGxN5eD59T43bVWot8XLM4vT/7Ke28ZKDwoq1OaOfTj2S7Ww6jSaOkOzK3x6slvA0+cKlcLu+Wv73fNZ7QB3C5e7bpYC/gEtH8X5ge6xIR5pZk9uFyN8+HUgkwAAAAA==')">
-                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/mooni-overhead-480.webp 480w, assets/images/featured/mooni-overhead-960.webp 960w" sizes="(max-width: 760px) calc((100vw - 40px) * 0.42), 1px" /><img width="960" height="960" alt="Mooni campaign visual seen from above: a woman in a grey robe stretched across a Mooni mattress, her face hidden behind a book." decoding="async" data-i18n-attr="alt:featured.item.mooni-overhead.alt" /></picture>
+            <div class="featured-slide is-active" data-id="social-campaigns" role="group" aria-roledescription="slide" aria-label="1 of 9: Social Media Campaigns &amp; Key Visuals" data-i18n-attr="aria-roledescription:a11y.slide">
+              <a class="featured-card is-fill" href="pages/social-media-campaigns.html?open=HOOGA%20ROCKWELL.png" style="--placeholder: url('data:image/webp;base64,UklGRgQDAABXRUJQVlA4WAoAAAAgAAAAFwAAIAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggFgEAAFAGAJ0BKhgAIQA+0VqmTSglI6IquAwBABoJQBdma/KgCQWTNfF+K4BcBKUYwSr0bK4HY4ZlgW49L/YAAP7r9W9sBE0D5HUi2O14rPdZb07rwrNQldqv5+kLo1nsEItEwheiKUJiUNx6PR2fXy0XTjNGBUZrvOSpJysnt7viKGNppn8/dwFHrdqIJXqxBJUK5x0T5bTUz87vHiM6A01LfnGNfWza8Gcm/CQoQkbdJaShhnVKi823ivlhvJUD8OD+qP3P5DoadcZQqcwyBeHAaS9GPOm3Zbbt/34e0cHjJaCIGK6k7oQsy5Bia1jZbzK2m3knIKAP/UCbxlx0zQB1nHAIMYOZSK1mPx/1XEpkAWaXq6TIAAAA')">
+                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" sizes="(max-width: 279px) 190px, (max-width: 441px) 68vw, (max-width: 760px) 300px, 1px" /><img class="featured-backdrop" alt="" aria-hidden="true" width="960" height="1332" decoding="async" /></picture>
+                <picture><source media="(max-width: 760px)" type="image/webp" srcset="assets/images/featured/hooga-key-visual-480.webp 480w, assets/images/featured/hooga-key-visual-960.webp 960w" sizes="(max-width: 279px) 190px, (max-width: 441px) 68vw, (max-width: 760px) 300px, 1px" /><img class="featured-image" alt="Hooga “A New Sense of Comfort” key visual: a tan leather sofa beneath glowing circular ceiling lights in a warm walnut-toned room." fetchpriority="high" data-i18n-attr="alt:featured.item.hooga-key-visual.alt" width="960" height="1332" decoding="async" /></picture>
+                <span class="featured-shade" aria-hidden="true"></span>
               </a>
             </div>
             <!-- MOBILE FEATURED END -->
           </div>
         </div>
-        <div class="featured-progress" aria-hidden="true"><span class="featured-progress-fill"></span></div>
         <div class="featured-details">
           <div class="featured-caption">
             <!-- MOBILE FEATURED CAPTION START -->
             <p class="featured-title">Social Media Campaigns &amp; Key Visuals</p>
-            <p class="featured-subtitle">Campaign key visuals across brands</p>
+            <p class="featured-subtitle">Recliner event key visual</p>
+            <p class="featured-meta">Hooga · Key Visual · 2026</p>
             <!-- MOBILE FEATURED CAPTION END -->
-          </div>
-          <p class="featured-count" aria-hidden="true"><!-- MOBILE FEATURED COUNT START --><span class="featured-current">01</span> / <span class="featured-total">08</span><!-- MOBILE FEATURED COUNT END --></p>
-        </div>
-        <div class="featured-actions">
-          <!-- MOBILE FEATURED LINK START --><a class="featured-link" href="pages/social-media-campaigns.html"><span data-i18n="featured.viewProject">View Project</span> <span aria-hidden="true">&rarr;</span></a><!-- MOBILE FEATURED LINK END -->
-          <div class="featured-controls">
-            <button type="button" class="featured-step" data-step="-1" aria-label="Previous group" disabled data-i18n-attr="aria-label:featured.prev">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg>
-            </button>
-            <button type="button" class="featured-step" data-step="1" aria-label="Next group" disabled data-i18n-attr="aria-label:featured.next">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>
-            </button>
           </div>
         </div>
         <p class="featured-status sr-only" aria-live="polite" aria-atomic="true"></p>

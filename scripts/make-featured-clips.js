@@ -1,6 +1,6 @@
 /*
- * Light preview clips for the reels in the mobile landing carousel
- * (scripts/featured-groups.js). Run by hand — it needs ffmpeg, which the
+ * Light preview clips for the reels in the mobile landing coverflow
+ * (scripts/featured-slides.js). Run by hand — it needs ffmpeg, which the
  * deploy build doesn't have — and commit what it writes:
  *
  *   assets/videos/featured/<id>.mp4   muted H.264, 540px wide, `length`
@@ -17,7 +17,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const GROUPS = require("./featured-groups");
+const SLIDES = require("./featured-slides");
 
 const ROOT = path.join(__dirname, "..");
 const REELS = path.join(ROOT, "assets", "videos", "short-form-reels");
@@ -28,7 +28,7 @@ const force = process.argv.includes("--force");
 const ffmpeg = (args) => execFileSync(FFMPEG, ["-hide_banner", "-loglevel", "error", "-y", ...args], { stdio: "inherit" });
 
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-const reels = GROUPS.flatMap((group) => group.items.filter((item) => item.kind === "reel"));
+const reels = SLIDES.map((slide) => slide.visual).filter((visual) => visual.kind === "reel");
 for (const reel of reels) {
   const source = path.join(REELS, reel.file);
   if (!fs.existsSync(source)) throw new Error(`missing reel ${reel.file}`);

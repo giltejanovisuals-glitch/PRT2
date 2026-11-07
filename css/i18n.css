@@ -77,7 +77,7 @@ html.i18n-loading body > :not(.pt-overlay) {
    reserved so changing slides never moves the page. */
 @media (max-width: 760px) {
   :root:not(:lang(en)) .featured-caption {
-    min-height: 78px;
+    min-height: 112px;
   }
 
   :root:not(:lang(en)) :is(.featured-title, .featured-subtitle) {

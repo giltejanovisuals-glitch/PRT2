@@ -10,7 +10,7 @@ image manifest (see below), which Vercel runs automatically via
 ```
 PRT2/
 ├── index.html                 Homepage — image-wall hero (desktop) or
-│                               featured carousel (mobile), and the
+│                               featured coverflow (mobile), and the
 │                               Project Gallery showcase
 ├── pages/
 │   ├── editorial-layout.html  Project Gallery category pages. All five
@@ -394,68 +394,79 @@ scroll, then its three rows slide sideways in alternating directions. With
   (`.showcase-panel[data-category]`) further down `index.html`.
 - On mobile (up to 760px), `css/mobile-featured.css` and
   `js/mobile-featured.js` replace the wall with a label, headline,
-  supporting line, and a carousel of eight curated **groups** of 2–3
-  visuals in a fixed square frame, with a thin teal progress line, the
-  group's title, subtitle and count (`03 / 08`), a **View Project →** link,
-  and previous/next buttons. The desktop image wall is not populated on
-  mobile.
-- **Featured collection** is hand-approved in `scripts/featured-groups.js`
-  (never a random pick from the gallery folders; no visual repeats across
-  groups). The first group is always the opening group; the others are
-  shuffled once per browsing session (`sessionStorage`), never placing two
-  groups with the same layout or the same `family` tag (Porta Mobili,
-  reels) side by side. Four layouts: `feature` / `feature-rev` (one tall
-  visual beside two stacked), `pair` (two equal verticals), and `wide`
-  (one wide visual above two squares); slot proportions live in `SLOTS`
-  in `scripts/generate-mobile-featured.js` and must match the grid in the
-  stylesheet. To change a visual, edit its entry, delete its files in
-  `assets/images/featured/`, and run `npm run build`. The script writes
-  480w/960w WebP copies, an inline placeholder per visual,
-  `js/mobile-featured-data.js`, and the opening group's markup, caption,
-  count, link, and `<link rel="preload">` (between the `MOBILE FEATURED`
-  markers in `index.html`). An optional `crop` trims source edges.
-- **Images** are always shown whole (`object-fit: contain`). Only visuals
-  whose proportions differ from their slot (`fill` in the data) sit over an
-  enlarged, blurred, darkened copy of themselves with a subtle overlay.
-  Only the current and next groups receive image sources.
+  supporting line, and a **coverflow** of nine curated 4:5 project cards:
+  the active card centred and flat, its neighbours turned in (34°, less on
+  narrow or zoomed screens), set back, and faded towards the page colour so
+  they peek in from the sides without competing. Below it: the active
+  card's title, subtitle, and `Brand · Category · Year` line. The desktop
+  image wall is not populated on mobile.
+- **Slides** are hand-approved in `scripts/featured-slides.js` (never a
+  random pick from the gallery folders; one visual per slide, no visual
+  twice, no two neighbouring slides from the same brand). The order is
+  fixed and loops; the first slide is the opening slide. Each slide has a
+  title, subtitle, category, brand, year, destination, and an image or reel.
+  Fill in `year` only where the work, its file, or its publication record
+  states it — an empty year is simply left out of the caption. To change a
+  visual, edit its entry, delete its files in `assets/images/featured/`,
+  and run `npm run build`. The script writes 480w/960w WebP copies, an
+  inline placeholder per visual, `js/mobile-featured-data.js`, and the
+  opening slide's markup, caption, and `<link rel="preload">`
+  (between the `MOBILE FEATURED` markers in `index.html`). An optional
+  `crop` trims source edges.
+- **Images** are always shown whole (`object-fit: contain`). Visuals that
+  aren't 4:5 (`fill` in the data) sit over an enlarged, blurred, darkened
+  copy of themselves (`object-fit: cover`). The active card loads first,
+  then its immediate neighbours; the rest load only as they come near.
 - **Reels** play as muted, looping, inline previews from light clips
   (`assets/videos/featured/<id>.mp4`, 540px wide, a few hundred KB) made by
   `scripts/make-featured-clips.js` from each reel's `start`/`length`. That
   script needs ffmpeg and is run by hand (`FFMPEG=<path>` if it isn't on
-  PATH); commit its output, since the deploy build has no ffmpeg. Previews
-  load and play only while their group is active and the carousel is on
-  screen (at most two at once, `preload="metadata"`, poster first), and
-  are stopped, rewound, and unloaded when the group is left, the tab is
-  hidden, or the carousel scrolls away. Under reduced motion or reduced
-  data they stay still posters. Each shows a reel icon and the full reel's
-  duration. A tap opens the full reel in the fullscreen viewer
-  (`js/reel-viewer.js`); closing it continues to the Short-Form Video &
-  Reels page with that reel picked out (`?reel=<file>`).
-- **Interaction**: swipe (the first 10px choose the axis; vertical always
-  scrolls the page, 40px horizontal steps exactly one group), the
-  previous/next buttons, and left/right arrow keys. Groups crossfade over
-  600ms with a 10px drift in the direction of travel. Autoplay advances
-  every 6.5s (a reel group stays for one full pass of its clips), pauses
+  PATH); commit its output, since the deploy build has no ffmpeg. Only the
+  active card's preview loads and plays (`preload="metadata"`, poster
+  first), and only while the carousel is on screen; it is stopped, rewound,
+  and unloaded when the card is left, the tab is hidden, or the carousel
+  scrolls away. Under reduced motion or reduced data they stay still
+  posters. Each shows a reel icon and the full reel's duration. Tapping the
+  centred reel opens it in the fullscreen viewer (`js/reel-viewer.js`);
+  closing it continues to the Short-Form Video & Reels page with that reel
+  picked out (`?reel=<file>`).
+- **Interaction**: horizontal drag (`touch-action: pan-y`, so vertical
+  gestures always scroll the page) snapping one card at a time, with a
+  gentle fling of at most two cards; horizontal trackpad/wheel scrolling
+  (and Shift+wheel), which snaps once the scroll pauses; left/right arrow
+  keys. Tapping a neighbour brings it to the centre; tapping the
+  centred card opens its project; a drag never opens anything. Cards ease
+  exponentially into place (about half a second), animating only transform
+  and opacity; the caption crossfades. A `ResizeObserver` re-measures on
+  resize and rotation without moving off the current card. Autoplay
+  advances every 6.5s (a reel preview finishes one pass first), pauses
   during touch, focus, hover, the reel viewer, hidden tabs, and while
-  offscreen, and stops for the visit after any manual step or opened
-  piece. Reduced motion or data saving disables autoplay and transitions.
-- **Accessibility**: each group is a labelled slide ("3 of 8: Commercial &
-  Lifestyle Photography"); manual steps are announced through a polite
-  live region; hidden groups are `inert`. Every image has alt text, reel
-  buttons describe the reel and its length, and every control is at least
-  44px. Without JavaScript only the opening group and its links show.
+  offscreen, and stops for the visit after any manual step or opened piece.
+  Reduced motion removes the 3D turn and depth and makes moves snap;
+  reduced motion or data saving disables autoplay.
+- **Accessibility**: the carousel is labelled "Featured portfolio
+  projects"; each card is a labelled slide ("3 of 9: Commercial & Lifestyle
+  Photography"); manual moves are announced through a polite live region.
+  Only the active card is exposed and in the tab order — the others stay
+  tappable but are `aria-hidden` with `tabindex="-1"`. Every image has alt
+  text, reel buttons describe the reel and its length, and every control is
+  at least 44px. Without JavaScript only the opening card and its links
+  show.
+- **Languages**: titles, subtitles, categories, alt text, reel labels,
+  controls, and announcements come from `featured.*` keys in
+  `data/locales/*.json`; brand names and years are never translated.
+  Switching language relabels everything in place without moving the
+  carousel.
 - **Links**: each image opens its piece directly on its Project Gallery
-  page via `?open=<file name>` (`openIn()` in `scripts/featured-groups.js`),
-  and **View Project →** opens the group's page. The showcase
-  pages (`js/print-collateral-showcase.js`) open that image in the
-  fullscreen lightbox; the editorial page (`js/publication-reader.js`)
+  page via `?open=<file name>` (`openIn()` in `scripts/featured-slides.js`).
+  The showcase pages (`js/print-collateral-showcase.js`) open that image in
+  the fullscreen lightbox; the editorial page (`js/publication-reader.js`)
   opens that PDF in the reader. The parameter is then removed from the
-  address bar. Closing a piece
-  opened this way (close button or Escape) returns the visitor to the page
-  they came from (`js/return-trip.js`, loaded on the five gallery
-  pages), or to the homepage if they arrived another way. The carousel
-  then shows the same group again, with autoplay paused.
-
+  address bar. Closing a piece opened this way (close button or Escape)
+  returns the visitor to the page they came from (`js/return-trip.js`,
+  loaded on the five gallery pages), or to the homepage if they arrived
+  another way. The carousel then shows the same card again, with autoplay
+  paused.
 
 ### Returning to the homepage
 
