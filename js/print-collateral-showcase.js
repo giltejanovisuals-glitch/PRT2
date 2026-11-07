@@ -19,9 +19,12 @@
  * navigation stay put and the document never scrolls. Only the three-column
  * thumbnail gallery on the right moves, driven by its own virtual scroll
  * position — wheel, trackpad, touch and keyboard input over the gallery is
- * captured there and never reaches the page. Columns 1 and 3 travel
- * downward while column 2 travels upward, each across its own full length,
- * eased toward the target for controlled inertia (touch flicks glide on).
+ * captured there and never reaches the page. The columns move alternately,
+ * each across its own full length: the column under the cursor (or finger)
+ * scrolls the way the wheel goes, like a page, and its neighbours go the
+ * opposite way; with no column pointed at, column 2 scrolls like a page and
+ * columns 1 and 3 the other way. Movement eases toward the target for
+ * controlled inertia (touch flicks glide on).
  * Pushing past either end gives a short elastic give that springs back, and
  * a progress line in the gallery bar marks start and end.
  *
@@ -67,6 +70,20 @@
   // to the first image.
   const FEED = section.dataset.mobileLayout === "feed";
   const LANDSCAPE_RATIO = 1.2;
+  // data-hover-preview (Social Media Campaigns & Key Visuals): in the split
+  // layout the preview follows the thumbnail under the mouse or keyboard
+  // focus, and a click opens the full viewer straight away. Touch has no
+  // hover, so there a first tap previews and a second tap on the same
+  // thumbnail (or a tap on the preview itself) opens it. The last
+  // previewed item stays when the cursor leaves the gallery.
+  const HOVER = section.hasAttribute("data-hover-preview");
+  // Hover intent: the cursor must rest this long on a thumbnail before the
+  // preview changes, so sweeping across the columns doesn't strobe it.
+  const HOVER_INTENT_MS = 70;
+  // The full-size original replaces the preview's thumbnail only once the
+  // item has stayed in the preview this long (hover browsing would
+  // otherwise download every original it passes over).
+  const HOVER_UPGRADE_MS = 280;
 
   const encodePath = (p) => p.split("/").map(encodeURIComponent).join("/");
   // Accepts seconds (24) or "m:ss" ("0:24"); anything else is unknown.
@@ -171,13 +188,19 @@
   // Used for thumbnail labels and preview alt text.
   const describe = (entry) => ({ type: entry.type || TYPE_FALLBACK });
 
+  // A video inside an image gallery (a manifest entry with kind "video" and
+  // a same-named poster image) — distinct from the all-video Reels page.
+  const isClip = (entry) => !IS_VIDEO && entry.kind === "video";
+  // The still that represents an entry: the photo itself, or a clip's poster.
+  const stillOf = (entry) => (isClip(entry) ? entry.poster : entry.src);
+
   // A small build-time WebP copy, if one exists (videos use their poster).
   const thumbFor = (entry) => {
     if (IS_VIDEO) return "";
-    const thumb = thumbs[fileOf(entry.src)];
+    const thumb = thumbs[fileOf(stillOf(entry))];
     return thumb ? `../${encodePath(thumb)}` : "";
   };
-  const thumbSrc = (entry) => (IS_VIDEO ? entry.poster : thumbFor(entry) || entry.src);
+  const thumbSrc = (entry) => (IS_VIDEO ? entry.poster : thumbFor(entry) || stillOf(entry));
 
   // --- Thumbnails ---------------------------------------------------------
 
@@ -194,7 +217,7 @@
     tile.setAttribute("aria-pressed", "false");
     tile.setAttribute(
       "aria-label",
-      `${IS_VIDEO ? "Play" : "Show"} ${describe(entry).type.toLowerCase()} ${i + 1} of ${entries.length}`
+      `${IS_VIDEO ? "Play" : "Show"} ${isClip(entry) ? "video" : describe(entry).type.toLowerCase()} ${i + 1} of ${entries.length}`
     );
     // Reserve the image's exact natural shape before it loads. The feed
     // leaves that to the img's own width/height attributes (height: auto).
@@ -221,18 +244,18 @@
     // tile's rendered width (half the screen, or all of it for landscape).
     const thumb = thumbFor(entry);
     if (feed && thumb && entry.width > 720) {
-      img.srcset = `${thumb} 720w, ${encodePath(entry.src)} ${entry.width}w`;
+      img.srcset = `${thumb} 720w, ${encodePath(stillOf(entry))} ${entry.width}w`;
       img.sizes = ratioOf(entry) >= LANDSCAPE_RATIO ? "calc(100vw - 40px)" : "calc(50vw - 25px)";
     }
-    if (!IS_VIDEO && img.src !== entry.src) {
+    if (!IS_VIDEO && thumb) {
       img.addEventListener("error", () => {
         img.removeAttribute("srcset");
-        img.src = entry.src;
+        img.src = stillOf(entry);
       }, { once: true });
     }
     tile.appendChild(img);
 
-    if (IS_VIDEO) {
+    if (IS_VIDEO || isClip(entry)) {
       const play = document.createElement("span");
       play.className = "pbc-tile-play";
       play.setAttribute("aria-hidden", "true");
@@ -330,8 +353,9 @@
   // js/reel-meta.js to skip that request.
 
   let durationObserver = null;
+  // Phones' feed opens reels in it; so does the desktop hover preview.
   const reelViewer =
-    IS_VIDEO && FEED && window.createReelViewer
+    IS_VIDEO && (FEED || HOVER) && window.createReelViewer
       ? window.createReelViewer(entries, { typeFallback: TYPE_FALLBACK, formatDuration })
       : null;
   const reelPreviews =
@@ -475,12 +499,25 @@
     if (IS_VIDEO) {
       const video = document.createElement("video");
       video.className = "pbc-shot-img pbc-shot-video";
-      video.controls = true;
       video.muted = true;
       video.playsInline = true;
-      video.preload = saveData ? "none" : "metadata";
       if (entry.poster) video.poster = entry.poster;
-      video.src = entry.src;
+      if (HOVER) {
+        // Hover preview: a silent, looping, inline clip (the light preview
+        // file when there is one); a click opens the reel viewer for sound
+        // and controls.
+        video.defaultMuted = true;
+        video.loop = true;
+        video.setAttribute("playsinline", "");
+        video.disablePictureInPicture = true;
+        video.preload = saveData || !motionAllowed() ? "none" : "auto";
+        video.src = entry.preview || entry.src;
+        shot.dataset.clip = "";
+      } else {
+        video.controls = true;
+        video.preload = saveData ? "none" : "metadata";
+        video.src = entry.src;
+      }
       video.setAttribute("aria-label", `${entry.label}${entry.brand ? `, ${entry.brand}` : ""}`);
       if (entry.captions) {
         const track = document.createElement("track");
@@ -493,6 +530,28 @@
       }
       // Black behind the player only for non-vertical sources.
       shot.dataset.vertical = String(ratioOf(entry) < 1);
+      shot.appendChild(video);
+      return shot;
+    }
+
+    if (isClip(entry)) {
+      // A clip in an image gallery previews silently: muted, looping,
+      // inline, no controls (a click opens the full player). The poster
+      // holds the frame until the first frame arrives. Under reduced motion
+      // it stays on the poster.
+      const video = document.createElement("video");
+      video.className = "pbc-shot-img pbc-shot-video";
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute("playsinline", "");
+      video.disablePictureInPicture = true;
+      video.preload = motionAllowed() ? "auto" : "none";
+      if (entry.poster) video.poster = thumbSrc(entry);
+      video.setAttribute("aria-label", entry.alt || entry.title || "Video");
+      video.src = entry.src;
+      shot.dataset.clip = "";
       shot.appendChild(video);
       return shot;
     }
@@ -523,22 +582,57 @@
     const lowRes = thumbSrc(entry);
     img.src = lowRes;
     if (lowRes !== entry.src) {
-      const full = new Image();
-      full.decoding = "async";
-      full.src = entry.src;
-      (full.decode ? full.decode() : Promise.resolve())
-        .then(() => {
-          if (shot.isConnected) img.src = entry.src;
-        })
-        .catch(() => {});
+      const upgrade = () => {
+        const full = new Image();
+        full.decoding = "async";
+        full.src = entry.src;
+        (full.decode ? full.decode() : Promise.resolve())
+          .then(() => {
+            if (shot.isConnected) img.src = entry.src;
+          })
+          .catch(() => {});
+      };
+      // Hover browsing: only for an item that stays in the preview.
+      if (HOVER && activeShot) {
+        window.setTimeout(() => {
+          if (shot === activeShot) upgrade();
+        }, HOVER_UPGRADE_MS);
+      } else {
+        upgrade();
+      }
     }
     shot.appendChild(img);
     return shot;
   };
 
+  // Stops a preview clip and frees its decoder and download.
+  const releaseVideo = (shot) => {
+    const video = shot && shot.querySelector("video");
+    if (!video) return;
+    video.pause();
+    if (shot.dataset.clip !== undefined) {
+      video.removeAttribute("src");
+      video.load();
+    }
+  };
+
+  const playClip = (shot) => {
+    const video = shot && shot.dataset.clip !== undefined && shot.querySelector("video");
+    if (!video || !motionAllowed() || lightboxIsOpen()) return;
+    const playing = video.play();
+    if (playing && playing.catch) playing.catch(() => {});
+  };
+
+  const lightboxIsOpen = () =>
+    document.body.classList.contains("lightbox-open") || root.classList.contains("reel-viewer-open");
+
   // autoplay is only ever true from a direct click or tap on a video tile,
   // and plays muted (the native controls unmute) — never on page load.
   const showPreview = (entry, autoplay = false) => {
+    // The outgoing clip stops before the next item starts loading.
+    const previous = activeShot;
+    if (previous) previous.querySelector("video")?.pause();
+
     const next = createShot(entry);
     frame.appendChild(next);
     if (autoplay) {
@@ -546,19 +640,25 @@
       const playing = video && video.play();
       if (playing && playing.catch) playing.catch(() => {});
     }
+    // Nothing plays on page load — only once the visitor picks something.
+    if (previous) playClip(next);
 
-    const previous = activeShot;
     activeShot = next;
     if (previous) {
-      previous.querySelector("video")?.pause();
       previous.classList.remove("is-active");
       previous.classList.add("is-leaving");
-      window.setTimeout(() => previous.remove(), motionAllowed() ? 700 : 0);
+      window.setTimeout(() => {
+        // A clip keeps its last frame through the fade, then lets go.
+        if (previous.dataset.clip !== undefined) releaseVideo(previous);
+        previous.remove();
+      }, motionAllowed() ? (HOVER ? 400 : 700) : 0);
     }
-    // Two frames so the entering state is painted before it transitions.
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => next.classList.add("is-active"));
-    });
+    // Commit the entering state (opacity 0) with a forced style/layout
+    // flush, then activate so it transitions. Unlike waiting two animation
+    // frames, this can't leave the new shot stuck invisible when frames are
+    // throttled or paused (background tabs, some mobile browsers).
+    void next.offsetWidth;
+    next.classList.add("is-active");
 
     if (currentEl) currentEl.textContent = pad(entries.indexOf(entry) + 1);
   };
@@ -566,9 +666,11 @@
   // Warm the next/previous originals so stepping through feels instant.
   const prefetched = new Set();
   const prefetch = (i) => {
-    if (IS_VIDEO) return;
+    // Hover previews jump around the columns, so manifest neighbours
+    // aren't the likely next pick there.
+    if (IS_VIDEO || HOVER) return;
     const entry = entries[(i + entries.length) % entries.length];
-    if (!entry || prefetched.has(entry.src)) return;
+    if (!entry || isClip(entry) || prefetched.has(entry.src)) return;
     prefetched.add(entry.src);
     const img = new Image();
     img.decoding = "async";
@@ -609,6 +711,11 @@
   };
 
   const openFullscreen = (trigger) => {
+    if (IS_VIDEO && HOVER && reelViewer) {
+      activeShot?.querySelector("video")?.pause();
+      reelViewer.open(selected, trigger || frame);
+      return;
+    }
     if (IS_VIDEO) {
       const video = activeShot && activeShot.querySelector("video");
       if (!video) return;
@@ -657,44 +764,83 @@
   };
 
   // --- Motion mode: virtual scroll with opposed column drift ---------------
+  //
+  // Every column keeps its own scroll position (`tgt`/`cur`, 0 = its top in
+  // view, `travel` = its bottom in view). Input moves all of them at once,
+  // alternately: by default column 2 scrolls like a page (wheel down →
+  // content moves up) and columns 1 and 3 go the other way. With the cursor
+  // (or a finger) over a column, that column follows the wheel like a page
+  // and the pattern alternates out from it — so the column being looked at
+  // always moves the expected way. Each column covers its own length over
+  // the same virtual range, so their speeds stay matched.
 
   let mode = "";
   let railHeight = 0;
-  let range = 0; // virtual scroll length: input pixels from start to end
-  let target = 0;
-  let current = 0;
-  let overshoot = 0; // elastic give past either end, in virtual px
+  let range = 0; // virtual input px for every column to cross its length
   let tau = SMOOTHING_MS;
   let dragging = false;
   let lastInputAt = 0;
   let rafId = null;
   let lastTime = 0;
+  let anchor = null; // index of the column under the cursor for this input
 
-  // Columns 1 and 3 begin showing their far end and travel down to their
-  // start; column 2 travels up. Each covers its own length over the same
-  // virtual range, so every thumbnail is reachable. Unclamped, so the
-  // elastic give runs each column a little past its end into its padding.
-  const offsetAt = (col, s) => (col.direction > 0 ? -col.travel + s * col.rate : -s * col.rate);
+  // Every column begins halfway along its length, so whichever column the
+  // cursor is on can scroll either way from the first wheel turn.
+  const startFrac = () => 0.5;
+  // The column the progress line describes: the one last pointed at
+  // (column 2 until then).
+  let progressCol = 1;
+  // +1: moves like a page for the input; -1: the opposite way.
+  const senseOf = (col, i) => {
+    if (anchor === null) return col.direction > 0 ? -1 : 1;
+    return i % 2 === anchor % 2 ? 1 : -1;
+  };
+
+  // Which column a viewport x falls in (the nearest across a gap), or null
+  // outside the rail.
+  const columnAt = (x) => {
+    const railRect = rail.getBoundingClientRect();
+    if (x < railRect.left || x > railRect.right) return null;
+    let best = null;
+    let bestDist = Infinity;
+    columns.forEach((col, i) => {
+      const r = col.el.getBoundingClientRect();
+      const dist = x < r.left ? r.left - x : x > r.right ? x - r.right : 0;
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = i;
+      }
+    });
+    return best;
+  };
 
   const paint = () => {
-    const s = current + overshoot;
     columns.forEach((col) => {
-      col.el.style.transform = `translate3d(0, ${offsetAt(col, s).toFixed(2)}px, 0)`;
+      // Unclamped, so the elastic give runs a column a little past its end.
+      col.el.style.transform = `translate3d(0, ${(-(col.cur + col.over)).toFixed(2)}px, 0)`;
     });
-    syncProgress(range ? current / range : 1, range > 0);
+    // Progress: how far down its own length the pointed-at column is.
+    const col = columns[Math.min(progressCol, columns.length - 1)];
+    syncProgress(col && col.travel ? col.cur / col.travel : 1, Boolean(col && col.travel));
   };
 
   const tick = (time) => {
     const dt = Math.min(64, time - (lastTime || time));
     lastTime = time;
-    current += (target - current) * (1 - Math.exp(-dt / (dragging ? DRAG_SMOOTHING_MS : tau)));
-    if (Math.abs(target - current) < 0.25) current = target;
-    if (overshoot && !dragging && performance.now() - lastInputAt > OVERSCROLL_RELEASE_MS) {
-      overshoot *= Math.exp(-dt / OVERSCROLL_SPRING_MS);
-      if (Math.abs(overshoot) < 0.25) overshoot = 0;
-    }
+    const k = 1 - Math.exp(-dt / (dragging ? DRAG_SMOOTHING_MS : tau));
+    const release = !dragging && performance.now() - lastInputAt > OVERSCROLL_RELEASE_MS;
+    let moving = dragging;
+    columns.forEach((col) => {
+      col.cur += (col.tgt - col.cur) * k;
+      if (Math.abs(col.tgt - col.cur) < 0.25) col.cur = col.tgt;
+      if (col.over && release) {
+        col.over *= Math.exp(-dt / OVERSCROLL_SPRING_MS);
+        if (Math.abs(col.over) < 0.25) col.over = 0;
+      }
+      if (col.cur !== col.tgt || col.over) moving = true;
+    });
     paint();
-    rafId = current === target && overshoot === 0 && !dragging ? null : window.requestAnimationFrame(tick);
+    rafId = moving ? window.requestAnimationFrame(tick) : null;
   };
 
   const kick = () => {
@@ -703,24 +849,21 @@
     rafId = window.requestAnimationFrame(tick);
   };
 
-  // Move the target by `delta` virtual px; whatever would pass an end turns
-  // into a resisted elastic give instead.
-  const moveBy = (delta) => {
+  // Move every column by `delta` virtual px in its own sense; whatever would
+  // carry a column past an end turns into a resisted elastic give instead.
+  const moveBy = (delta, elastic = true) => {
     if (!range) return;
     lastInputAt = performance.now();
-    const next = target + delta;
-    target = clamp(next, 0, range);
-    const excess = next - target;
-    if (excess) {
-      const give = excess * OVERSCROLL_RESIST * (1 - Math.abs(overshoot) / OVERSCROLL_MAX);
-      overshoot = clamp(overshoot + give, -OVERSCROLL_MAX, OVERSCROLL_MAX);
-    }
-    kick();
-  };
-
-  const moveTo = (s) => {
-    tau = SMOOTHING_MS;
-    target = clamp(s, 0, range);
+    const maxGive = OVERSCROLL_MAX * DRIFT_SPEED;
+    columns.forEach((col, i) => {
+      const next = col.tgt + delta * col.rate * senseOf(col, i);
+      col.tgt = clamp(next, 0, col.travel);
+      const excess = next - col.tgt;
+      if (excess && elastic) {
+        const give = excess * OVERSCROLL_RESIST * (1 - Math.abs(col.over) / maxGive);
+        col.over = clamp(col.over + give, -maxGive, maxGive);
+      }
+    });
     kick();
   };
 
@@ -732,27 +875,29 @@
       return;
     }
     if (mode !== "motion") return;
-    const ratio = range ? target / range : 0;
     railHeight = rail.clientHeight;
     columns.forEach((col) => {
+      // Keep each column at the same relative position across resizes.
+      const frac = col.travel ? col.tgt / col.travel : col.frac ?? startFrac(col);
       col.travel = Math.max(0, col.el.offsetHeight - railHeight);
+      col.frac = frac;
+      col.tgt = col.cur = frac * col.travel;
+      col.over = 0;
     });
     const maxTravel = Math.max(0, ...columns.map((c) => c.travel));
     range = Math.round(maxTravel / DRIFT_SPEED);
     columns.forEach((col) => {
       col.rate = range ? col.travel / range : 0;
     });
-    // Keep the same relative position across resizes.
-    target = current = ratio * range;
-    overshoot = 0;
     paint();
   };
 
   // Scroll the gallery by whole pages, or to either end, in whatever way
-  // the current mode moves its thumbnails.
+  // the current mode moves its thumbnails (keyboard: the default pattern).
   const pageBy = (dir) => {
     const step = (railHeight || rail.clientHeight) * PAGE_STEP;
     if (mode === "motion") {
+      anchor = null;
       tau = SMOOTHING_MS;
       moveBy((dir * step) / DRIFT_SPEED);
     } else if (mode === "static") {
@@ -761,22 +906,31 @@
   };
 
   const toEdge = (dir) => {
-    if (mode === "motion") moveTo(dir > 0 ? range : 0);
-    else if (mode === "static") rail.scrollTop = dir > 0 ? rail.scrollHeight : 0;
+    if (mode === "motion") {
+      anchor = null;
+      tau = SMOOTHING_MS;
+      columns.forEach((col, i) => {
+        col.tgt = senseOf(col, i) * dir > 0 ? col.travel : 0;
+      });
+      kick();
+    } else if (mode === "static") rail.scrollTop = dir > 0 ? rail.scrollHeight : 0;
   };
 
-  // Bring a thumbnail into view (keyboard focus, lightbox sync).
+  // Bring a thumbnail into view (keyboard focus, lightbox sync) by moving
+  // only its own column.
   const revealTile = (tile) => {
     if (mode === "motion") {
       const col = columns[Number(tile.dataset.column)];
-      if (!col || !col.rate) return;
+      if (!col || !col.travel) return;
       const top = tile.offsetTop;
       const h = tile.offsetHeight;
-      const now = offsetAt(col, target);
+      const now = -col.tgt;
       const margin = Math.min(56, railHeight * 0.1);
       if (top + now >= margin && top + h + now <= railHeight - margin) return; // already in view
       const desired = clamp(railHeight / 2 - (top + h / 2), -col.travel, 0);
-      moveTo(col.direction > 0 ? (desired + col.travel) / col.rate : -desired / col.rate);
+      tau = SMOOTHING_MS;
+      col.tgt = -desired;
+      kick();
       return;
     }
     if (mode === "static") {
@@ -793,8 +947,12 @@
     if (rafId !== null) window.cancelAnimationFrame(rafId);
     rafId = null;
     dragging = false;
-    range = target = current = overshoot = 0;
+    anchor = null;
+    progressCol = 1;
+    range = 0;
     columns.forEach((col) => {
+      col.travel = col.rate = col.tgt = col.cur = col.over = 0;
+      col.frac = startFrac(col);
       col.el.style.transform = "";
     });
     rail.scrollTop = 0;
@@ -821,6 +979,8 @@
       event.preventDefault();
       const unit = event.deltaMode === 1 ? LINE_PX : event.deltaMode === 2 ? railHeight : 1;
       const raw = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+      anchor = columnAt(event.clientX);
+      if (anchor !== null) progressCol = anchor;
       tau = SMOOTHING_MS;
       moveBy(raw * unit);
     },
@@ -839,10 +999,15 @@
         return;
       }
       dragging = true;
+      // The column under the finger follows it.
+      anchor = columnAt(event.touches[0].clientX);
+      if (anchor !== null) progressCol = anchor;
       touchY = event.touches[0].clientY;
       touchTime = event.timeStamp;
       velocity = 0;
-      target = current; // catch a glide where it is
+      columns.forEach((col) => {
+        col.tgt = col.cur; // catch a glide where it is
+      });
       kick();
     },
     { passive: true }
@@ -876,7 +1041,7 @@
     const fling = clamp(velocity * GLIDE_MS, -cap, cap);
     if (Math.abs(fling) > 2) {
       tau = GLIDE_MS;
-      target = clamp(target + fling, 0, range);
+      moveBy(fling, false);
     }
     kick();
   };
@@ -934,19 +1099,110 @@
       openFullscreen(tile);
       return;
     }
+    if (HOVER) {
+      cancelHover();
+      // Touch: the first tap previews, a second tap on it opens it.
+      if (lastPointerType === "touch" && (pos !== selected || !activeShot)) {
+        select(pos);
+        return;
+      }
+      // Mouse, pen and keyboard: the preview already shows it, so open it.
+      if (pos !== selected || !activeShot) select(pos);
+      openFullscreen(tile);
+      return;
+    }
     // A second click on the selected thumbnail opens it fullscreen.
     if (pos === selected && activeShot) openFullscreen(tile);
     else select(pos, { autoplay: IS_VIDEO });
   });
 
-  // Tabbing into the gallery brings the focused thumbnail into view.
+  // Which kind of pointer pressed last ("" after keyboard use), so a click
+  // can tell a touch tap from a mouse click or Enter/Space.
+  let lastPointerType = "";
+  section.addEventListener("pointerdown", (event) => {
+    lastPointerType = event.pointerType;
+  }, { capture: true, passive: true });
+  section.addEventListener("keydown", () => {
+    lastPointerType = "";
+  }, { capture: true });
+
+  // --- Hover preview (data-hover-preview) ---------------------------------
+
+  let hoverTimer = 0;
+  let hoverTile = null;
+  const cancelHover = () => {
+    window.clearTimeout(hoverTimer);
+    hoverTimer = 0;
+    hoverTile = null;
+  };
+
+  if (HOVER) {
+    // Delegated pointerover/out, so it survives the rail being rebuilt.
+    // Leaving a thumbnail (or the gallery) only cancels a pending change:
+    // the preview keeps the last item, so it never flickers back.
+    rail.addEventListener("pointerover", (event) => {
+      if (event.pointerType === "touch" || mode === "stacked") return;
+      const tile = event.target.closest(".pbc-tile");
+      if (!tile || tile === hoverTile) return;
+      window.clearTimeout(hoverTimer);
+      hoverTile = tile;
+      const pos = Number(tile.dataset.pos);
+      if (pos === selected && activeShot) return;
+      hoverTimer = window.setTimeout(() => {
+        hoverTimer = 0;
+        if (hoverTile === tile && tile.isConnected) select(pos);
+      }, HOVER_INTENT_MS);
+    });
+    rail.addEventListener("pointerout", (event) => {
+      if (event.pointerType === "touch") return;
+      const from = event.target.closest(".pbc-tile");
+      const to = event.relatedTarget && event.relatedTarget.closest ? event.relatedTarget.closest(".pbc-tile") : null;
+      if (from && from !== to) cancelHover();
+    });
+  }
+
+  const focusVisible = (el) => {
+    try {
+      return el.matches(":focus-visible");
+    } catch (e) {
+      return lastPointerType === "";
+    }
+  };
+
+  // Tabbing into the gallery brings the focused thumbnail into view (and,
+  // with hover previews, into the preview). Focus that comes from a tap or
+  // click isn't keyboard focus and leaves the preview to the click handler.
   rail.addEventListener("focusin", (event) => {
     const tile = event.target.closest(".pbc-tile");
-    if (tile && mode !== "stacked") revealTile(tile);
+    if (!tile || mode === "stacked") return;
+    revealTile(tile);
+    if (HOVER && focusVisible(tile)) {
+      const pos = Number(tile.dataset.pos);
+      if (pos !== selected || !activeShot) select(pos);
+    }
   });
 
-  // A video preview's clicks belong to its own controls.
-  if (!IS_VIDEO) frame.addEventListener("click", () => openFullscreen(frame));
+  // A video preview's clicks belong to its own controls (hover previews
+  // have none, so there a click opens the viewer).
+  if (!IS_VIDEO || HOVER) frame.addEventListener("click", () => openFullscreen(frame));
+
+  if (HOVER) {
+    // The preview clip rests while the full viewer (the image lightbox, or
+    // the reel viewer) is open, and picks up again once it closes.
+    if ("MutationObserver" in window) {
+      let wasOpen = false;
+      const sync = () => {
+        const open = lightboxIsOpen();
+        if (open === wasOpen) return;
+        wasOpen = open;
+        if (open) activeShot?.querySelector("video")?.pause();
+        else playClip(activeShot);
+      };
+      const watcher = new MutationObserver(sync);
+      watcher.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+      watcher.observe(root, { attributes: true, attributeFilter: ["class"] });
+    }
+  }
 
   section.addEventListener("keydown", (event) => {
     if (event.altKey || event.ctrlKey || event.metaKey) return;
@@ -1137,7 +1393,7 @@
   // fullscreen view or menu is open. Once the visitor picks a photo
   // themselves the preview is theirs and the slideshow stops. Under
   // prefers-reduced-motion it never starts.
-  const SLIDE_MS = 5000;
+  const SLIDE_MS = 3500;
   const slidePositions = IS_VIDEO
     ? []
     : [...new Set((category.featured || []).map((file) => entries.findIndex((entry) => fileOf(entry.src) === file)))]
@@ -1184,8 +1440,15 @@
     held = false;
     schedule();
   });
+  // Only keyboard focus holds the slide: a tap also focuses the frame (and
+  // closing the fullscreen view hands focus back to it), which must not
+  // freeze the slideshow on phones.
   frame.addEventListener("focus", () => {
-    held = true;
+    let keyboard = true;
+    try {
+      keyboard = frame.matches(":focus-visible");
+    } catch (e) {}
+    if (keyboard) held = true;
     schedule();
   });
   frame.addEventListener("blur", () => {

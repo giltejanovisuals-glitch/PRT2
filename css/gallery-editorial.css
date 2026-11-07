@@ -148,6 +148,18 @@
   object-fit: contain;
 }
 
+/* Videos are sized from the manifest ratio (--ar), so the player holds its
+   exact shape before any metadata loads: the largest fit inside the stage,
+   never past the source's own width. */
+.editorial-lightbox-media video {
+  display: block;
+  width: min(100cqw, calc(100cqh * var(--ar, 1)), var(--natural-w, 100cqw));
+  height: auto;
+  aspect-ratio: var(--ar, 1);
+  object-fit: contain;
+  background: #000;
+}
+
 /* Size container for the cqw/cqh limits above. */
 .lightbox-stage {
   container-type: size;

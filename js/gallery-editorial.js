@@ -162,11 +162,15 @@
     return manifest.map((item) => {
       const info = meta[item.file] || {};
       const title = info.title || item.title || "Untitled";
+      const folder = `../assets/images/gallery/${category.id}/`;
       return {
         ratio: item.ratio || item.width / item.height || 1.4,
         width: item.width,
         height: item.height,
-        src: `../assets/images/gallery/${category.id}/${item.file}`,
+        src: `${folder}${item.file}`,
+        // Videos carry a same-named poster image (see the manifest script).
+        kind: item.kind === "video" ? "video" : "image",
+        poster: item.poster ? `${folder}${item.poster}` : "",
         title,
         project: info.project || "",
         type: info.type || "",
@@ -218,7 +222,7 @@
       } else if (entry.src) {
         const img = document.createElement("img");
         img.className = "editorial-tile-img";
-        img.src = entry.src;
+        img.src = entry.kind === "video" ? entry.poster : entry.src;
         img.alt = entry.alt || "";
         if (entry.width) img.width = entry.width;
         if (entry.height) img.height = entry.height;
@@ -456,6 +460,25 @@
           // the shared full-frame tone-gradient surface used elsewhere.
           slide.className = "gallery-image";
           slide.classList.add(category.tone);
+        } else if (entry.src && entry.kind === "video") {
+          // Videos: the full viewer is a player with native controls. The
+          // file loads only when its slide is shown, and plays from there.
+          slide.className = "editorial-lightbox-media";
+          const video = document.createElement("video");
+          video.dataset.src = entry.src;
+          video.controls = true;
+          video.playsInline = true;
+          video.loop = true;
+          video.preload = "none";
+          if (entry.poster) video.poster = entry.poster;
+          video.setAttribute("aria-label", entry.alt || entry.title || "Video");
+          video.style.setProperty("--ar", String(entry.ratio || 1));
+          if (entry.width) {
+            video.width = entry.width;
+            video.style.setProperty("--natural-w", `${entry.width}px`);
+          }
+          if (entry.height) video.height = entry.height;
+          slide.appendChild(video);
         } else if (entry.src) {
           // Real photos shrink-wrap to their own intrinsic size instead of
           // filling a fixed-size stage — this class carries no background,
@@ -481,19 +504,29 @@
       let activeSlide = 0;
       let lastTrigger = null;
 
-      const loadSlide = (i) => {
-        const img = slides[(i + slides.length) % slides.length]?.querySelector("img[data-src]");
-        if (img) {
-          img.src = img.dataset.src;
-          img.removeAttribute("data-src");
+      // Neighbouring images preload; a video's file waits until it is shown.
+      const loadSlide = (i, shown = false) => {
+        const media = slides[(i + slides.length) % slides.length]?.querySelector("[data-src]");
+        if (media && (shown || media.tagName !== "VIDEO")) {
+          media.src = media.dataset.src;
+          media.removeAttribute("data-src");
         }
       };
 
+      const pauseSlide = (slide) => slide?.querySelector("video")?.pause();
+
       const showSlide = (i) => {
-        [i, i + 1, i - 1].forEach(loadSlide);
+        loadSlide(i, true);
+        [i + 1, i - 1].forEach((n) => loadSlide(n));
+        pauseSlide(slides[activeSlide]);
         slides[activeSlide]?.classList.remove("is-active");
         activeSlide = i;
         slides[activeSlide]?.classList.add("is-active");
+        const video = slides[activeSlide]?.querySelector("video");
+        if (video) {
+          const playing = video.play();
+          if (playing && playing.catch) playing.catch(() => {});
+        }
         if (lightboxCurrent) lightboxCurrent.textContent = String(activeSlide + 1).padStart(2, "0");
         // Campaign/project name when the meta has one, else the category.
         if (lightboxCaption) lightboxCaption.textContent = flatEntries[activeSlide]?.project || category.title || "";
@@ -510,6 +543,7 @@
       };
 
       const closeLightbox = () => {
+        pauseSlide(slides[activeSlide]);
         lightbox.classList.remove("is-open");
         lightbox.setAttribute("aria-hidden", "true");
         body.classList.remove("lightbox-open");

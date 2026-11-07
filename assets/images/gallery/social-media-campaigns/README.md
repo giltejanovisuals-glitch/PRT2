@@ -1,7 +1,9 @@
 # Social Media Campaigns & Key Visuals gallery source images
 
 Drop image files directly into this folder — `.jpg`, `.jpeg`, `.png`,
-`.webp`, or `.avif`. Then run `npm run build` (or let Vercel run it for you
+`.webp`, or `.avif`. Videos (`.mp4`, `.webm`, `.mov`, `.m4v`) need a poster
+image with the same base name beside them (`launch.mp4` + `launch.jpg`, at
+the video's own aspect ratio); without one the video is skipped. Then run `npm run build` (or let Vercel run it for you
 on deploy) to regenerate this category's slice of
 `js/gallery-editorial-manifest.js`.
 

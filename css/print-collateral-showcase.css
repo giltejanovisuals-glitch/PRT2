@@ -180,7 +180,7 @@ html.pbc-locked .project-closing {
   border: 0;
   background: transparent;
   color: inherit;
-  cursor: zoom-in;
+  cursor: default;
   container-type: size;
   perspective: 1600px;
 }
@@ -361,7 +361,7 @@ html.pbc-locked .project-closing {
   overflow: hidden;
   border: 0;
   background: transparent;
-  cursor: pointer;
+  cursor: default;
   outline: 2px solid transparent;
   outline-offset: 3px;
   transition: outline-color 300ms ease, opacity 300ms ease;
@@ -394,7 +394,7 @@ html.pbc-locked .project-closing {
    outline and inset shadow only, so the grid never shifts. */
 .pbc-tile.is-selected {
   outline-color: var(--accent);
-  cursor: zoom-in;
+  cursor: default;
 }
 
 .pbc-tile::after {
@@ -460,6 +460,43 @@ html.pbc-locked .project-closing {
 .pbc-tile.is-selected .pbc-tile-play {
   background: rgba(var(--accent-rgb), 0.85);
   transform: translate(-50%, -50%) scale(1.08);
+}
+
+/* --- Hover previews (data-hover-preview: Social Media Campaigns) ----------
+   The preview follows the pointer, so its change is a quiet opacity
+   crossfade — no blur, lift or depth — over the same fixed frame. Each shot
+   still fits itself completely inside the frame by its own ratio. */
+
+.pbc[data-hover-preview]:not([data-feed]) .pbc-shot,
+.pbc[data-hover-preview]:not([data-feed]) .pbc-shot.is-active,
+.pbc[data-hover-preview]:not([data-feed]) .pbc-shot.is-leaving {
+  transform: none;
+  filter: none;
+  transition: opacity 300ms ease, box-shadow 300ms ease;
+}
+
+.pbc[data-hover-preview]:not([data-feed]) .pbc-shot.is-leaving {
+  transition-duration: 260ms;
+}
+
+/* Reels with hover previews: the preview is a silent clip, and a click on
+   it opens the reel viewer. */
+.pbc[data-kind="video"][data-hover-preview] .pbc-frame {
+  cursor: default;
+}
+
+/* A preview clip has no controls: clicks go through to the frame, which
+   opens the full player. */
+.pbc-shot[data-clip] .pbc-shot-video {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pbc[data-hover-preview]:not([data-feed]) .pbc-shot,
+  .pbc[data-hover-preview]:not([data-feed]) .pbc-shot.is-active,
+  .pbc[data-hover-preview]:not([data-feed]) .pbc-shot.is-leaving {
+    transition: none;
+  }
 }
 
 /* Reduced-motion desktop: the rail is a plain natively scrolling panel
@@ -534,7 +571,7 @@ html.pbc-locked .project-closing {
   }
 
   .pbc-tile {
-    cursor: zoom-in;
+    cursor: default;
     -webkit-tap-highlight-color: transparent;
     scroll-margin-top: calc(var(--header-h) + 1rem);
     scroll-margin-bottom: 5rem;

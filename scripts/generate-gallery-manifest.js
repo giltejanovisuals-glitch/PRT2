@@ -20,6 +20,9 @@
  * project names, years, and alt text are kept separately in the
  * hand-authored js/gallery-editorial-meta.js — this script never touches it.
  *
+ * Videos: an .mp4/.webm/.mov/.m4v dropped in beside a poster image of the
+ * same base name becomes one `kind: "video"` entry sized by that poster.
+ *
  * Order: files listed in scripts/gallery-priority.js come first, in that
  * order; everything else follows sorted by filename.
  */
@@ -30,6 +33,7 @@ const PRIORITY = require("./gallery-priority");
 
 const GALLERY_ROOT = path.join(__dirname, "..", "assets", "images", "gallery");
 const OUTPUT_FILE = path.join(__dirname, "..", "js", "gallery-editorial-manifest.js");
+const VIDEO_EXTENSIONS = new Set([".mp4", ".webm", ".mov", ".m4v"]);
 
 // Every category that uses this gallery wall gets its own source folder.
 // Keep in sync with the `id`s in js/gallery-categories-data.js.
@@ -53,9 +57,32 @@ function buildCategoryManifest(categoryId) {
     fs.mkdirSync(sourceDir, { recursive: true });
   }
 
-  const available = fs
-    .readdirSync(sourceDir)
-    .filter((name) => SUPPORTED_EXTENSIONS.has(path.extname(name).toLowerCase()))
+  const allFiles = fs.readdirSync(sourceDir);
+
+  // Videos (.mp4/.webm/.mov/.m4v) sit beside a poster image of the same
+  // base name ("launch.mp4" + "launch.jpg"), as in the reels folder. The
+  // poster gives the entry its size and thumbnail and isn't listed on its
+  // own; a video without one is skipped.
+  const posters = new Map();
+  allFiles
+    .filter((name) => VIDEO_EXTENSIONS.has(path.extname(name).toLowerCase()))
+    .forEach((video) => {
+      const base = path.basename(video, path.extname(video)).toLowerCase();
+      const poster = allFiles.find(
+        (name) =>
+          SUPPORTED_EXTENSIONS.has(path.extname(name).toLowerCase()) &&
+          path.basename(name, path.extname(name)).toLowerCase() === base
+      );
+      if (poster) posters.set(video, poster);
+      else console.warn(`[gallery-manifest] ${categoryId}: skipping "${video}" — add a poster image named "${path.basename(video, path.extname(video))}.jpg" (or .png/.webp).`);
+    });
+  const posterFiles = new Set(posters.values());
+
+  const available = allFiles
+    .filter(
+      (name) =>
+        (SUPPORTED_EXTENSIONS.has(path.extname(name).toLowerCase()) && !posterFiles.has(name)) || posters.has(name)
+    )
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
   const priority = (PRIORITY[categoryId] || []).filter((file) => {
@@ -68,12 +95,13 @@ function buildCategoryManifest(categoryId) {
   const manifest = [];
   files.forEach((file) => {
     const ext = path.extname(file).toLowerCase();
-    const filePath = path.join(sourceDir, file);
+    const poster = posters.get(file);
+    const sizeFile = poster || file;
     let size = null;
     try {
-      size = readImageSize(fs.readFileSync(filePath), ext);
+      size = readImageSize(fs.readFileSync(path.join(sourceDir, sizeFile)), path.extname(sizeFile).toLowerCase());
     } catch (error) {
-      console.warn(`[gallery-manifest] ${categoryId}: could not read "${file}": ${error.message}`);
+      console.warn(`[gallery-manifest] ${categoryId}: could not read "${sizeFile}": ${error.message}`);
     }
     if (!size || !size.width || !size.height) {
       console.warn(`[gallery-manifest] ${categoryId}: skipping "${file}" — could not determine its dimensions.`);
@@ -81,6 +109,7 @@ function buildCategoryManifest(categoryId) {
     }
     manifest.push({
       file,
+      ...(poster ? { kind: "video", poster } : {}),
       width: size.width,
       height: size.height,
       ratio: Number((size.width / size.height).toFixed(4)),
