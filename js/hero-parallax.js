@@ -2,12 +2,13 @@
  * Landing hero image wall (index.html, .hero-parallax; styles in
  * css/hero-parallax.css). A vanilla take on the HeroParallax pattern:
  *
- * - On every visit the three rows are filled with a random pick of
- *   Project Gallery images (window.HOME_GALLERY_PREVIEWS, from
- *   js/home-previews.js, which must load first). Each category is
- *   shuffled and drawn round-robin, so all of them show up. Every card
- *   links to its category page and, on hover/focus, names it; names and
- *   links come from the Project Gallery panels further down the page.
+ * - On every visit the three rows are filled with a random pick from every
+ *   project in the Project Gallery (js/home-visual-pool.js, which must
+ *   load first; js/home-previews.js is the fallback). Each category is
+ *   shuffled and drawn round-robin, so all of them show up, and no image
+ *   repeats. Every card opens its piece on the category page and, on
+ *   hover/focus, names the category; names come from the Project Gallery
+ *   panels further down the page.
  * - Progress runs 0 → 1 from the section's top reaching the top of the
  *   viewport to its bottom reaching it (framer-motion's
  *   useScroll({ offset: ["start start", "end start"] })).
@@ -56,7 +57,15 @@
     };
   };
 
+  // Drawn from every project (js/home-visual-pool.js); the older sampled
+  // previews are only a fallback if that file isn't loaded.
+  const shown = [];
   const pickImages = (count) => {
+    if (window.homeVisualPool) {
+      const picks = window.homeVisualPool.pick(count, { exclude: shown });
+      shown.push(...picks.map((pick) => pick.key));
+      return picks.map((pick) => ({ id: pick.category, src: pick.src, href: pick.href, video: pick.video }));
+    }
     const previews = window.HOME_GALLERY_PREVIEWS || {};
     const pools = shuffle(Object.keys(previews))
       .map((id) => ({ id, srcs: shuffle(previews[id] || []) }))
@@ -83,8 +92,70 @@
   };
   I18N?.onChange(() => document.querySelectorAll(".pc-card[data-category]").forEach(labelCard));
 
-  const makeCard = ({ id, src }) => {
-    const { href } = categoryInfo(id);
+  // --- Reel previews ---
+  // A reel card streams its reel muted over the poster and loops the
+  // opening seconds while the card is on screen; it pauses off screen, in a
+  // hidden tab, and never runs under reduced motion or reduced data.
+  const PREVIEW_SECONDS = window.homeVisualPool?.PREVIEW_SECONDS || 8;
+  const connection = navigator.connection;
+  const reducedData = window.matchMedia("(prefers-reduced-data: reduce)");
+  const previewsAllowed = () =>
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+    !reducedData.matches &&
+    !connection?.saveData &&
+    !/2g$/.test(connection?.effectiveType || "") &&
+    !mobileViewport.matches &&
+    !document.hidden;
+  const reelVideos = new Set();
+  const syncReel = (video) => {
+    if (video.dataset.inView === "1" && previewsAllowed()) {
+      if (!video.getAttribute("src")) video.src = video.dataset.src;
+      video.play()?.catch?.(() => { /* the poster stays */ });
+    } else {
+      video.pause();
+    }
+  };
+  const syncReels = () => reelVideos.forEach(syncReel);
+  const reelObserver =
+    "IntersectionObserver" in window
+      ? new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target.querySelector("video");
+            if (!video) return;
+            video.dataset.inView = entry.isIntersecting ? "1" : "0";
+            syncReel(video);
+          });
+        })
+      : null;
+  document.addEventListener("visibilitychange", syncReels);
+
+  const addReel = (card, src, poster) => {
+    if (!reelObserver) return;
+    const video = document.createElement("video");
+    video.className = "pc-reel";
+    video.muted = true;
+    video.defaultMuted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("aria-hidden", "true");
+    video.preload = "none";
+    video.poster = poster;
+    video.disablePictureInPicture = true;
+    video.tabIndex = -1;
+    video.dataset.src = src;
+    video.addEventListener("playing", () => card.classList.add("is-playing"));
+    video.addEventListener("timeupdate", () => {
+      if (video.currentTime >= PREVIEW_SECONDS) video.currentTime = 0;
+    });
+    card.insertBefore(video, card.querySelector(".pc-title"));
+    reelVideos.add(video);
+    reelObserver.observe(card);
+  };
+
+  const makeCard = ({ id, src, href: deepLink, video }) => {
+    const href = deepLink || categoryInfo(id).href;
     const title = cardTitle(id);
     const card = document.createElement("a");
     card.className = "pc-card";
@@ -112,6 +183,7 @@
     kicker.textContent = kickerText();
     label.append(kicker, title);
     card.append(img, label);
+    if (video) addReel(card, video, src);
     return card;
   };
 
@@ -247,8 +319,8 @@
 
   window.addEventListener("scroll", wake, { passive: true });
   window.addEventListener("resize", () => { fillWall(); applyMotion(); });
-  reducedMotion.addEventListener("change", applyMotion);
-  mobileViewport.addEventListener("change", () => { fillWall(); applyMotion(); });
+  reducedMotion.addEventListener("change", () => { applyMotion(); syncReels(); });
+  mobileViewport.addEventListener("change", () => { fillWall(); applyMotion(); syncReels(); });
 
   fillWall();
   applyMotion();

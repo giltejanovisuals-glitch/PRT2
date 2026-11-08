@@ -1,7 +1,9 @@
-/* Mobile landing coverflow (css/mobile-featured.css). Shows the curated
-   slides in js/mobile-featured-data.js (scripts/featured-slides.js) as 4:5
-   cards: the active card centred and flat, its neighbours turned in and set
-   back so they peek in from the sides. The order is fixed and loops.
+/* Mobile landing coverflow (css/mobile-featured.css). Opens on the curated
+   first slide in js/mobile-featured-data.js (scripts/featured-slides.js),
+   then a fresh random pick from every project (js/home-visual-pool.js) on
+   each visit, as 4:5 cards: the active card centred and flat, its
+   neighbours turned in and set back so they peek in from the sides. The
+   order loops.
 
    Interaction: horizontal drag (vertical gestures keep scrolling the page,
    touch-action: pan-y) with one-card snapping and a gentle fling of at most
@@ -27,7 +29,55 @@
   const root = hero?.querySelector('.mobile-featured');
   const data = window.MOBILE_FEATURED;
   if (!root || !data?.slides?.length) return;
-  const slides = data.slides;
+  const RETURN_KEY = 'featured-return';
+  const RANDOM_COUNT = 8;
+
+  // The deck: the curated opening slide (rendered into index.html and
+  // preloaded, so the first view paints fast), then a fresh random pick
+  // from every project (js/home-visual-pool.js) on each visit. Without the
+  // pool, the curated slides are used as before.
+  // A random reel streams the full file muted and loops its first
+  // PREVIEW_SECONDS (previewEnd) while it is the centred card.
+  const randomSlide = (item) => ({
+    id: item.key,
+    random: true,
+    media: item.video ? 'video' : 'image',
+    category: item.category,
+    pubTitle: item.title || '',
+    brand: item.brand || '',
+    year: item.year || '',
+    href: item.href,
+    src: item.src,
+    alt: '',
+    fill: true, // shown whole over a blurred copy, whatever its proportions
+    width: item.width || 960,
+    height: item.height || 1200,
+    ...(item.video ? {
+      file: item.file,
+      clip: item.video,
+      previewEnd: window.homeVisualPool?.PREVIEW_SECONDS || 8,
+      clipLength: window.homeVisualPool?.PREVIEW_SECONDS || 8,
+    } : {}),
+  });
+  const buildDeck = () => {
+    const curated = data.slides;
+    const pool = window.homeVisualPool;
+    if (!pool) return curated;
+    let returning = null;
+    try { returning = JSON.parse(sessionStorage.getItem(`${RETURN_KEY}-slide`) || 'null'); } catch { /* none */ }
+    // The opener's gallery category, from its link (pages/<id>.html).
+    const around = (curated[0].href.match(/pages\/([^/.?]+)\.html/) || [])[1];
+    const picks = pool.pick(RANDOM_COUNT, { around }).map(randomSlide);
+    if (!picks.length) return curated;
+    // Coming back from a random piece: keep it in the deck (in the place of
+    // a pick of the same category) so the visitor returns to it.
+    if (returning?.random && returning.src && !picks.some((slide) => slide.id === returning.id)) {
+      const i = picks.findIndex((slide) => slide.category === returning.category);
+      picks[i < 0 ? 0 : i] = returning;
+    }
+    return [curated[0], ...picks];
+  };
+  const slides = buildDeck();
   const total = slides.length;
   const mobile = matchMedia('(max-width: 760px)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -47,7 +97,6 @@
   const MAX_FLING = 2;
   const DRAG_SLOP = 8;
   const AUTOPLAY_MS = 6500;
-  const RETURN_KEY = 'featured-return';
   const REEL_BASE = 'assets/videos/short-form-reels/';
   const REEL_PAGE = 'pages/short-form-video-reels.html';
   const REEL_ICON = '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"></rect><path d="M10 8.8v6.4l5.2-3.2z" fill="currentColor" stroke="none"></path></svg>';
@@ -66,10 +115,23 @@
   const I18N = window.i18n;
   const tr = (key, english) => (I18N && I18N.lang !== 'en' && I18N.has(key) ? I18N.t(key) : english);
   const fmt = (key, vars, english) => (I18N ? I18N.t(key, vars, english) : english);
-  const text = (slide, field) => tr(`featured.${slide.id}.${field}`, slide[field] || '');
-  const altText = (slide) => tr(`featured.item.${slide.visual}.alt`, slide.alt);
-  const reelName = (slide) => tr(`featured.item.${slide.visual}.label`, slide.label);
-  const reelLabel = (slide) => fmt('featured.playReel', { label: reelName(slide), duration: slide.duration, alt: altText(slide) }, `Play ${slide.label}, ${slide.duration}, in the fullscreen viewer. ${slide.alt}`);
+  const categoryTitle = (id) => (I18N && I18N.has(`category.${id}.title`) ? I18N.t(`category.${id}.title`) : document.querySelector(`.showcase-panel[data-category="${id}"] .showcase-panel-name`)?.textContent.trim() || id);
+  // Random picks: the category as the title; a publication's own name (or
+  // "Project Gallery") below it.
+  const randomText = (slide, field) => {
+    if (field === 'title') return categoryTitle(slide.category);
+    if (field === 'subtitle') return slide.pubTitle || fmt('gallery.title', null, 'Project Gallery');
+    return '';
+  };
+  const text = (slide, field) => (slide.random ? randomText(slide, field) : tr(`featured.${slide.id}.${field}`, slide[field] || ''));
+  const altText = (slide) => (slide.random ? '' : tr(`featured.item.${slide.visual}.alt`, slide.alt));
+  const randomLabel = (slide) => {
+    const title = text(slide, 'title');
+    const name = slide.pubTitle ? `${slide.pubTitle}, ${title}` : title;
+    return fmt('hero.cardLabel', { title: name }, `${name} — Project Gallery`);
+  };
+  const reelName = (slide) => (slide.random ? categoryTitle(slide.category) : tr(`featured.item.${slide.visual}.label`, slide.label));
+  const reelLabel = (slide) => (slide.random ? randomLabel(slide) : fmt('featured.playReel', { label: reelName(slide), duration: slide.duration, alt: altText(slide) }, `Play ${slide.label}, ${slide.duration}, in the fullscreen viewer. ${slide.alt}`));
   const slideLabel = (i) => fmt('featured.slideLabel', { index: i + 1, total, title: text(slides[i], 'title') }, `${i + 1} of ${total}: ${slides[i].title}`);
   const metaLine = (slide) => [slide.brand, text(slide, 'category'), slide.year].filter(Boolean).join(' · ');
 
@@ -106,12 +168,13 @@
     const video = slide.media === 'video';
     const card = document.createElement(video ? 'button' : 'a');
     card.className = `featured-card${slide.fill ? ' is-fill' : ''}`;
-    card.style.setProperty('--placeholder', `url('${slide.placeholder}')`);
+    if (slide.placeholder) card.style.setProperty('--placeholder', `url('${slide.placeholder}')`);
     if (video) {
       card.type = 'button';
       card.setAttribute('aria-label', reelLabel(slide));
     } else {
       card.href = slide.href;
+      if (slide.random) card.setAttribute('aria-label', randomLabel(slide));
     }
     if (slide.fill) {
       const backdrop = makeImg(slide, 'featured-backdrop');
@@ -126,7 +189,7 @@
       const badge = document.createElement('span');
       badge.className = 'featured-reel-badge';
       badge.setAttribute('aria-hidden', 'true');
-      badge.innerHTML = `${REEL_ICON}${slide.duration}`;
+      badge.innerHTML = `${REEL_ICON}${slide.duration || ''}`;
       card.append(badge);
     }
     const shade = document.createElement('span');
@@ -162,8 +225,12 @@
     entry.requested = true;
     [entry.backdrop, entry.img].forEach((img) => {
       if (!img) return;
-      img.sizes = entry.slide.sizes;
-      img.srcset = entry.slide.srcset;
+      if (entry.slide.srcset) {
+        img.sizes = entry.slide.sizes;
+        img.srcset = entry.slide.srcset;
+      } else {
+        img.src = entry.slide.src;
+      }
     });
     markLoaded(entry);
   };
@@ -312,8 +379,11 @@
     video.poster = entry.img.currentSrc || '';
     let lastTime = 0;
     video.addEventListener('playing', () => entry.card.classList.add('is-playing'));
-    // One full pass of the clip, then autoplay may move on.
+    // One full pass of the clip, then autoplay may move on. A full reel
+    // (previewEnd) loops just its opening seconds.
+    const end = entry.slide.previewEnd;
     video.addEventListener('timeupdate', () => {
+      if (end && video.currentTime >= end) video.currentTime = 0;
       if (video.currentTime + 0.25 < lastTime) previewLooped(entry);
       lastTime = video.currentTime;
     });
@@ -491,7 +561,12 @@
 
   // --- Taps -----------------------------------------------------------------------------------
   const remember = () => {
-    try { sessionStorage.setItem(RETURN_KEY, slides[active()].id); } catch { /* returns to the first slide */ }
+    const slide = slides[active()];
+    try {
+      sessionStorage.setItem(RETURN_KEY, slide.id);
+      if (slide.random) sessionStorage.setItem(`${RETURN_KEY}-slide`, JSON.stringify(slide));
+      else sessionStorage.removeItem(`${RETURN_KEY}-slide`);
+    } catch { /* returns to the first slide */ }
   };
   const openReel = (entry) => {
     const { slide } = entry;
@@ -566,7 +641,11 @@
     // Coming back from a piece opened here: show that slide again and keep
     // it still (js/return-trip.js brings the visitor back).
     let returning = null;
-    try { returning = sessionStorage.getItem(RETURN_KEY); sessionStorage.removeItem(RETURN_KEY); } catch { /* start at the first slide */ }
+    try {
+      returning = sessionStorage.getItem(RETURN_KEY);
+      sessionStorage.removeItem(RETURN_KEY);
+      sessionStorage.removeItem(`${RETURN_KEY}-slide`);
+    } catch { /* start at the first slide */ }
     const back = slides.findIndex((slide) => slide.id === returning);
     if (back > 0) { target = back; position = back; playing = false; }
     root.classList.add('is-ready');
@@ -586,6 +665,7 @@
       el.setAttribute('aria-label', slideLabel(i));
       el.setAttribute('aria-roledescription', fmt('a11y.slide', null, 'slide'));
       if (slide.media === 'video') card.setAttribute('aria-label', reelLabel(slide));
+      else if (slide.random) card.setAttribute('aria-label', randomLabel(slide));
       else if (img && !img.hasAttribute('data-i18n-attr')) img.alt = altText(slide);
     });
     renderCaption(false);

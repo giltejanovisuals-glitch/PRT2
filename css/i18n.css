@@ -89,8 +89,8 @@ html.i18n-loading body > :not(.pt-overlay) {
   }
 }
 
-/* Longer Spanish and Filipino words wrap rather than overflow. */
-:root:is(:lang(es), :lang(fil)) :is(h1, h2, h3, h4, p, li, label, summary) {
+/* Longer Spanish words wrap rather than overflow. */
+:root:lang(es) :is(h1, h2, h3, h4, p, li, label, summary) {
   overflow-wrap: break-word;
   hyphens: auto;
 }

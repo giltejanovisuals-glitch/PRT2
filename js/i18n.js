@@ -44,10 +44,9 @@
   var LOADING_TIMEOUT_MS = 2500;
 
   /* LANGUAGES START — written by scripts/build-locales.js; do not edit by hand. */
-  var VERSION = "2917bdc7fd";
+  var VERSION = "f15258ba0d";
   var LANGUAGES = [
     { code: "en", short: "EN", name: "English", published: true },
-    { code: "fil", short: "FIL", name: "Filipino", published: false },
     { code: "es", short: "ES", name: "Español", published: false },
     { code: "zh-CN", short: "ZH-CN", name: "简体中文", published: false },
     { code: "ja", short: "JA", name: "日本語", published: false },
@@ -101,7 +100,6 @@
 
   // A browser language tag → one of ours. Chinese matches Simplified only
   // (zh, zh-CN, zh-SG, zh-Hans…), never Traditional (zh-TW, zh-HK, zh-Hant).
-  // Tagalog (tl) is offered Filipino.
   var matchTag = function (tag) {
     var parts = String(tag || "").toLowerCase().split(/[-_]/);
     var primary = parts[0];
@@ -110,7 +108,6 @@
       var traditional = parts.indexOf("hant") > -1 || parts.indexOf("tw") > -1 || parts.indexOf("hk") > -1 || parts.indexOf("mo") > -1;
       return traditional ? null : byCode("zh-CN");
     }
-    if (primary === "tl") primary = "fil";
     return byCode(primary);
   };
 
@@ -559,7 +556,6 @@
       var match = matchTag(tags[i]);
       if (match && match.code !== current) target = match.code;
     }
-    if (!target && current === "en" && byCode("fil")) target = "fil";
     if (target && target !== "en") load(target).catch(function () {});
   };
 

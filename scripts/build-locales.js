@@ -23,7 +23,7 @@ const crypto = require("crypto");
 const ROOT = path.join(__dirname, "..");
 const DIR = path.join(ROOT, "data", "locales");
 const I18N_JS = path.join(ROOT, "js", "i18n.js");
-const ORDER = ["en", "fil", "es", "zh-CN", "ja", "ko"];
+const ORDER = ["en", "es", "zh-CN", "ja", "ko"];
 const CHECK_ONLY = process.argv.includes("--check");
 
 const read = (code) => {

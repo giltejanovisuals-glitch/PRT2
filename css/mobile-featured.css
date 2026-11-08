@@ -90,6 +90,9 @@
   .featured-track {
     position: relative;
     height: var(--card-h);
+    /* The slides' JS z-indexes (up to 1000) only order the cards among
+       themselves; isolating keeps them under the fixed header and menu. */
+    isolation: isolate;
   }
   /* js/mobile-featured.js sets each slide's transform, opacity, and
      z-index every frame while it moves; nothing else animates here. */

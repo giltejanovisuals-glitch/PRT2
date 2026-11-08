@@ -37,7 +37,9 @@ PRT2/
 │   │   │   └── short-form-video-reels/           category's folder, don't
 │   │   │                                          edit the manifest by hand
 │   ├── icons/
-│   │   └── favicon.png         Linked from every page's <head>
+│   │   ├── favicon.png         Linked from every page's <head> (Safari's icon)
+│   │   └── favicon-adaptive.svg  Also linked from every page: deep teal in a
+│   │                             light browser theme, light in a dark one
 │   ├── fonts/                  Empty — fonts are currently loaded from
 │   │                            Google Fonts CDN in each page's <head>.
 │   │                            Drop self-hosted font files here if that
@@ -103,12 +105,12 @@ through the Project Gallery categories instead.
 
 ## Languages
 
-The site can be shown in English (EN), Filipino (FIL), Español (ES),
-简体中文 (ZH-CN), 日本語 (JA) and 한국어 (KO). English is the default
+The site can be shown in English (EN), Español (ES), 简体中文 (ZH-CN),
+日本語 (JA) and 한국어 (KO). English is the default
 and the source of every other language.
 
 **Publishing rule.** A language is offered to visitors only when its
-file says `"_meta.status": "reviewed"` and it is complete. All five
+file says `"_meta.status": "reviewed"` and it is complete. All four
 translations ship as `"draft"` — machine-assisted first drafts that
 need professional review before they go live. Until then, the
 production site shows no language control at all; drafts are visible on
@@ -181,7 +183,7 @@ scripts/generate-search-index.js; per-entry keys are
 **SEO.** Translation is client-side, so each page keeps its single
 canonical URL and English stays what crawlers index; `<html lang>`,
 the title and the meta description still follow the visitor's choice.
-Crawlable `/fil/`, `/es/`, `/zh-cn/`, `/ja/`, `/ko/` versions with
+Crawlable `/es/`, `/zh-cn/`, `/ja/`, `/ko/` versions with
 `hreflang` alternates (and `x-default` → English) should be generated at
 build time once translations are reviewed — not before, so unreviewed
 copy is never indexed.

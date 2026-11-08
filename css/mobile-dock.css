@@ -17,6 +17,23 @@
   /* Single-colour logos (CapCut, Canva, Affinity, Runway, ChatGPT) ship dark
      for day mode and are inverted for night mode. */
   :root[data-theme="dark"] .mobile-dock-icon img.is-mono { filter: invert(1) brightness(.94); }
+  /* Adobe marks are only the letters of Adobe's dark app tile: on the dark
+     page the background stands in for the tile, but in day mode bare
+     letters read as loose text, so they sit on their own tile there. */
+  .mobile-dock-tool:has(input[value="photoshop"]) .mobile-dock-icon img { --adobe-tile: #001e36; }
+  .mobile-dock-tool:has(input[value="illustrator"]) .mobile-dock-icon img { --adobe-tile: #330000; }
+  .mobile-dock-tool:has(input[value="lightroom"]) .mobile-dock-icon img { --adobe-tile: #001e36; }
+  .mobile-dock-tool:has(input[value="indesign"]) .mobile-dock-icon img { --adobe-tile: #49021f; }
+  .mobile-dock-tool:has(input[value="premiere-pro"]) .mobile-dock-icon img,
+  .mobile-dock-tool:has(input[value="after-effects"]) .mobile-dock-icon img { --adobe-tile: #00005b; }
+  .mobile-dock-tool:has(input[value="bridge"]) .mobile-dock-icon img { --adobe-tile: #000b1d; }
+  :root:not([data-theme="dark"]) .mobile-dock-tool:is(:has(input[value="photoshop"]), :has(input[value="illustrator"]), :has(input[value="lightroom"]), :has(input[value="indesign"]), :has(input[value="premiere-pro"]), :has(input[value="after-effects"]), :has(input[value="bridge"])) .mobile-dock-icon img {
+    box-sizing: border-box;
+    padding: 9px 8px;
+    border-radius: 10px;
+    background: var(--adobe-tile);
+    opacity: 1; /* dimming would wash the tile out on the light page */
+  }
   .mobile-dock-tool input:checked ~ .mobile-dock-name { visibility: visible; }
   .mobile-dock-tool input:checked ~ .mobile-dock-icon img { opacity: 1; transform: translateY(-4px) scale(1.12); }
   .mobile-dock-tool.is-neighbor .mobile-dock-icon img { transform: translateY(-1px) scale(1.04); }
@@ -54,6 +71,9 @@
 }
 @media (max-width: 760px) and (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .mobile-dock-icon img.is-mono { filter: invert(1) brightness(.94); }
+  /* Night mode by system setting: back to bare letters (see above). */
+  :root:not([data-theme="light"]) .mobile-dock-tool:is(:has(input[value="photoshop"]), :has(input[value="illustrator"]), :has(input[value="lightroom"]), :has(input[value="indesign"]), :has(input[value="premiere-pro"]), :has(input[value="after-effects"]), :has(input[value="bridge"])) .mobile-dock-icon img { padding: 0; border-radius: 0; background: none; opacity: .78; }
+  :root:not([data-theme="light"]) .mobile-dock-tool input:checked ~ .mobile-dock-icon img { opacity: 1; }
 }
 @media (max-width: 340px) {
   /* Leave the fourth icon partially visible on the narrowest phones,

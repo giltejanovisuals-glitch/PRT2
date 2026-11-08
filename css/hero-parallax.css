@@ -171,6 +171,23 @@
   -webkit-user-drag: none;
 }
 
+/* Reel cards: the muted preview (js/hero-parallax.js) fades in over the
+   poster once frames play. */
+.pc-card .pc-reel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+
+.pc-card.is-playing .pc-reel {
+  opacity: 1;
+}
+
 .pc-card::after {
   content: "";
   position: absolute;

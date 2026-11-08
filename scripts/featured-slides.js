@@ -4,7 +4,10 @@
  * slide's markup) and scripts/make-featured-clips.js (light reel preview
  * clips and their posters).
  *
- * Hand-picked — never a random pick from the gallery folders. Rules:
+ * Only the first slide is shown on the live site: js/mobile-featured.js
+ * follows it with a fresh random pick from every project on each visit
+ * (js/home-visual-pool.js). The rest stay here as the fallback deck for
+ * when that pool isn't available. Rules:
  * - The first slide is the opening slide: the strongest visual, image only.
  * - One visual per slide; no visual appears twice, and neighbouring slides
  *   never share a brand.
