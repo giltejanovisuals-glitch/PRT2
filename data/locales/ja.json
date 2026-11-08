@@ -5,17 +5,14 @@
   "_meta.status": "draft",
   "_meta.reviewedBy": "",
   "_meta.notes": "Draft for professional review. Polite, concise business Japanese (です・ます調); brand, software and campaign names kept in English. Set _meta.status to \"reviewed\" only after a professional review.",
-
   "meta.home.title": "Gil Tejano Culas | シニアグラフィックデザイナー / クリエイティブスペシャリスト",
   "meta.home.description": "Gil Tejano Culas — 創造性とビジネスの目的を両立するビジュアル体験を手がける、シニアグラフィックデザイナー兼クリエイティブスペシャリスト。",
   "meta.categoryTitle": "{title} | Gil Tejano Culas",
   "meta.categoryDescription": "{title} — Gil Tejano Culas（シニアグラフィックデザイナー兼クリエイティブスペシャリスト）",
   "meta.cv.title": "履歴書 | Gil Tejano Culas",
   "meta.cv.description": "履歴書プレビュー — Gil Tejano Culas（クリエイティブスペシャリスト兼グラフィックデザイナー）",
-
   "intro.role1": "シニアグラフィックデザイナー /",
   "intro.role2": "クリエイティブスペシャリスト",
-
   "common.skipToContent": "本文へスキップ",
   "common.homeLabel": "Gil Tejano Culas、ホーム",
   "common.roleTitle": "シニアグラフィックデザイナー / クリエイティブスペシャリスト",
@@ -23,7 +20,6 @@
   "common.close": "閉じる",
   "common.image": "画像",
   "common.video": "動画",
-
   "nav.primary": "メインナビゲーション",
   "nav.openMenu": "メニューを開く",
   "nav.closeMenu": "メニューを閉じる",
@@ -40,10 +36,8 @@
   "tab.about": "紹介",
   "tab.capabilities": "サービス",
   "tab.contact": "連絡",
-
   "theme.toDark": "ダークモードに切り替え",
   "theme.toLight": "ライトモードに切り替え",
-
   "lang.select": "言語を選択",
   "lang.title": "言語",
   "lang.current": "現在の言語：{language}",
@@ -51,19 +45,17 @@
   "lang.close": "言語メニューを閉じる",
   "lang.draft": "下書き",
   "lang.loadFailed": "この言語を読み込めませんでした。もう一度お試しください。",
-
   "a11y.carousel": "カルーセル",
   "a11y.slide": "スライド",
-
   "hero.eyebrowMobile": "<strong>Gil Tejano Culas</strong> シニアグラフィックデザイナー / クリエイティブスペシャリスト",
   "hero.title": "創造性とビジネスの目的が交わる、上質なビジュアルシステムを。",
   "hero.titleMobile": "ブランド、製品、そしてビジネスの目的のためにかたちづくるビジュアル体験。",
   "hero.sub": "家具、ライフスタイル、リテール、プロダクトブランドのためのブランドアイデンティティ、キャンペーン展開、ビジュアル体験を制作しています。",
   "hero.subMobile": "家具、ライフスタイル、リテール、プロダクトブランドのためのキャンペーンビジュアル、ブランド展開、クリエイティブコンテンツ。",
   "hero.ctaContact": "お問い合わせ",
+  "hero.ctaWork": "厳選作品を見る",
   "hero.wallLabel": "プロジェクトギャラリーより厳選した作品",
   "hero.cardLabel": "{title} — プロジェクトギャラリー",
-
   "featured.label": "注目のポートフォリオ作品",
   "featured.prev": "前のプロジェクト",
   "featured.next": "次のプロジェクト",
@@ -111,7 +103,6 @@
   "featured.item.porta-mobili-brand-deck.alt": "Porta Mobiliブランドデッキの表紙：深い影から浮かび上がるクリーム色の椅子の彫刻的な曲線と、Porta Mobiliのロゴタイプ。",
   "featured.item.dunlopillo-booth.alt": "Dunlopilloの展示ブース「The Science of Deeper Sleep」。背景バナーとベッドを配し、ショッピングモールに設置。",
   "featured.item.hooga-mall-standee.alt": "モールの通路に設置されたHoogaのスタンディーとポスター「A new sense of comfort is now in Hooga」。",
-
   "gallery.index": "02 — プロジェクトギャラリー",
   "gallery.title": "プロジェクトギャラリー",
   "gallery.lede": "エディトリアルレイアウト、SNSキャンペーン、印刷物、写真、ショート動画から厳選した作品をご覧ください。",
@@ -125,39 +116,20 @@
   "gallery.count.photographs.other": "{count}点の写真",
   "gallery.count.videos.one": "{count}本の動画",
   "gallery.count.videos.other": "{count}本の動画",
-
   "category.eyebrow": "カテゴリー {number} — プロジェクトギャラリー",
   "category.prevLabel": "前のカテゴリー：{title}",
   "category.nextLabel": "次のカテゴリー：{title}",
   "category.editorial-layout.title": "エディトリアル＆レイアウトデザイン",
   "category.editorial-layout.label": "エディトリアル",
-  "category.editorial-layout.short": "カタログ、ルックブック、出版物のデザインシステム。",
-  "category.editorial-layout.lede": "緻密なグリッド、タイポグラフィ、誌面のリズムで構成したカタログ、ルックブック、パンフレット、ブランドブック。",
-  "category.editorial-layout.intro": "製品とブランドのストーリーを、明快でリズムのあるレイアウトに整理するエディトリアルシステム。グリッド、タイポグラフィ、情報の階層、構図を、長尺の印刷物にもデジタル文書にも耐えるよう設計しています。",
   "category.social-media-campaigns.title": "SNSキャンペーン＆キービジュアル",
   "category.social-media-campaigns.label": "キャンペーン",
   "category.social-media-campaigns.short": "キービジュアルと一貫したSNSキャンペーンシステム。",
-  "category.social-media-campaigns.panel": "キャンペーンのキービジュアルを、フィード、ストーリーズ、SNS広告、ローンチコンテンツまで展開するSNSシステムへ。",
-  "category.social-media-campaigns.lede": "ひとつのコアアイデアから、フィード、ストーリーズ、SNS広告、ローンチコンテンツまで展開するSNSシステムへと発展させたキャンペーンキービジュアル。",
-  "category.social-media-campaigns.intro": "キャンペーンのキービジュアルを、フィード、ストーリーズ、SNS広告、ローンチコンテンツまで含む包括的なSNSシステムへと展開。製品、プロモーション、ブランドストーリーに、デジタルプラットフォーム全体で明快かつ一貫した存在感をもたらします。",
   "category.print-brand-collateral.title": "印刷物＆ブランドツール",
   "category.print-brand-collateral.label": "印刷物",
-  "category.print-brand-collateral.short": "パンフレット、販促ツール、ブランド印刷物。",
-  "category.print-brand-collateral.panel": "画面の外でもブランドを伝えるパンフレット、セールスシート、ステーショナリー、ブランド印刷物。",
-  "category.print-brand-collateral.lede": "画面の外でも一貫してブランドを伝えるパンフレット、セールスシート、ステーショナリー、ブランド印刷物。",
-  "category.print-brand-collateral.intro": "画面の外でも一貫してブランドを伝えるパンフレット、販促ツール、ステーショナリー、ブランド印刷物。屋外広告やラッピング車両から手に取るツールまで、デジタルのタッチポイントと同じ精度でデザインしています。",
   "category.commercial-lifestyle-photography.title": "商業＆ライフスタイル写真",
   "category.commercial-lifestyle-photography.label": "写真",
-  "category.commercial-lifestyle-photography.short": "プロダクト、ショールーム、ライフスタイルの写真。",
-  "category.commercial-lifestyle-photography.panel": "キャンペーン、カタログ、リテール向けにスタイリングとディレクションを行ったプロダクト、ショールーム、ライフスタイル写真。",
-  "category.commercial-lifestyle-photography.lede": "キャンペーン、カタログ、リテール空間を支えるため、スタイリングとディレクションを行ったプロダクト、ショールーム、ライフスタイル写真。",
-  "category.commercial-lifestyle-photography.intro": "キャンペーン、カタログ、リテール空間のために、スタイリングとアートディレクションを行ったプロダクト、ショールーム、ライフスタイル写真。どの撮影でもライティング、スタイリング、色調を統一しています。",
   "category.short-form-video-reels.title": "ショート動画＆リール",
   "category.short-form-video-reels.label": "モーション",
-  "category.short-form-video-reels.short": "SNSフィードやローンチのための短いストーリー。",
-  "category.short-form-video-reels.lede": "テンポの速いSNSフィードやキャンペーンのローンチに向けて制作したリール、TikTok、ショート動画コンテンツ。",
-  "category.short-form-video-reels.intro": "テンポの速いSNSフィードやキャンペーンのローンチに向けて制作したリール、TikTok、ショート動画コンテンツ。",
-
   "about.index": "03 — プロフィール",
   "about.indexMobile": "プロフィール",
   "about.title": "創造性、明快さ、ビジネスの目的を備えたビジュアル体験をデザインしています。",
@@ -181,9 +153,7 @@
   "about.h3.textMobile": "印刷物、デジタル、リテール、写真、動画、3D",
   "about.viewExperience": "経歴を見る",
   "about.portraitAlt": "無地の温かみのある背景の前で、明るい色のブレザーを着て座るGil Tejano Culas",
-
   "profile.label": "経歴とできること",
-
   "cap.index": "04 — クリエイティブサービス",
   "cap.title": "クリエイティブサービス",
   "cap.lede": "コンセプト開発、キャンペーン、ブランド展開、エディトリアルシステム、デジタルコンテンツまでデザイン面でサポートします。",
@@ -236,8 +206,7 @@
   "cap.c7.desc": "デジタルキャンペーンやECのためのSNS用グラフィック、バナー、ビジュアル素材。",
   "cap.c8.title": "制作進行管理",
   "cap.c8.desc": "クライアントとの調整、制作の監修、作業指示の管理により、スケジュールどおり、ブリーフどおりの納品を実現します。",
-
-  "dock.index": "05 — クリエイティブドック",
+  "dock.index": "06 — クリエイティブドック",
   "dock.indexMobile": "クリエイティブドック",
   "dock.title": "クリエイティブドック",
   "dock.titleMobile": "作品を支えるツール。",
@@ -325,8 +294,7 @@
   "dock.tool.firefly.desc": "クリエイティブコンセプトのための画像生成とテキストエフェクト。",
   "dock.tool.firefly.tags": "生成画像 · テキストエフェクト · コンセプト制作",
   "dock.tool.firefly.tagsDesktop": "生成画像, テキストエフェクト, コンセプト制作",
-
-  "tl.index": "06 — キャリア",
+  "tl.index": "05 — キャリア",
   "tl.indexMobile": "キャリア",
   "tl.title": "キャリア",
   "tl.lede": "これまで経験してきた職務と制作環境の記録です。",
@@ -356,13 +324,11 @@
   "tl.m6.text": "常駐の制作現場で、グラフィックデザインの実務経験を積みました。",
   "tl.d1": "ハイエンドの家具・照明ブランドのキャンペーンビジュアル、ショールームツール、営業用プレゼンテーションの制作に加え、イベントの写真・動画撮影も担当。",
   "tl.d2": "クライアント提出用の印刷・デジタルレイアウトの制作に加え、ブリーフィングから最終出力までの見積もりと制作進行を担当。",
-
   "brands.title": "これまでにサポートしたブランド",
   "brands.intro": "プレミアムな家具、ライフスタイル、照明、リテールブランドのクリエイティブをサポートしています。",
   "brands.trackLabel": "これまでにサポートしたブランド",
   "brands.visitPage": "{name}の公式ページへ",
   "brands.visitSite": "{name}の公式サイトへ",
-
   "found.index": "07 — 学歴・研修",
   "found.indexMobile": "学歴・研修",
   "found.title": "学歴・研修",
@@ -388,7 +354,6 @@
   "found.c2.tag": "リモートワークへの備え",
   "found.c2.relevance": "リモートワークへの準備、ビジネスコミュニケーション、リモートワークの基礎スキルに関するセミナー研修。",
   "found.connection": "デザインとテクノロジーの両方を備えているからこそ、表現力があり、構造的で、どのプラットフォームでも実用的なビジュアルを生み出せます。",
-
   "contact.label": "クリエイティブな制作を始めましょう",
   "contact.labelMobile": "一部のプロジェクトを受付中",
   "contact.heading": "ブランド、製品、アイデアをお持ちですか？",
@@ -401,7 +366,6 @@
   "contact.socialsLabel": "ご都合のよい方法でご連絡ください。お好みのプラットフォームをお選びいただけます。",
   "contact.moreLinks": "作品についてもっと見る",
   "contact.profiles": "連絡先とクリエイティブプロフィール",
-
   "form.intro": "プロジェクトについて簡単にお知らせください。私が直接ご返信します。アカウント登録は不要です。",
   "form.response": "<span class=\"inquiry-response-accent\" aria-hidden=\"true\"></span> 通常1〜2営業日以内にご返信します。",
   "form.helpWith": "ご相談内容をお選びください",
@@ -476,7 +440,6 @@
   "form.tpl.improve": "Gilさん、こんにちは。既存の制作物を改善・刷新したいと考えています。対象は[概要]で、[日付]までに更新版を用意したいと考えています。どこを変えると最も効果的か、ご意見をいただけますか？",
   "form.tpl.ongoing": "Gilさん、こんにちは。単発ではなく、継続的なクリエイティブサポートをお願いしたいと考えています。内容は[定期的に発生する業務の概要]で、[日付]ごろからの開始を希望しています。継続的な協業の進め方についてご相談できますか？",
   "form.tpl.unsure": "Gilさん、こんにちは。検討中のプロジェクトがありますが、どのサービスや成果物が必要かまだ定まっていません。概要は次のとおりです：[概要]。適切な方向性を一緒に整理していただけますか？",
-
   "cv.title": "履歴書",
   "cv.view": "履歴書を見る（英語版）",
   "cv.viewFull": "履歴書の全文を見る（英語版）",
@@ -491,7 +454,6 @@
   "cv.requestBtn": "履歴書の写しを請求する",
   "cv.printNotice": "この履歴書プレビューは印刷できません。確認の取れた採用担当者・クライアントの方は、ポートフォリオサイトのお問い合わせフォームから正式な写しをご請求いただけます。",
   "cv.framedNotice": "この履歴書プレビューは、Gil Tejano Culasのポートフォリオサイトでのみご覧いただけます。",
-
   "showcase.label.editorial-layout": "エディトリアル＆レイアウトデザインの出版物アーカイブ",
   "showcase.label.social-media-campaigns": "SNSキャンペーン＆キービジュアルのギャラリー",
   "showcase.label.print-brand-collateral": "印刷物＆ブランドツールのギャラリー",
@@ -516,7 +478,6 @@
   "showcase.count.reels.one": "{count}本のリール",
   "showcase.count.reels.other": "{count}本のリール",
   "showcase.openFullscreen": "「{title}」を全画面で開く",
-
   "dockNav.label": "プロジェクトギャラリーのカテゴリー",
   "dockNav.prev": "前のカテゴリー",
   "dockNav.prevShort": "前へ",
@@ -526,17 +487,14 @@
   "dockNav.backToTop": "ページの先頭へ",
   "dockNav.top": "先頭へ",
   "dockNav.backToTopLabel": "ページの先頭に戻る",
-
   "lightbox.label": "画像の全画面プレビュー",
   "lightbox.prev": "前の画像を表示",
   "lightbox.next": "次の画像を表示",
   "lightbox.close": "全画面プレビューを閉じる",
-
   "reel.viewer": "リールビューア",
   "reel.close": "動画を閉じる",
   "reel.prev": "前のリール",
   "reel.next": "次のリール",
-
   "pub.library": "出版物ライブラリ",
   "pub.back": "ライブラリ",
   "pub.zoom": "ズーム",
@@ -585,7 +543,6 @@
   "pub.err.coverMissing": "この出版物の表紙を読み込めませんでした。npm run build を実行して表紙を再生成してください。",
   "pub.err.pageRender": "このページを表示できませんでした。別のページをお試しいただくか、PDFをダウンロードしてください。",
   "pub.err.fileProtocol": "ブラウザは、ディスクから直接開いたページでのPDFプレビューをブロックします。npm run dev を実行し、http://localhost:3000/pages/editorial-layout.html を開いてください。",
-
   "term.print-application": "印刷物の展開",
   "term.campaign-visual": "キャンペーンビジュアル",
   "term.photograph": "写真",
@@ -596,7 +553,6 @@
   "term.brand-presentation": "ブランドプレゼンテーション",
   "term.product-catalogue": "製品カタログ",
   "term.collection-catalogue": "コレクションカタログ",
-
   "search.open": "ポートフォリオを検索",
   "search.tooltip": "ポートフォリオを検索（{shortcut}）",
   "search.placeholder": "プロジェクト、ブランド、スキル、サービスを検索…",

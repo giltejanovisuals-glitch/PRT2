@@ -72,6 +72,18 @@
   pointer-events: auto;
 }
 
+/* One verified credibility line under the buttons (from the CV), in the
+   eyebrow's small muted type. Phones hide it with the buttons
+   (css/mobile-featured.css), where the work carousel follows the copy. */
+.hpx-cred {
+  margin: clamp(1rem, 2.4vh, 1.4rem) 0 0;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
 .hpx-btn {
   display: inline-flex;
   align-items: center;

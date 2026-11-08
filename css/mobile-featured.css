@@ -7,7 +7,8 @@
 @media (max-width: 760px) {
   .desktop-hero-copy,
   .hero-parallax .hpx-wall,
-  .hero-parallax .hpx-actions { display: none; }
+  .hero-parallax .hpx-actions,
+  .hero-parallax .hpx-cred { display: none; }
   .mobile-hero-copy { display: inline; }
 
   .hero-parallax,

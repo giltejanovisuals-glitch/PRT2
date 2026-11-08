@@ -5,17 +5,14 @@
   "_meta.status": "draft",
   "_meta.reviewedBy": "",
   "_meta.notes": "Draft for professional review. Mainland-standard professional terminology; brand, software and campaign names kept in English. Set _meta.status to \"reviewed\" only after a professional review.",
-
   "meta.home.title": "Gil Tejano Culas | 资深平面设计师 / 创意专员",
   "meta.home.description": "Gil Tejano Culas — 资深平面设计师兼创意专员，打造兼具创意与商业价值的视觉体验。",
   "meta.categoryTitle": "{title} | Gil Tejano Culas",
   "meta.categoryDescription": "{title} — Gil Tejano Culas，资深平面设计师兼创意专员。",
   "meta.cv.title": "个人简历 | Gil Tejano Culas",
   "meta.cv.description": "个人简历预览 — Gil Tejano Culas，创意专员兼平面设计师。",
-
   "intro.role1": "资深平面设计师 /",
   "intro.role2": "创意专员",
-
   "common.skipToContent": "跳到主要内容",
   "common.homeLabel": "Gil Tejano Culas，返回首页",
   "common.roleTitle": "资深平面设计师 / 创意专员",
@@ -23,7 +20,6 @@
   "common.close": "关闭",
   "common.image": "图片",
   "common.video": "视频",
-
   "nav.primary": "主导航",
   "nav.openMenu": "打开菜单",
   "nav.closeMenu": "关闭菜单",
@@ -40,10 +36,8 @@
   "tab.about": "关于",
   "tab.capabilities": "能力",
   "tab.contact": "联系",
-
   "theme.toDark": "切换到深色模式",
   "theme.toLight": "切换到浅色模式",
-
   "lang.select": "选择语言",
   "lang.title": "语言",
   "lang.current": "当前语言：{language}",
@@ -51,19 +45,17 @@
   "lang.close": "关闭语言菜单",
   "lang.draft": "草稿",
   "lang.loadFailed": "无法加载该语言，请重试。",
-
   "a11y.carousel": "轮播",
   "a11y.slide": "幻灯片",
-
   "hero.eyebrowMobile": "<strong>Gil Tejano Culas</strong> 资深平面设计师 / 创意专员",
   "hero.title": "打造创意与商业目标相融合的高端视觉体系。",
   "hero.titleMobile": "为品牌、产品与商业目标量身打造的视觉体验。",
   "hero.sub": "为家具、生活方式、零售及产品类品牌打造品牌形象、营销活动应用与视觉体验。",
   "hero.subMobile": "为家具、生活方式、零售及产品类品牌创作营销视觉、品牌应用与创意内容。",
   "hero.ctaContact": "联系我",
+  "hero.ctaWork": "浏览精选作品",
   "hero.wallLabel": "作品集精选作品",
   "hero.cardLabel": "{title} — 作品集",
-
   "featured.label": "精选作品集项目",
   "featured.prev": "上一个项目",
   "featured.next": "下一个项目",
@@ -111,7 +103,6 @@
   "featured.item.porta-mobili-brand-deck.alt": "Porta Mobili 品牌手册封面：一把奶油色椅子的雕塑感曲线从深邃阴影中浮现，旁边是 Porta Mobili 字标。",
   "featured.item.dunlopillo-booth.alt": "Dunlopillo “The Science of Deeper Sleep”展台，设有背景横幅和铺好的展示床，位于商场内。",
   "featured.item.hooga-mall-standee.alt": "商场走廊中的 Hooga “A new sense of comfort is now in Hooga”立牌与海报。",
-
   "gallery.index": "02 — 作品集",
   "gallery.title": "作品集",
   "gallery.lede": "浏览精选创意作品，涵盖编辑版式、社交媒体营销、印刷物料、摄影与短视频。",
@@ -125,39 +116,20 @@
   "gallery.count.photographs.other": "{count} 张照片",
   "gallery.count.videos.one": "{count} 个视频",
   "gallery.count.videos.other": "{count} 个视频",
-
   "category.eyebrow": "类别 {number} — 作品集",
   "category.prevLabel": "上一类别：{title}",
   "category.nextLabel": "下一类别：{title}",
   "category.editorial-layout.title": "编辑设计与版式设计",
   "category.editorial-layout.label": "编辑设计",
-  "category.editorial-layout.short": "产品目录、型录与出版物体系。",
-  "category.editorial-layout.lede": "以严谨的网格、字体排印与节奏打造产品目录、型录、宣传册与品牌手册。",
-  "category.editorial-layout.intro": "将产品与品牌故事梳理为清晰、节奏得当的版式的编辑体系——网格、字体排印、层级与构图兼顾，适用于长篇幅的印刷与数字文档。",
   "category.social-media-campaigns.title": "社交媒体营销与主视觉",
   "category.social-media-campaigns.label": "营销活动",
   "category.social-media-campaigns.short": "主视觉与统一的社交媒体营销体系。",
-  "category.social-media-campaigns.panel": "将营销主视觉延展为完整的社交媒体体系——信息流、快拍、付费推广与发布内容。",
-  "category.social-media-campaigns.lede": "将营销主视觉延展为完整的社交媒体体系——信息流、快拍、付费推广与发布内容，均源自同一核心创意。",
-  "category.social-media-campaigns.intro": "将营销主视觉延展为完整的社交媒体体系——信息流、快拍、付费推广与发布内容——让产品、促销与品牌故事在各数字平台上呈现清晰一致的形象。",
   "category.print-brand-collateral.title": "印刷品与品牌物料",
   "category.print-brand-collateral.label": "印刷",
-  "category.print-brand-collateral.short": "宣传册、销售物料与品牌印刷品。",
-  "category.print-brand-collateral.panel": "宣传册、销售单页、办公文具与品牌印刷物料，让品牌延伸到屏幕之外。",
-  "category.print-brand-collateral.lede": "宣传册、销售单页、办公文具与品牌印刷物料，让品牌在屏幕之外保持一致。",
-  "category.print-brand-collateral.intro": "宣传册、销售物料、办公文具与品牌印刷品，让品牌在屏幕之外保持一致——从户外广告牌、车身广告到手持物料，都以与数字触点同等的严谨标准进行设计。",
   "category.commercial-lifestyle-photography.title": "商业与生活方式摄影",
   "category.commercial-lifestyle-photography.label": "摄影",
-  "category.commercial-lifestyle-photography.short": "产品、展厅与生活方式摄影。",
-  "category.commercial-lifestyle-photography.panel": "为营销活动、产品目录与零售场景进行造型与指导的产品、展厅及生活方式摄影。",
-  "category.commercial-lifestyle-photography.lede": "经过造型设计与拍摄指导的产品、展厅及生活方式摄影，服务于营销活动、产品目录与零售空间。",
-  "category.commercial-lifestyle-photography.intro": "产品、展厅及生活方式摄影，针对营销活动、产品目录与零售空间进行造型与艺术指导——每次拍摄均保持一致的布光、造型与色彩。",
   "category.short-form-video-reels.title": "短视频与 Reels",
   "category.short-form-video-reels.label": "动态影像",
-  "category.short-form-video-reels.short": "面向社交媒体与产品发布的短篇故事。",
-  "category.short-form-video-reels.lede": "为快节奏社交媒体与营销发布打造的 Reels、TikTok 及短视频内容。",
-  "category.short-form-video-reels.intro": "为快节奏社交媒体与营销发布打造的 Reels、TikTok 及短视频内容。",
-
   "about.index": "03 — 关于我",
   "about.indexMobile": "关于我",
   "about.title": "以创意、清晰与商业目标打造视觉体验。",
@@ -181,9 +153,7 @@
   "about.h3.textMobile": "印刷、数字、零售、摄影、视频与 3D",
   "about.viewExperience": "查看我的经历",
   "about.portraitAlt": "Gil Tejano Culas 身穿浅色西装外套坐着，背景为纯色暖调",
-
   "profile.label": "经历与专业能力",
-
   "cap.index": "04 — 创意能力",
   "cap.title": "创意能力",
   "cap.lede": "设计支持涵盖概念开发、营销活动、品牌应用、编辑体系与数字内容。",
@@ -236,8 +206,7 @@
   "cap.c7.desc": "面向数字营销与电商的社交媒体图形、横幅与视觉素材。",
   "cap.c8.title": "制作协调",
   "cap.c8.desc": "客户沟通、制作监督与工单跟进，确保成品按时交付并符合需求。",
-
-  "dock.index": "05 — 我的创意工具箱",
+  "dock.index": "06 — 我的创意工具箱",
   "dock.indexMobile": "我的创意工具箱",
   "dock.title": "我的创意工具箱",
   "dock.titleMobile": "作品背后的工具。",
@@ -325,8 +294,7 @@
   "dock.tool.firefly.desc": "为创意概念生成图像与文字特效。",
   "dock.tool.firefly.tags": "生成式图像 · 文字特效 · 概念创作",
   "dock.tool.firefly.tagsDesktop": "生成式图像, 文字特效, 概念创作",
-
-  "tl.index": "06 — 职业历程",
+  "tl.index": "05 — 职业历程",
   "tl.indexMobile": "职业历程",
   "tl.title": "职业历程",
   "tl.lede": "记录这段设计实践所经历的职位与制作环境。",
@@ -356,13 +324,11 @@
   "tl.m6.text": "在驻场制作环境中积累平面设计实战经验。",
   "tl.d1": "为高端家具与照明品牌制作营销视觉、展厅物料与销售演示文稿，并负责活动照片与视频拍摄。",
   "tl.d2": "可直接提交客户的印刷与数字版式，以及从需求沟通到最终成品的报价与制作协调。",
-
   "brands.title": "合作过的品牌",
   "brands.intro": "为高端家具、生活方式、照明及零售品牌提供创意支持。",
   "brands.trackLabel": "合作过的品牌",
   "brands.visitPage": "访问 {name} 官方主页",
   "brands.visitSite": "访问 {name} 官方网站",
-
   "found.index": "07 — 教育背景",
   "found.indexMobile": "教育背景",
   "found.title": "教育背景",
@@ -388,7 +354,6 @@
   "found.c2.tag": "远程工作准备",
   "found.c2.relevance": "关于远程工作准备、职业沟通与远程办公基础技能的系列研讨培训。",
   "found.connection": "设计与技术的结合，使我能够在各类平台上创作富有表现力、结构清晰且实用的视觉作品。",
-
   "contact.label": "开启一个创意项目",
   "contact.labelMobile": "可承接精选项目",
   "contact.heading": "有品牌、产品或创意构想？",
@@ -401,7 +366,6 @@
   "contact.socialsLabel": "欢迎通过任何方便的渠道联系我——选择你习惯的平台即可。",
   "contact.moreLinks": "了解更多作品",
   "contact.profiles": "联系方式与创意主页",
-
   "form.intro": "简单介绍一下你的项目，我会亲自回复你——无需注册或创建账户。",
   "form.response": "<span class=\"inquiry-response-accent\" aria-hidden=\"true\"></span> 通常在 1–2 个工作日内回复。",
   "form.helpWith": "需要我提供哪方面的帮助？",
@@ -476,7 +440,6 @@
   "form.tpl.improve": "Gil 你好，我有一些现有物料希望进行优化或焕新，包括[简要描述]，希望在[日期]前拿到更新版本。你能帮我评估一下哪些改动效果最明显吗？",
   "form.tpl.ongoing": "Gil 你好，我需要的是长期的创意支持，而不是一次性项目。内容涉及[定期需求的简要描述]，预计从[日期]左右开始。我们能否聊聊长期合作的方式？",
   "form.tpl.unsure": "Gil 你好，我有一个项目构想，但还不确定需要哪些服务或交付内容。简单介绍一下：[简要描述]。你能帮我理清合适的方向吗？",
-
   "cv.title": "个人简历",
   "cv.view": "查看简历（英文版）",
   "cv.viewFull": "查看完整简历（英文版）",
@@ -491,7 +454,6 @@
   "cv.requestBtn": "申请简历副本",
   "cv.printNotice": "此简历预览不支持打印。经核实的雇主与客户可通过作品集网站的联系表单申请正式副本。",
   "cv.framedNotice": "此简历预览仅可在 Gil Tejano Culas 的作品集网站上查看。",
-
   "showcase.label.editorial-layout": "编辑设计与版式设计出版物档案",
   "showcase.label.social-media-campaigns": "社交媒体营销与主视觉作品集",
   "showcase.label.print-brand-collateral": "印刷品与品牌物料作品集",
@@ -516,7 +478,6 @@
   "showcase.count.reels.one": "{count} 个短视频",
   "showcase.count.reels.other": "{count} 个短视频",
   "showcase.openFullscreen": "全屏打开“{title}”",
-
   "dockNav.label": "作品集类别",
   "dockNav.prev": "上一类别",
   "dockNav.prevShort": "上一个",
@@ -526,17 +487,14 @@
   "dockNav.backToTop": "返回顶部",
   "dockNav.top": "顶部",
   "dockNav.backToTopLabel": "返回页面顶部",
-
   "lightbox.label": "全屏图片预览",
   "lightbox.prev": "显示上一张图片",
   "lightbox.next": "显示下一张图片",
   "lightbox.close": "关闭全屏预览",
-
   "reel.viewer": "短视频播放器",
   "reel.close": "关闭视频",
   "reel.prev": "上一个短视频",
   "reel.next": "下一个短视频",
-
   "pub.library": "出版物库",
   "pub.back": "出版物库",
   "pub.zoom": "缩放",
@@ -585,7 +543,6 @@
   "pub.err.coverMissing": "无法加载此出版物的封面。请运行 npm run build 重新生成封面。",
   "pub.err.pageRender": "无法渲染此页面。请尝试其他页面或下载 PDF。",
   "pub.err.fileProtocol": "浏览器会阻止直接从本地磁盘打开的页面预览 PDF。请运行 npm run dev，然后打开 http://localhost:3000/pages/editorial-layout.html。",
-
   "term.print-application": "印刷应用",
   "term.campaign-visual": "营销视觉",
   "term.photograph": "照片",
@@ -596,7 +553,6 @@
   "term.brand-presentation": "品牌提案",
   "term.product-catalogue": "产品目录",
   "term.collection-catalogue": "系列目录",
-
   "search.open": "搜索作品集",
   "search.tooltip": "搜索作品集（{shortcut}）",
   "search.placeholder": "搜索项目、品牌、技能或服务…",

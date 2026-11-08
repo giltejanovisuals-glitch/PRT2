@@ -86,11 +86,39 @@
   // The header's round menu button stays above the open menu and doubles as
   // its close control, so its accessible name follows the state.
   const menuToggle = document.querySelector(".menu-toggle");
+  // Focus: opening moves it to the first menu link (so keyboard and screen
+  // reader users land inside the menu); closing returns it to the menu
+  // button — unless a menu link took the visitor somewhere.
+  let wasOpen = nav.classList.contains("is-open");
+  let followedLink = false;
+  nav.addEventListener("click", (event) => {
+    if (event.target.closest("a[href]")) followedLink = true;
+  });
   const syncMenu = () => {
     const open = nav.classList.contains("is-open");
     root.classList.toggle("menu-open", open);
     document.body.classList.toggle("menu-open", open);
     if (menuToggle) menuToggle.setAttribute("aria-label", open ? t("nav.closeMenu", "Close menu") : t("nav.openMenu", "Open menu"));
+    if (open === wasOpen) return;
+    wasOpen = open;
+    if (open) {
+      followedLink = false;
+      const first = nav.querySelector(".mobile-nav-links a");
+      // The links only become focusable once the opening menu is visible,
+      // which can take a few frames: try each frame (for up to ~0.5s) until
+      // focus lands inside.
+      if (first && window.matchMedia("(max-width: 760px)").matches) {
+        let tries = 0;
+        const attempt = () => {
+          if (!nav.classList.contains("is-open") || nav.contains(document.activeElement)) return;
+          first.focus({ preventScroll: true });
+          if (document.activeElement !== first && (tries += 1) < 30) window.requestAnimationFrame(attempt);
+        };
+        window.requestAnimationFrame(attempt);
+      }
+    } else if (!followedLink && menuToggle && (nav.contains(document.activeElement) || document.activeElement === document.body)) {
+      menuToggle.focus({ preventScroll: true });
+    }
   };
   new MutationObserver(syncMenu).observe(nav, { attributes: true, attributeFilter: ["class"] });
   if (menuToggle && I18N) {

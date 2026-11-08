@@ -15,10 +15,21 @@
  * directly with `node scripts/generate-reel-manifest.js`. Titles, brand/
  * project names, years, content types, and alt text are kept separately in
  * the hand-authored js/reel-meta.js — this script never touches it.
+ *
+ * Order and visibility: reels listed under "short-form-video-reels" in
+ * scripts/gallery-priority.js come first, in that order, then the rest by
+ * filename; reels in its `hidden` list are left out entirely.
  */
 const fs = require("fs");
 const path = require("path");
 const { SUPPORTED_EXTENSIONS: POSTER_EXTENSIONS, readImageSize } = require("./lib/image-size");
+const PRIORITY = require("./gallery-priority");
+const { thumbName } = require("./generate-gallery-thumbs");
+const { mp4Duration } = require("./lib/mp4-duration");
+
+const CATEGORY_ID = "short-form-video-reels";
+// Small poster copies (scripts/generate-gallery-thumbs.js runs first).
+const THUMB_DIR = path.join(__dirname, "..", "assets", "images", "gallery-thumbs", CATEGORY_ID);
 
 const SOURCE_DIR = path.join(__dirname, "..", "assets", "videos", "short-form-reels");
 // Optional short, light clips for the muted inline previews, same base name
@@ -50,7 +61,15 @@ function build() {
   }
 
   const allFiles = fs.readdirSync(SOURCE_DIR).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-  const videoFiles = allFiles.filter((name) => VIDEO_EXTENSIONS.has(path.extname(name).toLowerCase()));
+  const hidden = new Set((PRIORITY.hidden || {})[CATEGORY_ID] || []);
+  const available = allFiles.filter((name) => VIDEO_EXTENSIONS.has(path.extname(name).toLowerCase()) && !hidden.has(name));
+  const priority = (PRIORITY[CATEGORY_ID] || []).filter((file) => {
+    if (available.includes(file)) return true;
+    console.warn(`[reel-manifest] priority file "${file}" not found${hidden.has(file) ? " (it is hidden)" : ""} — skipping.`);
+    return false;
+  });
+  const videoFiles = [...new Set(priority), ...available.filter((file) => !priority.includes(file))];
+  if (hidden.size) console.log(`[reel-manifest] ${hidden.size} hidden by scripts/gallery-priority.js`);
 
   const previewFiles = fs.existsSync(PREVIEW_DIR) ? fs.readdirSync(PREVIEW_DIR) : [];
   const findPreview = (baseName) => {
@@ -86,9 +105,16 @@ function build() {
     }
 
     const preview = findPreview(baseName);
+    // The poster's small copy (720px WebP; AVIF and 360px variants beside it).
+    const thumb = thumbName(posterFile, fs.statSync(path.join(SOURCE_DIR, posterFile)).size);
+    const hasThumb = fs.existsSync(path.join(THUMB_DIR, thumb));
+    // Read here once, so the page never fetches a reel just for its length.
+    const seconds = /\.(mp4|mov)$/i.test(file) ? mp4Duration(path.join(SOURCE_DIR, file)) : 0;
     manifest.push({
       file,
       poster: posterFile,
+      ...(hasThumb && { thumb: `assets/images/gallery-thumbs/${CATEGORY_ID}/${thumb}` }),
+      ...(seconds > 0 && { duration: Number(seconds.toFixed(2)) }),
       ...(preview && { preview }),
       width: size.width,
       height: size.height,

@@ -44,7 +44,7 @@
   var LOADING_TIMEOUT_MS = 2500;
 
   /* LANGUAGES START — written by scripts/build-locales.js; do not edit by hand. */
-  var VERSION = "f15258ba0d";
+  var VERSION = "4a9ed2f0f3";
   var LANGUAGES = [
     { code: "en", short: "EN", name: "English", published: true },
     { code: "es", short: "ES", name: "Español", published: false },

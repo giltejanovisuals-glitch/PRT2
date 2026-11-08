@@ -1,31 +1,43 @@
 /*
- * Build-time thumbnail generator for the image categories that use the
- * split-screen gallery showcase (js/print-collateral-showcase.js), which
- * shows a whole category at once. The source images are multi-megabyte, so
- * the thumbnail columns show these lightweight WebP copies instead, at the
- * same aspect ratio; the fullscreen lightbox (and the preview, once
- * loaded) still use the original file.
+ * Build-time responsive copies of every Project Gallery image and reel
+ * poster. The sources are multi-megabyte originals (never changed here);
+ * pages show these copies and keep the original for the fullscreen viewer.
  *
- * Reads assets/images/gallery/<id>/ (same folders and filter as
- * scripts/generate-gallery-manifest.js), writes
- * assets/images/gallery-thumbs/<id>/*.webp and js/gallery-thumbs.js
- * (`window.GALLERY_THUMBS = { "<id>": { "<source file>": "<thumb path>" } }`).
- * Thumb names include the source's byte size, so unchanged sources are
- * skipped on rebuild and replaced ones regenerate.
+ * For each source image this writes, at the same aspect ratio:
+ *   <base>.webp          up to 720px wide (the classic thumbnail)
+ *   <base>.avif          the same size in AVIF
+ *   <base>-360.webp/.avif  for phones' two-column tiles
+ *   <base>-1440.avif     the large preview (sources wider than 720px)
+ * See scripts/lib/image-variants.js for the exact rules; widths never
+ * exceed the source.
+ *
+ * Sources:
+ *   assets/images/gallery/<id>/            (the three image categories)
+ *   assets/videos/short-form-reels/*.jpg   (reel posters)
+ * Output: assets/images/gallery-thumbs/<id>/ and js/gallery-thumbs.js
+ * (`window.GALLERY_THUMBS = { "<id>": { "<source file>": "<thumb path>" } }`;
+ * the path is the <base>.webp copy, from which the variants are named).
+ * Names include the source's byte size, so unchanged sources are skipped on
+ * rebuild (only missing copies are made) and replaced ones regenerate.
  */
 const fs = require("fs");
 const path = require("path");
 const { loadImage, createCanvas } = require("@napi-rs/canvas");
 const { SUPPORTED_EXTENSIONS } = require("./lib/image-size");
+const { THUMB_WIDTH, variantsFor } = require("./lib/image-variants");
 
 const ROOT = path.join(__dirname, "..");
-const GALLERY_ROOT = path.join(ROOT, "assets", "images", "gallery");
 const THUMB_ROOT = path.join(ROOT, "assets", "images", "gallery-thumbs");
 const OUTPUT_FILE = path.join(ROOT, "js", "gallery-thumbs.js");
 
-const CATEGORY_IDS = ["social-media-campaigns", "print-brand-collateral", "commercial-lifestyle-photography"];
-const TARGET_WIDTH = 720; // ~one desktop showcase column at 1.5–2x density
+const SOURCES = {
+  "social-media-campaigns": path.join(ROOT, "assets", "images", "gallery", "social-media-campaigns"),
+  "print-brand-collateral": path.join(ROOT, "assets", "images", "gallery", "print-brand-collateral"),
+  "commercial-lifestyle-photography": path.join(ROOT, "assets", "images", "gallery", "commercial-lifestyle-photography"),
+  "short-form-video-reels": path.join(ROOT, "assets", "videos", "short-form-reels"),
+};
 const WEBP_QUALITY = 80;
+const AVIF = { quality: 55, speed: 6 };
 
 function slugify(text) {
   return (
@@ -36,18 +48,58 @@ function slugify(text) {
   );
 }
 
-async function writeThumb(sourcePath, outputPath) {
-  const image = await loadImage(fs.readFileSync(sourcePath));
-  const scale = Math.min(1, TARGET_WIDTH / image.width);
-  const width = Math.max(1, Math.round(image.width * scale));
-  const height = Math.max(1, Math.round(image.height * scale));
-  const canvas = createCanvas(width, height);
-  canvas.getContext("2d").drawImage(image, 0, 0, width, height);
-  fs.writeFileSync(outputPath, canvas.toBuffer("image/webp", WEBP_QUALITY));
+// The thumbnail's name for a source file (stable: other scripts rely on it).
+function thumbName(file, size, used) {
+  const ext = path.extname(file);
+  let name = `${slugify(path.basename(file, ext))}-${slugify(ext)}-${size.toString(36)}.webp`;
+  if (used && used.has(name)) name = `${slugify(file)}-${size.toString(36)}.webp`;
+  return name;
+}
+
+const resized = (image, width) => {
+  const w = Math.max(1, Math.round(Math.min(width, image.width)));
+  const h = Math.max(1, Math.round((image.height * w) / image.width));
+  const canvas = createCanvas(w, h);
+  canvas.getContext("2d").drawImage(image, 0, 0, w, h);
+  return canvas;
+};
+
+// Writes whatever copies of one source are missing; returns how many.
+async function writeCopies(sourcePath, outputDir, baseName) {
+  const base = baseName.replace(/\.webp$/, "");
+  let image = null;
+  const load = async () => (image = image || (await loadImage(fs.readFileSync(sourcePath))));
+  let made = 0;
+  const thumbPath = path.join(outputDir, baseName);
+  if (!fs.existsSync(thumbPath)) {
+    await load();
+    fs.writeFileSync(thumbPath, resized(image, THUMB_WIDTH).toBuffer("image/webp", WEBP_QUALITY));
+    made += 1;
+  }
+  // Variants need the source width; read it from the thumbnail when it was
+  // already there (a thumbnail narrower than 720px is the source width).
+  let sourceWidth = image ? image.width : null;
+  if (!sourceWidth) {
+    const thumb = await loadImage(fs.readFileSync(thumbPath));
+    sourceWidth = thumb.width < THUMB_WIDTH ? thumb.width : null;
+  }
+  const missing = (width) => variantsFor(width).filter((v) => !fs.existsSync(path.join(outputDir, `${base}${v.suffix}.${v.ext}`)));
+  if (!sourceWidth || missing(sourceWidth).length) {
+    await load();
+    sourceWidth = image.width;
+    for (const v of missing(sourceWidth)) {
+      const canvas = resized(image, v.width);
+      // eslint-disable-next-line no-await-in-loop
+      const buffer = v.ext === "avif" ? await canvas.encode("avif", AVIF) : canvas.toBuffer("image/webp", WEBP_QUALITY);
+      fs.writeFileSync(path.join(outputDir, `${base}${v.suffix}.${v.ext}`), buffer);
+      made += 1;
+    }
+  }
+  return made;
 }
 
 async function buildCategory(categoryId) {
-  const sourceDir = path.join(GALLERY_ROOT, categoryId);
+  const sourceDir = SOURCES[categoryId];
   const outputDir = path.join(THUMB_ROOT, categoryId);
   fs.mkdirSync(outputDir, { recursive: true });
 
@@ -61,37 +113,31 @@ async function buildCategory(categoryId) {
   for (const file of files) {
     const sourcePath = path.join(sourceDir, file);
     const { size } = fs.statSync(sourcePath);
-    const ext = path.extname(file);
-    let outputName = `${slugify(path.basename(file, ext))}-${slugify(ext)}-${size.toString(36)}.webp`;
-    if (used.has(outputName)) outputName = `${slugify(file)}-${size.toString(36)}.webp`;
+    const outputName = thumbName(file, size, used);
     used.add(outputName);
-    const outputPath = path.join(outputDir, outputName);
-    if (!fs.existsSync(outputPath)) {
-      try {
-        // eslint-disable-next-line no-await-in-loop
-        await writeThumb(sourcePath, outputPath);
-        made += 1;
-      } catch (error) {
-        console.warn(`[gallery-thumbs] ${categoryId}: skipping "${file}": ${error.message}`);
-        continue;
-      }
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      made += await writeCopies(sourcePath, outputDir, outputName);
+    } catch (error) {
+      console.warn(`[gallery-thumbs] ${categoryId}: skipping "${file}": ${error.message}`);
+      continue;
     }
     map[file] = `assets/images/gallery-thumbs/${categoryId}/${outputName}`;
   }
 
-  // Drop thumbs whose source was removed or replaced.
-  const keep = new Set(Object.values(map).map((p) => path.basename(p)));
+  // Drop copies whose source was removed or replaced.
+  const keep = new Set(Object.values(map).map((p) => path.basename(p).replace(/\.webp$/, "")));
   fs.readdirSync(outputDir)
-    .filter((name) => name.endsWith(".webp") && !keep.has(name))
+    .filter((name) => /\.(webp|avif)$/.test(name) && !keep.has(name.replace(/(-360|-1440)?\.(webp|avif)$/, "")))
     .forEach((name) => fs.unlinkSync(path.join(outputDir, name)));
 
-  console.log(`[gallery-thumbs] ${categoryId}: ${Object.keys(map).length} thumbs (${made} new)`);
+  console.log(`[gallery-thumbs] ${categoryId}: ${Object.keys(map).length} sources (${made} new files)`);
   return map;
 }
 
 async function build() {
   const all = {};
-  for (const id of CATEGORY_IDS) {
+  for (const id of Object.keys(SOURCES)) {
     // eslint-disable-next-line no-await-in-loop
     all[id] = await buildCategory(id);
   }
@@ -104,7 +150,11 @@ async function build() {
   fs.writeFileSync(OUTPUT_FILE, `${header}\nwindow.GALLERY_THUMBS = ${JSON.stringify(all, null, 2)};\n`);
 }
 
-build().catch((error) => {
-  console.error(`[gallery-thumbs] ${error.stack || error.message}`);
-  process.exit(1);
-});
+if (require.main === module) {
+  build().catch((error) => {
+    console.error(`[gallery-thumbs] ${error.stack || error.message}`);
+    process.exit(1);
+  });
+}
+
+module.exports = { thumbName };

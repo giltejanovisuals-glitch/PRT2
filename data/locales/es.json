@@ -5,17 +5,14 @@
   "_meta.status": "draft",
   "_meta.reviewedBy": "",
   "_meta.notes": "Draft for professional review. Neutral international Spanish (usted-neutral, no regionalisms). Set _meta.status to \"reviewed\" only after a professional review.",
-
   "meta.home.title": "Gil Tejano Culas | Diseñador gráfico sénior / Especialista creativo",
   "meta.home.description": "Gil Tejano Culas — diseñador gráfico sénior y especialista creativo que crea experiencias visuales con propósito comercial.",
   "meta.categoryTitle": "{title} | Gil Tejano Culas",
   "meta.categoryDescription": "{title} — Gil Tejano Culas, diseñador gráfico sénior y especialista creativo.",
   "meta.cv.title": "Currículum vítae | Gil Tejano Culas",
   "meta.cv.description": "Vista previa del currículum vítae — Gil Tejano Culas, especialista creativo y diseñador gráfico.",
-
   "intro.role1": "Diseñador gráfico sénior /",
   "intro.role2": "Especialista creativo",
-
   "common.skipToContent": "Ir al contenido",
   "common.homeLabel": "Gil Tejano Culas, inicio",
   "common.roleTitle": "Diseñador gráfico sénior / Especialista creativo",
@@ -23,7 +20,6 @@
   "common.close": "Cerrar",
   "common.image": "imagen",
   "common.video": "Video",
-
   "nav.primary": "Navegación principal",
   "nav.openMenu": "Abrir menú",
   "nav.closeMenu": "Cerrar menú",
@@ -40,10 +36,8 @@
   "tab.about": "Sobre mí",
   "tab.capabilities": "Servicios",
   "tab.contact": "Contacto",
-
   "theme.toDark": "Cambiar a modo oscuro",
   "theme.toLight": "Cambiar a modo claro",
-
   "lang.select": "Seleccionar idioma",
   "lang.title": "Idioma",
   "lang.current": "Idioma actual: {language}",
@@ -51,19 +45,17 @@
   "lang.close": "Cerrar el selector de idioma",
   "lang.draft": "Borrador",
   "lang.loadFailed": "No se pudo cargar este idioma. Inténtelo de nuevo.",
-
   "a11y.carousel": "carrusel",
   "a11y.slide": "diapositiva",
-
   "hero.eyebrowMobile": "<strong>Gil Tejano Culas</strong> Diseñador gráfico sénior / Especialista creativo",
   "hero.title": "Sistemas visuales premium donde la creatividad se une al propósito comercial.",
   "hero.titleMobile": "Experiencias visuales creadas para marcas, productos y objetivos comerciales.",
   "hero.sub": "Identidades de marca, aplicaciones de campaña y experiencias visuales para marcas de mobiliario, estilo de vida, retail y producto.",
   "hero.subMobile": "Visuales de campaña, aplicaciones de marca y contenido creativo para marcas de mobiliario, estilo de vida, retail y producto.",
   "hero.ctaContact": "Contactar",
+  "hero.ctaWork": "Explorar trabajos seleccionados",
   "hero.wallLabel": "Trabajos seleccionados de la galería de proyectos",
   "hero.cardLabel": "{title} — Galería de proyectos",
-
   "featured.label": "Proyectos destacados del portafolio",
   "featured.prev": "Proyecto anterior",
   "featured.next": "Proyecto siguiente",
@@ -111,7 +103,6 @@
   "featured.item.porta-mobili-brand-deck.alt": "Portada del brand deck de Porta Mobili: la curva esculpida de una silla color crema que surge de una sombra profunda, junto al logotipo de Porta Mobili.",
   "featured.item.dunlopillo-booth.alt": "Stand de exhibición de Dunlopillo “The Science of Deeper Sleep” con un banner de fondo y una cama tendida en exhibición en un centro comercial.",
   "featured.item.hooga-mall-standee.alt": "Display y póster de Hooga “A new sense of comfort is now in Hooga” en un pasillo de un centro comercial.",
-
   "gallery.index": "02 — Galería de proyectos",
   "gallery.title": "Galería de proyectos",
   "gallery.lede": "Explore trabajos creativos seleccionados en diseño editorial, campañas en redes sociales, impresos, fotografía y video de formato corto.",
@@ -125,39 +116,20 @@
   "gallery.count.photographs.other": "{count} fotografías",
   "gallery.count.videos.one": "{count} video",
   "gallery.count.videos.other": "{count} videos",
-
   "category.eyebrow": "Categoría {number} — Galería de proyectos",
   "category.prevLabel": "Categoría anterior: {title}",
   "category.nextLabel": "Categoría siguiente: {title}",
   "category.editorial-layout.title": "Diseño editorial y maquetación",
   "category.editorial-layout.label": "EDITORIAL",
-  "category.editorial-layout.short": "Catálogos, lookbooks y sistemas editoriales.",
-  "category.editorial-layout.lede": "Catálogos, lookbooks, folletos y brand books construidos sobre una retícula, una tipografía y un ritmo cuidadosamente pensados.",
-  "category.editorial-layout.intro": "Sistemas editoriales que organizan la historia del producto y de la marca en maquetaciones claras y bien ritmadas: retícula, tipografía, jerarquía y composición pensadas para documentos extensos, impresos y digitales.",
   "category.social-media-campaigns.title": "Campañas en redes sociales y key visuals",
   "category.social-media-campaigns.label": "CAMPAÑAS",
   "category.social-media-campaigns.short": "Key visuals y sistemas coherentes de campañas en redes.",
-  "category.social-media-campaigns.panel": "Key visuals de campaña desarrollados como sistemas completos para redes: feed, historias, anuncios pagados y contenido de lanzamiento.",
-  "category.social-media-campaigns.lede": "Key visuals de campaña desarrollados como sistemas completos para redes: feed, historias, anuncios pagados y contenido de lanzamiento a partir de una sola idea central.",
-  "category.social-media-campaigns.intro": "Key visuals de campaña desarrollados como sistemas completos para redes —feed, historias, anuncios pagados y contenido de lanzamiento— que dan a productos, promociones e historias de marca una presencia clara y coherente en las plataformas digitales.",
   "category.print-brand-collateral.title": "Impresos y material de marca",
   "category.print-brand-collateral.label": "IMPRESOS",
-  "category.print-brand-collateral.short": "Folletos, material de ventas e impresos de marca.",
-  "category.print-brand-collateral.panel": "Folletos, fichas de venta, papelería y material impreso de marca que lleva la marca más allá de la pantalla.",
-  "category.print-brand-collateral.lede": "Folletos, fichas de venta, papelería y material impreso de marca que lleva la marca, con coherencia, más allá de la pantalla.",
-  "category.print-brand-collateral.intro": "Folletos, material de ventas, papelería e impresos de marca que llevan la marca, con coherencia, más allá de la pantalla: desde vallas publicitarias y rotulación de vehículos hasta piezas que se sostienen en la mano, diseñadas con el mismo rigor que cualquier punto de contacto digital.",
   "category.commercial-lifestyle-photography.title": "Fotografía comercial y de estilo de vida",
   "category.commercial-lifestyle-photography.label": "FOTOGRAFÍA",
-  "category.commercial-lifestyle-photography.short": "Fotografía de producto, showroom y estilo de vida.",
-  "category.commercial-lifestyle-photography.panel": "Fotografía de producto, showroom y estilo de vida con estilismo y dirección para campañas, catálogos y retail.",
-  "category.commercial-lifestyle-photography.lede": "Fotografía de producto, showroom y estilo de vida con estilismo y dirección para apoyar campañas, catálogos y espacios de retail.",
-  "category.commercial-lifestyle-photography.intro": "Fotografía de producto, showroom y estilo de vida, con estilismo y dirección de arte para campañas, catálogos y espacios de retail, con iluminación, estilismo y color coherentes en cada sesión.",
   "category.short-form-video-reels.title": "Video de formato corto y reels",
   "category.short-form-video-reels.label": "MOTION",
-  "category.short-form-video-reels.short": "Historias breves para redes sociales y lanzamientos.",
-  "category.short-form-video-reels.lede": "Reels, TikToks y videos de formato corto creados para el ritmo de las redes sociales y los lanzamientos de campaña.",
-  "category.short-form-video-reels.intro": "Reels, TikToks y videos de formato corto creados para el ritmo de las redes sociales y los lanzamientos de campaña.",
-
   "about.index": "03 — Sobre mí",
   "about.indexMobile": "SOBRE MÍ",
   "about.title": "Diseño experiencias visuales con creatividad, claridad y propósito comercial.",
@@ -181,9 +153,7 @@
   "about.h3.textMobile": "Impresos, digital, retail, fotografía, video y 3D",
   "about.viewExperience": "Ver mi experiencia",
   "about.portraitAlt": "Gil Tejano Culas sentado, con un blazer claro, frente a un fondo liso de tono cálido",
-
   "profile.label": "Experiencia y servicios",
-
   "cap.index": "04 — Servicios creativos",
   "cap.title": "Servicios creativos",
   "cap.lede": "Apoyo de diseño en desarrollo de conceptos, campañas, aplicaciones de marca, sistemas editoriales y contenido digital.",
@@ -236,8 +206,7 @@
   "cap.c7.desc": "Gráficos para redes, banners y recursos visuales para campañas digitales y e-commerce.",
   "cap.c8.title": "Coordinación de producción",
   "cap.c8.desc": "Coordinación con clientes, supervisión de producción y seguimiento de órdenes de trabajo para entregar a tiempo y según el brief.",
-
-  "dock.index": "05 — Mi Creative Dock",
+  "dock.index": "06 — Mi Creative Dock",
   "dock.indexMobile": "MI CREATIVE DOCK",
   "dock.title": "Mi Creative Dock",
   "dock.titleMobile": "Las herramientas detrás del trabajo.",
@@ -325,8 +294,7 @@
   "dock.tool.firefly.desc": "Creación de imágenes generativas y efectos de texto para conceptos creativos.",
   "dock.tool.firefly.tags": "Imágenes generativas · Efectos de texto · Desarrollo de conceptos",
   "dock.tool.firefly.tagsDesktop": "Imágenes generativas, Efectos de texto, Desarrollo de conceptos",
-
-  "tl.index": "06 — Trayectoria creativa",
+  "tl.index": "05 — Trayectoria creativa",
   "tl.indexMobile": "TRAYECTORIA CREATIVA",
   "tl.title": "Trayectoria creativa",
   "tl.lede": "Un registro de los puestos y entornos de producción en los que se ha formado esta práctica.",
@@ -356,13 +324,11 @@
   "tl.m6.text": "Adquirí experiencia práctica en diseño gráfico en un entorno de producción presencial.",
   "tl.d1": "Visuales de campaña, material para showrooms y presentaciones de ventas para marcas de mobiliario e iluminación de alta gama, además de cobertura fotográfica y de video de eventos.",
   "tl.d2": "Maquetaciones impresas y digitales listas para el cliente, además de cotizaciones y coordinación de producción desde el brief hasta el resultado final.",
-
   "brands.title": "Marcas con las que he trabajado",
   "brands.intro": "Apoyo creativo para marcas premium de mobiliario, estilo de vida, iluminación y retail.",
   "brands.trackLabel": "Marcas con las que he trabajado",
   "brands.visitPage": "Visitar la página oficial de {name}",
   "brands.visitSite": "Visitar el sitio web oficial de {name}",
-
   "found.index": "07 — Formación",
   "found.indexMobile": "FORMACIÓN",
   "found.title": "Formación",
@@ -388,7 +354,6 @@
   "found.c2.tag": "Preparación para el trabajo virtual",
   "found.c2.relevance": "Seminarios sobre preparación para el trabajo virtual, comunicación profesional y habilidades básicas para el trabajo remoto.",
   "found.connection": "Esta combinación de diseño y tecnología me permite crear visuales expresivos, estructurados y prácticos en cualquier plataforma.",
-
   "contact.label": "Comencemos un proyecto creativo",
   "contact.labelMobile": "DISPONIBLE PARA PROYECTOS SELECCIONADOS",
   "contact.heading": "¿Tiene una marca, un producto o una idea?",
@@ -401,7 +366,6 @@
   "contact.socialsLabel": "Contácteme por el medio que le resulte más cómodo; elija la plataforma que prefiera.",
   "contact.moreLinks": "Más sobre mi trabajo",
   "contact.profiles": "Contacto y perfiles creativos",
-
   "form.intro": "Cuénteme un poco sobre su proyecto y le responderé personalmente. No necesita crear una cuenta ni registrarse.",
   "form.response": "<span class=\"inquiry-response-accent\" aria-hidden=\"true\"></span> Suele responder en 1–2 días hábiles.",
   "form.helpWith": "¿En qué puedo ayudarle?",
@@ -476,7 +440,6 @@
   "form.tpl.improve": "Hola, Gil: tengo materiales existentes que me gustaría mejorar o renovar. Incluyen [breve descripción] y espero tener una versión actualizada para [fecha]. ¿Podría ayudarme a evaluar qué cambios tendrían el mayor impacto?",
   "form.tpl.ongoing": "Hola, Gil: busco apoyo creativo continuo, no un proyecto puntual. Incluiría [breve descripción de las necesidades recurrentes], a partir de [fecha]. ¿Podríamos conversar sobre cómo funcionaría una colaboración continua?",
   "form.tpl.unsure": "Hola, Gil: tengo un proyecto en mente, pero no sé exactamente qué servicio o entregables necesito. Le cuento un poco: [breve descripción]. ¿Podría ayudarme a encontrar la dirección adecuada?",
-
   "cv.title": "Currículum vítae",
   "cv.view": "Ver CV (versión en inglés)",
   "cv.viewFull": "Ver CV completo (versión en inglés)",
@@ -491,7 +454,6 @@
   "cv.requestBtn": "Solicitar una copia del CV",
   "cv.printNotice": "Esta vista previa del CV no se puede imprimir. Los empleadores y clientes verificados pueden solicitar una copia formal mediante el formulario de contacto del sitio web del portafolio.",
   "cv.framedNotice": "Esta vista previa del CV solo puede verse en el sitio web del portafolio de Gil Tejano Culas.",
-
   "showcase.label.editorial-layout": "Archivo de publicaciones de diseño editorial y maquetación",
   "showcase.label.social-media-campaigns": "Galería de campañas en redes sociales y key visuals",
   "showcase.label.print-brand-collateral": "Galería de impresos y material de marca",
@@ -516,7 +478,6 @@
   "showcase.count.reels.one": "{count} reel",
   "showcase.count.reels.other": "{count} reels",
   "showcase.openFullscreen": "Abrir “{title}” a pantalla completa",
-
   "dockNav.label": "Categorías de la galería de proyectos",
   "dockNav.prev": "Categoría anterior",
   "dockNav.prevShort": "Anterior",
@@ -526,17 +487,14 @@
   "dockNav.backToTop": "Volver arriba",
   "dockNav.top": "Arriba",
   "dockNav.backToTopLabel": "Volver al inicio de la página",
-
   "lightbox.label": "Vista previa de imagen a pantalla completa",
   "lightbox.prev": "Mostrar imagen anterior",
   "lightbox.next": "Mostrar imagen siguiente",
   "lightbox.close": "Cerrar la vista a pantalla completa",
-
   "reel.viewer": "Visor de reels",
   "reel.close": "Cerrar video",
   "reel.prev": "Reel anterior",
   "reel.next": "Reel siguiente",
-
   "pub.library": "Biblioteca de publicaciones",
   "pub.back": "Biblioteca",
   "pub.zoom": "Zoom",
@@ -585,7 +543,6 @@
   "pub.err.coverMissing": "No se pudo cargar la portada de esta publicación. Ejecute npm run build para regenerarla.",
   "pub.err.pageRender": "No se pudo mostrar esta página. Pruebe con otra página o descargue el PDF.",
   "pub.err.fileProtocol": "Los navegadores bloquean la vista previa de PDF en páginas abiertas directamente desde el disco. Ejecute npm run dev y abra http://localhost:3000/pages/editorial-layout.html.",
-
   "term.print-application": "Aplicación impresa",
   "term.campaign-visual": "Visual de campaña",
   "term.photograph": "Fotografía",
@@ -596,7 +553,6 @@
   "term.brand-presentation": "Presentación de marca",
   "term.product-catalogue": "Catálogo de productos",
   "term.collection-catalogue": "Catálogo de colección",
-
   "search.open": "Buscar en el portafolio",
   "search.tooltip": "Buscar en el portafolio ({shortcut})",
   "search.placeholder": "Busque proyectos, marcas, habilidades o servicios…",

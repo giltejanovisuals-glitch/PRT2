@@ -333,7 +333,8 @@
         img.alt = "";
         img.decoding = "async";
         img.onerror = () => {
-          console.error("[publication-reader] cover-missing", { url: pub.cover });
+          // Logged in development only (js/media-fallback.js); visitors see the quiet label below.
+          if (window.mediaFallback ? window.mediaFallback.dev : true) console.warn("[publication-reader] cover-missing", { url: pub.cover });
           cover.textContent = t("pub.coverUnavailable", null, "Cover unavailable");
           cover.classList.add("is-missing");
         };
@@ -487,6 +488,22 @@
     return canvas;
   };
 
+  // Page renders in flight, by cache key: a second request for the same page
+  // shares the first, and renders for pages the reader has turned away from
+  // are cancelled (cancelStaleRenders) so fast page turns never queue up
+  // work nobody will see. Thumbnail renders (small widths) are never
+  // cancelled — the thumbnail strip starts each one only once.
+  const THUMB_RENDER_MAX = 150;
+  const inFlight = new Map(); // key -> { promise, task, pageNum, file, cancellable }
+  const isCancelled = (error) => Boolean(error && (error.name === "RenderingCancelledException" || error.isCancelled));
+  const cancelStaleRenders = (keep) => {
+    inFlight.forEach((job, key) => {
+      if (!job.cancellable || (keep && job.file === keep.file && keep.pages.has(job.pageNum))) return;
+      job.task?.cancel();
+      inFlight.delete(key);
+    });
+  };
+
   const renderPage = async (doc, file, pageNum, cssWidth) => {
     if (doc.imageUrls) return renderImagePage(doc, file, pageNum, cssWidth);
     const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
@@ -502,14 +519,24 @@
       renderCache.set(key, cached); // refresh LRU order
       return cached;
     }
+    if (inFlight.has(key)) return inFlight.get(key).promise;
     const viewport = page.getViewport({ scale });
     const canvas = document.createElement("canvas");
     canvas.width = Math.ceil(viewport.width);
     canvas.height = Math.ceil(viewport.height);
-    await page.render({ canvasContext: canvas.getContext("2d"), viewport, canvas }).promise;
-    renderCache.set(key, canvas);
-    while (renderCache.size > MAX_RENDER_CACHE) renderCache.delete(renderCache.keys().next().value);
-    return canvas;
+    const task = page.render({ canvasContext: canvas.getContext("2d"), viewport, canvas });
+    const job = { task, pageNum, file, cancellable: cssWidth > THUMB_RENDER_MAX };
+    job.promise = task.promise
+      .then(() => {
+        renderCache.set(key, canvas);
+        while (renderCache.size > MAX_RENDER_CACHE) renderCache.delete(renderCache.keys().next().value);
+        return canvas;
+      })
+      .finally(() => {
+        if (inFlight.get(key) === job) inFlight.delete(key);
+      });
+    inFlight.set(key, job);
+    return job.promise;
   };
 
   // A cached canvas can only live in one place in the DOM, so a page that's
@@ -534,6 +561,7 @@
   let layout = null;
   let modalOpen = false;
   let lastFocused = null;
+  let shelfScrollY = 0;
   let turning = false;
   let pendingIndex = null;
   let runningAnimations = [];
@@ -693,12 +721,17 @@
     const token = sessionToken;
     const spread = spreads[spreadIndex];
     if (!spread || !activeDoc) return; // still loading — openReader paints once the doc arrives
+    // Only this spread and its neighbours are worth finishing.
+    const keep = new Set();
+    [spreadIndex - 1, spreadIndex, spreadIndex + 1, spreadIndex + 2].forEach((i) => pagesForSpread(spreads[i]).forEach((n) => keep.add(n)));
+    cancelStaleRenders({ file: activePub.file, pages: keep });
     setLoading(true);
     try {
       const canvases = await ensureCanvases(pagesForSpread(spread));
       if (token !== sessionToken || spread !== spreads[spreadIndex] || turning) return;
       showSpread(spread, canvases);
     } catch (error) {
+      if (isCancelled(error)) return; // the visitor has already turned on
       if (token === sessionToken) showLoadError("page-render", error);
     } finally {
       setLoading(false);
@@ -1018,6 +1051,10 @@
     const forward = index > spreadIndex;
     turning = true;
     setLoading(true);
+    // Prefetches for spreads skipped past are no longer worth finishing.
+    const keep = new Set(pagesForSpread(from));
+    [index - 1, index, index + 1].forEach((i) => pagesForSpread(spreads[i]).forEach((n) => keep.add(n)));
+    cancelStaleRenders({ file: activePub.file, pages: keep });
 
     try {
       const canvases = await ensureCanvases([...pagesForSpread(from), ...pagesForSpread(to)]);
@@ -1037,7 +1074,7 @@
         showSpread(to, canvases);
       }
     } catch (error) {
-      if (token === sessionToken) showLoadError("page-render", error);
+      if (token === sessionToken && !isCancelled(error)) showLoadError("page-render", error);
     } finally {
       setLoading(false);
       if (token === sessionToken) {
@@ -1479,7 +1516,11 @@
 
     sessionToken += 1;
     const token = sessionToken;
-    lastFocused = document.activeElement;
+    // A tap doesn't always focus the book (iOS Safari never does), so fall
+    // back to its card: closing returns focus there either way.
+    lastFocused = document.activeElement && document.activeElement !== document.body ? document.activeElement : bookCards[index] || null;
+    // The shelf comes back exactly where it was left.
+    shelfScrollY = window.scrollY;
     modalOpen = true;
     activePub = pub;
     activeDoc = null;
@@ -1529,7 +1570,10 @@
     } else if (shelfCover) {
       bookCards[index].classList.add("is-away");
     }
-    els.scroll.focus({ preventScroll: true });
+    // A frame later, once the reader is visible (and so focusable).
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (modalOpen && token === sessionToken) els.scroll.focus({ preventScroll: true });
+    }));
 
     if (OPENED_FROM_DISK) {
       if (!pub.pageImages.length) {
@@ -1584,6 +1628,7 @@
     const fromRect = closedCoverRect();
     finishAnimations();
     sessionToken += 1;
+    cancelStaleRenders(null); // nothing on screen any more is worth rendering
     modalOpen = false;
     turning = false;
     pendingIndex = null;
@@ -1593,6 +1638,8 @@
     els.immersive.classList.remove("is-open");
     els.immersive.setAttribute("aria-hidden", "true");
     document.body.classList.remove("pub-immersive-open");
+    // "instant" overrides the site's smooth scroll-behavior.
+    window.scrollTo({ top: shelfScrollY, left: 0, behavior: "instant" });
 
     const card = bookCards[pub.index];
     const shelfCover = shelfCoverOf(pub.index);

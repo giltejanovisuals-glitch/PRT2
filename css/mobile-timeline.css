@@ -18,7 +18,7 @@
   .career-entry summary { position: relative; display: block; min-height: 48px; list-style: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .career-entry summary::-webkit-details-marker { display: none; }
   .career-date { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 10px; color: var(--m-subtle); font-size: 10px; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; }
-  .career-current { color: var(--m-accent); font-size: 9px; letter-spacing: .12em; }
+  .career-current { color: var(--m-accent); font-size: 10.5px; letter-spacing: .12em; }
   .career-role { display: block; color: var(--m-soft); font-size: 16px; font-weight: 500; line-height: 1.4; }
   .career-entry.is-current .career-role { color: var(--m-text); }
   .career-company { display: block; margin-top: 5px; color: var(--m-muted); font-size: 14px; line-height: 1.5; }

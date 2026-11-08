@@ -27,8 +27,13 @@
         } catch (e) {}
       })();
     </script>
-    <script src="../js/i18n.js?v=1"></script>
-    <link rel="stylesheet" href="../css/i18n.css?v=1" />
+    <script src="../js/media-fallback.js?v=1681e900" defer></script>
+    <script src="../js/overlay-history.js?v=455d5db0" defer></script>
+    <script src="../js/i18n.js?v=43a449a0"></script>
+    <!-- LCP PRELOAD START -->
+    <link rel="preload" as="image" type="image/avif" media="(max-width: 760px)" imagesrcset="../assets/images/gallery-thumbs/commercial-lifestyle-photography/bw-2025-02-jpg-8vhg-360.avif 360w, ../assets/images/gallery-thumbs/commercial-lifestyle-photography/bw-2025-02-jpg-8vhg.avif 720w, ../assets/images/gallery-thumbs/commercial-lifestyle-photography/bw-2025-02-jpg-8vhg-1440.avif 1243w" imagesizes="calc(100vw - 40px)" fetchpriority="high" />
+    <!-- LCP PRELOAD END -->
+    <link rel="stylesheet" href="../css/i18n.css?v=198f0123" />
     <!-- PAGE TRANSITION HEAD START -->
     <style>
       /* Welcome / page-transition overlay. Inlined into every page's <head> by
@@ -216,27 +221,28 @@
         setTimeout(window.__ptEnd, 3000);
       })();
     </script>
-    <script src="../js/page-transition.js?v=3" defer></script>
+    <script src="../js/page-transition.js?v=a2a99ab3" defer></script>
     <!-- PAGE TRANSITION HEAD END -->
-    <script src="../data/locales/en.js?v=2" defer></script>
-    <link rel="stylesheet" href="../css/style.css?v=5" />
-    <link rel="stylesheet" href="../css/search.css?v=1" />
-    <script src="../js/search.js?v=3" defer></script>
-    <script src="../js/mobile-nav.js?v=2" defer></script>
-    <link rel="stylesheet" href="../css/content-protection.css" />
-    <script src="../js/content-protection.js" defer></script>
-    <link rel="stylesheet" href="../css/project-gallery.css?v=8" />
-    <link rel="stylesheet" href="../css/gallery-editorial.css?v=4" />
-    <link rel="stylesheet" href="../css/print-collateral-showcase.css?v=20" />
-    <link rel="stylesheet" href="../css/zoom-resilience.css?v=1" />
-    <script src="../js/zoom-chrome.js?v=1" defer></script>
-    <script src="../js/gallery-categories-data.js?v=6" defer></script>
-    <script src="../js/gallery-editorial-manifest.js" defer></script>
-    <script src="../js/gallery-editorial-meta.js" defer></script>
-    <script src="../js/gallery-thumbs.js?v=2" defer></script>
-    <script src="../js/gallery-editorial.js?v=4" defer></script>
-    <script src="../js/return-trip.js" defer></script>
-    <script src="../js/print-collateral-showcase.js?v=21" defer></script>
+    <script src="../data/locales/en.js?v=abe49be6" defer></script>
+    <link rel="stylesheet" href="../css/style.css?v=aa406291" />
+    <link rel="stylesheet" href="../css/search.css?v=f5194d3f" />
+    <script src="../js/search.js?v=51e2ad26" defer></script>
+    <script src="../js/mobile-nav.js?v=69feb8c8" defer></script>
+    <link rel="stylesheet" href="../css/content-protection.css?v=63f968ad" />
+    <script src="../js/content-protection.js?v=3906f932" defer></script>
+    <link rel="stylesheet" href="../css/project-gallery.css?v=7c259bdd" />
+    <link rel="stylesheet" href="../css/gallery-editorial.css?v=ce825132" />
+    <link rel="stylesheet" href="../css/print-collateral-showcase.css?v=47ec2621" />
+    <link rel="stylesheet" href="../css/zoom-resilience.css?v=ab74e4e3" />
+    <script src="../js/zoom-chrome.js?v=1d0aed44" defer></script>
+    <script src="../js/gallery-categories-data.js?v=584da570" defer></script>
+    <script src="../js/gallery-editorial-manifest.js?v=7e069fbf" defer></script>
+    <script src="../js/gallery-editorial-meta.js?v=5b55a74b" defer></script>
+    <script src="../js/gallery-thumbs.js?v=bc1bb293" defer></script>
+    <script src="../js/gallery-editorial.js?v=b6265c7d" defer></script>
+    <script src="../js/return-trip.js?v=b54b616e" defer></script>
+    <script src="../js/image-variants.js?v=3aef609d" defer></script>
+    <script src="../js/print-collateral-showcase.js?v=dd9c431b" defer></script>
   </head>
 
   <body>
@@ -254,7 +260,7 @@
     <div class="nav-backdrop" aria-hidden="true"></div>
     <header class="site-header">
       <a class="brand" href="../index.html" aria-label="Gil Tejano Culas, home" data-i18n-attr="aria-label:common.homeLabel">
-        <img class="brand-mark" src="../assets/icons/logo.png" alt="" aria-hidden="true" />
+        <img class="brand-mark" src="../assets/icons/logo.png" width="304" height="180" alt="" aria-hidden="true" />
         <span class="brand-text"><span class="brand-name">Gil Tejano Culas</span><span class="brand-title" data-i18n="common.roleTitle">Senior Graphic Designer / Creative Specialist</span></span>
       </a>
 
@@ -262,7 +268,7 @@
         <nav class="floating-nav" id="primary-nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.primary">
           <div class="mobile-nav-head">
             <a class="mobile-nav-brand" href="../index.html" aria-label="Gil Tejano Culas, home" data-i18n-attr="aria-label:common.homeLabel">
-              <img class="brand-mark" src="../assets/icons/logo.png" alt="" aria-hidden="true" />
+              <img class="brand-mark" src="../assets/icons/logo.png" width="304" height="180" alt="" aria-hidden="true" />
               <span class="mobile-nav-brand-text" data-i18n="common.brandLine">Gil Tejano Culas &mdash; Senior Graphic Designer / Creative Specialist</span>
             </a>
             <button type="button" class="mobile-nav-close" aria-label="Close menu" data-i18n-attr="aria-label:nav.closeMenu">
@@ -316,7 +322,7 @@
 
     <main class="project pbc-project" id="main-content">
       <section
-        class="pbc" data-mobile-layout="feed"
+        class="pbc" data-mobile-layout="feed" data-feed
         id="pbc"
         data-category="commercial-lifestyle-photography"
         data-type-fallback="Photograph"
@@ -328,8 +334,16 @@
           <div class="pbc-side">
             <header class="project-header pbc-intro">
               <p class="section-index" id="category-eyebrow">Category 04 — Project Gallery</p>
-              <h1 class="project-headline" id="category-title">—</h1>
-              <p class="project-overview" id="category-intro">—</p>
+              <h1 class="project-headline" id="category-title">Commercial &amp; Lifestyle Photography</h1>
+              <p class="project-overview" id="category-intro">Product, interior, and lifestyle photography of furniture, lighting, and residential spaces.</p>
+              <!-- CATEGORY FACTS START -->
+              <dl id="category-facts" class="project-meta-row category-facts">
+                <div><dt class="project-meta-label" data-i18n="category.facts.brands">Brands</dt><dd class="project-meta-value">BW, Etro</dd></div>
+                <div><dt class="project-meta-label" data-i18n="category.facts.role">Role</dt><dd class="project-meta-value">Photography and image editing</dd></div>
+                <div><dt class="project-meta-label" data-i18n="category.facts.deliverables">Deliverables</dt><dd class="project-meta-value">Product, detail, interior, and lifestyle photography</dd></div>
+              </dl>
+              <p id="category-objective" class="project-overview category-objective">Show materials, proportions, and light as they are, in images ready for catalogues, social posts, and campaign layouts.</p>
+              <!-- CATEGORY FACTS END -->
             </header>
 
             <div class="pbc-preview">
@@ -343,7 +357,7 @@
                 </div>
               </div>
 
-              <button class="pbc-frame" id="pbc-frame" type="button" aria-label="Selected photograph. Press Enter to view fullscreen, arrow keys to browse." data-i18n-attr="aria-label:showcase.framePhoto"></button>
+              <button class="pbc-frame" id="pbc-frame" type="button" aria-label="Selected photograph. Press Enter to view fullscreen, arrow keys to browse." data-i18n-attr="aria-label:showcase.framePhoto"><!-- STATIC SHOT --><div class="pbc-shot pbc-shot-static is-active" style="--ar: 0.7659; --nw: 1243px"><picture><source media="(max-width: 760px)" srcset="../assets/images/gallery-thumbs/commercial-lifestyle-photography/bw-2025-02-jpg-8vhg-360.webp" /><img class="pbc-shot-backdrop" alt="" aria-hidden="true" decoding="async" /></picture><picture><source media="(max-width: 760px)" type="image/avif" srcset="../assets/images/gallery-thumbs/commercial-lifestyle-photography/bw-2025-02-jpg-8vhg-360.avif 360w, ../assets/images/gallery-thumbs/commercial-lifestyle-photography/bw-2025-02-jpg-8vhg.avif 720w, ../assets/images/gallery-thumbs/commercial-lifestyle-photography/bw-2025-02-jpg-8vhg-1440.avif 1243w" sizes="calc(100vw - 40px)" /><source media="(max-width: 760px)" srcset="../assets/images/gallery-thumbs/commercial-lifestyle-photography/bw-2025-02-jpg-8vhg-360.webp 360w, ../assets/images/gallery-thumbs/commercial-lifestyle-photography/bw-2025-02-jpg-8vhg.webp 720w" sizes="calc(100vw - 40px)" /><img class="pbc-shot-img" alt="A model in white seated on a curved bouclé sofa beside a polished round side table." width="1243" height="1623" decoding="async" fetchpriority="high" /></picture></div><!-- /STATIC SHOT --></button>
             </div>
           </div>
 
@@ -401,9 +415,9 @@
         <span class="nav-dock-label" aria-hidden="true"><span class="nav-dock-label-full" data-i18n="dockNav.next">Next Category</span><span class="nav-dock-label-short" data-i18n="dockNav.nextShort">Next</span></span>
       </a>
     </nav>
-    <script src="../js/nav-dock.js?v=2" defer></script>
+    <script src="../js/nav-dock.js?v=9c6f1170" defer></script>
 
-    <script src="../js/dock-context.js?v=2" defer></script>
+    <script src="../js/dock-context.js?v=4abf3932" defer></script>
 
     <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Fullscreen image preview" data-i18n-attr="aria-label:lightbox.label">
       <div class="lightbox-stage" id="lightbox-stage"></div>

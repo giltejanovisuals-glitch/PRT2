@@ -113,6 +113,8 @@
       return {
         src: base + encodeURIComponent(item.file),
         poster: item.poster ? base + encodeURIComponent(item.poster) : "",
+        // The poster's small build-time copy (the full frame stays for the viewer).
+        thumb: item.thumb ? `../${encodePath(item.thumb)}` : "",
         // Short, light clip for the inline preview (previews/ subfolder),
         // when one has been made; otherwise the preview plays the reel.
         preview: item.preview ? base + encodePath(item.preview) : "",
@@ -129,8 +131,8 @@
         reelNumber: info.title ? 0 : i + 1,
         brand: info.brand || info.project || "",
         year: info.year ? String(info.year) : "",
-        // Seconds, or "m:ss"; otherwise read from the file's metadata.
-        duration: parseDuration(info.duration),
+        // Seconds, or "m:ss"; otherwise the build's reading of the file.
+        duration: parseDuration(info.duration) || parseDuration(item.duration),
         captions: info.captions ? base + encodePath(info.captions) : "",
       };
     });
@@ -209,15 +211,57 @@
   // The still that represents an entry: the photo itself, or a clip's poster.
   const stillOf = (entry) => (isClip(entry) ? entry.poster : entry.src);
 
-  // A small build-time WebP copy, if one exists (videos use their poster).
+  // The build-time WebP copy (≤720px; AVIF and 360px variants beside it —
+  // js/image-variants.js), if one exists. Reels use their poster's copy.
   const thumbFor = (entry) => {
-    if (IS_VIDEO) return "";
+    if (IS_VIDEO) return entry.thumb || "";
     const thumb = thumbs[fileOf(stillOf(entry))];
     return thumb ? `../${encodePath(thumb)}` : "";
   };
-  const thumbSrc = (entry) => (IS_VIDEO ? entry.poster : thumbFor(entry) || stillOf(entry));
+  const thumbSrc = (entry) => thumbFor(entry) || (IS_VIDEO ? entry.poster : stillOf(entry));
+  const VARIANTS = window.imageVariants || null;
+  // Rendered widths, shared with the build's preload hints
+  // (scripts/generate-category-headers.js) so preload and image match.
+  const PHONE_FRAME_SIZES = "calc(100vw - 40px)";
 
   // --- Thumbnails ---------------------------------------------------------
+
+  // Desktop tiles: image sources are held back (data-*) until the tile comes
+  // within a rail height of the rail's visible area, in either direction.
+  let nearObserver = null;
+  const restoreSources = (tile) => {
+    tile.querySelectorAll("[data-held-srcset], [data-held-src]").forEach((el) => {
+      if (el.dataset.heldSizes) el.sizes = el.dataset.heldSizes;
+      if (el.dataset.heldSrcset) el.srcset = el.dataset.heldSrcset;
+      if (el.dataset.heldSrc) el.src = el.dataset.heldSrc;
+      delete el.dataset.heldSrcset;
+      delete el.dataset.heldSrc;
+      delete el.dataset.heldSizes;
+    });
+  };
+  const loadWhenNear = (tile, media) => {
+    if (!("IntersectionObserver" in window)) return;
+    [media, ...(media.querySelectorAll ? media.querySelectorAll("source, img") : [])].forEach((el) => {
+      if (!el.getAttribute) return;
+      ["srcset", "src", "sizes"].forEach((attr) => {
+        const value = el.getAttribute(attr);
+        if (!value) return;
+        el.dataset[`held${attr[0].toUpperCase()}${attr.slice(1)}`] = value;
+        el.removeAttribute(attr);
+      });
+    });
+    if (!nearObserver) {
+      nearObserver = new IntersectionObserver(
+        (seen) => seen.forEach((item) => {
+          if (!item.isIntersecting) return;
+          nearObserver.unobserve(item.target);
+          restoreSources(item.target);
+        }),
+        { root: rail, rootMargin: "100% 0px", threshold: 0 }
+      );
+    }
+    nearObserver.observe(tile);
+  };
 
   let tiles = []; // by position in `entries`
   let columns = [];
@@ -248,32 +292,35 @@
     const img = document.createElement("img");
     img.className = "pbc-tile-img";
     img.alt = "";
-    // Desktop tiles sit outside the rail's clip until the columns bring
-    // them in, so native lazy-loading only starts each one as it appears.
-    // Small WebP thumbnails are cheap enough to load up front (low
-    // priority) instead; full-size fallbacks and posters stay lazy.
-    const eager = !stacked && Boolean(thumbFor(entry));
-    img.loading = eager ? "eager" : "lazy";
-    if (eager) img.fetchPriority = "low";
     img.decoding = "async";
     img.draggable = false;
     if (entry.width) img.width = entry.width;
     if (entry.height) img.height = entry.height;
-    img.src = thumbSrc(entry);
-    // Feed: let the browser pick the 720px WebP or the original by the
-    // tile's rendered width (half the screen, or all of it for landscape).
+    // Build-time copies only (AVIF, WebP fallback), sized to how wide the
+    // tile renders: half the phone screen in the two-column feed, all of
+    // it for a landscape visual or the single column, about a sixth of
+    // the window in the desktop columns. Originals load only fullscreen.
     const thumb = thumbFor(entry);
-    if (feed && thumb && entry.width > 720) {
-      img.srcset = `${thumb} 720w, ${encodePath(stillOf(entry))} ${entry.width}w`;
-      img.sizes = ratioOf(entry) >= LANDSCAPE_RATIO ? "calc(100vw - 40px)" : "calc(50vw - 25px)";
-    }
-    if (!IS_VIDEO && thumb) {
+    const sizes = !stacked
+      ? "17vw"
+      : feed && !(ratioOf(entry) >= LANDSCAPE_RATIO && !IS_VIDEO)
+        ? "calc(50vw - 25px)"
+        : "calc(100vw - 40px)";
+    const media = thumb && VARIANTS ? VARIANTS.apply(img, thumb, entry.width, sizes) : img;
+    if (media === img) img.src = thumbSrc(entry);
+    if (thumb) {
       img.addEventListener("error", () => {
+        media.querySelector?.("source")?.remove();
         img.removeAttribute("srcset");
-        img.src = stillOf(entry);
+        img.src = IS_VIDEO ? entry.poster : stillOf(entry);
       }, { once: true });
     }
-    tile.appendChild(img);
+    // Phones: native lazy-loading. Desktop: the columns move tiles in and
+    // out of the rail's clip, so the rail observer loads each tile a rail
+    // height before it arrives instead of every thumbnail up front.
+    if (stacked) img.loading = "lazy";
+    else loadWhenNear(tile, media);
+    tile.appendChild(media);
 
     if (IS_VIDEO || isClip(entry)) {
       const play = document.createElement("span");
@@ -447,7 +494,9 @@
       tile.dataset.reelTile = "";
       tile.tabIndex = 0;
       grid.appendChild(tile);
-      reelPreviews?.add(tile, entry.preview || entry.src, entry.poster);
+      // The light preview clip (scripts/make-reel-previews.js) over the
+      // tile's small poster copy; the full reel loads only in the viewer.
+      reelPreviews?.add(tile, entry.preview || entry.src, VARIANTS && thumbFor(entry) ? VARIANTS.small(thumbFor(entry), entry.width) : thumbSrc(entry));
     });
     rail.appendChild(grid);
     if (feedCount) feedCount.textContent = countText("reels");
@@ -476,6 +525,8 @@
     durationObserver?.disconnect();
     durationObserver = null;
     reelPreviews?.clear();
+    nearObserver?.disconnect();
+    nearObserver = null;
     rail.replaceChildren();
     tiles = entries.map((entry, i) => createTile(entry, i, stacked, feed));
 
@@ -521,6 +572,19 @@
 
   // --- Preview --------------------------------------------------------------
 
+  // The sharper copy for the preview frame: the 1440px AVIF when the frame
+  // needs more pixels than the 720px thumbnail has and the browser decodes
+  // AVIF; otherwise nothing (the thumbnail stays).
+  const largeFor = (entry, box) => {
+    const thumb = thumbFor(entry);
+    const url = thumb && VARIANTS ? VARIANTS.large(thumb, entry.width) : "";
+    if (!url) return Promise.resolve("");
+    const r = box ? box.getBoundingClientRect() : null;
+    const needed = Math.max(r ? r.width : 0, r ? r.height * ratioOf(entry) : 0) * (window.devicePixelRatio || 1);
+    if (needed && needed <= 720 * 1.15) return Promise.resolve("");
+    return VARIANTS.avif.then((ok) => (ok ? url : ""));
+  };
+
   let activeShot = null;
 
   const motionAllowed = () => !reducedMotionQuery.matches;
@@ -536,7 +600,7 @@
       video.className = "pbc-shot-img pbc-shot-video";
       video.muted = true;
       video.playsInline = true;
-      if (entry.poster) video.poster = entry.poster;
+      if (entry.poster) video.poster = thumbSrc(entry);
       if (HOVER) {
         // Hover preview: a silent, looping, inline clip (the light preview
         // file when there is one); a click opens the reel viewer for sound
@@ -598,10 +662,13 @@
     backdrop.className = "pbc-shot-backdrop";
     backdrop.alt = "";
     backdrop.setAttribute("aria-hidden", "true");
-    backdrop.loading = "lazy";
+    backdrop.loading = "lazy"; // only shown in the phone feed; desktop never fetches it
     backdrop.decoding = "async";
     backdrop.draggable = false;
-    backdrop.src = thumbSrc(entry);
+    // Under heavy blur the 360px copy is indistinguishable from larger ones
+    // (and, being small, it never competes with the photo for the page's
+    // Largest Contentful Paint).
+    backdrop.src = thumbFor(entry) && VARIANTS ? VARIANTS.small(thumbFor(entry), entry.width) : thumbSrc(entry);
     shot.appendChild(backdrop);
 
     const img = document.createElement("img");
@@ -613,20 +680,33 @@
     if (!activeShot) img.fetchPriority = "high";
     if (entry.width) img.width = entry.width;
     if (entry.height) img.height = entry.height;
-    // Show the (usually already cached) thumbnail at once, then swap in the
-    // full-resolution original as soon as it has decoded.
+    // Phones: the featured frame is the page's first big image (its Largest
+    // Contentful Paint), always shown full width — so it picks the right
+    // copy straight away from the AVIF/WebP sets (the same set the page
+    // preloads, scripts/generate-category-headers.js), with no swap.
+    const thumbForShot = thumbFor(entry);
+    if (!desktopQuery.matches && thumbForShot && VARIANTS) {
+      shot.appendChild(VARIANTS.apply(img, thumbForShot, entry.width, PHONE_FRAME_SIZES));
+      return shot;
+    }
+    // Desktop: show the (usually already cached) thumbnail at once, then —
+    // only when the frame is big enough to tell — swap in the 1440px AVIF
+    // copy once it has decoded. The original is only ever loaded fullscreen.
     const lowRes = thumbSrc(entry);
     img.src = lowRes;
     if (lowRes !== entry.src) {
       const upgrade = () => {
-        const full = new Image();
-        full.decoding = "async";
-        full.src = entry.src;
-        (full.decode ? full.decode() : Promise.resolve())
-          .then(() => {
-            if (shot.isConnected) img.src = entry.src;
-          })
-          .catch(() => {});
+        largeFor(entry, frame).then((url) => {
+          if (!url) return;
+          const full = new Image();
+          full.decoding = "async";
+          full.src = url;
+          (full.decode ? full.decode() : Promise.resolve())
+            .then(() => {
+              if (shot.isConnected) img.src = url;
+            })
+            .catch(() => {});
+        });
       };
       // Hover browsing: only for an item that stays in the preview.
       if (HOVER && activeShot) {
@@ -666,7 +746,9 @@
   // and plays muted (the native controls unmute) — never on page load.
   const showPreview = (entry, autoplay = false) => {
     // The outgoing clip stops before the next item starts loading.
-    const previous = activeShot;
+    // The first time, the outgoing shot is the build-written opening image
+    // (phones), which this crossfades away from — same picture, no change.
+    const previous = activeShot || frame.querySelector(".pbc-shot-static");
     if (previous) previous.querySelector("video")?.pause();
 
     const next = createShot(entry);
@@ -676,8 +758,9 @@
       const playing = video && video.play();
       if (playing && playing.catch) playing.catch(() => {});
     }
-    // Nothing plays on page load — only once the visitor picks something.
-    if (previous) playClip(next);
+    // Nothing plays on page load — only once the visitor picks something
+    // (the build-written opening image doesn't count as a pick).
+    if (activeShot) playClip(next);
 
     activeShot = next;
     if (previous) {
@@ -708,9 +791,16 @@
     const entry = entries[(i + entries.length) % entries.length];
     if (!entry || isClip(entry) || prefetched.has(entry.src)) return;
     prefetched.add(entry.src);
-    const img = new Image();
-    img.decoding = "async";
-    img.src = entry.src;
+    // Warm what the preview would show: the thumbnail, and the large copy
+    // when the frame would upgrade to it — never the original.
+    const warm = (url) => {
+      if (!url) return;
+      const img = new Image();
+      img.decoding = "async";
+      img.src = url;
+    };
+    warm(thumbSrc(entry));
+    largeFor(entry, frame).then(warm);
   };
 
   // --- Selection ------------------------------------------------------------
@@ -1507,5 +1597,19 @@
   });
 
   // A linked piece stays in the preview; the slideshow never takes it over.
-  setPlaying(!reducedMotionQuery.matches && linkedPos < 0);
+  const start = () => setPlaying(!reducedMotionQuery.matches && linkedPos < 0);
+  if (desktopQuery.matches) {
+    start();
+  } else {
+    // Phones: the opening visual holds until the visitor starts using the
+    // page (a scroll, tap or key). It stays the first thing they see — and
+    // the page's Largest Contentful Paint — and nobody who leaves at once
+    // downloads the rest of the slideshow.
+    const events = ["scroll", "pointerdown", "keydown"];
+    const begin = () => {
+      events.forEach((type) => window.removeEventListener(type, begin, true));
+      start();
+    };
+    events.forEach((type) => window.addEventListener(type, begin, { capture: true, passive: true }));
+  }
 })();

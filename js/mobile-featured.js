@@ -150,6 +150,26 @@
   const active = () => mod(target);
 
   // --- Cards ------------------------------------------------------------------------
+  // Random picks are build-time gallery copies (…/gallery-thumbs/…webp), which
+  // have an AVIF sibling of about a quarter the size: it goes in a <source>
+  // ahead of the img (WebP stays the fallback). Anything else loads as is.
+  const setSrc = (img, src) => {
+    const avif = /\/gallery-thumbs\/.+\.webp$/.test(src) ? src.replace(/\.webp$/, '.avif') : '';
+    let source = img.parentElement?.tagName === 'PICTURE' ? img.parentElement.querySelector('source') : null;
+    if (avif && !source) {
+      const picture = document.createElement('picture');
+      source = document.createElement('source');
+      source.type = 'image/avif';
+      img.before(picture);
+      picture.append(source, img);
+    }
+    if (source) {
+      if (avif) source.srcset = avif;
+      else source.remove();
+    }
+    img.src = src;
+  };
+  const avifFailed = (img) => /\.avif(\?|$)/.test(img.currentSrc || '');
   const makeImg = (slide, className) => {
     const img = document.createElement('img');
     img.className = className;
@@ -223,16 +243,68 @@
     const entry = entries[mod(i)];
     if (entry.requested) return;
     entry.requested = true;
+    if (entry.slide.random) {
+      entry.img.addEventListener('error', () => {
+        // A missing AVIF copy just falls back to the WebP.
+        if (avifFailed(entry.img)) {
+          [entry.img, entry.backdrop].forEach((img) => img?.parentElement?.querySelector('source')?.remove());
+          return;
+        }
+        replaceMissing(entry);
+      });
+    }
     [entry.backdrop, entry.img].forEach((img) => {
       if (!img) return;
       if (entry.slide.srcset) {
         img.sizes = entry.slide.sizes;
         img.srcset = entry.slide.srcset;
       } else {
-        img.src = entry.slide.src;
+        setSrc(img, entry.slide.src);
       }
     });
     markLoaded(entry);
+  };
+  // A random pick whose file is missing: swap in another unused pick, so the
+  // card never stays empty. Same kind (image or reel) first, updated in
+  // place; failing that, any kind, with the card rebuilt to match. Missing
+  // picks are never offered again this visit.
+  const missing = new Set();
+  const replaceMissing = (entry) => {
+    const pool = window.homeVisualPool;
+    const i = entries.indexOf(entry);
+    if (!pool || i < 0) return;
+    missing.add(entry.slide.id);
+    entry.retries = (entry.retries || 0) + 1;
+    if (entry.retries > 4) return; // keeps its dark card; never loops
+    const video = entry.slide.media === 'video';
+    const exclude = [...entries.map((e) => e.slide.id), ...missing];
+    const candidates = pool.pick(24, { exclude }).map(randomSlide);
+    // One same-kind try; after that, an image (the likeliest to exist).
+    const same = entry.retries === 1 ? candidates.find((slide) => (slide.media === 'video') === video) : null;
+    const next = same || candidates.find((slide) => slide.media === 'image') || candidates[0];
+    if (!next) return;
+    if ((next.media === 'video') === video) {
+      entry.slide = Object.assign(slides[i], next);
+      entry.el.dataset.id = next.id;
+      if (video) entry.card.setAttribute('aria-label', reelLabel(next));
+      else { entry.card.href = next.href; entry.card.setAttribute('aria-label', randomLabel(next)); }
+      if (i === active()) renderCaption(false);
+      [entry.backdrop, entry.img].forEach((img) => { if (img) setSrc(img, next.src); });
+      return;
+    }
+    // A different kind: rebuild this slide's card and swap it in place.
+    drop(entry);
+    slides[i] = next;
+    const el = makeSlide(next);
+    entry.el.replaceWith(el);
+    const fresh = entryFor(el, next, false);
+    fresh.retries = entry.retries;
+    entries[i] = fresh;
+    el.setAttribute('aria-label', slideLabel(i));
+    syncStates();
+    layout();
+    if (i === active()) renderCaption(false);
+    load(i);
   };
   // The active card first; its immediate neighbours once it has arrived.
   const loadAround = () => {
@@ -579,7 +651,8 @@
       title: reelName(slide),
       label: reelName(slide),
       brand: slide.brand || '',
-    }], { closeTo: () => page });
+    }]); // closing returns to this card, at the same scroll position
+
     remember();
     if (entry.viewer) entry.viewer.open(0, entry.card);
     else window.location.href = page;

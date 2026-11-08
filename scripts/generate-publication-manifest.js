@@ -22,6 +22,9 @@
 const fs = require("fs");
 const path = require("path");
 const { createCanvas } = require("@napi-rs/canvas");
+const PRIORITY = require("./gallery-priority");
+
+const CATEGORY_ID = "editorial-layout";
 
 const SOURCE_DIR = path.join(__dirname, "..", "assets", "documents", "editorial-layout");
 const COVER_DIR = path.join(SOURCE_DIR, "covers");
@@ -207,10 +210,19 @@ async function build() {
 
   const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs");
 
-  const files = fs
+  // Order and visibility from scripts/gallery-priority.js ("editorial-layout"
+  // first, in that order, then the rest by filename; `hidden` left out).
+  const hidden = new Set((PRIORITY.hidden || {})[CATEGORY_ID] || []);
+  const available = fs
     .readdirSync(SOURCE_DIR)
-    .filter((name) => path.extname(name).toLowerCase() === ".pdf")
+    .filter((name) => path.extname(name).toLowerCase() === ".pdf" && !hidden.has(name))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  const priority = (PRIORITY[CATEGORY_ID] || []).filter((file) => {
+    if (available.includes(file)) return true;
+    console.warn(`[publication-manifest] priority file "${file}" not found — skipping.`);
+    return false;
+  });
+  const files = [...new Set(priority), ...available.filter((file) => !priority.includes(file))];
 
   const manifest = [];
   let totalPdfBytes = 0;

@@ -1,6 +1,9 @@
-/* Self-hosted headline face — drop the licensed TT Modernist files into
-   assets/fonts/ using these exact names and they'll pick up automatically.
-   Until then, the --font-headline fallback stack keeps the site readable. */
+/* Self-hosted headline face — switched off until the licensed TT Modernist
+   files exist, since every page otherwise requests two missing files (404s).
+   To turn it on: add TTModernist-Regular.woff2 and TTModernist-Regular.woff
+   to assets/fonts/, then remove the comment markers around this rule. Until
+   then, the --font-headline fallback stack (Helvetica Neue / Arial) is used,
+   exactly as before.
 @font-face {
   font-family: "TT Modernist";
   src: url("../assets/fonts/TTModernist-Regular.woff2") format("woff2"),
@@ -9,6 +12,7 @@
   font-style: normal;
   font-display: swap;
 }
+*/
 
 :root {
   --background: #f2f0ea;
@@ -149,8 +153,11 @@ button {
 .skip-link {
   position: fixed;
   z-index: 100;
-  top: -3rem;
+  top: -4rem;
   left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: 0.6rem 1rem;
   border-radius: 0.4rem;
   background: var(--accent);
@@ -2848,5 +2855,24 @@ body.is-scrolled .nav-backdrop {
     transition-delay: 0ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+}
+
+/* Touch screens wider than the phone layout (landscape phones, tablets)
+   get the desktop design, so its few small controls get 44px hit areas
+   here. Phones under 761px have their own touch-sized layouts; mouse and
+   trackpad users see no change. */
+@media (pointer: coarse) and (min-width: 761px) {
+  .cap-arrow,
+  .cta-social-link {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* The logo keeps its size; an invisible band widens what a finger hits. */
+  .brand-logo.is-linked::before {
+    position: absolute;
+    inset: -7px -4px;
+    content: "";
   }
 }

@@ -99,6 +99,26 @@ async function webp(id, sourcePath, crop) {
     sizes.push({ width: result.width, height: result.height });
     console.log(`[mobile-featured] ${path.basename(outputs[i])}  ${result.width}x${result.height}`);
   }
+  // AVIF copies at the same sizes (about a third of the WebP bytes), drawn
+  // from the source like the WebP ones; browsers without AVIF keep WebP.
+  for (let i = 0; i < WIDTHS.length; i += 1) {
+    const avifPath = path.join(OUTPUT_DIR, `${id}-${WIDTHS[i]}.avif`);
+    if (fs.existsSync(avifPath)) continue;
+    if (!source) {
+      // eslint-disable-next-line no-await-in-loop
+      source = await loadImage(fs.readFileSync(path.join(ROOT, sourcePath)));
+    }
+    const sx = crop?.left || 0;
+    const sy = crop?.top || 0;
+    const sw = source.width - sx - (crop?.right || 0);
+    const sh = source.height - sy - (crop?.bottom || 0);
+    const scale = Math.min(1, WIDTHS[i] / sw);
+    const canvas = createCanvas(Math.round(sw * scale), Math.round(sh * scale));
+    canvas.getContext("2d").drawImage(source, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+    // eslint-disable-next-line no-await-in-loop
+    fs.writeFileSync(avifPath, await canvas.encode("avif", { quality: 55, speed: 6 }));
+    console.log(`[mobile-featured] ${path.basename(avifPath)}`);
+  }
   // The placeholder comes from the small copy, so cached builds stay fast.
   const small = await loadImage(fs.readFileSync(outputs[0]));
   const placeholder = encode(small, PLACEHOLDER_WIDTH, 50);
@@ -106,6 +126,7 @@ async function webp(id, sourcePath, crop) {
   return {
     src: `assets/images/featured/${id}-${WIDTHS[WIDTHS.length - 1]}.webp`,
     srcset: WIDTHS.map((w, i) => `assets/images/featured/${id}-${w}.webp ${sizes[i].width}w`).join(", "),
+    srcsetAvif: WIDTHS.map((w, i) => `assets/images/featured/${id}-${w}.avif ${sizes[i].width}w`).join(", "),
     sizes: SIZES,
     width: large.width,
     height: large.height,
@@ -175,12 +196,15 @@ async function build() {
 
   // The opening slide is rendered into index.html. Its sources sit on a
   // <source> that only matches phones, so desktop never downloads them.
+  // It is marked is-loaded from the start: the image shows the moment it
+  // arrives instead of waiting for js/mobile-featured.js to reveal it (the
+  // page's Largest Contentful Paint on phones).
   const first = slides[0];
   if (first.media !== "image") throw new Error("the opening slide must be an image");
-  const picture = (backdrop) => `<picture><source media="(max-width: 760px)" type="image/webp" srcset="${first.srcset}" sizes="${first.sizes}" /><img ${backdrop ? 'class="featured-backdrop" alt="" aria-hidden="true"' : `class="featured-image" alt="${escape(first.alt)}" fetchpriority="high" data-i18n-attr="alt:featured.item.${first.visual}.alt"`} width="${first.width}" height="${first.height}" decoding="async" /></picture>`;
+  const picture = (backdrop) => `<picture><source media="(max-width: 760px)" type="image/avif" srcset="${first.srcsetAvif}" sizes="${first.sizes}" /><source media="(max-width: 760px)" type="image/webp" srcset="${first.srcset}" sizes="${first.sizes}" /><img ${backdrop ? 'class="featured-backdrop" alt="" aria-hidden="true"' : `class="featured-image" alt="${escape(first.alt)}" fetchpriority="high" data-i18n-attr="alt:featured.item.${first.visual}.alt"`} width="${first.width}" height="${first.height}" decoding="async" /></picture>`;
   const slideBlock = `<!-- MOBILE FEATURED START -->
             <div class="featured-slide is-active" data-id="${first.id}" role="group" aria-roledescription="slide" aria-label="1 of ${slides.length}: ${escape(first.title)}" data-i18n-attr="aria-roledescription:a11y.slide">
-              <a class="featured-card${first.fill ? " is-fill" : ""}" href="${first.href}" style="--placeholder: url('${first.placeholder}')">
+              <a class="featured-card${first.fill ? " is-fill" : ""} is-loaded" href="${first.href}" style="--placeholder: url('${first.placeholder}')">
                 ${first.fill ? `${picture(true)}\n                ` : ""}${picture(false)}
                 <span class="featured-shade" aria-hidden="true"></span>
               </a>
@@ -191,7 +215,8 @@ async function build() {
             <p class="featured-subtitle">${escape(first.subtitle)}</p>
             <p class="featured-meta">${escape(metaLine(first))}</p>
             <!-- MOBILE FEATURED CAPTION END -->`;
-  const preloadBlock = `<!-- MOBILE FEATURED PRELOAD START --><link rel="preload" as="image" type="image/webp" media="(max-width: 760px)" imagesrcset="${first.srcset}" imagesizes="${first.sizes}" fetchpriority="high" /><!-- MOBILE FEATURED PRELOAD END -->`;
+  // AVIF first (type= lets browsers without it skip the hint).
+  const preloadBlock = `<!-- MOBILE FEATURED PRELOAD START --><link rel="preload" as="image" type="image/avif" media="(max-width: 760px)" imagesrcset="${first.srcsetAvif}" imagesizes="${first.sizes}" fetchpriority="high" /><!-- MOBILE FEATURED PRELOAD END -->`;
 
   const indexPath = path.join(ROOT, "index.html");
   let html = fs.readFileSync(indexPath, "utf8");

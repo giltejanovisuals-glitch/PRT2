@@ -78,14 +78,20 @@ function sampleEvenly(files, count) {
   return Array.from({ length: count }, (_, i) => files[Math.floor((i * files.length) / count)]);
 }
 
+// Writes the WebP preview and an AVIF copy beside it (same name, .avif —
+// about a third of the bytes; pages prefer it where supported). Either is
+// skipped when it already exists.
 async function writePreview(sourcePath, outputPath) {
+  const avifPath = outputPath.replace(/\.webp$/, ".avif");
+  if (fs.existsSync(outputPath) && fs.existsSync(avifPath)) return;
   const image = await loadImage(fs.readFileSync(sourcePath));
   const scale = Math.min(1, Math.max(TARGET_WIDTH / image.width, TARGET_HEIGHT / image.height));
   const width = Math.max(1, Math.round(image.width * scale));
   const height = Math.max(1, Math.round(image.height * scale));
   const canvas = createCanvas(width, height);
   canvas.getContext("2d").drawImage(image, 0, 0, width, height);
-  fs.writeFileSync(outputPath, canvas.toBuffer("image/webp", WEBP_QUALITY));
+  if (!fs.existsSync(outputPath)) fs.writeFileSync(outputPath, canvas.toBuffer("image/webp", WEBP_QUALITY));
+  if (!fs.existsSync(avifPath)) fs.writeFileSync(avifPath, await canvas.encode("avif", { quality: 55, speed: 6 }));
 }
 
 async function buildCategory(categoryId, sourceDir) {
@@ -114,22 +120,21 @@ async function buildCategory(categoryId, sourceDir) {
     const { size } = fs.statSync(sourcePath);
     const outputName = `${slugify(path.basename(file, path.extname(file)))}-${size.toString(36)}.webp`;
     const outputPath = path.join(outputDir, outputName);
-    if (!fs.existsSync(outputPath)) {
-      try {
-        // eslint-disable-next-line no-await-in-loop
-        await writePreview(sourcePath, outputPath);
-      } catch (error) {
-        console.warn(`[home-previews] ${categoryId}: skipping "${file}": ${error.message}`);
-        continue;
-      }
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      await writePreview(sourcePath, outputPath);
+    } catch (error) {
+      console.warn(`[home-previews] ${categoryId}: skipping "${file}": ${error.message}`);
+      continue;
     }
     previews.push(outputName);
   }
 
-  // Drop previews whose source was removed, replaced, or fell out of the sample.
-  const keep = new Set(previews);
+  // Drop previews (and their AVIF copies) whose source was removed, replaced,
+  // or fell out of the sample.
+  const keep = new Set(previews.map((name) => name.replace(/\.webp$/, "")));
   fs.readdirSync(outputDir)
-    .filter((name) => name.endsWith(".webp") && !keep.has(name))
+    .filter((name) => /\.(webp|avif)$/.test(name) && !keep.has(name.replace(/\.(webp|avif)$/, "")))
     .forEach((name) => fs.unlinkSync(path.join(outputDir, name)));
 
   return previews.map((name) => `assets/images/home-previews/${categoryId}/${name}`);

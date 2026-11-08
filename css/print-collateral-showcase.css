@@ -353,10 +353,19 @@ html.pbc-locked .project-closing {
   will-change: transform;
 }
 
+/* Responsive copies come wrapped in <picture> (js/image-variants.js); the
+   wrapper must not add a box of its own. */
+.pbc picture {
+  display: contents;
+}
+
 .pbc-tile {
   position: relative;
   display: block;
   width: 100%;
+  /* Very wide artwork in a narrow column (or at high zoom) would leave a
+     sliver too thin to tap; the image stays whole (object-fit: contain). */
+  min-height: 44px;
   padding: 0;
   overflow: hidden;
   border: 0;
@@ -859,6 +868,14 @@ html.pbc-locked .project-closing {
 
 /* The blurred backdrop belongs to the phone featured frame only. */
 .pbc-shot-backdrop {
+  display: none;
+}
+
+/* The opening shot the build writes into the HTML (phones' featured frame,
+   scripts/generate-category-headers.js), so the page's first big image
+   needs no script to appear. The phone frame rules above show it; the
+   script crossfades from it to its own copy of the same image. */
+.pbc-shot-static {
   display: none;
 }
 

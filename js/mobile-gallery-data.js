@@ -4,7 +4,7 @@ window.MOBILE_GALLERY_DATA = [
     "id": "editorial-layout",
     "label": "EDITORIAL",
     "title": "Editorial & Layout Design",
-    "description": "Catalogues, lookbooks, and publication systems.",
+    "description": "Catalogues, brand books, and publication systems.",
     "count": 8,
     "unit": "publications",
     "number": "01",
@@ -186,7 +186,7 @@ window.MOBILE_GALLERY_DATA = [
     "id": "print-brand-collateral",
     "label": "PRINT",
     "title": "Print & Brand Collateral",
-    "description": "Brochures, sales materials, and branded print.",
+    "description": "Billboards, brochures, and branded print.",
     "count": 48,
     "unit": "images",
     "number": "03",
@@ -277,7 +277,7 @@ window.MOBILE_GALLERY_DATA = [
     "id": "commercial-lifestyle-photography",
     "label": "PHOTOGRAPHY",
     "title": "Commercial & Lifestyle Photography",
-    "description": "Product, showroom, and lifestyle photography.",
+    "description": "Product, interior, and lifestyle photography.",
     "count": 126,
     "unit": "photographs",
     "number": "04",
@@ -368,106 +368,122 @@ window.MOBILE_GALLERY_DATA = [
     "id": "short-form-video-reels",
     "label": "MOTION",
     "title": "Short-Form Video & Reels",
-    "description": "Short-form stories for social feeds and launches.",
-    "count": 59,
+    "description": "Short vertical videos for social feeds.",
+    "count": 54,
     "unit": "videos",
     "number": "05",
     "previews": [
       {
-        "src": "assets/images/home-previews/short-form-video-reels/02-hooga-dec-2dew.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/mooni-fw20202-3-3v26.webp",
         "width": 640,
         "height": 1138,
-        "reel": "02 HOOGA DEC.mp4"
+        "reel": "MOONI FW20202.3.mp4",
+        "reelPreview": "previews/MOONI FW20202.3.mp4"
       },
       {
-        "src": "assets/images/home-previews/short-form-video-reels/9-34ft.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/0202-4-2rfs.webp",
         "width": 640,
         "height": 1138,
-        "reel": "9.mp4"
+        "reel": "0202 (4).mp4",
+        "reelPreview": "previews/0202 (4).mp4"
       },
       {
-        "src": "assets/images/home-previews/short-form-video-reels/0624-1-3ek6.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/hooga-jr1-3v1j.webp",
         "width": 640,
         "height": 1138,
-        "reel": "0624(1).mp4"
+        "reel": "HOOGA JR1.mp4",
+        "reelPreview": "previews/HOOGA JR1.mp4"
       },
       {
-        "src": "assets/images/home-previews/short-form-video-reels/0904-4-3vyv.webp",
+        "src": "assets/images/home-previews/short-form-video-reels/1120june-reels-dunlopillo-dr-flex-9di4.webp",
         "width": 640,
         "height": 1138,
-        "reel": "0904 4.mp4"
-      },
-      {
-        "src": "assets/images/home-previews/short-form-video-reels/0904-9-2ln9.webp",
-        "width": 640,
-        "height": 1138,
-        "reel": "0904 9.mp4"
-      },
-      {
-        "src": "assets/images/home-previews/short-form-video-reels/260116-dunlo-febcontentweek1-2-1ems.webp",
-        "width": 640,
-        "height": 1138,
-        "reel": "260116_Dunlo_FebContentWeek1.2.mp4"
-      },
-      {
-        "src": "assets/images/home-previews/short-form-video-reels/260429-6-4qsq.webp",
-        "width": 640,
-        "height": 1138,
-        "reel": "260429 6.mp4"
-      },
-      {
-        "src": "assets/images/home-previews/short-form-video-reels/dp-jr2-3zbl.webp",
-        "width": 640,
-        "height": 1138,
-        "reel": "DP JR2.mp4"
-      },
-      {
-        "src": "assets/images/home-previews/short-form-video-reels/h08122-3lu9.webp",
-        "width": 640,
-        "height": 1138,
-        "reel": "h08122.mp4"
-      },
-      {
-        "src": "assets/images/home-previews/short-form-video-reels/hooga-jr2-3umc.webp",
-        "width": 640,
-        "height": 1138,
-        "reel": "HOOGA JR2.mp4"
-      },
-      {
-        "src": "assets/images/home-previews/short-form-video-reels/hooga-july-2-497x.webp",
-        "width": 640,
-        "height": 1138,
-        "reel": "HOOGA JULY 2.mp4"
-      },
-      {
-        "src": "assets/images/home-previews/short-form-video-reels/hooga-updated-outro-1urs.webp",
-        "width": 640,
-        "height": 1138,
-        "reel": "HOOGA UPDATED OUTRO.mp4"
-      },
-      {
-        "src": "assets/images/home-previews/short-form-video-reels/may3-2guz.webp",
-        "width": 640,
-        "height": 1138,
-        "reel": "MAY3.mp4"
-      },
-      {
-        "src": "assets/images/home-previews/short-form-video-reels/mim-jr1-1t1q.webp",
-        "width": 640,
-        "height": 1138,
-        "reel": "MIM JR1.mp4"
+        "reel": "1120JUNE-REELS_Dunlopillo-Dr.Flex.mp4",
+        "reelPreview": "previews/1120JUNE-REELS_Dunlopillo-Dr.Flex.mp4"
       },
       {
         "src": "assets/images/home-previews/short-form-video-reels/mooni-reel-598f.webp",
         "width": 640,
         "height": 1138,
-        "reel": "MOONI REEL.mp4"
+        "reel": "MOONI REEL.mp4",
+        "reelPreview": "previews/MOONI REEL.mp4"
+      },
+      {
+        "src": "assets/images/home-previews/short-form-video-reels/0904-4-thomas-5cfy.webp",
+        "width": 675,
+        "height": 900,
+        "reel": "0904 4 THOMAS.mp4",
+        "reelPreview": "previews/0904 4 THOMAS.mp4"
+      },
+      {
+        "src": "assets/images/home-previews/short-form-video-reels/frw2-5gh7.webp",
+        "width": 640,
+        "height": 1138,
+        "reel": "FRW2.mp4",
+        "reelPreview": "previews/FRW2.mp4"
+      },
+      {
+        "src": "assets/images/home-previews/short-form-video-reels/myw16-33nz.webp",
+        "width": 640,
+        "height": 1138,
+        "reel": "MYW16.mp4",
+        "reelPreview": "previews/MYW16.mp4"
       },
       {
         "src": "assets/images/home-previews/short-form-video-reels/porta-3j30.webp",
         "width": 640,
         "height": 1138,
-        "reel": "PORTA.mp4"
+        "reel": "PORTA.mp4",
+        "reelPreview": "previews/PORTA.mp4"
+      },
+      {
+        "src": "assets/images/home-previews/short-form-video-reels/h08129-ygc.webp",
+        "width": 640,
+        "height": 1138,
+        "reel": "h08129.mp4",
+        "reelPreview": "previews/h08129.mp4"
+      },
+      {
+        "src": "assets/images/home-previews/short-form-video-reels/260429-9-6y84.webp",
+        "width": 640,
+        "height": 1138,
+        "reel": "260429 9.mp4",
+        "reelPreview": "previews/260429 9.mp4"
+      },
+      {
+        "src": "assets/images/home-previews/short-form-video-reels/hooga-jr3-2obk.webp",
+        "width": 640,
+        "height": 1138,
+        "reel": "HOOGA JR3.mp4",
+        "reelPreview": "previews/HOOGA JR3.mp4"
+      },
+      {
+        "src": "assets/images/home-previews/short-form-video-reels/mooni-july-1-8p5m.webp",
+        "width": 640,
+        "height": 1138,
+        "reel": "MOONI JULY 1.mp4",
+        "reelPreview": "previews/MOONI JULY 1.mp4"
+      },
+      {
+        "src": "assets/images/home-previews/short-form-video-reels/0624-1-3ek6.webp",
+        "width": 640,
+        "height": 1138,
+        "reel": "0624(1).mp4",
+        "reelPreview": "previews/0624(1).mp4"
+      },
+      {
+        "src": "assets/images/home-previews/short-form-video-reels/wall-mini-jardim-loop-1gk0.webp",
+        "width": 640,
+        "height": 1138,
+        "reel": "WALL_MINI_JARDIM_LOOP.mp4",
+        "reelPreview": "previews/WALL_MINI_JARDIM_LOOP.mp4"
+      },
+      {
+        "src": "assets/images/home-previews/short-form-video-reels/reel2-2-1g48.webp",
+        "width": 640,
+        "height": 1138,
+        "reel": "reel2.2.mp4",
+        "reelPreview": "previews/reel2.2.mp4"
       }
     ]
   }

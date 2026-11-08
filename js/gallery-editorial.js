@@ -114,13 +114,63 @@
     el.setAttribute("aria-label", t(key, { title: copy(target, "title") }, `${english} ${target.title}`));
   };
 
+  // The header's facts row (brands, role, deliverables, year) and the
+  // one-line objective, from js/gallery-categories-data.js. Built once,
+  // right after the intro, using the shared .project-meta-row styles; a
+  // field with no confirmed value is simply left out.
+  const renderCategoryFacts = () => {
+    // The intro is its own paragraph, or (editorial page) a span inside one.
+    const intro = document.getElementById("category-intro")?.closest("p");
+    if (!intro) return;
+    const facts = [
+      ["brands", "Brands", (category.brands || []).join(", ")],
+      ["role", "Role", copy(category, "role")],
+      ["deliverables", "Deliverables", copy(category, "deliverables")],
+      ["year", "Year", category.year || ""],
+    ].filter(([, , value]) => value);
+    let row = document.getElementById("category-facts");
+    if (!row && facts.length) {
+      row = document.createElement("dl");
+      row.id = "category-facts";
+      row.className = "project-meta-row category-facts";
+      intro.after(row);
+    }
+    if (row) {
+      row.replaceChildren(
+        ...facts.map(([key, english, value]) => {
+          const item = document.createElement("div");
+          const label = document.createElement("dt");
+          label.className = "project-meta-label";
+          label.textContent = t(`category.facts.${key}`, null, english);
+          const text = document.createElement("dd");
+          text.className = "project-meta-value";
+          text.textContent = value;
+          item.append(label, text);
+          return item;
+        })
+      );
+    }
+    const objective = copy(category, "objective");
+    let line = document.getElementById("category-objective");
+    if (!line && objective) {
+      line = document.createElement("p");
+      line.id = "category-objective";
+      line.className = "project-overview category-objective";
+      (row || intro).after(line);
+    }
+    if (line) line.textContent = objective;
+  };
+
   const renderCategoryText = () => {
     document.title = t("meta.categoryTitle", { title: copy(category, "title") }, `${category.title} | Gil Tejano Culas`);
     setText("category-eyebrow", t("category.eyebrow", { number: categoryNumber }, `Category ${categoryNumber} — Project Gallery`));
     setText("category-title", copy(category, "title"));
     setText("category-intro", copy(category, "intro"));
+    renderCategoryFacts();
     setText("category-closing-label", copy(category, "title"));
-    setText("category-closing-text", copy(category, "lede"));
+    // In the editorial header the lede shares the intro's paragraph; with an
+    // objective line below, it would only repeat the intro, so it's dropped.
+    setText("category-closing-text", category.objective ? "" : copy(category, "lede"));
     setCategoryNavLink("brand-nav-prev", prevCategory, "category.prevLabel", "Previous category:");
     setCategoryNavLink("brand-nav-next", nextCategory, "category.nextLabel", "Next category:");
   };
@@ -187,7 +237,10 @@
         title,
         project: info.project || "",
         type: info.type || "",
-        alt: info.alt || title,
+        year: info.year ? String(info.year) : "",
+        // Never a filename: without hand-written alt text the showcase falls
+        // back to the piece's type, and the lightbox to the category title.
+        alt: info.alt || "",
         isPlaceholder: false,
       };
     });
@@ -195,262 +248,11 @@
 
   const flatEntries = buildEntries().map((entry, i) => ({ ...entry, flatIndex: i }));
 
-  const galleryWall = document.getElementById("editorial-wall");
-  const rowEls = [0, 1, 2].map((i) => document.getElementById(`editorial-row-${i}`));
-  const trackEls = [0, 1, 2].map((i) => document.getElementById(`editorial-row-track-${i}`));
-
-  // Shared with the lightbox below, which runs on any page that has one —
-  // with or without this wall (the image category pages swap the wall for
-  // the split-screen showcase, js/print-collateral-showcase.js).
+  // Shared with the lightbox below. (The image category pages show their
+  // images in the split-screen showcase, js/print-collateral-showcase.js,
+  // which reuses this lightbox; the old moving-wall gallery is retired.)
   let lightboxOpen = false;
   let openLightbox = () => {};
-
-  if (galleryWall && flatEntries.length && rowEls.every(Boolean) && trackEls.every(Boolean)) {
-    const mobileQuery = window.matchMedia("(max-width: 760px)");
-    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let reducedMotion = reducedMotionQuery.matches;
-
-    // Keep the wall calm and consistent regardless of how many images (or
-    // how many wide images) a category contains. A fixed loop duration made
-    // longer rows travel much faster because they had more pixels to cover in
-    // the same amount of time.
-    const BASE_SCROLL_SPEED_PX_PER_SECOND = 14;
-    const ROW_SPEED_MULTIPLIERS = [1, 0.9, 1.08];
-    let rowStates = [];
-
-    const distribute = (entries, rowCount) => {
-      const groups = Array.from({ length: rowCount }, () => []);
-      entries.forEach((entry, i) => groups[i % rowCount].push(entry));
-      return groups;
-    };
-
-    const createTile = (entry, isClone) => {
-      const tile = document.createElement("div");
-      tile.className = "editorial-tile";
-      tile.style.setProperty("--ar", String(entry.ratio || 1.4));
-      tile.dataset.flatIndex = String(entry.flatIndex);
-
-      if (entry.isPlaceholder) {
-        tile.classList.add("editorial-tile-placeholder", category.tone);
-      } else if (entry.src) {
-        const img = document.createElement("img");
-        img.className = "editorial-tile-img";
-        img.src = entry.kind === "video" ? entry.poster : entry.src;
-        img.alt = entry.alt || "";
-        if (entry.width) img.width = entry.width;
-        if (entry.height) img.height = entry.height;
-        img.loading = "lazy";
-        img.decoding = "async";
-        tile.appendChild(img);
-      }
-
-      if (isClone) {
-        tile.setAttribute("aria-hidden", "true");
-        tile.tabIndex = -1;
-      } else {
-        tile.setAttribute("role", "button");
-        tile.tabIndex = 0;
-        tile.setAttribute("aria-label", t("showcase.openFullscreen", { title: entry.title || t("common.image", null, "image") }, `Open “${entry.title || "image"}” fullscreen`));
-      }
-
-      return tile;
-    };
-
-    const renderRow = (rowEl, trackEl, entries, rowIndex) => {
-      trackEl.innerHTML = "";
-      const fragment = document.createDocumentFragment();
-      entries.forEach((entry) => fragment.appendChild(createTile(entry, false)));
-      entries.forEach((entry) => fragment.appendChild(createTile(entry, true)));
-      trackEl.appendChild(fragment);
-
-      return {
-        el: rowEl,
-        track: trackEl,
-        direction: rowIndex % 2 === 0 ? 1 : -1,
-        speedPxPerSecond:
-          BASE_SCROLL_SPEED_PX_PER_SECOND *
-          ROW_SPEED_MULTIPLIERS[rowIndex % ROW_SPEED_MULTIPLIERS.length],
-        halfWidth: 0,
-        paused: { hover: false, focus: false, drag: false },
-      };
-    };
-
-    const measureRows = () => {
-      requestAnimationFrame(() => {
-        rowStates.forEach((row) => {
-          row.halfWidth = row.track.scrollWidth / 2;
-          row.el.scrollLeft = row.direction > 0 ? 0 : row.halfWidth;
-        });
-      });
-    };
-
-    const buildRows = () => {
-      const rowCount = mobileQuery.matches ? 2 : 3;
-      const groups = distribute(flatEntries, rowCount);
-
-      rowStates = [];
-      rowEls.forEach((rowEl, i) => {
-        if (i < rowCount) {
-          rowEl.classList.remove("is-hidden-row");
-          rowStates.push(renderRow(rowEl, trackEls[i], groups[i], i));
-        } else {
-          rowEl.classList.add("is-hidden-row");
-          trackEls[i].innerHTML = "";
-        }
-      });
-
-      measureRows();
-    };
-
-    // --- Per-row interaction: pause on hover/focus, drag/swipe to browse ---
-    // Bound once to the stable .editorial-row containers (buildRows only
-    // replaces their track contents, never the containers themselves), and
-    // resolved against the current rowStates by index on every event so a
-    // rebuild (e.g. crossing the mobile breakpoint) never reads stale state.
-    rowEls.forEach((rowEl, rowIndex) => {
-      const getState = () => rowStates[rowIndex];
-      let isDown = false;
-      let startX = 0;
-      let startScroll = 0;
-      let pointerId = null;
-
-      rowEl.addEventListener("pointerenter", (event) => {
-        if (event.pointerType !== "mouse") return;
-        const state = getState();
-        if (state) state.paused.hover = true;
-      });
-
-      rowEl.addEventListener("pointerleave", (event) => {
-        if (event.pointerType === "mouse") {
-          const state = getState();
-          if (state) state.paused.hover = false;
-        }
-        if (isDown) endDrag();
-      });
-
-      rowEl.addEventListener("focusin", () => {
-        const state = getState();
-        if (state) state.paused.focus = true;
-      });
-
-      rowEl.addEventListener("focusout", () => {
-        const state = getState();
-        if (state) state.paused.focus = false;
-      });
-
-      rowEl.addEventListener("pointerdown", (event) => {
-        const state = getState();
-        if (state) state.paused.drag = true;
-        if (event.pointerType === "touch") return; // native touch scroll takes over
-        isDown = true;
-        startX = event.clientX;
-        startScroll = rowEl.scrollLeft;
-        rowEl.classList.add("is-dragging");
-      });
-
-      rowEl.addEventListener("pointermove", (event) => {
-        if (!isDown) return;
-        const delta = event.clientX - startX;
-        if (Math.abs(delta) <= 4) return;
-        if (pointerId === null) {
-          pointerId = event.pointerId;
-          rowEl.setPointerCapture(pointerId);
-        }
-        rowEl.scrollLeft = startScroll - delta;
-      });
-
-      const endDrag = () => {
-        isDown = false;
-        rowEl.classList.remove("is-dragging");
-        const state = getState();
-        if (state) state.paused.drag = false;
-        if (pointerId !== null) {
-          if (rowEl.hasPointerCapture?.(pointerId)) rowEl.releasePointerCapture(pointerId);
-          pointerId = null;
-        }
-      };
-
-      rowEl.addEventListener("pointerup", endDrag);
-      rowEl.addEventListener("pointercancel", endDrag);
-    });
-
-    // --- Lightbox click/keyboard triggers, delegated on the stable tracks ---
-    trackEls.forEach((trackEl) => {
-      trackEl.addEventListener("click", (event) => {
-        const tile = event.target.closest(".editorial-tile[data-flat-index]");
-        if (tile) openLightbox(Number(tile.dataset.flatIndex), tile);
-      });
-      trackEl.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") return;
-        const tile = event.target.closest(".editorial-tile[data-flat-index]");
-        if (!tile) return;
-        event.preventDefault();
-        openLightbox(Number(tile.dataset.flatIndex), tile);
-      });
-    });
-
-    // --- Seamless auto-scroll loop (delta-time based, single shared rAF) ---
-    let rafId = null;
-    let lastTimestamp = null;
-
-    const tick = (timestamp) => {
-      if (lastTimestamp === null) lastTimestamp = timestamp;
-      const deltaMs = Math.min(timestamp - lastTimestamp, 100);
-      lastTimestamp = timestamp;
-
-      rowStates.forEach((row) => {
-        if (!row.halfWidth || lightboxOpen) return;
-        if (row.paused.hover || row.paused.focus || row.paused.drag) return;
-        const distance = row.speedPxPerSecond * (deltaMs / 1000);
-        row.el.scrollLeft += row.direction * distance;
-        if (row.direction > 0 && row.el.scrollLeft >= row.halfWidth) {
-          row.el.scrollLeft -= row.halfWidth;
-        } else if (row.direction < 0 && row.el.scrollLeft <= 0) {
-          row.el.scrollLeft += row.halfWidth;
-        }
-      });
-
-      rafId = requestAnimationFrame(tick);
-    };
-
-    const startLoop = () => {
-      if (rafId !== null) return;
-      lastTimestamp = null;
-      rafId = requestAnimationFrame(tick);
-    };
-
-    const stopLoop = () => {
-      if (rafId === null) return;
-      cancelAnimationFrame(rafId);
-      rafId = null;
-    };
-
-    reducedMotionQuery.addEventListener("change", (event) => {
-      reducedMotion = event.matches;
-      if (reducedMotion) stopLoop();
-      else startLoop();
-    });
-
-    // --- Responsive: rebuild on 2↔3 row breakpoint, remeasure on resize ---
-    mobileQuery.addEventListener("change", buildRows);
-
-    let resizeTimer = null;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        rowStates.forEach((row) => {
-          const newHalf = row.track.scrollWidth / 2;
-          if (!newHalf) return;
-          const ratio = row.halfWidth ? row.el.scrollLeft / row.halfWidth : 0;
-          row.halfWidth = newHalf;
-          row.el.scrollLeft = ratio * newHalf;
-        });
-      }, 150);
-    });
-
-    buildRows();
-    if (!reducedMotion) startLoop();
-  }
 
   // --- Fullscreen lightbox ---
   {
@@ -501,7 +303,7 @@
           // Full-size originals load only when shown (or about to be) —
           // setting every src up front downloaded the whole category.
           img.dataset.src = entry.src;
-          img.alt = entry.alt || "";
+          img.alt = entry.alt || [entry.project, entry.type || copy(category, "title")].filter(Boolean).join(" — ");
           img.decoding = "async";
           if (entry.width) {
             img.width = entry.width;
@@ -552,7 +354,10 @@
         lightbox.setAttribute("aria-hidden", "false");
         body.classList.add("lightbox-open");
         lightboxOpen = true;
-        lightboxClose?.focus();
+        // A frame later, once the viewer is visible (and so focusable).
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          if (lightboxOpen) lightboxClose?.focus({ preventScroll: true });
+        }));
       };
 
       const closeLightbox = () => {
@@ -561,7 +366,7 @@
         lightbox.setAttribute("aria-hidden", "true");
         body.classList.remove("lightbox-open");
         lightboxOpen = false;
-        lastTrigger?.focus();
+        lastTrigger?.focus({ preventScroll: true });
       };
 
       // Lets a page-specific gallery (e.g. js/print-collateral-showcase.js)

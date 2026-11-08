@@ -24,7 +24,8 @@
  * same base name becomes one `kind: "video"` entry sized by that poster.
  *
  * Order: files listed in scripts/gallery-priority.js come first, in that
- * order; everything else follows sorted by filename.
+ * order; everything else follows sorted by filename. Files in its `hidden`
+ * list are left out.
  */
 const fs = require("fs");
 const path = require("path");
@@ -78,10 +79,12 @@ function buildCategoryManifest(categoryId) {
     });
   const posterFiles = new Set(posters.values());
 
+  const hidden = new Set((PRIORITY.hidden || {})[categoryId] || []);
   const available = allFiles
     .filter(
       (name) =>
-        (SUPPORTED_EXTENSIONS.has(path.extname(name).toLowerCase()) && !posterFiles.has(name)) || posters.has(name)
+        ((SUPPORTED_EXTENSIONS.has(path.extname(name).toLowerCase()) && !posterFiles.has(name)) || posters.has(name)) &&
+        !hidden.has(name)
     )
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 

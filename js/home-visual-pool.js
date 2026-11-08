@@ -49,17 +49,25 @@
       (pools[category] = pools[category] || []).push({ category, key: `${category}:${item.src}`, ...item });
     };
 
-    Object.entries(window.GALLERY_THUMBS || {}).forEach(([category, files]) => {
+    const thumbsOf = window.GALLERY_THUMBS || {};
+    Object.entries(thumbsOf).forEach(([category, files]) => {
+      if (category === 'short-form-video-reels') return; // poster copies; the reels come from the manifest below
       Object.entries(files || {}).forEach(([file, src]) => add(category, { src, href: openIn(category, file) }));
     });
 
+    const posterThumbs = thumbsOf['short-form-video-reels'] || {};
     (window.REEL_MANIFEST || []).forEach((reel) => {
       if (!reel.poster) return;
       add('short-form-video-reels', {
-        src: `assets/videos/short-form-reels/${encodeURIComponent(reel.poster)}`,
+        // The small poster copy when the build made one; the full frame otherwise.
+        src: posterThumbs[reel.poster] || `assets/videos/short-form-reels/${encodeURIComponent(reel.poster)}`,
         href: `${PAGES}short-form-video-reels.html?reel=${encodeURIComponent(reel.file)}`,
         file: reel.file,
-        video: `assets/videos/short-form-reels/${encodeURIComponent(reel.file)}`,
+        // The light preview clip (scripts/make-reel-previews.js) when there
+        // is one; the full reel otherwise. The viewer always plays the full reel.
+        video: reel.preview
+          ? `assets/videos/short-form-reels/${reel.preview.split('/').map(encodeURIComponent).join('/')}`
+          : `assets/videos/short-form-reels/${encodeURIComponent(reel.file)}`,
         width: reel.width,
         height: reel.height,
       });

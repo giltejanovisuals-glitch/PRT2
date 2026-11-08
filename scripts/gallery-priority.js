@@ -1,11 +1,22 @@
 /*
- * Hand-curated display order for the Project Gallery image categories.
+ * Hand-curated display order for every Project Gallery category.
  *
- * scripts/generate-gallery-manifest.js puts the files listed here first, in
- * this order, then every other image in the folder by filename. The first
- * entry is the visual each category page opens on. Files that no longer
- * exist are skipped with a warning; new uploads land after the curated
- * list until they're added here.
+ * The manifest scripts put the files listed here first, in this order, then
+ * every other file in the folder by filename:
+ *   - image categories: scripts/generate-gallery-manifest.js
+ *     (assets/images/gallery/<id>/)
+ *   - short-form-video-reels: scripts/generate-reel-manifest.js
+ *     (video filenames in assets/videos/short-form-reels/)
+ *   - editorial-layout: scripts/generate-publication-manifest.js
+ *     (PDF filenames in assets/documents/editorial-layout/)
+ * The first entry is the item each category page opens on. Files that no
+ * longer exist are skipped with a warning; new uploads land after the
+ * curated list until they're added here.
+ *
+ * `hidden` (bottom of this file) keeps a file in its folder but out of the
+ * site — every manifest skips it, so no page, preview, or search result
+ * shows it. Use it for work that isn't portfolio-ready (logo bumpers,
+ * duplicates, unfinished pieces) instead of deleting the file.
  */
 module.exports = {
   "social-media-campaigns": [
@@ -306,5 +317,55 @@ module.exports = {
     "_DSF2401.webp のコピー.jpg",
     "_DSF2281.webp のコピー.jpg",
     "2.png",
+  ],
+  // Strongest and most varied first: one clear concept per brand before any
+  // brand repeats, then product, showroom, and lifestyle pieces.
+  "short-form-video-reels": [
+    "MOONI FW20202.3.mp4", // Mooni — "GRWM to sleep"
+    "0202 (4).mp4", // Metal-Lite — Wanda pendant lights
+    "HOOGA JR1.mp4", // Hooga — Damari dining table and Daxon chairs
+    "1120JUNE-REELS_Dunlopillo-Dr.Flex.mp4", // Dunlopillo — Dr. Flex showroom
+    "MOONI REEL.mp4", // Mooni — "A day with Mooni"
+    "0904 4 THOMAS.mp4", // Hooga — Thomas sofa
+    "FRW2.mp4", // Dunlopillo — "Ever feel stuck when you sit down?"
+    "MYW16.mp4", // smart lighting, "Morning" scene
+    "PORTA.mp4", // Porta Mobili — living room
+    "h08129.mp4", // Hooga — Tate armchair
+    "260429 9.mp4", // "Meet Alloy" mattress
+    "HOOGA JR3.mp4", // Hooga × SoFA Design Institute event
+    "MOONI JULY 1.mp4", // Mooni — "Still can't sleep?"
+    "0624(1).mp4", // BW — sofa and coffee table
+    "WALL_MINI_JARDIM_LOOP.mp4", // outdoor wall lights at night
+    "02 HOOGA DEC.mp4", // Hooga — table styling
+    "reel2.2.mp4", // hand-drawn chair sketch
+    "HOOGA JR2.mp4", // Hooga — "Luxurious" bouclé armchair
+    "JUNE-REELS_Dunlopillo-FirmRest.mp4", // Dunlopillo — Firm Rest mattress
+    "MOONI JR1.mp4", // Mooni — "POV: You finally…"
+    "0727(1).mp4", // "Beautiful homes don't just begin with furniture."
+    "MAY3.mp4", // Mooni — pillow
+    "HOOGA JUL 1.mp4", // Hooga — marble dining table
+    "0904 6.mp4", // Walden recliner
+  ],
+  // The two image covers lead the shelf; the minimal white logo covers follow.
+  "editorial-layout": [
+    "porta-mobili-brand-deck-web.pdf",
+    "porta-brand-book-web.pdf",
+    "dunlopillo-suite-mattress-catalogue-2026-web.pdf",
+    "endo-sync-5-catalogue-web.pdf",
+    "hooga-archive-catalogue-2026-web.pdf",
+    "hooga-living-room-collection-2026-web.pdf",
+    "hooga-dining-collection-2026-web.pdf",
+    "hooga-storage-display-collection-2026-web.pdf",
+  ],
+};
+
+// Kept in their folders, left out of the site (see the note at the top).
+module.exports.hidden = {
+  "short-form-video-reels": [
+    "HOOGA INTRO.mp4", // logo intro bumper (a 26 KB file)
+    "HOOGA OUTRO V2.mp4", // logo outro bumper
+    "HOOGA UPDATED OUTRO.mp4", // logo outro bumper (duplicate of the above)
+    "DUNLO OUTRO.mp4", // logo and store-address outro bumper
+    "DUNLO UPDATED OUTRO.mp4", // logo outro bumper (duplicate of the above)
   ],
 };

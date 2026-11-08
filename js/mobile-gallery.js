@@ -34,9 +34,41 @@
       // Apply the real ratio synchronously before starting the request.
       image.width = preview.width;
       image.height = preview.height;
+      // AVIF first (scripts/generate-home-previews.js writes one beside each
+      // WebP preview; about a quarter of the bytes); the WebP stays the
+      // fallback. The <source> goes in before the img gets its src, so only
+      // one file is ever fetched.
+      const sizes = '(max-width: 760px) calc(100vw - 42px), 640px';
+      let avifSource = null;
+      if (/\.webp$/.test(preview.src) && image.parentElement?.tagName !== 'PICTURE') {
+        const picture = document.createElement('picture');
+        avifSource = document.createElement('source');
+        avifSource.type = 'image/avif';
+        avifSource.sizes = sizes;
+        avifSource.srcset = `${preview.src.replace(/\.webp$/, '.avif')} ${preview.width}w`;
+        image.before(picture);
+        picture.append(avifSource, image);
+        // A missing AVIF copy: fall back to the WebP set below.
+        image.addEventListener('error', () => avifSource?.remove(), { once: true });
+      }
       image.src = preview.src;
-      image.sizes = '(max-width: 760px) calc(100vw - 42px), 640px';
+      image.sizes = sizes;
       image.srcset = `${preview.src} ${preview.width}w`;
+      // A missing image: try the category's other (non-reel) previews in turn
+      // rather than leaving the card's picture empty.
+      if (!preview.reel) {
+        const spares = category.previews.filter(p => p !== preview && !p.reel);
+        image.addEventListener('error', function retry() {
+          // The AVIF copy failing just falls back to this preview's WebP.
+          if (/\.avif(\?|$)/.test(image.currentSrc)) return;
+          const next = spares.shift();
+          if (!next) { image.removeEventListener('error', retry); return; }
+          image.width = next.width;
+          image.height = next.height;
+          image.srcset = `${next.src} ${next.width}w`;
+          image.src = next.src;
+        });
+      }
       if (preview.reel) {
         const media = image.closest('.mobile-gallery-media');
         const file = encodeURIComponent(preview.reel);
@@ -48,10 +80,9 @@
         // The light preview clip when there is one, else the reel itself.
         const clip = preview.reelPreview ? preview.reelPreview.split('/').map(encodeURIComponent).join('/') : file;
         window.createReelPreviews?.().add(media, REEL_BASE + clip, preview.src);
-        // The full reel plays in the fullscreen viewer right here; closing
-        // it continues to the reels page, opened at the gallery with this
-        // reel picked out (Back returns to this spot on the homepage).
-        const reelPage = `pages/${category.id}.html?reel=${file}`;
+        // The full reel plays in the fullscreen viewer right here; closing it
+        // (or Back) returns to this card, at the same scroll position. The
+        // rest of the card still opens the reels page.
         let viewer = null;
         card.addEventListener('click', (event) => {
           if (event.defaultPrevented || !event.target.closest('.mobile-gallery-media')) return;
@@ -62,7 +93,7 @@
             title: '',
             label: window.i18n && window.i18n.lang !== 'en' ? window.i18n.t(`category.${category.id}.title`, null, `${category.title} reel`) : `${category.title} reel`,
             brand: '',
-          }], { closeTo: () => reelPage });
+          }]);
           if (!viewer) return; // falls through to the category page
           event.preventDefault();
           viewer.open(0, card);

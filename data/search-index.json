@@ -52,18 +52,14 @@
    "title": "Editorial & Layout Design",
    "group": "projects",
    "kind": "Gallery collection",
-   "description": "Catalogs, lookbooks, brochures, and brand books built on considered grid, typography, and pacing.",
+   "description": "Catalogues, collection books, and brand documents built on considered grids, typography, and pacing.",
    "keywords": [
     "project gallery",
-    "product catalogue",
-    "lookbook",
-    "brochure",
-    "brand book",
-    "product guide",
-    "magazine layout",
-    "report",
     "catalogue",
     "catalog",
+    "brochure",
+    "lookbook",
+    "brand book",
     "brand deck",
     "magazine",
     "publication",
@@ -76,7 +72,7 @@
     "furniture"
    ],
    "url": "pages/editorial-layout.html",
-   "body": "Editorial systems that organize product and brand storytelling into clear, well-paced layouts — grid, typography, hierarchy, and composition built to hold up across long-form print and digital documents.",
+   "body": "Product catalogues, collection books, and brand documents designed on clear grids with consistent typography and steady pacing.",
    "l10n": {
     "title": "category.editorial-layout.title",
     "description": "category.editorial-layout.lede",
@@ -91,16 +87,9 @@
    "title": "Social Media Campaigns & Key Visuals",
    "group": "projects",
    "kind": "Gallery collection",
-   "description": "Campaign key visuals developed into full social systems — feed, stories, paid social, and launch content built from one central idea.",
+   "description": "Key visuals adapted across social posts, carousels, and promotions, each built around one clear idea.",
    "keywords": [
     "project gallery",
-    "campaign key visual",
-    "social media campaign",
-    "paid social ad",
-    "launch key visual",
-    "social content series",
-    "story / reel cover set",
-    "campaign adaptation",
     "social media",
     "instagram",
     "facebook",
@@ -120,7 +109,7 @@
     "porta mobili"
    ],
    "url": "pages/social-media-campaigns.html",
-   "body": "Campaign key visuals developed into complete social systems — feed, stories, paid social, and launch content — giving products, promotions, and brand stories one clear, consistent presence across digital platforms.",
+   "body": "Key visuals and social content for furniture, bedding, and lighting brands, composed for consistent and recognisable feeds.",
    "l10n": {
     "title": "category.social-media-campaigns.title",
     "description": "category.social-media-campaigns.lede",
@@ -135,17 +124,9 @@
    "title": "Print & Brand Collateral",
    "group": "projects",
    "kind": "Gallery collection",
-   "description": "Brochures, sales sheets, stationery, and branded print materials built to carry a brand consistently off-screen.",
+   "description": "Billboards, posters, brochures, and event pieces that carry a brand consistently off-screen.",
    "keywords": [
     "project gallery",
-    "brand brochure",
-    "sales sheet / one-pager",
-    "company profile booklet",
-    "business card & stationery set",
-    "presentation folder",
-    "product spec sheet",
-    "trade-show handout",
-    "infographic poster",
     "print",
     "collateral",
     "poster",
@@ -169,7 +150,7 @@
     "mattress"
    ],
    "url": "pages/print-brand-collateral.html",
-   "body": "Brochures, sales materials, stationery, and branded print built to carry a brand consistently off-screen — from billboards and vehicle wraps to pieces held in hand, designed with the same rigor as any digital touchpoint.",
+   "body": "Out-of-home, retail, and event print that carries brand campaigns into streets, malls, and showrooms.",
    "l10n": {
     "title": "category.print-brand-collateral.title",
     "description": "category.print-brand-collateral.lede",
@@ -184,17 +165,9 @@
    "title": "Commercial & Lifestyle Photography",
    "group": "projects",
    "kind": "Gallery collection",
-   "description": "Product, showroom, and lifestyle photography styled and directed to support campaigns, catalogs, and retail environments.",
+   "description": "Product, interior, and lifestyle photography made for catalogues, campaigns, and social content.",
    "keywords": [
     "project gallery",
-    "commercial product photography",
-    "lifestyle photoshoot",
-    "showroom photography",
-    "packaging photography",
-    "editorial lifestyle shoot",
-    "e-commerce product shots",
-    "campaign photoshoot",
-    "event photography",
     "photography",
     "photo",
     "photoshoot",
@@ -210,7 +183,7 @@
     "hooga"
    ],
    "url": "pages/commercial-lifestyle-photography.html",
-   "body": "Product, showroom, and lifestyle photography, styled and art-directed for campaigns, catalogs, and retail environments — with consistent lighting, styling, and color across every shoot.",
+   "body": "Product, interior, and lifestyle photography of furniture, lighting, and residential spaces.",
    "l10n": {
     "title": "category.commercial-lifestyle-photography.title",
     "description": "category.commercial-lifestyle-photography.lede",
@@ -225,17 +198,9 @@
    "title": "Short-Form Video & Reels",
    "group": "projects",
    "kind": "Gallery collection",
-   "description": "Reels, TikToks, and short-form video content built for fast-paced social feeds and campaign launches.",
+   "description": "Short vertical videos that present products and spaces for fast-moving social feeds.",
    "keywords": [
     "project gallery",
-    "instagram reel",
-    "tiktok video",
-    "product demo reel",
-    "campaign teaser",
-    "behind-the-scenes video",
-    "motion graphic short",
-    "event recap video",
-    "social video ad",
     "video",
     "reels",
     "reel",
@@ -247,7 +212,7 @@
     "film"
    ],
    "url": "pages/short-form-video-reels.html",
-   "body": "Reels, TikToks, and short-form video content built for fast-paced social feeds and campaign launches.",
+   "body": "Vertical short-form videos of products, showrooms, and everyday comfort, made for social feeds.",
    "l10n": {
     "title": "category.short-form-video-reels.title",
     "description": "category.short-form-video-reels.lede",
@@ -255,7 +220,70 @@
     "kind": "search.kind.gallery-collection",
     "keywords": "search.collection.short-form-video-reels.keywords"
    },
-   "thumb": "assets/images/home-previews/short-form-video-reels/02-hooga-dec-2dew.webp"
+   "thumb": "assets/images/home-previews/short-form-video-reels/mooni-fw20202-3-3v26.webp"
+  },
+  {
+   "id": "publication-porta-mobili-brand-deck-web",
+   "title": "Porta Mobili Brand Deck",
+   "group": "projects",
+   "kind": "Brand Presentation",
+   "description": "Porta Mobili · 2026 · 82 pages",
+   "keywords": [
+    "editorial",
+    "publication",
+    "porta mobili",
+    "brand presentation",
+    "2026",
+    "presentation structure",
+    "editorial layout",
+    "typography",
+    "and visual storytelling."
+   ],
+   "url": "pages/editorial-layout.html",
+   "l10n": {
+    "kind": "term.brand-presentation",
+    "parts": [
+     "Porta Mobili",
+     "2026",
+     {
+      "key": "pub.pages",
+      "count": 82
+     }
+    ]
+   },
+   "thumb": "assets/documents/editorial-layout/covers/porta-mobili-brand-deck-web.jpg"
+  },
+  {
+   "id": "publication-porta-brand-book-web",
+   "title": "Porta Brand Book",
+   "group": "projects",
+   "kind": "Brand Book",
+   "description": "Porta Mobili · 2026 · 34 pages",
+   "keywords": [
+    "editorial",
+    "publication",
+    "porta mobili",
+    "brand book",
+    "2026",
+    "editorial direction",
+    "layout development",
+    "typography",
+    "image sequencing",
+    "and production preparation."
+   ],
+   "url": "pages/editorial-layout.html",
+   "l10n": {
+    "kind": "term.brand-book",
+    "parts": [
+     "Porta Mobili",
+     "2026",
+     {
+      "key": "pub.pages",
+      "count": 34
+     }
+    ]
+   },
+   "thumb": "assets/documents/editorial-layout/covers/porta-brand-book-web.jpg"
   },
   {
    "id": "publication-dunlopillo-suite-mattress-catalogue-2026-web",
@@ -352,37 +380,6 @@
    "thumb": "assets/documents/editorial-layout/covers/hooga-archive-catalogue-2026-web.jpg"
   },
   {
-   "id": "publication-hooga-dining-collection-2026-web",
-   "title": "Hooga Dining Collection",
-   "group": "projects",
-   "kind": "Collection Catalogue",
-   "description": "Hooga · 2026 · 43 pages",
-   "keywords": [
-    "editorial",
-    "publication",
-    "hooga",
-    "collection catalogue",
-    "2026",
-    "collection layout",
-    "product page system",
-    "typography",
-    "and image sequencing."
-   ],
-   "url": "pages/editorial-layout.html",
-   "l10n": {
-    "kind": "term.collection-catalogue",
-    "parts": [
-     "Hooga",
-     "2026",
-     {
-      "key": "pub.pages",
-      "count": 43
-     }
-    ]
-   },
-   "thumb": "assets/documents/editorial-layout/covers/hooga-dining-collection-2026-web.jpg"
-  },
-  {
    "id": "publication-hooga-living-room-collection-2026-web",
    "title": "Hooga Living Room Collection",
    "group": "projects",
@@ -414,6 +411,37 @@
    "thumb": "assets/documents/editorial-layout/covers/hooga-living-room-collection-2026-web.jpg"
   },
   {
+   "id": "publication-hooga-dining-collection-2026-web",
+   "title": "Hooga Dining Collection",
+   "group": "projects",
+   "kind": "Collection Catalogue",
+   "description": "Hooga · 2026 · 43 pages",
+   "keywords": [
+    "editorial",
+    "publication",
+    "hooga",
+    "collection catalogue",
+    "2026",
+    "collection layout",
+    "product page system",
+    "typography",
+    "and image sequencing."
+   ],
+   "url": "pages/editorial-layout.html",
+   "l10n": {
+    "kind": "term.collection-catalogue",
+    "parts": [
+     "Hooga",
+     "2026",
+     {
+      "key": "pub.pages",
+      "count": 43
+     }
+    ]
+   },
+   "thumb": "assets/documents/editorial-layout/covers/hooga-dining-collection-2026-web.jpg"
+  },
+  {
    "id": "publication-hooga-storage-display-collection-2026-web",
    "title": "Hooga Storage and Display Collection",
    "group": "projects",
@@ -443,69 +471,6 @@
     ]
    },
    "thumb": "assets/documents/editorial-layout/covers/hooga-storage-display-collection-2026-web.jpg"
-  },
-  {
-   "id": "publication-porta-brand-book-web",
-   "title": "Porta Brand Book",
-   "group": "projects",
-   "kind": "Brand Book",
-   "description": "Porta Mobili · 2026 · 34 pages",
-   "keywords": [
-    "editorial",
-    "publication",
-    "porta mobili",
-    "brand book",
-    "2026",
-    "editorial direction",
-    "layout development",
-    "typography",
-    "image sequencing",
-    "and production preparation."
-   ],
-   "url": "pages/editorial-layout.html",
-   "l10n": {
-    "kind": "term.brand-book",
-    "parts": [
-     "Porta Mobili",
-     "2026",
-     {
-      "key": "pub.pages",
-      "count": 34
-     }
-    ]
-   },
-   "thumb": "assets/documents/editorial-layout/covers/porta-brand-book-web.jpg"
-  },
-  {
-   "id": "publication-porta-mobili-brand-deck-web",
-   "title": "Porta Mobili Brand Deck",
-   "group": "projects",
-   "kind": "Brand Presentation",
-   "description": "Porta Mobili · 2026 · 82 pages",
-   "keywords": [
-    "editorial",
-    "publication",
-    "porta mobili",
-    "brand presentation",
-    "2026",
-    "presentation structure",
-    "editorial layout",
-    "typography",
-    "and visual storytelling."
-   ],
-   "url": "pages/editorial-layout.html",
-   "l10n": {
-    "kind": "term.brand-presentation",
-    "parts": [
-     "Porta Mobili",
-     "2026",
-     {
-      "key": "pub.pages",
-      "count": 82
-     }
-    ]
-   },
-   "thumb": "assets/documents/editorial-layout/covers/porta-mobili-brand-deck-web.jpg"
   },
   {
    "id": "selected-work",
@@ -590,27 +555,6 @@
    }
   },
   {
-   "id": "creative-dock",
-   "title": "My Creative Dock",
-   "group": "sections",
-   "kind": "Section",
-   "description": "The software and tools behind the work.",
-   "keywords": [
-    "tools",
-    "software",
-    "apps",
-    "toolkit",
-    "creative dock"
-   ],
-   "url": "index.html#creative-dock",
-   "l10n": {
-    "title": "dock.title",
-    "description": "search.entry.creative-dock.description",
-    "kind": "search.kind.section",
-    "keywords": "search.entry.creative-dock.keywords"
-   }
-  },
-  {
    "id": "creative-timeline",
    "title": "Creative Timeline",
    "group": "sections",
@@ -650,6 +594,27 @@
     "description": "search.entry.supported-brands.description",
     "kind": "search.kind.section",
     "keywords": "search.entry.supported-brands.keywords"
+   }
+  },
+  {
+   "id": "creative-dock",
+   "title": "My Creative Dock",
+   "group": "sections",
+   "kind": "Section",
+   "description": "The software and tools behind the work.",
+   "keywords": [
+    "tools",
+    "software",
+    "apps",
+    "toolkit",
+    "creative dock"
+   ],
+   "url": "index.html#creative-dock",
+   "l10n": {
+    "title": "dock.title",
+    "description": "search.entry.creative-dock.description",
+    "kind": "search.kind.section",
+    "keywords": "search.entry.creative-dock.keywords"
    }
   },
   {

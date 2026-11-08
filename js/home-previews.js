@@ -76,21 +76,21 @@ window.HOME_GALLERY_PREVIEWS = {
     "assets/images/home-previews/commercial-lifestyle-photography/dsf2317-hdr-webp-9n0l.webp"
   ],
   "short-form-video-reels": [
-    "assets/images/home-previews/short-form-video-reels/02-hooga-dec-2dew.webp",
-    "assets/images/home-previews/short-form-video-reels/9-34ft.webp",
-    "assets/images/home-previews/short-form-video-reels/0624-1-3ek6.webp",
-    "assets/images/home-previews/short-form-video-reels/0904-4-3vyv.webp",
-    "assets/images/home-previews/short-form-video-reels/0904-9-2ln9.webp",
-    "assets/images/home-previews/short-form-video-reels/260116-dunlo-febcontentweek1-2-1ems.webp",
-    "assets/images/home-previews/short-form-video-reels/260429-6-4qsq.webp",
-    "assets/images/home-previews/short-form-video-reels/dp-jr2-3zbl.webp",
-    "assets/images/home-previews/short-form-video-reels/h08122-3lu9.webp",
-    "assets/images/home-previews/short-form-video-reels/hooga-jr2-3umc.webp",
-    "assets/images/home-previews/short-form-video-reels/hooga-july-2-497x.webp",
-    "assets/images/home-previews/short-form-video-reels/hooga-updated-outro-1urs.webp",
-    "assets/images/home-previews/short-form-video-reels/may3-2guz.webp",
-    "assets/images/home-previews/short-form-video-reels/mim-jr1-1t1q.webp",
+    "assets/images/home-previews/short-form-video-reels/mooni-fw20202-3-3v26.webp",
+    "assets/images/home-previews/short-form-video-reels/0202-4-2rfs.webp",
+    "assets/images/home-previews/short-form-video-reels/hooga-jr1-3v1j.webp",
+    "assets/images/home-previews/short-form-video-reels/1120june-reels-dunlopillo-dr-flex-9di4.webp",
     "assets/images/home-previews/short-form-video-reels/mooni-reel-598f.webp",
-    "assets/images/home-previews/short-form-video-reels/porta-3j30.webp"
+    "assets/images/home-previews/short-form-video-reels/0904-4-thomas-5cfy.webp",
+    "assets/images/home-previews/short-form-video-reels/frw2-5gh7.webp",
+    "assets/images/home-previews/short-form-video-reels/myw16-33nz.webp",
+    "assets/images/home-previews/short-form-video-reels/porta-3j30.webp",
+    "assets/images/home-previews/short-form-video-reels/h08129-ygc.webp",
+    "assets/images/home-previews/short-form-video-reels/260429-9-6y84.webp",
+    "assets/images/home-previews/short-form-video-reels/hooga-jr3-2obk.webp",
+    "assets/images/home-previews/short-form-video-reels/mooni-july-1-8p5m.webp",
+    "assets/images/home-previews/short-form-video-reels/0624-1-3ek6.webp",
+    "assets/images/home-previews/short-form-video-reels/wall-mini-jardim-loop-1gk0.webp",
+    "assets/images/home-previews/short-form-video-reels/reel2-2-1g48.webp"
   ]
 };

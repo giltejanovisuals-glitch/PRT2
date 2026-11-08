@@ -1051,6 +1051,10 @@ body.pub-immersive-open {
 }
 
 @media (max-width: 760px) {
+  .pub-book-number {
+    font-size: 0.66rem;
+  }
+
   .pub-immersive-bar {
     grid-template-columns: auto minmax(0, 1fr);
     gap: 0.5rem 0.75rem;

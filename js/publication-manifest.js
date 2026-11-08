@@ -7,6 +7,736 @@
  */
 window.PUBLICATION_MANIFEST = [
   {
+    "file": "porta-mobili-brand-deck-web.pdf",
+    "title": "Porta Mobili Brand Deck Web",
+    "pageCount": 82,
+    "cover": "covers/porta-mobili-brand-deck-web.jpg",
+    "previewImages": [
+      "previews/porta-mobili-brand-deck-web-page-01.jpg",
+      "previews/porta-mobili-brand-deck-web-page-02.jpg",
+      "previews/porta-mobili-brand-deck-web-page-03.jpg"
+    ],
+    "pageImages": [
+      "pages/porta-mobili-brand-deck-web/page-001.jpg",
+      "pages/porta-mobili-brand-deck-web/page-002.jpg",
+      "pages/porta-mobili-brand-deck-web/page-003.jpg",
+      "pages/porta-mobili-brand-deck-web/page-004.jpg",
+      "pages/porta-mobili-brand-deck-web/page-005.jpg",
+      "pages/porta-mobili-brand-deck-web/page-006.jpg",
+      "pages/porta-mobili-brand-deck-web/page-007.jpg",
+      "pages/porta-mobili-brand-deck-web/page-008.jpg",
+      "pages/porta-mobili-brand-deck-web/page-009.jpg",
+      "pages/porta-mobili-brand-deck-web/page-010.jpg",
+      "pages/porta-mobili-brand-deck-web/page-011.jpg",
+      "pages/porta-mobili-brand-deck-web/page-012.jpg",
+      "pages/porta-mobili-brand-deck-web/page-013.jpg",
+      "pages/porta-mobili-brand-deck-web/page-014.jpg",
+      "pages/porta-mobili-brand-deck-web/page-015.jpg",
+      "pages/porta-mobili-brand-deck-web/page-016.jpg",
+      "pages/porta-mobili-brand-deck-web/page-017.jpg",
+      "pages/porta-mobili-brand-deck-web/page-018.jpg",
+      "pages/porta-mobili-brand-deck-web/page-019.jpg",
+      "pages/porta-mobili-brand-deck-web/page-020.jpg",
+      "pages/porta-mobili-brand-deck-web/page-021.jpg",
+      "pages/porta-mobili-brand-deck-web/page-022.jpg",
+      "pages/porta-mobili-brand-deck-web/page-023.jpg",
+      "pages/porta-mobili-brand-deck-web/page-024.jpg",
+      "pages/porta-mobili-brand-deck-web/page-025.jpg",
+      "pages/porta-mobili-brand-deck-web/page-026.jpg",
+      "pages/porta-mobili-brand-deck-web/page-027.jpg",
+      "pages/porta-mobili-brand-deck-web/page-028.jpg",
+      "pages/porta-mobili-brand-deck-web/page-029.jpg",
+      "pages/porta-mobili-brand-deck-web/page-030.jpg",
+      "pages/porta-mobili-brand-deck-web/page-031.jpg",
+      "pages/porta-mobili-brand-deck-web/page-032.jpg",
+      "pages/porta-mobili-brand-deck-web/page-033.jpg",
+      "pages/porta-mobili-brand-deck-web/page-034.jpg",
+      "pages/porta-mobili-brand-deck-web/page-035.jpg",
+      "pages/porta-mobili-brand-deck-web/page-036.jpg",
+      "pages/porta-mobili-brand-deck-web/page-037.jpg",
+      "pages/porta-mobili-brand-deck-web/page-038.jpg",
+      "pages/porta-mobili-brand-deck-web/page-039.jpg",
+      "pages/porta-mobili-brand-deck-web/page-040.jpg",
+      "pages/porta-mobili-brand-deck-web/page-041.jpg",
+      "pages/porta-mobili-brand-deck-web/page-042.jpg",
+      "pages/porta-mobili-brand-deck-web/page-043.jpg",
+      "pages/porta-mobili-brand-deck-web/page-044.jpg",
+      "pages/porta-mobili-brand-deck-web/page-045.jpg",
+      "pages/porta-mobili-brand-deck-web/page-046.jpg",
+      "pages/porta-mobili-brand-deck-web/page-047.jpg",
+      "pages/porta-mobili-brand-deck-web/page-048.jpg",
+      "pages/porta-mobili-brand-deck-web/page-049.jpg",
+      "pages/porta-mobili-brand-deck-web/page-050.jpg",
+      "pages/porta-mobili-brand-deck-web/page-051.jpg",
+      "pages/porta-mobili-brand-deck-web/page-052.jpg",
+      "pages/porta-mobili-brand-deck-web/page-053.jpg",
+      "pages/porta-mobili-brand-deck-web/page-054.jpg",
+      "pages/porta-mobili-brand-deck-web/page-055.jpg",
+      "pages/porta-mobili-brand-deck-web/page-056.jpg",
+      "pages/porta-mobili-brand-deck-web/page-057.jpg",
+      "pages/porta-mobili-brand-deck-web/page-058.jpg",
+      "pages/porta-mobili-brand-deck-web/page-059.jpg",
+      "pages/porta-mobili-brand-deck-web/page-060.jpg",
+      "pages/porta-mobili-brand-deck-web/page-061.jpg",
+      "pages/porta-mobili-brand-deck-web/page-062.jpg",
+      "pages/porta-mobili-brand-deck-web/page-063.jpg",
+      "pages/porta-mobili-brand-deck-web/page-064.jpg",
+      "pages/porta-mobili-brand-deck-web/page-065.jpg",
+      "pages/porta-mobili-brand-deck-web/page-066.jpg",
+      "pages/porta-mobili-brand-deck-web/page-067.jpg",
+      "pages/porta-mobili-brand-deck-web/page-068.jpg",
+      "pages/porta-mobili-brand-deck-web/page-069.jpg",
+      "pages/porta-mobili-brand-deck-web/page-070.jpg",
+      "pages/porta-mobili-brand-deck-web/page-071.jpg",
+      "pages/porta-mobili-brand-deck-web/page-072.jpg",
+      "pages/porta-mobili-brand-deck-web/page-073.jpg",
+      "pages/porta-mobili-brand-deck-web/page-074.jpg",
+      "pages/porta-mobili-brand-deck-web/page-075.jpg",
+      "pages/porta-mobili-brand-deck-web/page-076.jpg",
+      "pages/porta-mobili-brand-deck-web/page-077.jpg",
+      "pages/porta-mobili-brand-deck-web/page-078.jpg",
+      "pages/porta-mobili-brand-deck-web/page-079.jpg",
+      "pages/porta-mobili-brand-deck-web/page-080.jpg",
+      "pages/porta-mobili-brand-deck-web/page-081.jpg",
+      "pages/porta-mobili-brand-deck-web/page-082.jpg"
+    ],
+    "pages": [
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      },
+      {
+        "width": 792,
+        "height": 612,
+        "orientation": "landscape"
+      }
+    ],
+    "dominantOrientation": "landscape",
+    "fileSizeBytes": 20844759
+  },
+  {
+    "file": "porta-brand-book-web.pdf",
+    "title": "Porta Brand Book Web",
+    "pageCount": 34,
+    "cover": "covers/porta-brand-book-web.jpg",
+    "previewImages": [
+      "previews/porta-brand-book-web-page-01.jpg",
+      "previews/porta-brand-book-web-page-02.jpg",
+      "previews/porta-brand-book-web-page-03.jpg"
+    ],
+    "pageImages": [
+      "pages/porta-brand-book-web/page-001.jpg",
+      "pages/porta-brand-book-web/page-002.jpg",
+      "pages/porta-brand-book-web/page-003.jpg",
+      "pages/porta-brand-book-web/page-004.jpg",
+      "pages/porta-brand-book-web/page-005.jpg",
+      "pages/porta-brand-book-web/page-006.jpg",
+      "pages/porta-brand-book-web/page-007.jpg",
+      "pages/porta-brand-book-web/page-008.jpg",
+      "pages/porta-brand-book-web/page-009.jpg",
+      "pages/porta-brand-book-web/page-010.jpg",
+      "pages/porta-brand-book-web/page-011.jpg",
+      "pages/porta-brand-book-web/page-012.jpg",
+      "pages/porta-brand-book-web/page-013.jpg",
+      "pages/porta-brand-book-web/page-014.jpg",
+      "pages/porta-brand-book-web/page-015.jpg",
+      "pages/porta-brand-book-web/page-016.jpg",
+      "pages/porta-brand-book-web/page-017.jpg",
+      "pages/porta-brand-book-web/page-018.jpg",
+      "pages/porta-brand-book-web/page-019.jpg",
+      "pages/porta-brand-book-web/page-020.jpg",
+      "pages/porta-brand-book-web/page-021.jpg",
+      "pages/porta-brand-book-web/page-022.jpg",
+      "pages/porta-brand-book-web/page-023.jpg",
+      "pages/porta-brand-book-web/page-024.jpg",
+      "pages/porta-brand-book-web/page-025.jpg",
+      "pages/porta-brand-book-web/page-026.jpg",
+      "pages/porta-brand-book-web/page-027.jpg",
+      "pages/porta-brand-book-web/page-028.jpg",
+      "pages/porta-brand-book-web/page-029.jpg",
+      "pages/porta-brand-book-web/page-030.jpg",
+      "pages/porta-brand-book-web/page-031.jpg",
+      "pages/porta-brand-book-web/page-032.jpg",
+      "pages/porta-brand-book-web/page-033.jpg",
+      "pages/porta-brand-book-web/page-034.jpg"
+    ],
+    "pages": [
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      },
+      {
+        "width": 720,
+        "height": 405,
+        "orientation": "landscape"
+      }
+    ],
+    "dominantOrientation": "landscape",
+    "fileSizeBytes": 3755510
+  },
+  {
     "file": "dunlopillo-suite-mattress-catalogue-2026-web.pdf",
     "title": "Dunlopillo Suite Mattress Catalogue 2026 Web",
     "pageCount": 21,
@@ -736,281 +1466,6 @@ window.PUBLICATION_MANIFEST = [
     "fileSizeBytes": 12920115
   },
   {
-    "file": "hooga-dining-collection-2026-web.pdf",
-    "title": "Hooga Dining Collection 2026 Web",
-    "pageCount": 43,
-    "cover": "covers/hooga-dining-collection-2026-web.jpg",
-    "previewImages": [
-      "previews/hooga-dining-collection-2026-web-page-01.jpg",
-      "previews/hooga-dining-collection-2026-web-page-02.jpg",
-      "previews/hooga-dining-collection-2026-web-page-03.jpg"
-    ],
-    "pageImages": [
-      "pages/hooga-dining-collection-2026-web/page-001.jpg",
-      "pages/hooga-dining-collection-2026-web/page-002.jpg",
-      "pages/hooga-dining-collection-2026-web/page-003.jpg",
-      "pages/hooga-dining-collection-2026-web/page-004.jpg",
-      "pages/hooga-dining-collection-2026-web/page-005.jpg",
-      "pages/hooga-dining-collection-2026-web/page-006.jpg",
-      "pages/hooga-dining-collection-2026-web/page-007.jpg",
-      "pages/hooga-dining-collection-2026-web/page-008.jpg",
-      "pages/hooga-dining-collection-2026-web/page-009.jpg",
-      "pages/hooga-dining-collection-2026-web/page-010.jpg",
-      "pages/hooga-dining-collection-2026-web/page-011.jpg",
-      "pages/hooga-dining-collection-2026-web/page-012.jpg",
-      "pages/hooga-dining-collection-2026-web/page-013.jpg",
-      "pages/hooga-dining-collection-2026-web/page-014.jpg",
-      "pages/hooga-dining-collection-2026-web/page-015.jpg",
-      "pages/hooga-dining-collection-2026-web/page-016.jpg",
-      "pages/hooga-dining-collection-2026-web/page-017.jpg",
-      "pages/hooga-dining-collection-2026-web/page-018.jpg",
-      "pages/hooga-dining-collection-2026-web/page-019.jpg",
-      "pages/hooga-dining-collection-2026-web/page-020.jpg",
-      "pages/hooga-dining-collection-2026-web/page-021.jpg",
-      "pages/hooga-dining-collection-2026-web/page-022.jpg",
-      "pages/hooga-dining-collection-2026-web/page-023.jpg",
-      "pages/hooga-dining-collection-2026-web/page-024.jpg",
-      "pages/hooga-dining-collection-2026-web/page-025.jpg",
-      "pages/hooga-dining-collection-2026-web/page-026.jpg",
-      "pages/hooga-dining-collection-2026-web/page-027.jpg",
-      "pages/hooga-dining-collection-2026-web/page-028.jpg",
-      "pages/hooga-dining-collection-2026-web/page-029.jpg",
-      "pages/hooga-dining-collection-2026-web/page-030.jpg",
-      "pages/hooga-dining-collection-2026-web/page-031.jpg",
-      "pages/hooga-dining-collection-2026-web/page-032.jpg",
-      "pages/hooga-dining-collection-2026-web/page-033.jpg",
-      "pages/hooga-dining-collection-2026-web/page-034.jpg",
-      "pages/hooga-dining-collection-2026-web/page-035.jpg",
-      "pages/hooga-dining-collection-2026-web/page-036.jpg",
-      "pages/hooga-dining-collection-2026-web/page-037.jpg",
-      "pages/hooga-dining-collection-2026-web/page-038.jpg",
-      "pages/hooga-dining-collection-2026-web/page-039.jpg",
-      "pages/hooga-dining-collection-2026-web/page-040.jpg",
-      "pages/hooga-dining-collection-2026-web/page-041.jpg",
-      "pages/hooga-dining-collection-2026-web/page-042.jpg",
-      "pages/hooga-dining-collection-2026-web/page-043.jpg"
-    ],
-    "pages": [
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      },
-      {
-        "width": 768,
-        "height": 576,
-        "orientation": "landscape"
-      }
-    ],
-    "dominantOrientation": "landscape",
-    "fileSizeBytes": 9503563
-  },
-  {
     "file": "hooga-living-room-collection-2026-web.pdf",
     "title": "Hooga Living Room Collection 2026 Web",
     "pageCount": 43,
@@ -1286,6 +1741,281 @@ window.PUBLICATION_MANIFEST = [
     "fileSizeBytes": 12848143
   },
   {
+    "file": "hooga-dining-collection-2026-web.pdf",
+    "title": "Hooga Dining Collection 2026 Web",
+    "pageCount": 43,
+    "cover": "covers/hooga-dining-collection-2026-web.jpg",
+    "previewImages": [
+      "previews/hooga-dining-collection-2026-web-page-01.jpg",
+      "previews/hooga-dining-collection-2026-web-page-02.jpg",
+      "previews/hooga-dining-collection-2026-web-page-03.jpg"
+    ],
+    "pageImages": [
+      "pages/hooga-dining-collection-2026-web/page-001.jpg",
+      "pages/hooga-dining-collection-2026-web/page-002.jpg",
+      "pages/hooga-dining-collection-2026-web/page-003.jpg",
+      "pages/hooga-dining-collection-2026-web/page-004.jpg",
+      "pages/hooga-dining-collection-2026-web/page-005.jpg",
+      "pages/hooga-dining-collection-2026-web/page-006.jpg",
+      "pages/hooga-dining-collection-2026-web/page-007.jpg",
+      "pages/hooga-dining-collection-2026-web/page-008.jpg",
+      "pages/hooga-dining-collection-2026-web/page-009.jpg",
+      "pages/hooga-dining-collection-2026-web/page-010.jpg",
+      "pages/hooga-dining-collection-2026-web/page-011.jpg",
+      "pages/hooga-dining-collection-2026-web/page-012.jpg",
+      "pages/hooga-dining-collection-2026-web/page-013.jpg",
+      "pages/hooga-dining-collection-2026-web/page-014.jpg",
+      "pages/hooga-dining-collection-2026-web/page-015.jpg",
+      "pages/hooga-dining-collection-2026-web/page-016.jpg",
+      "pages/hooga-dining-collection-2026-web/page-017.jpg",
+      "pages/hooga-dining-collection-2026-web/page-018.jpg",
+      "pages/hooga-dining-collection-2026-web/page-019.jpg",
+      "pages/hooga-dining-collection-2026-web/page-020.jpg",
+      "pages/hooga-dining-collection-2026-web/page-021.jpg",
+      "pages/hooga-dining-collection-2026-web/page-022.jpg",
+      "pages/hooga-dining-collection-2026-web/page-023.jpg",
+      "pages/hooga-dining-collection-2026-web/page-024.jpg",
+      "pages/hooga-dining-collection-2026-web/page-025.jpg",
+      "pages/hooga-dining-collection-2026-web/page-026.jpg",
+      "pages/hooga-dining-collection-2026-web/page-027.jpg",
+      "pages/hooga-dining-collection-2026-web/page-028.jpg",
+      "pages/hooga-dining-collection-2026-web/page-029.jpg",
+      "pages/hooga-dining-collection-2026-web/page-030.jpg",
+      "pages/hooga-dining-collection-2026-web/page-031.jpg",
+      "pages/hooga-dining-collection-2026-web/page-032.jpg",
+      "pages/hooga-dining-collection-2026-web/page-033.jpg",
+      "pages/hooga-dining-collection-2026-web/page-034.jpg",
+      "pages/hooga-dining-collection-2026-web/page-035.jpg",
+      "pages/hooga-dining-collection-2026-web/page-036.jpg",
+      "pages/hooga-dining-collection-2026-web/page-037.jpg",
+      "pages/hooga-dining-collection-2026-web/page-038.jpg",
+      "pages/hooga-dining-collection-2026-web/page-039.jpg",
+      "pages/hooga-dining-collection-2026-web/page-040.jpg",
+      "pages/hooga-dining-collection-2026-web/page-041.jpg",
+      "pages/hooga-dining-collection-2026-web/page-042.jpg",
+      "pages/hooga-dining-collection-2026-web/page-043.jpg"
+    ],
+    "pages": [
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      },
+      {
+        "width": 768,
+        "height": 576,
+        "orientation": "landscape"
+      }
+    ],
+    "dominantOrientation": "landscape",
+    "fileSizeBytes": 9503563
+  },
+  {
     "file": "hooga-storage-display-collection-2026-web.pdf",
     "title": "Hooga Storage Display Collection 2026 Web",
     "pageCount": 12,
@@ -1373,735 +2103,5 @@ window.PUBLICATION_MANIFEST = [
     ],
     "dominantOrientation": "landscape",
     "fileSizeBytes": 1806143
-  },
-  {
-    "file": "porta-brand-book-web.pdf",
-    "title": "Porta Brand Book Web",
-    "pageCount": 34,
-    "cover": "covers/porta-brand-book-web.jpg",
-    "previewImages": [
-      "previews/porta-brand-book-web-page-01.jpg",
-      "previews/porta-brand-book-web-page-02.jpg",
-      "previews/porta-brand-book-web-page-03.jpg"
-    ],
-    "pageImages": [
-      "pages/porta-brand-book-web/page-001.jpg",
-      "pages/porta-brand-book-web/page-002.jpg",
-      "pages/porta-brand-book-web/page-003.jpg",
-      "pages/porta-brand-book-web/page-004.jpg",
-      "pages/porta-brand-book-web/page-005.jpg",
-      "pages/porta-brand-book-web/page-006.jpg",
-      "pages/porta-brand-book-web/page-007.jpg",
-      "pages/porta-brand-book-web/page-008.jpg",
-      "pages/porta-brand-book-web/page-009.jpg",
-      "pages/porta-brand-book-web/page-010.jpg",
-      "pages/porta-brand-book-web/page-011.jpg",
-      "pages/porta-brand-book-web/page-012.jpg",
-      "pages/porta-brand-book-web/page-013.jpg",
-      "pages/porta-brand-book-web/page-014.jpg",
-      "pages/porta-brand-book-web/page-015.jpg",
-      "pages/porta-brand-book-web/page-016.jpg",
-      "pages/porta-brand-book-web/page-017.jpg",
-      "pages/porta-brand-book-web/page-018.jpg",
-      "pages/porta-brand-book-web/page-019.jpg",
-      "pages/porta-brand-book-web/page-020.jpg",
-      "pages/porta-brand-book-web/page-021.jpg",
-      "pages/porta-brand-book-web/page-022.jpg",
-      "pages/porta-brand-book-web/page-023.jpg",
-      "pages/porta-brand-book-web/page-024.jpg",
-      "pages/porta-brand-book-web/page-025.jpg",
-      "pages/porta-brand-book-web/page-026.jpg",
-      "pages/porta-brand-book-web/page-027.jpg",
-      "pages/porta-brand-book-web/page-028.jpg",
-      "pages/porta-brand-book-web/page-029.jpg",
-      "pages/porta-brand-book-web/page-030.jpg",
-      "pages/porta-brand-book-web/page-031.jpg",
-      "pages/porta-brand-book-web/page-032.jpg",
-      "pages/porta-brand-book-web/page-033.jpg",
-      "pages/porta-brand-book-web/page-034.jpg"
-    ],
-    "pages": [
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      },
-      {
-        "width": 720,
-        "height": 405,
-        "orientation": "landscape"
-      }
-    ],
-    "dominantOrientation": "landscape",
-    "fileSizeBytes": 3755510
-  },
-  {
-    "file": "porta-mobili-brand-deck-web.pdf",
-    "title": "Porta Mobili Brand Deck Web",
-    "pageCount": 82,
-    "cover": "covers/porta-mobili-brand-deck-web.jpg",
-    "previewImages": [
-      "previews/porta-mobili-brand-deck-web-page-01.jpg",
-      "previews/porta-mobili-brand-deck-web-page-02.jpg",
-      "previews/porta-mobili-brand-deck-web-page-03.jpg"
-    ],
-    "pageImages": [
-      "pages/porta-mobili-brand-deck-web/page-001.jpg",
-      "pages/porta-mobili-brand-deck-web/page-002.jpg",
-      "pages/porta-mobili-brand-deck-web/page-003.jpg",
-      "pages/porta-mobili-brand-deck-web/page-004.jpg",
-      "pages/porta-mobili-brand-deck-web/page-005.jpg",
-      "pages/porta-mobili-brand-deck-web/page-006.jpg",
-      "pages/porta-mobili-brand-deck-web/page-007.jpg",
-      "pages/porta-mobili-brand-deck-web/page-008.jpg",
-      "pages/porta-mobili-brand-deck-web/page-009.jpg",
-      "pages/porta-mobili-brand-deck-web/page-010.jpg",
-      "pages/porta-mobili-brand-deck-web/page-011.jpg",
-      "pages/porta-mobili-brand-deck-web/page-012.jpg",
-      "pages/porta-mobili-brand-deck-web/page-013.jpg",
-      "pages/porta-mobili-brand-deck-web/page-014.jpg",
-      "pages/porta-mobili-brand-deck-web/page-015.jpg",
-      "pages/porta-mobili-brand-deck-web/page-016.jpg",
-      "pages/porta-mobili-brand-deck-web/page-017.jpg",
-      "pages/porta-mobili-brand-deck-web/page-018.jpg",
-      "pages/porta-mobili-brand-deck-web/page-019.jpg",
-      "pages/porta-mobili-brand-deck-web/page-020.jpg",
-      "pages/porta-mobili-brand-deck-web/page-021.jpg",
-      "pages/porta-mobili-brand-deck-web/page-022.jpg",
-      "pages/porta-mobili-brand-deck-web/page-023.jpg",
-      "pages/porta-mobili-brand-deck-web/page-024.jpg",
-      "pages/porta-mobili-brand-deck-web/page-025.jpg",
-      "pages/porta-mobili-brand-deck-web/page-026.jpg",
-      "pages/porta-mobili-brand-deck-web/page-027.jpg",
-      "pages/porta-mobili-brand-deck-web/page-028.jpg",
-      "pages/porta-mobili-brand-deck-web/page-029.jpg",
-      "pages/porta-mobili-brand-deck-web/page-030.jpg",
-      "pages/porta-mobili-brand-deck-web/page-031.jpg",
-      "pages/porta-mobili-brand-deck-web/page-032.jpg",
-      "pages/porta-mobili-brand-deck-web/page-033.jpg",
-      "pages/porta-mobili-brand-deck-web/page-034.jpg",
-      "pages/porta-mobili-brand-deck-web/page-035.jpg",
-      "pages/porta-mobili-brand-deck-web/page-036.jpg",
-      "pages/porta-mobili-brand-deck-web/page-037.jpg",
-      "pages/porta-mobili-brand-deck-web/page-038.jpg",
-      "pages/porta-mobili-brand-deck-web/page-039.jpg",
-      "pages/porta-mobili-brand-deck-web/page-040.jpg",
-      "pages/porta-mobili-brand-deck-web/page-041.jpg",
-      "pages/porta-mobili-brand-deck-web/page-042.jpg",
-      "pages/porta-mobili-brand-deck-web/page-043.jpg",
-      "pages/porta-mobili-brand-deck-web/page-044.jpg",
-      "pages/porta-mobili-brand-deck-web/page-045.jpg",
-      "pages/porta-mobili-brand-deck-web/page-046.jpg",
-      "pages/porta-mobili-brand-deck-web/page-047.jpg",
-      "pages/porta-mobili-brand-deck-web/page-048.jpg",
-      "pages/porta-mobili-brand-deck-web/page-049.jpg",
-      "pages/porta-mobili-brand-deck-web/page-050.jpg",
-      "pages/porta-mobili-brand-deck-web/page-051.jpg",
-      "pages/porta-mobili-brand-deck-web/page-052.jpg",
-      "pages/porta-mobili-brand-deck-web/page-053.jpg",
-      "pages/porta-mobili-brand-deck-web/page-054.jpg",
-      "pages/porta-mobili-brand-deck-web/page-055.jpg",
-      "pages/porta-mobili-brand-deck-web/page-056.jpg",
-      "pages/porta-mobili-brand-deck-web/page-057.jpg",
-      "pages/porta-mobili-brand-deck-web/page-058.jpg",
-      "pages/porta-mobili-brand-deck-web/page-059.jpg",
-      "pages/porta-mobili-brand-deck-web/page-060.jpg",
-      "pages/porta-mobili-brand-deck-web/page-061.jpg",
-      "pages/porta-mobili-brand-deck-web/page-062.jpg",
-      "pages/porta-mobili-brand-deck-web/page-063.jpg",
-      "pages/porta-mobili-brand-deck-web/page-064.jpg",
-      "pages/porta-mobili-brand-deck-web/page-065.jpg",
-      "pages/porta-mobili-brand-deck-web/page-066.jpg",
-      "pages/porta-mobili-brand-deck-web/page-067.jpg",
-      "pages/porta-mobili-brand-deck-web/page-068.jpg",
-      "pages/porta-mobili-brand-deck-web/page-069.jpg",
-      "pages/porta-mobili-brand-deck-web/page-070.jpg",
-      "pages/porta-mobili-brand-deck-web/page-071.jpg",
-      "pages/porta-mobili-brand-deck-web/page-072.jpg",
-      "pages/porta-mobili-brand-deck-web/page-073.jpg",
-      "pages/porta-mobili-brand-deck-web/page-074.jpg",
-      "pages/porta-mobili-brand-deck-web/page-075.jpg",
-      "pages/porta-mobili-brand-deck-web/page-076.jpg",
-      "pages/porta-mobili-brand-deck-web/page-077.jpg",
-      "pages/porta-mobili-brand-deck-web/page-078.jpg",
-      "pages/porta-mobili-brand-deck-web/page-079.jpg",
-      "pages/porta-mobili-brand-deck-web/page-080.jpg",
-      "pages/porta-mobili-brand-deck-web/page-081.jpg",
-      "pages/porta-mobili-brand-deck-web/page-082.jpg"
-    ],
-    "pages": [
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      },
-      {
-        "width": 792,
-        "height": 612,
-        "orientation": "landscape"
-      }
-    ],
-    "dominantOrientation": "landscape",
-    "fileSizeBytes": 20844759
   }
 ];
