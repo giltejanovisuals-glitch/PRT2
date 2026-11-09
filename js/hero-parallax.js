@@ -218,6 +218,15 @@
   // useTransform with clamping: map progress p from [a, b] to [from, to].
   const map = (p, a, b, from, to) => from + (to - from) * clamp01((p - a) / (b - a));
 
+  // --- Pointer depth (desktop mouse only) ---
+  // The wall drifts up to ~10px horizontally and ~7px vertically toward the
+  // pointer, the middle row a little less, for gentle depth; the headline
+  // never moves. Touch and pen input are ignored.
+  const PARALLAX_X = 10;
+  const PARALLAX_Y = 7;
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const pointer = { x: 0, y: 0 };
+
   // --- Targets from scroll progress ---
 
   const targets = () => {
@@ -231,6 +240,8 @@
       rotateZ: map(p, 0, 0.2, 20, 0),
       y: map(p, 0, 0.2, -700 * sy, 500 * sy),
       opacity: map(p, 0, 0.2, 0.2, 1),
+      px: pointer.x * PARALLAX_X,
+      py: pointer.y * PARALLAX_Y,
     };
   };
 
@@ -259,10 +270,12 @@
 
   const paint = () => {
     const s = springs;
-    wall.style.transform = `translateY(${s.y.value.toFixed(1)}px) rotateX(${s.rotateX.value.toFixed(3)}deg) rotateZ(${s.rotateZ.value.toFixed(3)}deg)`;
+    wall.style.transform = `translate3d(${s.px.value.toFixed(2)}px, ${(s.y.value + s.py.value).toFixed(1)}px, 0) rotateX(${s.rotateX.value.toFixed(3)}deg) rotateZ(${s.rotateZ.value.toFixed(3)}deg)`;
     wall.style.opacity = clamp01(s.opacity.value).toFixed(3);
-    rows.forEach((row) => {
-      row.el.style.transform = `translate3d(${(row.direction * s.x.value).toFixed(1)}px, 0, 0)`;
+    rows.forEach((row, i) => {
+      // The middle row sits slightly "further back": it follows the pointer less.
+      const depth = i === 1 ? -0.35 * s.px.value : 0;
+      row.el.style.transform = `translate3d(${(row.direction * s.x.value + depth).toFixed(1)}px, 0, 0)`;
     });
   };
 
@@ -318,6 +331,24 @@
   };
 
   window.addEventListener("scroll", wake, { passive: true });
+
+  section.addEventListener(
+    "pointermove",
+    (event) => {
+      if (event.pointerType !== "mouse" || !finePointer.matches) return;
+      const rect = section.getBoundingClientRect();
+      const height = Math.min(rect.height, window.innerHeight) || 1;
+      pointer.x = Math.max(-1, Math.min(1, ((event.clientX - rect.left) / (rect.width || 1) - 0.5) * 2));
+      pointer.y = Math.max(-1, Math.min(1, ((event.clientY - Math.max(rect.top, 0)) / height - 0.5) * 2));
+      wake();
+    },
+    { passive: true }
+  );
+  section.addEventListener("pointerleave", () => {
+    pointer.x = 0;
+    pointer.y = 0;
+    wake();
+  });
   window.addEventListener("resize", () => { fillWall(); applyMotion(); });
   reducedMotion.addEventListener("change", () => { applyMotion(); syncReels(); });
   mobileViewport.addEventListener("change", () => { fillWall(); applyMotion(); syncReels(); });

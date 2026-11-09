@@ -59,20 +59,27 @@ window.SEARCH_INDEX = {
    "description": "Catalogues, collection books, and brand documents built on considered grids, typography, and pacing.",
    "keywords": [
     "project gallery",
+    "porta mobili",
+    "dunlopillo",
+    "hooga",
+    "endo",
+    "editorial layout",
+    "typography",
+    "and production preparation",
+    "product",
+    "collection catalogues",
+    "brand book",
+    "brand deck",
     "catalogue",
     "catalog",
     "brochure",
     "lookbook",
-    "brand book",
-    "brand deck",
     "magazine",
     "publication",
     "editorial",
     "layout",
     "grid",
-    "typography",
     "print",
-    "porta mobili",
     "furniture"
    ],
    "url": "pages/editorial-layout.html",
@@ -94,6 +101,17 @@ window.SEARCH_INDEX = {
    "description": "Key visuals adapted across social posts, carousels, and promotions, each built around one clear idea.",
    "keywords": [
     "project gallery",
+    "dunlopillo",
+    "hooga",
+    "mooni",
+    "metal-lite",
+    "porta mobili",
+    "key visual design",
+    "photo manipulation",
+    "and social layouts",
+    "key visuals",
+    "event announcements",
+    "instagram carousels",
     "social media",
     "instagram",
     "facebook",
@@ -105,12 +123,7 @@ window.SEARCH_INDEX = {
     "digital",
     "content",
     "posts",
-    "stories",
-    "mooni",
-    "hooga",
-    "dunlopillo",
-    "metal-lite",
-    "porta mobili"
+    "stories"
    ],
    "url": "pages/social-media-campaigns.html",
    "body": "Key visuals and social content for furniture, bedding, and lighting brands, composed for consistent and recognisable feeds.",
@@ -131,7 +144,21 @@ window.SEARCH_INDEX = {
    "description": "Billboards, posters, brochures, and event pieces that carry a brand consistently off-screen.",
    "keywords": [
     "project gallery",
+    "hooga",
+    "dunlopillo",
+    "porta mobili",
+    "etro home interiors",
+    "metal-lite",
+    "endo",
     "print",
+    "collateral design",
+    "production-ready artwork",
+    "billboards",
+    "murals",
+    "posters",
+    "brochures",
+    "event",
+    "retail print",
     "collateral",
     "poster",
     "billboard",
@@ -147,9 +174,6 @@ window.SEARCH_INDEX = {
     "pos",
     "retail",
     "stationery",
-    "dunlopillo",
-    "hooga",
-    "porta mobili",
     "riflessi",
     "mattress"
    ],
@@ -172,17 +196,22 @@ window.SEARCH_INDEX = {
    "description": "Product, interior, and lifestyle photography made for catalogues, campaigns, and social content.",
    "keywords": [
     "project gallery",
+    "bw",
+    "etro",
     "photography",
+    "image editing",
+    "product",
+    "detail",
+    "interior",
+    "and lifestyle photography",
     "photo",
     "photoshoot",
     "product photography",
     "lifestyle",
-    "interior",
     "furniture",
     "showroom",
     "architecture",
     "camera",
-    "bw",
     "porta mobili",
     "hooga"
    ],
@@ -205,13 +234,24 @@ window.SEARCH_INDEX = {
    "description": "Short vertical videos that present products and spaces for fast-moving social feeds.",
    "keywords": [
     "project gallery",
+    "hooga",
+    "mooni",
+    "dunlopillo",
+    "porta mobili",
+    "metal-lite",
+    "bw",
+    "video capture",
+    "editing",
+    "product",
+    "showroom",
+    "lifestyle",
+    "and event reels",
     "video",
     "reels",
     "reel",
     "tiktok",
     "motion",
     "short-form",
-    "editing",
     "animation",
     "film"
    ],
@@ -243,7 +283,7 @@ window.SEARCH_INDEX = {
     "typography",
     "and visual storytelling."
    ],
-   "url": "pages/editorial-layout.html",
+   "url": "pages/editorial-layout.html?open=porta-mobili-brand-deck-web.pdf",
    "l10n": {
     "kind": "term.brand-presentation",
     "parts": [
@@ -275,7 +315,7 @@ window.SEARCH_INDEX = {
     "image sequencing",
     "and production preparation."
    ],
-   "url": "pages/editorial-layout.html",
+   "url": "pages/editorial-layout.html?open=porta-brand-book-web.pdf",
    "l10n": {
     "kind": "term.brand-book",
     "parts": [
@@ -306,7 +346,7 @@ window.SEARCH_INDEX = {
     "typography",
     "and production preparation."
    ],
-   "url": "pages/editorial-layout.html",
+   "url": "pages/editorial-layout.html?open=dunlopillo-suite-mattress-catalogue-2026-web.pdf",
    "l10n": {
     "kind": "term.product-catalogue",
     "parts": [
@@ -337,7 +377,7 @@ window.SEARCH_INDEX = {
     "typography",
     "and image sequencing."
    ],
-   "url": "pages/editorial-layout.html",
+   "url": "pages/editorial-layout.html?open=endo-sync-5-catalogue-web.pdf",
    "l10n": {
     "kind": "term.product-catalogue",
     "parts": [
@@ -369,7 +409,7 @@ window.SEARCH_INDEX = {
     "typography",
     "and production preparation."
    ],
-   "url": "pages/editorial-layout.html",
+   "url": "pages/editorial-layout.html?open=hooga-archive-catalogue-2026-web.pdf",
    "l10n": {
     "kind": "term.product-catalogue",
     "parts": [
@@ -400,7 +440,7 @@ window.SEARCH_INDEX = {
     "typography",
     "and image sequencing."
    ],
-   "url": "pages/editorial-layout.html",
+   "url": "pages/editorial-layout.html?open=hooga-living-room-collection-2026-web.pdf",
    "l10n": {
     "kind": "term.collection-catalogue",
     "parts": [
@@ -431,7 +471,7 @@ window.SEARCH_INDEX = {
     "typography",
     "and image sequencing."
    ],
-   "url": "pages/editorial-layout.html",
+   "url": "pages/editorial-layout.html?open=hooga-dining-collection-2026-web.pdf",
    "l10n": {
     "kind": "term.collection-catalogue",
     "parts": [
@@ -462,7 +502,7 @@ window.SEARCH_INDEX = {
     "typography",
     "and image sequencing."
    ],
-   "url": "pages/editorial-layout.html",
+   "url": "pages/editorial-layout.html?open=hooga-storage-display-collection-2026-web.pdf",
    "l10n": {
     "kind": "term.collection-catalogue",
     "parts": [
@@ -1462,6 +1502,87 @@ window.SEARCH_INDEX = {
    }
   },
   {
+   "id": "brand-hooga",
+   "title": "Hooga",
+   "group": "brands",
+   "kind": "Supported brand",
+   "description": "Furniture brand — catalogues, key visuals, print, and reels.",
+   "keywords": [
+    "hooga",
+    "furniture",
+    "sofa",
+    "dining",
+    "catalogue"
+   ],
+   "url": "pages/social-media-campaigns.html",
+   "l10n": {
+    "kind": "search.kind.supported-brand"
+   },
+   "thumb": "assets/images/brands/hooga.svg",
+   "logo": true
+  },
+  {
+   "id": "brand-dunlopillo",
+   "title": "Dunlopillo",
+   "group": "brands",
+   "kind": "Supported brand",
+   "description": "Mattress brand — catalogue, key visuals, print, and reels.",
+   "keywords": [
+    "dunlopillo",
+    "mattress",
+    "sleep",
+    "bedding",
+    "billboard"
+   ],
+   "url": "pages/print-brand-collateral.html",
+   "l10n": {
+    "kind": "search.kind.supported-brand"
+   },
+   "thumb": "assets/images/brands/dunlopillo.svg",
+   "logo": true
+  },
+  {
+   "id": "brand-porta-mobili",
+   "title": "Porta Mobili",
+   "group": "brands",
+   "kind": "Supported brand",
+   "description": "Furniture showroom — brand book, brand deck, campaigns, and print.",
+   "keywords": [
+    "porta mobili",
+    "porta",
+    "furniture",
+    "brand book",
+    "brand deck",
+    "italian"
+   ],
+   "url": "pages/editorial-layout.html?open=porta-brand-book-web.pdf",
+   "l10n": {
+    "kind": "search.kind.supported-brand"
+   },
+   "thumb": "assets/images/brands/porta-mobili.svg",
+   "logo": true
+  },
+  {
+   "id": "brand-metal-lite",
+   "title": "Metal-Lite",
+   "group": "brands",
+   "kind": "Supported brand",
+   "description": "Lighting company — key visuals, print, and reels.",
+   "keywords": [
+    "metal-lite",
+    "metal lite",
+    "metallite",
+    "lighting",
+    "lights"
+   ],
+   "url": "pages/social-media-campaigns.html",
+   "l10n": {
+    "kind": "search.kind.supported-brand"
+   },
+   "thumb": "assets/images/brands/metal-lite.svg",
+   "logo": true
+  },
+  {
    "id": "brand-mooni",
    "title": "Mooni",
    "group": "brands",
@@ -1531,9 +1652,10 @@ window.SEARCH_INDEX = {
     "riflessi",
     "italian",
     "furniture",
-    "porta mobili"
+    "porta mobili",
+    "truck"
    ],
-   "url": "pages/print-brand-collateral.html",
+   "url": "pages/print-brand-collateral.html?open=Porta%20Mobili%20RIFLESSI%20Delivery%20Truck.png",
    "l10n": {
     "description": "search.entry.brand-riflessi.description",
     "kind": "search.kind.supported-brand"
@@ -1582,23 +1704,6 @@ window.SEARCH_INDEX = {
    "logo": true
   },
   {
-   "id": "brand-panasonic",
-   "title": "Panasonic",
-   "group": "brands",
-   "kind": "Supported brand",
-   "description": "Lighting and home products carried by Metal-Lite.",
-   "keywords": [
-    "panasonic",
-    "lighting",
-    "metal-lite"
-   ],
-   "url": "pages/social-media-campaigns.html",
-   "l10n": {
-    "description": "search.entry.brand-panasonic.description",
-    "kind": "search.kind.supported-brand"
-   }
-  },
-  {
    "id": "brand-endo",
    "title": "ENDO Lighting",
    "group": "brands",
@@ -1607,9 +1712,11 @@ window.SEARCH_INDEX = {
    "keywords": [
     "endo",
     "lighting",
-    "metal-lite"
+    "metal-lite",
+    "sync 5",
+    "catalogue"
    ],
-   "url": "pages/social-media-campaigns.html",
+   "url": "pages/editorial-layout.html?open=endo-sync-5-catalogue-web.pdf",
    "l10n": {
     "description": "search.entry.brand-endo.description",
     "kind": "search.kind.supported-brand"
@@ -1624,48 +1731,13 @@ window.SEARCH_INDEX = {
    "keywords": [
     "astralux",
     "strip light",
+    "mesa",
     "lighting",
     "metal-lite"
    ],
-   "url": "pages/social-media-campaigns.html",
+   "url": "pages/social-media-campaigns.html?open=APR-LSAW3S1-astralux-mesa.png",
    "l10n": {
     "description": "search.entry.brand-astralux.description",
-    "kind": "search.kind.supported-brand"
-   }
-  },
-  {
-   "id": "brand-stella",
-   "title": "Stella",
-   "group": "brands",
-   "kind": "Supported brand",
-   "description": "Outdoor and linear lighting carried by Metal-Lite.",
-   "keywords": [
-    "stella",
-    "outdoor lighting",
-    "lighting",
-    "metal-lite"
-   ],
-   "url": "pages/social-media-campaigns.html",
-   "l10n": {
-    "description": "search.entry.brand-stella.description",
-    "kind": "search.kind.supported-brand"
-   }
-  },
-  {
-   "id": "brand-ledvance",
-   "title": "LEDVANCE",
-   "group": "brands",
-   "kind": "Supported brand",
-   "description": "Lighting carried by Metal-Lite.",
-   "keywords": [
-    "ledvance",
-    "led",
-    "lighting",
-    "metal-lite"
-   ],
-   "url": "pages/social-media-campaigns.html",
-   "l10n": {
-    "description": "search.entry.brand-ledvance.description",
     "kind": "search.kind.supported-brand"
    }
   }

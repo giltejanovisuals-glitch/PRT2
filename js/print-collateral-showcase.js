@@ -273,7 +273,11 @@
     return t(IS_VIDEO ? "showcase.tilePlay" : "showcase.tileShow", { type, index: i + 1, total: entries.length }, english);
   };
   const countText = (kind) => (I18N ? I18N.plural(`showcase.count.${kind}`, entries.length) : `${entries.length} ${kind}`);
-  const reelTileLabel = (entry) => t("showcase.play", { label: `${labelOf(entry)}${entry.brand ? `, ${entry.brand}` : ""}` }, `Play ${labelOf(entry)}${entry.brand ? `, ${entry.brand}` : ""}`);
+  const reelTileLabel = (entry) => {
+    // Same order as the tile shows it (title, duration), then the brand.
+    const label = `${labelOf(entry)}${entry.duration && typeof formatDuration === "function" ? ` ${formatDuration(entry.duration)}` : ""}${entry.brand ? `, ${entry.brand}` : ""}`;
+    return t("showcase.play", { label }, `Play ${label}`);
+  };
 
   const createTile = (entry, i, stacked, feed = false) => {
     const tile = document.createElement("button");
@@ -488,8 +492,9 @@
       badge.className = "pbc-tile-duration";
       badge.hidden = !entry.duration;
       badge.textContent = entry.duration ? formatDuration(entry.duration) : "";
-      caption.append(title, badge);
+      caption.append(title, " ", badge); // the space only separates words for assistive tech (flex ignores it)
       tile.appendChild(caption);
+      // The name includes everything the tile shows (title and duration).
       tile.setAttribute("aria-label", reelTileLabel(entry));
       tile.dataset.reelTile = "";
       tile.tabIndex = 0;
@@ -618,6 +623,15 @@
         video.src = entry.src;
       }
       video.setAttribute("aria-label", `${labelOf(entry)}${entry.brand ? `, ${entry.brand}` : ""}`);
+      // The written description of what's on screen (reel-meta `alt`).
+      if (entry.alt && entry.alt !== entry.title) {
+        const desc = document.createElement("p");
+        desc.className = "sr-only";
+        desc.id = `pbc-shot-desc-${entry.flatIndex ?? Math.random().toString(36).slice(2)}`;
+        desc.textContent = entry.alt;
+        video.setAttribute("aria-describedby", desc.id);
+        shot.appendChild(desc);
+      }
       if (entry.captions) {
         const track = document.createElement("track");
         track.kind = "captions";

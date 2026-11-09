@@ -45,9 +45,14 @@ window.createReelPreviews = ({ onMetadata, max = 1 } = {}) => {
     !reducedData.matches &&
     !(connection && (connection.saveData || /2g$/.test(connection.effectiveType || "")));
 
-  // Also held back while the page-transition intro covers the page.
+  // Also held back while the page-transition intro covers the page or any
+  // fullscreen viewer (reel, image, publication) is open over it.
   const blocked = () =>
-    document.hidden || root.classList.contains("reel-viewer-open") || root.classList.contains("pt-intro");
+    document.hidden ||
+    root.classList.contains("reel-viewer-open") ||
+    root.classList.contains("pt-intro") ||
+    document.body.classList.contains("lightbox-open") ||
+    document.body.classList.contains("pub-immersive-open");
 
   const stop = (host) => {
     playing.delete(host);
@@ -181,6 +186,7 @@ window.createReelPreviews = ({ onMetadata, max = 1 } = {}) => {
   // The reel viewer and the page-transition intro mark <html>.
   if ("MutationObserver" in window) {
     new MutationObserver(update).observe(root, { attributes: true, attributeFilter: ["class"] });
+    new MutationObserver(update).observe(document.body, { attributes: true, attributeFilter: ["class"] });
   }
   // Leaving the page (or entering the back/forward cache) stops everything;
   // coming back from the cache picks up where the visitor is now.

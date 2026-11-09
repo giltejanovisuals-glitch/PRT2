@@ -558,7 +558,8 @@ body.pub-immersive-open {
 }
 
 .pub-scroll:focus-visible {
-  outline: none;
+  outline: 2px solid var(--pub-teal);
+  outline-offset: -4px;
 }
 
 .pub-stage.is-zoomed .pub-scroll {

@@ -37,6 +37,7 @@ const headBlock = (prefix, isHome) =>
     `<style>\n${indent(css, 2)}\n</style>`,
     `<script>\n${indent(boot, 2)}\n</script>`,
     `<script src="${prefix}js/page-transition.js?v=3" defer></script>`,
+    `<script src="${prefix}js/motion.js?v=1" defer></script>`,
     "<!-- PAGE TRANSITION HEAD END -->",
   ].join("\n");
 

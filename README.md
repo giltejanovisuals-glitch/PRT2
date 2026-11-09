@@ -112,12 +112,17 @@ and the source of every other language.
 **Publishing rule.** A language is offered to visitors only when its
 file says `"_meta.status": "reviewed"` and it is complete. All four
 translations ship as `"draft"` — machine-assisted first drafts that
-need professional review before they go live. Until then, the
-production site shows no language control at all; drafts are visible on
-`localhost` (`npm run dev`), or on any host with `?lang-preview=1` (ends
-with `?lang-preview=0`). To publish a language after review: set its `_meta.status` to
-`"reviewed"` (and `_meta.reviewedBy`), then `npm run build`. The build
-stops if a reviewed file is missing keys or has broken placeholders.
+need professional review before they go live. Production deploys
+(`VERCEL_ENV=production`) leave drafts out entirely: they are dropped
+from the language list and their dictionaries are deleted from the build
+output, so no URL can show them. Drafts can be reviewed on `localhost`
+(`npm run dev`) or on a Vercel preview deployment with `?lang-preview=1`
+(ends with `?lang-preview=0`). To publish a language after review: set
+its `_meta.status` to `"reviewed"` (and `_meta.reviewedBy`), then
+`npm run build`. The build stops if a reviewed file is missing keys or
+has broken placeholders. English strings changed since the drafts were
+written (page descriptions, `cv.lede`, `common.brandLink`) need
+re-translating before review.
 
 **Files.** Where each part lives:
 
@@ -183,10 +188,77 @@ scripts/generate-search-index.js; per-entry keys are
 **SEO.** Translation is client-side, so each page keeps its single
 canonical URL and English stays what crawlers index; `<html lang>`,
 the title and the meta description still follow the visitor's choice.
+`?lang=` and `?lang-preview=` are removed from the address on arrival.
+No `hreflang` is written while English is the only published language.
 Crawlable `/es/`, `/zh-cn/`, `/ja/`, `/ko/` versions with
 `hreflang` alternates (and `x-default` → English) should be generated at
 build time once translations are reviewed — not before, so unreviewed
 copy is never indexed.
+
+## Motion
+
+One calm motion language, transform and opacity only. Tokens live in
+`css/style.css` `:root` (`--motion-fast` 180ms, `--motion-standard` 350ms,
+`--motion-slow` 600ms, `--motion-ease`, `--motion-rise`,
+`--motion-stagger`); phones use shorter values. Everything collapses under
+`prefers-reduced-motion`, and data saving skips the intro and reveals.
+
+- **Entrance** (`scripts/templates/page-transition.*`, written into every
+  page by `scripts/generate-page-transition.js`): the GT mark, name and a
+  teal line, 900ms, once per browsing session — not on later pages, Back,
+  `?open=` links or reduced motion. It never blocks scrolling or clicks.
+- **Opening a project** (`js/page-transition.js`): a 200ms cover in the page
+  color with the category title and teal line, then the next page fades in
+  (280ms).
+- **Reveals** (`js/motion.js`): sections below the fold rise and fade in
+  once, 70ms apart at most four steps. Nothing is hidden unless scripts run
+  (styles that wait for a script are scoped to `:root.js`).
+- **Navigation**: the header's blur gradient deepens after scrolling; one
+  teal line glides to the current section in the desktop nav; pressed
+  controls scale to 0.96.
+- **Hero**: the image wall follows a desktop mouse by up to ~10px (touch
+  ignored); the headline never moves.
+- **Project Gallery panels**: rest on the category's strongest visual; on
+  hover or keyboard focus they crossfade through it and the next two, scale
+  to 1.03 and show the summary and an arrow; they pause when the pointer or
+  focus leaves.
+- **Viewers**: the fullscreen image grows from its thumbnail when practical;
+  reel previews pause behind any open viewer.
+- **Creative Dock**: ~1.36 at the pointer, ~1.16 for neighbours, normal
+  beyond, no overshoot, fixed 56px footprint; phones use tap selection.
+- **Timeline**: the line draws once, then points and entries follow; only the
+  hovered (else current) role is highlighted.
+- **Contact**: the primary CTA's arrow nudges on hover/focus; validation
+  messages ease in; sending shows a small progress ring.
+
+## Search engines and link previews
+
+`scripts/generate-seo.js` (part of `npm run build`) writes the block
+between `<!-- SEO START -->` and `<!-- SEO END -->` in the homepage and
+the five category pages: title, description, canonical URL, robots,
+Open Graph, X card, and JSON-LD (`Person`, `WebSite` and `ProfilePage`
+on the homepage; `CollectionPage`, `BreadcrumbList` and the titled
+`CreativeWork` items on each category page). It also writes
+`sitemap.xml` (those six pages only) and `robots.txt`. Don't edit the
+block by hand:
+
+- Identity, homepage copy, profiles and the share image live in
+  `site.config.json`. Every fact there must be one the site shows.
+- Category descriptions are `description` in
+  `js/gallery-categories-data.js` (and `category.<id>.description` in
+  `data/locales/en.json`).
+- **Domain.** Canonical URLs, `og:url`, `og:image`, JSON-LD and the
+  sitemap need the production address. Set `"origin"` in
+  `site.config.json` once the domain is decided; until then Vercel
+  builds use `VERCEL_PROJECT_PRODUCTION_URL`, and local builds leave
+  those tags out (with a warning) rather than guess.
+- The share image (`assets/images/share/`, 1200 × 630) is drawn by
+  `scripts/generate-share-image.js` only when missing; redraw it with
+  `node scripts/generate-share-image.js --force` and commit it.
+- Not indexed: `/cv/` (noindex in its HTML and `vercel.json`) and build
+  tooling (`/scripts/`, `/data/`, config files; noindex headers).
+  `/index.html` redirects to `/`, and `.vercelignore` keeps notes and
+  scratch files out of the deployment.
 
 ## Adding or editing a Project Gallery category
 

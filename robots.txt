@@ -1,0 +1,5 @@
+# Written by scripts/generate-seo.js — edit there.
+User-agent: *
+Allow: /
+Disallow: /scripts/
+Disallow: /node_modules/

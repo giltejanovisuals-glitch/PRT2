@@ -430,8 +430,22 @@
 
     if (!results.length) {
       list.append(message(t("search.noResults"), t("search.noResultsHint")));
+      // Suggest the five Project Gallery categories rather than a dead end.
+      const categories = index.entries
+        .filter((entry) => String(entry.id).startsWith("collection-"))
+        .map((entry) =>
+          makeOption({
+            title: entry.title,
+            kind: entry.kind,
+            context: entry.description,
+            thumb: entry.thumb,
+            icon: "projects",
+            action: () => navigate(entry.url),
+          })
+        );
       list.append(
         makeGroup("browse", t("search.browse"), [
+          ...categories,
           makeOption({ title: t("search.viewAllProjects"), kind: t("gallery.title"), icon: "projects", action: () => navigate("index.html#gallery") }),
         ])
       );

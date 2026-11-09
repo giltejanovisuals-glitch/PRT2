@@ -358,6 +358,39 @@
         requestAnimationFrame(() => requestAnimationFrame(() => {
           if (lightboxOpen) lightboxClose?.focus({ preventScroll: true });
         }));
+        growFromSource(i, trigger);
+      };
+
+      // The image grows from its thumbnail's place (transform + opacity,
+      // ~420ms) when that's practical: the thumbnail is on screen and the
+      // full image decodes within a moment. Otherwise the plain fade above.
+      const growFromSource = (i, trigger) => {
+        if (!trigger || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const img = slides[i]?.querySelector("img");
+        const thumb = trigger.querySelector?.("img") || trigger;
+        if (!img || !img.animate) return;
+        const from = thumb.getBoundingClientRect();
+        if (!from.width || from.bottom < 0 || from.top > window.innerHeight) return;
+        const opening = activeSlide;
+        const settle = img.complete && img.naturalWidth ? Promise.resolve() : img.decode ? img.decode() : Promise.reject();
+        const late = new Promise((_, reject) => window.setTimeout(reject, 200));
+        Promise.race([settle, late])
+          .then(() => {
+            if (!lightboxOpen || activeSlide !== opening) return;
+            const to = img.getBoundingClientRect();
+            if (!to.width) return;
+            const dx = from.left + from.width / 2 - (to.left + to.width / 2);
+            const dy = from.top + from.height / 2 - (to.top + to.height / 2);
+            const scale = Math.max(0.05, Math.min(1, from.width / to.width));
+            img.animate(
+              [
+                { transform: `translate3d(${dx}px, ${dy}px, 0) scale(${scale})`, opacity: 0.4 },
+                { transform: "none", opacity: 1 },
+              ],
+              { duration: 420, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
+            );
+          })
+          .catch(() => {});
       };
 
       const closeLightbox = () => {
@@ -391,6 +424,18 @@
 
       document.addEventListener("keydown", (event) => {
         if (!lightbox.classList.contains("is-open")) return;
+        // Keep keyboard focus inside the open viewer.
+        if (event.key === "Tab") {
+          const stops = Array.from(lightbox.querySelectorAll('button:not([disabled]), a[href], video[controls], [tabindex]:not([tabindex="-1"])')).filter(
+            (el) => el.getClientRects().length > 0 && getComputedStyle(el).visibility !== "hidden"
+          );
+          if (!stops.length) return;
+          const index = stops.indexOf(document.activeElement);
+          const next = index === -1 ? 0 : (index + (event.shiftKey ? -1 : 1) + stops.length) % stops.length;
+          event.preventDefault();
+          stops[next].focus({ preventScroll: true });
+          return;
+        }
         if (event.key === "Escape") closeLightbox();
         if (event.key === "ArrowRight") goNext();
         if (event.key === "ArrowLeft") goPrev();

@@ -3,3 +3,10 @@ test-fixtures/
 tmp/
 tmp-test.pdf
 private/
+
+# Development notes and scratch files: not part of the site.
+.scratch-*
+README.md
+PERFORMANCE.md
+assets/documents/editorial-layout/README.md
+LOGO.png

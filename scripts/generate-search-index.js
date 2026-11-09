@@ -104,9 +104,12 @@ const previews = data.HOME_GALLERY_PREVIEWS || {};
     group: "projects",
     kind: "Gallery collection",
     description: category.lede || category.intro,
+    // Only what the page itself shows: its brands, role and deliverables.
     keywords: [
       "project gallery",
-      ...(category.entries || []).map((entry) => entry.type),
+      ...(category.brands || []),
+      ...splitList(category.role).flatMap((part) => part.split(/\s+and\s+/)),
+      ...splitList(category.deliverables).flatMap((part) => part.split(/\s+and\s+/)),
       ...(aliases[url] || []),
     ],
     body: category.intro,
@@ -120,7 +123,9 @@ const meta = data.PUBLICATION_META || {};
 (data.PUBLICATION_MANIFEST || []).forEach((publication) => {
   const info = meta[publication.file];
   if (!info || !info.title) return;
-  const url = "pages/editorial-layout.html";
+  // Straight to that publication: the editorial page opens ?open=<file> in
+  // its reader (js/publication-reader.js).
+  const url = `pages/editorial-layout.html?open=${encodeURIComponent(publication.file)}`;
   entries.push({
     id: `publication-${slug(publication.file.replace(/\.pdf$/i, ""))}`,
     l10n: compact({

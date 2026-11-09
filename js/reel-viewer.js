@@ -69,7 +69,8 @@ window.createReelViewer = (entries, { formatDuration, closeTo } = {}) => {
         <button class="reel-viewer-btn reel-viewer-close" type="button">${icon("M6 6l12 12M18 6L6 18")}</button>
       </div>
       <div class="reel-viewer-stage">
-        <video class="reel-viewer-video" controls playsinline preload="none"></video>
+        <video class="reel-viewer-video" controls playsinline preload="none" aria-describedby="reel-viewer-desc"></video>
+        <p class="sr-only" id="reel-viewer-desc"></p>
       </div>
       <div class="reel-viewer-bottom">
         <button class="reel-viewer-btn reel-viewer-prev" type="button">${icon("M15 18l-6-6 6-6")}</button>
@@ -143,6 +144,8 @@ window.createReelViewer = (entries, { formatDuration, closeTo } = {}) => {
       `${labelOf(entry)}${entry.brand ? `, ${entry.brand}` : ""}${entry.duration && formatDuration ? `, ${formatDuration(entry.duration)}` : ""}`
     );
 
+    // What is on screen, for visitors who can't see the reel (reel-meta alt).
+    el.querySelector("#reel-viewer-desc").textContent = entry.alt && entry.alt !== entry.title ? entry.alt : "";
     // Only hand-written brand/title text — empty when the reel has none.
     titleEl.textContent = [entry.brand, entry.title].filter(Boolean).join(" — ");
     currentEl.textContent = pad(index + 1);
@@ -248,7 +251,7 @@ window.createReelViewer = (entries, { formatDuration, closeTo } = {}) => {
         video.muted = !video.muted;
         return;
       case "Tab": {
-        const stops = [...el.querySelectorAll("button, video")];
+        const stops = [...el.querySelectorAll("button, video")].filter((stop) => stop.getClientRects().length > 0);
         const first = stops[0];
         const last = stops[stops.length - 1];
         if (!el.contains(document.activeElement)) {

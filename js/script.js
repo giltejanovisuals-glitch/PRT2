@@ -390,8 +390,8 @@
     const badges = tools.map((tool) => tool.querySelector(".dock-tool-badge"));
     if (!tools.length) return;
 
-    const PEAK_SCALE = 0.45; // 1 + PEAK_SCALE = ~1.45 at the cursor's nearest icon
-    const PEAK_LIFT = 8; // px raise at the nearest icon
+    const PEAK_SCALE = 0.36; // ~1.36 at the cursor's icon, ~1.16 next to it, ~1.0 beyond
+    const PEAK_LIFT = 6; // px raise at the nearest icon
     let sigma = 70;
     let rafId = null;
     let pendingX = null;
@@ -407,7 +407,7 @@
         total += centers[i] - centers[i - 1];
       }
       const avgPitch = total / (centers.length - 1);
-      if (avgPitch > 0) sigma = avgPitch * 0.9;
+      if (avgPitch > 0) sigma = avgPitch * 0.8;
     };
 
     const applyMagnification = (clientX) => {

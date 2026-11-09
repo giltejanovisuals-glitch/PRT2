@@ -3,8 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Social Media Campaigns &amp; Key Visuals — Gil Tejano Culas, senior graphic designer and creative specialist." data-i18n-attr="content:meta.categoryDescription" data-i18n-vars='{"title":"@category.social-media-campaigns.title"}' />
+    <!-- SEO START — written by scripts/generate-seo.js from site.config.json and js/gallery-categories-data.js; edit those, then `npm run build`. -->
     <title>Social Media Campaigns &amp; Key Visuals | Gil Tejano Culas</title>
+    <meta name="description" content="Key visuals, Instagram carousels, and event announcements for Dunlopillo, Hooga, Mooni, Metal-Lite, and Porta Mobili — social campaigns by Gil Tejano Culas." data-i18n-attr="content:category.social-media-campaigns.description" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Gil Tejano Culas" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Social Media Campaigns &amp; Key Visuals | Gil Tejano Culas" />
+    <meta property="og:description" content="Key visuals, Instagram carousels, and event announcements for Dunlopillo, Hooga, Mooni, Metal-Lite, and Porta Mobili — social campaigns by Gil Tejano Culas." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Social Media Campaigns &amp; Key Visuals | Gil Tejano Culas" />
+    <meta name="twitter:description" content="Key visuals, Instagram carousels, and event announcements for Dunlopillo, Hooga, Mooni, Metal-Lite, and Porta Mobili — social campaigns by Gil Tejano Culas." />
+    <!-- SEO END -->
     <link rel="icon" href="../assets/icons/favicon.png" type="image/png" />
     <!-- Follows the browser's light/dark theme; Safari keeps the PNG above. -->
     <link rel="icon" href="../assets/icons/favicon-adaptive.svg" type="image/svg+xml" />
@@ -29,205 +40,242 @@
     </script>
     <script src="../js/media-fallback.js?v=1681e900" defer></script>
     <script src="../js/overlay-history.js?v=455d5db0" defer></script>
-    <script src="../js/i18n.js?v=43a449a0"></script>
+    <script src="../js/i18n.js?v=603ad0fe"></script>
     <!-- LCP PRELOAD START -->
     <link rel="preload" as="image" type="image/avif" media="(max-width: 760px)" imagesrcset="../assets/images/gallery-thumbs/social-media-campaigns/1-feather-recliner-v2-png-11prl-360.avif 360w, ../assets/images/gallery-thumbs/social-media-campaigns/1-feather-recliner-v2-png-11prl.avif 720w, ../assets/images/gallery-thumbs/social-media-campaigns/1-feather-recliner-v2-png-11prl-1440.avif 1080w" imagesizes="calc(100vw - 40px)" fetchpriority="high" />
     <!-- LCP PRELOAD END -->
     <link rel="stylesheet" href="../css/i18n.css?v=198f0123" />
     <!-- PAGE TRANSITION HEAD START -->
     <style>
-      /* Welcome / page-transition overlay. Inlined into every page's <head> by
-         scripts/generate-page-transition.js (edit here, then `npm run build`), so
-         it paints with the first frame: no flash of the page before it. CSS alone
-         plays and removes it (pt-out ends hidden), so it can never stick; the
-         boot script and js/page-transition.js only lock scrolling meanwhile,
-         skip it when it shouldn't play, and remove it from the DOM. ~2.4s:
-         everything is in place by ~1.4s and holds, fully legible, until the
-         overlay fades from 1.9s. */
-      .pt-overlay,
-      .pt-cover {
-        --pt-bg: #f2f0ea;
-        --pt-text: #151515;
-        --pt-muted: #66645f;
-        --pt-accent: #0f4c4c;
-        position: fixed;
-        inset: 0;
-        z-index: 2147483000;
-        background: var(--pt-bg);
-        color: var(--pt-text);
-      }
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) .pt-overlay,
-        :root:not([data-theme="light"]) .pt-cover {
-          --pt-bg: #171b1c;
-          --pt-text: #f2f0ea;
-          --pt-muted: #b8c1bd;
-          --pt-accent: #60a899;
-        }
-      }
-      :root[data-theme="dark"] .pt-overlay,
-      :root[data-theme="dark"] .pt-cover {
-        --pt-bg: #171b1c;
-        --pt-text: #f2f0ea;
-        --pt-muted: #b8c1bd;
-        --pt-accent: #60a899;
-      }
-      .pt-overlay {
-        display: grid;
-        height: 100vh;
-        height: 100dvh;
-        place-items: center;
-        padding: max(24px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
-        text-align: center;
-        pointer-events: auto;
-        animation: pt-out 500ms cubic-bezier(0.22, 1, 0.36, 1) 1900ms forwards;
-      }
-      .pt-skip .pt-overlay {
-        display: none;
-      }
-      .pt-inner {
-        display: flex;
-        max-width: 34rem;
-        flex-direction: column;
-        align-items: center;
-      }
-      .pt-mark {
-        display: block;
-        width: clamp(48px, 13vw, 68px);
-        aspect-ratio: 304 / 180;
-        margin-bottom: clamp(18px, 3vh, 26px);
-        background: var(--pt-accent);
-        -webkit-mask: var(--pt-logo) center / contain no-repeat;
-        mask: var(--pt-logo) center / contain no-repeat;
-        animation: pt-fade 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
-      }
-      .pt-number {
-        margin: 0 0 clamp(12px, 2.4vh, 18px);
-        color: var(--pt-accent);
-        font-family: var(--font-body, "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
-        font-size: clamp(0.78rem, 2.6vw, 0.9rem);
-        font-weight: 500;
-        letter-spacing: 0.24em;
-        font-variant-numeric: tabular-nums;
-        animation: pt-rise 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
-      }
-      .pt-title {
-        margin: 0;
-        color: var(--pt-text);
-        font-family: var(--font-headline, "Helvetica Neue", Arial, sans-serif);
-        font-size: clamp(1.05rem, 4.6vw, 1.6rem);
-        font-weight: 400;
-        line-height: 1.25;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        text-wrap: balance;
-        animation: pt-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 300ms both;
-      }
-      .pt-title-home {
-        white-space: nowrap;
-      }
-      .pt-title-project {
-        max-width: 22ch;
-        font-size: clamp(1.15rem, 5.2vw, 2rem);
-        letter-spacing: 0.14em;
-      }
-      .pt-sub {
-        margin: 10px 0 0;
-        color: var(--pt-muted);
-        font-family: var(--font-body, "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
-        font-size: clamp(0.72rem, 2.9vw, 0.85rem);
-        line-height: 1.5;
-        letter-spacing: 0.04em;
-        animation: pt-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 450ms both;
-      }
-      .pt-sub span {
-        white-space: nowrap;
-      }
-      .pt-line {
-        display: block;
-        width: clamp(56px, 18vw, 120px);
-        height: 1px;
-        margin-top: clamp(18px, 3vh, 24px);
-        background: var(--pt-accent);
-        transform: scaleX(0);
-        animation: pt-line 800ms cubic-bezier(0.22, 1, 0.36, 1) 600ms both;
-      }
-      @keyframes pt-fade {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-      @keyframes pt-rise {
-        from { opacity: 0; transform: translate3d(0, 10px, 0); }
-        to { opacity: 1; transform: none; }
-      }
-      @keyframes pt-line {
-        from { transform: scaleX(0); }
-        to { transform: scaleX(1); }
-      }
-      @keyframes pt-out {
-        to { opacity: 0; visibility: hidden; pointer-events: none; }
-      }
-      /* Leaving for another page: a plain cover fades in over the current one. */
-      .pt-cover {
-        opacity: 0;
-        transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);
-      }
-      .pt-cover.is-visible {
-        opacity: 1;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .pt-overlay {
-          display: none;
-        }
-        .pt-cover {
-          transition: none;
-        }
+      /* Welcome / page-transition overlay. Inlined into every page's <head> by
+         scripts/generate-page-transition.js (edit here, then `npm run build`), so
+         it paints with the first frame: no flash of the page before it. CSS alone
+         plays and removes it (pt-out ends hidden), so it can never stick, even
+         without scripts. It never takes the pointer and nothing waits on images:
+         the whole sequence is 900ms — mark, title and teal line settle by
+         ~600ms, then the overlay fades. The boot script skips it after the first
+         page of a browsing session. */
+      .pt-overlay,
+      .pt-cover {
+        --pt-bg: #f2f0ea;
+        --pt-text: #151515;
+        --pt-muted: #66645f;
+        --pt-accent: #0f4c4c;
+        --pt-ease: cubic-bezier(0.22, 1, 0.36, 1);
+        position: fixed;
+        inset: 0;
+        z-index: 2147483000;
+        background: var(--pt-bg);
+        color: var(--pt-text);
+        pointer-events: none;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .pt-overlay,
+        :root:not([data-theme="light"]) .pt-cover {
+          --pt-bg: #171b1c;
+          --pt-text: #f2f0ea;
+          --pt-muted: #b8c1bd;
+          --pt-accent: #60a899;
+        }
+      }
+      :root[data-theme="dark"] .pt-overlay,
+      :root[data-theme="dark"] .pt-cover {
+        --pt-bg: #171b1c;
+        --pt-text: #f2f0ea;
+        --pt-muted: #b8c1bd;
+        --pt-accent: #60a899;
+      }
+      .pt-overlay,
+      .pt-cover {
+        display: grid;
+        height: 100vh;
+        height: 100dvh;
+        place-items: center;
+        padding: max(24px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+        text-align: center;
+      }
+      .pt-overlay {
+        animation: pt-out 300ms var(--pt-ease) 600ms forwards;
+      }
+      .pt-skip .pt-overlay {
+        display: none;
+      }
+      .pt-inner {
+        display: flex;
+        max-width: 34rem;
+        flex-direction: column;
+        align-items: center;
+      }
+      .pt-mark {
+        display: block;
+        width: clamp(48px, 13vw, 68px);
+        aspect-ratio: 304 / 180;
+        margin-bottom: clamp(18px, 3vh, 26px);
+        background: var(--pt-accent);
+        -webkit-mask: var(--pt-logo) center / contain no-repeat;
+        mask: var(--pt-logo) center / contain no-repeat;
+        animation: pt-fade 300ms var(--pt-ease) both;
+      }
+      .pt-number {
+        margin: 0 0 clamp(12px, 2.4vh, 18px);
+        color: var(--pt-accent);
+        font-family: var(--font-body, "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
+        font-size: clamp(0.78rem, 2.6vw, 0.9rem);
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        font-variant-numeric: tabular-nums;
+        animation: pt-rise 350ms var(--pt-ease) both;
+      }
+      .pt-title {
+        margin: 0;
+        color: var(--pt-text);
+        font-family: var(--font-headline, "Helvetica Neue", Arial, sans-serif);
+        font-size: clamp(1.05rem, 4.6vw, 1.6rem);
+        font-weight: 400;
+        line-height: 1.25;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        text-wrap: balance;
+        animation: pt-rise 380ms var(--pt-ease) 80ms both;
+      }
+      .pt-title-home {
+        white-space: nowrap;
+      }
+      .pt-title-project {
+        max-width: 22ch;
+        font-size: clamp(1.15rem, 5.2vw, 2rem);
+        letter-spacing: 0.14em;
+      }
+      .pt-sub {
+        margin: 10px 0 0;
+        color: var(--pt-muted);
+        font-family: var(--font-body, "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
+        font-size: clamp(0.72rem, 2.9vw, 0.85rem);
+        line-height: 1.5;
+        letter-spacing: 0.04em;
+        animation: pt-rise 380ms var(--pt-ease) 150ms both;
+      }
+      .pt-sub span {
+        white-space: nowrap;
+      }
+      .pt-line {
+        display: block;
+        width: clamp(56px, 18vw, 120px);
+        height: 1px;
+        margin-top: clamp(18px, 3vh, 24px);
+        background: var(--pt-accent);
+        transform: scaleX(0);
+        animation: pt-line 420ms var(--pt-ease) 180ms both;
+      }
+      @keyframes pt-fade {
+        from { opacity: 0; transform: scale(0.96); }
+        to { opacity: 1; transform: none; }
+      }
+      @keyframes pt-rise {
+        from { opacity: 0; transform: translate3d(0, 10px, 0); }
+        to { opacity: 1; transform: none; }
+      }
+      @keyframes pt-line {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @keyframes pt-out {
+        to { opacity: 0; visibility: hidden; }
+      }
+      /* Leaving for another page: a cover in the page color fades in over the
+         current one (200ms) — with the project's title and teal line rising when
+         the link opens a Project Gallery category — then the next page fades in
+         from the same color (pt-arrive, 280ms). */
+      .pt-cover {
+        opacity: 0;
+        transition: opacity 200ms var(--pt-ease);
+      }
+      .pt-cover.is-visible {
+        opacity: 1;
+      }
+      .pt-cover .pt-title,
+      .pt-cover .pt-line {
+        animation: none;
+        opacity: 0;
+        transform: translate3d(0, 8px, 0);
+        transition: opacity 200ms var(--pt-ease) 40ms, transform 200ms var(--pt-ease) 40ms;
+      }
+      .pt-cover .pt-line {
+        transform: scaleX(0);
+      }
+      .pt-cover.is-visible .pt-title,
+      .pt-cover.is-visible .pt-line {
+        opacity: 1;
+        transform: none;
+      }
+      :root.pt-arrive body {
+        animation: pt-arrive 280ms var(--pt-ease) both;
+      }
+      @keyframes pt-arrive {
+        from { opacity: 0; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .pt-overlay {
+          display: none;
+        }
+        .pt-cover,
+        .pt-cover * {
+          transition: none;
+        }
+        :root.pt-arrive body {
+          animation: none;
+        }
       }
     </style>
     <script>
-      /* Page-transition boot. Inlined into every page's <head> by
-         scripts/generate-page-transition.js (edit here, then `npm run build`), so
-         it runs before the overlay is parsed. Skips the intro for Back/Forward,
-         ?open= links straight to a piece, and reduced motion; otherwise marks
-         <html class="pt-intro"> and blocks scroll input until the overlay is done
-         (js/page-transition.js calls __ptEnd; a timeout guarantees it). */
-      (function () {
-        var root = document.documentElement;
-        var nav = window.performance && performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
-        var reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if ((nav && nav.type === "back_forward") || /[?&]open=/.test(location.search) || reduced) {
-          root.classList.add("pt-skip");
-          return;
-        }
-        root.classList.add("pt-intro");
-        var keys = { " ": 1, ArrowUp: 1, ArrowDown: 1, PageUp: 1, PageDown: 1, Home: 1, End: 1 };
-        var types = ["wheel", "touchmove", "keydown"];
-        var options = { passive: false, capture: true };
-        var block = function (event) {
-          if (event.type !== "keydown" || keys[event.key]) event.preventDefault();
-        };
-        types.forEach(function (type) {
-          window.addEventListener(type, block, options);
-        });
-        var ended = false;
-        window.__ptEnd = function () {
-          if (ended) return;
-          ended = true;
-          root.classList.remove("pt-intro");
-          types.forEach(function (type) {
-            window.removeEventListener(type, block, options);
-          });
-        };
-        setTimeout(window.__ptEnd, 3000);
+      /* Page-transition boot. Inlined into every page's <head> by
+         scripts/generate-page-transition.js (edit here, then `npm run build`), so
+         it runs before the overlay is parsed.
+
+         - Marks <html class="js">: styles that hide content until a script
+           reveals it are scoped to it, so nothing stays hidden if scripts fail.
+         - The branded intro (<html class="pt-intro">, under 1s, CSS only) plays
+           once per browsing session: never again on later pages, never for
+           Back/Forward, ?open= links straight to a piece, reduced motion or
+           data saving. It never blocks input; the overlay ignores the pointer.
+         - Arriving from another page of this site afterwards, the page fades in
+           briefly (<html class="pt-arrive">) from the leaving page's cover. */
+      (function () {
+        var root = document.documentElement;
+        root.classList.add("js");
+        var nav = window.performance && performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
+        var backForward = nav && nav.type === "back_forward";
+        var reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var saveData = navigator.connection && navigator.connection.saveData;
+        var seen = false;
+        try {
+          seen = sessionStorage.getItem("pt-seen") === "1";
+          sessionStorage.setItem("pt-seen", "1");
+        } catch (e) {}
+        if (backForward || /[?&]open=/.test(location.search) || reduced || saveData || seen) {
+          root.classList.add("pt-skip");
+          var internal = false;
+          try {
+            internal = !!document.referrer && new URL(document.referrer).origin === location.origin;
+          } catch (e) {}
+          if (internal && !backForward && !reduced) root.classList.add("pt-arrive");
+          return;
+        }
+        root.classList.add("pt-intro");
+        window.__ptEnd = function () {
+          root.classList.remove("pt-intro");
+        };
+        setTimeout(window.__ptEnd, 1000);
       })();
     </script>
-    <script src="../js/page-transition.js?v=a2a99ab3" defer></script>
+    <script src="../js/page-transition.js?v=1fb1064f" defer></script>
+    <script src="../js/motion.js?v=7949502d" defer></script>
     <!-- PAGE TRANSITION HEAD END -->
-    <script src="../data/locales/en.js?v=abe49be6" defer></script>
-    <link rel="stylesheet" href="../css/style.css?v=aa406291" />
-    <link rel="stylesheet" href="../css/search.css?v=f5194d3f" />
-    <script src="../js/search.js?v=51e2ad26" defer></script>
-    <script src="../js/mobile-nav.js?v=69feb8c8" defer></script>
+    <script src="../data/locales/en.js?v=13c5c748" defer></script>
+    <link rel="stylesheet" href="../css/style.css?v=3e924b52" />
+    <link rel="stylesheet" href="../css/search.css?v=e5454bba" />
+    <script src="../js/search.js?v=97321870" defer></script>
+    <script src="../js/mobile-nav.js?v=4252e5ac" defer></script>
     <link rel="stylesheet" href="../css/content-protection.css?v=63f968ad" />
     <script src="../js/content-protection.js?v=3906f932" defer></script>
     <link rel="stylesheet" href="../css/project-gallery.css?v=7c259bdd" />
@@ -235,14 +283,14 @@
     <link rel="stylesheet" href="../css/print-collateral-showcase.css?v=47ec2621" />
     <link rel="stylesheet" href="../css/zoom-resilience.css?v=ab74e4e3" />
     <script src="../js/zoom-chrome.js?v=1d0aed44" defer></script>
-    <script src="../js/gallery-categories-data.js?v=584da570" defer></script>
+    <script src="../js/gallery-categories-data.js?v=3699fbf7" defer></script>
     <script src="../js/gallery-editorial-manifest.js?v=7e069fbf" defer></script>
     <script src="../js/gallery-editorial-meta.js?v=5b55a74b" defer></script>
     <script src="../js/gallery-thumbs.js?v=bc1bb293" defer></script>
-    <script src="../js/gallery-editorial.js?v=b6265c7d" defer></script>
+    <script src="../js/gallery-editorial.js?v=892d7e01" defer></script>
     <script src="../js/return-trip.js?v=b54b616e" defer></script>
     <script src="../js/image-variants.js?v=3aef609d" defer></script>
-    <script src="../js/print-collateral-showcase.js?v=dd9c431b" defer></script>
+    <script src="../js/print-collateral-showcase.js?v=15ed9da9" defer></script>
   </head>
 
   <body>
@@ -259,9 +307,9 @@
 
     <div class="nav-backdrop" aria-hidden="true"></div>
     <header class="site-header">
-      <a class="brand" href="../index.html" aria-label="Gil Tejano Culas, home" data-i18n-attr="aria-label:common.homeLabel">
+      <a class="brand" href="../index.html" aria-label="Gil Tejano Culas, Senior Graphic Designer / Creative Specialist, home" data-i18n-attr="aria-label:common.brandLink" data-i18n-vars='{"role":"@common.roleTitle"}'>
         <img class="brand-mark" src="../assets/icons/logo.png" width="304" height="180" alt="" aria-hidden="true" />
-        <span class="brand-text"><span class="brand-name">Gil Tejano Culas</span><span class="brand-title" data-i18n="common.roleTitle">Senior Graphic Designer / Creative Specialist</span></span>
+        <span class="brand-text"><span class="brand-name">Gil Tejano Culas</span> <span class="brand-title" data-i18n="common.roleTitle">Senior Graphic Designer / Creative Specialist</span></span>
       </a>
 
       <div class="header-controls">

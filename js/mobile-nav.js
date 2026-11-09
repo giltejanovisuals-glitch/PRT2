@@ -121,6 +121,21 @@
     }
   };
   new MutationObserver(syncMenu).observe(nav, { attributes: true, attributeFilter: ["class"] });
+
+  // While the full-screen menu is open, Tab and Shift+Tab cycle through the
+  // menu button (it stays on top and closes the menu) and the menu's own
+  // controls, so keyboard focus never wanders to the page hidden behind it.
+  const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  const visible = (el) => el.getClientRects().length > 0 && getComputedStyle(el).visibility !== "hidden";
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Tab" || !nav.classList.contains("is-open")) return;
+    const stops = [menuToggle, ...nav.querySelectorAll(FOCUSABLE)].filter((el) => el && visible(el));
+    if (!stops.length) return;
+    const index = stops.indexOf(document.activeElement);
+    const next = index === -1 ? 0 : (index + (event.shiftKey ? -1 : 1) + stops.length) % stops.length;
+    event.preventDefault();
+    stops[next].focus({ preventScroll: true });
+  });
   if (menuToggle && I18N) {
     if (I18N.lang !== "en") syncMenu();
     I18N.onChange(syncMenu);

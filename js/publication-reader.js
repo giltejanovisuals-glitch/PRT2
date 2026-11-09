@@ -253,7 +253,8 @@
   const bookLabel = (pub) =>
     pub.isPlaceholder
       ? t("pub.placeholder", { title: pub.title }, `${pub.title} — placeholder, add a PDF to preview it`)
-      : t("pub.openLabel", { name: [pub.brand, pub.title, term(pub.type)].filter(Boolean).join(" ") }, ["Open", pub.brand, pub.title, pub.type].filter(Boolean).join(" "));
+      : // Everything the card shows, in its order: brand, title, meta line.
+        `${t("pub.openLabel", { name: [pub.brand, pub.title].filter(Boolean).join(" ") }, `Open ${[pub.brand, pub.title].filter(Boolean).join(" ")}`)}, ${bookMeta(pub)}`;
   const bookMeta = (pub) => [term(pub.type), pub.year, pub.pageCount ? pagesText(pub.pageCount) : "", orientationLabel(pub.orientation)].filter(Boolean).join(" · ");
 
   const bookCards = [];
@@ -362,6 +363,7 @@
 
       const number = document.createElement("span");
       number.className = "pub-book-number";
+      number.setAttribute("aria-hidden", "true"); // decorative index
       number.textContent = `${category.number || ""}${category.number ? "." : ""}${String(i + 1).padStart(2, "0")}`.replace(/^\./, "");
       caption.appendChild(number);
 
@@ -385,6 +387,9 @@
         btn.addEventListener("click", () => openReader(pub.index));
       }
 
+      // Spaces between the parts (the flex layout ignores them) so the text
+      // reads as separate words to assistive technology.
+      [...caption.children].slice(1).forEach((part) => part.before(" "));
       btn.appendChild(caption);
       els.shelf.appendChild(btn);
       bookCards.push(btn);
@@ -1263,7 +1268,7 @@
     if (event.shiftKey && (document.activeElement === first || !els.reader.contains(document.activeElement))) {
       event.preventDefault();
       last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
+    } else if (!event.shiftKey && (document.activeElement === last || !els.reader.contains(document.activeElement))) {
       event.preventDefault();
       first.focus();
     }
@@ -1570,10 +1575,15 @@
     } else if (shelfCover) {
       bookCards[index].classList.add("is-away");
     }
-    // A frame later, once the reader is visible (and so focusable).
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      if (modalOpen && token === sessionToken) els.scroll.focus({ preventScroll: true });
-    }));
+    // Once the reader is visible (and so focusable), which can take a few
+    // frames: try each frame, for up to ~0.5s, until focus lands inside.
+    let focusTries = 0;
+    const focusReader = () => {
+      if (!modalOpen || token !== sessionToken || els.reader.contains(document.activeElement)) return;
+      els.scroll.focus({ preventScroll: true });
+      if (!els.reader.contains(document.activeElement) && (focusTries += 1) < 30) requestAnimationFrame(focusReader);
+    };
+    requestAnimationFrame(focusReader);
 
     if (OPENED_FROM_DISK) {
       if (!pub.pageImages.length) {

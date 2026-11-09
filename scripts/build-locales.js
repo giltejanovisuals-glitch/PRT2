@@ -15,6 +15,14 @@
  *
  *   node scripts/build-locales.js            build + report
  *   node scripts/build-locales.js --check    report only, write nothing
+ *
+ * Production deploys (Vercel sets VERCEL_ENV=production; SITE_ENV=production
+ * or --production does the same anywhere else) ship published languages
+ * only: drafts are left out of the LANGUAGES block and their dictionaries
+ * are deleted from the build output, so no URL, ?lang-preview=1 included,
+ * can show unreviewed copy on the live site. Preview deploys and localhost
+ * keep them for review. Never run with --production in a working copy you
+ * mean to commit: it deletes the draft files (git restores them).
  */
 const fs = require("fs");
 const path = require("path");
@@ -25,6 +33,8 @@ const DIR = path.join(ROOT, "data", "locales");
 const I18N_JS = path.join(ROOT, "js", "i18n.js");
 const ORDER = ["en", "es", "zh-CN", "ja", "ko"];
 const CHECK_ONLY = process.argv.includes("--check");
+const PRODUCTION =
+  process.argv.includes("--production") || process.env.VERCEL_ENV === "production" || process.env.SITE_ENV === "production";
 
 const read = (code) => {
   const file = path.join(DIR, `${code}.json`);
@@ -104,6 +114,16 @@ ORDER.forEach((code) => {
   }
 
   const body = JSON.stringify(dict);
+
+  if (PRODUCTION && !published) {
+    // Production: an unreviewed language does not exist on the live site.
+    if (!CHECK_ONLY) {
+      [".js", ".json"].forEach((ext) => fs.rmSync(path.join(DIR, `${code}${ext}`), { force: true }));
+      console.log(`[locales] ${code}: draft — removed from this production build`);
+    }
+    return;
+  }
+
   hash.update(code).update(body);
   languages.push({ code, short: dict["_meta.short"] || code.toUpperCase(), name: dict["_meta.name"] || code, published });
 

@@ -1,0 +1,43 @@
+{
+  "_comment": "Site identity for search engines and link previews, read by scripts/generate-seo.js (npm run build). 'origin' is the production address, e.g. https://example.com (no trailing slash). Leave it empty to let Vercel fill it in during production builds (VERCEL_PROJECT_PRODUCTION_URL); SITE_URL in the environment overrides both. Every fact here must be one the site itself shows.",
+  "origin": "",
+  "name": "Gil Tejano Culas",
+  "jobTitle": "Senior Graphic Designer / Creative Specialist",
+  "worksFor": "Metal-Lite Illuminazione Marketing",
+  "location": { "addressRegion": "Cavite", "addressCountry": "PH" },
+  "portrait": "assets/images/about/portrait.webp",
+  "sameAs": [
+    "https://www.linkedin.com/in/gilculas",
+    "https://www.behance.net/gilvisuals",
+    "https://www.instagram.com/kv_gil/"
+  ],
+  "knowsAbout": [
+    "Creative direction",
+    "Visual design",
+    "Layout and editorial design",
+    "Retail and campaign design",
+    "Photography",
+    "Photo manipulation",
+    "Digital content",
+    "Short-form video",
+    "Production coordination"
+  ],
+  "shareImage": {
+    "path": "assets/images/share/gil-tejano-culas-portfolio.jpg",
+    "width": 1200,
+    "height": 630,
+    "alt": "Gil Tejano Culas, Senior Graphic Designer / Creative Specialist — portfolio of editorial, campaign, print, and photography work."
+  },
+  "home": {
+    "title": "Gil Tejano Culas | Senior Graphic Designer / Creative Specialist",
+    "description": "Portfolio of Gil Tejano Culas, Senior Graphic Designer / Creative Specialist: campaigns, catalogues, print, photography, and reels for lifestyle brands."
+  },
+  "indexed": [
+    "index.html",
+    "pages/editorial-layout.html",
+    "pages/social-media-campaigns.html",
+    "pages/print-brand-collateral.html",
+    "pages/commercial-lifestyle-photography.html",
+    "pages/short-form-video-reels.html"
+  ]
+}

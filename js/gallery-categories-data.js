@@ -16,6 +16,8 @@
  *   objective     — one sentence on the creative objective or contribution
  *   lede          — one-line summary for the homepage gallery panel and the
  *                   category's closing line
+ *   description   — the page's search-result and link-preview description
+ *                   (meta description, Open Graph, X: scripts/generate-seo.js)
  *
  * Media comes from the build-generated manifests, so new files dropped into
  * a category's folder appear automatically after `npm run build`:
@@ -44,6 +46,8 @@ window.GALLERY_CATEGORIES = [
       "Turn large product ranges into well-ordered pages that stay consistent from cover to cover and are ready for print and digital distribution.",
     lede:
       "Catalogues, collection books, and brand documents built on considered grids, typography, and pacing.",
+    description:
+      "Product catalogues, collection books, and brand documents for Hooga, Dunlopillo, Porta Mobili, and Endo — editorial and layout design by Gil Tejano Culas.",
   },
   {
     id: "social-media-campaigns",
@@ -59,6 +63,8 @@ window.GALLERY_CATEGORIES = [
       "Give each brand a distinct visual voice that stays consistent across recurring posts, promotions, and event announcements.",
     lede:
       "Key visuals adapted across social posts, carousels, and promotions, each built around one clear idea.",
+    description:
+      "Key visuals, Instagram carousels, and event announcements for Dunlopillo, Hooga, Mooni, Metal-Lite, and Porta Mobili — social campaigns by Gil Tejano Culas.",
     // Hand-picked Featured key visuals, in display order (filenames in
     // assets/images/gallery/<id>/). The first is the page's opening visual
     // and the homepage preview; the rest are its slideshow. Used as-is —
@@ -96,6 +102,8 @@ window.GALLERY_CATEGORIES = [
       "Extend each campaign's look from screen to print with production-ready files sized for every format, from a tote bag to a highway billboard.",
     lede:
       "Billboards, posters, brochures, and event pieces that carry a brand consistently off-screen.",
+    description:
+      "Billboards, murals, posters, brochures, and event print for Hooga, Dunlopillo, Porta Mobili, and Metal-Lite — print and brand collateral by Gil Tejano Culas.",
     // Hand-picked Featured pieces, in display order (see the
     // social-media-campaigns entry for how `featured` is used).
     featured: [
@@ -131,6 +139,8 @@ window.GALLERY_CATEGORIES = [
       "Show materials, proportions, and light as they are, in images ready for catalogues, social posts, and campaign layouts.",
     lede:
       "Product, interior, and lifestyle photography made for catalogues, campaigns, and social content.",
+    description:
+      "Product, interior, and lifestyle photography of furniture, lighting, and residential spaces — commercial photography by Gil Tejano Culas.",
     // Hand-picked Featured Photos, in display order (filenames in
     // assets/images/gallery/<id>/). The first is the page's featured
     // photograph and the homepage preview; the rest are the homepage
@@ -169,6 +179,8 @@ window.GALLERY_CATEGORIES = [
       "Present each product or space in a few seconds of clear, well-paced footage that holds attention in a scrolling feed.",
     lede:
       "Short vertical videos that present products and spaces for fast-moving social feeds.",
+    description:
+      "Vertical product, showroom, and lifestyle reels for Hooga, Mooni, Dunlopillo, Porta Mobili, and Metal-Lite — short-form video by Gil Tejano Culas.",
     // Poster frames (assets/videos/short-form-reels/*.jpg) of the reels the
     // homepage previews show, in order. Display order on the reels page
     // itself is set in scripts/gallery-priority.js.

@@ -44,7 +44,7 @@
   var LOADING_TIMEOUT_MS = 2500;
 
   /* LANGUAGES START — written by scripts/build-locales.js; do not edit by hand. */
-  var VERSION = "4a9ed2f0f3";
+  var VERSION = "c9bf92d4c9";
   var LANGUAGES = [
     { code: "en", short: "EN", name: "English", published: true },
     { code: "es", short: "ES", name: "Español", published: false },
@@ -84,7 +84,16 @@
     /^(localhost|127(?:\.\d+){3}|\[::1\]|0\.0\.0\.0)$/.test(window.location.hostname) ||
     params.has("i18n-debug");
 
-  if (params.has(PREVIEW_KEY)) session.set(PREVIEW_KEY, params.get(PREVIEW_KEY) === "0" ? null : "1");
+  if (params.has(PREVIEW_KEY)) {
+    // Remembered for the tab; the parameter itself is dropped so every page
+    // keeps one canonical URL.
+    session.set(PREVIEW_KEY, params.get(PREVIEW_KEY) === "0" ? null : "1");
+    params.delete(PREVIEW_KEY);
+    var rest = params.toString();
+    try {
+      window.history.replaceState(window.history.state, "", window.location.pathname + (rest ? "?" + rest : "") + window.location.hash);
+    } catch (e) {}
+  }
   var PREVIEW = DEV || session.get(PREVIEW_KEY) === "1";
   var available = LANGUAGES.filter(function (lang) {
     return lang.published || PREVIEW;

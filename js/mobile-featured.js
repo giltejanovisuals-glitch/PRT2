@@ -651,6 +651,7 @@
       title: reelName(slide),
       label: reelName(slide),
       brand: slide.brand || '',
+      alt: entry.img.alt || '',
     }]); // closing returns to this card, at the same scroll position
 
     remember();

@@ -35,7 +35,15 @@
   /* Widest the header/dock frame grows when zoomed out, so the controls stay
      near the content instead of drifting to the far screen corners. */
   --site-max: 100rem;
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Motion tokens: every transition and reveal draws from these. Phones use
+     the shorter end (see the max-width: 760px override below). */
+  --motion-fast: 180ms;
+  --motion-standard: 350ms;
+  --motion-slow: 600ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-rise: 16px;
+  --motion-stagger: 70ms;
+  --ease: var(--motion-ease);
   --font-headline: "TT Modernist", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
     sans-serif;
@@ -588,7 +596,7 @@ body.is-scrolled .nav-backdrop {
 .showcase-panel:hover .showcase-panel-img.is-active,
 .showcase-panel:focus-within .showcase-panel-img.is-active,
 .showcase-panel.is-expanded .showcase-panel-img.is-active {
-  transform: scale(1.06);
+  transform: scale(1.03);
   transition:
     opacity 700ms var(--ease),
     transform 2400ms var(--ease);
@@ -908,13 +916,13 @@ body.is-scrolled .nav-backdrop {
 /* Entrance: label/headline first, body copy shortly after, portrait last.
    Runs once via .is-inview, toggled by IntersectionObserver in script.js;
    the global prefers-reduced-motion rule collapses all of this to instant. */
-.about-label,
-.about-headline,
-.about-text,
-.about-quote,
-.about-highlights,
-.about-actions,
-.about-media {
+:root.js .about:not(.is-inview) .about-label,
+:root.js .about:not(.is-inview) .about-headline,
+:root.js .about:not(.is-inview) .about-text,
+:root.js .about:not(.is-inview) .about-quote,
+:root.js .about:not(.is-inview) .about-highlights,
+:root.js .about:not(.is-inview) .about-actions,
+:root.js .about:not(.is-inview) .about-media {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 600ms var(--ease), transform 600ms var(--ease);
@@ -929,6 +937,7 @@ body.is-scrolled .nav-backdrop {
 .about.is-inview .about-media {
   opacity: 1;
   transform: translateY(0);
+  transition: opacity 600ms var(--ease), transform 600ms var(--ease);
 }
 
 .about.is-inview .about-text { transition-delay: 110ms; }
@@ -1158,8 +1167,10 @@ body.is-scrolled .nav-backdrop {
   object-fit: contain;
   opacity: 0.75;
   transform: translateY(var(--dock-lift, 0px)) scale(var(--dock-scale, 1));
+  /* Spring-like settle without overshoot; the 56px badge never changes
+     size, so the row doesn't shift. */
   transition: opacity 220ms ease,
-    transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform 300ms var(--motion-ease);
 }
 
 /* Narrow or circular marks read visually smaller than a square icon at
@@ -1266,7 +1277,6 @@ body.is-scrolled .nav-backdrop {
   color: var(--muted);
   font-size: 0.72rem;
   letter-spacing: 0.02em;
-  opacity: 0.6;
 }
 
 .dock-info-name {
@@ -1324,7 +1334,18 @@ body.is-scrolled .nav-backdrop {
   margin: 0;
   padding: 1.5rem 0 0;
   list-style: none;
-  border-top: 1px solid var(--line);
+}
+
+/* The line (drawn, not a border, so it can grow in with transform). */
+.tl-list::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: var(--line);
+  transform-origin: left;
 }
 
 .tl-item {
@@ -1332,9 +1353,26 @@ body.is-scrolled .nav-backdrop {
   flex: 0 0 auto;
   width: 9rem;
   padding-top: 0.5rem;
+}
+
+/* Entrance, once (.is-inview from js/script.js): the line runs from start
+   to finish, then the points and entries follow 70ms apart. Hidden only
+   when scripts run (:root.js), so the timeline shows without them. */
+:root.js .tl-track:not(.is-inview) .tl-list::before {
+  transform: scaleX(0);
+}
+
+:root.js .tl-list::before {
+  transition: transform var(--motion-slow) var(--motion-ease);
+}
+
+:root.js .tl-track:not(.is-inview) .tl-item {
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 550ms var(--ease), transform 550ms var(--ease);
+}
+
+:root.js .tl-item {
+  transition: opacity 500ms var(--motion-ease), transform 500ms var(--motion-ease);
 }
 
 /* Full-size cards (with a description). Only the role held now is
@@ -1349,12 +1387,12 @@ body.is-scrolled .nav-backdrop {
   transform: translateY(0);
 }
 
-.tl-track.is-inview .tl-item:nth-child(1) { transition-delay: 0ms; }
-.tl-track.is-inview .tl-item:nth-child(2) { transition-delay: 80ms; }
-.tl-track.is-inview .tl-item:nth-child(3) { transition-delay: 160ms; }
-.tl-track.is-inview .tl-item:nth-child(4) { transition-delay: 240ms; }
-.tl-track.is-inview .tl-item:nth-child(5) { transition-delay: 320ms; }
-.tl-track.is-inview .tl-item:nth-child(6) { transition-delay: 400ms; }
+.tl-track.is-inview .tl-item:nth-child(1) { transition-delay: 380ms; }
+.tl-track.is-inview .tl-item:nth-child(2) { transition-delay: 450ms; }
+.tl-track.is-inview .tl-item:nth-child(3) { transition-delay: 520ms; }
+.tl-track.is-inview .tl-item:nth-child(4) { transition-delay: 590ms; }
+.tl-track.is-inview .tl-item:nth-child(5) { transition-delay: 660ms; }
+.tl-track.is-inview .tl-item:nth-child(6) { transition-delay: 730ms; }
 
 .tl-dot {
   position: absolute;
@@ -1369,6 +1407,17 @@ body.is-scrolled .nav-backdrop {
 
 .tl-item.is-current .tl-dot {
   background: var(--accent);
+}
+
+/* Only one role is highlighted: the hovered (or focused) one, else the
+   current one. */
+.tl-item:hover .tl-dot,
+.tl-item:focus-within .tl-dot {
+  background: var(--accent);
+}
+
+.tl-list:hover .tl-item.is-current:not(:hover) .tl-dot {
+  background: var(--muted);
 }
 
 .tl-date {
@@ -2053,7 +2102,6 @@ body.is-scrolled .nav-backdrop {
   color: var(--muted);
   font-size: 0.7rem;
   line-height: 1.5;
-  opacity: 0.85;
 }
 
 .form-error-banner {
@@ -2840,6 +2888,206 @@ body.is-scrolled .nav-backdrop {
     fill 320ms ease,
     stroke 320ms ease !important;
   transition-delay: 0s !important;
+}
+
+/* ==========================================================================
+   Motion system — calm, editorial, transform/opacity only. Tokens are in
+   :root; js/motion.js drives the reveals and the nav indicator; the page
+   intro and project transition are scripts/templates/page-transition.*.
+   Everything here collapses under prefers-reduced-motion (below).
+   ========================================================================== */
+
+/* Phones: shorter durations, smaller rise. */
+@media (max-width: 760px) {
+  :root {
+    --motion-standard: 280ms;
+    --motion-slow: 400ms;
+    --motion-rise: 12px;
+  }
+}
+
+/* Section reveals (js/motion.js adds .rv only to elements below the fold,
+   and only when scripts run; .is-in plays it once, then both go). */
+:root.js .rv {
+  opacity: 0;
+  transform: translate3d(0, var(--motion-rise), 0);
+  transition:
+    opacity var(--motion-slow) var(--motion-ease) var(--rv-delay, 0ms),
+    transform var(--motion-slow) var(--motion-ease) var(--rv-delay, 0ms);
+}
+
+:root.js .rv.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media print {
+  :root.js .rv {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Header backdrop: the blur gradient deepens and gains a faint tint once
+   the page scrolls (desktop; phones have their own in the 760px block). */
+@media (min-width: 761px) {
+  .nav-backdrop {
+    transition:
+      backdrop-filter var(--motion-standard) var(--motion-ease),
+      -webkit-backdrop-filter var(--motion-standard) var(--motion-ease),
+      background-color var(--motion-standard) var(--motion-ease);
+  }
+
+  body.is-scrolled .nav-backdrop,
+  :root.header-scrolled .nav-backdrop {
+    background-color: rgba(var(--background-rgb), 0.35);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+}
+
+/* Active-section indicator: one line that glides between nav links
+   (js/motion.js sets its translate and width-as-scale). */
+/* Desktop only: on phones .floating-nav is the fixed full-screen menu. */
+@media (min-width: 761px) {
+  .floating-nav {
+    position: relative;
+  }
+}
+
+.nav-indicator {
+  position: absolute;
+  bottom: calc(50% - 0.95rem);
+  left: 0;
+  width: 1px;
+  height: 1px;
+  background: var(--nav-hover);
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: left;
+  transition:
+    transform var(--motion-standard) var(--motion-ease),
+    opacity var(--motion-fast) ease;
+}
+
+.nav-indicator.is-on {
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .nav-indicator {
+    display: none;
+  }
+}
+
+/* Pressed controls respond with a slight scale (the independent `scale`
+   property, so each control's own transforms are untouched). */
+.theme-toggle:active,
+.search-toggle:active,
+.menu-toggle:active,
+.cap-arrow:not(:disabled):active,
+.cta-btn:not(:disabled):active,
+.hpx-btn:active,
+.template-btn:active,
+.chip:active,
+.nav-dock-item:active,
+.mobile-tabbar-item:active,
+.cta-social-link:active {
+  scale: 0.96;
+}
+
+/* Project Gallery panels: a directional arrow arrives with the summary
+   (absolutely placed, so the panel's content never moves). */
+.showcase-panel::after {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.1rem;
+  z-index: 2;
+  color: #fff;
+  content: "\2192";
+  font-size: 1rem;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(-6px, 0, 0);
+  transition:
+    opacity var(--motion-standard) var(--motion-ease),
+    transform var(--motion-standard) var(--motion-ease);
+}
+
+.showcase-panel:hover::after,
+.showcase-panel:focus-within::after,
+.showcase-panel.is-expanded::after {
+  opacity: 0.9;
+  transform: none;
+}
+
+@media (max-width: 760px) {
+  .showcase-panel::after {
+    display: none;
+  }
+}
+
+/* Primary call to action: a restrained arrow that moves on hover/focus. */
+#cta-start-trigger::after {
+  display: inline-block;
+  content: "\2192";
+  transition: transform var(--motion-standard) var(--motion-ease);
+}
+
+@media (hover: hover) {
+  #cta-start-trigger:hover::after {
+    transform: translate3d(3px, 0, 0);
+  }
+}
+
+#cta-start-trigger:focus-visible::after,
+#cta-start-trigger[aria-expanded="true"]::after {
+  transform: translate3d(3px, 0, 0);
+}
+
+/* Inquiry form states: messages ease in; sending shows a quiet progress
+   ring on the button. Nothing here touches what the visitor typed. */
+.form-field-error:not([hidden]),
+.form-error-banner:not([hidden]),
+.inquiry-success:not([hidden]),
+.template-confirmation:not([hidden]) {
+  animation: motion-message var(--motion-standard) var(--motion-ease) both;
+}
+
+@keyframes motion-message {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.form-submit-btn {
+  position: relative;
+}
+
+.inquiry-form[aria-busy="true"] .form-submit-btn {
+  cursor: progress;
+}
+
+/* Absolutely placed in the button's right padding: no width change. */
+.inquiry-form[aria-busy="true"] .form-submit-btn::after {
+  position: absolute;
+  top: calc(50% - 0.425em);
+  right: 0.6rem;
+  width: 0.85em;
+  height: 0.85em;
+  border: 1.5px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  content: "";
+  animation: motion-spin 800ms linear infinite;
+}
+
+@keyframes motion-spin {
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

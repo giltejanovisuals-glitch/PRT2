@@ -91,6 +91,7 @@
             poster: preview.src,
             ratio: preview.width / preview.height,
             title: '',
+            alt: media.querySelector('img')?.alt || '',
             label: window.i18n && window.i18n.lang !== 'en' ? window.i18n.t(`category.${category.id}.title`, null, `${category.title} reel`) : `${category.title} reel`,
             brand: '',
           }]);
