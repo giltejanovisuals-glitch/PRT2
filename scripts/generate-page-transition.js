@@ -33,7 +33,7 @@ const categories = sandbox.window.GALLERY_CATEGORIES || [];
 const headBlock = (prefix, isHome) =>
   [
     "<!-- PAGE TRANSITION HEAD START -->",
-    ...(isHome ? [`<link rel="preload" as="image" href="${prefix}assets/icons/logo.png" crossorigin />`] : []),
+    ...(isHome ? [`<link rel="preload" as="image" href="${prefix}assets/icons/logo.png?v=2" crossorigin />`] : []),
     `<style>\n${indent(css, 2)}\n</style>`,
     `<script>\n${indent(boot, 2)}\n</script>`,
     `<script src="${prefix}js/page-transition.js?v=3" defer></script>`,
@@ -43,7 +43,7 @@ const headBlock = (prefix, isHome) =>
 
 const homeOverlay = (prefix) => `<div class="pt-overlay" aria-hidden="true" inert>
   <div class="pt-inner">
-    <span class="pt-mark" style="--pt-logo: url('${prefix}assets/icons/logo.png')"></span>
+    <span class="pt-mark" style="--pt-logo: url('${prefix}assets/icons/logo.png?v=2')"></span>
     <p class="pt-title pt-title-home">Gil Tejano Culas</p>
     <p class="pt-sub"><span data-i18n="intro.role1">Senior Graphic Designer /</span> <span data-i18n="intro.role2">Creative Specialist</span></p>
     <span class="pt-line"></span>
