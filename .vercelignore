@@ -9,4 +9,7 @@ private/
 README.md
 PERFORMANCE.md
 assets/documents/editorial-layout/README.md
-LOGO.png
+# Root source logo only. Anchored with "/" because Vercel matches ignore
+# patterns case-insensitively at any depth: a bare "LOGO.png" also dropped
+# assets/icons/logo.png (the mobile tab bar's home icon) from the deploy.
+/LOGO.png
