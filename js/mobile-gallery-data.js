@@ -101,6 +101,11 @@ window.MOBILE_GALLERY_DATA = [
     "number": "02",
     "previews": [
       {
+        "src": "assets/images/home-previews/social-media-campaigns/hms5-14mep.webp",
+        "width": 900,
+        "height": 900
+      },
+      {
         "src": "assets/images/home-previews/social-media-campaigns/1-feather-recliner-v2-11prl.webp",
         "width": 900,
         "height": 900
@@ -373,6 +378,13 @@ window.MOBILE_GALLERY_DATA = [
     "unit": "videos",
     "number": "05",
     "previews": [
+      {
+        "src": "assets/images/home-previews/short-form-video-reels/0904-9-2ln9.webp",
+        "width": 640,
+        "height": 1138,
+        "reel": "0904 9.mp4",
+        "reelPreview": "previews/0904 9.mp4"
+      },
       {
         "src": "assets/images/home-previews/short-form-video-reels/mooni-fw20202-3-3v26.webp",
         "width": 640,

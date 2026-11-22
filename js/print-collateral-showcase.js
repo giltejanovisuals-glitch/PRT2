@@ -19,11 +19,9 @@
  * navigation stay put and the document never scrolls. Only the three-column
  * thumbnail gallery on the right moves, driven by its own virtual scroll
  * position — wheel, trackpad, touch and keyboard input over the gallery is
- * captured there and never reaches the page. The columns move alternately,
- * each across its own full length: the column under the cursor (or finger)
- * scrolls the way the wheel goes, like a page, and its neighbours go the
- * opposite way; with no column pointed at, column 2 scrolls like a page and
- * columns 1 and 3 the other way. Movement eases toward the target for
+ * captured there and never reaches the page. All three columns start at the
+ * top and move together in the same direction, like a page, each across its
+ * own full length so they reach their ends together. Movement eases toward the target for
  * controlled inertia (touch flicks glide on).
  * Pushing past either end gives a short elastic give that springs back, and
  * a progress line in the gallery bar marks start and end.
@@ -553,12 +551,11 @@
       // columns end up close in length — that keeps their travel, and so
       // their speed, nearly identical. Manifest order is kept per column.
       const filled = new Array(COLUMN_COUNT).fill(0);
-      columns = Array.from({ length: COLUMN_COUNT }, (_, i) => {
+      columns = Array.from({ length: COLUMN_COUNT }, () => {
         const col = document.createElement("div");
         col.className = "pbc-col";
-        col.dataset.direction = i % 2 === 0 ? "down" : "up";
         rail.appendChild(col);
-        return { el: col, direction: i % 2 === 0 ? 1 : -1, travel: 0, rate: 0 };
+        return { el: col, travel: 0, rate: 0 };
       });
       entries.forEach((entry, i) => {
         let target = 0;
@@ -903,16 +900,13 @@
     }
   };
 
-  // --- Motion mode: virtual scroll with opposed column drift ---------------
+  // --- Motion mode: virtual scroll, all columns in step --------------------
   //
   // Every column keeps its own scroll position (`tgt`/`cur`, 0 = its top in
-  // view, `travel` = its bottom in view). Input moves all of them at once,
-  // alternately: by default column 2 scrolls like a page (wheel down →
-  // content moves up) and columns 1 and 3 go the other way. With the cursor
-  // (or a finger) over a column, that column follows the wheel like a page
-  // and the pattern alternates out from it — so the column being looked at
-  // always moves the expected way. Each column covers its own length over
-  // the same virtual range, so their speeds stay matched.
+  // view, `travel` = its bottom in view). Input moves all of them at once
+  // and in the same direction, like a page (wheel down → content moves up).
+  // Each column covers its own length over the same virtual range, so they
+  // start together at the top and reach their ends together.
 
   let mode = "";
   let railHeight = 0;
@@ -924,17 +918,13 @@
   let lastTime = 0;
   let anchor = null; // index of the column under the cursor for this input
 
-  // Every column begins halfway along its length, so whichever column the
-  // cursor is on can scroll either way from the first wheel turn.
-  const startFrac = () => 0.5;
+  // Every column begins at its top, aligned with the others.
+  const startFrac = () => 0;
   // The column the progress line describes: the one last pointed at
   // (column 2 until then).
   let progressCol = 1;
-  // +1: moves like a page for the input; -1: the opposite way.
-  const senseOf = (col, i) => {
-    if (anchor === null) return col.direction > 0 ? -1 : 1;
-    return i % 2 === anchor % 2 ? 1 : -1;
-  };
+  // Every column moves like a page for the input.
+  const senseOf = () => 1;
 
   // Which column a viewport x falls in (the nearest across a gap), or null
   // outside the rail.

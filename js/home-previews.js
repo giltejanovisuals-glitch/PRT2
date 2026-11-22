@@ -22,6 +22,7 @@ window.HOME_GALLERY_PREVIEWS = {
     "assets/images/home-previews/editorial-layout/porta-mobili-brand-deck-web-page-02-hob.webp"
   ],
   "social-media-campaigns": [
+    "assets/images/home-previews/social-media-campaigns/hms5-14mep.webp",
     "assets/images/home-previews/social-media-campaigns/1-feather-recliner-v2-11prl.webp",
     "assets/images/home-previews/social-media-campaigns/05125-2pit7.webp",
     "assets/images/home-previews/social-media-campaigns/marw33-1-172vf.webp",
@@ -76,6 +77,7 @@ window.HOME_GALLERY_PREVIEWS = {
     "assets/images/home-previews/commercial-lifestyle-photography/dsf2317-hdr-webp-9n0l.webp"
   ],
   "short-form-video-reels": [
+    "assets/images/home-previews/short-form-video-reels/0904-9-2ln9.webp",
     "assets/images/home-previews/short-form-video-reels/mooni-fw20202-3-3v26.webp",
     "assets/images/home-previews/short-form-video-reels/0202-4-2rfs.webp",
     "assets/images/home-previews/short-form-video-reels/hooga-jr1-3v1j.webp",

@@ -81,7 +81,8 @@
     // list (js/gallery-categories-data.js), else the build's first preview.
     // While a mouse hovers it or keyboard focus is inside it, it crossfades
     // through that image and the next two, in order, and pauses on whatever
-    // is showing when the pointer or focus leaves. Touch devices and
+    // is showing when the pointer or focus leaves. The reels panel plays
+    // random reel clips instead (createReelHover below). Touch devices and
     // reduced-motion users only ever get the static image.
     const previews = window.HOME_GALLERY_PREVIEWS || {};
     const curated = new Set(
@@ -93,6 +94,165 @@
     const SLIDE_MAX_MS = 1200;
 
     const encodeAssetPath = (assetPath) => String(assetPath).split("/").map(encodeURIComponent).join("/");
+
+    // --- Reels panel: random clips on hover ---
+    // Instead of crossfading stills, the Short-Form Video & Reels panel plays
+    // a few seconds of a random reel, then crossfades to another, for as
+    // long as it's hovered or focused. It uses each reel's light preview
+    // clip (scripts/make-reel-previews.js), starting at a random point, and
+    // never repeats a reel until every one has played. On leave the clips
+    // fade out over the static cover and are unloaded. Skipped, leaving the
+    // still, on touch, reduced motion, reduced data, Save-Data or 2G.
+    const REEL_CLIP_MS = 3200;
+    const REEL_FADE_MS = 700;
+    const reducedDataQuery = window.matchMedia("(prefers-reduced-data: reduce)");
+    const shuffle = (list) => {
+      const a = list.slice();
+      for (let i = a.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    };
+    const lightDataOnly = () => {
+      const connection = navigator.connection;
+      return reducedDataQuery.matches || Boolean(connection?.saveData) || /(^|-)2g$/.test(connection?.effectiveType || "");
+    };
+    // Resolves on `type`; rejects on an error or a stall past `ms`.
+    const waitFor = (video, type, ms = 5000) =>
+      new Promise((resolve, reject) => {
+        let timeout = 0;
+        const cleanup = () => {
+          window.clearTimeout(timeout);
+          video.removeEventListener(type, done);
+          video.removeEventListener("error", fail);
+        };
+        const done = () => {
+          cleanup();
+          resolve();
+        };
+        const fail = () => {
+          cleanup();
+          reject(new Error("video failed"));
+        };
+        timeout = window.setTimeout(fail, ms);
+        video.addEventListener(type, done);
+        video.addEventListener("error", fail);
+      });
+
+    const createReelHover = (media, overlay) => {
+      const clips = (window.REEL_MANIFEST || [])
+        .filter((reel) => reel.preview)
+        .map((reel) => `assets/videos/short-form-reels/${encodeAssetPath(reel.preview)}`);
+      if (clips.length < 1) return null;
+
+      const videos = [0, 1].map(() => {
+        const video = document.createElement("video");
+        video.className = "showcase-panel-img showcase-panel-video";
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
+        video.loop = true;
+        video.preload = "none";
+        video.disablePictureInPicture = true;
+        video.setAttribute("muted", "");
+        video.setAttribute("playsinline", "");
+        video.setAttribute("aria-hidden", "true");
+        video.tabIndex = -1;
+        media.insertBefore(video, overlay);
+        return video;
+      });
+
+      let queue = [];
+      let last = "";
+      let front = -1; // index of the visible video; -1 while the still shows
+      let running = false;
+      let session = 0;
+      let timer = 0;
+      let failures = 0;
+
+      const nextClip = () => {
+        if (!queue.length) {
+          queue = shuffle(clips);
+          // Don't replay the clip that just ended at the start of a new round.
+          if (queue.length > 1 && queue[queue.length - 1] === last) queue.unshift(queue.pop());
+        }
+        last = queue.pop();
+        return last;
+      };
+
+      const unload = (video) => {
+        video.pause();
+        video.preload = "none";
+        video.removeAttribute("src");
+        video.load();
+      };
+
+      async function showNext() {
+        const current = session;
+        const back = videos[front === 0 ? 1 : 0];
+        // Nothing downloads until a clip is actually wanted (preload "none"
+        // at rest); from here it loads straight away.
+        back.preload = "auto";
+        back.src = nextClip();
+        try {
+          await waitFor(back, "loadedmetadata");
+          if (!running || current !== session) return;
+          // A random moment of the clip, leaving room to play through.
+          const room = (back.duration || 0) - REEL_CLIP_MS / 1000;
+          if (room > 0.5) back.currentTime = Math.random() * room;
+          await back.play();
+        } catch {
+          if (running && current === session) {
+            failures += 1;
+            if (failures < 4) timer = window.setTimeout(showNext, 300);
+          }
+          return;
+        }
+        if (!running || current !== session) {
+          unload(back);
+          return;
+        }
+        failures = 0;
+        back.classList.add("is-active");
+        if (front >= 0) {
+          const old = videos[front];
+          old.classList.remove("is-active");
+          window.setTimeout(() => {
+            if (!old.classList.contains("is-active")) unload(old);
+          }, REEL_FADE_MS);
+        }
+        front = videos.indexOf(back);
+        timer = window.setTimeout(showNext, REEL_CLIP_MS);
+      }
+
+      const start = () => {
+        if (running || mobileQuery.matches || reducedMotionQuery.matches || !hoverQuery.matches || lightDataOnly()) return;
+        running = true;
+        session += 1;
+        failures = 0;
+        showNext();
+      };
+
+      const stop = () => {
+        if (!running) return;
+        running = false;
+        session += 1;
+        window.clearTimeout(timer);
+        const ending = session;
+        videos.forEach((video) => video.classList.remove("is-active"));
+        front = -1;
+        window.setTimeout(() => {
+          if (!running && ending === session) videos.forEach(unload);
+        }, REEL_FADE_MS);
+      };
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stop();
+      });
+
+      return { start, stop };
+    };
 
 
     panels.forEach((panel) => {
@@ -180,19 +340,23 @@
         window.clearTimeout(timer);
       };
 
+      // The reels panel plays clips instead of the still slideshow.
+      const hover =
+        (panel.dataset.category === "short-form-video-reels" && createReelHover(media, overlay)) || { start, stop };
+
       panel.addEventListener("pointerenter", (event) => {
-        if (event.pointerType === "mouse") start();
+        if (event.pointerType === "mouse") hover.start();
       });
       panel.addEventListener("pointerleave", () => {
-        if (!panel.contains(document.activeElement)) stop();
+        if (!panel.contains(document.activeElement)) hover.stop();
       });
       // Keyboard focus previews the same way; it pauses once focus leaves.
-      panel.addEventListener("focusin", start);
+      panel.addEventListener("focusin", hover.start);
       panel.addEventListener("focusout", (event) => {
-        if (!panel.contains(event.relatedTarget) && !panel.matches(":hover")) stop();
+        if (!panel.contains(event.relatedTarget) && !panel.matches(":hover")) hover.stop();
       });
-      reducedMotionQuery.addEventListener("change", stop);
-      mobileQuery.addEventListener("change", stop);
+      reducedMotionQuery.addEventListener("change", hover.stop);
+      mobileQuery.addEventListener("change", hover.stop);
     });
   };
   initializeDesktop();

@@ -19,6 +19,12 @@
 window.GALLERY_EDITORIAL_META = {
   "editorial-layout": {},
   "social-media-campaigns": {
+    "HMS5.png": {
+      title: "Quiet Comfort",
+      project: "Hooga",
+      type: "Social Key Visual",
+      alt: "A rope-weave lounge chair draped with a knit throw on a small deck amid tall golden grass at sunset, beneath a pergola, with the Hooga line “Quiet comfort for open-air living.”",
+    },
     "1 FEATHER RECLINER v2.png": {
       title: "Find Your Sanctuary",
       project: "Dunlopillo",

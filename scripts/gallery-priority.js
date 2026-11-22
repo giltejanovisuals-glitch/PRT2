@@ -321,6 +321,7 @@ module.exports = {
   // Strongest and most varied first: one clear concept per brand before any
   // brand repeats, then product, showroom, and lifestyle pieces.
   "short-form-video-reels": [
+    "0904 9.mp4", // cover — presenter in a white shirt at the store entrance
     "MOONI FW20202.3.mp4", // Mooni — "GRWM to sleep"
     "0202 (4).mp4", // Metal-Lite — Wanda pendant lights
     "HOOGA JR1.mp4", // Hooga — Damari dining table and Daxon chairs

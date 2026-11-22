@@ -70,6 +70,7 @@ window.GALLERY_CATEGORIES = [
     // and the homepage preview; the rest are its slideshow. Used as-is —
     // never sampled or shuffled. Rebuild (`npm run build`) after editing.
     featured: [
+      "HMS5.png", // Hooga — "Quiet comfort" (cover)
       "1 FEATHER RECLINER v2.png", // Dunlopillo — recliner in the forest
       "05125.png", // Hooga — "Design Speaks Many Languages"
       "MARW33.1.png", // Mooni — reading on the mattress
@@ -185,6 +186,7 @@ window.GALLERY_CATEGORIES = [
     // homepage previews show, in order. Display order on the reels page
     // itself is set in scripts/gallery-priority.js.
     featured: [
+      "0904 9.jpg", // cover — presenter at the store entrance
       "MOONI FW20202.3.jpg", // Mooni — "GRWM to sleep"
       "0202 (4).jpg", // Metal-Lite — Wanda pendant lights
       "HOOGA JR1.jpg", // Hooga — Damari dining table

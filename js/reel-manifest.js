@@ -6,6 +6,17 @@
  */
 window.REEL_MANIFEST = [
   {
+    "file": "0904 9.mp4",
+    "poster": "0904 9.jpg",
+    "thumb": "assets/images/gallery-thumbs/short-form-video-reels/0904-9-jpg-2ln9.webp",
+    "duration": 137.83,
+    "preview": "previews/0904 9.mp4",
+    "width": 1080,
+    "height": 1920,
+    "ratio": 0.5625,
+    "title": "0904 9"
+  },
+  {
     "file": "MOONI FW20202.3.mp4",
     "poster": "MOONI FW20202.3.jpg",
     "thumb": "assets/images/gallery-thumbs/short-form-video-reels/mooni-fw20202-3-jpg-3v26.webp",
@@ -356,17 +367,6 @@ window.REEL_MANIFEST = [
     "height": 1920,
     "ratio": 0.5625,
     "title": "0904 8"
-  },
-  {
-    "file": "0904 9.mp4",
-    "poster": "0904 9.jpg",
-    "thumb": "assets/images/gallery-thumbs/short-form-video-reels/0904-9-jpg-2ln9.webp",
-    "duration": 137.83,
-    "preview": "previews/0904 9.mp4",
-    "width": 1080,
-    "height": 1920,
-    "ratio": 0.5625,
-    "title": "0904 9"
   },
   {
     "file": "2601_2 HOOGA REELS.mp4",
