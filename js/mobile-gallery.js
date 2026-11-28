@@ -80,25 +80,8 @@
         // The light preview clip when there is one, else the reel itself.
         const clip = preview.reelPreview ? preview.reelPreview.split('/').map(encodeURIComponent).join('/') : file;
         window.createReelPreviews?.().add(media, REEL_BASE + clip, preview.src);
-        // The full reel plays in the fullscreen viewer right here; closing it
-        // (or Back) returns to this card, at the same scroll position. The
-        // rest of the card still opens the reels page.
-        let viewer = null;
-        card.addEventListener('click', (event) => {
-          if (event.defaultPrevented || !event.target.closest('.mobile-gallery-media')) return;
-          viewer = viewer || window.createReelViewer?.([{
-            src: REEL_BASE + file,
-            poster: preview.src,
-            ratio: preview.width / preview.height,
-            title: '',
-            alt: media.querySelector('img')?.alt || '',
-            label: window.i18n && window.i18n.lang !== 'en' ? window.i18n.t(`category.${category.id}.title`, null, `${category.title} reel`) : `${category.title} reel`,
-            brand: '',
-          }]);
-          if (!viewer) return; // falls through to the category page
-          event.preventDefault();
-          viewer.open(0, card);
-        });
+        // Tapping anywhere on the card, the preview video included, follows
+        // the card's link to the Short-Form Video & Reels page.
       }
       observer?.observe(card);
     });

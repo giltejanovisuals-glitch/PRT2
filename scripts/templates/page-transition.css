@@ -3,9 +3,9 @@
    it paints with the first frame: no flash of the page before it. CSS alone
    plays and removes it (pt-out ends hidden), so it can never stick, even
    without scripts. It never takes the pointer and nothing waits on images:
-   the whole sequence is 900ms — mark, title and teal line settle by
-   ~600ms, then the overlay fades. The boot script skips it after the first
-   page of a browsing session. */
+   the whole sequence is 2200ms — mark, title and teal line settle by
+   ~600ms, hold until 1800ms, then the overlay fades over 400ms. The boot
+   script skips it after the first page of a browsing session. */
 .pt-overlay,
 .pt-cover {
   --pt-bg: #f2f0ea;
@@ -46,10 +46,25 @@
   text-align: center;
 }
 .pt-overlay {
-  animation: pt-out 300ms var(--pt-ease) 600ms forwards;
+  animation: pt-out 400ms var(--pt-ease) 1800ms forwards;
 }
 .pt-skip .pt-overlay {
   display: none;
+}
+/* Arriving at a project page from another page of the site (pt-continue):
+   the leaving page's cover already brought in the number, title and line,
+   so the overlay holds them as they are (no second entrance) for 1000ms,
+   then fades over 400ms. */
+.pt-continue .pt-overlay {
+  animation-delay: 1000ms;
+}
+.pt-continue .pt-overlay .pt-number,
+.pt-continue .pt-overlay .pt-title,
+.pt-continue .pt-overlay .pt-line {
+  animation: none;
+}
+.pt-continue .pt-overlay .pt-line {
+  transform: none;
 }
 .pt-inner {
   display: flex;
@@ -134,9 +149,10 @@
   to { opacity: 0; visibility: hidden; }
 }
 /* Leaving for another page: a cover in the page color fades in over the
-   current one (200ms) — with the project's title and teal line rising when
-   the link opens a Project Gallery category — then the next page fades in
-   from the same color (pt-arrive, 280ms). */
+   current one (200ms) — with the project's number, title and teal line
+   rising when the link opens a Project Gallery category, which that page's
+   overlay then holds (pt-continue) — or the next page fades in from the
+   same color (pt-arrive, 280ms). */
 .pt-cover {
   opacity: 0;
   transition: opacity 200ms var(--pt-ease);
@@ -144,6 +160,7 @@
 .pt-cover.is-visible {
   opacity: 1;
 }
+.pt-cover .pt-number,
 .pt-cover .pt-title,
 .pt-cover .pt-line {
   animation: none;
@@ -154,6 +171,7 @@
 .pt-cover .pt-line {
   transform: scaleX(0);
 }
+.pt-cover.is-visible .pt-number,
 .pt-cover.is-visible .pt-title,
 .pt-cover.is-visible .pt-line {
   opacity: 1;

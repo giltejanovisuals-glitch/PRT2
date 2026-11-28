@@ -42,9 +42,9 @@
          it paints with the first frame: no flash of the page before it. CSS alone
          plays and removes it (pt-out ends hidden), so it can never stick, even
          without scripts. It never takes the pointer and nothing waits on images:
-         the whole sequence is 900ms — mark, title and teal line settle by
-         ~600ms, then the overlay fades. The boot script skips it after the first
-         page of a browsing session. */
+         the whole sequence is 2200ms — mark, title and teal line settle by
+         ~600ms, hold until 1800ms, then the overlay fades over 400ms. The boot
+         script skips it after the first page of a browsing session. */
       .pt-overlay,
       .pt-cover {
         --pt-bg: #f2f0ea;
@@ -85,10 +85,25 @@
         text-align: center;
       }
       .pt-overlay {
-        animation: pt-out 300ms var(--pt-ease) 600ms forwards;
+        animation: pt-out 400ms var(--pt-ease) 1800ms forwards;
       }
       .pt-skip .pt-overlay {
         display: none;
+      }
+      /* Arriving at a project page from another page of the site (pt-continue):
+         the leaving page's cover already brought in the number, title and line,
+         so the overlay holds them as they are (no second entrance) for 1000ms,
+         then fades over 400ms. */
+      .pt-continue .pt-overlay {
+        animation-delay: 1000ms;
+      }
+      .pt-continue .pt-overlay .pt-number,
+      .pt-continue .pt-overlay .pt-title,
+      .pt-continue .pt-overlay .pt-line {
+        animation: none;
+      }
+      .pt-continue .pt-overlay .pt-line {
+        transform: none;
       }
       .pt-inner {
         display: flex;
@@ -173,9 +188,10 @@
         to { opacity: 0; visibility: hidden; }
       }
       /* Leaving for another page: a cover in the page color fades in over the
-         current one (200ms) — with the project's title and teal line rising when
-         the link opens a Project Gallery category — then the next page fades in
-         from the same color (pt-arrive, 280ms). */
+         current one (200ms) — with the project's number, title and teal line
+         rising when the link opens a Project Gallery category, which that page's
+         overlay then holds (pt-continue) — or the next page fades in from the
+         same color (pt-arrive, 280ms). */
       .pt-cover {
         opacity: 0;
         transition: opacity 200ms var(--pt-ease);
@@ -183,6 +199,7 @@
       .pt-cover.is-visible {
         opacity: 1;
       }
+      .pt-cover .pt-number,
       .pt-cover .pt-title,
       .pt-cover .pt-line {
         animation: none;
@@ -193,6 +210,7 @@
       .pt-cover .pt-line {
         transform: scaleX(0);
       }
+      .pt-cover.is-visible .pt-number,
       .pt-cover.is-visible .pt-title,
       .pt-cover.is-visible .pt-line {
         opacity: 1;
@@ -224,12 +242,15 @@
 
          - Marks <html class="js">: styles that hide content until a script
            reveals it are scoped to it, so nothing stays hidden if scripts fail.
-         - The branded intro (<html class="pt-intro">, under 1s, CSS only) plays
+         - The branded intro (<html class="pt-intro">, about 2s, CSS only) plays
            once per browsing session: never again on later pages, never for
            Back/Forward, ?open= links straight to a piece, reduced motion or
            data saving. It never blocks input; the overlay ignores the pointer.
-         - Arriving from another page of this site afterwards, the page fades in
-           briefly (<html class="pt-arrive">) from the leaving page's cover. */
+         - Arriving at a Project Gallery page from another page of this site
+           afterwards, its overlay holds the number, title and line the leaving
+           page's cover brought in (<html class="pt-intro pt-continue">, ~1.4s).
+         - Arriving at any other page from this site, the page fades in briefly
+           (<html class="pt-arrive">) from the leaving page's cover. */
       (function () {
         var root = document.documentElement;
         root.classList.add("js");
@@ -242,23 +263,29 @@
           seen = sessionStorage.getItem("pt-seen") === "1";
           sessionStorage.setItem("pt-seen", "1");
         } catch (e) {}
-        if (backForward || /[?&]open=/.test(location.search) || reduced || saveData || seen) {
+        var internal = false;
+        try {
+          internal = !!document.referrer && new URL(document.referrer).origin === location.origin;
+        } catch (e) {}
+        var direct = backForward || /[?&]open=/.test(location.search) || reduced || saveData;
+        var project = /\/pages\/[a-z0-9-]+\.html$/.test(location.pathname);
+        var resume = !direct && seen && internal && project;
+        if (direct || (seen && !resume)) {
           root.classList.add("pt-skip");
-          var internal = false;
-          try {
-            internal = !!document.referrer && new URL(document.referrer).origin === location.origin;
-          } catch (e) {}
           if (internal && !backForward && !reduced) root.classList.add("pt-arrive");
           return;
         }
         root.classList.add("pt-intro");
+        if (resume) root.classList.add("pt-continue");
+        // pt-continue stays: dropping it mid-animation (a late first paint) would
+        // restart the overlay's timing and replay the entrance.
         window.__ptEnd = function () {
           root.classList.remove("pt-intro");
         };
-        setTimeout(window.__ptEnd, 1000);
+        setTimeout(window.__ptEnd, resume ? 1500 : 2300);
       })();
     </script>
-    <script src="../js/page-transition.js?v=1fb1064f" defer></script>
+    <script src="../js/page-transition.js?v=eb23b94b" defer></script>
     <script src="../js/motion.js?v=7949502d" defer></script>
     <!-- PAGE TRANSITION HEAD END -->
     <script src="../data/locales/en.js?v=fa12231f" defer></script>

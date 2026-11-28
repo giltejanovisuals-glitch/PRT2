@@ -3,10 +3,11 @@
  * script that scripts/generate-page-transition.js inlines into each page.
  *
  * Arriving: on the first page of a browsing session the overlay (homepage
- * welcome, or the category's number and title) plays in CSS for 900ms and
+ * welcome, or the category's number and title) plays in CSS for 2200ms and
  * fades away to reveal the page. This removes it from the document once it
- * has finished — or at the latest shortly after, if animationend never
- * comes. It never blocks input, and nothing waits on images or video.
+ * has finished — or shortly after the animation's own end, if animationend
+ * never comes (a hidden tab). It never blocks input, and nothing waits on
+ * images or video.
  *
  * Leaving: a click on a link to another page of this site fades a cover in
  * for 200ms — showing the category's title and a teal line when the link
@@ -24,7 +25,7 @@
 (() => {
   const root = document.documentElement;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const INTRO_DONE_MS = 1000; // after navigation start; the CSS ends at 900ms
+  const INTRO_DONE_MS = 2300; // fallback if the animation is not found; the CSS ends at 2200ms
   const LEAVE_MS = 200;
   const LEAVE_GIVE_UP_MS = 6000; // navigation never happened: uncover
 
@@ -48,7 +49,14 @@
     overlay.addEventListener("animationend", (event) => {
       if (event.target === overlay && event.animationName === "pt-out") reveal();
     });
-    window.setTimeout(reveal, Math.max(0, INTRO_DONE_MS - performance.now()));
+    // The fallback counts from when the intro's animation actually began,
+    // not from navigation start: on a slow first paint (phones on mobile
+    // data especially) a deadline from navigation start had already passed
+    // by the time the intro appeared, so it vanished almost at once.
+    const intro = overlay.getAnimations?.().find((animation) => animation.animationName === "pt-out");
+    const timing = intro?.effect?.getComputedTiming?.();
+    const left = timing ? timing.endTime - (intro.currentTime || 0) + 100 : INTRO_DONE_MS;
+    window.setTimeout(reveal, Math.max(0, left));
   }
 
   const whenRevealed = (callback) => {
@@ -69,14 +77,16 @@
     cover = null;
   };
 
-  // The title a cover shows for a Project Gallery page, in the visitor's
-  // language (null for any other page).
-  const projectTitle = (href) => {
+  // The number and title a cover shows for a Project Gallery page, the title
+  // in the visitor's language (null for any other page). They match that
+  // page's own overlay, which takes over from the cover on arrival.
+  const projectHeading = (href) => {
     const match = /\/pages\/([a-z0-9-]+)\.html$/.exec(new URL(href, window.location.href).pathname);
     if (!match) return null;
     const category = (window.GALLERY_CATEGORIES || []).find((entry) => entry.id === match[1]);
     const fallback = category ? category.title : null;
-    return window.i18n && window.i18n.has && window.i18n.has(`category.${match[1]}.title`) ? window.i18n.t(`category.${match[1]}.title`) : fallback;
+    const title = window.i18n && window.i18n.has && window.i18n.has(`category.${match[1]}.title`) ? window.i18n.t(`category.${match[1]}.title`) : fallback;
+    return title ? { number: category ? category.number : "", title } : null;
   };
 
   const go = (href) => {
@@ -89,13 +99,19 @@
     cover = document.createElement("div");
     cover.className = "pt-cover";
     cover.setAttribute("aria-hidden", "true");
-    const title = projectTitle(href);
-    if (title) {
+    const project = projectHeading(href);
+    if (project) {
       const inner = document.createElement("div");
       inner.className = "pt-inner";
+      if (project.number) {
+        const number = document.createElement("p");
+        number.className = "pt-number";
+        number.textContent = project.number;
+        inner.appendChild(number);
+      }
       const heading = document.createElement("p");
       heading.className = "pt-title pt-title-project";
-      heading.textContent = title;
+      heading.textContent = project.title;
       const line = document.createElement("span");
       line.className = "pt-line";
       inner.append(heading, line);
