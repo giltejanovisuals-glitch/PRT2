@@ -93,6 +93,7 @@ const lastModified = (file) => {
 const PERSON_ID = `${ORIGIN}/#person`;
 const WEBSITE_ID = `${ORIGIN}/#website`;
 const share = config.shareImage;
+const SITE_NAME = config.siteName || config.name;
 
 const person = () => ({
   "@type": "Person",
@@ -110,7 +111,7 @@ const website = () => ({
   "@type": "WebSite",
   "@id": WEBSITE_ID,
   url: `${ORIGIN}/`,
-  name: config.name,
+  name: SITE_NAME,
   description: config.home.description,
   inLanguage: "en",
   publisher: { "@id": PERSON_ID },
@@ -201,7 +202,7 @@ const pageInfo = (file) => {
   if (!category.description) throw new Error(`[seo] ${file}: category "${id}" has no description`);
   const url = pageUrl(file);
   return {
-    title: `${category.title} | ${config.name}`,
+    title: `${category.title} | ${SITE_NAME}`,
     titleAttrs: "",
     description: category.description,
     descriptionKey: `category.${id}.description`,
@@ -225,7 +226,7 @@ const pageInfo = (file) => {
           "@type": "BreadcrumbList",
           "@id": `${url}#breadcrumb`,
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: config.name, item: `${ORIGIN}/` },
+            { "@type": "ListItem", position: 1, name: SITE_NAME, item: `${ORIGIN}/` },
             { "@type": "ListItem", position: 2, name: category.title, item: url },
           ],
         },
@@ -248,7 +249,7 @@ const block = (file) => {
   if (ORIGIN) lines.push(`<link rel="canonical" href="${attr(pageUrl(file))}" />`);
   lines.push(
     '<meta property="og:type" content="website" />',
-    `<meta property="og:site_name" content="${attr(config.name)}" />`,
+    `<meta property="og:site_name" content="${attr(SITE_NAME)}" />`,
     '<meta property="og:locale" content="en_US" />',
     `<meta property="og:title" content="${attr(info.title)}" />`,
     `<meta property="og:description" content="${attr(info.description)}" />`

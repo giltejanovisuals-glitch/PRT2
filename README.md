@@ -1,4 +1,4 @@
-# Gil Tejano — Portfolio
+# Gil Tejano Culas Portfolio
 
 Static site. Open `index.html` directly or serve the folder root — no build
 step is required for anything except the Project Gallery categories'
@@ -8,7 +8,7 @@ image manifest (see below), which Vercel runs automatically via
 ## Structure
 
 ```
-PRT2/
+gil-tejano-culas-portfolio/
 ├── index.html                 Homepage — image-wall hero (desktop) or
 │                               featured coverflow (mobile), and the
 │                               Project Gallery showcase

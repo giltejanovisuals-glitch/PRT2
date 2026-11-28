@@ -50,7 +50,7 @@ const PUBLICATIONS = [
 ];
 
 const WEB_PDF_OPTIONS = {
-  producer: "PRT2 publication optimizer",
+  producer: "Gil Tejano Culas Portfolio publication optimizer",
   rasterDPI: 144,
   encodingQuality: 35,
   compressionLevel: 9,

@@ -162,7 +162,7 @@
   };
 
   const renderCategoryText = () => {
-    document.title = t("meta.categoryTitle", { title: copy(category, "title") }, `${category.title} | Gil Tejano Culas`);
+    document.title = t("meta.categoryTitle", { title: copy(category, "title") }, `${category.title} | Gil Tejano Culas Portfolio`);
     setText("category-eyebrow", t("category.eyebrow", { number: categoryNumber }, `Category ${categoryNumber} — Project Gallery`));
     setText("category-title", copy(category, "title"));
     setText("category-intro", copy(category, "intro"));
